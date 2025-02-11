@@ -1,0 +1,109 @@
+{
+    "novelists": [
+        {
+            "name": "Munshi Premchand",
+            "years": "1880–1936",
+            "country": "India",
+            "genre": "Realism",
+            "description": "Munshi Premchand was a pioneering figure in Hindi literature, renowned for his realistic portrayal of rural life and social issues in India. His works often highlighted the struggles of the poor and the downtrodden.",
+            "notableWorks": [
+                {
+                    "title": "Godaan",
+                    "image": "https://upload.wikimedia.org/wikipedia/en/4/4b/Godaan.jpg",
+                    "description": "A poignant narrative focusing on the life of a poor farmer, Hori, and his aspiration to own a cow, symbolizing his quest for respect and economic stability.",
+                    "publicationYear": "1936"
+                },
+                {
+                    "title": "Gaban",
+                    "image": "https://upload.wikimedia.org/wikipedia/en/9/9b/Gaban.jpg",
+                    "description": "Explores the moral dilemmas of a young man, Ramanath, who resorts to embezzlement to satisfy his wife's material desires, leading to a series of consequences.",
+                    "publicationYear": "1931"
+                }
+            ]
+        },
+        {
+            "name": "Mahadevi Verma",
+            "years": "1907–1987",
+            "country": "India",
+            "genre": "Chhayavaad",
+            "description": "A prominent poet, essayist, and freedom fighter, Mahadevi Verma was a leading figure in the Chhayavaad movement of Hindi literature. Her writings often delved into themes of love, nature, and spirituality.",
+            "notableWorks": [
+                {
+                    "title": "Yama",
+                    "image": "https://upload.wikimedia.org/wikipedia/en/3/3b/Yama_by_Mahadevi_Verma.jpg",
+                    "description": "A collection of poignant poems reflecting on life's transient nature, human emotions, and the quest for spiritual fulfillment.",
+                    "publicationYear": "1936"
+                },
+                {
+                    "title": "Ateet Ke Chalchitra",
+                    "image": "https://upload.wikimedia.org/wikipedia/en/5/5e/Ateet_Ke_Chalchitra.jpg",
+                    "description": "A series of memoirs where Verma reminisces about her past, offering insights into her personal experiences and the socio-cultural milieu of her times.",
+                    "publicationYear": "1941"
+                }
+            ]
+        },
+        {
+            "name": "Acharya Chatursen",
+            "years": "1891–1960",
+            "country": "India",
+            "genre": "Historical Fiction",
+            "description": "Acharya Chatursen was a prolific Hindi writer known for his historical and mythological novels. His works blend meticulous research with storytelling, providing deep insights into India's past.",
+            "notableWorks": [
+                {
+                    "title": "Vaishali Ki Nagarvadhu",
+                    "image": "https://upload.wikimedia.org/wikipedia/en/9/92/Vaishali_Ki_Nagarvadhu_Cover.jpg",
+                    "description": "A historical novel set in the time of Lord Buddha, revolving around the life of Amrapali, a courtesan of Vaishali.",
+                    "publicationYear": "1948"
+                },
+                {
+                    "title": "Vayam Rakshamah",
+                    "image": "https://upload.wikimedia.org/wikipedia/en/4/47/Vayam_Rakshamah_Cover.jpg",
+                    "description": "A retelling of the Ramayana from the perspective of Ravana, showcasing his strengths, vulnerabilities, and philosophy.",
+                    "publicationYear": "1951"
+                }
+            ]
+        },
+        {
+            "name": "Saadat Hasan Manto",
+            "years": "1912–1955",
+            "country": "India / Pakistan",
+            "genre": "Realism",
+            "description": "Manto was one of the greatest short-story writers in Urdu and Hindi literature. His works are known for their bold realism, often portraying the harsh truths of society and the brutality of the partition of India.",
+            "notableWorks": [
+                {
+                    "title": "Toba Tek Singh",
+                    "image": "https://upload.wikimedia.org/wikipedia/en/2/2e/Toba_Tek_Singh_Book_Cover.jpg",
+                    "description": "A short story set in a mental asylum during the partition of India, depicting the confusion and pain of displaced individuals.",
+                    "publicationYear": "1955"
+                },
+                {
+                    "title": "Kali Salwar",
+                    "image": "https://upload.wikimedia.org/wikipedia/en/9/9f/Kali_Salwar_Book_Cover.jpg",
+                    "description": "A story about the struggles of a prostitute named Sultana, highlighting the realities of marginalized women in society.",
+                    "publicationYear": "1941"
+                }
+            ]
+        },
+        {
+            "name": "Rahi Masoom Raza",
+            "years": "1927–1992",
+            "country": "India",
+            "genre": "Social Issues",
+            "description": "A distinguished Hindi-Urdu writer and poet, Rahi Masoom Raza is best known for his novel 'Aadha Gaon' and for scripting the television series 'Mahabharat'. His works often explore themes of communal harmony and social issues.",
+            "notableWorks": [
+                {
+                    "title": "Aadha Gaon",
+                    "image": "https://upload.wikimedia.org/wikipedia/en/7/7b/Aadha_Gaon_Book_Cover.jpg",
+                    "description": "A novel depicting the life of a village in Uttar Pradesh during the partition era, highlighting the communal harmony and subsequent tensions.",
+                    "publicationYear": "1966"
+                },
+                {
+                    "title": "Topi Shukla",
+                    "image": "https://upload.wikimedia.org/wikipedia/en/5/5e/Topi_Shukla_Book_Cover.jpg",
+                    "description": "A story exploring the friendship between a Hindu and a Muslim boy, delving into the complexities of religious identities.",
+                    "publicationYear": "1969"
+                }
+            ]
+        }
+    ]
+}

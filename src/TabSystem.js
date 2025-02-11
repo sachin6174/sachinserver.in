@@ -68,7 +68,7 @@ const TabSystem = () => {
                             : "RightBrain: Creativity and Art"}
                     </div>
                 </button>
-                <div className="selected-item">
+                <div className="selected-item black-text">
                     {selectedNavItem ? `${selectedNavItem}` : "No item selected"}
                 </div>
             </div>

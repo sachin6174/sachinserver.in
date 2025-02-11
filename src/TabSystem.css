@@ -1,4 +1,4 @@
- * {
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -142,4 +142,8 @@ body {
     text-align: center;
     flex-grow: 1;
     /* Centers it horizontally within the flex container */
+}
+
+.black-text {
+    color: black;
 }

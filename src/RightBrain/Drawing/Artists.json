@@ -1,0 +1,124 @@
+{
+    "artists": [
+        {
+            "name": "Leonardo da Vinci",
+            "years": "1452–1519",
+            "country": "Italy",
+            "description": "A quintessential Renaissance polymath, Leonardo da Vinci was not only a master painter but also an inventor, scientist, and anatomist. His works are celebrated for their intricate detail, anatomical precision, and innovative techniques.",
+            "paintings": [
+                {
+                    "paintingName": "Mona Lisa",
+                    "image": "https://upload.wikimedia.org/wikipedia/commons/6/6a/Mona_Lisa.jpg",
+                    "description": "Arguably the most famous painting in the world, the Mona Lisa is renowned for its subject's enigmatic expression and masterful use of sfumato.",
+                    "madeyear": "1503–1506"
+                },
+                {
+                    "paintingName": "The Last Supper",
+                    "image": "https://upload.wikimedia.org/wikipedia/commons/4/4b/Leonardo_da_Vinci_-_The_Last_Supper_high_res.jpg",
+                    "description": "A monumental mural depicting Jesus and his apostles during the Passover meal, capturing the moment Jesus announces that one of them will betray him.",
+                    "madeyear": "1495–1498"
+                }
+            ]
+        },
+        {
+            "name": "Vincent van Gogh",
+            "years": "1853–1890",
+            "country": "Netherlands",
+            "description": "Post-Impressionist painter Vincent van Gogh is known for his expressive use of color and emotive impact. Despite a turbulent life and mental health struggles, he produced over 2,000 artworks, many of which have become iconic.",
+            "paintings": [
+                {
+                    "paintingName": "Starry Night",
+                    "image": "https://upload.wikimedia.org/wikipedia/commons/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg",
+                    "description": "Depicts a swirling night sky over a quiet village, reflecting van Gogh's fascination with the night and his emotional turmoil.",
+                    "madeyear": "1889"
+                },
+                {
+                    "paintingName": "Sunflowers",
+                    "image": "https://upload.wikimedia.org/wikipedia/commons/4/47/Vincent_Willem_van_Gogh_128.jpg",
+                    "description": "A series of paintings featuring bouquets of sunflowers, showcasing van Gogh's experimentation with color and texture.",
+                    "madeyear": "1888–1889"
+                }
+            ]
+        },
+        {
+            "name": "Frida Kahlo",
+            "years": "1907–1954",
+            "country": "Mexico",
+            "description": "Frida Kahlo was a Mexican painter known for her deeply personal and symbolic self-portraits. Her work explores themes of identity, the human body, and mortality, often reflecting her own experiences and pain.",
+            "paintings": [
+                {
+                    "paintingName": "The Two Fridas",
+                    "image": "https://upload.wikimedia.org/wikipedia/en/5/5e/Frida_Kahlo_-_The_Two_Fridas_%281939%29.jpg",
+                    "description": "A double self-portrait depicting Kahlo's dual heritage and inner turmoil.",
+                    "madeyear": "1939"
+                },
+                {
+                    "paintingName": "Self-Portrait with Thorn Necklace and Hummingbird",
+                    "image": "https://upload.wikimedia.org/wikipedia/commons/1/1d/Frida_Kahlo_%28self_portrait%29.jpg",
+                    "description": "A self-portrait symbolizing her suffering and resilience.",
+                    "madeyear": "1940"
+                }
+            ]
+        },
+        {
+            "name": "Katsushika Hokusai",
+            "years": "1760–1849",
+            "country": "Japan",
+            "description": "Hokusai was a Japanese ukiyo-e painter and printmaker of the Edo period, best known for his woodblock print series 'Thirty-Six Views of Mount Fuji,' which includes the iconic 'The Great Wave off Kanagawa.'",
+            "paintings": [
+                {
+                    "paintingName": "The Great Wave off Kanagawa",
+                    "image": "https://upload.wikimedia.org/wikipedia/commons/0/0a/Great_Wave_off_Kanagawa2.jpg",
+                    "description": "Depicts a towering wave threatening boats near Mount Fuji, symbolizing the power of nature.",
+                    "madeyear": "1831"
+                },
+                {
+                    "paintingName": "Fine Wind, Clear Morning",
+                    "image": "https://upload.wikimedia.org/wikipedia/commons/0/0e/Red_Fuji_southern_wind_clear_morning.jpg",
+                    "description": "Shows Mount Fuji bathed in red light during a clear morning.",
+                    "madeyear": "1831"
+                }
+            ]
+        },
+        {
+            "name": "Jackson Pollock",
+            "years": "1912–1956",
+            "country": "United States",
+            "description": "An influential American painter and a major figure in the abstract expressionist movement, Pollock was known for his unique drip painting technique.",
+            "paintings": [
+                {
+                    "paintingName": "No. 5, 1948",
+                    "image": "https://upload.wikimedia.org/wikipedia/en/0/0e/No._5%2C_1948.jpg",
+                    "description": "A dense network of drips and splatters, exemplifying Pollock's signature style.",
+                    "madeyear": "1948"
+                },
+                {
+                    "paintingName": "Blue Poles",
+                    "image": "https://upload.wikimedia.org/wikipedia/en/5/5d/Blue_Poles.jpg",
+                    "description": "Features bold blue lines amidst a chaotic background of dripped paint.",
+                    "madeyear": "1952"
+                }
+            ]
+        },
+        {
+            "name": "Amrita Sher-Gil",
+            "years": "1913–1941",
+            "country": "India",
+            "description": "Amrita Sher-Gil was an eminent Indian painter, sometimes referred to as India's Frida Kahlo. She is celebrated for her portrayal of rural Indian women and her significant contribution to modern Indian art.",
+            "paintings": [
+                {
+                    "paintingName": "Three Girls",
+                    "image": "https://upload.wikimedia.org/wikipedia/commons/0/0b/Amrita_Sher-Gil_-_Three_Girls.jpg",
+                    "description": "Depicts three young women, reflecting the melancholy and hardship of rural life.",
+                    "madeyear": "1935"
+                },
+                {
+                    "paintingName": "Bride's Toilet",
+                    "image": "https://upload.wikimedia.org/wikipedia/commons/6/6b/Amrita_Sher-Gil_-_Bride%27s_Toilet.jpg",
+                    "description": "Shows a bride preparing for her wedding, capturing the intimate moment with rich colors.",
+                    "madeyear": "1937"
+                }
+            ]
+        }
+    ]
+}
