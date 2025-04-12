@@ -4,7 +4,7 @@ import React from 'react';
 const MainContent = ({ activeTab, selectedNavItem, navigationItems }) => {
     // Find the selected item's description
     const selectedContent = selectedNavItem && navigationItems[activeTab]
-        ? navigationItems[activeTab].find(item => item.label === selectedNavItem)?.description
+        ? navigationItems[activeTab].find(item => item.label === selectedNavItem || item.id === selectedNavItem)?.description
         : null;
 
     return (

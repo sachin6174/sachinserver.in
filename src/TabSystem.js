@@ -28,16 +28,16 @@ const TabSystem = () => {
 
     const navigationItems = {
         leftbrain: [
-            { id: "Apple Development", label: "Apple Development", icon: "🍎", description: <AppleDevelopment /> },
-            { id: "NodeJS", label: "NodeJS", icon: "🌐", description: <NodeJS /> },
-            { id: "ReactJS", label: "ReactJS", icon: "⚛️", description: <ReactJS /> },
-            { id: "About Me", label: "About Me", icon: "👤", description: <AboutMe /> },
-            { id: "Tools", label: "Tools", icon: "🛠️", description: <Tools /> }, // New section added
+            { id: "apple-development", label: "Apple Development", icon: "🍎", description: <AppleDevelopment /> },
+            { id: "nodejs", label: "NodeJS", icon: "🌐", description: <NodeJS /> },
+            { id: "reactjs", label: "ReactJS", icon: "⚛️", description: <ReactJS /> },
+            { id: "about-me", label: "About Me", icon: "👤", description: <AboutMe /> },
+            { id: "tools", label: "Tools", icon: "🛠️", description: <Tools /> },
         ],
         rightbrain: [
-            { id: "Drawing", label: "Drawing", icon: "✏️", description: <Drawing /> },
-            { id: "Literature", label: "Literature", icon: "📖", description: <Literature /> },
-            { id: "Philosophy", label: "Philosophy", icon: "🤔", description: <Philosophy /> },
+            { id: "drawing", label: "Drawing", icon: "✏️", description: <Drawing /> },
+            { id: "literature", label: "Literature", icon: "📖", description: <Literature /> },
+            { id: "philosophy", label: "Philosophy", icon: "🤔", description: <Philosophy /> },
         ],
     };
 
