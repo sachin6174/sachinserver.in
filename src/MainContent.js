@@ -1,6 +1,12 @@
+
 import React from 'react';
 
 const MainContent = ({ activeTab, selectedNavItem, navigationItems }) => {
+    // Find the selected item's description
+    const selectedContent = selectedNavItem && navigationItems[activeTab]
+        ? navigationItems[activeTab].find(item => item.label === selectedNavItem)?.description
+        : null;
+
     return (
         <div className="tab-content" style={{ position: "relative", height: "100%" }}>
             {/* Breadcrumb Path */}
@@ -12,7 +18,7 @@ const MainContent = ({ activeTab, selectedNavItem, navigationItems }) => {
                     left: "10px",
                     display: "flex",
                     alignItems: "center",
-                    gap: "5px", // Adds spacing between breadcrumbs
+                    gap: "5px",
                     fontSize: "14px",
                 }}
             >
@@ -30,24 +36,17 @@ const MainContent = ({ activeTab, selectedNavItem, navigationItems }) => {
                 className="separator-line"
                 style={{
                     position: "absolute",
-                    top: "35px", // Position it slightly below the breadcrumb path
+                    top: "35px",
                     left: "0",
                     width: "100%",
                     height: "1px",
-                    backgroundColor: "#ccc", // Light gray line
+                    backgroundColor: "#ccc",
                 }}
             ></div>
 
-            {/* Description Below */}
-            <div className="description" style={{ textAlign: "center", marginTop: "50px" }}>
-                {selectedNavItem
-                    ? (
-                        navigationItems[activeTab]
-                            .find(item => item.label === selectedNavItem)?.description ||
-                        "Select an item to see its description."
-                    )
-                    : "Select an item to see its description."
-                }
+            {/* Content Display */}
+            <div className="description" style={{ marginTop: "50px", padding: "20px" }}>
+                {selectedContent || "Select an item to see its description."}
             </div>
         </div>
     );
