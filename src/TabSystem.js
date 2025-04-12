@@ -6,7 +6,7 @@ import ReactJS from "./LeftBrain/ReactJS/ReactJS";
 import Drawing from "./RightBrain/Drawing/Drawing";
 import Literature from "./RightBrain/Litlerature/Literature";
 import Philosophy from "./RightBrain/Philosophy/Philosophy";
-import { JsonTool, XmlTool, QrTool, CryptoTool, WritingBoardTool, APITool } from './Tools';
+import { JsonTool, XmlTool, QrTool, CryptoTool, WritingBoardTool, APITool, BackgroundRemoverTool, StorageTool, ColorPickerTool } from './Tools';
 import logo from './assets/logo512.png';  // Updated import path
 import './TabSystem.css';
 import LeftNavigation from './LeftNavigation';
@@ -44,6 +44,9 @@ const TabSystem = () => {
             { id: "Encryption-Decryption-Tool", label: "Crypto Tool", icon: "🔒", description: <CryptoTool /> },
             { id: "writing-board", label: "Writing Board", icon: "✏️", description: <WritingBoardTool /> },
             { id: "api-tool", label: "API Tool", icon: "🌐", description: <APITool /> },
+            { id: "background-remover", label: "Background Remover", icon: "🖼️", description: <BackgroundRemoverTool /> },
+            { id: "storage-tool", label: "Storage Tool", icon: "💾", description: <StorageTool /> },
+            { id: "color-picker", label: "Color Picker", icon: "🎨", description: <ColorPickerTool /> },
         ],
     };
 
@@ -63,24 +66,27 @@ const TabSystem = () => {
     return (
         <div className="main-container">
             <div className="tabs">
-                <img 
-                    src={logo}
-                    alt="Tab Icon" 
-                    style={{ width: '32px', height: '32px' }} 
-                />
                 {
-                ["leftbrain", "rightbrain", "tools"].map((tab) => (
-                    <div
-                        key={tab}
-                        className={`tab ${activeTab === tab ? "active" : "background"}`}
-                        onClick={() => setActiveTab(tab)}
-                    >
-                        <span className="tab-icon">
-                            {tab === "leftbrain" ? "🧠" : tab === "rightbrain" ? "🎨" : "🛠️"}
-                        </span>
-                        {tab === "leftbrain" ? "LeftBrain" : tab === "rightbrain" ? "RightBrain" : "Tools"}
-                    </div>
-                ))}
+                <>
+                    <img 
+                        src={logo}
+                        alt="Tab Icon" 
+                        style={{ width: '32px', height: '32px', marginTop: '15px' }} 
+                    />{
+                    ["leftbrain", "rightbrain", "tools"].map((tab) => (
+                        <div
+                            key={tab}
+                            className={`tab ${activeTab === tab ? "active" : "background"}`}
+                            onClick={() => setActiveTab(tab)}
+                        >
+                            <span className="tab-icon">
+                                {tab === "leftbrain" ? "🧠" : tab === "rightbrain" ? "🎨" : "🛠️"}
+                            </span>
+                            {tab === "leftbrain" ? "LeftBrain" : tab === "rightbrain" ? "RightBrain" : "Tools"}
+                        </div>
+                    ))}
+                </>
+                }
                 <button
                     className="theme-toggle"
                     onClick={toggleTheme}

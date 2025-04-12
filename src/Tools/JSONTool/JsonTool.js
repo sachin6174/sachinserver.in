@@ -54,7 +54,7 @@ const JsonTool = () => {
 
     return (
         <div className="json-tool">
-            <h2>JSON Tool</h2>
+            <h2 className="section-title">JSON Tool</h2>
             <div className="tool-container">
                 <div className="input-section">
                     <h3>Input JSON</h3>

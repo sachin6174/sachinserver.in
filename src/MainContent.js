@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 const MainContent = ({ activeTab, selectedNavItem, navigationItems }) => {
@@ -18,19 +17,26 @@ const MainContent = ({ activeTab, selectedNavItem, navigationItems }) => {
                     left: "10px",
                     display: "flex",
                     alignItems: "center",
-                    gap: "5px",
+                    gap: "8px",
                     fontSize: "14px",
+                    color: "#666",
                 }}
             >
-                <span>{activeTab === "leftbrain" ? "🧠 LeftBrain" : "🎨 RightBrain"}</span>
+                <span>{activeTab === "leftbrain" ? "🧠 LeftBrain" : 
+                       activeTab === "rightbrain" ? "🎨 RightBrain" : 
+                       "🛠️ Tools"}</span>
                 {selectedNavItem && (
                     <>
-                        <span style={{ fontSize: "16px" }}>›</span>
+                        <span style={{ 
+                            fontSize: "12px", 
+                            color: "#999",
+                            marginTop: "-2px" 
+                        }}>›</span>
                         <span>{selectedNavItem}</span>
                     </>
                 )}
             </div>
-
+            
             {/* Separator Line */}
             <div
                 className="separator-line"

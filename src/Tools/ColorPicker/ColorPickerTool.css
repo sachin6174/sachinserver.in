@@ -1,0 +1,105 @@
+.color-picker-tool {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.color-picker-container {
+    background-color: var(--content-bg);
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.color-display {
+    height: 200px;
+    border-radius: 8px;
+    display: flex;
+    align-items: flex-end;
+    padding: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.color-info {
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 10px;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    font-family: monospace;
+}
+
+.color-controls {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.color-input {
+    width: 100px;
+    height: 40px;
+    padding: 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.copy-controls {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.copy-controls select {
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+.saved-colors {
+    border-top: 1px solid var(--border-color);
+    padding-top: 20px;
+}
+
+.color-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.saved-color {
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    border: 1px solid var(--border-color);
+}
+
+.saved-color:hover {
+    transform: scale(1.1);
+}
+
+.message {
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    padding: 10px;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.eyedropper-btn {
+    background-color: var(--accent-color);
+}
+
+/* Dark mode overrides */
+body.dark-mode .color-info {
+    background-color: rgba(255, 255, 255, 0.1);
+}

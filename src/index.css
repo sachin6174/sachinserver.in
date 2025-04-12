@@ -15,3 +15,8 @@ code {
     border-radius: 4px;
     color: #d6336c;
 }
+
+body.dark-mode code {
+    background-color: #2d2d2d;
+    color: #ff6b9d;
+}

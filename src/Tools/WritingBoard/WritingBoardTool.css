@@ -23,52 +23,6 @@
     align-items: center;
 }
 
-.toolbar button {
-    padding: 8px 16px;
-    border: none;
-    border-radius: 4px;
-    background-color: var(--accent-color);
-    color: white;
-    cursor: pointer;
-    transition: background-color 0.2s;
-}
-
-.toolbar button:hover {
-    background-color: var(--hover-color);
-}
-
-.toolbar button:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
-}
-
-.toolbar input[type="color"] {
-    width: 40px;
-    height: 40px;
-    padding: 0;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.toolbar input[type="range"] {
-    width: 100px;
-}
-
-.text-input {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-}
-
-.text-input input {
-    padding: 8px;
-    border: 1px solid var(--border-color);
-    border-radius: 4px;
-    background-color: var(--bg-color);
-    color: var(--text-color);
-}
-
 canvas {
     border: 1px solid var(--border-color);
     border-radius: 8px;
@@ -77,12 +31,8 @@ canvas {
     max-width: 100%;
 }
 
-/* Dark mode specific styles */
-body.dark-mode .toolbar {
-    background-color: var(--card-bg);
-}
-
-body.dark-mode .text-input input {
-    background-color: var(--card-bg);
-    color: var(--text-color);
+.text-input {
+    display: flex;
+    gap: 10px;
+    align-items: center;
 }

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>File Encryption/Decryption</title>
+    <style>
+        .container {
+            margin: 20px;
+            padding: 20px;
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 10px;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="section">
+            <h3>Encrypt File</h3>
+            <input type="file" id="encryptFile" accept=".txt">
+            <button onclick="handleEncryption()">Encrypt</button>
+        </div>
+        
+        <div class="section">
+            <h3>Decrypt File</h3>
+            <input type="file" id="decryptFile" accept=".txt">
+            <button onclick="handleDecryption()">Decrypt</button>
+        </div>
+    </div>
+
+    <script src="Encryption.js"></script>
+    <script src="Decrypt.js"></script>
+    <script>
+        async function handleEncryption() {
+            const fileInput = document.getElementById('encryptFile');
+            const file = fileInput.files[0];
+            if (!file) {
+                alert('Please select a file');
+                return;
+            }
+
+            try {
+                const text = await file.text();
+                const lines = text.split('\n');
+                let encryptedContent = '';
+
+                for (const line of lines) {
+                    if (line.trim()) {
+                        const encrypted = await EncryptionLog.finalEncryptionWithStringToEncrypt(line);
+                        if (encrypted) {
+                            console.log('Original:', line);
+                            console.log('Encrypted:', encrypted);
+                            console.log('-------------------');
+                            encryptedContent += encrypted + '\n';
+                        } else {
+                            console.error('Failed to encrypt:', line);
+                        }
+                    }
+                }
+
+                // Create and download encrypted file
+                const blob = new Blob([encryptedContent], { type: 'text/plain' });
+                const a = document.createElement('a');
+                a.href = URL.createObjectURL(blob);
+                a.download = `encrypted_${file.name}`;
+                a.click();
+                URL.revokeObjectURL(a.href);
+            } catch (error) {
+                console.error('Encryption error:', error);
+                alert('Error encrypting file');
+            }
+        }
+
+        async function handleDecryption() {
+            const fileInput = document.getElementById('decryptFile');
+            const file = fileInput.files[0];
+            if (!file) {
+                alert('Please select a file');
+                return;
+            }
+
+            try {
+                const text = await file.text();
+                const lines = text.split('\n');
+                let decryptedContent = '';
+                let failedLines = [];
+
+                for (const line of lines) {
+                    if (line.trim()) {
+                        try {
+                            const match = line.match(/INFO\s+(.+)$/);
+                            if (match && match[1]) {
+                                const encryptedPart = match[1].trim();
+                                console.log('-------------------');
+                                console.log('Attempting to decrypt:', encryptedPart);
+                                
+                                const decrypted = await DecryptionLog.finalDecryptionWithEncryptedString(encryptedPart);
+                                if (decrypted) {
+                                    const logPrefix = line.substring(0, line.indexOf('INFO') + 4);
+                                    const fullDecrypted = `${logPrefix} ${decrypted}`;
+                                    console.log('Successfully decrypted:', decrypted);
+                                    console.log('-------------------');
+                                    decryptedContent += fullDecrypted + '\n';
+                                } else {
+                                    console.log('-------------------');
+                                    console.log('Failed to decrypt:', encryptedPart);
+                                    console.log('Original line:', line);
+                                    console.log('-------------------');
+                                    failedLines.push(line);
+                                    decryptedContent += `${line} [DECRYPTION_FAILED]\n`;
+                                }
+                            } else {
+                                decryptedContent += `${line}\n`;
+                            }
+                        } catch (err) {
+                            console.log('-------------------');
+                            console.log('Error processing line:', line);
+                            console.log('Error details:', err);
+                            console.log('-------------------');
+                            failedLines.push(line);
+                            decryptedContent += `${line} [DECRYPTION_ERROR]\n`;
+                        }
+                    }
+                }
+
+                if (failedLines.length > 0) {
+                    console.log('-------------------');
+                    console.log('Summary of failed decryptions:');
+                    failedLines.forEach(line => console.log(line));
+                    console.log('-------------------');
+                }
+
+                // Create and download decrypted file
+                const blob = new Blob([decryptedContent], { type: 'text/plain' });
+                const a = document.createElement('a');
+                a.href = URL.createObjectURL(blob);
+                a.download = `decrypted_${file.name}`;
+                a.click();
+                URL.revokeObjectURL(a.href);
+            } catch (error) {
+                console.error('File processing error:', error);
+                alert('Error processing file');
+            }
+        }
+    </script>
+</body>
+</html>
