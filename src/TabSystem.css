@@ -75,7 +75,7 @@ body.dark-mode .selected-item {
 .tabs {
   display: flex;
   gap: 1rem;
-  margin-bottom: 2rem;
+  margin: 0 0 2rem 0;
   border-bottom: 1px solid var(--border-color, #eaeaea);
   padding-bottom: 1rem;
 }

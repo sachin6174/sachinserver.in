@@ -6,10 +6,11 @@ import ReactJS from "./LeftBrain/ReactJS/ReactJS";
 import Drawing from "./RightBrain/Drawing/Drawing";
 import Literature from "./RightBrain/Litlerature/Literature";
 import Philosophy from "./RightBrain/Philosophy/Philosophy";
+import { JsonTool, XmlTool, QrTool, CryptoTool, WritingBoardTool, APITool } from './Tools';
+import logo from './assets/logo512.png';  // Updated import path
 import './TabSystem.css';
 import LeftNavigation from './LeftNavigation';
 import MainContent from './MainContent';
-import { JsonTool, XmlTool, QrTool, CryptoTool, WritingBoardTool, APITool } from './Tools';
 
 const TabSystem = () => {
     const [activeTab, setActiveTab] = useState("leftbrain");
@@ -61,9 +62,14 @@ const TabSystem = () => {
 
     return (
         <div className="main-container">
-            {/* Tab Headers */}
             <div className="tabs">
-                {["leftbrain", "rightbrain", "tools"].map((tab) => (
+                <img 
+                    src={logo}
+                    alt="Tab Icon" 
+                    style={{ width: '32px', height: '32px' }} 
+                />
+                {
+                ["leftbrain", "rightbrain", "tools"].map((tab) => (
                     <div
                         key={tab}
                         className={`tab ${activeTab === tab ? "active" : "background"}`}
