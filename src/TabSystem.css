@@ -38,6 +38,19 @@ body.dark-mode {
   --content-bg: #242424;
 }
 
+body.dark-mode .tab-content-container {
+  background: var(--content-bg);
+  border: 1px solid var(--border-color);
+}
+
+body.dark-mode .nav-item:not(.selected):hover {
+  background-color: var(--hover-color);
+}
+
+body.dark-mode .selected-item {
+  color: var(--text-color);
+}
+
 .main-container {
   max-width: 1200px;
   margin: 0 auto;

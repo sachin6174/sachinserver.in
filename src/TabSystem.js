@@ -5,7 +5,7 @@ import NodeJS from "./LeftBrain/NodeJS/NodeJS";
 import ReactJS from "./LeftBrain/ReactJS/ReactJS";
 import Tools from "./LeftBrain/Tools/Tools";
 import Drawing from "./RightBrain/Drawing/Drawing";
-import Literature from "./RightBrain/Litlerature/Literature";
+import Literature from "./RightBrain/Literature/Literature";
 import Philosophy from "./RightBrain/Philosophy/Philosophy";
 import ToggleIcon from "./assets/svgs/toggle-icon.svg";
 import './TabSystem.css';
