@@ -3,6 +3,7 @@ import AboutMe from "./LeftBrain/AboutMe/AboutMe";
 import AppleDevelopment from "./LeftBrain/AppleDevelopment/AppleDevelopment";
 import NodeJS from "./LeftBrain/NodeJS/NodeJS";
 import ReactJS from "./LeftBrain/ReactJS/ReactJS";
+import Tools from "./LeftBrain/Tools/Tools";
 import Drawing from "./RightBrain/Drawing/Drawing";
 import Literature from "./RightBrain/Litlerature/Literature";
 import Philosophy from "./RightBrain/Philosophy/Philosophy";
@@ -15,6 +16,15 @@ const TabSystem = () => {
     const [activeTab, setActiveTab] = useState("leftbrain");
     const [isNavVisible, setIsNavVisible] = useState(true);
     const [selectedNavItem, setSelectedNavItem] = useState("");
+    const [isDarkMode, setIsDarkMode] = useState(false);
+
+    useEffect(() => {
+        document.body.className = isDarkMode ? "dark-mode" : "light-mode";
+    }, [isDarkMode]);
+
+    const toggleTheme = () => {
+        setIsDarkMode((prevMode) => !prevMode);
+    };
 
     const navigationItems = {
         leftbrain: [
@@ -22,6 +32,7 @@ const TabSystem = () => {
             { id: "NodeJS", label: "NodeJS", icon: "🌐", description: <NodeJS /> },
             { id: "ReactJS", label: "ReactJS", icon: "⚛️", description: <ReactJS /> },
             { id: "About Me", label: "About Me", icon: "👤", description: <AboutMe /> },
+            { id: "Tools", label: "Tools", icon: "🛠️", description: <Tools /> }, // New section added
         ],
         rightbrain: [
             { id: "Drawing", label: "Drawing", icon: "✏️", description: <Drawing /> },
@@ -38,6 +49,14 @@ const TabSystem = () => {
 
     return (
         <div className="main-container">
+            {/* Theme Toggle Button */}
+            <button
+                className="theme-toggle"
+                onClick={toggleTheme}
+                aria-label="Toggle Theme"
+            >
+                {isDarkMode ? "🌙 Night Mode" : "☀️ Day Mode"}
+            </button>
             {/* Tab Headers */}
             <div className="tabs">
                 {["leftbrain", "rightbrain"].map((tab) => (
