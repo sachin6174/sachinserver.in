@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import './JsonTool.css';
+import TreeView from './TreeView';
 
 const JsonTool = () => {
     const [input, setInput] = useState('');
     const [output, setOutput] = useState('');
     const [error, setError] = useState('');
+    const [showTree, setShowTree] = useState(false);
 
     const formatJSON = () => {
         try {
@@ -32,16 +34,18 @@ const JsonTool = () => {
         try {
             JSON.parse(input);
             setError('JSON is valid!');
-            setOutput('');
         } catch (err) {
             setError('Invalid JSON: ' + err.message);
-            setOutput('');
         }
     };
 
     const downloadJSON = () => {
-        if (!output) return;
-        const blob = new Blob([output], { type: 'application/json' });
+        const contentToDownload = output || input;
+        if (!contentToDownload) {
+            setError('No content to download');
+            return;
+        }
+        const blob = new Blob([contentToDownload], { type: 'application/json' });
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
@@ -50,6 +54,18 @@ const JsonTool = () => {
         a.click();
         document.body.removeChild(a);
         URL.revokeObjectURL(url);
+    };
+
+    const viewTree = () => {
+        try {
+            JSON.parse(input); // just validate the JSON
+            setOutput('');
+            setShowTree(true);
+            setError('');
+        } catch (err) {
+            setError('Invalid JSON: ' + err.message);
+            setShowTree(false);
+        }
     };
 
     return (
@@ -62,22 +78,31 @@ const JsonTool = () => {
                         value={input}
                         onChange={(e) => setInput(e.target.value)}
                         placeholder="Paste your JSON here..."
+                        className="full-width-input"
                     />
                 </div>
                 
                 <div className="actions">
-                    <button onClick={formatJSON}>Format</button>
-                    <button onClick={minifyJSON}>Minify</button>
                     <button onClick={validateJSON}>Validate</button>
-                    {output && <button onClick={downloadJSON}>Download</button>}
+                    <button onClick={formatJSON}>Beautify</button>
+                    <button onClick={minifyJSON}>Minify</button>
+                    <button onClick={downloadJSON}>Download</button>
+                    <button onClick={viewTree}>View Tree</button>
                 </div>
 
                 {error && <div className="error-message">{error}</div>}
                 
+                {showTree && !error && (
+                    <div className="tree-view-section">
+                        <h3>Tree View</h3>
+                        <TreeView data={JSON.parse(input)} />
+                    </div>
+                )}
+
                 {output && (
                     <div className="output-section">
                         <h3>Output</h3>
-                        <pre>{output}</pre>
+                        <pre className="auto-height">{output}</pre>
                     </div>
                 )}
             </div>
