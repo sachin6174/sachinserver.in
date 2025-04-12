@@ -1,0 +1,108 @@
+{
+    "PhilosophySubjects": [
+      {
+        "name": "Metaphysics",
+        "question": "What is the nature of reality?",
+        "themes": ["Being", "Time", "Space", "Identity", "Consciousness"],
+        "subfields": ["Ontology", "Cosmology", "Philosophy of Mind"],
+        "examples": ["Sat-Chit-Ananda (Indian)", "Substance (Greek)", "Necessary Being (Islamic)"]
+      },
+      {
+        "name": "Epistemology",
+        "question": "What is knowledge?",
+        "themes": ["Truth", "Belief", "Justification", "Certainty"],
+        "subfields": ["Rationalism", "Empiricism", "Skepticism"],
+        "examples": ["Descartes' Cogito", "Locke's Experience", "Nagarjuna's Emptiness"]
+      },
+      {
+        "name": "Ethics",
+        "question": "What should I do?",
+        "themes": ["Right and Wrong", "Virtue", "Duty", "Happiness"],
+        "subfields": ["Deontology", "Utilitarianism", "Virtue Ethics", "Dharma (Indian)"],
+        "examples": ["Kant's Categorical Imperative", "Gandhi’s Ahimsa", "Aristotle's Virtue"]
+      },
+      {
+        "name": "Political Philosophy",
+        "question": "How should society be organized?",
+        "themes": ["Justice", "Rights", "Power", "Freedom", "Authority"],
+        "subfields": ["Social Contract", "Liberalism", "Anarchism", "Republicanism"],
+        "examples": ["Plato’s Republic", "Locke’s Rights", "Gandhi’s Swaraj"]
+      },
+      {
+        "name": "Aesthetics",
+        "question": "What is beauty?",
+        "themes": ["Art", "Expression", "Emotion", "Taste"],
+        "subfields": ["Rasa Theory", "Mimesis", "Expressionism", "Aesthetic Judgment"],
+        "examples": ["Bharata's Natyashastra", "Rasa Theory", "Greek Tragedy", "Islamic Geometry"]
+      },
+      {
+        "name": "Logic",
+        "question": "How do we think clearly?",
+        "themes": ["Reasoning", "Validity", "Proof"],
+        "subfields": ["Deductive Logic", "Inductive Logic", "Symbolic Logic"],
+        "examples": ["Aristotle’s Syllogism", "Nyaya Logic", "Avicenna's Analytic Logic"]
+      },
+      {
+        "name": "Philosophy of Mind",
+        "question": "What is consciousness?",
+        "themes": ["Mind-Body Problem", "Self", "Thought", "Awareness"],
+        "subfields": ["Dualism", "Materialism", "Functionalism"],
+        "examples": ["Atman-Brahman", "Cogito (Descartes)", "Chalmers’ Hard Problem"]
+      },
+      {
+        "name": "Philosophy of Language",
+        "question": "How do words create meaning?",
+        "themes": ["Meaning", "Reference", "Syntax", "Semantics"],
+        "subfields": ["Sphoṭa Theory", "Analytic Philosophy", "Structuralism"],
+        "examples": ["Bhartrihari's Sphoṭa", "Wittgenstein's Language Games"]
+      },
+      {
+        "name": "Existentialism",
+        "question": "What does it mean to exist?",
+        "themes": ["Freedom", "Anxiety", "Authenticity", "Meaning"],
+        "subfields": ["Atheistic Existentialism", "Theistic Existentialism"],
+        "examples": ["Sartre’s Freedom", "Kierkegaard’s Faith", "Camus’ Absurd"]
+      },
+      {
+        "name": "Philosophy of Science",
+        "question": "How do we know science is true?",
+        "themes": ["Theory", "Observation", "Explanation", "Truth"],
+        "subfields": ["Falsifiability", "Scientific Realism", "Paradigm Shift"],
+        "examples": ["Popper’s Falsifiability", "Kuhn’s Paradigm Shifts"]
+      },
+      {
+        "name": "Other Branches",
+        "topics": [
+          {
+            "name": "Philosophy of Religion",
+            "focus": "God, faith, the divine, miracles"
+          },
+          {
+            "name": "Environmental Philosophy",
+            "focus": "Nature, ethics, sustainability"
+          },
+          {
+            "name": "Feminist Philosophy",
+            "focus": "Gender, power, social justice"
+          },
+          {
+            "name": "Comparative Philosophy",
+            "focus": "Bridging Eastern and Western thought"
+          },
+          {
+            "name": "Philosophy of History",
+            "focus": "Does history have meaning or direction?"
+          },
+          {
+            "name": "Philosophy of Education",
+            "focus": "What is the purpose and method of education?"
+          },
+          {
+            "name": "Meta-Philosophy",
+            "focus": "What is the nature of philosophy itself?"
+          }
+        ]
+      }
+    ]
+  }
+  

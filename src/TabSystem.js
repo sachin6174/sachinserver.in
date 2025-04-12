@@ -3,25 +3,18 @@ import AboutMe from "./LeftBrain/AboutMe/AboutMe";
 import AppleDevelopment from "./LeftBrain/AppleDevelopment/AppleDevelopment";
 import NodeJS from "./LeftBrain/NodeJS/NodeJS";
 import ReactJS from "./LeftBrain/ReactJS/ReactJS";
-import Tools from "./LeftBrain/Tools/Tools";
 import Drawing from "./RightBrain/Drawing/Drawing";
 import Literature from "./RightBrain/Litlerature/Literature";
 import Philosophy from "./RightBrain/Philosophy/Philosophy";
-import ToggleIcon from "./assets/svgs/toggle-icon.svg";
 import './TabSystem.css';
 import LeftNavigation from './LeftNavigation';
 import MainContent from './MainContent';
+import { JsonTool, XmlTool, QrTool, CryptoTool, WritingBoardTool, APITool } from './Tools';
 
 const TabSystem = () => {
     const [activeTab, setActiveTab] = useState("leftbrain");
-    const toolsItems = [
-        { id: "settings", label: "Settings", icon: "⚙️", description: "Settings panel" },
-        { id: "shortcuts", label: "Shortcuts", icon: "⌨️", description: "Keyboard shortcuts" },
-        { id: "help", label: "Help", icon: "❓", description: "Help and documentation" }
-    ];
-    const [isNavVisible, setIsNavVisible] = useState(true);
     const [selectedNavItem, setSelectedNavItem] = useState("");
-    const [isDarkMode, setIsDarkMode] = useState(false);
+    const [isDarkMode, setIsDarkMode] = useState(true); // Default to night mode
 
     useEffect(() => {
         document.body.className = isDarkMode ? "dark-mode" : "light-mode";
@@ -37,23 +30,34 @@ const TabSystem = () => {
             { id: "nodejs", label: "NodeJS", icon: "🌐", description: <NodeJS /> },
             { id: "reactjs", label: "ReactJS", icon: "⚛️", description: <ReactJS /> },
             { id: "about-me", label: "About Me", icon: "👤", description: <AboutMe /> },
-            { id: "tools", label: "Tools", icon: "🛠️", description: <Tools /> },
         ],
         rightbrain: [
             { id: "drawing", label: "Drawing", icon: "✏️", description: <Drawing /> },
             { id: "literature", label: "Literature", icon: "📖", description: <Literature /> },
             { id: "philosophy", label: "Philosophy", icon: "🤔", description: <Philosophy /> },
         ],
-        tools: toolsItems,
+        tools: [
+            { id: "JSON-Tool", label: "JSON Tool", icon: "📝", description: <JsonTool /> },
+            { id: "XML-Tool", label: "XML Tool", icon: "🔧", description: <XmlTool /> },
+            { id: "qr-tool", label: "QR Generator", icon: "📱", description: <QrTool /> },
+            { id: "Encryption-Decryption-Tool", label: "Crypto Tool", icon: "🔒", description: <CryptoTool /> },
+            { id: "writing-board", label: "Writing Board", icon: "✏️", description: <WritingBoardTool /> },
+            { id: "api-tool", label: "API Tool", icon: "🌐", description: <APITool /> },
+        ],
     };
 
     useEffect(() => {
-        if (!selectedNavItem) {
-            const defaultItem =
-                activeTab === "leftbrain" ? "About Me" : navigationItems[activeTab][0]?.label;
+        if (activeTab === "rightbrain") {
+            setSelectedNavItem("Drawing");
+        } else if (activeTab === "leftbrain") {
+            setSelectedNavItem("About Me");
+        } else if (activeTab === "tools") {
+            setSelectedNavItem("JSON Tool"); // Default tool selection
+        } else if (!selectedNavItem) {
+            const defaultItem = navigationItems[activeTab][0]?.label;
             setSelectedNavItem(defaultItem);
         }
-    }, []); // Only run once when component mounts
+    }, [activeTab]); // Add activeTab as dependency
 
     return (
         <div className="main-container">
@@ -82,33 +86,19 @@ const TabSystem = () => {
 
             {/* Below Tabs Section */}
             <div className="below-tabs">
-                <button
-                    className="toggle-icon"
-                    onClick={() => setIsNavVisible(!isNavVisible)}
-                    aria-label="Toggle Navigation"
-                >
-                    <img src={ToggleIcon} alt="Toggle Navigation" height="24" width="24" />
-                    <div className="dynamic-title">
-                        {activeTab === "leftbrain"
-                            ? "LeftBrain: Logic and Analysis"
-                            : "RightBrain: Creativity and Art"}
-                    </div>
-                </button>
+                <div className="dynamic-title">
+                    {activeTab === "leftbrain"
+                        ? "LeftBrain: Logic and Analysis"
+                        : "RightBrain: Creativity and Art"}
+                </div>
                 <div className="selected-item black-text">
                     {selectedNavItem ? `${selectedNavItem}` : "No item selected"}
                 </div>
             </div>
 
             <div className="tab-content-container">
-                <button 
-                    className={`toggle-nav-btn ${!isNavVisible ? 'panel-hidden' : ''}`}
-                    onClick={() => setIsNavVisible(!isNavVisible)}
-                >
-                    <img src={ToggleIcon} alt="Toggle Navigation" />
-                </button>
-                
                 {/* Left Navigation */}
-                <div className={`left-nav ${!isNavVisible ? 'hidden' : ''}`}>
+                <div className="left-nav">
                     <LeftNavigation
                         items={navigationItems[activeTab]}
                         selectedNavItem={selectedNavItem}

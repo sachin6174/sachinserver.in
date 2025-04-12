@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import novelists from "./Novelist.json";
+import defaultNovelistImage from "../../assets/images/Novelists/premchand.webp";
 import "./Literature.css"; // Assuming you have a CSS file for styling
 
 const Literature = () => {
@@ -11,11 +12,13 @@ const Literature = () => {
 
     return (
         <div className="literature-container">
+            <h2 className="section-title">Novelists</h2>
             {selectedNovelist ? (
-                <div>
+                <div className="novelist-detail">
                     <button onClick={() => setSelectedNovelist(null)}>Back to Writers</button>
                     <div className="novelist-card">
                         <h2>{selectedNovelist.name}</h2>
+                        <img src={selectedNovelist.image} alt={selectedNovelist.name} className="novelist-image" />
                         <p><strong>Years:</strong> {selectedNovelist.years}</p>
                         <p><strong>Country:</strong> {selectedNovelist.country}</p>
                         <p><strong>Genre:</strong> {selectedNovelist.genre}</p>
@@ -38,6 +41,7 @@ const Literature = () => {
                     {novelists.novelists.map((novelist, index) => (
                         <div className="novelist-card" key={index} onClick={() => handleNovelistClick(novelist)}>
                             <h2>{novelist.name}</h2>
+                            <img src={novelist.image || defaultNovelistImage} alt={novelist.name} className="novelist-image" />
                             <p><strong>Years:</strong> {novelist.years}</p>
                             <p><strong>Country:</strong> {novelist.country}</p>
                             <p><strong>Genre:</strong> {novelist.genre}</p>

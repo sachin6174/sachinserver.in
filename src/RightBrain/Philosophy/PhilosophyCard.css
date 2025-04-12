@@ -1,0 +1,33 @@
+.philosophy-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 10px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    flex: 1 1 300px;
+    max-width: 400px;
+}
+
+.card-title {
+    color: #333;
+    margin-top: 0;
+}
+
+.card-question {
+    font-style: italic;
+    color: #666;
+}
+
+.card-section {
+    margin-top: 15px;
+}
+
+.card-section ul {
+    list-style-type: disc;
+    padding-left: 20px;
+}
+
+.card-section h4 {
+    margin-bottom: 10px;
+}

@@ -1,0 +1,101 @@
+.qr-tool {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.qr-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    padding: 20px;
+    background-color: var(--content-bg);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px var(--shadow-color);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--text-color);
+    font-weight: 500;
+}
+
+textarea {
+    width: 100%;
+    height: 100px;
+    padding: 8px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    resize: vertical;
+}
+
+input[type="range"] {
+    width: 100%;
+    margin: 8px 0;
+}
+
+select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+.output-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.qr-preview {
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.qr-preview img {
+    max-width: 100%;
+    height: auto;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+button:hover {
+    background-color: var(--hover-color);
+}
+
+/* Dark mode specific styles */
+body.dark-mode .qr-preview {
+    background-color: white; /* Keep QR code background white for better scanning */
+}
+
+body.dark-mode textarea,
+body.dark-mode select {
+    background-color: var(--card-bg);
+    color: var(--text-color);
+}
+
+@media (max-width: 768px) {
+    .qr-container {
+        grid-template-columns: 1fr;
+    }
+}
