@@ -100,14 +100,21 @@ const TabSystem = () => {
             </div>
 
             <div className="tab-content-container">
+                <button 
+                    className={`toggle-nav-btn ${!isNavVisible ? 'panel-hidden' : ''}`}
+                    onClick={() => setIsNavVisible(!isNavVisible)}
+                >
+                    <img src={ToggleIcon} alt="Toggle Navigation" />
+                </button>
+                
                 {/* Left Navigation */}
-                {isNavVisible && (
+                <div className={`left-nav ${!isNavVisible ? 'hidden' : ''}`}>
                     <LeftNavigation
                         items={navigationItems[activeTab]}
                         selectedNavItem={selectedNavItem}
                         setSelectedNavItem={setSelectedNavItem}
                     />
-                )}
+                </div>
 
                 {/* Main Content Area */}
                 <MainContent

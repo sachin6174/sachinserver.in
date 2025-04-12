@@ -167,6 +167,34 @@ body.dark-mode .selected-item {
   flex-direction: column;
   height: 100%;
   padding: 10px;
+  transition: transform 0.3s ease;
+}
+
+.left-nav.hidden {
+  transform: translateX(-100%);
+}
+
+.toggle-nav-btn {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  z-index: 1000;
+}
+
+.toggle-nav-btn img {
+  width: 24px;
+  height: 24px;
+  transition: transform 0.3s ease;
+}
+
+.toggle-nav-btn.panel-hidden img {
+  transform: rotate(180deg);
 }
 
 .nav-items {
