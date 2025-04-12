@@ -45,7 +45,7 @@ const TabSystem = () => {
         const defaultItem =
             activeTab === "leftbrain" ? "About Me" : navigationItems[activeTab][0]?.label;
         setSelectedNavItem(defaultItem);
-    }, [activeTab]);
+    }, [activeTab, navigationItems]);
 
     return (
         <div className="main-container">
