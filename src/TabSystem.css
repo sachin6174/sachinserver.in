@@ -180,8 +180,7 @@ body.dark-mode .selected-item {
   border-radius: 8px;
   transition: all 0.3s ease;
   color: var(--text-color);
-  background-color: var(--accent-color); /* Always highlighted */
-  opacity: 1; /* Ensure visibility */
+  background-color: var(--content-bg);
 }
 
 .nav-item:hover {
