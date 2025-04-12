@@ -14,6 +14,11 @@ import MainContent from './MainContent';
 
 const TabSystem = () => {
     const [activeTab, setActiveTab] = useState("leftbrain");
+    const toolsItems = [
+        { id: "settings", label: "Settings", icon: "⚙️", description: "Settings panel" },
+        { id: "shortcuts", label: "Shortcuts", icon: "⌨️", description: "Keyboard shortcuts" },
+        { id: "help", label: "Help", icon: "❓", description: "Help and documentation" }
+    ];
     const [isNavVisible, setIsNavVisible] = useState(true);
     const [selectedNavItem, setSelectedNavItem] = useState("");
     const [isDarkMode, setIsDarkMode] = useState(false);
@@ -39,6 +44,7 @@ const TabSystem = () => {
             { id: "literature", label: "Literature", icon: "📖", description: <Literature /> },
             { id: "philosophy", label: "Philosophy", icon: "🤔", description: <Philosophy /> },
         ],
+        tools: toolsItems,
     };
 
     useEffect(() => {
@@ -61,16 +67,16 @@ const TabSystem = () => {
             </button>
             {/* Tab Headers */}
             <div className="tabs">
-                {["leftbrain", "rightbrain"].map((tab) => (
+                {["leftbrain", "rightbrain", "tools"].map((tab) => (
                     <div
                         key={tab}
                         className={`tab ${activeTab === tab ? "active" : "background"}`}
                         onClick={() => setActiveTab(tab)}
                     >
                         <span className="tab-icon">
-                            {tab === "leftbrain" ? "🧠" : "🎨"}
+                            {tab === "leftbrain" ? "🧠" : tab === "rightbrain" ? "🎨" : "🛠️"}
                         </span>
-                        {tab === "leftbrain" ? "LeftBrain" : "RightBrain"}
+                        {tab === "leftbrain" ? "LeftBrain" : tab === "rightbrain" ? "RightBrain" : "Tools"}
                     </div>
                 ))}
             </div>
