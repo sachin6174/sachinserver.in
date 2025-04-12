@@ -134,6 +134,13 @@ body.dark-mode .selected-item {
   box-shadow: 0 4px 12px var(--shadow-color);
   padding: 1.5rem;
   color: var(--text-color);
+  position: fixed;
+  right: 0;
+  top: 120px;
+  bottom: 0;
+  width: calc(100% - 20px);
+  overflow-y: auto;
+  margin-right: 20px;
 }
 
 .theme-toggle {
