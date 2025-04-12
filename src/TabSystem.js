@@ -57,14 +57,6 @@ const TabSystem = () => {
 
     return (
         <div className="main-container">
-            {/* Theme Toggle Button */}
-            <button
-                className="theme-toggle"
-                onClick={toggleTheme}
-                aria-label="Toggle Theme"
-            >
-                {isDarkMode ? "🌙 Night Mode" : "☀️ Day Mode"}
-            </button>
             {/* Tab Headers */}
             <div className="tabs">
                 {["leftbrain", "rightbrain", "tools"].map((tab) => (
@@ -79,6 +71,13 @@ const TabSystem = () => {
                         {tab === "leftbrain" ? "LeftBrain" : tab === "rightbrain" ? "RightBrain" : "Tools"}
                     </div>
                 ))}
+                <button
+                    className="theme-toggle"
+                    onClick={toggleTheme}
+                    aria-label="Toggle Theme"
+                >
+                    {isDarkMode ? "🌙 Night Mode" : "☀️ Day Mode"}
+                </button>
             </div>
 
             {/* Below Tabs Section */}

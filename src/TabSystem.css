@@ -143,8 +143,7 @@ body.dark-mode .selected-item {
   background: var(--bg-color, #fff);
   cursor: pointer;
   transition: all 0.2s ease;
-  margin-bottom: 1rem;
-  align-self: flex-end;
+  margin-left: 1rem;
 }
 
 .theme-toggle:hover {
