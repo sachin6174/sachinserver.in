@@ -42,10 +42,12 @@ const TabSystem = () => {
     };
 
     useEffect(() => {
-        const defaultItem =
-            activeTab === "leftbrain" ? "About Me" : navigationItems[activeTab][0]?.label;
-        setSelectedNavItem(defaultItem);
-    }, [activeTab, navigationItems]);
+        if (!selectedNavItem) {
+            const defaultItem =
+                activeTab === "leftbrain" ? "About Me" : navigationItems[activeTab][0]?.label;
+            setSelectedNavItem(defaultItem);
+        }
+    }, []); // Only run once when component mounts
 
     return (
         <div className="main-container">
