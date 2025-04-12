@@ -136,10 +136,12 @@ body.dark-mode .selected-item {
   color: var(--text-color);
   position: fixed;
   right: 0;
+  left: 0;
   top: 120px;
   bottom: 0;
-  width: calc(100% - 20px);
+  width: calc(100% - 40px);
   overflow-y: auto;
+  margin-left: 20px;
   margin-right: 20px;
 }
 
