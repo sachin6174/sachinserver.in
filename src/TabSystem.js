@@ -4,7 +4,7 @@ import AppleDevelopment from "./LeftBrain/AppleDevelopment/AppleDevelopment";
 import NodeJS from "./LeftBrain/NodeJS/NodeJS";
 import ReactJS from "./LeftBrain/ReactJS/ReactJS";
 import Drawing from "./RightBrain/Drawing/Drawing";
-import Literature from "./RightBrain/Litlerature/Literature";
+import Literature from "./RightBrain/Literature/Literature";
 import Philosophy from "./RightBrain/Philosophy/Philosophy";
 import { JsonTool, XmlTool, QrTool, CryptoTool, WritingBoardTool, APITool, BackgroundRemoverTool, StorageTool, ColorPickerTool } from './Tools';
 import logo from './assets/logo512.png';  // Updated import path
@@ -52,14 +52,11 @@ const TabSystem = () => {
 
     useEffect(() => {
         if (activeTab === "rightbrain") {
-            setSelectedNavItem("Drawing");
+            setSelectedNavItem(navigationItems.rightbrain[0].id);
         } else if (activeTab === "leftbrain") {
-            setSelectedNavItem("About Me");
+            setSelectedNavItem(navigationItems.leftbrain[3].id);
         } else if (activeTab === "tools") {
-            setSelectedNavItem("JSON Tool"); // Default tool selection
-        } else if (!selectedNavItem) {
-            const defaultItem = navigationItems[activeTab][0]?.label;
-            setSelectedNavItem(defaultItem);
+            setSelectedNavItem(navigationItems.tools[0].id);
         }
     }, [activeTab]); // Add activeTab as dependency
 
@@ -104,7 +101,9 @@ const TabSystem = () => {
                         : "RightBrain: Creativity and Art"}
                 </div>
                 <div className="selected-item black-text">
-                    {selectedNavItem ? `${selectedNavItem}` : "No item selected"}
+                    {selectedNavItem
+                        ? navigationItems[activeTab].find(item => item.id === selectedNavItem)?.label
+                        : "No item selected"}
                 </div>
             </div>
 

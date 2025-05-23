@@ -48,7 +48,7 @@ const Drawing = () => {
             )}
             {selectedArtist ? (
                 <div>
-                    <h2 className="section-title">{selectedArtist.name}'s Paintings</h2>
+                    <h2 className="section-title">{selectedArtist.name}&apos;s Paintings</h2>
                     <button className="back-button" onClick={() => setSelectedArtist(null)}>Back to Artists</button>
                     <div className="cards-container">
                         {selectedArtist.paintings.map((painting, index) => (
