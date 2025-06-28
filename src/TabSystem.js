@@ -6,7 +6,7 @@ import ReactJS from "./LeftBrain/ReactJS/ReactJS";
 import Drawing from "./RightBrain/Drawing/Drawing";
 import Literature from "./RightBrain/Litlerature/Literature";
 import Philosophy from "./RightBrain/Philosophy/Philosophy";
-import { JsonTool, XmlTool, QrTool, CryptoTool, WritingBoardTool, APITool, BackgroundRemoverTool, StorageTool, ColorPickerTool } from './Tools';
+import { JsonTool, XmlTool, CryptoTool, WritingBoardTool, APITool, BackgroundRemoverTool, StorageTool, ColorPickerTool } from './Tools';
 import logo from './assets/logo512.png';  // Updated import path
 import './TabSystem.css';
 import LeftNavigation from './LeftNavigation';
@@ -40,7 +40,6 @@ const TabSystem = () => {
         tools: [
             { id: "JSON-Tool", label: "JSON Tool", icon: "📝", description: <JsonTool /> },
             { id: "XML-Tool", label: "XML Tool", icon: "🔧", description: <XmlTool /> },
-            { id: "qr-tool", label: "QR Generator", icon: "📱", description: <QrTool /> },
             { id: "Encryption-Decryption-Tool", label: "Crypto Tool", icon: "🔒", description: <CryptoTool /> },
             { id: "writing-board", label: "Writing Board", icon: "✏️", description: <WritingBoardTool /> },
             { id: "api-tool", label: "API Tool", icon: "🌐", description: <APITool /> },
