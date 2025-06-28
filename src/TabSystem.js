@@ -7,7 +7,7 @@ import Drawing from "./RightBrain/Drawing/Drawing";
 import Literature from "./RightBrain/Litlerature/Literature";
 import Philosophy from "./RightBrain/Philosophy/Philosophy";
 import Music from "./RightBrain/Music/Music";
-import { JsonTool, XmlTool, CryptoTool, WritingBoardTool, APITool, BackgroundRemoverTool, StorageTool, ColorPickerTool } from './Tools';
+import { InfoTool, JsonTool, XmlTool, CryptoTool, WritingBoardTool, APITool, BackgroundRemoverTool, StorageTool, ColorPickerTool } from './Tools';
 import logo from './assets/logo512.png';  // Updated import path
 import './TabSystem.css';
 import LeftNavigation from './LeftNavigation';
@@ -40,6 +40,7 @@ const TabSystem = () => {
             { id: "music", label: "Music", icon: "🎵", description: <Music /> },
         ],
         tools: [
+            { id: "info-tool", label: "Info Tool", icon: "📊", description: <InfoTool /> },
             { id: "JSON-Tool", label: "JSON Tool", icon: "📝", description: <JsonTool /> },
             { id: "XML-Tool", label: "XML Tool", icon: "🔧", description: <XmlTool /> },
             { id: "Encryption-Decryption-Tool", label: "Crypto Tool", icon: "🔒", description: <CryptoTool /> },
@@ -57,11 +58,12 @@ const TabSystem = () => {
         } else if (activeTab === "leftbrain") {
             setSelectedNavItem("About Me");
         } else if (activeTab === "tools") {
-            setSelectedNavItem("JSON Tool"); // Default tool selection
+            setSelectedNavItem("Info Tool"); // Default tool selection
         } else if (!selectedNavItem) {
             const defaultItem = navigationItems[activeTab][0]?.label;
             setSelectedNavItem(defaultItem);
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [activeTab]); // Add activeTab as dependency
 
     return (
@@ -102,7 +104,9 @@ const TabSystem = () => {
                 <div className="dynamic-title">
                     {activeTab === "leftbrain"
                         ? "LeftBrain: Logic and Analysis"
-                        : "RightBrain: Creativity and Art"}
+                        : activeTab === "rightbrain"
+                            ? "RightBrain: Creativity and Art"
+                            : "Tools: Utilities and Widgets"}
                 </div>
                 <div className="selected-item black-text">
                     {selectedNavItem ? `${selectedNavItem}` : "No item selected"}

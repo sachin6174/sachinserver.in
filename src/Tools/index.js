@@ -1,3 +1,4 @@
+export { default as InfoTool } from './InfoTool/InfoTool';
 export { default as JsonTool } from './JSONTool/JsonTool';
 export { default as XmlTool } from './XMLTool/XmlTool';
 export { default as CryptoTool } from './CryptoTool/CryptoTool';
