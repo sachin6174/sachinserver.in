@@ -6,6 +6,7 @@ import ReactJS from "./LeftBrain/ReactJS/ReactJS";
 import Drawing from "./RightBrain/Drawing/Drawing";
 import Literature from "./RightBrain/Litlerature/Literature";
 import Philosophy from "./RightBrain/Philosophy/Philosophy";
+import Music from "./RightBrain/Music/Music";
 import { JsonTool, XmlTool, CryptoTool, WritingBoardTool, APITool, BackgroundRemoverTool, StorageTool, ColorPickerTool } from './Tools';
 import logo from './assets/logo512.png';  // Updated import path
 import './TabSystem.css';
@@ -36,6 +37,7 @@ const TabSystem = () => {
             { id: "drawing", label: "Drawing", icon: "✏️", description: <Drawing /> },
             { id: "literature", label: "Literature", icon: "📖", description: <Literature /> },
             { id: "philosophy", label: "Philosophy", icon: "🤔", description: <Philosophy /> },
+            { id: "music", label: "Music", icon: "🎵", description: <Music /> },
         ],
         tools: [
             { id: "JSON-Tool", label: "JSON Tool", icon: "📝", description: <JsonTool /> },

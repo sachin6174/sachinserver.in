@@ -1,0 +1,389 @@
+/* Import shared styles */
+@import url('../shared-styles.css');
+
+/* Music container specific styles */
+.music-container {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    line-height: 1.6;
+    color: var(--text-primary);
+    background: linear-gradient(135deg, var(--background-primary) 0%, var(--background-secondary) 100%);
+    min-height: 100vh;
+    padding: 2rem;
+    overflow-y: auto;
+}
+
+/* Music-specific card styles */
+.music-card {
+    background: var(--background-primary);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border-color);
+    transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.music-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+}
+
+.music-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-xl);
+}
+
+/* Focus states for accessibility */
+.music-card:focus,
+.track-item:focus,
+.instrument-card:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+.play-button:focus {
+    outline: 2px solid white;
+    outline-offset: 2px;
+}
+
+/* Keyboard navigation support */
+.music-card[tabindex]:focus,
+.track-item[tabindex]:focus,
+.instrument-card[tabindex]:focus {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+}
+
+/* Genre card styles */
+.genre-card {
+    text-align: center;
+}
+
+.genre-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.genre-description {
+    margin: 1rem 0;
+    font-style: italic;
+    color: var(--text-secondary);
+}
+
+.genre-characteristics ul {
+    list-style: none;
+    padding: 0;
+    margin: 0.5rem 0;
+}
+
+.genre-characteristics li {
+    padding: 0.25rem 0;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.genre-characteristics li::before {
+    content: "♪ ";
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+/* Artist card styles */
+.artist-card {
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.05) 0%, rgba(236, 72, 153, 0.05) 100%);
+}
+
+.artist-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.artist-avatar {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: white;
+}
+
+.artist-bio {
+    font-style: italic;
+    margin: 1rem 0;
+    color: var(--text-secondary);
+}
+
+.notable-songs {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background: var(--background-secondary);
+    border-radius: var(--radius-md);
+}
+
+.notable-songs ul {
+    list-style: none;
+    padding: 0;
+    margin: 0.5rem 0;
+}
+
+.notable-songs li {
+    padding: 0.25rem 0;
+    color: var(--text-secondary);
+}
+
+.notable-songs li::before {
+    content: "🎵 ";
+    margin-right: 0.5rem;
+}
+
+/* Music sections */
+.music-section {
+    margin: 3rem 0;
+}
+
+.subsection-title {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 2rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--border-color);
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Track list styles */
+.track-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.track-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.5rem;
+    background: var(--background-primary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    transition: all var(--transition-normal);
+    cursor: pointer;
+}
+
+.track-item:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--primary-color);
+}
+
+.track-item:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+.track-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex: 1;
+}
+
+.play-button {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    font-size: 1rem;
+}
+
+.play-button:hover {
+    transform: scale(1.1);
+    box-shadow: var(--shadow-md);
+}
+
+.play-button:focus {
+    outline: 2px solid white;
+    outline-offset: 2px;
+}
+
+.track-details {
+    flex: 1;
+}
+
+.track-title {
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0 0 0.25rem 0;
+    font-size: 1rem;
+}
+
+.track-artist {
+    color: var(--text-secondary);
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+.track-meta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 0.9rem;
+    color: var(--text-light);
+}
+
+.track-duration {
+    font-family: 'Courier New', monospace;
+    background: var(--background-secondary);
+    padding: 0.25rem 0.5rem;
+    border-radius: var(--radius-sm);
+}
+
+.track-year {
+    color: var(--text-secondary);
+}
+
+/* Instruments grid */
+.instruments-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.instrument-card {
+    background: var(--background-primary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 1.5rem;
+    text-align: center;
+    transition: all var(--transition-normal);
+    cursor: pointer;
+}
+
+.instrument-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--primary-color);
+}
+
+.instrument-card:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+.instrument-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.instrument-card h4 {
+    color: var(--text-primary);
+    margin: 0.5rem 0;
+    font-weight: 600;
+}
+
+.instrument-card p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .music-container {
+        padding: 1rem;
+    }
+    
+    .track-item {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+    
+    .track-info {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .track-meta {
+        justify-content: center;
+    }
+    
+    .artist-header {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .instruments-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 1rem;
+    }
+}
+
+/* Dark mode specific adjustments */
+body.dark-mode .track-item {
+    background: var(--background-secondary);
+    border-color: var(--border-color);
+}
+
+body.dark-mode .track-item:hover {
+    border-color: var(--primary-color);
+    background: var(--background-tertiary);
+}
+
+body.dark-mode .instrument-card {
+    background: var(--background-secondary);
+}
+
+body.dark-mode .instrument-card:hover {
+    background: var(--background-tertiary);
+}
+
+body.dark-mode .artist-card {
+    background: linear-gradient(135deg, rgba(129, 140, 248, 0.1) 0%, rgba(244, 114, 182, 0.1) 100%);
+}
+
+/* Animation for playing track */
+.track-item.playing {
+    border-color: var(--accent-color);
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.05) 0%, rgba(99, 102, 241, 0.05) 100%);
+}
+
+.track-item.playing .play-button {
+    background: linear-gradient(135deg, var(--accent-color), var(--primary-color));
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
