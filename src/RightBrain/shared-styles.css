@@ -1,4 +1,4 @@
-/* CSS Variables for consistent theming */
+/* Shared CSS Variables and Styles for RightBrain Components */
 :root {
     --primary-color: #6366f1;
     --primary-dark: #4f46e5;
@@ -42,7 +42,8 @@ body.dark-mode {
     --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
 }
 
-.literature-container {
+/* Base container styles */
+.rightbrain-container {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
     line-height: 1.6;
     color: var(--text-primary);
@@ -50,17 +51,10 @@ body.dark-mode {
     min-height: 100vh;
     padding: 2rem;
     overflow-y: auto;
-    width: 100%;
-    transition: all 0.3s ease;
 }
 
-/* When nav panel is hidden, expand the content */
-.panel-hidden .literature-container {
-    margin-left: 0;
-    width: 100vw;
-}
-
-.novelist-cards {
+/* Card containers */
+.cards-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: 2rem;
@@ -69,16 +63,8 @@ body.dark-mode {
     margin: 0 auto;
 }
 
-.novel-cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1.5rem;
-    padding: 1.5rem 0;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.novelist-card {
+/* Card styles */
+.rightbrain-card {
     background: var(--background-primary);
     border-radius: var(--radius-lg);
     padding: 2rem;
@@ -90,7 +76,7 @@ body.dark-mode {
     cursor: pointer;
 }
 
-.novelist-card::before {
+.rightbrain-card::before {
     content: '';
     position: absolute;
     top: 0;
@@ -100,76 +86,20 @@ body.dark-mode {
     background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
 }
 
-.novelist-card:hover {
+.rightbrain-card:hover {
     transform: translateY(-5px);
     box-shadow: var(--shadow-xl);
-}
-
-.novel-card {
-    background: var(--background-primary);
-    border-radius: var(--radius-lg);
-    padding: 1.5rem;
-    box-shadow: var(--shadow-md);
-    border: 1px solid var(--border-color);
-    transition: transform var(--transition-normal), box-shadow var(--transition-normal);
-    position: relative;
-    overflow: hidden;
-    max-width: 250px;
-    cursor: pointer;
-}
-
-.novel-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, var(--accent-color), var(--secondary-color));
-}
-
-.novel-card:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-xl);
-}
-
-.novelist-image {
-    width: 200px;
-    height: 250px;
-    object-fit: cover;
-    border-radius: var(--radius-md);
-    margin: 1rem 0;
-    transition: transform var(--transition-normal);
-}
-
-.novelist-image:hover {
-    transform: scale(1.02);
-}
-
-.work-image {
-    width: 150px;
-    height: 200px;
-    object-fit: cover;
-    border-radius: var(--radius-md);
-    margin: 1rem 0;
-    transition: transform var(--transition-normal);
-}
-
-.work-image:hover {
-    transform: scale(1.02);
 }
 
 /* Typography */
-.novelist-card h3,
-.novel-card h3 {
+.rightbrain-card h3 {
     color: var(--text-primary);
     margin-bottom: 1rem;
     font-weight: 700;
     font-size: 1.5rem;
 }
 
-.novelist-card p,
-.novel-card p {
+.rightbrain-card p {
     margin-bottom: 1rem;
     color: var(--text-secondary);
     font-size: 1rem;
@@ -202,7 +132,7 @@ body.dark-mode {
     border-radius: var(--radius-sm);
 }
 
-/* Hero section for featured content */
+/* Hero section */
 .hero-section {
     padding: 4rem 2rem;
     text-align: center;
@@ -224,6 +154,7 @@ body.dark-mode {
     animation: float 6s ease-in-out infinite;
 }
 
+/* Animations */
 @keyframes float {
 
     0%,
@@ -236,9 +167,30 @@ body.dark-mode {
     }
 }
 
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Loading spinner */
+.loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid var(--background-tertiary);
+    border-radius: 50%;
+    border-top: 4px solid var(--primary-color);
+    animation: spin 1s linear infinite;
+    margin: 2rem auto;
+}
+
 /* Button styles */
 .back-button,
-button {
+.rightbrain-button {
     background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
     color: white;
     border: none;
@@ -255,18 +207,54 @@ button {
 }
 
 .back-button:hover,
-button:hover {
+.rightbrain-button:hover {
     transform: translateY(-2px);
     box-shadow: var(--shadow-lg);
     background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
 }
 
 body.dark-mode .back-button,
-body.dark-mode button {
+body.dark-mode .rightbrain-button {
     background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
 }
 
 body.dark-mode .back-button:hover,
-body.dark-mode button:hover {
+body.dark-mode .rightbrain-button:hover {
     background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+}
+
+/* Hover effects */
+.hover-effect {
+    transition: all var(--transition-normal);
+}
+
+.hover-effect:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+/* Image styles */
+.rightbrain-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: var(--radius-md);
+    margin: 1rem 0;
+    transition: transform var(--transition-normal);
+}
+
+.rightbrain-image:hover {
+    transform: scale(1.02);
+}
+
+/* Question/Quote styling */
+.card-question {
+    font-style: italic;
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+    background: var(--background-secondary);
+    padding: 1rem;
+    border-radius: var(--radius-md);
+    border-left: 4px solid var(--primary-color);
 }

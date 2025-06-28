@@ -27,9 +27,12 @@ const Philosophy = () => {
         <div className="philosophy-container">
             {selectedSubject ? (
                 <div>
-                    <h2 className="section-title">{selectedSubject.name}</h2>
+                    <div className="section-header">
+                        <h2 className="section-title">{selectedSubject.name}</h2>
+                        <div className="section-divider"></div>
+                    </div>
                     <button className="back-button" onClick={() => setSelectedSubject(null)}>
-                        Back to Subjects
+                        ← Back to Subjects
                     </button>
                     <div className="cards-container">
                         <PhilosophyCard subject={selectedSubject} />
@@ -37,16 +40,31 @@ const Philosophy = () => {
                 </div>
             ) : (
                 <div>
-                    <h2 className="section-title">Philosophy Subjects</h2>
+                    <div className="hero-section">
+                        <div className="section-header">
+                            <h1 className="section-title">Philosophy Domains</h1>
+                            <div className="section-divider"></div>
+                            <p style={{ color: 'var(--text-secondary)', fontSize: '1.1rem', marginTop: '1rem' }}>
+                                Explore the fundamental questions that have shaped human thought and understanding
+                            </p>
+                        </div>
+                    </div>
                     <div className="cards-container">
                         {subjects.map((subject, index) => (
-                            <div 
-                                key={index} 
+                            <div
+                                key={index}
                                 className="card hover-effect"
                                 onClick={() => handleSubjectClick(subject)}
                             >
                                 <h3>{subject.name}</h3>
-                                {subject.question && <p>{subject.question}</p>}
+                                {subject.question && (
+                                    <div className="card-question">
+                                        Key Question: {subject.question}
+                                    </div>
+                                )}
+                                {subject.themes && (
+                                    <p><strong>Core Themes:</strong> {subject.themes.slice(0, 3).join(', ')}{subject.themes.length > 3 ? '...' : ''}</p>
+                                )}
                             </div>
                         ))}
                     </div>

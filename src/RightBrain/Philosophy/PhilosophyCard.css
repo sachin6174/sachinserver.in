@@ -1,19 +1,76 @@
 .philosophy-card {
+    background: var(--background-primary);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    margin: 1rem;
+    box-shadow: var(--shadow-md);
     border: 1px solid var(--border-color);
-    border-radius: 8px;
-    padding: 20px;
-    margin: 10px;
-    background-color: var(--card-bg);
-    box-shadow: 0 2px 4px var(--shadow-color);
-    flex: 1 1 300px;
-    max-width: 400px;
+    flex: 1 1 350px;
+    max-width: 500px;
+    position: relative;
+    overflow: hidden;
+}
+
+.philosophy-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--accent-color), var(--primary-color));
+}
+
+.philosophy-card h3.card-title {
+    color: var(--text-primary);
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    font-size: 1.75rem;
+}
+
+.philosophy-card .card-question {
+    font-style: italic;
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+    background: var(--background-secondary);
+    padding: 1rem;
+    border-radius: var(--radius-md);
+    border-left: 4px solid var(--primary-color);
 }
 
 .card-section {
-    margin-top: 15px;
+    margin-top: 1.5rem;
+}
+
+.card-section h4 {
+    color: var(--primary-color);
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+    font-size: 1.1rem;
 }
 
 .card-section ul {
-    list-style-type: disc;
-    padding-left: 20px;
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.card-section li {
+    padding: 0.5rem 0;
+    color: var(--text-secondary);
+    border-bottom: 1px solid var(--border-color);
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+.card-section li:before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+.card-section li:last-child {
+    border-bottom: none;
 }
