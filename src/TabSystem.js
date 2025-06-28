@@ -68,25 +68,25 @@ const TabSystem = () => {
         <div className="main-container">
             <div className="tabs">
                 {
-                <>
-                    <img 
-                        src={logo}
-                        alt="Tab Icon" 
-                        style={{ width: '32px', height: '32px', marginTop: '15px' }} 
-                    />{
-                    ["leftbrain", "rightbrain", "tools"].map((tab) => (
-                        <div
-                            key={tab}
-                            className={`tab ${activeTab === tab ? "active" : "background"}`}
-                            onClick={() => setActiveTab(tab)}
-                        >
-                            <span className="tab-icon">
-                                {tab === "leftbrain" ? "🧠" : tab === "rightbrain" ? "🎨" : "🛠️"}
-                            </span>
-                            {tab === "leftbrain" ? "LeftBrain" : tab === "rightbrain" ? "RightBrain" : "Tools"}
-                        </div>
-                    ))}
-                </>
+                    <>
+                        <img
+                            src={logo}
+                            alt="Tab Icon"
+                            style={{ width: '32px', height: '32px', marginTop: '15px' }}
+                        />{
+                            ["leftbrain", "rightbrain", "tools"].map((tab) => (
+                                <div
+                                    key={tab}
+                                    className={`tab ${activeTab === tab ? "active" : "background"}`}
+                                    onClick={() => setActiveTab(tab)}
+                                >
+                                    <span className="tab-icon">
+                                        {tab === "leftbrain" ? "🧠" : tab === "rightbrain" ? "🎨" : "🛠️"}
+                                    </span>
+                                    {tab === "leftbrain" ? "LeftBrain" : tab === "rightbrain" ? "RightBrain" : "Tools"}
+                                </div>
+                            ))}
+                    </>
                 }
                 <button
                     className="theme-toggle"

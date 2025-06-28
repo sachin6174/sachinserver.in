@@ -318,27 +318,27 @@
     .music-container {
         padding: 1rem;
     }
-    
+
     .track-item {
         flex-direction: column;
         gap: 1rem;
         text-align: center;
     }
-    
+
     .track-info {
         flex-direction: column;
         gap: 0.5rem;
     }
-    
+
     .track-meta {
         justify-content: center;
     }
-    
+
     .artist-header {
         flex-direction: column;
         text-align: center;
     }
-    
+
     .instruments-grid {
         grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
         gap: 1rem;
@@ -380,9 +380,12 @@ body.dark-mode .artist-card {
 }
 
 @keyframes pulse {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: scale(1);
     }
+
     50% {
         transform: scale(1.05);
     }

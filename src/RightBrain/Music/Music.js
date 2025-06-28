@@ -52,7 +52,7 @@ const Music = () => {
                     <button className="back-button" onClick={() => setSelectedGenre(null)}>
                         ← Back to Genres
                     </button>
-                    
+
                     {/* Artists section */}
                     {selectedGenre.artists && selectedGenre.artists.length > 0 && (
                         <div className="music-section">
@@ -89,8 +89,8 @@ const Music = () => {
                             <h3 className="subsection-title">Recommended Tracks</h3>
                             <div className="track-list">
                                 {selectedGenre.tracks.map((track, index) => (
-                                    <div 
-                                        key={index} 
+                                    <div
+                                        key={index}
                                         className={`track-item hover-effect ${playingTrack === track.id ? 'playing' : ''}`}
                                         tabIndex={0}
                                         role="button"
@@ -103,7 +103,7 @@ const Music = () => {
                                         }}
                                     >
                                         <div className="track-info">
-                                            <button 
+                                            <button
                                                 className="play-button"
                                                 onClick={() => handlePlayTrack(track)}
                                                 aria-label={playingTrack === track.id ? "Pause" : "Play"}
@@ -154,9 +154,9 @@ const Music = () => {
                     </div>
                     <div className="cards-container">
                         {musicGenres.map((genre, index) => (
-                            <div 
-                                key={index} 
-                                className="music-card genre-card hover-effect" 
+                            <div
+                                key={index}
+                                className="music-card genre-card hover-effect"
                                 onClick={() => handleGenreClick(genre)}
                                 onKeyDown={(e) => {
                                     if (e.key === 'Enter' || e.key === ' ') {
