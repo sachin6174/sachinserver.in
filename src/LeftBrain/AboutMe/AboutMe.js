@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./AboutMe.css";
+import profileImage from "../../assets/images/ProfilePic/profile1.jpeg";
 
 const AboutMe = () => {
     const [isVisible, setIsVisible] = useState({});
@@ -117,9 +118,11 @@ const AboutMe = () => {
             <section className="hero-section fade-in-section" id="hero">
                 <div className="hero-content">
                     <div className="avatar-container">
-                        <div className="avatar">
-                            <span>SK</span>
-                        </div>
+                        <img
+                            src={profileImage}
+                            alt="Sachin Kumar - Profile Picture"
+                            className="avatar-image"
+                        />
                         <div className="status-indicator"></div>
                     </div>
                     <div className="hero-text">

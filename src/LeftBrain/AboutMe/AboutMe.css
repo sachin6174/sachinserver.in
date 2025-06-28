@@ -161,6 +161,22 @@ body.dark-mode {
     transform: scale(1.05);
 }
 
+.avatar-image {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
+    border: 4px solid transparent;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    box-shadow: var(--shadow-xl);
+    transition: transform var(--transition-normal);
+}
+
+.avatar-image:hover {
+    transform: scale(1.05);
+}
+
 .status-indicator {
     position: absolute;
     bottom: 8px;
@@ -743,6 +759,11 @@ cite {
         width: 100px;
         height: 100px;
         font-size: 2rem;
+    }
+
+    .avatar-image {
+        width: 100px;
+        height: 100px;
     }
 
     .about-text p,
