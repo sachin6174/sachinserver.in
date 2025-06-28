@@ -906,12 +906,12 @@ cite {
         flex-direction: column;
         gap: 0.5rem;
     }
-    
+
     .project-links a {
         text-align: center;
         justify-content: center;
     }
-    
+
     .hero-contact {
         flex-direction: column;
         align-items: center;
@@ -1005,6 +1005,7 @@ cite {
         opacity: 0;
         transform: translateY(20px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);

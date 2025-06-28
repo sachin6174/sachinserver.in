@@ -125,8 +125,8 @@ const Blog = () => {
                         <h2 className="section-title">{selectedCategory.name}</h2>
                         <div className="section-divider"></div>
                     </div>
-                    <button 
-                        className="leftbrain-button" 
+                    <button
+                        className="leftbrain-button"
                         onClick={() => setSelectedCategory(null)}
                         style={{ marginBottom: '2rem' }}
                     >
@@ -137,9 +137,9 @@ const Blog = () => {
                             <div key={index} className="leftbrain-card hover-effect">
                                 <h3>{post.title}</h3>
                                 <p>{post.excerpt}</p>
-                                <div style={{ 
-                                    display: 'flex', 
-                                    justifyContent: 'space-between', 
+                                <div style={{
+                                    display: 'flex',
+                                    justifyContent: 'space-between',
                                     alignItems: 'center',
                                     marginTop: '1rem',
                                     fontSize: '0.875rem',
@@ -191,21 +191,21 @@ const Blog = () => {
                         </div>
                         <div className="features-grid">
                             {featuredPosts.map((post, index) => (
-                                <div key={index} className="leftbrain-card hover-effect" style={{ 
+                                <div key={index} className="leftbrain-card hover-effect" style={{
                                     border: '2px solid var(--tech-blue)',
                                     background: 'linear-gradient(135deg, rgba(14, 165, 233, 0.05) 0%, rgba(34, 197, 94, 0.05) 100%)'
                                 }}>
-                                    <div style={{ 
-                                        display: 'flex', 
-                                        alignItems: 'center', 
-                                        gap: '0.5rem', 
-                                        marginBottom: '1rem' 
+                                    <div style={{
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        gap: '0.5rem',
+                                        marginBottom: '1rem'
                                     }}>
-                                        <span style={{ 
-                                            background: 'var(--tech-blue)', 
-                                            color: 'white', 
-                                            padding: '0.25rem 0.5rem', 
-                                            borderRadius: 'var(--radius-sm)', 
+                                        <span style={{
+                                            background: 'var(--tech-blue)',
+                                            color: 'white',
+                                            padding: '0.25rem 0.5rem',
+                                            borderRadius: 'var(--radius-sm)',
                                             fontSize: '0.75rem',
                                             fontWeight: 'bold'
                                         }}>
@@ -214,9 +214,9 @@ const Blog = () => {
                                     </div>
                                     <h3>{post.title}</h3>
                                     <p>{post.excerpt}</p>
-                                    <div style={{ 
-                                        display: 'flex', 
-                                        justifyContent: 'space-between', 
+                                    <div style={{
+                                        display: 'flex',
+                                        justifyContent: 'space-between',
                                         alignItems: 'center',
                                         marginTop: '1rem',
                                         fontSize: '0.875rem',
@@ -242,32 +242,32 @@ const Blog = () => {
                         </div>
                         <div className="cards-container">
                             {blogCategories.map((category, index) => (
-                                <div 
-                                    key={index} 
+                                <div
+                                    key={index}
                                     className="tech-card blogs hover-effect"
                                     onClick={() => setSelectedCategory(category)}
                                 >
                                     <div className="tech-icon">{category.icon}</div>
                                     <h3>{category.name}</h3>
                                     <p>{category.description}</p>
-                                    <div style={{ 
-                                        marginTop: '1rem', 
-                                        padding: '1rem', 
-                                        background: 'var(--background-secondary)', 
+                                    <div style={{
+                                        marginTop: '1rem',
+                                        padding: '1rem',
+                                        background: 'var(--background-secondary)',
                                         borderRadius: 'var(--radius-md)',
                                         textAlign: 'center'
                                     }}>
-                                        <span style={{ 
-                                            fontWeight: 'bold', 
+                                        <span style={{
+                                            fontWeight: 'bold',
                                             color: 'var(--text-primary)',
                                             fontSize: '1.2rem'
                                         }}>
                                             {category.posts.length}
                                         </span>
                                         <br />
-                                        <span style={{ 
-                                            fontSize: '0.875rem', 
-                                            color: 'var(--text-secondary)' 
+                                        <span style={{
+                                            fontSize: '0.875rem',
+                                            color: 'var(--text-secondary)'
                                         }}>
                                             Articles
                                         </span>

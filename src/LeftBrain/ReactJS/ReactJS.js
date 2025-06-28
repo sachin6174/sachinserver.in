@@ -79,8 +79,8 @@ const ReactJS = () => {
                             <span className="stat-number">{skill.level}%</span>
                             <span className="stat-label">{skill.name}</span>
                             <div className="progress-bar">
-                                <div 
-                                    className="progress-fill" 
+                                <div
+                                    className="progress-fill"
                                     style={{ width: `${skill.level}%` }}
                                 ></div>
                             </div>
@@ -138,7 +138,7 @@ const ReactJS = () => {
                 <div className="leftbrain-card">
                     <h3>Custom Hook for API Calls</h3>
                     <div className="code-snippet" data-language="JavaScript">
-{`import { useState, useEffect } from 'react';
+                        {`import { useState, useEffect } from 'react';
 
 const useApiData = (url) => {
     const [data, setData] = useState(null);

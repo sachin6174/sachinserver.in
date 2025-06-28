@@ -79,8 +79,8 @@ const NodeJS = () => {
                             <span className="stat-number">{skill.level}%</span>
                             <span className="stat-label">{skill.name}</span>
                             <div className="progress-bar">
-                                <div 
-                                    className="progress-fill" 
+                                <div
+                                    className="progress-fill"
                                     style={{ width: `${skill.level}%` }}
                                 ></div>
                             </div>
@@ -138,7 +138,7 @@ const NodeJS = () => {
                 <div className="leftbrain-card">
                     <h3>Express.js API Route</h3>
                     <div className="code-snippet" data-language="JavaScript">
-{`const express = require('express');
+                        {`const express = require('express');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 

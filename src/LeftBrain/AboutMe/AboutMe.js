@@ -242,9 +242,9 @@ const AboutMe = () => {
                             </div>
                             <div className="project-links">
                                 {project.links.appStore && (
-                                    <a 
-                                        href={`https://${project.links.appStore}`} 
-                                        target="_blank" 
+                                    <a
+                                        href={`https://${project.links.appStore}`}
+                                        target="_blank"
                                         rel="noopener noreferrer"
                                         aria-label={`View ${project.title} on App Store`}
                                     >
@@ -252,9 +252,9 @@ const AboutMe = () => {
                                     </a>
                                 )}
                                 {project.links.chromeStore && (
-                                    <a 
-                                        href={`https://${project.links.chromeStore}`} 
-                                        target="_blank" 
+                                    <a
+                                        href={`https://${project.links.chromeStore}`}
+                                        target="_blank"
                                         rel="noopener noreferrer"
                                         aria-label={`View ${project.title} on Chrome Web Store`}
                                     >
@@ -262,9 +262,9 @@ const AboutMe = () => {
                                     </a>
                                 )}
                                 {project.links.github && (
-                                    <a 
-                                        href={`https://${project.links.github}`} 
-                                        target="_blank" 
+                                    <a
+                                        href={`https://${project.links.github}`}
+                                        target="_blank"
                                         rel="noopener noreferrer"
                                         aria-label={`View ${project.title} source code on GitHub`}
                                     >

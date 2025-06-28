@@ -61,8 +61,8 @@ const AppleDevelopment = () => {
                             <span className="stat-number">{skill.level}%</span>
                             <span className="stat-label">{skill.name}</span>
                             <div className="progress-bar">
-                                <div 
-                                    className="progress-fill" 
+                                <div
+                                    className="progress-fill"
                                     style={{ width: `${skill.level}%` }}
                                 ></div>
                             </div>
@@ -100,7 +100,7 @@ const AppleDevelopment = () => {
                 <div className="leftbrain-card">
                     <h3>SwiftUI Hello World</h3>
                     <div className="code-snippet" data-language="Swift">
-{`import SwiftUI
+                        {`import SwiftUI
 
 struct ContentView: View {
     var body: some View {
