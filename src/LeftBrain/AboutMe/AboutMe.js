@@ -77,7 +77,7 @@ const AboutMe = () => {
             tech: ["SwiftUI", "Core Data", "iOS"],
             year: "2025",
             links: {
-                appStore: "apps.apple.com/notingdown",
+                appStore: "apps.apple.com/us/app/notingdown/id6742340327",
                 github: "github.com/sachin6174/NotingDown"
             }
         },
