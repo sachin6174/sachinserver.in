@@ -6,6 +6,24 @@ body {
     background-color: var(--bg-color, #fff);
     color: var(--text-color, #333);
     transition: background-color 0.3s ease, color 0.3s ease;
+    /* Better mobile scrolling */
+    -webkit-overflow-scrolling: touch;
+    overflow-x: hidden;
+}
+
+/* Improve mobile text readability */
+@media (max-width: 768px) {
+    body {
+        font-size: 14px;
+        line-height: 1.5;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        font-size: 13px;
+        line-height: 1.4;
+    }
 }
 
 code {
@@ -14,9 +32,57 @@ code {
     padding: 4px 8px;
     border-radius: 4px;
     color: #d6336c;
+    word-break: break-word;
+    /* Better mobile wrapping */
 }
 
 body.dark-mode code {
     background-color: #2d2d2d;
     color: #ff6b9d;
+}
+
+/* Mobile code blocks */
+@media (max-width: 768px) {
+    code {
+        padding: 3px 6px;
+        font-size: 12px;
+    }
+}
+
+/* Better mobile tap targets */
+@media (hover: none) and (pointer: coarse) {
+
+    button,
+    [role="button"],
+    input[type="button"],
+    input[type="submit"],
+    .clickable {
+        min-height: 44px;
+        min-width: 44px;
+    }
+}
+
+/* Prevent horizontal scroll */
+* {
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+/* Better mobile form elements */
+@media (max-width: 768px) {
+
+    input,
+    textarea,
+    select {
+        font-size: 16px;
+        /* Prevent zoom on iOS */
+        padding: 12px;
+        border-radius: 6px;
+    }
+
+    button {
+        padding: 12px 16px;
+        font-size: 14px;
+        border-radius: 6px;
+    }
 }

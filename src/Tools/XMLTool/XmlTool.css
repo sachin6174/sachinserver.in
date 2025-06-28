@@ -34,7 +34,8 @@
     gap: 10px;
 }
 
-h2, h3 {
+h2,
+h3 {
     color: var(--text-color);
     margin: 0;
 }
@@ -87,13 +88,205 @@ body.dark-mode textarea {
     color: var(--text-color);
 }
 
-@media (max-width: 768px) {
-    .actions {
-        flex-direction: column;
+/* ===== RESPONSIVE DESIGN ===== */
+
+/* Tablet */
+@media (max-width: 1024px) {
+    .xml-tool {
+        padding: 15px;
+        max-width: 100%;
     }
-    
+
+    .tool-container {
+        padding: 15px;
+        gap: 15px;
+    }
+
+    textarea {
+        height: 180px;
+        padding: 10px;
+        font-size: 14px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .xml-tool {
+        padding: 10px;
+    }
+
+    .tool-container {
+        padding: 12px;
+        gap: 12px;
+        border-radius: 6px;
+    }
+
     .control-panel {
         flex-direction: column;
         align-items: stretch;
+        gap: 8px;
+    }
+
+    .tab-space-select {
+        width: 100%;
+        padding: 10px;
+        font-size: 14px;
+        min-height: 44px;
+    }
+
+    h2,
+    h3 {
+        font-size: 18px;
+        margin-bottom: 8px;
+    }
+
+    textarea {
+        height: 150px;
+        padding: 10px;
+        font-size: 14px;
+        border-radius: 6px;
+    }
+
+    .actions {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .actions button {
+        width: 100%;
+        padding: 10px;
+        font-size: 14px;
+        border-radius: 6px;
+        min-height: 44px;
+        border: 1px solid var(--border-color);
+        background: var(--accent-color);
+        color: white;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+
+    .actions button:hover {
+        background: #0056b3;
+        transform: translateY(-1px);
+    }
+
+    .message {
+        padding: 8px;
+        font-size: 13px;
+        border-radius: 6px;
+        margin: 8px 0;
+    }
+
+    .output-section {
+        margin-top: 12px;
+    }
+
+    .output-section pre {
+        padding: 12px;
+        font-size: 13px;
+        border-radius: 6px;
+    }
+}
+
+/* Small mobile */
+@media (max-width: 480px) {
+    .xml-tool {
+        padding: 8px;
+    }
+
+    .tool-container {
+        padding: 10px;
+        gap: 10px;
+    }
+
+    .control-panel {
+        gap: 6px;
+    }
+
+    .tab-space-select {
+        padding: 8px;
+        font-size: 13px;
+    }
+
+    h2,
+    h3 {
+        font-size: 16px;
+        margin-bottom: 6px;
+    }
+
+    textarea {
+        height: 120px;
+        padding: 8px;
+        font-size: 13px;
+    }
+
+    .actions button {
+        padding: 8px;
+        font-size: 13px;
+    }
+
+    .message {
+        padding: 6px;
+        font-size: 12px;
+    }
+
+    .output-section pre {
+        padding: 10px;
+        font-size: 12px;
+    }
+}
+
+/* Extra small screens */
+@media (max-width: 360px) {
+    .xml-tool {
+        padding: 6px;
+    }
+
+    .tool-container {
+        padding: 8px;
+    }
+
+    textarea {
+        height: 100px;
+    }
+
+    h2,
+    h3 {
+        font-size: 15px;
+    }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+
+    .tab-space-select,
+    .actions button {
+        min-height: 48px;
+        padding: 12px;
+    }
+
+    textarea {
+        padding: 12px;
+        font-size: 16px;
+        /* Prevent zoom on iOS */
+    }
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2),
+(min-resolution: 192dpi) {
+    .tool-container {
+        border-width: 0.5px;
+    }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .actions button {
+        transition: none;
+    }
+
+    .actions button:hover {
+        transform: none;
     }
 }

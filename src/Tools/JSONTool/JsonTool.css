@@ -63,3 +63,171 @@
 .tree-view-section {
     margin-top: 20px;
 }
+
+/* ===== RESPONSIVE DESIGN ===== */
+
+/* Tablet */
+@media (max-width: 1024px) {
+    .json-tool {
+        padding: 15px;
+    }
+
+    .tool-container {
+        padding: 20px;
+    }
+
+    .input-section textarea.full-width-input {
+        min-height: 180px;
+        padding: 12px;
+        font-size: 14px;
+    }
+
+    .output-section pre.auto-height {
+        padding: 15px;
+        font-size: 14px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .json-tool {
+        padding: 10px;
+    }
+
+    .tool-container {
+        padding: 15px;
+        border-radius: 8px;
+    }
+
+    .input-section textarea.full-width-input {
+        min-height: 150px;
+        padding: 10px;
+        font-size: 14px;
+        margin-bottom: 15px;
+    }
+
+    .output-section pre.auto-height {
+        padding: 12px;
+        font-size: 13px;
+        min-height: 80px;
+    }
+
+    .tree-container {
+        padding: 15px;
+        margin-top: 15px;
+    }
+
+    .tree-node {
+        margin: 3px 0;
+    }
+
+    .tree-label {
+        font-size: 14px;
+    }
+
+    .tree-value {
+        font-size: 13px;
+        word-break: break-word;
+    }
+
+    /* Action buttons responsive */
+    .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin: 15px 0;
+    }
+
+    .actions button {
+        flex: 1;
+        min-width: 120px;
+        padding: 10px 8px;
+        font-size: 14px;
+        border-radius: 6px;
+        min-height: 44px;
+        /* Touch target */
+    }
+}
+
+/* Small mobile */
+@media (max-width: 480px) {
+    .json-tool {
+        padding: 8px;
+    }
+
+    .tool-container {
+        padding: 12px;
+        border-radius: 6px;
+    }
+
+    .input-section textarea.full-width-input {
+        min-height: 120px;
+        padding: 8px;
+        font-size: 13px;
+        margin-bottom: 12px;
+    }
+
+    .output-section pre.auto-height {
+        padding: 10px;
+        font-size: 12px;
+        min-height: 60px;
+    }
+
+    .tree-container {
+        padding: 12px;
+        margin-top: 12px;
+    }
+
+    .tree-label {
+        font-size: 13px;
+    }
+
+    .tree-value {
+        font-size: 12px;
+    }
+
+    .actions button {
+        min-width: 100px;
+        padding: 8px 6px;
+        font-size: 13px;
+    }
+}
+
+/* Extra small screens */
+@media (max-width: 360px) {
+    .actions {
+        flex-direction: column;
+    }
+
+    .actions button {
+        width: 100%;
+        min-width: auto;
+    }
+
+    .tree-label,
+    .tree-value {
+        font-size: 11px;
+    }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+    .actions button {
+        min-height: 48px;
+        padding: 12px 10px;
+    }
+
+    .input-section textarea.full-width-input {
+        padding: 12px;
+        font-size: 16px;
+        /* Prevent zoom on iOS */
+    }
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2),
+(min-resolution: 192dpi) {
+    .tree-container {
+        border: 0.5px solid var(--border-color);
+    }
+}

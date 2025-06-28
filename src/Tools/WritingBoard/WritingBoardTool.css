@@ -4,6 +4,16 @@
     flex-direction: column;
     gap: 20px;
     align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.writing-board-tool h2 {
+    color: var(--accent-color);
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: 600;
+    text-align: center;
 }
 
 .toolbar {
@@ -12,15 +22,77 @@
     flex-wrap: wrap;
     justify-content: center;
     width: 100%;
-    padding: 10px;
+    padding: 15px;
     background-color: var(--card-bg);
     border-radius: 8px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 2px 8px var(--shadow-color);
 }
 
 .tool-group {
     display: flex;
     gap: 10px;
     align-items: center;
+    flex-wrap: wrap;
+}
+
+.tool-group label {
+    color: var(--text-color);
+    font-weight: 500;
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+.tool-group input,
+.tool-group select,
+.tool-group button {
+    padding: 8px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    background: var(--content-bg);
+    color: var(--text-color);
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    min-height: 36px;
+}
+
+.tool-group input[type="color"] {
+    width: 50px;
+    height: 36px;
+    padding: 2px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.tool-group input[type="range"] {
+    width: 100px;
+}
+
+.tool-group button {
+    background: var(--accent-color);
+    color: white;
+    border-color: var(--accent-color);
+    font-weight: 500;
+}
+
+.tool-group button:hover {
+    background: #0056b3;
+    transform: translateY(-1px);
+}
+
+.tool-group button.active {
+    background: #28a745;
+    border-color: #28a745;
+}
+
+.canvas-container {
+    background: var(--content-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 8px var(--shadow-color);
+    overflow: auto;
 }
 
 canvas {
@@ -29,10 +101,365 @@ canvas {
     background-color: white;
     cursor: crosshair;
     max-width: 100%;
+    display: block;
+    margin: 0 auto;
 }
 
 .text-input {
     display: flex;
     gap: 10px;
     align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.text-input input {
+    flex: 1;
+    min-width: 200px;
+    padding: 8px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    background: var(--content-bg);
+    color: var(--text-color);
+    font-size: 14px;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+}
+
+.action-buttons button {
+    padding: 10px 16px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    background: var(--content-bg);
+    color: var(--text-color);
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    min-height: 40px;
+    font-weight: 500;
+}
+
+.action-buttons button:hover {
+    background: var(--hover-color);
+    transform: translateY(-1px);
+}
+
+.action-buttons button.primary {
+    background: var(--accent-color);
+    color: white;
+    border-color: var(--accent-color);
+}
+
+.action-buttons button.primary:hover {
+    background: #0056b3;
+}
+
+.action-buttons button.danger {
+    background: #dc3545;
+    color: white;
+    border-color: #dc3545;
+}
+
+.action-buttons button.danger:hover {
+    background: #c82333;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+
+/* Tablet */
+@media (max-width: 1024px) {
+    .writing-board-tool {
+        padding: 15px;
+        max-width: 100%;
+    }
+
+    .toolbar {
+        padding: 12px;
+        gap: 15px;
+    }
+
+    .canvas-container {
+        padding: 15px;
+    }
+
+    canvas {
+        max-width: 100%;
+        height: auto;
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .writing-board-tool {
+        padding: 10px;
+        gap: 15px;
+    }
+
+    .writing-board-tool h2 {
+        font-size: 20px;
+        margin-bottom: 15px;
+    }
+
+    .toolbar {
+        padding: 10px;
+        gap: 10px;
+        border-radius: 6px;
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .tool-group {
+        justify-content: space-between;
+        gap: 8px;
+        padding: 8px 0;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .tool-group:last-child {
+        border-bottom: none;
+    }
+
+    .tool-group label {
+        font-size: 13px;
+        min-width: 80px;
+    }
+
+    .tool-group input,
+    .tool-group select,
+    .tool-group button {
+        padding: 10px 12px;
+        font-size: 14px;
+        min-height: 44px;
+        flex: 1;
+    }
+
+    .tool-group input[type="color"] {
+        width: 60px;
+        height: 44px;
+        flex: none;
+    }
+
+    .tool-group input[type="range"] {
+        width: 120px;
+        flex: 1;
+    }
+
+    .canvas-container {
+        padding: 12px;
+        border-radius: 6px;
+    }
+
+    canvas {
+        border-radius: 6px;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .text-input {
+        flex-direction: column;
+        gap: 8px;
+        align-items: stretch;
+    }
+
+    .text-input input {
+        min-width: auto;
+        width: 100%;
+        padding: 10px 12px;
+        min-height: 44px;
+    }
+
+    .action-buttons {
+        gap: 8px;
+    }
+
+    .action-buttons button {
+        flex: 1;
+        padding: 10px 12px;
+        font-size: 14px;
+        min-height: 44px;
+        min-width: 100px;
+    }
+}
+
+/* Small mobile */
+@media (max-width: 480px) {
+    .writing-board-tool {
+        padding: 8px;
+        gap: 12px;
+    }
+
+    .writing-board-tool h2 {
+        font-size: 18px;
+        margin-bottom: 12px;
+    }
+
+    .toolbar {
+        padding: 8px;
+        gap: 8px;
+    }
+
+    .tool-group {
+        padding: 6px 0;
+        gap: 6px;
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .tool-group label {
+        font-size: 12px;
+        text-align: center;
+        margin-bottom: 4px;
+    }
+
+    .tool-group input,
+    .tool-group select,
+    .tool-group button {
+        padding: 8px 10px;
+        font-size: 13px;
+        width: 100%;
+    }
+
+    .tool-group input[type="color"] {
+        width: 100%;
+        height: 40px;
+    }
+
+    .tool-group input[type="range"] {
+        width: 100%;
+    }
+
+    .canvas-container {
+        padding: 10px;
+    }
+
+    canvas {
+        width: 100%;
+        max-height: 300px;
+    }
+
+    .text-input input {
+        padding: 8px 10px;
+        font-size: 13px;
+    }
+
+    .action-buttons {
+        flex-direction: column;
+        gap: 6px;
+    }
+
+    .action-buttons button {
+        width: 100%;
+        padding: 8px 10px;
+        font-size: 13px;
+        min-width: auto;
+    }
+}
+
+/* Extra small screens */
+@media (max-width: 360px) {
+    .writing-board-tool {
+        padding: 6px;
+        gap: 10px;
+    }
+
+    .toolbar {
+        padding: 6px;
+    }
+
+    canvas {
+        max-height: 250px;
+    }
+}
+
+/* Landscape mobile */
+@media (max-width: 768px) and (orientation: landscape) {
+    .toolbar {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .tool-group {
+        flex-direction: row;
+        border-bottom: none;
+        min-width: 200px;
+    }
+
+    canvas {
+        max-height: 250px;
+    }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+
+    .tool-group input,
+    .tool-group select,
+    .tool-group button,
+    .action-buttons button {
+        min-height: 48px;
+        padding: 12px;
+    }
+
+    .text-input input {
+        min-height: 48px;
+        padding: 12px;
+        font-size: 16px;
+        /* Prevent zoom on iOS */
+    }
+
+    .tool-group input[type="color"] {
+        min-height: 48px;
+    }
+
+    canvas {
+        cursor: default;
+        /* Better for touch */
+    }
+}
+
+/* Dark mode adjustments */
+body.dark-mode .tool-group input,
+body.dark-mode .tool-group select,
+body.dark-mode .text-input input {
+    background: var(--card-bg);
+    border-color: #444;
+}
+
+body.dark-mode canvas {
+    background-color: #f8f9fa;
+    /* Keep canvas light for drawing */
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2),
+(min-resolution: 192dpi) {
+
+    .toolbar,
+    .canvas-container {
+        border-width: 0.5px;
+    }
+
+    canvas {
+        border-width: 0.5px;
+    }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+
+    .tool-group button,
+    .action-buttons button {
+        transition: none;
+    }
+
+    .tool-group button:hover,
+    .action-buttons button:hover {
+        transform: none;
+    }
 }

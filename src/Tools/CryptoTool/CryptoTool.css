@@ -8,6 +8,7 @@
     display: flex;
     gap: 10px;
     margin-bottom: 20px;
+    flex-wrap: wrap;
 }
 
 .sections-container {
@@ -21,4 +22,282 @@
     background: var(--card-bg);
     padding: 20px;
     border-radius: 8px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 2px 8px var(--shadow-color);
+}
+
+.text-section h3,
+.file-section h3 {
+    color: var(--accent-color);
+    margin-bottom: 15px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.text-section textarea,
+.text-section input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    background: var(--content-bg);
+    color: var(--text-color);
+    font-family: inherit;
+    margin-bottom: 10px;
+    resize: vertical;
+}
+
+.text-section textarea {
+    min-height: 120px;
+}
+
+.file-section input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    border: 2px dashed var(--border-color);
+    border-radius: 6px;
+    background: var(--content-bg);
+    color: var(--text-color);
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.crypto-button {
+    width: 100%;
+    padding: 12px;
+    background: var(--accent-color);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    min-height: 44px;
+}
+
+.crypto-button:hover {
+    background: #0056b3;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px var(--shadow-color);
+}
+
+.crypto-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.mode-selector button {
+    padding: 8px 16px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    background: var(--content-bg);
+    color: var(--text-color);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    min-height: 40px;
+}
+
+.mode-selector button.active {
+    background: var(--accent-color);
+    color: white;
+    border-color: var(--accent-color);
+}
+
+.mode-selector button:hover {
+    background: var(--hover-color);
+}
+
+.mode-selector button.active:hover {
+    background: #0056b3;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+
+/* Tablet */
+@media (max-width: 1024px) {
+    .crypto-tool {
+        padding: 15px;
+        max-width: 100%;
+    }
+
+    .sections-container {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .text-section,
+    .file-section {
+        padding: 15px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .crypto-tool {
+        padding: 10px;
+    }
+
+    .mode-selector {
+        justify-content: center;
+        margin-bottom: 15px;
+        gap: 8px;
+    }
+
+    .mode-selector button {
+        flex: 1;
+        min-width: 100px;
+        padding: 10px 12px;
+        font-size: 14px;
+        min-height: 44px;
+    }
+
+    .sections-container {
+        gap: 12px;
+    }
+
+    .text-section,
+    .file-section {
+        padding: 12px;
+        border-radius: 6px;
+    }
+
+    .text-section h3,
+    .file-section h3 {
+        font-size: 16px;
+        margin-bottom: 12px;
+    }
+
+    .text-section textarea {
+        min-height: 100px;
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    .text-section input,
+    .file-section input {
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    .crypto-button {
+        padding: 10px;
+        font-size: 14px;
+        min-height: 44px;
+    }
+}
+
+/* Small mobile */
+@media (max-width: 480px) {
+    .crypto-tool {
+        padding: 8px;
+    }
+
+    .mode-selector {
+        flex-direction: column;
+        gap: 6px;
+    }
+
+    .mode-selector button {
+        width: 100%;
+        min-width: auto;
+    }
+
+    .text-section,
+    .file-section {
+        padding: 10px;
+    }
+
+    .text-section h3,
+    .file-section h3 {
+        font-size: 15px;
+        margin-bottom: 10px;
+    }
+
+    .text-section textarea {
+        min-height: 80px;
+        padding: 8px;
+        font-size: 13px;
+    }
+
+    .text-section input,
+    .file-section input {
+        padding: 8px;
+        font-size: 13px;
+    }
+
+    .crypto-button {
+        padding: 8px;
+        font-size: 13px;
+    }
+}
+
+/* Extra small screens */
+@media (max-width: 360px) {
+    .crypto-tool {
+        padding: 6px;
+    }
+
+    .text-section,
+    .file-section {
+        padding: 8px;
+    }
+
+    .text-section textarea {
+        min-height: 60px;
+    }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+
+    .mode-selector button,
+    .crypto-button {
+        min-height: 48px;
+        padding: 12px;
+    }
+
+    .text-section textarea,
+    .text-section input,
+    .file-section input {
+        padding: 12px;
+        font-size: 16px;
+        /* Prevent zoom on iOS */
+    }
+}
+
+/* Dark mode specific adjustments */
+body.dark-mode .text-section textarea,
+body.dark-mode .text-section input,
+body.dark-mode .file-section input {
+    background: var(--card-bg);
+    border-color: #444;
+}
+
+body.dark-mode .file-section input[type="file"] {
+    border-color: #444;
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2),
+(min-resolution: 192dpi) {
+
+    .text-section,
+    .file-section {
+        border-width: 0.5px;
+    }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+
+    .crypto-button,
+    .mode-selector button {
+        transition: none;
+    }
+
+    .crypto-button:hover {
+        transform: none;
+    }
 }

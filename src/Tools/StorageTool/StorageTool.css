@@ -4,6 +4,14 @@
     margin: 0 auto;
 }
 
+.storage-tool h2 {
+    color: var(--accent-color);
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: 600;
+    text-align: center;
+}
+
 .input-form {
     display: flex;
     flex-direction: column;
@@ -12,6 +20,50 @@
     background-color: var(--content-bg);
     border-radius: 8px;
     box-shadow: 0 2px 4px var(--shadow-color);
+    border: 1px solid var(--border-color);
+    margin-bottom: 20px;
+}
+
+.input-form h3 {
+    color: var(--accent-color);
+    margin-bottom: 15px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.input-form input,
+.input-form textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    background: var(--card-bg);
+    color: var(--text-color);
+    font-family: inherit;
+    font-size: 14px;
+}
+
+.input-form textarea {
+    min-height: 80px;
+    resize: vertical;
+}
+
+.input-form button {
+    padding: 12px 20px;
+    background: var(--accent-color);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    min-height: 44px;
+}
+
+.input-form button:hover {
+    background: #0056b3;
+    transform: translateY(-1px);
 }
 
 .items-list {
@@ -29,4 +81,357 @@
     justify-content: space-between;
     align-items: flex-start;
     gap: 15px;
+    border: 1px solid var(--border-color);
+}
+
+.storage-item-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.storage-item-key {
+    font-weight: 600;
+    color: var(--accent-color);
+    margin-bottom: 5px;
+    word-break: break-word;
+}
+
+.storage-item-value {
+    color: var(--text-color);
+    font-family: monospace;
+    word-break: break-word;
+    max-height: 100px;
+    overflow-y: auto;
+    background: var(--content-bg);
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid var(--border-color);
+}
+
+.storage-item-actions {
+    display: flex;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.storage-item-actions button {
+    padding: 6px 12px;
+    font-size: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    min-height: 32px;
+}
+
+.storage-item-actions .edit-btn {
+    background: #28a745;
+    color: white;
+    border-color: #28a745;
+}
+
+.storage-item-actions .edit-btn:hover {
+    background: #218838;
+}
+
+.storage-item-actions .copy-btn {
+    background: #17a2b8;
+    color: white;
+    border-color: #17a2b8;
+}
+
+.storage-item-actions .copy-btn:hover {
+    background: #138496;
+}
+
+.storage-item-actions .delete-btn {
+    background: #dc3545;
+    color: white;
+    border-color: #dc3545;
+}
+
+.storage-item-actions .delete-btn:hover {
+    background: #c82333;
+}
+
+.clear-all-btn {
+    width: 100%;
+    padding: 12px;
+    background: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-top: 20px;
+    min-height: 44px;
+}
+
+.clear-all-btn:hover {
+    background: #c82333;
+    transform: translateY(-1px);
+}
+
+.error-message {
+    color: #dc3545;
+    font-size: 12px;
+    margin-top: 5px;
+    padding: 8px;
+    background: rgba(220, 53, 69, 0.1);
+    border-radius: 4px;
+    border: 1px solid rgba(220, 53, 69, 0.2);
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+
+/* Tablet */
+@media (max-width: 1024px) {
+    .storage-tool {
+        padding: 15px;
+        max-width: 100%;
+    }
+
+    .input-form {
+        padding: 15px;
+    }
+
+    .storage-item {
+        padding: 12px;
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .storage-item-actions {
+        justify-content: flex-end;
+        margin-top: 10px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .storage-tool {
+        padding: 10px;
+    }
+
+    .storage-tool h2 {
+        font-size: 20px;
+        margin-bottom: 15px;
+    }
+
+    .input-form {
+        padding: 12px;
+        gap: 8px;
+        border-radius: 6px;
+        margin-bottom: 15px;
+    }
+
+    .input-form h3 {
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+
+    .input-form input,
+    .input-form textarea {
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    .input-form textarea {
+        min-height: 60px;
+    }
+
+    .input-form button {
+        padding: 10px 16px;
+        font-size: 14px;
+        min-height: 44px;
+    }
+
+    .items-list {
+        gap: 8px;
+    }
+
+    .storage-item {
+        padding: 10px;
+        gap: 10px;
+        border-radius: 6px;
+    }
+
+    .storage-item-key {
+        font-size: 14px;
+        margin-bottom: 4px;
+    }
+
+    .storage-item-value {
+        font-size: 13px;
+        padding: 6px;
+        max-height: 80px;
+    }
+
+    .storage-item-actions {
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-top: 8px;
+    }
+
+    .storage-item-actions button {
+        padding: 8px 10px;
+        font-size: 12px;
+        min-height: 36px;
+        flex: 1;
+        min-width: 60px;
+    }
+
+    .clear-all-btn {
+        padding: 10px;
+        font-size: 14px;
+        margin-top: 15px;
+    }
+}
+
+/* Small mobile */
+@media (max-width: 480px) {
+    .storage-tool {
+        padding: 8px;
+    }
+
+    .storage-tool h2 {
+        font-size: 18px;
+        margin-bottom: 12px;
+    }
+
+    .input-form {
+        padding: 10px;
+        gap: 6px;
+    }
+
+    .input-form h3 {
+        font-size: 15px;
+        margin-bottom: 8px;
+    }
+
+    .input-form input,
+    .input-form textarea {
+        padding: 8px;
+        font-size: 13px;
+    }
+
+    .input-form button {
+        padding: 8px 12px;
+        font-size: 13px;
+    }
+
+    .storage-item {
+        padding: 8px;
+        gap: 8px;
+    }
+
+    .storage-item-key {
+        font-size: 13px;
+    }
+
+    .storage-item-value {
+        font-size: 12px;
+        padding: 5px;
+        max-height: 60px;
+    }
+
+    .storage-item-actions {
+        gap: 4px;
+        margin-top: 6px;
+    }
+
+    .storage-item-actions button {
+        padding: 6px 8px;
+        font-size: 11px;
+        min-height: 32px;
+    }
+
+    .clear-all-btn {
+        padding: 8px;
+        font-size: 13px;
+        margin-top: 12px;
+    }
+
+    .error-message {
+        font-size: 11px;
+        padding: 6px;
+    }
+}
+
+/* Extra small screens */
+@media (max-width: 360px) {
+    .storage-tool {
+        padding: 6px;
+    }
+
+    .storage-item-actions {
+        flex-direction: column;
+    }
+
+    .storage-item-actions button {
+        width: 100%;
+        min-width: auto;
+    }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+
+    .input-form button,
+    .clear-all-btn {
+        min-height: 48px;
+        padding: 12px;
+    }
+
+    .storage-item-actions button {
+        min-height: 44px;
+        padding: 10px 12px;
+    }
+
+    .input-form input,
+    .input-form textarea {
+        padding: 12px;
+        font-size: 16px;
+        /* Prevent zoom on iOS */
+    }
+}
+
+/* Dark mode adjustments */
+body.dark-mode .input-form input,
+body.dark-mode .input-form textarea,
+body.dark-mode .storage-item-value {
+    background: var(--card-bg);
+    border-color: #444;
+}
+
+body.dark-mode .error-message {
+    background: rgba(220, 53, 69, 0.2);
+    border-color: rgba(220, 53, 69, 0.4);
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2),
+(min-resolution: 192dpi) {
+
+    .input-form,
+    .storage-item {
+        border-width: 0.5px;
+    }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+
+    .input-form button,
+    .storage-item-actions button,
+    .clear-all-btn {
+        transition: none;
+    }
+
+    .input-form button:hover,
+    .clear-all-btn:hover {
+        transform: none;
+    }
 }

@@ -258,3 +258,252 @@ body.dark-mode .rightbrain-button:hover {
     border-radius: var(--radius-md);
     border-left: 4px solid var(--primary-color);
 }
+
+/* ===== RESPONSIVE DESIGN ===== */
+
+/* Tablet */
+@media (max-width: 1024px) {
+    .rightbrain-container {
+        padding: 1.5rem;
+    }
+
+    .cards-container {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .rightbrain-card {
+        padding: 1.5rem;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+
+    .rightbrain-image {
+        max-height: 250px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .rightbrain-container {
+        padding: 1rem;
+    }
+
+    .cards-container {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .rightbrain-card {
+        padding: 1.25rem;
+        border-radius: var(--radius-md);
+    }
+
+    .rightbrain-card h3 {
+        font-size: 1.25rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .rightbrain-card p {
+        font-size: 0.875rem;
+        line-height: 1.5;
+    }
+
+    .section-title {
+        font-size: 1.75rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .section-header {
+        margin-bottom: 1.5rem;
+        padding: 1rem;
+    }
+
+    .hero-section {
+        padding: 2rem 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .back-button,
+    .rightbrain-button {
+        padding: 0.75rem 1.25rem;
+        font-size: 0.875rem;
+        min-height: 44px;
+        /* Better touch targets */
+        width: auto;
+        min-width: 120px;
+    }
+
+    .hover-effect:hover {
+        transform: none;
+        /* Disable on mobile for performance */
+    }
+
+    .rightbrain-image {
+        max-height: 200px;
+        margin: 0.75rem 0;
+    }
+
+    .card-question {
+        font-size: 1rem;
+        padding: 0.75rem;
+        margin-bottom: 1rem;
+    }
+}
+
+/* Small mobile */
+@media (max-width: 480px) {
+    .rightbrain-container {
+        padding: 0.75rem;
+    }
+
+    .rightbrain-card {
+        padding: 1rem;
+    }
+
+    .rightbrain-card h3 {
+        font-size: 1.125rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .rightbrain-card p {
+        font-size: 0.8125rem;
+        line-height: 1.4;
+    }
+
+    .section-title {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .section-header {
+        margin-bottom: 1rem;
+        padding: 0.75rem;
+    }
+
+    .hero-section {
+        padding: 1.5rem 0.75rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .back-button,
+    .rightbrain-button {
+        padding: 0.625rem 1rem;
+        font-size: 0.8125rem;
+        width: 100%;
+        margin-bottom: 0.5rem;
+    }
+
+    .rightbrain-image {
+        max-height: 150px;
+        margin: 0.5rem 0;
+    }
+
+    .card-question {
+        font-size: 0.9375rem;
+        padding: 0.5rem;
+        margin-bottom: 0.75rem;
+    }
+}
+
+/* Extra small screens */
+@media (max-width: 360px) {
+    .rightbrain-container {
+        padding: 0.5rem;
+    }
+
+    .rightbrain-card {
+        padding: 0.75rem;
+    }
+
+    .section-title {
+        font-size: 1.375rem;
+    }
+
+    .rightbrain-image {
+        max-height: 120px;
+    }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+
+    .rightbrain-card:hover,
+    .hover-effect:hover {
+        transform: none;
+        /* Disable hover animations on touch */
+    }
+
+    .rightbrain-image:hover {
+        transform: none;
+    }
+
+    .back-button,
+    .rightbrain-button {
+        min-height: 48px;
+        /* Better touch targets */
+        padding: 0.75rem 1.25rem;
+    }
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2),
+(min-resolution: 192dpi) {
+    .rightbrain-card {
+        border-width: 0.5px;
+    }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+
+    .rightbrain-card,
+    .hover-effect,
+    .rightbrain-image,
+    .back-button,
+    .rightbrain-button {
+        transition: none;
+    }
+
+    .rightbrain-card:hover,
+    .hover-effect:hover,
+    .rightbrain-image:hover {
+        transform: none;
+    }
+
+    .rightbrain-card::before {
+        transition: none;
+    }
+
+    .loading-spinner {
+        animation: none;
+    }
+}
+
+/* Print styles */
+@media print {
+    .rightbrain-container {
+        padding: 0;
+    }
+
+    .rightbrain-card {
+        break-inside: avoid;
+        box-shadow: none;
+        border: 1px solid #ccc;
+    }
+
+    .cards-container {
+        grid-template-columns: 1fr;
+    }
+
+    .back-button,
+    .rightbrain-button {
+        display: none;
+    }
+
+    .rightbrain-image {
+        max-height: 200px;
+    }
+}
