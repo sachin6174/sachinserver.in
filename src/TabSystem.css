@@ -377,20 +377,24 @@ body {
 /* Mobile navigation items */
 @media (max-width: 768px) {
   .nav-items {
+    display: flex;
     flex-direction: row;
-    gap: 0.75rem;
     overflow-x: auto;
-    padding-bottom: 0.5rem;
+    gap: 0.5rem;
+    padding: 0.5rem 0;
     -webkit-overflow-scrolling: touch;
   }
 
-  .nav-items::-webkit-scrollbar {
-    height: 4px;
+  .left-nav.hidden .nav-items {
+    display: none;
   }
 
-  .nav-items::-webkit-scrollbar-thumb {
-    background: var(--border-color);
-    border-radius: 2px;
+  .nav-item {
+    white-space: nowrap;
+    flex-shrink: 0;
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    min-width: auto;
   }
 }
 
@@ -731,5 +735,293 @@ button:hover {
 
   .main-container {
     padding: 0 !important;
+  }
+}
+
+/* Enhanced responsive improvements for left navigation toggle */
+
+/* Dynamic grid adjustments for content container */
+.tab-content-container.nav-hidden {
+  grid-template-columns: 60px 1fr;
+}
+
+/* Enhanced mobile responsiveness for tab content */
+@media (max-width: 768px) {
+
+  .tab-content-container,
+  .tab-content-container.nav-hidden {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+    gap: 1rem;
+    position: static;
+    width: 100%;
+    margin: 0;
+    top: auto;
+    bottom: auto;
+    left: auto;
+    right: auto;
+    height: auto;
+  }
+
+  .left-nav {
+    width: 100% !important;
+    min-width: 100% !important;
+    height: auto;
+    max-height: none;
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .left-nav.hidden {
+    max-height: 60px;
+    overflow: hidden;
+  }
+}
+
+/* Improved mobile navigation items */
+@media (max-width: 768px) {
+  .nav-items {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    gap: 0.5rem;
+    padding: 0.5rem 0;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .left-nav.hidden .nav-items {
+    display: none;
+  }
+
+  .nav-item {
+    white-space: nowrap;
+    flex-shrink: 0;
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    min-width: auto;
+  }
+}
+
+/* Enhanced breadcrumb responsiveness */
+@media (max-width: 640px) {
+  .breadcrumb-path {
+    flex-direction: column;
+    gap: 0.25rem !important;
+    align-items: flex-start !important;
+  }
+
+  .breadcrumb-path span {
+    font-size: 0.75rem !important;
+  }
+}
+
+/* Content area improvements */
+.tab-content {
+  padding: 1rem;
+  overflow-y: auto;
+  height: 100%;
+  position: relative;
+}
+
+@media (max-width: 768px) {
+  .tab-content {
+    padding: 0.75rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .tab-content {
+    padding: 1.5rem;
+  }
+}
+
+/* Improved separator line */
+.separator-line {
+  margin: 0.5rem 0 1rem 0;
+}
+
+@media (max-width: 768px) {
+  .separator-line {
+    margin: 0.25rem 0 0.75rem 0;
+  }
+}
+
+/* Enhanced dynamic title */
+.dynamic-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--text-color);
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .dynamic-title {
+    font-size: 1rem;
+    text-align: left;
+  }
+}
+
+@media (min-width: 1024px) {
+  .dynamic-title {
+    font-size: 1.25rem;
+  }
+}
+
+/* Better scrollbar styling for webkit browsers */
+.tab-content::-webkit-scrollbar,
+.nav-items::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.tab-content::-webkit-scrollbar-track,
+.nav-items::-webkit-scrollbar-track {
+  background: var(--bg-color);
+}
+
+.tab-content::-webkit-scrollbar-thumb,
+.nav-items::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 3px;
+}
+
+.tab-content::-webkit-scrollbar-thumb:hover,
+.nav-items::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-color);
+}
+
+/* Landscape mobile optimizations */
+@media (max-width: 768px) and (orientation: landscape) {
+  .main-container {
+    padding: 0.5rem;
+  }
+
+  .tabs {
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .below-tabs {
+    margin-bottom: 1rem;
+  }
+
+  .tab-content-container {
+    height: calc(100vh - 140px);
+  }
+}
+
+/* Extra large screens */
+@media (min-width: 1440px) {
+  .main-container {
+    max-width: 1400px;
+    padding: 3rem;
+  }
+
+  .tab-content-container {
+    top: 140px;
+    width: calc(100% - 6rem);
+    margin: 0 3rem;
+  }
+}
+
+/* Better focus management for keyboard navigation */
+.tab:focus,
+.nav-item:focus,
+.nav-toggle-btn:focus,
+.theme-toggle:focus {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 2px;
+}
+
+/* Skip to content link for accessibility */
+.skip-to-content {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  background: var(--accent-color);
+  color: white;
+  padding: 8px;
+  text-decoration: none;
+  border-radius: 4px;
+  z-index: 1000;
+  transition: top 0.2s ease;
+}
+
+.skip-to-content:focus {
+  top: 6px;
+}
+
+/* Loading states */
+.content-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+  color: var(--text-color);
+}
+
+.loading-spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid var(--border-color);
+  border-top: 3px solid var(--accent-color);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+/* Error states */
+.error-boundary {
+  padding: 2rem;
+  text-align: center;
+  background: var(--content-bg);
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  margin: 1rem;
+}
+
+.error-title {
+  color: #ef4444;
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.error-message {
+  color: var(--text-color);
+  margin-bottom: 1rem;
+}
+
+/* Performance optimizations */
+.tab-content-container,
+.left-nav,
+.tab-content {
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+
+  .tab-content-container,
+  .left-nav,
+  .nav-toggle-btn,
+  .theme-toggle,
+  .loading-spinner {
+    transition: none;
+    animation: none;
+  }
+}
+
+/* System theme preference detection */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-color: #1a1a1a;
+    --text-color: #f5f5f7;
+    --border-color: #333;
+    --accent-color: #0A84FF;
+    --hover-color: #2a2a2a;
+    --content-bg: #242424;
+    --card-bg: #2c2c2e;
+    --shadow-color: rgba(0, 0, 0, 0.3);
   }
 }

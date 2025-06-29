@@ -1,5 +1,6 @@
 import React from "react";
 import "../shared-styles.css";
+import "./AppleDevelopment.css";
 import developmentAppsData from "./developmentApps.json";
 
 const AppleDevelopment = () => {
@@ -184,183 +185,30 @@ xcrun simctl spawn booted log stream --predicate 'processImagePath contains "$AP
     ];
 
     return (
-        <div className="leftbrain-container">
-            <div className="hero-section">
-                <div className="section-header">
-                    <h1 className="section-title">Apple Development</h1>
-                    <div className="section-divider"></div>
-                    <p style={{ color: 'var(--text-secondary)', fontSize: '1.1rem', marginTop: '1rem' }}>
+        <div className="apple-development-container">
+            {/* Hero Section */}
+            <div className="apple-hero-section">
+                <div className="apple-hero-content">
+                    <h1 className="apple-hero-title">Apple Development</h1>
+                    <p className="apple-hero-subtitle">
                         Building native applications for iOS, macOS, watchOS, and tvOS using Swift and Apple's frameworks
                     </p>
                 </div>
             </div>
 
-            {/* Helpful Apps for Development */}
-            <section>
-                <div className="section-header">
-                    <h2 style={{ fontSize: '2rem', color: 'var(--text-primary)', marginBottom: '1rem' }}>Helpful Apps for Development</h2>
-                    <p style={{ color: 'var(--text-secondary)', fontSize: '1rem', marginBottom: '2rem' }}>
-                        Essential tools and applications that enhance iOS and macOS development workflow
-                    </p>
-                </div>
-                <div className="cards-container">
-                    {developmentApps.map((app, index) => (
-                        <div key={index} className="tech-card apple hover-effect" style={{
-                            transition: 'all 0.3s ease',
-                            cursor: 'pointer'
-                        }}
-                            onMouseOver={(e) => {
-                                e.currentTarget.style.transform = 'translateY(-5px)';
-                                e.currentTarget.style.boxShadow = '0 10px 30px rgba(0,0,0,0.15)';
-                            }}
-                            onMouseOut={(e) => {
-                                e.currentTarget.style.transform = 'translateY(0)';
-                                e.currentTarget.style.boxShadow = '0 4px 20px rgba(0,0,0,0.1)';
-                            }}>
-                            <div className="tech-icon" style={{
-                                width: '96px',
-                                height: '96px',
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                                marginBottom: '1.5rem',
-                                background: 'linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%)',
-                                borderRadius: '20px',
-                                border: '1px solid rgba(255,255,255,0.1)',
-                                padding: '8px'
-                            }}>
-                                <img
-                                    src={app.icon}
-                                    alt={`${app.name} icon`}
-                                    style={{
-                                        width: '80px',
-                                        height: '80px',
-                                        objectFit: 'contain',
-                                        borderRadius: '16px',
-                                        filter: 'drop-shadow(0 4px 16px rgba(0,0,0,0.15))',
-                                        transition: 'transform 0.3s ease, filter 0.3s ease'
-                                    }}
-                                    onMouseOver={(e) => {
-                                        e.target.style.transform = 'scale(1.05)';
-                                        e.target.style.filter = 'drop-shadow(0 6px 20px rgba(0,0,0,0.2))';
-                                    }}
-                                    onMouseOut={(e) => {
-                                        e.target.style.transform = 'scale(1)';
-                                        e.target.style.filter = 'drop-shadow(0 4px 16px rgba(0,0,0,0.15))';
-                                    }}
-                                    onError={(e) => {
-                                        e.target.style.display = 'none';
-                                        e.target.nextSibling.style.display = 'flex';
-                                    }}
-                                />
-                                <div style={{
-                                    display: 'none',
-                                    width: '80px',
-                                    height: '80px',
-                                    background: 'linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%)',
-                                    borderRadius: '16px',
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
-                                    color: 'white',
-                                    fontSize: '32px',
-                                    fontWeight: 'bold',
-                                    textShadow: '0 2px 4px rgba(0,0,0,0.3)',
-                                    boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.2)'
-                                }}>
-                                    {app.name.charAt(0)}
-                                </div>
-                            </div>
-                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '0.75rem' }}>
-                                <h3 style={{
-                                    margin: 0,
-                                    fontSize: '1.3rem',
-                                    color: 'var(--text-primary)',
-                                    fontWeight: '600',
-                                    lineHeight: '1.3'
-                                }}>{app.name}</h3>
-                                <span className="tech-tag" style={{
-                                    fontSize: '0.75rem',
-                                    padding: '0.4rem 0.8rem',
-                                    background: 'linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%)',
-                                    border: '1px solid rgba(255,255,255,0.2)',
-                                    borderRadius: '12px',
-                                    color: 'var(--text-secondary)',
-                                    fontWeight: '500',
-                                    whiteSpace: 'nowrap'
-                                }}>
-                                    {app.category}
-                                </span>
-                            </div>
-                            <p style={{
-                                color: 'var(--text-secondary)',
-                                lineHeight: '1.6',
-                                marginBottom: '1rem',
-                                fontSize: '0.95rem'
-                            }}>{app.description}</p>
-                            <ul className="feature-list" style={{
-                                marginBottom: '1rem'
-                            }}>
-                                {app.features.map((feature, idx) => (
-                                    <li key={idx} style={{
-                                        fontSize: '0.9rem',
-                                        color: 'var(--text-secondary)',
-                                        marginBottom: '0.25rem',
-                                        paddingLeft: '0.5rem'
-                                    }}>{feature}</li>
-                                ))}
-                            </ul>
-                            <div style={{ marginTop: '1.5rem', paddingTop: '1rem', borderTop: '1px solid rgba(255,255,255,0.1)' }}>
-                                <a
-                                    href={app.downloadLink}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="leftbrain-button"
-                                    style={{
-                                        textDecoration: 'none',
-                                        display: 'inline-flex',
-                                        alignItems: 'center',
-                                        gap: '0.5rem',
-                                        fontSize: '0.9rem',
-                                        padding: '0.75rem 1.25rem',
-                                        background: 'linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%)',
-                                        border: 'none',
-                                        borderRadius: '12px',
-                                        color: 'white',
-                                        fontWeight: '500',
-                                        transition: 'all 0.3s ease',
-                                        boxShadow: '0 4px 12px rgba(0,0,0,0.15)'
-                                    }}
-                                    onMouseOver={(e) => {
-                                        e.target.style.transform = 'translateY(-2px)';
-                                        e.target.style.boxShadow = '0 6px 16px rgba(0,0,0,0.2)';
-                                    }}
-                                    onMouseOut={(e) => {
-                                        e.target.style.transform = 'translateY(0)';
-                                        e.target.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15)';
-                                    }}
-                                >
-                                    <span>Download / Learn More</span>
-                                    <span style={{ fontSize: '0.8rem' }}>↗</span>
-                                </a>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            </section>
-
             {/* Skills Overview */}
-            <section>
+            <section className="skills-showcase">
                 <div className="section-header">
-                    <h2 style={{ fontSize: '2rem', color: 'var(--text-primary)', marginBottom: '1rem' }}>Development Skills</h2>
+                    <h2 className="section-title">Development Skills</h2>
                 </div>
-                <div className="stats-grid">
+                <div className="skills-grid">
                     {skills.map((skill, index) => (
-                        <div key={index} className="stat-card">
-                            <span className="stat-number">{skill.level}%</span>
-                            <span className="stat-label">{skill.name}</span>
-                            <div className="progress-bar">
+                        <div key={index} className="skill-item">
+                            <div className="skill-name">{skill.name}</div>
+                            <div className="skill-level">{skill.level}%</div>
+                            <div className="skill-progress">
                                 <div
-                                    className="progress-fill"
+                                    className="skill-progress-fill"
                                     style={{ width: `${skill.level}%` }}
                                 ></div>
                             </div>
@@ -372,15 +220,17 @@ xcrun simctl spawn booted log stream --predicate 'processImagePath contains "$AP
             {/* Frameworks & Tools */}
             <section>
                 <div className="section-header">
-                    <h2 style={{ fontSize: '2rem', color: 'var(--text-primary)', marginBottom: '1rem' }}>Frameworks & Tools</h2>
+                    <h2 className="section-title">Frameworks & Tools</h2>
                 </div>
-                <div className="cards-container">
+                <div className="frameworks-grid">
                     {frameworks.map((framework, index) => (
-                        <div key={index} className="tech-card apple hover-effect">
-                            <div className="tech-icon">{framework.icon}</div>
-                            <h3>{framework.name}</h3>
-                            <p>{framework.description}</p>
-                            <ul className="feature-list">
+                        <div key={index} className="framework-card">
+                            <div className="framework-header">
+                                <div className="framework-icon">{framework.icon}</div>
+                                <h3 className="framework-title">{framework.name}</h3>
+                            </div>
+                            <p className="framework-description">{framework.description}</p>
+                            <ul className="framework-features">
                                 {framework.features.map((feature, idx) => (
                                     <li key={idx}>{feature}</li>
                                 ))}
@@ -390,102 +240,117 @@ xcrun simctl spawn booted log stream --predicate 'processImagePath contains "$AP
                 </div>
             </section>
 
+            {/* Helpful Apps for Development */}
+            <section className="development-apps-section">
+                <div className="section-header">
+                    <h2 className="section-title">Helpful Apps for Development</h2>
+                    <p style={{ color: 'var(--text-secondary)', fontSize: '1rem', marginBottom: '2rem', textAlign: 'center' }}>
+                        Essential tools and applications that enhance iOS and macOS development workflow
+                    </p>
+                </div>
+                <div className="apps-grid">
+                    {developmentApps.map((app, index) => (
+                        <div key={index} className="app-card">
+                            <div className="app-header">
+                                <img
+                                    src={app.icon}
+                                    alt={`${app.name} icon`}
+                                    className="app-icon"
+                                    onError={(e) => {
+                                        e.target.style.display = 'none';
+                                        e.target.nextSibling.style.display = 'flex';
+                                    }}
+                                />
+                                <div className="app-icon-fallback" style={{ display: 'none' }}>
+                                    {app.name.charAt(0)}
+                                </div>
+                                <div className="app-info">
+                                    <h3 className="app-name">{app.name}</h3>
+                                    <span className="app-category">{app.category}</span>
+                                </div>
+                            </div>
+                            <p className="app-description">{app.description}</p>
+                            {app.features && app.features.length > 0 && (
+                                <ul className="app-features">
+                                    {app.features.slice(0, 3).map((feature, idx) => (
+                                        <li key={idx}>{feature}</li>
+                                    ))}
+                                </ul>
+                            )}
+                            <a
+                                href={app.downloadLink}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="app-link"
+                            >
+                                Download / Learn More ↗
+                            </a>
+                        </div>
+                    ))}
+                </div>
+            </section>
+
+            {/* macOS Scripts */}
+            <section className="scripts-section">
+                <div className="section-header">
+                    <h2 className="section-title">Useful macOS Scripts</h2>
+                    <p style={{ color: 'var(--text-secondary)', fontSize: '1rem', marginBottom: '2rem', textAlign: 'center' }}>
+                        Automation scripts to streamline your development workflow
+                    </p>
+                </div>
+                <div className="scripts-grid">
+                    {macosScripts.map((script, index) => (
+                        <div key={index} className="script-card">
+                            <div className="script-header">
+                                <h3 className="script-title">{script.title}</h3>
+                                <span className="script-category">{script.category}</span>
+                            </div>
+                            <p className="script-description">{script.description}</p>
+                            <div className="script-usage">
+                                <span className="script-usage-label">Usage:</span>
+                                <p className="script-usage-text">{script.usage}</p>
+                            </div>
+                            <pre className="script-code">{script.script}</pre>
+                        </div>
+                    ))}
+                </div>
+            </section>
+
             {/* Code Example */}
             <section>
                 <div className="section-header">
-                    <h2 style={{ fontSize: '2rem', color: 'var(--text-primary)', marginBottom: '1rem' }}>Code Example</h2>
+                    <h2 className="section-title">Code Example</h2>
                 </div>
                 <div className="leftbrain-card">
                     <h3>SwiftUI Hello World</h3>
-                    <div className="code-snippet" data-language="Swift">
+                    <div className="code-snippet">
                         {`import SwiftUI
 
 struct ContentView: View {
     var body: some View {
         VStack {
-            Text("Hello, iOS!")
+            Text("Hello, World!")
                 .font(.largeTitle)
                 .foregroundColor(.blue)
             
-            Button("Tap Me") {
+            Button("Tap me!") {
                 print("Button tapped!")
             }
-            .buttonStyle(.borderedProminent)
+            .padding()
+            .background(Color.blue)
+            .foregroundColor(.white)
+            .cornerRadius(10)
         }
         .padding()
     }
 }
 
-#Preview {
-    ContentView()
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
+    }
 }`}
                     </div>
-                    <div className="tech-stack">
-                        <span className="tech-tag primary">SwiftUI</span>
-                        <span className="tech-tag">iOS 14+</span>
-                        <span className="tech-tag">Xcode 12+</span>
-                    </div>
-                </div>
-            </section>
-
-            {/* Important macOS Scripts */}
-            <section>
-                <div className="section-header">
-                    <h2 style={{ fontSize: '2rem', color: 'var(--text-primary)', marginBottom: '1rem' }}>Important macOS Scripts</h2>
-                    <p style={{ color: 'var(--text-secondary)', fontSize: '1rem', marginBottom: '2rem' }}>
-                        Useful shell scripts for development tasks, debugging, and system maintenance
-                    </p>
-                </div>
-                <div className="features-grid">
-                    {macosScripts.map((script, index) => (
-                        <div key={index} className="leftbrain-card">
-                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1rem' }}>
-                                <h3 style={{ margin: 0, color: 'var(--primary-color)' }}>{script.title}</h3>
-                                <span className="tech-tag" style={{ fontSize: '0.75rem', padding: '0.25rem 0.5rem' }}>
-                                    {script.category}
-                                </span>
-                            </div>
-
-                            <p style={{ marginBottom: '1rem', color: 'var(--text-secondary)' }}>
-                                {script.description}
-                            </p>
-
-                            <div style={{
-                                backgroundColor: 'var(--background-tertiary)',
-                                padding: '1rem',
-                                borderRadius: 'var(--radius-md)',
-                                marginBottom: '1rem',
-                                border: '1px solid var(--border-color)'
-                            }}>
-                                <h4 style={{
-                                    margin: '0 0 0.5rem 0',
-                                    color: 'var(--text-primary)',
-                                    fontSize: '0.9rem',
-                                    fontWeight: '600'
-                                }}>
-                                    Usage:
-                                </h4>
-                                <p style={{
-                                    margin: 0,
-                                    fontSize: '0.9rem',
-                                    color: 'var(--text-secondary)',
-                                    fontStyle: 'italic'
-                                }}>
-                                    {script.usage}
-                                </p>
-                            </div>
-
-                            <div className="code-snippet" data-language="bash">
-                                {script.script}
-                            </div>
-
-                            <div className="tech-stack" style={{ marginTop: '1rem' }}>
-                                <span className="tech-tag primary">Shell Script</span>
-                                <span className="tech-tag">macOS</span>
-                                <span className="tech-tag">Terminal</span>
-                            </div>
-                        </div>
-                    ))}
                 </div>
             </section>
         </div>

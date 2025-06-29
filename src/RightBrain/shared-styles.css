@@ -49,87 +49,182 @@ body.dark-mode {
     color: var(--text-primary);
     background: linear-gradient(135deg, var(--background-primary) 0%, var(--background-secondary) 100%);
     min-height: 100vh;
-    padding: 2rem;
+    padding: 1rem;
     overflow-y: auto;
+    /* Better mobile overflow handling */
+    overflow-x: hidden;
 }
 
-/* Card containers */
+/* When navigation panel is hidden, expand the content */
+.nav-hidden .rightbrain-container {
+    padding: 0.5rem;
+}
+
+/* Dynamic padding based on screen size */
+@media (min-width: 768px) {
+    .rightbrain-container {
+        padding: 2rem;
+    }
+
+    .nav-hidden .rightbrain-container {
+        padding: 1.5rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .rightbrain-container {
+        padding: 2.5rem;
+    }
+
+    .nav-hidden .rightbrain-container {
+        padding: 2rem;
+    }
+}
+
+/* Enhanced card containers with better responsive grid */
 .cards-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 2rem;
-    padding: 2rem 0;
-    max-width: 1200px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+    padding: 1rem 0;
+    max-width: 1400px;
     margin: 0 auto;
+    /* Better mobile spacing */
+}
+
+@media (min-width: 768px) {
+    .cards-container {
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 1.5rem;
+        padding: 1.5rem 0;
+    }
+}
+
+@media (min-width: 1024px) {
+    .cards-container {
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        gap: 2rem;
+        padding: 2rem 0;
+    }
 }
 
 /* Card styles */
 .rightbrain-card {
-    background: var(--background-primary);
+    background: linear-gradient(135deg, var(--background-primary) 0%, var(--background-secondary) 100%);
     border-radius: var(--radius-lg);
-    padding: 2rem;
+    padding: 1.25rem;
+    margin-bottom: 1rem;
     box-shadow: var(--shadow-md);
     border: 1px solid var(--border-color);
-    transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+    transition: all var(--transition-normal);
     position: relative;
     overflow: hidden;
     cursor: pointer;
+    /* Better mobile touch targets */
+    min-height: 44px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
-.rightbrain-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+@media (min-width: 768px) {
+    .rightbrain-card {
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
 }
 
-.rightbrain-card:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-xl);
+@media (min-width: 1024px) {
+    .rightbrain-card {
+        padding: 2rem;
+        margin-bottom: 2rem;
+    }
+}
+
+/* Enhanced hover effects for desktop */
+@media (hover: hover) and (pointer: fine) {
+    .rightbrain-card:hover {
+        transform: translateY(-8px);
+        box-shadow: var(--shadow-xl);
+        border-color: var(--primary-color);
+    }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+    .rightbrain-card:active {
+        transform: scale(0.98);
+        transition: transform 0.1s ease;
+    }
 }
 
 /* Typography */
 .rightbrain-card h3 {
     color: var(--text-primary);
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
     font-weight: 700;
-    font-size: 1.5rem;
+    font-size: 1.125rem;
+    line-height: 1.4;
+}
+
+@media (min-width: 768px) {
+    .rightbrain-card h3 {
+        font-size: 1.25rem;
+        margin-bottom: 1rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .rightbrain-card h3 {
+        font-size: 1.5rem;
+        margin-bottom: 1.25rem;
+    }
 }
 
 .rightbrain-card p {
-    margin-bottom: 1rem;
     color: var(--text-secondary);
-    font-size: 1rem;
-    line-height: 1.7;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    font-size: 0.875rem;
+}
+
+@media (min-width: 768px) {
+    .rightbrain-card p {
+        font-size: 0.9375rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .rightbrain-card p {
+        font-size: 1rem;
+    }
 }
 
 /* Section styling */
 .section-title {
-    font-size: 2.5rem;
-    font-weight: 700;
+    font-size: 1.75rem;
+    font-weight: 800;
     color: var(--text-primary);
+    margin-bottom: 1rem;
     text-align: center;
-    margin: 2rem 0 3rem 0;
     background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
 }
 
-.section-header {
-    text-align: center;
-    margin-bottom: 3rem;
+@media (min-width: 768px) {
+    .section-title {
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+    }
 }
 
-.section-divider {
-    width: 60px;
-    height: 4px;
-    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
-    margin: 1rem auto;
-    border-radius: var(--radius-sm);
+@media (min-width: 1024px) {
+    .section-title {
+        font-size: 2.5rem;
+        margin-bottom: 2rem;
+    }
 }
 
 /* Hero section */
@@ -196,14 +291,18 @@ body.dark-mode {
     border: none;
     padding: 0.75rem 1.5rem;
     border-radius: var(--radius-md);
-    cursor: pointer;
-    margin: 1rem 0;
-    font-size: 1rem;
     font-weight: 600;
+    font-size: 0.875rem;
+    cursor: pointer;
     transition: all var(--transition-normal);
-    box-shadow: var(--shadow-md);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    justify-content: center;
+    /* Better mobile touch targets */
+    min-height: 44px;
+    min-width: 44px;
 }
 
 .back-button:hover,
@@ -259,251 +358,468 @@ body.dark-mode .rightbrain-button:hover {
     border-left: 4px solid var(--primary-color);
 }
 
-/* ===== RESPONSIVE DESIGN ===== */
+/* ===== RESPONSIVE DESIGN ENHANCEMENTS ===== */
 
-/* Tablet */
-@media (max-width: 1024px) {
+/* Enhanced responsive design for better mobile/desktop compatibility */
+
+/* Base container improvements */
+.rightbrain-container {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    line-height: 1.6;
+    color: var(--text-primary);
+    background: linear-gradient(135deg, var(--background-primary) 0%, var(--background-secondary) 100%);
+    min-height: 100vh;
+    padding: 1rem;
+    overflow-y: auto;
+    /* Better mobile overflow handling */
+    overflow-x: hidden;
+}
+
+/* When navigation panel is hidden, expand the content */
+.nav-hidden .rightbrain-container {
+    padding: 0.5rem;
+}
+
+/* Dynamic padding based on screen size */
+@media (min-width: 768px) {
     .rightbrain-container {
+        padding: 2rem;
+    }
+
+    .nav-hidden .rightbrain-container {
         padding: 1.5rem;
-    }
-
-    .cards-container {
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 1.5rem;
-    }
-
-    .rightbrain-card {
-        padding: 1.5rem;
-    }
-
-    .section-title {
-        font-size: 2rem;
-    }
-
-    .rightbrain-image {
-        max-height: 250px;
     }
 }
 
-/* Mobile */
-@media (max-width: 768px) {
+@media (min-width: 1024px) {
     .rightbrain-container {
-        padding: 1rem;
+        padding: 2.5rem;
     }
 
+    .nav-hidden .rightbrain-container {
+        padding: 2rem;
+    }
+}
+
+/* Enhanced card containers with better responsive grid */
+.cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+    padding: 1rem 0;
+    max-width: 1400px;
+    margin: 0 auto;
+    /* Better mobile spacing */
+}
+
+@media (min-width: 768px) {
     .cards-container {
-        grid-template-columns: 1fr;
-        gap: 1rem;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 1.5rem;
+        padding: 1.5rem 0;
     }
+}
 
+@media (min-width: 1024px) {
+    .cards-container {
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        gap: 2rem;
+        padding: 2rem 0;
+    }
+}
+
+/* Card styles */
+.rightbrain-card {
+    background: linear-gradient(135deg, var(--background-primary) 0%, var(--background-secondary) 100%);
+    border-radius: var(--radius-lg);
+    padding: 1.25rem;
+    margin-bottom: 1rem;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border-color);
+    transition: all var(--transition-normal);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    /* Better mobile touch targets */
+    min-height: 44px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+@media (min-width: 768px) {
     .rightbrain-card {
-        padding: 1.25rem;
-        border-radius: var(--radius-md);
-    }
-
-    .rightbrain-card h3 {
-        font-size: 1.25rem;
-        margin-bottom: 0.75rem;
-    }
-
-    .rightbrain-card p {
-        font-size: 0.875rem;
-        line-height: 1.5;
-    }
-
-    .section-title {
-        font-size: 1.75rem;
+        padding: 1.5rem;
         margin-bottom: 1.5rem;
     }
+}
 
-    .section-header {
-        margin-bottom: 1.5rem;
-        padding: 1rem;
-    }
-
-    .hero-section {
-        padding: 2rem 1rem;
+@media (min-width: 1024px) {
+    .rightbrain-card {
+        padding: 2rem;
         margin-bottom: 2rem;
     }
-
-    .back-button,
-    .rightbrain-button {
-        padding: 0.75rem 1.25rem;
-        font-size: 0.875rem;
-        min-height: 44px;
-        /* Better touch targets */
-        width: auto;
-        min-width: 120px;
-    }
-
-    .hover-effect:hover {
-        transform: none;
-        /* Disable on mobile for performance */
-    }
-
-    .rightbrain-image {
-        max-height: 200px;
-        margin: 0.75rem 0;
-    }
-
-    .card-question {
-        font-size: 1rem;
-        padding: 0.75rem;
-        margin-bottom: 1rem;
-    }
 }
 
-/* Small mobile */
-@media (max-width: 480px) {
-    .rightbrain-container {
-        padding: 0.75rem;
-    }
-
-    .rightbrain-card {
-        padding: 1rem;
-    }
-
-    .rightbrain-card h3 {
-        font-size: 1.125rem;
-        margin-bottom: 0.5rem;
-    }
-
-    .rightbrain-card p {
-        font-size: 0.8125rem;
-        line-height: 1.4;
-    }
-
-    .section-title {
-        font-size: 1.5rem;
-        margin-bottom: 1rem;
-    }
-
-    .section-header {
-        margin-bottom: 1rem;
-        padding: 0.75rem;
-    }
-
-    .hero-section {
-        padding: 1.5rem 0.75rem;
-        margin-bottom: 1.5rem;
-    }
-
-    .back-button,
-    .rightbrain-button {
-        padding: 0.625rem 1rem;
-        font-size: 0.8125rem;
-        width: 100%;
-        margin-bottom: 0.5rem;
-    }
-
-    .rightbrain-image {
-        max-height: 150px;
-        margin: 0.5rem 0;
-    }
-
-    .card-question {
-        font-size: 0.9375rem;
-        padding: 0.5rem;
-        margin-bottom: 0.75rem;
-    }
-}
-
-/* Extra small screens */
-@media (max-width: 360px) {
-    .rightbrain-container {
-        padding: 0.5rem;
-    }
-
-    .rightbrain-card {
-        padding: 0.75rem;
-    }
-
-    .section-title {
-        font-size: 1.375rem;
-    }
-
-    .rightbrain-image {
-        max-height: 120px;
+/* Enhanced hover effects for desktop */
+@media (hover: hover) and (pointer: fine) {
+    .rightbrain-card:hover {
+        transform: translateY(-8px);
+        box-shadow: var(--shadow-xl);
+        border-color: var(--primary-color);
     }
 }
 
 /* Touch device optimizations */
 @media (hover: none) and (pointer: coarse) {
-
-    .rightbrain-card:hover,
-    .hover-effect:hover {
-        transform: none;
-        /* Disable hover animations on touch */
+    .rightbrain-card:active {
+        transform: scale(0.98);
+        transition: transform 0.1s ease;
     }
+}
 
-    .rightbrain-image:hover {
-        transform: none;
+/* Typography */
+.rightbrain-card h3 {
+    color: var(--text-primary);
+    margin-bottom: 0.75rem;
+    font-weight: 700;
+    font-size: 1.125rem;
+    line-height: 1.4;
+}
+
+@media (min-width: 768px) {
+    .rightbrain-card h3 {
+        font-size: 1.25rem;
+        margin-bottom: 1rem;
     }
+}
+
+@media (min-width: 1024px) {
+    .rightbrain-card h3 {
+        font-size: 1.5rem;
+        margin-bottom: 1.25rem;
+    }
+}
+
+.rightbrain-card p {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    font-size: 0.875rem;
+}
+
+@media (min-width: 768px) {
+    .rightbrain-card p {
+        font-size: 0.9375rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .rightbrain-card p {
+        font-size: 1rem;
+    }
+}
+
+/* Enhanced section styling with responsive improvements */
+.section-title {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    text-align: center;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+@media (min-width: 768px) {
+    .section-title {
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .section-title {
+        font-size: 2.5rem;
+        margin-bottom: 2rem;
+    }
+}
+
+/* Enhanced button styles with better touch targets */
+.back-button,
+.rightbrain-button {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    justify-content: center;
+    /* Better mobile touch targets */
+    min-height: 44px;
+    min-width: 44px;
+}
+
+@media (min-width: 768px) {
 
     .back-button,
     .rightbrain-button {
-        min-height: 48px;
-        /* Better touch targets */
+        padding: 0.875rem 1.75rem;
+        font-size: 0.9375rem;
+    }
+}
+
+@media (min-width: 1024px) {
+
+    .back-button,
+    .rightbrain-button {
+        padding: 1rem 2rem;
+        font-size: 1rem;
+    }
+}
+
+/* Image responsive improvements */
+.rightbrain-card img,
+.card img {
+    width: 100%;
+    height: auto;
+    max-height: 200px;
+    object-fit: cover;
+    border-radius: var(--radius-md);
+    margin-bottom: 1rem;
+    transition: all var(--transition-normal);
+}
+
+@media (min-width: 768px) {
+
+    .rightbrain-card img,
+    .card img {
+        max-height: 250px;
+    }
+}
+
+@media (min-width: 1024px) {
+
+    .rightbrain-card img,
+    .card img {
+        max-height: 300px;
+    }
+}
+
+/* Enhanced gallery/grid layouts */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+@media (min-width: 480px) {
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 768px) {
+    .gallery-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .gallery-grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin: 2rem 0;
+    }
+}
+
+/* Modal/overlay responsive improvements */
+.modal-overlay,
+.image-preview-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 1rem;
+}
+
+.modal-content,
+.image-preview-container {
+    background: var(--background-primary);
+    border-radius: var(--radius-lg);
+    padding: 1rem;
+    max-width: 90vw;
+    max-height: 90vh;
+    overflow: auto;
+    position: relative;
+}
+
+@media (min-width: 768px) {
+
+    .modal-content,
+    .image-preview-container {
+        padding: 2rem;
+        max-width: 80vw;
+        max-height: 80vh;
+    }
+}
+
+@media (min-width: 1024px) {
+
+    .modal-content,
+    .image-preview-container {
+        max-width: 70vw;
+        max-height: 70vh;
+    }
+}
+
+/* Media controls responsive improvements */
+.media-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem 0;
+}
+
+@media (min-width: 768px) {
+    .media-controls {
+        gap: 1rem;
+        justify-content: flex-start;
+    }
+}
+
+.media-control-btn {
+    background: var(--background-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    font-size: 0.875rem;
+    min-height: 44px;
+    min-width: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (min-width: 768px) {
+    .media-control-btn {
         padding: 0.75rem 1.25rem;
+        font-size: 0.9375rem;
     }
 }
 
-/* High DPI displays */
-@media (-webkit-min-device-pixel-ratio: 2),
-(min-resolution: 192dpi) {
-    .rightbrain-card {
-        border-width: 0.5px;
+/* List/grid view toggles */
+.view-toggle {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    justify-content: center;
+}
+
+@media (min-width: 768px) {
+    .view-toggle {
+        justify-content: flex-end;
     }
 }
 
-/* Reduced motion */
+.view-toggle button {
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--border-color);
+    background: var(--background-secondary);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    min-height: 44px;
+    min-width: 44px;
+}
+
+.view-toggle button.active {
+    background: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+/* Accessibility improvements */
 @media (prefers-reduced-motion: reduce) {
 
     .rightbrain-card,
-    .hover-effect,
-    .rightbrain-image,
     .back-button,
-    .rightbrain-button {
+    .rightbrain-button,
+    .media-control-btn {
         transition: none;
     }
 
-    .rightbrain-card:hover,
-    .hover-effect:hover,
-    .rightbrain-image:hover {
+    .rightbrain-card:hover {
         transform: none;
     }
+}
 
-    .rightbrain-card::before {
-        transition: none;
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .rightbrain-card {
+        border-width: 2px;
+        border-color: var(--text-primary);
     }
 
-    .loading-spinner {
-        animation: none;
+    .back-button,
+    .rightbrain-button {
+        border: 2px solid var(--text-primary);
     }
+}
+
+/* Focus styles for keyboard navigation */
+.rightbrain-card:focus,
+.back-button:focus,
+.rightbrain-button:focus,
+.media-control-btn:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
 }
 
 /* Print styles */
 @media print {
     .rightbrain-container {
-        padding: 0;
+        background: white;
+        color: black;
+        padding: 1rem;
     }
 
     .rightbrain-card {
-        break-inside: avoid;
         box-shadow: none;
         border: 1px solid #ccc;
-    }
-
-    .cards-container {
-        grid-template-columns: 1fr;
+        break-inside: avoid;
+        margin-bottom: 1rem;
     }
 
     .back-button,
-    .rightbrain-button {
+    .rightbrain-button,
+    .media-controls {
         display: none;
     }
 
-    .rightbrain-image {
-        max-height: 200px;
+    .rightbrain-card img {
+        max-height: none;
+        height: auto;
     }
 }
