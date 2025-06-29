@@ -136,7 +136,7 @@ const Drawing = () => {
                         <p><strong>Artist:</strong> {art.artist}</p>
                         <p><strong>Year:</strong> {art.year}</p>
                         <p>{art.description.substring(0, 150)}...</p>
-                        <button 
+                        <button
                             className="wikipedia-button"
                             onClick={(e) => {
                                 e.stopPropagation();
@@ -183,7 +183,7 @@ const Drawing = () => {
                         <p><strong>Origin:</strong> {artist.country}</p>
                         <p><strong>Movement:</strong> {artist.movement}</p>
                         <p>{artist.description.substring(0, 150)}...</p>
-                        <button 
+                        <button
                             className="wikipedia-button"
                             onClick={(e) => {
                                 e.stopPropagation();
@@ -228,7 +228,7 @@ const Drawing = () => {
                         )}
                         <p>{form.description.substring(0, 200)}...</p>
                         <p><strong>Techniques:</strong> {form.techniques.length} different methods</p>
-                        <button 
+                        <button
                             className="wikipedia-button"
                             onClick={(e) => {
                                 e.stopPropagation();
@@ -300,7 +300,7 @@ const Drawing = () => {
                                 <p><strong>Location:</strong> {selectedItem.location}</p>
                                 <p><strong>Description:</strong> {selectedItem.description}</p>
                                 <p><strong>Significance:</strong> {selectedItem.significance}</p>
-                                <button 
+                                <button
                                     className="wikipedia-button"
                                     onClick={() => openWikipedia(selectedItem.wikipedia)}
                                 >
@@ -340,7 +340,7 @@ const Drawing = () => {
                                 <p><strong>Notable Works:</strong> {selectedItem.notable_works.join(", ")}</p>
                                 <p><strong>Techniques:</strong> {selectedItem.techniques.join(", ")}</p>
                                 <p><strong>Contributions:</strong> {selectedItem.contributions}</p>
-                                <button 
+                                <button
                                     className="wikipedia-button"
                                     onClick={() => openWikipedia(selectedItem.wikipedia)}
                                 >
@@ -375,7 +375,7 @@ const Drawing = () => {
                                 <h3>{selectedItem.name}</h3>
                                 <p><strong>Description:</strong> {selectedItem.description}</p>
                                 <p><strong>Famous Examples:</strong> {selectedItem.famous_examples.join(", ")}</p>
-                                
+
                                 <h4>Techniques:</h4>
                                 {selectedItem.techniques.map((technique, index) => (
                                     <div key={index} className="technique-card">
@@ -384,8 +384,8 @@ const Drawing = () => {
                                         <p><em>Example: {technique.example}</em></p>
                                     </div>
                                 ))}
-                                
-                                <button 
+
+                                <button
                                     className="wikipedia-button"
                                     onClick={() => openWikipedia(selectedItem.wikipedia)}
                                 >

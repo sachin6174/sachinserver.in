@@ -1,0 +1,208 @@
+{
+    "art_forms": [
+        {
+            "id": "painting",
+            "name": "Painting",
+            "description": "Painting is the practice of applying paint, pigment, color or other medium to a solid surface. The medium is commonly applied to the base with a brush, but other implements, such as knives, sponges, and airbrushes, can be used.",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/9/9a/Duarer_selfportrait.jpg",
+            "wikipedia": "https://en.wikipedia.org/wiki/Painting",
+            "techniques": [
+                {
+                    "name": "Oil Painting",
+                    "description": "A type of slow-drying paint that consists of particles of pigment suspended in a drying oil.",
+                    "example": "Used by Leonardo da Vinci in Mona Lisa"
+                },
+                {
+                    "name": "Watercolor",
+                    "description": "A painting method in which the paints are made of pigments suspended in a water-based solution.",
+                    "example": "Popular for landscape paintings and botanical illustrations"
+                },
+                {
+                    "name": "Acrylic",
+                    "description": "Fast-drying paint made of pigment suspended in acrylic polymer emulsion.",
+                    "example": "Favored by modern artists for its versatility"
+                },
+                {
+                    "name": "Fresco",
+                    "description": "A technique of mural painting executed upon freshly laid lime plaster.",
+                    "example": "Michelangelo's Sistine Chapel ceiling"
+                }
+            ],
+            "famous_examples": [
+                "Mona Lisa",
+                "Starry Night",
+                "Guernica"
+            ]
+        },
+        {
+            "id": "sculpture",
+            "name": "Sculpture",
+            "description": "Sculpture is the branch of the visual arts that operates in three dimensions. It is one of the plastic arts. Durable sculptural processes originally used carving and modelling, in stone, metal, ceramics, wood and other materials.",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/9/99/Michelangelo%27s_David_2015.jpg",
+            "wikipedia": "https://en.wikipedia.org/wiki/Sculpture",
+            "techniques": [
+                {
+                    "name": "Carving",
+                    "description": "Subtractive process where material is systematically eliminated from the outside in.",
+                    "example": "Michelangelo's David carved from marble"
+                },
+                {
+                    "name": "Modeling",
+                    "description": "Additive process where material is built up to create the form.",
+                    "example": "Clay sculptures and bronze casting"
+                },
+                {
+                    "name": "Casting",
+                    "description": "Process where liquid material is poured into a mold.",
+                    "example": "Bronze sculptures like Rodin's The Thinker"
+                },
+                {
+                    "name": "Assemblage",
+                    "description": "Art form where three-dimensional objects are combined to create the artwork.",
+                    "example": "Modern sculptural installations"
+                }
+            ],
+            "famous_examples": [
+                "David",
+                "The Thinker",
+                "Venus de Milo"
+            ]
+        },
+        {
+            "id": "drawing",
+            "name": "Drawing",
+            "description": "Drawing is a form of visual art in which an artist uses instruments to mark paper or other two-dimensional surface. Drawing instruments include graphite pencils, pen and ink, various kinds of paints, inked brushes, colored pencils, crayons, charcoal, chalk, pastels, erasers, markers, styluses, and metals.",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/c/c4/Hands_drawing.jpg",
+            "wikipedia": "https://en.wikipedia.org/wiki/Drawing",
+            "techniques": [
+                {
+                    "name": "Pencil Drawing",
+                    "description": "Using graphite pencils of various hardnesses to create tonal values.",
+                    "example": "Portrait sketches and detailed studies"
+                },
+                {
+                    "name": "Charcoal Drawing",
+                    "description": "Using charcoal sticks to create rich, dark tones and dramatic contrasts.",
+                    "example": "Expressive figure drawings"
+                },
+                {
+                    "name": "Ink Drawing",
+                    "description": "Using various pens and brushes with ink for precise lines and washes.",
+                    "example": "Technical illustrations and artistic sketches"
+                },
+                {
+                    "name": "Pastel Drawing",
+                    "description": "Using soft pastels for rich color and texture.",
+                    "example": "Impressionist-style portraits and landscapes"
+                }
+            ],
+            "famous_examples": [
+                "Vitruvian Man",
+                "Study of Hands",
+                "Self-portraits by various artists"
+            ]
+        },
+        {
+            "id": "printmaking",
+            "name": "Printmaking",
+            "description": "Printmaking is the process of creating artworks by printing, normally on paper. Printmaking normally covers only the process of creating prints that have an element of originality, rather than just being a photographic reproduction of a painting.",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/3/36/Printmaking-2004-01.jpg",
+            "wikipedia": "https://en.wikipedia.org/wiki/Printmaking",
+            "techniques": [
+                {
+                    "name": "Woodcut",
+                    "description": "Relief printing technique where the image is carved into wood.",
+                    "example": "Traditional Japanese ukiyo-e prints"
+                },
+                {
+                    "name": "Etching",
+                    "description": "Intaglio printmaking technique using acid to cut into metal plates.",
+                    "example": "Rembrandt's detailed etchings"
+                },
+                {
+                    "name": "Lithography",
+                    "description": "Printing method based on the repulsion of oil and water.",
+                    "example": "Poster art and fine art prints"
+                },
+                {
+                    "name": "Screen Printing",
+                    "description": "Technique using a mesh screen to transfer ink onto a substrate.",
+                    "example": "Andy Warhol's pop art prints"
+                }
+            ],
+            "famous_examples": [
+                "The Great Wave off Kanagawa",
+                "Dürer's prints",
+                "Warhol's Campbell's Soup Cans"
+            ]
+        },
+        {
+            "id": "digital-art",
+            "name": "Digital Art",
+            "description": "Digital art is an artistic work or practice that uses digital technology as part of the creative or presentation process. Since the 1960s, various names have been used to describe the process, including computer art and multimedia art.",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/b/b7/Digital_art_example.jpg",
+            "wikipedia": "https://en.wikipedia.org/wiki/Digital_art",
+            "techniques": [
+                {
+                    "name": "Digital Painting",
+                    "description": "Creating artwork digitally using software that simulates traditional painting.",
+                    "example": "Concept art for movies and games"
+                },
+                {
+                    "name": "3D Modeling",
+                    "description": "Creating three-dimensional representations of objects using specialized software.",
+                    "example": "Character models for animation"
+                },
+                {
+                    "name": "Photo Manipulation",
+                    "description": "Altering photographs using digital editing software.",
+                    "example": "Surreal composite images"
+                },
+                {
+                    "name": "Generative Art",
+                    "description": "Art created with the use of an autonomous system, often algorithmic.",
+                    "example": "AI-generated artworks and patterns"
+                }
+            ],
+            "famous_examples": [
+                "Digital concept art",
+                "3D animations",
+                "AI-generated artworks"
+            ]
+        },
+        {
+            "id": "photography",
+            "name": "Photography",
+            "description": "Photography is the art, application, and practice of creating durable images by recording light or other electromagnetic radiation, either electronically by means of an image sensor, or chemically by means of a light-sensitive material such as photographic film.",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/5/50/Vd-Orig.jpg",
+            "wikipedia": "https://en.wikipedia.org/wiki/Photography",
+            "techniques": [
+                {
+                    "name": "Portrait Photography",
+                    "description": "Capturing the personality and mood of an individual or group.",
+                    "example": "Studio portraits and environmental portraits"
+                },
+                {
+                    "name": "Landscape Photography",
+                    "description": "Capturing natural environments and outdoor spaces.",
+                    "example": "Ansel Adams' black and white landscapes"
+                },
+                {
+                    "name": "Street Photography",
+                    "description": "Capturing everyday life and human condition in public spaces.",
+                    "example": "Henri Cartier-Bresson's decisive moments"
+                },
+                {
+                    "name": "Macro Photography",
+                    "description": "Close-up photography of small subjects at large magnifications.",
+                    "example": "Detailed shots of insects and flowers"
+                }
+            ],
+            "famous_examples": [
+                "Moonrise over Hernandez",
+                "Afghan Girl",
+                "Lunch atop a Skyscraper"
+            ]
+        }
+    ]
+}

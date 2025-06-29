@@ -1,0 +1,364 @@
+{
+    "famousNovelists": [
+        {
+            "id": "munshi-premchand",
+            "name": "Munshi Premchand",
+            "years": "1880–1936",
+            "country": "India",
+            "languages": [
+                "Hindi",
+                "Urdu"
+            ],
+            "genre": "Realism",
+            "description": "Munshi Premchand was a pioneering figure in Hindi literature, renowned for his realistic portrayal of rural life and social issues in India. His works often highlighted the struggles of the poor and the downtrodden. He is considered the father of modern Hindi literature.",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Munshi_Premchand_1936.jpg/256px-Munshi_Premchand_1936.jpg",
+            "wikipedia": "https://en.wikipedia.org/wiki/Munshi_Premchand",
+            "significance": "Father of modern Hindi literature, pioneer of social realism in Indian literature",
+            "notableWorks": [
+                {
+                    "title": "Godaan",
+                    "image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1347316447i/2090479.jpg",
+                    "description": "A poignant narrative focusing on the life of a poor farmer, Hori, and his aspiration to own a cow, symbolizing his quest for respect and economic stability.",
+                    "publicationYear": "1936",
+                    "wikipedia": "https://en.wikipedia.org/wiki/Godaan"
+                },
+                {
+                    "title": "Gaban",
+                    "image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1391896444i/2090459.jpg",
+                    "description": "Explores the moral dilemmas of a young man, Ramanath, who resorts to embezzlement to satisfy his wife's material desires.",
+                    "publicationYear": "1931",
+                    "wikipedia": "https://en.wikipedia.org/wiki/Gaban"
+                }
+            ]
+        },
+        {
+            "id": "rabindranath-tagore",
+            "name": "Rabindranath Tagore",
+            "years": "1861–1941",
+            "country": "India",
+            "languages": [
+                "Bengali",
+                "English"
+            ],
+            "genre": "Poetry, Drama, Fiction",
+            "description": "Rabindranath Tagore was a Bengali polymath who reshaped Bengali literature and music. He became the first non-European to win the Nobel Prize in Literature in 1913. His works include poetry, novels, dramas, and songs.",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Rabindranath_Tagore_1916.jpg/256px-Rabindranath_Tagore_1916.jpg",
+            "wikipedia": "https://en.wikipedia.org/wiki/Rabindranath_Tagore",
+            "significance": "Nobel Prize winner in Literature (1913), Renaissance figure of Bengali culture",
+            "notableWorks": [
+                {
+                    "title": "Gitanjali",
+                    "image": "https://upload.wikimedia.org/wikipedia/commons/8/82/Gitanjali_first_edition.jpg",
+                    "description": "A collection of devotional poems that won Tagore the Nobel Prize in Literature.",
+                    "publicationYear": "1910",
+                    "wikipedia": "https://en.wikipedia.org/wiki/Gitanjali"
+                },
+                {
+                    "title": "Gora",
+                    "image": "https://upload.wikimedia.org/wikipedia/en/8/8c/Gora_novel_cover.jpg",
+                    "description": "A novel exploring nationalism, identity, and social reform in colonial Bengal.",
+                    "publicationYear": "1910",
+                    "wikipedia": "https://en.wikipedia.org/wiki/Gora_(novel)"
+                }
+            ]
+        },
+        {
+            "id": "saadat-hasan-manto",
+            "name": "Saadat Hasan Manto",
+            "years": "1912–1955",
+            "country": "India/Pakistan",
+            "languages": [
+                "Urdu"
+            ],
+            "genre": "Short Stories, Realism",
+            "description": "Manto was one of the greatest short-story writers in Urdu literature. His works are known for their bold realism, often portraying the harsh truths of society and the brutality of the partition of India.",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/8/87/Saadat_Hasan_Manto.jpg",
+            "wikipedia": "https://en.wikipedia.org/wiki/Saadat_Hasan_Manto",
+            "significance": "Master of Urdu short story, chronicler of partition violence",
+            "notableWorks": [
+                {
+                    "title": "Toba Tek Singh",
+                    "image": "https://upload.wikimedia.org/wikipedia/en/2/2e/Toba_Tek_Singh_Book_Cover.jpg",
+                    "description": "A short story set in a mental asylum during the partition of India, depicting the confusion and pain of displaced individuals.",
+                    "publicationYear": "1955",
+                    "wikipedia": "https://en.wikipedia.org/wiki/Toba_Tek_Singh_(short_story)"
+                },
+                {
+                    "title": "Khol Do",
+                    "image": "https://upload.wikimedia.org/wikipedia/commons/5/5e/Manto_stories_cover.jpg",
+                    "description": "A powerful story about the violence against women during partition.",
+                    "publicationYear": "1948",
+                    "wikipedia": "https://en.wikipedia.org/wiki/Saadat_Hasan_Manto"
+                }
+            ]
+        },
+        {
+            "id": "salman-rushdie",
+            "name": "Salman Rushdie",
+            "years": "1947–Present",
+            "country": "India/UK",
+            "languages": [
+                "English"
+            ],
+            "genre": "Magical Realism, Postcolonial Fiction",
+            "description": "Salman Rushdie is a British Indian novelist known for his surreal and magic realist style. His work often deals with the connections between the Eastern and Western worlds, and he is considered one of the most important writers of postcolonial literature.",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Salman_Rushdie_2019.jpg",
+            "wikipedia": "https://en.wikipedia.org/wiki/Salman_Rushdie",
+            "significance": "Booker Prize winner, pioneer of magical realism in Indian English literature",
+            "notableWorks": [
+                {
+                    "title": "Midnight's Children",
+                    "image": "https://upload.wikimedia.org/wikipedia/en/4/49/Midnight%27s_Children_First_Edition.jpg",
+                    "description": "A magical realist novel about India's transition from British colonialism to independence and partition.",
+                    "publicationYear": "1981",
+                    "wikipedia": "https://en.wikipedia.org/wiki/Midnight%27s_Children"
+                },
+                {
+                    "title": "The Satanic Verses",
+                    "image": "https://upload.wikimedia.org/wikipedia/en/b/b1/Satanic_verses.jpg",
+                    "description": "A controversial novel that led to a fatwa against Rushdie.",
+                    "publicationYear": "1988",
+                    "wikipedia": "https://en.wikipedia.org/wiki/The_Satanic_Verses"
+                }
+            ]
+        },
+        {
+            "id": "arundhati-roy",
+            "name": "Arundhati Roy",
+            "years": "1961–Present",
+            "country": "India",
+            "languages": [
+                "English"
+            ],
+            "genre": "Literary Fiction, Non-fiction",
+            "description": "Arundhati Roy is an Indian author and political activist. She is best known for her novel 'The God of Small Things', which won the Booker Prize for Fiction in 1997. She is also known for her political and environmental activism.",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/a/a9/Arundhati_Roy_2019.jpg",
+            "wikipedia": "https://en.wikipedia.org/wiki/Arundhati_Roy",
+            "significance": "Booker Prize winner, environmental and political activist",
+            "notableWorks": [
+                {
+                    "title": "The God of Small Things",
+                    "image": "https://upload.wikimedia.org/wikipedia/en/b/bd/TheGodOfSmallThings.jpg",
+                    "description": "A semi-autobiographical novel exploring themes of family, love, and the caste system in Kerala.",
+                    "publicationYear": "1997",
+                    "wikipedia": "https://en.wikipedia.org/wiki/The_God_of_Small_Things"
+                },
+                {
+                    "title": "The Ministry of Utmost Happiness",
+                    "image": "https://upload.wikimedia.org/wikipedia/en/8/8b/The_Ministry_of_Utmost_Happiness.jpg",
+                    "description": "Her second novel, exploring contemporary India through multiple characters and storylines.",
+                    "publicationYear": "2017",
+                    "wikipedia": "https://en.wikipedia.org/wiki/The_Ministry_of_Utmost_Happiness"
+                }
+            ]
+        },
+        {
+            "id": "mahadevi-verma",
+            "name": "Mahadevi Verma",
+            "years": "1907–1987",
+            "country": "India",
+            "languages": [
+                "Hindi"
+            ],
+            "genre": "Poetry, Chhayavaad",
+            "description": "A prominent poet, essayist, and freedom fighter, Mahadevi Verma was a leading figure in the Chhayavaad movement of Hindi literature. Her writings often delved into themes of love, nature, and spirituality.",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/2/23/Mahadevi_Verma.jpg",
+            "wikipedia": "https://en.wikipedia.org/wiki/Mahadevi_Verma",
+            "significance": "Leading figure of Chhayavaad movement, feminist voice in Hindi literature",
+            "notableWorks": [
+                {
+                    "title": "Yama",
+                    "image": "https://upload.wikimedia.org/wikipedia/en/3/3b/Yama_by_Mahadevi_Verma.jpg",
+                    "description": "A collection of poignant poems reflecting on life's transient nature and spiritual fulfillment.",
+                    "publicationYear": "1936",
+                    "wikipedia": "https://en.wikipedia.org/wiki/Mahadevi_Verma"
+                }
+            ]
+        },
+        {
+            "id": "sarat-chandra-chattopadhyay",
+            "name": "Sarat Chandra Chattopadhyay",
+            "years": "1876–1938",
+            "country": "India",
+            "languages": [
+                "Bengali"
+            ],
+            "genre": "Romance, Social Drama",
+            "description": "Sarat Chandra Chattopadhyay was one of the most popular Bengali novelists of the early 20th century. His works primarily dealt with the lives of common people and explored themes of love, sacrifice, and social issues. He is known for creating strong female characters.",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/8/8c/Sarat_Chandra_Chattopadhyay.jpg",
+            "wikipedia": "https://en.wikipedia.org/wiki/Sarat_Chandra_Chattopadhyay",
+            "significance": "Most popular Bengali novelist, strong female characters, social themes",
+            "notableWorks": [
+                {
+                    "title": "Devdas",
+                    "image": "https://upload.wikimedia.org/wikipedia/en/4/4a/Devdas_novel_cover.jpg",
+                    "description": "A tragic love story that has been adapted numerous times in Indian cinema.",
+                    "publicationYear": "1917",
+                    "wikipedia": "https://en.wikipedia.org/wiki/Devdas_(novel)"
+                },
+                {
+                    "title": "Parineeta",
+                    "image": "https://upload.wikimedia.org/wikipedia/en/7/7c/Parineeta_novel_cover.jpg",
+                    "description": "A novel about love, sacrifice, and family relationships.",
+                    "publicationYear": "1914",
+                    "wikipedia": "https://en.wikipedia.org/wiki/Parineeta"
+                },
+                {
+                    "title": "Shrikanta",
+                    "image": "https://upload.wikimedia.org/wikipedia/en/6/6d/Shrikanta_novel_cover.jpg",
+                    "description": "A four-part novel considered his magnum opus.",
+                    "publicationYear": "1917-1933",
+                    "wikipedia": "https://en.wikipedia.org/wiki/Shrikanta"
+                }
+            ]
+        },
+        {
+            "id": "bankim-chandra-chattopadhyay",
+            "name": "Bankim Chandra Chattopadhyay",
+            "years": "1838–1894",
+            "country": "India",
+            "languages": [
+                "Bengali",
+                "English"
+            ],
+            "genre": "Historical Fiction, Romance",
+            "description": "Bankim Chandra Chattopadhyay was a Bengali author who is widely regarded as the first significant novelist in Bengali literature. He composed the national song of India, 'Vande Mataram', and played a crucial role in the Bengali Renaissance.",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/4/4b/Bankim_Chandra_Chattopadhyay.jpg",
+            "wikipedia": "https://en.wikipedia.org/wiki/Bankim_Chandra_Chattopadhyay",
+            "significance": "Father of Bengali novel, composer of Vande Mataram, Bengali Renaissance figure",
+            "notableWorks": [
+                {
+                    "title": "Anandamath",
+                    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Anandamath_cover.jpg/256px-Anandamath_cover.jpg",
+                    "description": "Political novel featuring the national song 'Vande Mataram'.",
+                    "publicationYear": "1882",
+                    "wikipedia": "https://en.wikipedia.org/wiki/Anandamath"
+                },
+                {
+                    "title": "Kapalkundala",
+                    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Kapalkundala_cover.jpg/256px-Kapalkundala_cover.jpg",
+                    "description": "A romantic novel combining adventure and Bengali cultural traditions.",
+                    "publicationYear": "1866",
+                    "wikipedia": "https://en.wikipedia.org/wiki/Kapalkundala"
+                }
+            ]
+        },
+        {
+            "id": "qurratulain-hyder",
+            "name": "Qurratulain Hyder",
+            "years": "1927–2007",
+            "country": "India/Pakistan",
+            "languages": [
+                "Urdu",
+                "English"
+            ],
+            "genre": "Historical Fiction, Modernist Literature",
+            "description": "Qurratulain Hyder was one of the most influential Urdu writers of the 20th century. She pioneered the use of stream of consciousness and other modernist techniques in Urdu literature. Her works often explore the cultural synthesis of the Indian subcontinent.",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/6/6a/Qurratulain_Hyder.jpg",
+            "wikipedia": "https://en.wikipedia.org/wiki/Qurratulain_Hyder",
+            "significance": "Pioneer of modernist Urdu literature, stream of consciousness technique",
+            "notableWorks": [
+                {
+                    "title": "Aag Ka Darya",
+                    "image": "https://upload.wikimedia.org/wikipedia/en/9/94/Aag_Ka_Darya_cover.jpg",
+                    "description": "Epic novel spanning 2,500 years of Indian history.",
+                    "publicationYear": "1959",
+                    "wikipedia": "https://en.wikipedia.org/wiki/Aag_Ka_Darya"
+                }
+            ]
+        },
+        {
+            "id": "vikram-seth",
+            "name": "Vikram Seth",
+            "years": "1952–Present",
+            "country": "India",
+            "languages": [
+                "English"
+            ],
+            "genre": "Literary Fiction, Poetry",
+            "description": "Vikram Seth is an Indian novelist and poet known for his versatility and craftsmanship. He has written novels, poetry, librettos, and travel literature. His novel 'A Suitable Boy' is one of the longest novels in English literature.",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/8/89/Vikram_Seth_2015.jpg",
+            "wikipedia": "https://en.wikipedia.org/wiki/Vikram_Seth",
+            "significance": "Versatile writer, author of one of the longest English novels",
+            "notableWorks": [
+                {
+                    "title": "A Suitable Boy",
+                    "image": "https://upload.wikimedia.org/wikipedia/en/a/a3/A_Suitable_Boy_cover.jpg",
+                    "description": "One of the longest novels in English literature, set in post-independence India.",
+                    "publicationYear": "1993",
+                    "wikipedia": "https://en.wikipedia.org/wiki/A_Suitable_Boy"
+                }
+            ]
+        },
+        {
+            "id": "kiran-desai",
+            "name": "Kiran Desai",
+            "years": "1971–Present",
+            "country": "India",
+            "languages": [
+                "English"
+            ],
+            "genre": "Literary Fiction",
+            "description": "Kiran Desai is an Indian author and daughter of novelist Anita Desai. She won the Man Booker Prize for her novel 'The Inheritance of Loss', becoming the youngest woman to win the prize at age 35. Her works explore themes of migration, identity, and globalization.",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/7/7c/Kiran_Desai_2006.jpg",
+            "wikipedia": "https://en.wikipedia.org/wiki/Kiran_Desai",
+            "significance": "Youngest woman to win Man Booker Prize, migration literature",
+            "notableWorks": [
+                {
+                    "title": "The Inheritance of Loss",
+                    "image": "https://upload.wikimedia.org/wikipedia/en/7/7c/The_Inheritance_of_Loss_cover.jpg",
+                    "description": "Man Booker Prize winning novel about migration and identity.",
+                    "publicationYear": "2006",
+                    "wikipedia": "https://en.wikipedia.org/wiki/The_Inheritance_of_Loss"
+                }
+            ]
+        },
+        {
+            "id": "aravind-adiga",
+            "name": "Aravind Adiga",
+            "years": "1974–Present",
+            "country": "India",
+            "languages": [
+                "English"
+            ],
+            "genre": "Social Satire, Literary Fiction",
+            "description": "Aravind Adiga is an Indian writer and journalist. He won the Man Booker Prize for his debut novel 'The White Tiger', which provides a darkly comic perspective on India's class struggle and corruption in globalized India.",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/4/4e/Aravind_Adiga_2008.jpg",
+            "wikipedia": "https://en.wikipedia.org/wiki/Aravind_Adiga",
+            "significance": "Man Booker Prize winner, social satire of modern India",
+            "notableWorks": [
+                {
+                    "title": "The White Tiger",
+                    "image": "https://upload.wikimedia.org/wikipedia/en/5/5a/The_White_Tiger_cover.jpg",
+                    "description": "Man Booker Prize winning darkly comic novel about class and corruption.",
+                    "publicationYear": "2008",
+                    "wikipedia": "https://en.wikipedia.org/wiki/The_White_Tiger"
+                }
+            ]
+        },
+        {
+            "id": "khushwant-singh",
+            "name": "Khushwant Singh",
+            "years": "1915–2014",
+            "country": "India",
+            "languages": [
+                "English",
+                "Punjabi"
+            ],
+            "genre": "Historical Fiction, Humor",
+            "description": "Khushwant Singh was an Indian author, lawyer, diplomat, journalist, and politician. He is best known for his novel 'Train to Pakistan', his treatment of the partition of India, and his secular outlook on social and political issues.",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/8/8f/Khushwant_Singh_2012.jpg",
+            "wikipedia": "https://en.wikipedia.org/wiki/Khushwant_Singh",
+            "significance": "Partition literature pioneer, secular voice, journalist-writer",
+            "notableWorks": [
+                {
+                    "title": "Train to Pakistan",
+                    "image": "https://upload.wikimedia.org/wikipedia/en/c/c8/Train_to_Pakistan_book_cover.jpg",
+                    "description": "Classic novel about the partition of India.",
+                    "publicationYear": "1956",
+                    "wikipedia": "https://en.wikipedia.org/wiki/Train_to_Pakistan"
+                }
+            ]
+        }
+    ]
+}

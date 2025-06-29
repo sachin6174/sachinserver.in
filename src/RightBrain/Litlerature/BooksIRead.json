@@ -1,0 +1,103 @@
+{
+    "booksIRead": [
+        {
+            "id": "example-godaan",
+            "title": "Godaan",
+            "author": "Munshi Premchand",
+            "year": "1936",
+            "genre": "Social Realism",
+            "language": "Hindi",
+            "description": "A masterpiece of Hindi literature depicting the harsh realities of rural life and the exploitation of peasants.",
+            "image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1347316447i/2090479.jpg",
+            "rating": 5,
+            "dateRead": "2024-01-15",
+            "myReview": "An incredibly moving portrayal of rural poverty and human dignity. Premchand's masterful storytelling brings Hori's struggles to life with such authenticity that it feels like a documentary rather than fiction. The way it exposes the exploitation of farmers and the rigid caste system is both heartbreaking and eye-opening.",
+            "tags": [
+                "classic",
+                "social-realism",
+                "hindi-literature",
+                "must-read"
+            ],
+            "wikipedia": "https://en.wikipedia.org/wiki/Godaan"
+        },
+        {
+            "id": "example-midnight-children",
+            "title": "Midnight's Children",
+            "author": "Salman Rushdie",
+            "year": "1981",
+            "genre": "Magical Realism",
+            "language": "English",
+            "description": "A magical realist novel about India's transition from British colonialism to independence and partition.",
+            "image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1320530894i/14836.jpg",
+            "rating": 4,
+            "dateRead": "2024-02-20",
+            "myReview": "Rushdie's imagination is absolutely stunning. The way he weaves personal history with national history through Saleem's telepathic abilities is brilliant. The magical realism elements perfectly capture the surreal nature of partition and independence. Some parts were challenging to follow, but the overall experience was transformative.",
+            "tags": [
+                "magical-realism",
+                "partition",
+                "booker-prize",
+                "postcolonial"
+            ],
+            "wikipedia": "https://en.wikipedia.org/wiki/Midnight%27s_Children"
+        },
+        {
+            "id": "example-devdas",
+            "title": "Devdas",
+            "author": "Sarat Chandra Chattopadhyay",
+            "year": "1917",
+            "genre": "Tragic Romance",
+            "language": "Bengali",
+            "description": "A tragic love story about class differences and their devastating consequences.",
+            "image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1391896438i/2090461.jpg",
+            "rating": 4,
+            "dateRead": "2024-03-10",
+            "myReview": "A beautifully written tragedy that explores how societal constraints can destroy love. Sarat Chandra's portrayal of Devdas's self-destructive behavior and the strength of Paro and Chandramukhi is compelling. While the protagonist's choices can be frustrating, the novel effectively critiques the rigid social hierarchy of the time.",
+            "tags": [
+                "bengali-literature",
+                "romance",
+                "tragedy",
+                "classic"
+            ],
+            "wikipedia": "https://en.wikipedia.org/wiki/Devdas_(novel)"
+        },
+        {
+            "id": "example-white-tiger",
+            "title": "The White Tiger",
+            "author": "Aravind Adiga",
+            "year": "2008",
+            "genre": "Social Satire",
+            "language": "English",
+            "description": "A darkly comic novel about class, corruption, and social mobility in modern India.",
+            "image": "https://m.media-amazon.com/images/I/81o4OopI0mL._AC_UF1000,1000_QL80_.jpg",
+            "rating": 5,
+            "dateRead": "2024-04-05",
+            "myReview": "Adiga's sardonic wit cuts deep into the hypocrisies of modern Indian society. Balram's transformation from servant to entrepreneur is both darkly funny and deeply disturbing. The novel's unflinching look at corruption and inequality makes it an essential read for understanding contemporary India.",
+            "tags": [
+                "contemporary",
+                "satire",
+                "corruption",
+                "social-mobility",
+                "booker-prize"
+            ],
+            "wikipedia": "https://en.wikipedia.org/wiki/The_White_Tiger"
+        },
+        {
+            "id": "placeholder-note",
+            "title": "📝 Add Your Own Books",
+            "author": "You can edit this file",
+            "year": "2024",
+            "genre": "Personal Reading",
+            "language": "Any",
+            "description": "Replace this entry with your own reading list. Include your personal ratings, reviews, and reading dates to track your literary journey.",
+            "image": "https://via.placeholder.com/200x300?text=Your+Books+Here",
+            "rating": 0,
+            "dateRead": "ongoing",
+            "myReview": "Edit the BooksIRead.json file to add your own books, ratings, and personal reviews. You can organize them by tags and track your reading progress over time.",
+            "tags": [
+                "placeholder",
+                "instructions"
+            ],
+            "wikipedia": "https://en.wikipedia.org/wiki/Personal_library"
+        }
+    ]
+}

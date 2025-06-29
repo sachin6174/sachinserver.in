@@ -1,0 +1,130 @@
+{
+    "famous_artists": [
+        {
+            "id": "leonardo-da-vinci",
+            "name": "Leonardo da Vinci",
+            "years": "1452-1519",
+            "country": "Italy",
+            "movement": "Renaissance",
+            "description": "Leonardo da Vinci was an Italian polymath of the High Renaissance who was active as a painter, draughtsman, engineer, scientist, theorist, sculptor and architect. While his fame initially rested on his achievements as a painter, he also became known for his notebooks, in which he made drawings and notes on a variety of subjects.",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/b/ba/Leonardo_self.jpg",
+            "wikipedia": "https://en.wikipedia.org/wiki/Leonardo_da_Vinci",
+            "notable_works": [
+                "Mona Lisa",
+                "The Last Supper",
+                "Vitruvian Man"
+            ],
+            "techniques": [
+                "Sfumato",
+                "Chiaroscuro",
+                "Anatomical accuracy"
+            ],
+            "contributions": "Revolutionary painting techniques, scientific drawings, anatomical studies, engineering designs"
+        },
+        {
+            "id": "vincent-van-gogh",
+            "name": "Vincent van Gogh",
+            "years": "1853-1890",
+            "country": "Netherlands",
+            "movement": "Post-Impressionism",
+            "description": "Vincent Willem van Gogh was a Dutch Post-Impressionist painter who posthumously became one of the most famous and influential figures in Western art history. In a decade, he created about 2,100 artworks, including around 860 oil paintings, most of which date from the last two years of his life.",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/4/4c/Vincent_van_Gogh_-_Self-Portrait_-_Google_Art_Project_%28454045%29.jpg",
+            "wikipedia": "https://en.wikipedia.org/wiki/Vincent_van_Gogh",
+            "notable_works": [
+                "The Starry Night",
+                "Sunflowers",
+                "The Potato Eaters"
+            ],
+            "techniques": [
+                "Impasto",
+                "Bold colors",
+                "Expressive brushwork"
+            ],
+            "contributions": "Emotional intensity in art, influence on modern art, expressive use of color"
+        },
+        {
+            "id": "pablo-picasso",
+            "name": "Pablo Picasso",
+            "years": "1881-1973",
+            "country": "Spain",
+            "movement": "Cubism",
+            "description": "Pablo Ruiz Picasso was a Spanish painter, sculptor, printmaker, ceramicist and theatre designer who spent most of his adult life in France. Regarded as one of the most influential artists of the 20th century, he is known for co-founding the Cubist movement.",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/9/98/Pablo_picasso_1.jpg",
+            "wikipedia": "https://en.wikipedia.org/wiki/Pablo_Picasso",
+            "notable_works": [
+                "Guernica",
+                "Les Demoiselles d'Avignon",
+                "The Weeping Woman"
+            ],
+            "techniques": [
+                "Cubism",
+                "Collage",
+                "Multiple perspectives"
+            ],
+            "contributions": "Co-founded Cubism, revolutionized modern art, prolific across multiple mediums"
+        },
+        {
+            "id": "frida-kahlo",
+            "name": "Frida Kahlo",
+            "years": "1907-1954",
+            "country": "Mexico",
+            "movement": "Surrealism/Mexican folk art",
+            "description": "Frida Kahlo was a Mexican painter known for her many portraits, self-portraits, and works inspired by the nature and artifacts of Mexico. Inspired by the country's popular culture, she employed a naïve folk art style to explore questions of identity, postcolonialism, gender, class, and race in Mexican society.",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/0/06/Frida_Kahlo%2C_by_Guillermo_Kahlo.jpg",
+            "wikipedia": "https://en.wikipedia.org/wiki/Frida_Kahlo",
+            "notable_works": [
+                "The Two Fridas",
+                "Self-Portrait with Thorn Necklace and Hummingbird",
+                "The Broken Column"
+            ],
+            "techniques": [
+                "Symbolism",
+                "Self-portraiture",
+                "Mexican iconography"
+            ],
+            "contributions": "Feminist icon, exploration of identity and pain, Mexican cultural representation"
+        },
+        {
+            "id": "michelangelo",
+            "name": "Michelangelo",
+            "years": "1475-1564",
+            "country": "Italy",
+            "movement": "Renaissance",
+            "description": "Michelangelo di Lodovico Buonarroti Simoni was an Italian sculptor, painter, architect, and poet of the High Renaissance. Born in the Republic of Florence, his work had a major influence on the development of Western art, particularly in the realm of sculpture.",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/5/5e/Miguel_%C3%81ngel%2C_por_Daniele_da_Volterra_%28detalle%29.jpg",
+            "wikipedia": "https://en.wikipedia.org/wiki/Michelangelo",
+            "notable_works": [
+                "David",
+                "Sistine Chapel ceiling",
+                "Pietà"
+            ],
+            "techniques": [
+                "Sculpture",
+                "Fresco painting",
+                "Anatomical precision"
+            ],
+            "contributions": "Master sculptor, Sistine Chapel masterpiece, architectural innovations"
+        },
+        {
+            "id": "claude-monet",
+            "name": "Claude Monet",
+            "years": "1840-1926",
+            "country": "France",
+            "movement": "Impressionism",
+            "description": "Oscar-Claude Monet was a French painter and founder of impressionist painting who is seen as a key precursor to modernism, especially in his attempts to paint nature as he perceived it.",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/a/a4/Claude_Monet_1899_Nadar_crop.jpg",
+            "wikipedia": "https://en.wikipedia.org/wiki/Claude_Monet",
+            "notable_works": [
+                "Water Lilies",
+                "Impression, Sunrise",
+                "Rouen Cathedral series"
+            ],
+            "techniques": [
+                "Plein air painting",
+                "Light and color studies",
+                "Series paintings"
+            ],
+            "contributions": "Founded Impressionism, captured light and atmosphere, influenced modern art"
+        }
+    ]
+}

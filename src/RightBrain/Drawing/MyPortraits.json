@@ -1,0 +1,13 @@
+{
+    "my_portraits": [
+        {
+            "id": "placeholder-1",
+            "title": "Portrait Collection Coming Soon",
+            "description": "This section will showcase personal portrait artwork. More content will be added in the future.",
+            "image": "",
+            "medium": "",
+            "year": "",
+            "notes": "Placeholder for future portrait additions"
+        }
+    ]
+}
