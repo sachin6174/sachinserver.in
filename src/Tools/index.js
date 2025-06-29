@@ -8,3 +8,12 @@ export { default as BackgroundRemoverTool } from './BackgroundRemover/Background
 export { default as StorageTool } from './StorageTool/StorageTool';
 export { default as ColorPickerTool } from './ColorPicker/ColorPickerTool';
 export { default as ScreenRecorderTool } from './ScreenRecorder/ScreenRecorderTool';
+
+// New enhanced tools
+export { default as CSVTool } from './CSVTool/CSVTool';
+export { default as HashTool } from './HashTool/HashTool';
+export { default as PasswordTool } from './PasswordTool/PasswordTool';
+export { default as YAMLTool } from './YAMLTool/YAMLTool';
+export { default as RegexTool } from './RegexTool/RegexTool';
+export { default as EncoderTool } from './EncoderTool/EncoderTool';
+export { default as UUIDTool } from './UUIDTool/UUIDTool';

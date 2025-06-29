@@ -70,66 +70,135 @@ const StorageTool = () => {
 
     return (
         <div className="storage-tool">
-            <h2>Local Storage Tool</h2>
-            <div className="tool-container">
-                <form onSubmit={handleSubmit} className="input-form">
-                    <div className="form-group">
-                        <input
-                            type="text"
-                            placeholder="Enter key"
-                            value={key}
-                            onChange={(e) => setKey(e.target.value)}
-                        />
-                        <textarea
-                            placeholder="Enter value"
-                            value={value}
-                            onChange={(e) => setValue(e.target.value)}
-                        />
-                    </div>
-                    <div className="button-group">
-                        <button type="submit">
-                            {editMode ? 'Update' : 'Save'}
-                        </button>
-                        {editMode && (
-                            <button
-                                type="button"
-                                onClick={() => {
-                                    setEditMode(null);
-                                    setKey('');
-                                    setValue('');
-                                }}
-                            >
-                                Cancel Edit
-                            </button>
-                        )}
-                        <button type="button" onClick={handleClear}>
-                            Clear All
-                        </button>
-                    </div>
-                </form>
+            <div className="storage-header">
+                <h2>💾 Local Storage Manager</h2>
+                <p>Manage browser local storage with easy create, edit, and delete operations</p>
+            </div>
 
-                {error && <div className="error-message">{error}</div>}
+            {error && <div className="error-message">{error}</div>}
 
-                <div className="items-list">
-                    {items.map((item) => (
-                        <div key={item.key} className="storage-item">
-                            <div className="item-content">
-                                <strong>{item.key}:</strong>
-                                <pre>{item.value}</pre>
+            <div className="storage-controls">
+                <div className="input-section">
+                    <h3>{editMode ? 'Edit Item' : 'Add New Item'}</h3>
+
+                    <form onSubmit={handleSubmit}>
+                        <div className="input-group">
+                            <div className="input-field">
+                                <label>Key:</label>
+                                <input
+                                    type="text"
+                                    placeholder="Enter storage key"
+                                    value={key}
+                                    onChange={(e) => setKey(e.target.value)}
+                                    disabled={editMode}
+                                />
                             </div>
-                            <div className="item-actions">
-                                <button onClick={() => handleCopy(item.value)}>
-                                    Copy
+
+                            <div className="input-field">
+                                <label>Value:</label>
+                                <textarea
+                                    placeholder="Enter storage value (JSON, text, etc.)"
+                                    value={value}
+                                    onChange={(e) => setValue(e.target.value)}
+                                />
+                            </div>
+                        </div>
+
+                        <div className="button-section">
+                            <div className="control-buttons">
+                                <button type="submit" className={editMode ? 'update-btn' : 'save-btn'}>
+                                    {editMode ? '✏️ Update' : '💾 Save'}
                                 </button>
-                                <button onClick={() => handleEdit(item)}>
-                                    Edit
-                                </button>
-                                <button onClick={() => handleDelete(item.key)}>
-                                    Delete
+                                {editMode && (
+                                    <button
+                                        type="button"
+                                        className="cancel-btn"
+                                        onClick={() => {
+                                            setEditMode(null);
+                                            setKey('');
+                                            setValue('');
+                                            setError('');
+                                        }}
+                                    >
+                                        ❌ Cancel
+                                    </button>
+                                )}
+                                <button
+                                    type="button"
+                                    className="clear-all-btn"
+                                    onClick={handleClear}
+                                >
+                                    🗑️ Clear All
                                 </button>
                             </div>
                         </div>
-                    ))}
+                    </form>
+                </div>
+            </div>
+
+            {items.length > 0 && (
+                <div className="storage-items-section">
+                    <h3>Stored Items ({items.length})</h3>
+                    <div className="items-list">
+                        {items.map((item) => (
+                            <div key={item.key} className="storage-item">
+                                <div className="storage-item-content">
+                                    <div className="storage-item-key">
+                                        <span className="key-icon">🔑</span>
+                                        {item.key}
+                                    </div>
+                                    <div className="storage-item-value">
+                                        {item.value}
+                                    </div>
+                                </div>
+                                <div className="storage-item-actions">
+                                    <button
+                                        className="copy-btn"
+                                        onClick={() => handleCopy(item.value)}
+                                        title="Copy value"
+                                    >
+                                        📋 Copy
+                                    </button>
+                                    <button
+                                        className="edit-btn"
+                                        onClick={() => handleEdit(item)}
+                                        title="Edit item"
+                                    >
+                                        ✏️ Edit
+                                    </button>
+                                    <button
+                                        className="delete-btn"
+                                        onClick={() => handleDelete(item.key)}
+                                        title="Delete item"
+                                    >
+                                        🗑️ Delete
+                                    </button>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            )}
+
+            <div className="info-section">
+                <h3>Information</h3>
+                <div className="info-grid">
+                    <div className="info-item">
+                        <strong>Storage Type:</strong>
+                        <span>Browser Local Storage</span>
+                    </div>
+                    <div className="info-item">
+                        <strong>Persistence:</strong>
+                        <span>Data persists until manually cleared</span>
+                    </div>
+                    <div className="info-item">
+                        <strong>Storage Limit:</strong>
+                        <span>~5-10MB per domain (browser dependent)</span>
+                    </div>
+                    <div className="info-item">
+                        <strong>Data Types:</strong>
+                        <span>Strings, JSON, Numbers, Booleans</span>
+                    </div>
                 </div>
             </div>
         </div>

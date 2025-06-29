@@ -102,61 +102,75 @@ const ColorPickerTool = () => {
 
     return (
         <div className="color-picker-tool">
-            <h2>Color Picker</h2>
-            
+            <div className="color-picker-header">
+                <h2>🎨 Color Picker</h2>
+                <p>Pick, save, and manage colors with multiple format support</p>
+            </div>
+
+            {message && <div className="message">{message}</div>}
+
             <div className="color-picker-container">
-                <div className="color-display" style={{ backgroundColor: selectedColor }}>
-                    <div className="color-info">
-                        <span>{getColorString(selectedColor, 'hex')}</span>
-                        <span>{getColorString(selectedColor, 'rgb')}</span>
-                        <span>{getColorString(selectedColor, 'hsl')}</span>
-                    </div>
-                </div>
-
-                <div className="color-controls">
-                    <input
-                        type="color"
-                        value={selectedColor}
-                        onChange={handleColorChange}
-                        className="color-input"
-                    />
-                    <button onClick={handleEyeDropper} className="eyedropper-btn">
-                        🔍 Pick from Screen
-                    </button>
-                    <button onClick={saveColor}>💾 Save Color</button>
-                </div>
-
-                <div className="copy-controls">
-                    <select
-                        value={copyFormat}
-                        onChange={(e) => setCopyFormat(e.target.value)}
-                    >
-                        <option value="hex">HEX</option>
-                        <option value="rgb">RGB</option>
-                        <option value="hsl">HSL</option>
-                    </select>
-                    <button onClick={copyToClipboard}>📋 Copy Color</button>
-                </div>
-
-                {message && <div className="message">{message}</div>}
-
-                {savedColors.length > 0 && (
-                    <div className="saved-colors">
-                        <h3>Saved Colors</h3>
-                        <div className="color-grid">
-                            {savedColors.map((color, index) => (
-                                <div
-                                    key={index}
-                                    className="saved-color"
-                                    style={{ backgroundColor: color }}
-                                    onClick={() => setSelectedColor(color)}
-                                    title={color}
-                                />
-                            ))}
+                <div className="color-display-section">
+                    <h3>Color Preview</h3>
+                    <div className="color-display" style={{ backgroundColor: selectedColor }}>
+                        <div className="color-info">
+                            <span>{getColorString(selectedColor, 'hex')}</span>
+                            <span>{getColorString(selectedColor, 'rgb')}</span>
+                            <span>{getColorString(selectedColor, 'hsl')}</span>
                         </div>
                     </div>
-                )}
+                </div>
+
+                <div className="color-controls-section">
+                    <h3>Color Controls</h3>
+
+                    <div className="color-controls">
+                        <input
+                            type="color"
+                            value={selectedColor}
+                            onChange={handleColorChange}
+                            className="color-input"
+                        />
+                        <button onClick={handleEyeDropper} className="eyedropper-btn">
+                            🔍 Pick from Screen
+                        </button>
+                        <button onClick={saveColor} className="save-color-btn">
+                            💾 Save Color
+                        </button>
+                    </div>
+
+                    <div className="copy-controls">
+                        <select
+                            value={copyFormat}
+                            onChange={(e) => setCopyFormat(e.target.value)}
+                        >
+                            <option value="hex">HEX Format</option>
+                            <option value="rgb">RGB Format</option>
+                            <option value="hsl">HSL Format</option>
+                        </select>
+                        <button onClick={copyToClipboard} className="copy-btn">
+                            📋 Copy Color
+                        </button>
+                    </div>
+                </div>
             </div>
+
+            {savedColors.length > 0 && (
+                <div className="saved-colors">
+                    <h3>Saved Colors ({savedColors.length})</h3>
+                    <div className="color-grid">
+                        {savedColors.map((color, index) => (
+                            <div
+                                key={index}
+                                className="saved-color"
+                                style={{ backgroundColor: color }}
+                                onClick={() => setSelectedColor(color)}
+                                title={color}
+                            />
+                        ))}
+                    </div>
+                </div>
+            )}
         </div>
     );
 };

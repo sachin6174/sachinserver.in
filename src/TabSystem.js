@@ -7,7 +7,7 @@ import Drawing from "./RightBrain/Drawing/Drawing";
 import Literature from "./RightBrain/Litlerature/Literature";
 import Philosophy from "./RightBrain/Philosophy/Philosophy";
 import Music from "./RightBrain/Music/Music";
-import { InfoTool, JsonTool, XmlTool, CryptoTool, WritingBoardTool, APITool, BackgroundRemoverTool, StorageTool, ColorPickerTool, ScreenRecorderTool } from './Tools';
+import { InfoTool, JsonTool, XmlTool, CryptoTool, WritingBoardTool, APITool, BackgroundRemoverTool, StorageTool, ColorPickerTool, ScreenRecorderTool, CSVTool, HashTool, PasswordTool, YAMLTool, RegexTool, EncoderTool, UUIDTool } from './Tools';
 import logo from './assets/logo512.png';  // Updated import path
 import './TabSystem.css';
 import LeftNavigation from './LeftNavigation';
@@ -97,7 +97,14 @@ const TabSystem = () => {
             { id: "info-tool", label: "Info Tool", icon: "📊", description: <InfoTool /> },
             { id: "JSON-Tool", label: "JSON Tool", icon: "📝", description: <JsonTool /> },
             { id: "XML-Tool", label: "XML Tool", icon: "🔧", description: <XmlTool /> },
+            { id: "yaml-tool", label: "YAML Tool", icon: "📄", description: <YAMLTool /> },
+            { id: "csv-tool", label: "CSV Tool", icon: "📊", description: <CSVTool /> },
             { id: "Encryption-Decryption-Tool", label: "Crypto Tool", icon: "🔒", description: <CryptoTool /> },
+            { id: "hash-tool", label: "Hash Tool", icon: "🔑", description: <HashTool /> },
+            { id: "password-tool", label: "Password Tool", icon: "🛡️", description: <PasswordTool /> },
+            { id: "regex-tool", label: "Regex Tool", icon: "🔍", description: <RegexTool /> },
+            { id: "encoder-tool", label: "Encoder Tool", icon: "🔤", description: <EncoderTool /> },
+            { id: "uuid-tool", label: "UUID Tool", icon: "🆔", description: <UUIDTool /> },
             { id: "writing-board", label: "Writing Board", icon: "✏️", description: <WritingBoardTool /> },
             { id: "api-tool", label: "API Tool", icon: "🌐", description: <APITool /> },
             { id: "background-remover", label: "Background Remover", icon: "🖼️", description: <BackgroundRemoverTool /> },
