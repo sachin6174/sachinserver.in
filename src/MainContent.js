@@ -1,6 +1,6 @@
 import React from 'react';
 
-const MainContent = ({ activeTab, selectedNavItem, navigationItems }) => {
+const MainContent = ({ activeTab, selectedNavItem, navigationItems, isLeftNavVisible }) => {
     // Find the selected item's description
     const selectedContent = selectedNavItem && navigationItems[activeTab]
         ? navigationItems[activeTab].find(item => item.label === selectedNavItem || item.id === selectedNavItem)?.description
@@ -22,21 +22,21 @@ const MainContent = ({ activeTab, selectedNavItem, navigationItems }) => {
                     color: "#666",
                 }}
             >
-                <span>{activeTab === "leftbrain" ? "🧠 LeftBrain" : 
-                       activeTab === "rightbrain" ? "🎨 RightBrain" : 
-                       "🛠️ Tools"}</span>
+                <span>{activeTab === "leftbrain" ? "🧠 LeftBrain" :
+                    activeTab === "rightbrain" ? "🎨 RightBrain" :
+                        "🛠️ Tools"}</span>
                 {selectedNavItem && (
                     <>
-                        <span style={{ 
-                            fontSize: "12px", 
+                        <span style={{
+                            fontSize: "12px",
                             color: "#999",
-                            marginTop: "-2px" 
+                            marginTop: "-2px"
                         }}>›</span>
                         <span>{selectedNavItem}</span>
                     </>
                 )}
             </div>
-            
+
             {/* Separator Line */}
             <div
                 className="separator-line"

@@ -12,11 +12,13 @@ import logo from './assets/logo512.png';  // Updated import path
 import './TabSystem.css';
 import LeftNavigation from './LeftNavigation';
 import MainContent from './MainContent';
+import { ReactComponent as ToggleIcon } from './assets/svgs/toggle-icon.svg';
 
 const TabSystem = () => {
     const [activeTab, setActiveTab] = useState("leftbrain");
     const [selectedNavItem, setSelectedNavItem] = useState("");
     const [isDarkMode, setIsDarkMode] = useState(true); // Default to night mode
+    const [isLeftNavVisible, setIsLeftNavVisible] = useState(true); // Toggle state for left navigation
 
     useEffect(() => {
         document.body.className = isDarkMode ? "dark-mode" : "light-mode";
@@ -24,6 +26,10 @@ const TabSystem = () => {
 
     const toggleTheme = () => {
         setIsDarkMode((prevMode) => !prevMode);
+    };
+
+    const toggleLeftNav = () => {
+        setIsLeftNavVisible((prev) => !prev);
     };
 
     const navigationItems = {
@@ -114,14 +120,25 @@ const TabSystem = () => {
                 </div>
             </div>
 
-            <div className="tab-content-container">
+            <div className={`tab-content-container ${!isLeftNavVisible ? 'nav-hidden' : ''}`}>
                 {/* Left Navigation */}
-                <div className="left-nav">
-                    <LeftNavigation
-                        items={navigationItems[activeTab]}
-                        selectedNavItem={selectedNavItem}
-                        setSelectedNavItem={setSelectedNavItem}
-                    />
+                <div className={`left-nav ${isLeftNavVisible ? 'visible' : 'hidden'}`}>
+                    <div className="nav-toggle-container">
+                        <button
+                            className="nav-toggle-btn"
+                            onClick={toggleLeftNav}
+                            aria-label={isLeftNavVisible ? "Hide navigation" : "Show navigation"}
+                        >
+                            <ToggleIcon className="toggle-icon" />
+                        </button>
+                    </div>
+                    {isLeftNavVisible && (
+                        <LeftNavigation
+                            items={navigationItems[activeTab]}
+                            selectedNavItem={selectedNavItem}
+                            setSelectedNavItem={setSelectedNavItem}
+                        />
+                    )}
                 </div>
 
                 {/* Main Content Area */}
@@ -129,6 +146,7 @@ const TabSystem = () => {
                     activeTab={activeTab}
                     selectedNavItem={selectedNavItem}
                     navigationItems={navigationItems}
+                    isLeftNavVisible={isLeftNavVisible}
                 />
             </div>
         </div>
