@@ -7,3 +7,4 @@ export { default as APITool } from './APITool/APITool';
 export { default as BackgroundRemoverTool } from './BackgroundRemover/BackgroundRemoverTool';
 export { default as StorageTool } from './StorageTool/StorageTool';
 export { default as ColorPickerTool } from './ColorPicker/ColorPickerTool';
+export { default as ScreenRecorderTool } from './ScreenRecorder/ScreenRecorderTool';
