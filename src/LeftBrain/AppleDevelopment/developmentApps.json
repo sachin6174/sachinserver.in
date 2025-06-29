@@ -1,0 +1,379 @@
+[
+    {
+        "name": "SF Symbols",
+        "description": "Apple's comprehensive library of symbols for use in apps and interfaces across all Apple platforms.",
+        "icon": "https://developer.apple.com/assets/elements/icons/sf-symbols/sf-symbols-96x96_2x.png",
+        "downloadLink": "https://developer.apple.com/sf-symbols/",
+        "category": "Design & Assets",
+        "features": [
+            "2,500+ symbols",
+            "Multiple weights",
+            "Variable symbols",
+            "Custom symbols"
+        ]
+    },
+    {
+        "name": "Proxyman",
+        "description": "Modern and intuitive HTTP debugging proxy for macOS, iOS and Android.",
+        "icon": "https://proxyman.io/img/icon-512.png",
+        "downloadLink": "https://proxyman.io/",
+        "category": "Network Debugging",
+        "features": [
+            "SSL Proxying",
+            "Network Debugging",
+            "Request/Response",
+            "Mock Server"
+        ]
+    },
+    {
+        "name": "SimSim",
+        "description": "Simple utility app for iOS Simulator that lets you explore app's document folder or bundle.",
+        "icon": "https://github.com/dsmelov/simsim/raw/master/SimSim/Images.xcassets/AppIcon.appiconset/icon_128x128.png",
+        "downloadLink": "https://github.com/dsmelov/simsim",
+        "category": "Simulator Tools",
+        "features": [
+            "File System Access",
+            "Bundle Explorer",
+            "Quick Access",
+            "Free & Open Source"
+        ]
+    },
+    {
+        "name": "Create ML",
+        "description": "Framework that helps you build machine learning models for your apps.",
+        "icon": "https://developer.apple.com/assets/elements/icons/create-ml/create-ml-96x96_2x.png",
+        "downloadLink": "https://developer.apple.com/machine-learning/create-ml/",
+        "category": "Machine Learning",
+        "features": [
+            "No ML Experience Required",
+            "Swift Integration",
+            "On-Device Processing",
+            "Privacy-First"
+        ]
+    },
+    {
+        "name": "Instruments",
+        "description": "Performance analysis and testing tool for iOS and macOS apps.",
+        "icon": "https://developer.apple.com/assets/elements/icons/instruments/instruments-96x96_2x.png",
+        "downloadLink": "https://developer.apple.com/xcode/features/",
+        "category": "Performance",
+        "features": [
+            "Memory Profiling",
+            "Time Profiler",
+            "Network Analysis",
+            "Energy Impact"
+        ]
+    },
+    {
+        "name": "RocketSim",
+        "description": "Simulator enhancement tool that boosts your productivity while developing iOS apps.",
+        "icon": "https://www.rocketsim.app/assets/rocketsim-icon.png",
+        "downloadLink": "https://www.rocketsim.app/",
+        "category": "Simulator Enhancement",
+        "features": [
+            "Screen Recording",
+            "Accessibility Inspector",
+            "Device Comparison",
+            "Quick Actions"
+        ]
+    },
+    {
+        "name": "LaunchControl",
+        "description": "Create, manage and debug system- and user services with launchd, the service management framework of macOS.",
+        "icon": "https://www.soma-zone.com/LaunchControl/icon_128x128.png",
+        "downloadLink": "https://www.soma-zone.com/LaunchControl/",
+        "category": "System Management",
+        "features": [
+            "Service Management",
+            "launchd Integration",
+            "Debug Services",
+            "System Monitoring"
+        ]
+    },
+    {
+        "name": "Mac Symbolicator",
+        "description": "Symbolicate crash reports and analyze stack traces for iOS and macOS applications.",
+        "icon": "https://github.com/inket/MacSymbolicator/raw/master/MacSymbolicator/Assets.xcassets/AppIcon.appiconset/icon_128x128.png",
+        "downloadLink": "https://github.com/inket/MacSymbolicator",
+        "category": "Debugging",
+        "features": [
+            "Crash Report Analysis",
+            "Symbol Resolution",
+            "Stack Trace Debugging",
+            "Free & Open Source"
+        ]
+    },
+    {
+        "name": "DB Browser for SQLite",
+        "description": "High quality, visual, open source tool to create, design, and edit database files compatible with SQLite.",
+        "icon": "https://sqlitebrowser.org/images/sqlitebrowser.svg",
+        "downloadLink": "https://sqlitebrowser.org/",
+        "category": "Database",
+        "features": [
+            "Visual Database Design",
+            "SQL Query Editor",
+            "Data Import/Export",
+            "Cross-Platform"
+        ]
+    },
+    {
+        "name": "Visual Studio Code",
+        "description": "Lightweight but powerful source code editor with built-in support for JavaScript, TypeScript and Node.js.",
+        "icon": "https://code.visualstudio.com/assets/images/code-stable.png",
+        "downloadLink": "https://code.visualstudio.com/",
+        "category": "Code Editor",
+        "features": [
+            "IntelliSense",
+            "Debug Support",
+            "Git Integration",
+            "Extensions Marketplace"
+        ]
+    },
+    {
+        "name": "Network Link Conditioner",
+        "description": "System preference pane for simulating various network conditions to test app performance.",
+        "icon": "https://developer.apple.com/assets/elements/icons/network-link-conditioner/network-link-conditioner-96x96_2x.png",
+        "downloadLink": "https://developer.apple.com/download/all/",
+        "category": "Network Testing",
+        "features": [
+            "Network Simulation",
+            "Bandwidth Control",
+            "Latency Testing",
+            "Built into Xcode"
+        ]
+    },
+    {
+        "name": "Xcode",
+        "description": "Apple's integrated development environment for creating apps for Mac, iPhone, iPad, Apple TV, and Apple Watch.",
+        "icon": "https://developer.apple.com/assets/elements/icons/xcode-12/xcode-12-96x96_2x.png",
+        "downloadLink": "https://developer.apple.com/xcode/",
+        "category": "IDE",
+        "features": [
+            "Interface Builder",
+            "Swift Playgrounds",
+            "Simulator",
+            "Debugging Tools"
+        ]
+    },
+    {
+        "name": "AnyDesk",
+        "description": "Fast and secure remote desktop software for accessing your development machines from anywhere.",
+        "icon": "https://download.anydesk.com/images/anydesk-icon.png",
+        "downloadLink": "https://anydesk.com/",
+        "category": "Remote Access",
+        "features": [
+            "Remote Desktop",
+            "File Transfer",
+            "Cross-Platform",
+            "Low Latency"
+        ]
+    },
+    {
+        "name": "WWDC for macOS",
+        "description": "Watch Apple's Worldwide Developers Conference videos right from your Mac with this unofficial app.",
+        "icon": "https://wwdc.io/images/app-icon.png",
+        "downloadLink": "https://wwdc.io/",
+        "category": "Learning",
+        "features": [
+            "WWDC Videos",
+            "Session Downloads",
+            "Transcripts",
+            "Picture-in-Picture"
+        ]
+    },
+    {
+        "name": "UTM",
+        "description": "Full featured system emulator and virtual machine host for iOS and macOS.",
+        "icon": "https://mac.getutm.app/images/icon.png",
+        "downloadLink": "https://mac.getutm.app/",
+        "category": "Virtualization",
+        "features": [
+            "Virtual Machines",
+            "iOS Support",
+            "Hardware Emulation",
+            "QEMU Backend"
+        ]
+    },
+    {
+        "name": "The Unarchiver",
+        "description": "Archive unpacker that handles many more formats than the native Archive Utility.",
+        "icon": "https://theunarchiver.com/img/unarchiver-icon.png",
+        "downloadLink": "https://theunarchiver.com/",
+        "category": "File Management",
+        "features": [
+            "Multiple Formats",
+            "Batch Processing",
+            "Password Support",
+            "Free & Fast"
+        ]
+    },
+    {
+        "name": "Packages",
+        "description": "Integrated development environment for building macOS installer packages (.pkg files).",
+        "icon": "http://s.sudre.free.fr/Software/Packages/Artwork/packages_icon_128.png",
+        "downloadLink": "http://s.sudre.free.fr/Software/Packages/about.html",
+        "category": "Package Management",
+        "features": [
+            "Visual Package Builder",
+            "Script Integration",
+            "Distribution Creation",
+            "Code Signing"
+        ]
+    },
+    {
+        "name": "Applite",
+        "description": "User-friendly GUI for Homebrew that makes installing and managing macOS applications simple.",
+        "icon": "https://aerolite.dev/applite/assets/logo.png",
+        "downloadLink": "https://aerolite.dev/applite/index.html",
+        "category": "Package Management",
+        "features": [
+            "Homebrew GUI",
+            "App Discovery",
+            "Easy Installation",
+            "Update Management"
+        ]
+    },
+    {
+        "name": "OmniDiskSweeper",
+        "description": "Disk usage analyzer that helps you find and remove large files to free up valuable disk space.",
+        "icon": "https://www.omnigroup.com/assets/img/icons/omnidisksweeper.png",
+        "downloadLink": "https://www.omnigroup.com/more",
+        "category": "System Utility",
+        "features": [
+            "Disk Analysis",
+            "Large File Detection",
+            "Visual Tree View",
+            "Free Tool"
+        ]
+    },
+    {
+        "name": "iMazing",
+        "description": "Comprehensive iOS device management tool for backing up, transferring, and managing iPhone/iPad data.",
+        "icon": "https://imazing.com/img/imazing-icon-128.png",
+        "downloadLink": "https://imazing.com/",
+        "category": "Device Management",
+        "features": [
+            "iOS Backup",
+            "File Transfer",
+            "App Management",
+            "Data Export"
+        ]
+    },
+    {
+        "name": "Sourcetree",
+        "description": "Free Git GUI client that simplifies distributed version control for Git and Mercurial repositories.",
+        "icon": "https://wac-cdn.atlassian.com/dam/jcr:580c367b-c240-453d-a83c-082d30e19aa5/sourcetree-icon-gradient-blue.svg",
+        "downloadLink": "https://www.sourcetreeapp.com/",
+        "category": "Version Control",
+        "features": [
+            "Git GUI",
+            "Branch Management",
+            "Visual Diff",
+            "Repository Management"
+        ]
+    },
+    {
+        "name": "Hopper Disassembler",
+        "description": "Reverse engineering tool that disassembles, decompiles and debugs iOS and macOS applications.",
+        "icon": "https://www.hopperapp.com/img/hopperv4-icon.png",
+        "downloadLink": "https://www.hopperapp.com/",
+        "category": "Reverse Engineering",
+        "features": [
+            "Binary Analysis",
+            "Decompilation",
+            "Debugging",
+            "iOS/macOS Support"
+        ]
+    },
+    {
+        "name": "Apple Configurator",
+        "description": "Official Apple tool for deploying and configuring iOS devices in enterprise and educational environments.",
+        "icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple126/v4/4e/0f/1b/4e0f1b3c-2a5c-8c5c-6c1f-1b8c7c8a2b5c/source/512x512bb.jpg",
+        "downloadLink": "https://apps.apple.com/us/app/apple-configurator-2/id1037126344",
+        "category": "Device Configuration",
+        "features": [
+            "Device Provisioning",
+            "Profile Management",
+            "Bulk Configuration",
+            "Enterprise Deployment"
+        ]
+    },
+    {
+        "name": "TestFlight",
+        "description": "Apple's official beta testing platform for distributing pre-release versions of iOS apps to testers.",
+        "icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple126/v4/5c/c2/5d/5cc25dc3-8d8f-8a0c-0b89-8c2a8c7e8c0c/source/512x512bb.jpg",
+        "downloadLink": "https://apps.apple.com/us/app/testflight/id899247664",
+        "category": "Beta Testing",
+        "features": [
+            "Beta Distribution",
+            "Crash Reports",
+            "User Feedback",
+            "Version Management"
+        ]
+    },
+    {
+        "name": "Finder",
+        "description": "Enhanced file management with developer-focused features and advanced search capabilities.",
+        "icon": "https://help.apple.com/assets/61DF0983A10F9C5C7B1F46A8/61DF09AAD234EA5C0B23EF22/en_US/4e1cbff4b0a0e57e6527cb9d827a4d17.png",
+        "downloadLink": "https://support.apple.com/guide/mac-help/open-apps-folders-and-documents-mh35859/mac",
+        "category": "File Management",
+        "features": [
+            "Quick Look",
+            "Smart Folders",
+            "Path Bar",
+            "Column View"
+        ]
+    },
+    {
+        "name": "Terminal",
+        "description": "Command-line interface for macOS with powerful scripting and development capabilities.",
+        "icon": "https://help.apple.com/assets/61DF0983A10F9C5C7B1F46A8/61DF09AAD234EA5C0B23EF22/en_US/18dba302342d8c33b8e8e6e5e3b1b36f.png",
+        "downloadLink": "https://support.apple.com/guide/terminal/welcome/mac",
+        "category": "Command Line",
+        "features": [
+            "Shell Scripting",
+            "Package Management",
+            "Git Integration",
+            "SSH Support"
+        ]
+    },
+    {
+        "name": "MonitorControl",
+        "description": "Control external monitor brightness and volume on Mac with keyboard shortcuts or menu bar.",
+        "icon": "https://github.com/MonitorControl/MonitorControl/raw/master/MonitorControl/Support/Assets.xcassets/AppIcon.appiconset/icon_128x128.png",
+        "downloadLink": "https://github.com/MonitorControl/MonitorControl",
+        "category": "System Utility",
+        "features": [
+            "Brightness Control",
+            "Volume Control",
+            "Keyboard Shortcuts",
+            "Menu Bar Access"
+        ]
+    },
+    {
+        "name": "GitKraken",
+        "description": "Cross-platform Git client with a powerful GUI for managing repositories and visualizing commit history.",
+        "icon": "https://www.gitkraken.com/downloads/brand-assets/gitkraken-icon-teal.svg",
+        "downloadLink": "https://www.gitkraken.com/",
+        "category": "Version Control",
+        "features": [
+            "Visual Commit History",
+            "Merge Conflict Resolution",
+            "Pull Request Management",
+            "Team Collaboration"
+        ]
+    },
+    {
+        "name": "Postman",
+        "description": "API development and testing platform for building, testing, and documenting APIs.",
+        "icon": "https://www.postman.com/assets/logos/postman-logo-icon-orange.svg",
+        "downloadLink": "https://www.postman.com/",
+        "category": "API Testing",
+        "features": [
+            "API Testing",
+            "Documentation",
+            "Mock Servers",
+            "Team Collaboration"
+        ]
+    }
+]

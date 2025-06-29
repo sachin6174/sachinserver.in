@@ -1,5 +1,6 @@
 import React from "react";
 import "../shared-styles.css";
+import developmentAppsData from "./developmentApps.json";
 
 const AppleDevelopment = () => {
     const frameworks = [
@@ -39,56 +40,7 @@ const AppleDevelopment = () => {
     ];
 
     // Helpful development apps
-    const developmentApps = [
-        {
-            name: "SF Symbols",
-            description: "Apple's comprehensive library of symbols for use in apps and interfaces across all Apple platforms.",
-            icon: "📱",
-            downloadLink: "https://developer.apple.com/sf-symbols/",
-            category: "Design & Assets",
-            features: ["2,500+ symbols", "Multiple weights", "Variable symbols", "Custom symbols"]
-        },
-        {
-            name: "Proxyman",
-            description: "Modern and intuitive HTTP debugging proxy for macOS, iOS and Android.",
-            icon: "🔍",
-            downloadLink: "https://proxyman.io/",
-            category: "Network Debugging",
-            features: ["SSL Proxying", "Network Debugging", "Request/Response", "Mock Server"]
-        },
-        {
-            name: "SimSim",
-            description: "Simple utility app for iOS Simulator that lets you explore app's document folder or bundle.",
-            icon: "📂",
-            downloadLink: "https://github.com/dsmelov/simsim",
-            category: "Simulator Tools",
-            features: ["File System Access", "Bundle Explorer", "Quick Access", "Free & Open Source"]
-        },
-        {
-            name: "Create ML",
-            description: "Framework that helps you build machine learning models for your apps.",
-            icon: "🧠",
-            downloadLink: "https://developer.apple.com/machine-learning/create-ml/",
-            category: "Machine Learning",
-            features: ["No ML Experience Required", "Swift Integration", "On-Device Processing", "Privacy-First"]
-        },
-        {
-            name: "Instruments",
-            description: "Performance analysis and testing tool for iOS and macOS apps.",
-            icon: "⚡",
-            downloadLink: "https://developer.apple.com/xcode/features/",
-            category: "Performance",
-            features: ["Memory Profiling", "Time Profiler", "Network Analysis", "Energy Impact"]
-        },
-        {
-            name: "RocketSim",
-            description: "Simulator enhancement tool that boosts your productivity while developing iOS apps.",
-            icon: "🚀",
-            downloadLink: "https://www.rocketsim.app/",
-            category: "Simulator Enhancement",
-            features: ["Screen Recording", "Accessibility Inspector", "Device Comparison", "Quick Actions"]
-        }
-    ];
+    const developmentApps = developmentAppsData;
 
     // Important macOS scripts
     const macosScripts = [
@@ -253,21 +205,111 @@ xcrun simctl spawn booted log stream --predicate 'processImagePath contains "$AP
                 </div>
                 <div className="cards-container">
                     {developmentApps.map((app, index) => (
-                        <div key={index} className="tech-card apple hover-effect">
-                            <div className="tech-icon">{app.icon}</div>
-                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '0.5rem' }}>
-                                <h3 style={{ margin: 0 }}>{app.name}</h3>
-                                <span className="tech-tag" style={{ fontSize: '0.75rem', padding: '0.25rem 0.5rem' }}>
+                        <div key={index} className="tech-card apple hover-effect" style={{
+                            transition: 'all 0.3s ease',
+                            cursor: 'pointer'
+                        }}
+                            onMouseOver={(e) => {
+                                e.currentTarget.style.transform = 'translateY(-5px)';
+                                e.currentTarget.style.boxShadow = '0 10px 30px rgba(0,0,0,0.15)';
+                            }}
+                            onMouseOut={(e) => {
+                                e.currentTarget.style.transform = 'translateY(0)';
+                                e.currentTarget.style.boxShadow = '0 4px 20px rgba(0,0,0,0.1)';
+                            }}>
+                            <div className="tech-icon" style={{
+                                width: '96px',
+                                height: '96px',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                marginBottom: '1.5rem',
+                                background: 'linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%)',
+                                borderRadius: '20px',
+                                border: '1px solid rgba(255,255,255,0.1)',
+                                padding: '8px'
+                            }}>
+                                <img
+                                    src={app.icon}
+                                    alt={`${app.name} icon`}
+                                    style={{
+                                        width: '80px',
+                                        height: '80px',
+                                        objectFit: 'contain',
+                                        borderRadius: '16px',
+                                        filter: 'drop-shadow(0 4px 16px rgba(0,0,0,0.15))',
+                                        transition: 'transform 0.3s ease, filter 0.3s ease'
+                                    }}
+                                    onMouseOver={(e) => {
+                                        e.target.style.transform = 'scale(1.05)';
+                                        e.target.style.filter = 'drop-shadow(0 6px 20px rgba(0,0,0,0.2))';
+                                    }}
+                                    onMouseOut={(e) => {
+                                        e.target.style.transform = 'scale(1)';
+                                        e.target.style.filter = 'drop-shadow(0 4px 16px rgba(0,0,0,0.15))';
+                                    }}
+                                    onError={(e) => {
+                                        e.target.style.display = 'none';
+                                        e.target.nextSibling.style.display = 'flex';
+                                    }}
+                                />
+                                <div style={{
+                                    display: 'none',
+                                    width: '80px',
+                                    height: '80px',
+                                    background: 'linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%)',
+                                    borderRadius: '16px',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    color: 'white',
+                                    fontSize: '32px',
+                                    fontWeight: 'bold',
+                                    textShadow: '0 2px 4px rgba(0,0,0,0.3)',
+                                    boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.2)'
+                                }}>
+                                    {app.name.charAt(0)}
+                                </div>
+                            </div>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '0.75rem' }}>
+                                <h3 style={{
+                                    margin: 0,
+                                    fontSize: '1.3rem',
+                                    color: 'var(--text-primary)',
+                                    fontWeight: '600',
+                                    lineHeight: '1.3'
+                                }}>{app.name}</h3>
+                                <span className="tech-tag" style={{
+                                    fontSize: '0.75rem',
+                                    padding: '0.4rem 0.8rem',
+                                    background: 'linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%)',
+                                    border: '1px solid rgba(255,255,255,0.2)',
+                                    borderRadius: '12px',
+                                    color: 'var(--text-secondary)',
+                                    fontWeight: '500',
+                                    whiteSpace: 'nowrap'
+                                }}>
                                     {app.category}
                                 </span>
                             </div>
-                            <p>{app.description}</p>
-                            <ul className="feature-list">
+                            <p style={{
+                                color: 'var(--text-secondary)',
+                                lineHeight: '1.6',
+                                marginBottom: '1rem',
+                                fontSize: '0.95rem'
+                            }}>{app.description}</p>
+                            <ul className="feature-list" style={{
+                                marginBottom: '1rem'
+                            }}>
                                 {app.features.map((feature, idx) => (
-                                    <li key={idx}>{feature}</li>
+                                    <li key={idx} style={{
+                                        fontSize: '0.9rem',
+                                        color: 'var(--text-secondary)',
+                                        marginBottom: '0.25rem',
+                                        paddingLeft: '0.5rem'
+                                    }}>{feature}</li>
                                 ))}
                             </ul>
-                            <div style={{ marginTop: '1rem' }}>
+                            <div style={{ marginTop: '1.5rem', paddingTop: '1rem', borderTop: '1px solid rgba(255,255,255,0.1)' }}>
                                 <a
                                     href={app.downloadLink}
                                     target="_blank"
@@ -275,12 +317,30 @@ xcrun simctl spawn booted log stream --predicate 'processImagePath contains "$AP
                                     className="leftbrain-button"
                                     style={{
                                         textDecoration: 'none',
-                                        display: 'inline-block',
+                                        display: 'inline-flex',
+                                        alignItems: 'center',
+                                        gap: '0.5rem',
                                         fontSize: '0.9rem',
-                                        padding: '0.5rem 1rem'
+                                        padding: '0.75rem 1.25rem',
+                                        background: 'linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%)',
+                                        border: 'none',
+                                        borderRadius: '12px',
+                                        color: 'white',
+                                        fontWeight: '500',
+                                        transition: 'all 0.3s ease',
+                                        boxShadow: '0 4px 12px rgba(0,0,0,0.15)'
+                                    }}
+                                    onMouseOver={(e) => {
+                                        e.target.style.transform = 'translateY(-2px)';
+                                        e.target.style.boxShadow = '0 6px 16px rgba(0,0,0,0.2)';
+                                    }}
+                                    onMouseOut={(e) => {
+                                        e.target.style.transform = 'translateY(0)';
+                                        e.target.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15)';
                                     }}
                                 >
-                                    Download / Learn More
+                                    <span>Download / Learn More</span>
+                                    <span style={{ fontSize: '0.8rem' }}>↗</span>
                                 </a>
                             </div>
                         </div>
