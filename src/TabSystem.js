@@ -15,14 +15,62 @@ import MainContent from './MainContent';
 import { ReactComponent as ToggleIcon } from './assets/svgs/toggle-icon.svg';
 
 const TabSystem = () => {
-    const [activeTab, setActiveTab] = useState("leftbrain");
-    const [selectedNavItem, setSelectedNavItem] = useState("");
-    const [isDarkMode, setIsDarkMode] = useState(true); // Default to night mode
-    const [isLeftNavVisible, setIsLeftNavVisible] = useState(true); // Toggle state for left navigation
+    // Initialize state with stored values or defaults
+    const [activeTab, setActiveTab] = useState(() => {
+        const stored = localStorage.getItem('activeTab');
+        return stored || "leftbrain"; // Default to leftbrain on first load
+    });
 
+    // State to track the last selected navigation item for each section
+    const [lastSelectedItems, setLastSelectedItems] = useState(() => {
+        const stored = localStorage.getItem('lastSelectedItems');
+        return stored ? JSON.parse(stored) : {
+            leftbrain: "About Me",     // Default for first load
+            rightbrain: "Drawing",     // Default when switching to rightbrain
+            tools: "Info Tool"         // Default when switching to tools
+        };
+    });
+
+    const [selectedNavItem, setSelectedNavItem] = useState(() => {
+        const stored = localStorage.getItem('activeTab');
+        const lastItems = localStorage.getItem('lastSelectedItems');
+        if (stored && lastItems) {
+            const parsedItems = JSON.parse(lastItems);
+            return parsedItems[stored] || "About Me";
+        }
+        return "About Me"; // Default to About Me on first load
+    });
+
+    const [isDarkMode, setIsDarkMode] = useState(() => {
+        const stored = localStorage.getItem('isDarkMode');
+        return stored !== null ? JSON.parse(stored) : true; // Default to night mode
+    });
+
+    const [isLeftNavVisible, setIsLeftNavVisible] = useState(() => {
+        const stored = localStorage.getItem('isLeftNavVisible');
+        return stored !== null ? JSON.parse(stored) : true; // Default to visible
+    });
+
+    // Handle tab changes and update selected nav item
     useEffect(() => {
+        localStorage.setItem('activeTab', activeTab);
+
+        // Update selectedNavItem to the last selected item for this tab
+        const lastSelected = lastSelectedItems[activeTab];
+        if (lastSelected && lastSelected !== selectedNavItem) {
+            setSelectedNavItem(lastSelected);
+        }
+    }, [activeTab]); // Removed lastSelectedItems from dependency to prevent loops
+
+    // Save localStorage when selectedNavItem changes
+    useEffect(() => {
+        localStorage.setItem('isDarkMode', JSON.stringify(isDarkMode));
         document.body.className = isDarkMode ? "dark-mode" : "light-mode";
     }, [isDarkMode]);
+
+    useEffect(() => {
+        localStorage.setItem('isLeftNavVisible', JSON.stringify(isLeftNavVisible));
+    }, [isLeftNavVisible]);
 
     const toggleTheme = () => {
         setIsDarkMode((prevMode) => !prevMode);
@@ -59,19 +107,18 @@ const TabSystem = () => {
         ],
     };
 
-    useEffect(() => {
-        if (activeTab === "rightbrain") {
-            setSelectedNavItem("Drawing");
-        } else if (activeTab === "leftbrain") {
-            setSelectedNavItem("About Me");
-        } else if (activeTab === "tools") {
-            setSelectedNavItem("Info Tool"); // Default tool selection
-        } else if (!selectedNavItem) {
-            const defaultItem = navigationItems[activeTab][0]?.label;
-            setSelectedNavItem(defaultItem);
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [activeTab]); // Add activeTab as dependency
+    // Custom setSelectedNavItem that also updates localStorage
+    const handleNavItemChange = (newItem) => {
+        setSelectedNavItem(newItem);
+
+        // Update the last selected item for the current tab
+        const updatedLastSelectedItems = {
+            ...lastSelectedItems,
+            [activeTab]: newItem
+        };
+        setLastSelectedItems(updatedLastSelectedItems);
+        localStorage.setItem('lastSelectedItems', JSON.stringify(updatedLastSelectedItems));
+    };
 
     return (
         <div className="main-container">
@@ -136,7 +183,7 @@ const TabSystem = () => {
                         <LeftNavigation
                             items={navigationItems[activeTab]}
                             selectedNavItem={selectedNavItem}
-                            setSelectedNavItem={setSelectedNavItem}
+                            setSelectedNavItem={handleNavItemChange}
                         />
                     )}
                 </div>
