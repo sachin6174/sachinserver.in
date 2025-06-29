@@ -120,7 +120,7 @@ const AboutMe = () => {
                     <div className="avatar-container">
                         <img
                             src={profileImage}
-                            alt="Sachin Kumar - Profile Picture"
+                            alt="Sachin Kumar - Profile"
                             className="avatar-image"
                         />
                         <div className="status-indicator"></div>

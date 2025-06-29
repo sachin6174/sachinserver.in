@@ -8,6 +8,7 @@ const ScreenRecorderTool = () => {
     const [recordingMode, setRecordingMode] = useState('screen'); // 'screen', 'window', 'tab'
     const [audioSource, setAudioSource] = useState('system'); // 'system', 'microphone', 'both', 'none'
     const [quality, setQuality] = useState('high'); // 'low', 'medium', 'high'
+    // eslint-disable-next-line no-unused-vars
     const [recordedChunks, setRecordedChunks] = useState([]);
     const [error, setError] = useState('');
     const [recordings, setRecordings] = useState([]);

@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect, useCallback } from 'react';
 import './WritingBoardTool.css';
 
 const WritingBoardTool = () => {
@@ -12,21 +12,21 @@ const WritingBoardTool = () => {
     const [text, setText] = useState('');
     const [textPosition, setTextPosition] = useState({ x: 0, y: 0 });
 
+    const saveState = useCallback(() => {
+        const canvas = canvasRef.current;
+        const newHistory = history.slice(0, historyIndex + 1);
+        newHistory.push(canvas.toDataURL());
+        setHistory(newHistory);
+        setHistoryIndex(newHistory.length - 1);
+    }, [history, historyIndex]);
+
     useEffect(() => {
         const canvas = canvasRef.current;
         const ctx = canvas.getContext('2d');
         ctx.fillStyle = '#ffffff';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
         saveState();
-    }, []);
-
-    const saveState = () => {
-        const canvas = canvasRef.current;
-        const newHistory = history.slice(0, historyIndex + 1);
-        newHistory.push(canvas.toDataURL());
-        setHistory(newHistory);
-        setHistoryIndex(newHistory.length - 1);
-    };
+    }, [saveState]);
 
     const undo = () => {
         if (historyIndex > 0) {
@@ -75,7 +75,7 @@ const WritingBoardTool = () => {
 
     const draw = (e) => {
         if (!isDrawing || tool === 'text') return;
-        
+
         const canvas = canvasRef.current;
         const rect = canvas.getBoundingClientRect();
         const ctx = canvas.getContext('2d');
@@ -92,7 +92,7 @@ const WritingBoardTool = () => {
 
     const addText = () => {
         if (!text) return;
-        
+
         const canvas = canvasRef.current;
         const ctx = canvas.getContext('2d');
         ctx.font = '16px Arial';
