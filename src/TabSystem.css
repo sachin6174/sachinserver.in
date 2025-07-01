@@ -815,6 +815,25 @@ button:hover {
   }
 }
 
+/* Tab label responsive display */
+.tab-label-mobile {
+  display: none;
+}
+
+.tab-label-desktop {
+  display: inline;
+}
+
+@media (max-width: 768px) {
+  .tab-label-mobile {
+    display: inline !important;
+  }
+  
+  .tab-label-desktop {
+    display: none !important;
+  }
+}
+
 /* Content area improvements */
 .tab-content {
   padding: 1rem;

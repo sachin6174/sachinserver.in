@@ -22,9 +22,16 @@ const MainContent = ({ activeTab, selectedNavItem, navigationItems, isLeftNavVis
                     color: "#666",
                 }}
             >
-                <span>{activeTab === "leftbrain" ? "🧠 LeftBrain" :
-                    activeTab === "rightbrain" ? "🎨 RightBrain" :
-                        "🛠️ Tools"}</span>
+                <span className="tab-label-mobile">
+                    {activeTab === "leftbrain" ? "🧠 LeftBrain" :
+                     activeTab === "rightbrain" ? "🎨 RightBrain" :
+                     "🛠️ Tools"}
+                </span>
+                <span className="tab-label-desktop">
+                    {activeTab === "leftbrain" ? "🧠 LeftBrain: Logic and Analysis" :
+                     activeTab === "rightbrain" ? "🎨 RightBrain: Creativity and Art" :
+                     "🛠️ Tools: Utilities and Widgets"}
+                </span>
                 {selectedNavItem && (
                     <>
                         <span style={{

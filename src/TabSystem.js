@@ -43,7 +43,17 @@ const TabSystem = () => {
 
     const [isDarkMode, setIsDarkMode] = useState(() => {
         const stored = localStorage.getItem('isDarkMode');
-        return stored !== null ? JSON.parse(stored) : true; // Default to night mode
+        if (stored !== null) {
+            // If user has previously set a preference, use that
+            return JSON.parse(stored);
+        } else {
+            // If no stored preference, detect system preference
+            if (window.matchMedia) {
+                return window.matchMedia('(prefers-color-scheme: dark)').matches;
+            }
+            // Fallback to light mode if matchMedia is not supported
+            return false;
+        }
     });
 
     const [isLeftNavVisible, setIsLeftNavVisible] = useState(() => {
@@ -67,6 +77,24 @@ const TabSystem = () => {
         localStorage.setItem('isDarkMode', JSON.stringify(isDarkMode));
         document.body.className = isDarkMode ? "dark-mode" : "light-mode";
     }, [isDarkMode]);
+
+    // Listen for system theme changes (only if no stored preference exists)
+    useEffect(() => {
+        const stored = localStorage.getItem('isDarkMode');
+        if (stored === null && window.matchMedia) {
+            const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+            const handleSystemThemeChange = (e) => {
+                setIsDarkMode(e.matches);
+            };
+            
+            mediaQuery.addListener(handleSystemThemeChange);
+            
+            // Cleanup listener on unmount
+            return () => {
+                mediaQuery.removeListener(handleSystemThemeChange);
+            };
+        }
+    }, []);
 
     useEffect(() => {
         localStorage.setItem('isLeftNavVisible', JSON.stringify(isLeftNavVisible));
@@ -156,7 +184,7 @@ const TabSystem = () => {
                     onClick={toggleTheme}
                     aria-label="Toggle Theme"
                 >
-                    {isDarkMode ? "🌙 Night Mode" : "☀️ Day Mode"}
+                    {isDarkMode ? "☀️ Day Mode" : "🌙 Night Mode"}
                 </button>
             </div>
 
