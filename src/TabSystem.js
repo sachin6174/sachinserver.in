@@ -62,6 +62,7 @@ const TabSystem = () => {
     });
 
     // Handle tab changes and update selected nav item
+    // Handle tab changes and update selected nav item
     useEffect(() => {
         localStorage.setItem('activeTab', activeTab);
 
@@ -70,7 +71,8 @@ const TabSystem = () => {
         if (lastSelected && lastSelected !== selectedNavItem) {
             setSelectedNavItem(lastSelected);
         }
-    }, [activeTab]); // Removed lastSelectedItems from dependency to prevent loops
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [activeTab]); // Only depend on activeTab to prevent infinite loops
 
     // Save localStorage when selectedNavItem changes
     useEffect(() => {
