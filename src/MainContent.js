@@ -8,18 +8,21 @@ const MainContent = ({ activeTab, selectedNavItem, navigationItems, isLeftNavVis
 
     return (
         <div className="tab-content" style={{ position: "relative", height: "100%" }}>
+
             {/* Breadcrumb Path */}
             <div
                 className="breadcrumb-path"
                 style={{
-                    position: "absolute",
-                    top: "10px",
-                    left: "10px",
+                    position: "relative",
+                    top: "0",
+                    left: "0",
                     display: "flex",
                     alignItems: "center",
                     gap: "8px",
                     fontSize: "14px",
                     color: "#666",
+                    padding: "10px 20px",
+                    marginBottom: "10px",
                 }}
             >
                 <span className="tab-label-mobile">
@@ -28,9 +31,9 @@ const MainContent = ({ activeTab, selectedNavItem, navigationItems, isLeftNavVis
                      "🛠️ Tools"}
                 </span>
                 <span className="tab-label-desktop">
-                    {activeTab === "leftbrain" ? "🧠 LeftBrain: Logic and Analysis" :
-                     activeTab === "rightbrain" ? "🎨 RightBrain: Creativity and Art" :
-                     "🛠️ Tools: Utilities and Widgets"}
+                    {activeTab === "leftbrain" ? "LeftBrain: Logic and Analysis" :
+                     activeTab === "rightbrain" ? "RightBrain: Creativity and Art" :
+                     "Tools: Utilities and Widgets"}
                 </span>
                 {selectedNavItem && (
                     <>
@@ -48,17 +51,20 @@ const MainContent = ({ activeTab, selectedNavItem, navigationItems, isLeftNavVis
             <div
                 className="separator-line"
                 style={{
-                    position: "absolute",
-                    top: "35px",
+                    position: "relative",
+                    top: "0",
                     left: "0",
-                    width: "100%",
+                    right: "0",
                     height: "1px",
                     backgroundColor: "#ccc",
+                    marginBottom: "20px",
+                    marginLeft: "20px",
+                    marginRight: "20px",
                 }}
             ></div>
 
             {/* Content Display */}
-            <div className="description" style={{ marginTop: "50px", padding: "20px" }}>
+            <div className="description" style={{ padding: "20px" }}>
                 {selectedContent || "Select an item to see its description."}
             </div>
         </div>

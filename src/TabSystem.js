@@ -188,20 +188,6 @@ const TabSystem = () => {
                 </button>
             </div>
 
-            {/* Below Tabs Section */}
-            <div className="below-tabs">
-                <div className="dynamic-title">
-                    {activeTab === "leftbrain"
-                        ? "LeftBrain: Logic and Analysis"
-                        : activeTab === "rightbrain"
-                            ? "RightBrain: Creativity and Art"
-                            : "Tools: Utilities and Widgets"}
-                </div>
-                <div className="selected-item black-text">
-                    {selectedNavItem ? `${selectedNavItem}` : "No item selected"}
-                </div>
-            </div>
-
             <div className={`tab-content-container ${!isLeftNavVisible ? 'nav-hidden' : ''}`}>
                 {/* Left Navigation */}
                 <div className={`left-nav ${isLeftNavVisible ? 'visible' : 'hidden'}`}>
