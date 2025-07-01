@@ -6,6 +6,8 @@ body {
     background-color: var(--bg-color, #fff);
     color: var(--text-color, #333);
     transition: background-color 0.3s ease, color 0.3s ease;
+    font-size: 14px;
+    line-height: 1.5;
     /* Better mobile scrolling */
     -webkit-overflow-scrolling: touch;
     overflow-x: hidden;
@@ -14,15 +16,15 @@ body {
 /* Improve mobile text readability */
 @media (max-width: 768px) {
     body {
-        font-size: 14px;
-        line-height: 1.5;
+        font-size: 13px;
+        line-height: 1.4;
     }
 }
 
 @media (max-width: 480px) {
     body {
-        font-size: 13px;
-        line-height: 1.4;
+        font-size: 12px;
+        line-height: 1.3;
     }
 }
 
