@@ -1,3 +1,5 @@
+@import '../shared-styles.css';
+
 .color-picker-tool {
     padding: 20px;
     max-width: 1200px;

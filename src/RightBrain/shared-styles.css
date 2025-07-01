@@ -22,6 +22,15 @@
     --transition-fast: 0.15s ease-in-out;
     --transition-normal: 0.3s ease-in-out;
     --transition-slow: 0.5s ease-in-out;
+    
+    /* Z-index system for consistent layering */
+    --z-base: 1;
+    --z-dropdown: 100;
+    --z-overlay: 500;
+    --z-modal: 1000;
+    --z-notification: 1100;
+    --z-tooltip: 1200;
+    --z-max: 9999;
 }
 
 /* Dark mode overrides */
@@ -303,6 +312,7 @@ body.dark-mode {
     /* Better mobile touch targets */
     min-height: 44px;
     min-width: 44px;
+    touch-action: manipulation; /* Improve touch responsiveness */
 }
 
 .back-button:hover,
@@ -567,6 +577,7 @@ body.dark-mode .rightbrain-button:hover {
     /* Better mobile touch targets */
     min-height: 44px;
     min-width: 44px;
+    touch-action: manipulation; /* Improve touch responsiveness */
 }
 
 @media (min-width: 768px) {

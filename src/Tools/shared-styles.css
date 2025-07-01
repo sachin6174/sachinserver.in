@@ -26,6 +26,15 @@
     --tool-transition-fast: 0.15s ease-in-out;
     --tool-transition-normal: 0.3s ease-in-out;
     --tool-transition-slow: 0.5s ease-in-out;
+
+    /* Z-index system for consistent layering */
+    --z-base: 1;
+    --z-dropdown: 100;
+    --z-overlay: 500;
+    --z-modal: 1000;
+    --z-notification: 1100;
+    --z-tooltip: 1200;
+    --z-max: 9999;
 }
 
 /* Dark mode overrides */
@@ -246,24 +255,23 @@ body.dark-mode {
     }
 }
 
-/* Button styles */
+/* Enhanced tool button styles */
 .tool-button {
     background: linear-gradient(135deg, var(--tool-primary-color), var(--tool-primary-dark));
     color: white;
     border: none;
-    padding: 0.75rem 1.5rem;
+    padding: var(--tool-spacing-md) var(--tool-spacing-lg);
     border-radius: var(--tool-radius-md);
     font-weight: 600;
     font-size: 0.875rem;
     cursor: pointer;
     transition: all var(--tool-transition-normal);
-    text-decoration: none;
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
     justify-content: center;
     min-height: 44px;
     min-width: 44px;
+    touch-action: manipulation; /* Improve touch responsiveness */
 }
 
 .tool-button:hover:not(:disabled) {

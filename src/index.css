@@ -13,6 +13,19 @@ body {
     overflow-x: hidden;
 }
 
+/* Smooth scrolling and better performance */
+html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Improve scroll performance */
+* {
+    -webkit-overflow-scrolling: touch; /* iOS momentum scrolling */
+    scroll-behavior: smooth;
+}
+
 /* Improve mobile text readability */
 @media (max-width: 768px) {
     body {
@@ -150,9 +163,25 @@ input, textarea, select, button {
     margin: 0.1rem 0;
 }
 
-@media (max-width: 768px) {
-    input, textarea, select, button {
-        font-size: 0.7rem;
-        padding: 0.2rem 0.3rem;
+/* Form element consistency across platforms */
+input, textarea, select, button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+}
+
+/* iOS specific fixes */
+@supports (-webkit-touch-callout: none) {
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    input[type="number"],
+    input[type="url"],
+    textarea {
+        font-size: 16px; /* Prevent zoom on iOS */
+        border-radius: 0; /* Reset iOS rounded corners */
     }
 }
