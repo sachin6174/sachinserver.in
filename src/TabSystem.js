@@ -163,7 +163,6 @@ const TabSystem = () => {
                         <img
                             src={logo}
                             alt="Tab Icon"
-                            style={{ width: '32px', height: '32px', marginTop: '15px' }}
                         />{
                             ["leftbrain", "rightbrain", "tools"].map((tab) => (
                                 <div
