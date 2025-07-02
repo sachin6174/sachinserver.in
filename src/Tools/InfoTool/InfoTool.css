@@ -549,3 +549,26 @@ body.dark-mode .info-card h3 {
 .info-item .value {
     animation: countUp 0.3s ease;
 }
+
+/* Nav-hidden spacing optimizations for InfoTool */
+.nav-hidden .info-tool {
+    padding: 10px;
+}
+
+.nav-hidden .info-header {
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+}
+
+/* Responsive nav-hidden adjustments for InfoTool */
+@media (min-width: 768px) {
+    .nav-hidden .info-tool {
+        padding: 15px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .nav-hidden .info-tool {
+        padding: 20px;
+    }
+}

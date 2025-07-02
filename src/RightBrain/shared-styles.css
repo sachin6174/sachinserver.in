@@ -66,7 +66,7 @@ body.dark-mode {
 
 /* When navigation panel is hidden, expand the content */
 .nav-hidden .rightbrain-container {
-    padding: 0.25rem;
+    padding: 0;
 }
 
 /* Dynamic padding based on screen size */
@@ -76,7 +76,7 @@ body.dark-mode {
     }
 
     .nav-hidden .rightbrain-container {
-        padding: 0.4rem;
+        padding: 0;
     }
 }
 
@@ -86,7 +86,7 @@ body.dark-mode {
     }
 
     .nav-hidden .rightbrain-container {
-        padding: 0.875rem;
+        padding: 0;
     }
 }
 
@@ -833,4 +833,40 @@ body.dark-mode .rightbrain-button:hover {
         max-height: none;
         height: auto;
     }
+}
+
+/* Universal nav-hidden spacing optimizations for all tools and components */
+.nav-hidden [class*="-tool"],
+.nav-hidden [class*="-container"] {
+    padding: 0.5rem !important;
+}
+
+.nav-hidden [class*="-header"] {
+    margin-bottom: 1rem !important;
+    padding-bottom: 0.75rem !important;
+}
+
+.nav-hidden [class*="-section"] {
+    margin-bottom: 1.5rem !important;
+    padding-bottom: 1rem !important;
+}
+
+/* Responsive universal nav-hidden adjustments */
+@media (min-width: 768px) {
+    .nav-hidden [class*="-tool"],
+    .nav-hidden [class*="-container"] {
+        padding: 1rem !important;
+    }
+}
+
+@media (min-width: 1024px) {
+    .nav-hidden [class*="-tool"],
+    .nav-hidden [class*="-container"] {
+        padding: 1.5rem !important;
+    }
+}
+
+/* Specific overrides for main content areas */
+.nav-hidden .tab-content [class*="-container"] {
+    margin-top: -10px !important;
 }

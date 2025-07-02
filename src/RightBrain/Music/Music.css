@@ -313,6 +313,28 @@
     margin: 0;
 }
 
+/* Nav-hidden spacing optimizations for Music */
+.nav-hidden .music-container {
+    padding: 0.5rem;
+}
+
+.nav-hidden .music-card {
+    padding: 1.5rem;
+}
+
+/* Responsive nav-hidden adjustments for Music */
+@media (min-width: 768px) {
+    .nav-hidden .music-container {
+        padding: 1rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .nav-hidden .music-container {
+        padding: 1.5rem;
+    }
+}
+
 /* Responsive design */
 @media (max-width: 768px) {
     .music-container {

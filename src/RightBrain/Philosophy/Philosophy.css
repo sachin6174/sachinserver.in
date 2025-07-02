@@ -164,3 +164,30 @@
     transform: translateY(-5px);
     box-shadow: var(--shadow-lg);
 }
+
+/* Nav-hidden spacing optimizations for Philosophy */
+.nav-hidden .philosophy-container {
+    padding: 0.5rem;
+}
+
+.nav-hidden .philosophy-container .cards-container {
+    padding: 1rem 0;
+    gap: 1.5rem;
+}
+
+.nav-hidden .philosophy-container .card {
+    padding: 1.5rem;
+}
+
+/* Responsive nav-hidden adjustments for Philosophy */
+@media (min-width: 768px) {
+    .nav-hidden .philosophy-container {
+        padding: 1rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .nav-hidden .philosophy-container {
+        padding: 1.5rem;
+    }
+}

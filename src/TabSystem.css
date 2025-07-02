@@ -196,6 +196,9 @@ body {
 
 .tab-content-container.nav-hidden {
   grid-template-columns: 60px 1fr;
+  top: 50px !important;
+  margin: 0 0.5rem !important;
+  width: calc(100% - 1rem) !important;
 }
 
 /* Tablet adjustments */
@@ -1071,5 +1074,99 @@ button:hover {
     width: 14px;
     height: 14px;
     margin-right: 0.15rem;
+  }
+}
+
+/* Breadcrumb and content styling */
+.breadcrumb-path {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: #666;
+    padding: 10px 20px;
+    margin-bottom: 10px;
+}
+
+.separator-line {
+    position: relative;
+    height: 1px;
+    background-color: #ccc;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.description {
+    padding: 20px;
+}
+
+/* Enhanced nav-hidden spacing optimizations */
+.nav-hidden .breadcrumb-path {
+  padding: 2px 8px !important;
+  margin-bottom: 2px !important;
+  font-size: 11px !important;
+}
+
+.nav-hidden .separator-line {
+  margin: 2px 8px 3px 8px !important;
+}
+
+.nav-hidden .description {
+  padding: 3px 8px !important;
+}
+
+/* Responsive nav-hidden adjustments */
+@media (min-width: 768px) {
+    .nav-hidden .breadcrumb-path {
+        padding: 5px 15px !important;
+        margin-bottom: 5px !important;
+    }
+    
+    .nav-hidden .separator-line {
+        margin: 5px 15px 8px 15px !important;
+    }
+    
+    .nav-hidden .description {
+        padding: 8px 15px !important;
+    }
+}
+
+@media (min-width: 1024px) {
+    .nav-hidden .breadcrumb-path {
+        padding: 8px 20px !important;
+        margin-bottom: 8px !important;
+    }
+    
+    .nav-hidden .separator-line {
+        margin: 8px 20px 12px 20px !important;
+    }
+    
+    .nav-hidden .description {
+        padding: 12px 20px !important;
+    }
+}
+
+/* Nav-hidden optimizations for main container and tabs */
+.nav-hidden .main-container {
+  padding: 0.25rem !important;
+}
+
+.nav-hidden .tabs {
+  margin-bottom: 0.25rem !important;
+  padding-bottom: 0.1rem !important;
+}
+
+/* Responsive nav-hidden main container */
+@media (min-width: 768px) {
+  .nav-hidden .main-container {
+    padding: 0.4rem !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .nav-hidden .main-container {
+    padding: 0.5rem !important;
   }
 }

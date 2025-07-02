@@ -292,6 +292,52 @@
     background: var(--primary-color);
 }
 
+/* Reduce spacing when navigation is hidden (100% screen width) */
+.nav-hidden .literature-container {
+    margin-top: -15px !important; /* Reduce top margin from MainContent padding */
+    padding: 0 !important;
+}
+
+.nav-hidden .literature-container .compact-header {
+    padding: 0.2rem 0.5rem !important; /* Minimal header padding */
+    margin-bottom: 0.2rem !important; /* Minimal bottom margin */
+}
+
+.nav-hidden .literature-container .literature-section {
+    margin-bottom: 1.25rem !important; /* Compact section spacing */
+    padding-bottom: 0.75rem !important; /* Minimal bottom padding */
+}
+
+/* Enhanced responsive adjustments for nav-hidden */
+@media (min-width: 768px) {
+    .nav-hidden .literature-container {
+        margin-top: -10px !important;
+        padding: 0.5rem !important;
+    }
+    
+    .nav-hidden .literature-container .compact-header {
+        padding: 0.25rem 1rem !important;
+    }
+}
+
+@media (min-width: 1024px) {
+    .nav-hidden .literature-container {
+        margin-top: -5px !important;
+        padding: 1rem !important;
+    }
+    
+    .nav-hidden .literature-container .compact-header {
+        padding: 0.3rem 1.5rem !important;
+    }
+    
+    .nav-hidden .literature-container .literature-section {
+        margin-bottom: 1.5rem !important;
+        padding-bottom: 1rem !important;
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+    }
+}
+
 /* Responsive design improvements */
 @media (max-width: 768px) {
     .novelist-cards {

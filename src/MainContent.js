@@ -10,21 +10,7 @@ const MainContent = ({ activeTab, selectedNavItem, navigationItems, isLeftNavVis
         <div className="tab-content" style={{ position: "relative", height: "100%" }}>
 
             {/* Breadcrumb Path */}
-            <div
-                className="breadcrumb-path"
-                style={{
-                    position: "relative",
-                    top: "0",
-                    left: "0",
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "8px",
-                    fontSize: "14px",
-                    color: "#666",
-                    padding: "10px 20px",
-                    marginBottom: "10px",
-                }}
-            >
+            <div className="breadcrumb-path">
                 <span className="tab-label-mobile">
                     {activeTab === "leftbrain" ? "🧠 LeftBrain" :
                      activeTab === "rightbrain" ? "🎨 RightBrain" :
@@ -48,23 +34,10 @@ const MainContent = ({ activeTab, selectedNavItem, navigationItems, isLeftNavVis
             </div>
 
             {/* Separator Line */}
-            <div
-                className="separator-line"
-                style={{
-                    position: "relative",
-                    top: "0",
-                    left: "0",
-                    right: "0",
-                    height: "1px",
-                    backgroundColor: "#ccc",
-                    marginBottom: "20px",
-                    marginLeft: "20px",
-                    marginRight: "20px",
-                }}
-            ></div>
+            <div className="separator-line"></div>
 
             {/* Content Display */}
-            <div className="description" style={{ padding: "20px" }}>
+            <div className="description">
                 {selectedContent || "Select an item to see its description."}
             </div>
         </div>

@@ -53,6 +53,24 @@ body.dark-mode {
     overflow-y: auto;
 }
 
+/* Nav-hidden spacing optimizations for AboutMe */
+.nav-hidden .about-me-container {
+    padding: 0.5rem;
+}
+
+/* Responsive nav-hidden adjustments for AboutMe */
+@media (min-width: 768px) {
+    .nav-hidden .about-me-container {
+        padding: 1rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .nav-hidden .about-me-container {
+        padding: 1.5rem;
+    }
+}
+
 /* Typography */
 .about-me-container h1,
 .about-me-container h2,

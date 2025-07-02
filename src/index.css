@@ -185,3 +185,30 @@ input, textarea, select, button {
         border-radius: 0; /* Reset iOS rounded corners */
     }
 }
+
+/* Universal nav-hidden spacing optimizations */
+.nav-hidden [class*="tool"] {
+    padding: 0.5rem !important;
+}
+
+.nav-hidden [class*="tool"] [class*="header"] {
+    margin-bottom: 1rem !important;
+    padding-bottom: 0.75rem !important;
+}
+
+.nav-hidden [class*="tool"] [class*="section"] {
+    margin-bottom: 1.5rem !important;
+}
+
+/* Responsive adjustments for nav-hidden */
+@media (min-width: 768px) {
+    .nav-hidden [class*="tool"] {
+        padding: 1rem !important;
+    }
+}
+
+@media (min-width: 1024px) {
+    .nav-hidden [class*="tool"] {
+        padding: 1.5rem !important;
+    }
+}

@@ -397,6 +397,33 @@ body.dark-mode .close-preview {
     color: var(--text-secondary);
 }
 
+/* Nav-hidden spacing optimizations for Drawing */
+.nav-hidden .drawing-container {
+    padding: 0.5rem;
+}
+
+.nav-hidden .cards-container {
+    padding: 1rem 0;
+    gap: 1.5rem;
+}
+
+.nav-hidden .card {
+    padding: 1.5rem;
+}
+
+/* Responsive nav-hidden adjustments for Drawing */
+@media (min-width: 768px) {
+    .nav-hidden .drawing-container {
+        padding: 1rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .nav-hidden .drawing-container {
+        padding: 1.5rem;
+    }
+}
+
 /* Mobile responsiveness */
 @media (max-width: 768px) {
     .detailed-card {
