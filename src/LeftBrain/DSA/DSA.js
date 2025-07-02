@@ -4029,6 +4029,760 @@ void heapify(std::vector<int>& arr, int n, int i) {
 }`
             }
         },
+        backtracking: {
+            title: 'Backtracking',
+            description: 'Systematic method for solving problems by trying all possible solutions and backtracking when needed',
+            questions: [
+                'Generate all permutations of an array',
+                'Find all subsets of a given set',
+                'Solve N-Queens problem',
+                'Generate all valid parentheses combinations',
+                'Find all paths in a maze',
+                'Solve Sudoku puzzle',
+                'Word search in a 2D grid',
+                'Generate all combinations of size k',
+                'Palindrome partitioning',
+                'Letter combinations of phone number',
+                'Restore IP addresses',
+                'Expression add operators'
+            ],
+            javascript: {
+                title: 'Backtracking Algorithms in JavaScript',
+                code: `// 1. Generate All Permutations
+function permutations(nums) {
+    const result = [];
+    
+    function backtrack(current, remaining) {
+        if (remaining.length === 0) {
+            result.push([...current]);
+            return;
+        }
+        
+        for (let i = 0; i < remaining.length; i++) {
+            current.push(remaining[i]);
+            const newRemaining = remaining.slice(0, i).concat(remaining.slice(i + 1));
+            backtrack(current, newRemaining);
+            current.pop(); // backtrack
+        }
+    }
+    
+    backtrack([], nums);
+    return result;
+}
+
+// 2. Generate All Subsets
+function subsets(nums) {
+    const result = [];
+    
+    function backtrack(start, current) {
+        result.push([...current]);
+        
+        for (let i = start; i < nums.length; i++) {
+            current.push(nums[i]);
+            backtrack(i + 1, current);
+            current.pop(); // backtrack
+        }
+    }
+    
+    backtrack(0, []);
+    return result;
+}
+
+// 3. N-Queens Problem
+function solveNQueens(n) {
+    const result = [];
+    const board = Array(n).fill().map(() => Array(n).fill('.'));
+    
+    function isValid(row, col) {
+        // Check column
+        for (let i = 0; i < row; i++) {
+            if (board[i][col] === 'Q') return false;
+        }
+        
+        // Check diagonal (top-left to bottom-right)
+        for (let i = row - 1, j = col - 1; i >= 0 && j >= 0; i--, j--) {
+            if (board[i][j] === 'Q') return false;
+        }
+        
+        // Check diagonal (top-right to bottom-left)
+        for (let i = row - 1, j = col + 1; i >= 0 && j < n; i--, j++) {
+            if (board[i][j] === 'Q') return false;
+        }
+        
+        return true;
+    }
+    
+    function backtrack(row) {
+        if (row === n) {
+            result.push(board.map(row => row.join('')));
+            return;
+        }
+        
+        for (let col = 0; col < n; col++) {
+            if (isValid(row, col)) {
+                board[row][col] = 'Q';
+                backtrack(row + 1);
+                board[row][col] = '.'; // backtrack
+            }
+        }
+    }
+    
+    backtrack(0);
+    return result;
+}
+
+// 4. Generate Valid Parentheses
+function generateParenthesis(n) {
+    const result = [];
+    
+    function backtrack(current, open, close) {
+        if (current.length === 2 * n) {
+            result.push(current);
+            return;
+        }
+        
+        if (open < n) {
+            backtrack(current + '(', open + 1, close);
+        }
+        
+        if (close < open) {
+            backtrack(current + ')', open, close + 1);
+        }
+    }
+    
+    backtrack('', 0, 0);
+    return result;
+}
+
+// 5. Word Search in 2D Grid
+function wordSearch(board, word) {
+    const rows = board.length;
+    const cols = board[0].length;
+    const directions = [[0, 1], [1, 0], [0, -1], [-1, 0]];
+    
+    function backtrack(row, col, index) {
+        if (index === word.length) return true;
+        
+        if (row < 0 || row >= rows || col < 0 || col >= cols || 
+            board[row][col] !== word[index] || board[row][col] === '#') {
+            return false;
+        }
+        
+        const temp = board[row][col];
+        board[row][col] = '#'; // mark as visited
+        
+        for (const [dx, dy] of directions) {
+            if (backtrack(row + dx, col + dy, index + 1)) {
+                board[row][col] = temp; // restore
+                return true;
+            }
+        }
+        
+        board[row][col] = temp; // backtrack
+        return false;
+    }
+    
+    for (let i = 0; i < rows; i++) {
+        for (let j = 0; j < cols; j++) {
+            if (backtrack(i, j, 0)) return true;
+        }
+    }
+    
+    return false;
+}
+
+// 6. Sudoku Solver
+function solveSudoku(board) {
+    function isValid(row, col, num) {
+        // Check row
+        for (let j = 0; j < 9; j++) {
+            if (board[row][j] === num) return false;
+        }
+        
+        // Check column
+        for (let i = 0; i < 9; i++) {
+            if (board[i][col] === num) return false;
+        }
+        
+        // Check 3x3 box
+        const boxRow = Math.floor(row / 3) * 3;
+        const boxCol = Math.floor(col / 3) * 3;
+        for (let i = boxRow; i < boxRow + 3; i++) {
+            for (let j = boxCol; j < boxCol + 3; j++) {
+                if (board[i][j] === num) return false;
+            }
+        }
+        
+        return true;
+    }
+    
+    function backtrack() {
+        for (let i = 0; i < 9; i++) {
+            for (let j = 0; j < 9; j++) {
+                if (board[i][j] === '.') {
+                    for (let num = '1'; num <= '9'; num++) {
+                        if (isValid(i, j, num)) {
+                            board[i][j] = num;
+                            if (backtrack()) return true;
+                            board[i][j] = '.'; // backtrack
+                        }
+                    }
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+    
+    backtrack();
+    return board;
+}
+
+// 7. Combinations
+function combine(n, k) {
+    const result = [];
+    
+    function backtrack(start, current) {
+        if (current.length === k) {
+            result.push([...current]);
+            return;
+        }
+        
+        for (let i = start; i <= n; i++) {
+            current.push(i);
+            backtrack(i + 1, current);
+            current.pop(); // backtrack
+        }
+    }
+    
+    backtrack(1, []);
+    return result;
+}
+
+// 8. Palindrome Partitioning
+function palindromePartition(s) {
+    const result = [];
+    
+    function isPalindrome(str, left, right) {
+        while (left < right) {
+            if (str[left] !== str[right]) return false;
+            left++;
+            right--;
+        }
+        return true;
+    }
+    
+    function backtrack(start, current) {
+        if (start === s.length) {
+            result.push([...current]);
+            return;
+        }
+        
+        for (let end = start; end < s.length; end++) {
+            if (isPalindrome(s, start, end)) {
+                current.push(s.substring(start, end + 1));
+                backtrack(end + 1, current);
+                current.pop(); // backtrack
+            }
+        }
+    }
+    
+    backtrack(0, []);
+    return result;
+}
+
+// Example Usage
+console.log("Permutations of [1,2,3]:", permutations([1, 2, 3]));
+console.log("Subsets of [1,2,3]:", subsets([1, 2, 3]));
+console.log("4-Queens solutions:", solveNQueens(4).length);
+console.log("Valid parentheses (n=3):", generateParenthesis(3));
+
+const grid = [
+    ['A','B','C','E'],
+    ['S','F','C','S'],
+    ['A','D','E','E']
+];
+console.log("Word 'ABCCED' exists:", wordSearch(grid, "ABCCED"));`
+            },
+            swift: {
+                title: 'Backtracking Algorithms in Swift',
+                code: `// 1. Generate All Permutations
+func permutations<T>(_ array: [T]) -> [[T]] {
+    var result: [[T]] = []
+    
+    func backtrack(_ current: inout [T], _ remaining: [T]) {
+        if remaining.isEmpty {
+            result.append(current)
+            return
+        }
+        
+        for i in 0..<remaining.count {
+            current.append(remaining[i])
+            var newRemaining = remaining
+            newRemaining.remove(at: i)
+            backtrack(&current, newRemaining)
+            current.removeLast() // backtrack
+        }
+    }
+    
+    var current: [T] = []
+    backtrack(&current, array)
+    return result
+}
+
+// 2. Generate All Subsets
+func subsets<T>(_ nums: [T]) -> [[T]] {
+    var result: [[T]] = []
+    
+    func backtrack(_ start: Int, _ current: inout [T]) {
+        result.append(current)
+        
+        for i in start..<nums.count {
+            current.append(nums[i])
+            backtrack(i + 1, &current)
+            current.removeLast() // backtrack
+        }
+    }
+    
+    var current: [T] = []
+    backtrack(0, &current)
+    return result
+}
+
+// 3. N-Queens Problem
+func solveNQueens(_ n: Int) -> [[String]] {
+    var result: [[String]] = []
+    var board = Array(repeating: Array(repeating: ".", count: n), count: n)
+    
+    func isValid(_ row: Int, _ col: Int) -> Bool {
+        // Check column
+        for i in 0..<row {
+            if board[i][col] == "Q" { return false }
+        }
+        
+        // Check diagonal (top-left to bottom-right)
+        var i = row - 1, j = col - 1
+        while i >= 0 && j >= 0 {
+            if board[i][j] == "Q" { return false }
+            i -= 1
+            j -= 1
+        }
+        
+        // Check diagonal (top-right to bottom-left)
+        i = row - 1
+        j = col + 1
+        while i >= 0 && j < n {
+            if board[i][j] == "Q" { return false }
+            i -= 1
+            j += 1
+        }
+        
+        return true
+    }
+    
+    func backtrack(_ row: Int) {
+        if row == n {
+            result.append(board.map { $0.joined() })
+            return
+        }
+        
+        for col in 0..<n {
+            if isValid(row, col) {
+                board[row][col] = "Q"
+                backtrack(row + 1)
+                board[row][col] = "." // backtrack
+            }
+        }
+    }
+    
+    backtrack(0)
+    return result
+}
+
+// 4. Generate Valid Parentheses
+func generateParenthesis(_ n: Int) -> [String] {
+    var result: [String] = []
+    
+    func backtrack(_ current: String, _ open: Int, _ close: Int) {
+        if current.count == 2 * n {
+            result.append(current)
+            return
+        }
+        
+        if open < n {
+            backtrack(current + "(", open + 1, close)
+        }
+        
+        if close < open {
+            backtrack(current + ")", open, close + 1)
+        }
+    }
+    
+    backtrack("", 0, 0)
+    return result
+}
+
+// 5. Word Search in 2D Grid
+func wordSearch(_ board: inout [[Character]], _ word: String) -> Bool {
+    let rows = board.count
+    let cols = board[0].count
+    let wordArray = Array(word)
+    let directions = [(0, 1), (1, 0), (0, -1), (-1, 0)]
+    
+    func backtrack(_ row: Int, _ col: Int, _ index: Int) -> Bool {
+        if index == wordArray.count { return true }
+        
+        if row < 0 || row >= rows || col < 0 || col >= cols ||
+           board[row][col] != wordArray[index] || board[row][col] == "#" {
+            return false
+        }
+        
+        let temp = board[row][col]
+        board[row][col] = "#" // mark as visited
+        
+        for (dx, dy) in directions {
+            if backtrack(row + dx, col + dy, index + 1) {
+                board[row][col] = temp // restore
+                return true
+            }
+        }
+        
+        board[row][col] = temp // backtrack
+        return false
+    }
+    
+    for i in 0..<rows {
+        for j in 0..<cols {
+            if backtrack(i, j, 0) { return true }
+        }
+    }
+    
+    return false
+}
+
+// 6. Combinations
+func combine(_ n: Int, _ k: Int) -> [[Int]] {
+    var result: [[Int]] = []
+    
+    func backtrack(_ start: Int, _ current: inout [Int]) {
+        if current.count == k {
+            result.append(current)
+            return
+        }
+        
+        for i in start...n {
+            current.append(i)
+            backtrack(i + 1, &current)
+            current.removeLast() // backtrack
+        }
+    }
+    
+    var current: [Int] = []
+    backtrack(1, &current)
+    return result
+}
+
+// 7. Palindrome Partitioning
+func palindromePartition(_ s: String) -> [[String]] {
+    var result: [[String]] = []
+    let chars = Array(s)
+    
+    func isPalindrome(_ left: Int, _ right: Int) -> Bool {
+        var l = left, r = right
+        while l < r {
+            if chars[l] != chars[r] { return false }
+            l += 1
+            r -= 1
+        }
+        return true
+    }
+    
+    func backtrack(_ start: Int, _ current: inout [String]) {
+        if start == chars.count {
+            result.append(current)
+            return
+        }
+        
+        for end in start..<chars.count {
+            if isPalindrome(start, end) {
+                let substring = String(chars[start...end])
+                current.append(substring)
+                backtrack(end + 1, &current)
+                current.removeLast() // backtrack
+            }
+        }
+    }
+    
+    var current: [String] = []
+    backtrack(0, &current)
+    return result
+}
+
+// Example Usage
+print("Permutations of [1,2,3]:", permutations([1, 2, 3]))
+print("Subsets of [1,2,3]:", subsets([1, 2, 3]))
+print("4-Queens solutions count:", solveNQueens(4).count)
+print("Valid parentheses (n=3):", generateParenthesis(3))
+
+var grid: [[Character]] = [
+    ["A","B","C","E"],
+    ["S","F","C","S"],
+    ["A","D","E","E"]
+]
+print("Word 'ABCCED' exists:", wordSearch(&grid, "ABCCED"))`
+            },
+            cpp: {
+                title: 'Backtracking Algorithms in C++',
+                code: `#include <iostream>
+#include <vector>
+#include <string>
+#include <algorithm>
+
+// 1. Generate All Permutations
+std::vector<std::vector<int>> permutations(std::vector<int>& nums) {
+    std::vector<std::vector<int>> result;
+    
+    std::function<void(int)> backtrack = [&](int start) {
+        if (start == nums.size()) {
+            result.push_back(nums);
+            return;
+        }
+        
+        for (int i = start; i < nums.size(); i++) {
+            std::swap(nums[start], nums[i]);
+            backtrack(start + 1);
+            std::swap(nums[start], nums[i]); // backtrack
+        }
+    };
+    
+    backtrack(0);
+    return result;
+}
+
+// 2. Generate All Subsets
+std::vector<std::vector<int>> subsets(std::vector<int>& nums) {
+    std::vector<std::vector<int>> result;
+    std::vector<int> current;
+    
+    std::function<void(int)> backtrack = [&](int start) {
+        result.push_back(current);
+        
+        for (int i = start; i < nums.size(); i++) {
+            current.push_back(nums[i]);
+            backtrack(i + 1);
+            current.pop_back(); // backtrack
+        }
+    };
+    
+    backtrack(0);
+    return result;
+}
+
+// 3. N-Queens Problem
+std::vector<std::vector<std::string>> solveNQueens(int n) {
+    std::vector<std::vector<std::string>> result;
+    std::vector<std::string> board(n, std::string(n, '.'));
+    
+    auto isValid = [&](int row, int col) -> bool {
+        // Check column
+        for (int i = 0; i < row; i++) {
+            if (board[i][col] == 'Q') return false;
+        }
+        
+        // Check diagonal (top-left to bottom-right)
+        for (int i = row - 1, j = col - 1; i >= 0 && j >= 0; i--, j--) {
+            if (board[i][j] == 'Q') return false;
+        }
+        
+        // Check diagonal (top-right to bottom-left)
+        for (int i = row - 1, j = col + 1; i >= 0 && j < n; i--, j++) {
+            if (board[i][j] == 'Q') return false;
+        }
+        
+        return true;
+    };
+    
+    std::function<void(int)> backtrack = [&](int row) {
+        if (row == n) {
+            result.push_back(board);
+            return;
+        }
+        
+        for (int col = 0; col < n; col++) {
+            if (isValid(row, col)) {
+                board[row][col] = 'Q';
+                backtrack(row + 1);
+                board[row][col] = '.'; // backtrack
+            }
+        }
+    };
+    
+    backtrack(0);
+    return result;
+}
+
+// 4. Generate Valid Parentheses
+std::vector<std::string> generateParenthesis(int n) {
+    std::vector<std::string> result;
+    
+    std::function<void(std::string, int, int)> backtrack = 
+        [&](std::string current, int open, int close) {
+            if (current.length() == 2 * n) {
+                result.push_back(current);
+                return;
+            }
+            
+            if (open < n) {
+                backtrack(current + "(", open + 1, close);
+            }
+            
+            if (close < open) {
+                backtrack(current + ")", open, close + 1);
+            }
+        };
+    
+    backtrack("", 0, 0);
+    return result;
+}
+
+// 5. Word Search in 2D Grid
+bool wordSearch(std::vector<std::vector<char>>& board, std::string word) {
+    int rows = board.size();
+    int cols = board[0].size();
+    std::vector<std::pair<int, int>> directions = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
+    
+    std::function<bool(int, int, int)> backtrack = 
+        [&](int row, int col, int index) -> bool {
+            if (index == word.length()) return true;
+            
+            if (row < 0 || row >= rows || col < 0 || col >= cols || 
+                board[row][col] != word[index] || board[row][col] == '#') {
+                return false;
+            }
+            
+            char temp = board[row][col];
+            board[row][col] = '#'; // mark as visited
+            
+            for (auto [dx, dy] : directions) {
+                if (backtrack(row + dx, col + dy, index + 1)) {
+                    board[row][col] = temp; // restore
+                    return true;
+                }
+            }
+            
+            board[row][col] = temp; // backtrack
+            return false;
+        };
+    
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            if (backtrack(i, j, 0)) return true;
+        }
+    }
+    
+    return false;
+}
+
+// 6. Sudoku Solver
+bool solveSudoku(std::vector<std::vector<char>>& board) {
+    auto isValid = [&](int row, int col, char num) -> bool {
+        // Check row
+        for (int j = 0; j < 9; j++) {
+            if (board[row][j] == num) return false;
+        }
+        
+        // Check column
+        for (int i = 0; i < 9; i++) {
+            if (board[i][col] == num) return false;
+        }
+        
+        // Check 3x3 box
+        int boxRow = (row / 3) * 3;
+        int boxCol = (col / 3) * 3;
+        for (int i = boxRow; i < boxRow + 3; i++) {
+            for (int j = boxCol; j < boxCol + 3; j++) {
+                if (board[i][j] == num) return false;
+            }
+        }
+        
+        return true;
+    };
+    
+    std::function<bool()> backtrack = [&]() -> bool {
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                if (board[i][j] == '.') {
+                    for (char num = '1'; num <= '9'; num++) {
+                        if (isValid(i, j, num)) {
+                            board[i][j] = num;
+                            if (backtrack()) return true;
+                            board[i][j] = '.'; // backtrack
+                        }
+                    }
+                    return false;
+                }
+            }
+        }
+        return true;
+    };
+    
+    return backtrack();
+}
+
+// 7. Combinations
+std::vector<std::vector<int>> combine(int n, int k) {
+    std::vector<std::vector<int>> result;
+    std::vector<int> current;
+    
+    std::function<void(int)> backtrack = [&](int start) {
+        if (current.size() == k) {
+            result.push_back(current);
+            return;
+        }
+        
+        for (int i = start; i <= n; i++) {
+            current.push_back(i);
+            backtrack(i + 1);
+            current.pop_back(); // backtrack
+        }
+    };
+    
+    backtrack(1);
+    return result;
+}
+
+// Example Usage
+int main() {
+    // Permutations
+    std::vector<int> nums = {1, 2, 3};
+    auto perms = permutations(nums);
+    std::cout << "Permutations count: " << perms.size() << std::endl;
+    
+    // Subsets
+    auto subs = subsets(nums);
+    std::cout << "Subsets count: " << subs.size() << std::endl;
+    
+    // N-Queens
+    auto queens = solveNQueens(4);
+    std::cout << "4-Queens solutions: " << queens.size() << std::endl;
+    
+    // Valid Parentheses
+    auto parens = generateParenthesis(3);
+    std::cout << "Valid parentheses (n=3): " << parens.size() << std::endl;
+    
+    // Word Search
+    std::vector<std::vector<char>> grid = {
+        {'A','B','C','E'},
+        {'S','F','C','S'},
+        {'A','D','E','E'}
+    };
+    bool found = wordSearch(grid, "ABCCED");
+    std::cout << "Word 'ABCCED' exists: " << (found ? "true" : "false") << std::endl;
+    
+    return 0;
+}`
+            }
+        },
         'dp-0': {
             title: 'Dynamic Programming - Level 0',
             description: 'Introduction to dynamic programming and memoization',
@@ -4316,6 +5070,695 @@ int uniquePaths(int m, int n) {
     }
     
     return dp[m - 1][n - 1];
+}`
+            }
+        },
+        greedy: {
+            title: 'Greedy Algorithm',
+            description: 'Algorithms that make locally optimal choices at each step to find a global optimum',
+            questions: [
+                'What is a greedy algorithm and when is it applicable?',
+                'Implement the Activity Selection Problem',
+                'Solve the Fractional Knapsack Problem',
+                'Find the minimum number of coins needed for change',
+                'Implement Huffman Coding algorithm',
+                'Solve the Job Scheduling Problem',
+                'Find the minimum spanning tree using Prim\'s algorithm',
+                'Implement Dijkstra\'s shortest path algorithm',
+                'Solve the Gas Station Problem',
+                'Find the maximum number of meetings in one room',
+                'Implement the Egyptian Fraction representation',
+                'Solve the Minimum Platform Problem'
+            ],
+            javascript: {
+                title: 'Greedy Algorithms in JavaScript',
+                code: `// 1. Activity Selection Problem
+// Select maximum number of activities that don't overlap
+function activitySelection(activities) {
+    // Sort by finish time
+    activities.sort((a, b) => a.finish - b.finish);
+    
+    const result = [activities[0]];
+    let lastFinish = activities[0].finish;
+    
+    for (let i = 1; i < activities.length; i++) {
+        if (activities[i].start >= lastFinish) {
+            result.push(activities[i]);
+            lastFinish = activities[i].finish;
+        }
+    }
+    
+    return result;
+}
+
+// 2. Fractional Knapsack Problem
+function fractionalKnapsack(items, capacity) {
+    // Sort by value-to-weight ratio in descending order
+    items.sort((a, b) => (b.value / b.weight) - (a.value / a.weight));
+    
+    let totalValue = 0;
+    let remainingCapacity = capacity;
+    const result = [];
+    
+    for (const item of items) {
+        if (remainingCapacity >= item.weight) {
+            // Take the whole item
+            result.push({ ...item, fraction: 1 });
+            totalValue += item.value;
+            remainingCapacity -= item.weight;
+        } else if (remainingCapacity > 0) {
+            // Take fraction of the item
+            const fraction = remainingCapacity / item.weight;
+            result.push({ ...item, fraction });
+            totalValue += item.value * fraction;
+            remainingCapacity = 0;
+            break;
+        }
+    }
+    
+    return { totalValue, items: result };
+}
+
+// 3. Coin Change - Minimum Coins (Greedy approach for certain coin systems)
+function coinChangeGreedy(coins, amount) {
+    // Sort coins in descending order
+    coins.sort((a, b) => b - a);
+    
+    const result = [];
+    let remaining = amount;
+    
+    for (const coin of coins) {
+        while (remaining >= coin) {
+            result.push(coin);
+            remaining -= coin;
+        }
+    }
+    
+    return remaining === 0 ? result : null; // Returns null if exact change not possible
+}
+
+// 4. Job Scheduling with Deadlines
+function jobScheduling(jobs) {
+    // Sort by profit in descending order
+    jobs.sort((a, b) => b.profit - a.profit);
+    
+    const maxDeadline = Math.max(...jobs.map(job => job.deadline));
+    const schedule = new Array(maxDeadline).fill(null);
+    let totalProfit = 0;
+    
+    for (const job of jobs) {
+        // Find latest available slot before deadline
+        for (let i = Math.min(job.deadline - 1, maxDeadline - 1); i >= 0; i--) {
+            if (schedule[i] === null) {
+                schedule[i] = job;
+                totalProfit += job.profit;
+                break;
+            }
+        }
+    }
+    
+    return { schedule: schedule.filter(job => job !== null), totalProfit };
+}
+
+// 5. Huffman Coding
+class HuffmanNode {
+    constructor(char, freq, left = null, right = null) {
+        this.char = char;
+        this.freq = freq;
+        this.left = left;
+        this.right = right;
+    }
+}
+
+function huffmanCoding(text) {
+    // Count frequency of each character
+    const freqMap = new Map();
+    for (const char of text) {
+        freqMap.set(char, (freqMap.get(char) || 0) + 1);
+    }
+    
+    // Create priority queue (min-heap)
+    const heap = Array.from(freqMap.entries())
+        .map(([char, freq]) => new HuffmanNode(char, freq))
+        .sort((a, b) => a.freq - b.freq);
+    
+    // Build Huffman tree
+    while (heap.length > 1) {
+        const left = heap.shift();
+        const right = heap.shift();
+        const merged = new HuffmanNode(null, left.freq + right.freq, left, right);
+        
+        // Insert in sorted position
+        let i = 0;
+        while (i < heap.length && heap[i].freq < merged.freq) i++;
+        heap.splice(i, 0, merged);
+    }
+    
+    const root = heap[0];
+    
+    // Generate codes
+    const codes = new Map();
+    function generateCodes(node, code = '') {
+        if (node.char !== null) {
+            codes.set(node.char, code || '0'); // Single character case
+            return;
+        }
+        generateCodes(node.left, code + '0');
+        generateCodes(node.right, code + '1');
+    }
+    
+    generateCodes(root);
+    return codes;
+}
+
+// 6. Gas Station Problem
+function canCompleteCircuit(gas, cost) {
+    let totalGas = 0;
+    let currentGas = 0;
+    let startStation = 0;
+    
+    for (let i = 0; i < gas.length; i++) {
+        const netGas = gas[i] - cost[i];
+        totalGas += netGas;
+        currentGas += netGas;
+        
+        if (currentGas < 0) {
+            startStation = i + 1;
+            currentGas = 0;
+        }
+    }
+    
+    return totalGas >= 0 ? startStation : -1;
+}
+
+// 7. Meeting Rooms - Maximum meetings
+function maxMeetings(meetings) {
+    // Sort by end time
+    meetings.sort((a, b) => a.end - b.end);
+    
+    const selected = [meetings[0]];
+    let lastEndTime = meetings[0].end;
+    
+    for (let i = 1; i < meetings.length; i++) {
+        if (meetings[i].start > lastEndTime) {
+            selected.push(meetings[i]);
+            lastEndTime = meetings[i].end;
+        }
+    }
+    
+    return selected;
+}
+
+// 8. Minimum Platform Problem
+function minimumPlatforms(arrivals, departures) {
+    arrivals.sort((a, b) => a - b);
+    departures.sort((a, b) => a - b);
+    
+    let platforms = 0;
+    let maxPlatforms = 0;
+    let i = 0, j = 0;
+    
+    while (i < arrivals.length && j < departures.length) {
+        if (arrivals[i] <= departures[j]) {
+            platforms++;
+            maxPlatforms = Math.max(maxPlatforms, platforms);
+            i++;
+        } else {
+            platforms--;
+            j++;
+        }
+    }
+    
+    return maxPlatforms;
+}
+
+// Example Usage
+const activities = [
+    { start: 1, finish: 3 },
+    { start: 3, finish: 5 },
+    { start: 0, finish: 6 },
+    { start: 5, finish: 7 },
+    { start: 8, finish: 9 },
+    { start: 5, finish: 9 }
+];
+
+console.log("Selected activities:", activitySelection(activities));
+
+const items = [
+    { value: 60, weight: 10 },
+    { value: 100, weight: 20 },
+    { value: 120, weight: 30 }
+];
+
+console.log("Fractional Knapsack:", fractionalKnapsack(items, 50));
+
+const jobs = [
+    { id: 'a', deadline: 2, profit: 100 },
+    { id: 'b', deadline: 1, profit: 19 },
+    { id: 'c', deadline: 2, profit: 27 },
+    { id: 'd', deadline: 1, profit: 25 },
+    { id: 'e', deadline: 3, profit: 15 }
+];
+
+console.log("Job Scheduling:", jobScheduling(jobs));`
+            },
+            swift: {
+                title: 'Greedy Algorithms in Swift',
+                code: `// 1. Activity Selection Problem
+struct Activity {
+    let start: Int
+    let finish: Int
+}
+
+func activitySelection(_ activities: [Activity]) -> [Activity] {
+    let sortedActivities = activities.sorted { $0.finish < $1.finish }
+    
+    var result = [sortedActivities[0]]
+    var lastFinish = sortedActivities[0].finish
+    
+    for i in 1..<sortedActivities.count {
+        if sortedActivities[i].start >= lastFinish {
+            result.append(sortedActivities[i])
+            lastFinish = sortedActivities[i].finish
+        }
+    }
+    
+    return result
+}
+
+// 2. Fractional Knapsack Problem
+struct Item {
+    let value: Double
+    let weight: Double
+    
+    var valuePerWeight: Double {
+        return value / weight
+    }
+}
+
+func fractionalKnapsack(_ items: [Item], capacity: Double) -> (totalValue: Double, selectedItems: [(item: Item, fraction: Double)]) {
+    let sortedItems = items.sorted { $0.valuePerWeight > $1.valuePerWeight }
+    
+    var totalValue: Double = 0
+    var remainingCapacity = capacity
+    var selectedItems: [(item: Item, fraction: Double)] = []
+    
+    for item in sortedItems {
+        if remainingCapacity >= item.weight {
+            selectedItems.append((item: item, fraction: 1.0))
+            totalValue += item.value
+            remainingCapacity -= item.weight
+        } else if remainingCapacity > 0 {
+            let fraction = remainingCapacity / item.weight
+            selectedItems.append((item: item, fraction: fraction))
+            totalValue += item.value * fraction
+            remainingCapacity = 0
+            break
+        }
+    }
+    
+    return (totalValue: totalValue, selectedItems: selectedItems)
+}
+
+// 3. Coin Change - Greedy approach
+func coinChangeGreedy(_ coins: [Int], _ amount: Int) -> [Int]? {
+    let sortedCoins = coins.sorted(by: >)
+    
+    var result: [Int] = []
+    var remaining = amount
+    
+    for coin in sortedCoins {
+        while remaining >= coin {
+            result.append(coin)
+            remaining -= coin
+        }
+    }
+    
+    return remaining == 0 ? result : nil
+}
+
+// 4. Job Scheduling with Deadlines
+struct Job {
+    let id: String
+    let deadline: Int
+    let profit: Int
+}
+
+func jobScheduling(_ jobs: [Job]) -> (schedule: [Job], totalProfit: Int) {
+    let sortedJobs = jobs.sorted { $0.profit > $1.profit }
+    let maxDeadline = jobs.map { $0.deadline }.max() ?? 0
+    
+    var schedule = Array<Job?>(repeating: nil, count: maxDeadline)
+    var totalProfit = 0
+    
+    for job in sortedJobs {
+        for i in stride(from: min(job.deadline - 1, maxDeadline - 1), through: 0, by: -1) {
+            if schedule[i] == nil {
+                schedule[i] = job
+                totalProfit += job.profit
+                break
+            }
+        }
+    }
+    
+    let selectedJobs = schedule.compactMap { $0 }
+    return (schedule: selectedJobs, totalProfit: totalProfit)
+}
+
+// 5. Gas Station Problem
+func canCompleteCircuit(_ gas: [Int], _ cost: [Int]) -> Int {
+    var totalGas = 0
+    var currentGas = 0
+    var startStation = 0
+    
+    for i in 0..<gas.count {
+        let netGas = gas[i] - cost[i]
+        totalGas += netGas
+        currentGas += netGas
+        
+        if currentGas < 0 {
+            startStation = i + 1
+            currentGas = 0
+        }
+    }
+    
+    return totalGas >= 0 ? startStation : -1
+}
+
+// 6. Meeting Rooms - Maximum meetings
+struct Meeting {
+    let start: Int
+    let end: Int
+}
+
+func maxMeetings(_ meetings: [Meeting]) -> [Meeting] {
+    let sortedMeetings = meetings.sorted { $0.end < $1.end }
+    
+    var selected = [sortedMeetings[0]]
+    var lastEndTime = sortedMeetings[0].end
+    
+    for i in 1..<sortedMeetings.count {
+        if sortedMeetings[i].start > lastEndTime {
+            selected.append(sortedMeetings[i])
+            lastEndTime = sortedMeetings[i].end
+        }
+    }
+    
+    return selected
+}
+
+// 7. Minimum Platform Problem
+func minimumPlatforms(_ arrivals: [Int], _ departures: [Int]) -> Int {
+    let sortedArrivals = arrivals.sorted()
+    let sortedDepartures = departures.sorted()
+    
+    var platforms = 0
+    var maxPlatforms = 0
+    var i = 0, j = 0
+    
+    while i < sortedArrivals.count && j < sortedDepartures.count {
+        if sortedArrivals[i] <= sortedDepartures[j] {
+            platforms += 1
+            maxPlatforms = max(maxPlatforms, platforms)
+            i += 1
+        } else {
+            platforms -= 1
+            j += 1
+        }
+    }
+    
+    return maxPlatforms
+}
+
+// Example Usage
+let activities = [
+    Activity(start: 1, finish: 3),
+    Activity(start: 3, finish: 5),
+    Activity(start: 0, finish: 6),
+    Activity(start: 5, finish: 7),
+    Activity(start: 8, finish: 9),
+    Activity(start: 5, finish: 9)
+]
+
+print("Selected activities:", activitySelection(activities))
+
+let items = [
+    Item(value: 60, weight: 10),
+    Item(value: 100, weight: 20),
+    Item(value: 120, weight: 30)
+]
+
+let result = fractionalKnapsack(items, capacity: 50)
+print("Fractional Knapsack value:", result.totalValue)
+
+let jobs = [
+    Job(id: "a", deadline: 2, profit: 100),
+    Job(id: "b", deadline: 1, profit: 19),
+    Job(id: "c", deadline: 2, profit: 27),
+    Job(id: "d", deadline: 1, profit: 25),
+    Job(id: "e", deadline: 3, profit: 15)
+]
+
+let jobResult = jobScheduling(jobs)
+print("Job Scheduling profit:", jobResult.totalProfit)`
+            },
+            cpp: {
+                title: 'Greedy Algorithms in C++',
+                code: `#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <queue>
+#include <map>
+
+// 1. Activity Selection Problem
+struct Activity {
+    int start, finish;
+    
+    Activity(int s, int f) : start(s), finish(f) {}
+};
+
+std::vector<Activity> activitySelection(std::vector<Activity> activities) {
+    // Sort by finish time
+    std::sort(activities.begin(), activities.end(), 
+              [](const Activity& a, const Activity& b) {
+                  return a.finish < b.finish;
+              });
+    
+    std::vector<Activity> result;
+    result.push_back(activities[0]);
+    int lastFinish = activities[0].finish;
+    
+    for (int i = 1; i < activities.size(); i++) {
+        if (activities[i].start >= lastFinish) {
+            result.push_back(activities[i]);
+            lastFinish = activities[i].finish;
+        }
+    }
+    
+    return result;
+}
+
+// 2. Fractional Knapsack Problem
+struct Item {
+    double value, weight;
+    
+    Item(double v, double w) : value(v), weight(w) {}
+    
+    double valuePerWeight() const {
+        return value / weight;
+    }
+};
+
+double fractionalKnapsack(std::vector<Item> items, double capacity) {
+    // Sort by value-to-weight ratio
+    std::sort(items.begin(), items.end(), 
+              [](const Item& a, const Item& b) {
+                  return a.valuePerWeight() > b.valuePerWeight();
+              });
+    
+    double totalValue = 0.0;
+    double remainingCapacity = capacity;
+    
+    for (const auto& item : items) {
+        if (remainingCapacity >= item.weight) {
+            totalValue += item.value;
+            remainingCapacity -= item.weight;
+        } else if (remainingCapacity > 0) {
+            totalValue += item.value * (remainingCapacity / item.weight);
+            break;
+        }
+    }
+    
+    return totalValue;
+}
+
+// 3. Coin Change - Greedy approach
+std::vector<int> coinChangeGreedy(std::vector<int> coins, int amount) {
+    std::sort(coins.rbegin(), coins.rend()); // Sort in descending order
+    
+    std::vector<int> result;
+    int remaining = amount;
+    
+    for (int coin : coins) {
+        while (remaining >= coin) {
+            result.push_back(coin);
+            remaining -= coin;
+        }
+    }
+    
+    return remaining == 0 ? result : std::vector<int>(); // Empty if not possible
+}
+
+// 4. Job Scheduling with Deadlines
+struct Job {
+    char id;
+    int deadline, profit;
+    
+    Job(char i, int d, int p) : id(i), deadline(d), profit(p) {}
+};
+
+std::pair<std::vector<Job>, int> jobScheduling(std::vector<Job> jobs) {
+    // Sort by profit in descending order
+    std::sort(jobs.begin(), jobs.end(), 
+              [](const Job& a, const Job& b) {
+                  return a.profit > b.profit;
+              });
+    
+    int maxDeadline = 0;
+    for (const auto& job : jobs) {
+        maxDeadline = std::max(maxDeadline, job.deadline);
+    }
+    
+    std::vector<Job*> schedule(maxDeadline, nullptr);
+    int totalProfit = 0;
+    
+    for (auto& job : jobs) {
+        for (int i = std::min(job.deadline - 1, maxDeadline - 1); i >= 0; i--) {
+            if (schedule[i] == nullptr) {
+                schedule[i] = &job;
+                totalProfit += job.profit;
+                break;
+            }
+        }
+    }
+    
+    std::vector<Job> selectedJobs;
+    for (Job* jobPtr : schedule) {
+        if (jobPtr != nullptr) {
+            selectedJobs.push_back(*jobPtr);
+        }
+    }
+    
+    return {selectedJobs, totalProfit};
+}
+
+// 5. Huffman Coding
+struct HuffmanNode {
+    char character;
+    int frequency;
+    HuffmanNode* left;
+    HuffmanNode* right;
+    
+    HuffmanNode(char c, int f) : character(c), frequency(f), left(nullptr), right(nullptr) {}
+    HuffmanNode(int f) : character(0), frequency(f), left(nullptr), right(nullptr) {}
+};
+
+struct Compare {
+    bool operator()(HuffmanNode* a, HuffmanNode* b) {
+        return a->frequency > b->frequency;
+    }
+};
+
+std::map<char, std::string> huffmanCoding(const std::string& text) {
+    // Count frequencies
+    std::map<char, int> freqMap;
+    for (char c : text) {
+        freqMap[c]++;
+    }
+    
+    // Create priority queue
+    std::priority_queue<HuffmanNode*, std::vector<HuffmanNode*>, Compare> pq;
+    for (auto& pair : freqMap) {
+        pq.push(new HuffmanNode(pair.first, pair.second));
+    }
+    
+    // Build Huffman tree
+    while (pq.size() > 1) {
+        HuffmanNode* left = pq.top(); pq.pop();
+        HuffmanNode* right = pq.top(); pq.pop();
+        
+        HuffmanNode* merged = new HuffmanNode(left->frequency + right->frequency);
+        merged->left = left;
+        merged->right = right;
+        
+        pq.push(merged);
+    }
+    
+    HuffmanNode* root = pq.top();
+    
+    // Generate codes
+    std::map<char, std::string> codes;
+    std::function<void(HuffmanNode*, std::string)> generateCodes = 
+        [&](HuffmanNode* node, std::string code) {
+            if (node->character != 0) {
+                codes[node->character] = code.empty() ? "0" : code;
+                return;
+            }
+            generateCodes(node->left, code + "0");
+            generateCodes(node->right, code + "1");
+        };
+    
+    generateCodes(root, "");
+    return codes;
+}
+
+// 6. Gas Station Problem
+int canCompleteCircuit(std::vector<int>& gas, std::vector<int>& cost) {
+    int totalGas = 0;
+    int currentGas = 0;
+    int startStation = 0;
+    
+    for (int i = 0; i < gas.size(); i++) {
+        int netGas = gas[i] - cost[i];
+        totalGas += netGas;
+        currentGas += netGas;
+        
+        if (currentGas < 0) {
+            startStation = i + 1;
+            currentGas = 0;
+        }
+    }
+    
+    return totalGas >= 0 ? startStation : -1;
+}
+
+// Example Usage
+int main() {
+    // Activity Selection
+    std::vector<Activity> activities = {
+        {1, 3}, {3, 5}, {0, 6}, {5, 7}, {8, 9}, {5, 9}
+    };
+    
+    auto selected = activitySelection(activities);
+    std::cout << "Selected activities: " << selected.size() << std::endl;
+    
+    // Fractional Knapsack
+    std::vector<Item> items = {
+        {60, 10}, {100, 20}, {120, 30}
+    };
+    
+    double maxValue = fractionalKnapsack(items, 50);
+    std::cout << "Fractional Knapsack value: " << maxValue << std::endl;
+    
+    // Job Scheduling
+    std::vector<Job> jobs = {
+        {'a', 2, 100}, {'b', 1, 19}, {'c', 2, 27}, {'d', 1, 25}, {'e', 3, 15}
+    };
+    
+    auto [scheduledJobs, totalProfit] = jobScheduling(jobs);
+    std::cout << "Job scheduling profit: " << totalProfit << std::endl;
+    
+    return 0;
 }`
             }
         },
@@ -8180,6 +9623,1786 @@ int main() {
     std::cout << "Longest Palindrome: " << longestPalindrome("babad") << std::endl;
     std::cout << "Edit Distance: " << editDistance("horse", "ros") << std::endl;
     std::cout << "LCS Length: " << longestCommonSubsequence("abcde", "ace") << std::endl;
+    
+    return 0;
+}`
+            }
+        },
+        'trees-1': {
+            title: 'Trees – Level 1 (Advanced)',
+            description: 'Advanced tree operations, complex tree algorithms, and optimization techniques',
+            questions: [
+                'Implement tree serialization and deserialization',
+                'Find the lowest common ancestor of two nodes in a binary tree',
+                'Convert a binary tree to a doubly linked list',
+                'Find the diameter of a binary tree',
+                'Construct binary tree from inorder and preorder traversals',
+                'Validate if a binary tree is symmetric',
+                'Find all root-to-leaf paths with a given sum',
+                'Implement tree isomorphism check',
+                'Find the maximum path sum in a binary tree',
+                'Convert binary tree to sum tree'
+            ],
+            javascript: {
+                title: 'Advanced Trees in JavaScript',
+                code: `// Tree Node Definition
+class TreeNode {
+    constructor(val, left = null, right = null) {
+        this.val = val;
+        this.left = left;
+        this.right = right;
+    }
+}
+
+// Tree Serialization and Deserialization
+class Codec {
+    // Serialize tree to string
+    serialize(root) {
+        if (!root) return 'null';
+        
+        const queue = [root];
+        const result = [];
+        
+        while (queue.length > 0) {
+            const node = queue.shift();
+            
+            if (node) {
+                result.push(node.val);
+                queue.push(node.left);
+                queue.push(node.right);
+            } else {
+                result.push('null');
+            }
+        }
+        
+        return result.join(',');
+    }
+    
+    // Deserialize string to tree
+    deserialize(data) {
+        const vals = data.split(',');
+        if (vals[0] === 'null') return null;
+        
+        const root = new TreeNode(parseInt(vals[0]));
+        const queue = [root];
+        let i = 1;
+        
+        while (queue.length > 0 && i < vals.length) {
+            const node = queue.shift();
+            
+            if (vals[i] !== 'null') {
+                node.left = new TreeNode(parseInt(vals[i]));
+                queue.push(node.left);
+            }
+            i++;
+            
+            if (i < vals.length && vals[i] !== 'null') {
+                node.right = new TreeNode(parseInt(vals[i]));
+                queue.push(node.right);
+            }
+            i++;
+        }
+        
+        return root;
+    }
+}
+
+// Lowest Common Ancestor
+function lowestCommonAncestor(root, p, q) {
+    if (!root || root === p || root === q) {
+        return root;
+    }
+    
+    const left = lowestCommonAncestor(root.left, p, q);
+    const right = lowestCommonAncestor(root.right, p, q);
+    
+    if (left && right) return root;
+    return left || right;
+}
+
+// Binary Tree to Doubly Linked List
+function treeToDoublyList(root) {
+    if (!root) return null;
+    
+    let first = null;
+    let last = null;
+    
+    function inorder(node) {
+        if (!node) return;
+        
+        inorder(node.left);
+        
+        if (last) {
+            last.right = node;
+            node.left = last;
+        } else {
+            first = node;
+        }
+        last = node;
+        
+        inorder(node.right);
+    }
+    
+    inorder(root);
+    
+    // Make it circular
+    last.right = first;
+    first.left = last;
+    
+    return first;
+}
+
+// Diameter of Binary Tree
+function diameterOfBinaryTree(root) {
+    let maxDiameter = 0;
+    
+    function depth(node) {
+        if (!node) return 0;
+        
+        const leftDepth = depth(node.left);
+        const rightDepth = depth(node.right);
+        
+        maxDiameter = Math.max(maxDiameter, leftDepth + rightDepth);
+        
+        return Math.max(leftDepth, rightDepth) + 1;
+    }
+    
+    depth(root);
+    return maxDiameter;
+}
+
+// Build Tree from Inorder and Preorder
+function buildTree(preorder, inorder) {
+    const inorderMap = new Map();
+    for (let i = 0; i < inorder.length; i++) {
+        inorderMap.set(inorder[i], i);
+    }
+    
+    let preorderIndex = 0;
+    
+    function buildSubtree(left, right) {
+        if (left > right) return null;
+        
+        const rootVal = preorder[preorderIndex++];
+        const root = new TreeNode(rootVal);
+        
+        const inorderIndex = inorderMap.get(rootVal);
+        
+        root.left = buildSubtree(left, inorderIndex - 1);
+        root.right = buildSubtree(inorderIndex + 1, right);
+        
+        return root;
+    }
+    
+    return buildSubtree(0, inorder.length - 1);
+}
+
+// Check if tree is symmetric
+function isSymmetric(root) {
+    function isMirror(t1, t2) {
+        if (!t1 && !t2) return true;
+        if (!t1 || !t2) return false;
+        
+        return t1.val === t2.val &&
+               isMirror(t1.right, t2.left) &&
+               isMirror(t1.left, t2.right);
+    }
+    
+    return !root || isMirror(root.left, root.right);
+}
+
+// Path Sum II (All paths with given sum)
+function pathSum(root, targetSum) {
+    const result = [];
+    
+    function dfs(node, currentPath, remainingSum) {
+        if (!node) return;
+        
+        currentPath.push(node.val);
+        
+        if (!node.left && !node.right && remainingSum === node.val) {
+            result.push([...currentPath]);
+        }
+        
+        dfs(node.left, currentPath, remainingSum - node.val);
+        dfs(node.right, currentPath, remainingSum - node.val);
+        
+        currentPath.pop();
+    }
+    
+    dfs(root, [], targetSum);
+    return result;
+}
+
+// Maximum Path Sum
+function maxPathSum(root) {
+    let maxSum = -Infinity;
+    
+    function maxGain(node) {
+        if (!node) return 0;
+        
+        const leftGain = Math.max(maxGain(node.left), 0);
+        const rightGain = Math.max(maxGain(node.right), 0);
+        
+        const priceNewPath = node.val + leftGain + rightGain;
+        maxSum = Math.max(maxSum, priceNewPath);
+        
+        return node.val + Math.max(leftGain, rightGain);
+    }
+    
+    maxGain(root);
+    return maxSum;
+}
+
+// Convert to Sum Tree
+function toSumTree(root) {
+    function sumTree(node) {
+        if (!node) return 0;
+        
+        const oldVal = node.val;
+        
+        node.val = sumTree(node.left) + sumTree(node.right);
+        
+        return node.val + oldVal;
+    }
+    
+    sumTree(root);
+    return root;
+}
+
+// Example usage
+const codec = new Codec();
+const root = new TreeNode(1);
+root.left = new TreeNode(2);
+root.right = new TreeNode(3);
+root.right.left = new TreeNode(4);
+root.right.right = new TreeNode(5);
+
+console.log("Serialized:", codec.serialize(root));
+console.log("Diameter:", diameterOfBinaryTree(root));
+console.log("Is Symmetric:", isSymmetric(root));
+console.log("Max Path Sum:", maxPathSum(root));`
+            },
+            swift: {
+                title: 'Advanced Trees in Swift',
+                code: `// Tree Node Definition
+class TreeNode {
+    var val: Int
+    var left: TreeNode?
+    var right: TreeNode?
+    
+    init(_ val: Int) {
+        self.val = val
+        self.left = nil
+        self.right = nil
+    }
+}
+
+// Tree Serialization and Deserialization
+class Codec {
+    // Serialize tree to string
+    func serialize(_ root: TreeNode?) -> String {
+        guard let root = root else { return "null" }
+        
+        var queue: [TreeNode?] = [root]
+        var result: [String] = []
+        
+        while !queue.isEmpty {
+            let node = queue.removeFirst()
+            
+            if let node = node {
+                result.append(String(node.val))
+                queue.append(node.left)
+                queue.append(node.right)
+            } else {
+                result.append("null")
+            }
+        }
+        
+        return result.joined(separator: ",")
+    }
+    
+    // Deserialize string to tree
+    func deserialize(_ data: String) -> TreeNode? {
+        let vals = data.components(separatedBy: ",")
+        guard vals[0] != "null" else { return nil }
+        
+        let root = TreeNode(Int(vals[0])!)
+        var queue: [TreeNode] = [root]
+        var i = 1
+        
+        while !queue.isEmpty && i < vals.count {
+            let node = queue.removeFirst()
+            
+            if vals[i] != "null" {
+                node.left = TreeNode(Int(vals[i])!)
+                queue.append(node.left!)
+            }
+            i += 1
+            
+            if i < vals.count && vals[i] != "null" {
+                node.right = TreeNode(Int(vals[i])!)
+                queue.append(node.right!)
+            }
+            i += 1
+        }
+        
+        return root
+    }
+}
+
+// Lowest Common Ancestor
+func lowestCommonAncestor(_ root: TreeNode?, _ p: TreeNode?, _ q: TreeNode?) -> TreeNode? {
+    guard let root = root else { return nil }
+    if root === p || root === q { return root }
+    
+    let left = lowestCommonAncestor(root.left, p, q)
+    let right = lowestCommonAncestor(root.right, p, q)
+    
+    if left != nil && right != nil { return root }
+    return left ?? right
+}
+
+// Diameter of Binary Tree
+func diameterOfBinaryTree(_ root: TreeNode?) -> Int {
+    var maxDiameter = 0
+    
+    @discardableResult
+    func depth(_ node: TreeNode?) -> Int {
+        guard let node = node else { return 0 }
+        
+        let leftDepth = depth(node.left)
+        let rightDepth = depth(node.right)
+        
+        maxDiameter = max(maxDiameter, leftDepth + rightDepth)
+        
+        return max(leftDepth, rightDepth) + 1
+    }
+    
+    depth(root)
+    return maxDiameter
+}
+
+// Build Tree from Inorder and Preorder
+func buildTree(_ preorder: [Int], _ inorder: [Int]) -> TreeNode? {
+    var inorderMap: [Int: Int] = [:]
+    for (i, val) in inorder.enumerated() {
+        inorderMap[val] = i
+    }
+    
+    var preorderIndex = 0
+    
+    func buildSubtree(_ left: Int, _ right: Int) -> TreeNode? {
+        if left > right { return nil }
+        
+        let rootVal = preorder[preorderIndex]
+        preorderIndex += 1
+        let root = TreeNode(rootVal)
+        
+        let inorderIndex = inorderMap[rootVal]!
+        
+        root.left = buildSubtree(left, inorderIndex - 1)
+        root.right = buildSubtree(inorderIndex + 1, right)
+        
+        return root
+    }
+    
+    return buildSubtree(0, inorder.count - 1)
+}
+
+// Check if tree is symmetric
+func isSymmetric(_ root: TreeNode?) -> Bool {
+    func isMirror(_ t1: TreeNode?, _ t2: TreeNode?) -> Bool {
+        if t1 == nil && t2 == nil { return true }
+        if t1 == nil || t2 == nil { return false }
+        
+        return t1!.val == t2!.val &&
+               isMirror(t1!.right, t2!.left) &&
+               isMirror(t1!.left, t2!.right)
+    }
+    
+    guard let root = root else { return true }
+    return isMirror(root.left, root.right)
+}
+
+// Path Sum II (All paths with given sum)
+func pathSum(_ root: TreeNode?, _ targetSum: Int) -> [[Int]] {
+    var result: [[Int]] = []
+    
+    func dfs(_ node: TreeNode?, _ currentPath: inout [Int], _ remainingSum: Int) {
+        guard let node = node else { return }
+        
+        currentPath.append(node.val)
+        
+        if node.left == nil && node.right == nil && remainingSum == node.val {
+            result.append(currentPath)
+        }
+        
+        dfs(node.left, &currentPath, remainingSum - node.val)
+        dfs(node.right, &currentPath, remainingSum - node.val)
+        
+        currentPath.removeLast()
+    }
+    
+    var path: [Int] = []
+    dfs(root, &path, targetSum)
+    return result
+}
+
+// Maximum Path Sum
+func maxPathSum(_ root: TreeNode?) -> Int {
+    var maxSum = Int.min
+    
+    @discardableResult
+    func maxGain(_ node: TreeNode?) -> Int {
+        guard let node = node else { return 0 }
+        
+        let leftGain = max(maxGain(node.left), 0)
+        let rightGain = max(maxGain(node.right), 0)
+        
+        let priceNewPath = node.val + leftGain + rightGain
+        maxSum = max(maxSum, priceNewPath)
+        
+        return node.val + max(leftGain, rightGain)
+    }
+    
+    maxGain(root)
+    return maxSum
+}
+
+// Convert to Sum Tree
+func toSumTree(_ root: TreeNode?) -> TreeNode? {
+    @discardableResult
+    func sumTree(_ node: TreeNode?) -> Int {
+        guard let node = node else { return 0 }
+        
+        let oldVal = node.val
+        
+        node.val = sumTree(node.left) + sumTree(node.right)
+        
+        return node.val + oldVal
+    }
+    
+    sumTree(root)
+    return root
+}
+
+// Example usage
+let codec = Codec()
+let root = TreeNode(1)
+root.left = TreeNode(2)
+root.right = TreeNode(3)
+root.right?.left = TreeNode(4)
+root.right?.right = TreeNode(5)
+
+print("Serialized:", codec.serialize(root))
+print("Diameter:", diameterOfBinaryTree(root))
+print("Is Symmetric:", isSymmetric(root))
+print("Max Path Sum:", maxPathSum(root))`
+            },
+            cpp: {
+                title: 'Advanced Trees in C++',
+                code: `#include <iostream>
+#include <vector>
+#include <string>
+#include <queue>
+#include <unordered_map>
+#include <sstream>
+#include <climits>
+#include <algorithm>
+
+// Tree Node Definition
+struct TreeNode {
+    int val;
+    TreeNode* left;
+    TreeNode* right;
+    
+    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+};
+
+// Tree Serialization and Deserialization
+class Codec {
+public:
+    // Serialize tree to string
+    std::string serialize(TreeNode* root) {
+        if (!root) return "null";
+        
+        std::queue<TreeNode*> q;
+        q.push(root);
+        std::string result;
+        
+        while (!q.empty()) {
+            TreeNode* node = q.front();
+            q.pop();
+            
+            if (node) {
+                result += std::to_string(node->val) + ",";
+                q.push(node->left);
+                q.push(node->right);
+            } else {
+                result += "null,";
+            }
+        }
+        
+        return result;
+    }
+    
+    // Deserialize string to tree
+    TreeNode* deserialize(const std::string& data) {
+        std::istringstream iss(data);
+        std::string val;
+        
+        if (!std::getline(iss, val, ',') || val == "null") {
+            return nullptr;
+        }
+        
+        TreeNode* root = new TreeNode(std::stoi(val));
+        std::queue<TreeNode*> q;
+        q.push(root);
+        
+        while (!q.empty()) {
+            TreeNode* node = q.front();
+            q.pop();
+            
+            if (std::getline(iss, val, ',')) {
+                if (val != "null") {
+                    node->left = new TreeNode(std::stoi(val));
+                    q.push(node->left);
+                }
+                
+                if (std::getline(iss, val, ',')) {
+                    if (val != "null") {
+                        node->right = new TreeNode(std::stoi(val));
+                        q.push(node->right);
+                    }
+                }
+            }
+        }
+        
+        return root;
+    }
+};
+
+// Lowest Common Ancestor
+TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+    if (!root || root == p || root == q) {
+        return root;
+    }
+    
+    TreeNode* left = lowestCommonAncestor(root->left, p, q);
+    TreeNode* right = lowestCommonAncestor(root->right, p, q);
+    
+    if (left && right) return root;
+    return left ? left : right;
+}
+
+// Diameter of Binary Tree
+int diameterOfBinaryTree(TreeNode* root) {
+    int maxDiameter = 0;
+    
+    std::function<int(TreeNode*)> depth = [&](TreeNode* node) -> int {
+        if (!node) return 0;
+        
+        int leftDepth = depth(node->left);
+        int rightDepth = depth(node->right);
+        
+        maxDiameter = std::max(maxDiameter, leftDepth + rightDepth);
+        
+        return std::max(leftDepth, rightDepth) + 1;
+    };
+    
+    depth(root);
+    return maxDiameter;
+}
+
+// Build Tree from Inorder and Preorder
+TreeNode* buildTree(std::vector<int>& preorder, std::vector<int>& inorder) {
+    std::unordered_map<int, int> inorderMap;
+    for (int i = 0; i < inorder.size(); i++) {
+        inorderMap[inorder[i]] = i;
+    }
+    
+    int preorderIndex = 0;
+    
+    std::function<TreeNode*(int, int)> buildSubtree = [&](int left, int right) -> TreeNode* {
+        if (left > right) return nullptr;
+        
+        int rootVal = preorder[preorderIndex++];
+        TreeNode* root = new TreeNode(rootVal);
+        
+        int inorderIndex = inorderMap[rootVal];
+        
+        root->left = buildSubtree(left, inorderIndex - 1);
+        root->right = buildSubtree(inorderIndex + 1, right);
+        
+        return root;
+    };
+    
+    return buildSubtree(0, inorder.size() - 1);
+}
+
+// Check if tree is symmetric
+bool isSymmetric(TreeNode* root) {
+    std::function<bool(TreeNode*, TreeNode*)> isMirror = [&](TreeNode* t1, TreeNode* t2) -> bool {
+        if (!t1 && !t2) return true;
+        if (!t1 || !t2) return false;
+        
+        return t1->val == t2->val &&
+               isMirror(t1->right, t2->left) &&
+               isMirror(t1->left, t2->right);
+    };
+    
+    return !root || isMirror(root->left, root->right);
+}
+
+// Path Sum II (All paths with given sum)
+std::vector<std::vector<int>> pathSum(TreeNode* root, int targetSum) {
+    std::vector<std::vector<int>> result;
+    std::vector<int> currentPath;
+    
+    std::function<void(TreeNode*, int)> dfs = [&](TreeNode* node, int remainingSum) {
+        if (!node) return;
+        
+        currentPath.push_back(node->val);
+        
+        if (!node->left && !node->right && remainingSum == node->val) {
+            result.push_back(currentPath);
+        }
+        
+        dfs(node->left, remainingSum - node->val);
+        dfs(node->right, remainingSum - node->val);
+        
+        currentPath.pop_back();
+    };
+    
+    dfs(root, targetSum);
+    return result;
+}
+
+// Maximum Path Sum
+int maxPathSum(TreeNode* root) {
+    int maxSum = INT_MIN;
+    
+    std::function<int(TreeNode*)> maxGain = [&](TreeNode* node) -> int {
+        if (!node) return 0;
+        
+        int leftGain = std::max(maxGain(node->left), 0);
+        int rightGain = std::max(maxGain(node->right), 0);
+        
+        int priceNewPath = node->val + leftGain + rightGain;
+        maxSum = std::max(maxSum, priceNewPath);
+        
+        return node->val + std::max(leftGain, rightGain);
+    };
+    
+    maxGain(root);
+    return maxSum;
+}
+
+// Convert to Sum Tree
+TreeNode* toSumTree(TreeNode* root) {
+    std::function<int(TreeNode*)> sumTree = [&](TreeNode* node) -> int {
+        if (!node) return 0;
+        
+        int oldVal = node->val;
+        
+        node->val = sumTree(node->left) + sumTree(node->right);
+        
+        return node->val + oldVal;
+    };
+    
+    sumTree(root);
+    return root;
+}
+
+// Example usage
+int main() {
+    Codec codec;
+    TreeNode* root = new TreeNode(1);
+    root->left = new TreeNode(2);
+    root->right = new TreeNode(3);
+    root->right->left = new TreeNode(4);
+    root->right->right = new TreeNode(5);
+    
+    std::cout << "Serialized: " << codec.serialize(root) << std::endl;
+    std::cout << "Diameter: " << diameterOfBinaryTree(root) << std::endl;
+    std::cout << "Is Symmetric: " << isSymmetric(root) << std::endl;
+    std::cout << "Max Path Sum: " << maxPathSum(root) << std::endl;
+    
+    return 0;
+}`
+            }
+        },
+        'graphs-1': {
+            title: 'Graph – Level 1 (Advanced)',
+            description: 'Advanced graph algorithms, shortest paths, network flows, and complex graph problems',
+            questions: [
+                'Implement Dijkstra\'s shortest path algorithm',
+                'Find strongly connected components using Kosaraju\'s algorithm',
+                'Implement Kruskal\'s minimum spanning tree algorithm',
+                'Detect cycles in a directed graph using DFS',
+                'Find articulation points (cut vertices) in a graph',
+                'Implement Ford-Fulkerson algorithm for maximum flow',
+                'Find the shortest path in a weighted graph with negative edges (Bellman-Ford)',
+                'Implement A* pathfinding algorithm',
+                'Find all bridges in an undirected graph',
+                'Solve the traveling salesman problem using dynamic programming'
+            ],
+            javascript: {
+                title: 'Advanced Graphs in JavaScript',
+                code: `// Graph representation using adjacency list
+class Graph {
+    constructor(vertices) {
+        this.V = vertices;
+        this.adjList = new Array(vertices).fill(null).map(() => []);
+        this.adjMatrix = new Array(vertices).fill(null).map(() => new Array(vertices).fill(0));
+    }
+    
+    addEdge(u, v, weight = 1) {
+        this.adjList[u].push({ node: v, weight });
+        this.adjMatrix[u][v] = weight;
+    }
+    
+    addUndirectedEdge(u, v, weight = 1) {
+        this.addEdge(u, v, weight);
+        this.addEdge(v, u, weight);
+    }
+}
+
+// Dijkstra's Shortest Path Algorithm
+function dijkstra(graph, src) {
+    const V = graph.V;
+    const dist = new Array(V).fill(Infinity);
+    const visited = new Array(V).fill(false);
+    const parent = new Array(V).fill(-1);
+    
+    dist[src] = 0;
+    
+    // Priority queue simulation using array
+    for (let count = 0; count < V - 1; count++) {
+        let u = -1;
+        for (let v = 0; v < V; v++) {
+            if (!visited[v] && (u === -1 || dist[v] < dist[u])) {
+                u = v;
+            }
+        }
+        
+        visited[u] = true;
+        
+        for (const edge of graph.adjList[u]) {
+            const v = edge.node;
+            const weight = edge.weight;
+            
+            if (!visited[v] && dist[u] + weight < dist[v]) {
+                dist[v] = dist[u] + weight;
+                parent[v] = u;
+            }
+        }
+    }
+    
+    return { distances: dist, parents: parent };
+}
+
+// Strongly Connected Components (Kosaraju's Algorithm)
+function kosaraju(graph) {
+    const V = graph.V;
+    const visited = new Array(V).fill(false);
+    const stack = [];
+    
+    // Step 1: Fill stack according to finish times
+    function fillOrder(v) {
+        visited[v] = true;
+        
+        for (const edge of graph.adjList[v]) {
+            if (!visited[edge.node]) {
+                fillOrder(edge.node);
+            }
+        }
+        
+        stack.push(v);
+    }
+    
+    for (let i = 0; i < V; i++) {
+        if (!visited[i]) {
+            fillOrder(i);
+        }
+    }
+    
+    // Step 2: Create transpose graph
+    const transpose = new Graph(V);
+    for (let v = 0; v < V; v++) {
+        for (const edge of graph.adjList[v]) {
+            transpose.addEdge(edge.node, v, edge.weight);
+        }
+    }
+    
+    // Step 3: Process all vertices in order defined by stack
+    visited.fill(false);
+    const sccs = [];
+    
+    function dfsUtil(v, component) {
+        visited[v] = true;
+        component.push(v);
+        
+        for (const edge of transpose.adjList[v]) {
+            if (!visited[edge.node]) {
+                dfsUtil(edge.node, component);
+            }
+        }
+    }
+    
+    while (stack.length > 0) {
+        const v = stack.pop();
+        if (!visited[v]) {
+            const component = [];
+            dfsUtil(v, component);
+            sccs.push(component);
+        }
+    }
+    
+    return sccs;
+}
+
+// Kruskal's Minimum Spanning Tree
+class UnionFind {
+    constructor(n) {
+        this.parent = Array.from({ length: n }, (_, i) => i);
+        this.rank = new Array(n).fill(0);
+    }
+    
+    find(x) {
+        if (this.parent[x] !== x) {
+            this.parent[x] = this.find(this.parent[x]);
+        }
+        return this.parent[x];
+    }
+    
+    union(x, y) {
+        const rootX = this.find(x);
+        const rootY = this.find(y);
+        
+        if (rootX !== rootY) {
+            if (this.rank[rootX] < this.rank[rootY]) {
+                this.parent[rootX] = rootY;
+            } else if (this.rank[rootX] > this.rank[rootY]) {
+                this.parent[rootY] = rootX;
+            } else {
+                this.parent[rootY] = rootX;
+                this.rank[rootX]++;
+            }
+            return true;
+        }
+        return false;
+    }
+}
+
+function kruskalMST(edges, V) {
+    // Sort edges by weight
+    edges.sort((a, b) => a.weight - b.weight);
+    
+    const uf = new UnionFind(V);
+    const mst = [];
+    let mstWeight = 0;
+    
+    for (const edge of edges) {
+        if (uf.union(edge.u, edge.v)) {
+            mst.push(edge);
+            mstWeight += edge.weight;
+            
+            if (mst.length === V - 1) {
+                break;
+            }
+        }
+    }
+    
+    return { mst, weight: mstWeight };
+}
+
+// Cycle Detection in Directed Graph
+function hasCycleDirected(graph) {
+    const V = graph.V;
+    const WHITE = 0, GRAY = 1, BLACK = 2;
+    const color = new Array(V).fill(WHITE);
+    
+    function dfsVisit(u) {
+        color[u] = GRAY;
+        
+        for (const edge of graph.adjList[u]) {
+            const v = edge.node;
+            
+            if (color[v] === GRAY) {
+                return true; // Back edge found, cycle detected
+            }
+            
+            if (color[v] === WHITE && dfsVisit(v)) {
+                return true;
+            }
+        }
+        
+        color[u] = BLACK;
+        return false;
+    }
+    
+    for (let i = 0; i < V; i++) {
+        if (color[i] === WHITE) {
+            if (dfsVisit(i)) {
+                return true;
+            }
+        }
+    }
+    
+    return false;
+}
+
+// Articulation Points (Cut Vertices)
+function findArticulationPoints(graph) {
+    const V = graph.V;
+    const visited = new Array(V).fill(false);
+    const disc = new Array(V);
+    const low = new Array(V);
+    const parent = new Array(V).fill(-1);
+    const ap = new Array(V).fill(false);
+    let time = 0;
+    
+    function bridgeUtil(u) {
+        let children = 0;
+        visited[u] = true;
+        disc[u] = low[u] = ++time;
+        
+        for (const edge of graph.adjList[u]) {
+            const v = edge.node;
+            
+            if (!visited[v]) {
+                children++;
+                parent[v] = u;
+                bridgeUtil(v);
+                
+                low[u] = Math.min(low[u], low[v]);
+                
+                // u is an articulation point in following cases:
+                // 1) u is root of DFS tree and has two or more children
+                if (parent[u] === -1 && children > 1) {
+                    ap[u] = true;
+                }
+                
+                // 2) u is not root and low value of one of its children is more than or equal to discovery value of u
+                if (parent[u] !== -1 && low[v] >= disc[u]) {
+                    ap[u] = true;
+                }
+            } else if (v !== parent[u]) {
+                low[u] = Math.min(low[u], disc[v]);
+            }
+        }
+    }
+    
+    for (let i = 0; i < V; i++) {
+        if (!visited[i]) {
+            bridgeUtil(i);
+        }
+    }
+    
+    const articulationPoints = [];
+    for (let i = 0; i < V; i++) {
+        if (ap[i]) {
+            articulationPoints.push(i);
+        }
+    }
+    
+    return articulationPoints;
+}
+
+// Bellman-Ford Algorithm (handles negative weights)
+function bellmanFord(graph, src) {
+    const V = graph.V;
+    const dist = new Array(V).fill(Infinity);
+    dist[src] = 0;
+    
+    // Relax all edges V-1 times
+    for (let i = 0; i < V - 1; i++) {
+        for (let u = 0; u < V; u++) {
+            for (const edge of graph.adjList[u]) {
+                const v = edge.node;
+                const weight = edge.weight;
+                
+                if (dist[u] !== Infinity && dist[u] + weight < dist[v]) {
+                    dist[v] = dist[u] + weight;
+                }
+            }
+        }
+    }
+    
+    // Check for negative-weight cycles
+    for (let u = 0; u < V; u++) {
+        for (const edge of graph.adjList[u]) {
+            const v = edge.node;
+            const weight = edge.weight;
+            
+            if (dist[u] !== Infinity && dist[u] + weight < dist[v]) {
+                return { hasNegativeCycle: true };
+            }
+        }
+    }
+    
+    return { distances: dist, hasNegativeCycle: false };
+}
+
+// A* Pathfinding Algorithm
+function aStar(graph, start, goal, heuristic) {
+    const openSet = [start];
+    const cameFrom = new Map();
+    const gScore = new Map();
+    const fScore = new Map();
+    
+    gScore.set(start, 0);
+    fScore.set(start, heuristic(start, goal));
+    
+    while (openSet.length > 0) {
+        // Find node with lowest fScore
+        let current = openSet[0];
+        let currentIndex = 0;
+        
+        for (let i = 1; i < openSet.length; i++) {
+            if (fScore.get(openSet[i]) < fScore.get(current)) {
+                current = openSet[i];
+                currentIndex = i;
+            }
+        }
+        
+        if (current === goal) {
+            // Reconstruct path
+            const path = [];
+            let temp = current;
+            while (temp !== undefined) {
+                path.unshift(temp);
+                temp = cameFrom.get(temp);
+            }
+            return path;
+        }
+        
+        openSet.splice(currentIndex, 1);
+        
+        for (const edge of graph.adjList[current]) {
+            const neighbor = edge.node;
+            const tentativeGScore = gScore.get(current) + edge.weight;
+            
+            if (!gScore.has(neighbor) || tentativeGScore < gScore.get(neighbor)) {
+                cameFrom.set(neighbor, current);
+                gScore.set(neighbor, tentativeGScore);
+                fScore.set(neighbor, gScore.get(neighbor) + heuristic(neighbor, goal));
+                
+                if (!openSet.includes(neighbor)) {
+                    openSet.push(neighbor);
+                }
+            }
+        }
+    }
+    
+    return null; // No path found
+}
+
+// Example usage
+const graph = new Graph(6);
+graph.addEdge(0, 1, 4);
+graph.addEdge(0, 2, 3);
+graph.addEdge(1, 2, 1);
+graph.addEdge(1, 3, 2);
+graph.addEdge(2, 3, 4);
+graph.addEdge(3, 4, 2);
+graph.addEdge(4, 5, 6);
+
+console.log("Dijkstra from vertex 0:", dijkstra(graph, 0));
+console.log("Has cycle:", hasCycleDirected(graph));
+console.log("Bellman-Ford from vertex 0:", bellmanFord(graph, 0));`
+            },
+            swift: {
+                title: 'Advanced Graphs in Swift',
+                code: `import Foundation
+
+// Graph representation using adjacency list
+struct Edge {
+    let node: Int
+    let weight: Int
+}
+
+class Graph {
+    let V: Int
+    var adjList: [[Edge]]
+    var adjMatrix: [[Int]]
+    
+    init(_ vertices: Int) {
+        self.V = vertices
+        self.adjList = Array(repeating: [], count: vertices)
+        self.adjMatrix = Array(repeating: Array(repeating: 0, count: vertices), count: vertices)
+    }
+    
+    func addEdge(_ u: Int, _ v: Int, weight: Int = 1) {
+        adjList[u].append(Edge(node: v, weight: weight))
+        adjMatrix[u][v] = weight
+    }
+    
+    func addUndirectedEdge(_ u: Int, _ v: Int, weight: Int = 1) {
+        addEdge(u, v, weight: weight)
+        addEdge(v, u, weight: weight)
+    }
+}
+
+// Dijkstra's Shortest Path Algorithm
+func dijkstra(_ graph: Graph, _ src: Int) -> (distances: [Int], parents: [Int]) {
+    let V = graph.V
+    var dist = Array(repeating: Int.max, count: V)
+    var visited = Array(repeating: false, count: V)
+    var parent = Array(repeating: -1, count: V)
+    
+    dist[src] = 0
+    
+    for _ in 0..<V-1 {
+        var u = -1
+        for v in 0..<V {
+            if !visited[v] && (u == -1 || dist[v] < dist[u]) {
+                u = v
+            }
+        }
+        
+        visited[u] = true
+        
+        for edge in graph.adjList[u] {
+            let v = edge.node
+            let weight = edge.weight
+            
+            if !visited[v] && dist[u] != Int.max && dist[u] + weight < dist[v] {
+                dist[v] = dist[u] + weight
+                parent[v] = u
+            }
+        }
+    }
+    
+    return (distances: dist, parents: parent)
+}
+
+// Strongly Connected Components (Kosaraju's Algorithm)
+func kosaraju(_ graph: Graph) -> [[Int]] {
+    let V = graph.V
+    var visited = Array(repeating: false, count: V)
+    var stack: [Int] = []
+    
+    func fillOrder(_ v: Int) {
+        visited[v] = true
+        
+        for edge in graph.adjList[v] {
+            if !visited[edge.node] {
+                fillOrder(edge.node)
+            }
+        }
+        
+        stack.append(v)
+    }
+    
+    // Step 1: Fill stack according to finish times
+    for i in 0..<V {
+        if !visited[i] {
+            fillOrder(i)
+        }
+    }
+    
+    // Step 2: Create transpose graph
+    let transpose = Graph(V)
+    for v in 0..<V {
+        for edge in graph.adjList[v] {
+            transpose.addEdge(edge.node, v, weight: edge.weight)
+        }
+    }
+    
+    // Step 3: Process all vertices in order defined by stack
+    visited = Array(repeating: false, count: V)
+    var sccs: [[Int]] = []
+    
+    func dfsUtil(_ v: Int, _ component: inout [Int]) {
+        visited[v] = true
+        component.append(v)
+        
+        for edge in transpose.adjList[v] {
+            if !visited[edge.node] {
+                dfsUtil(edge.node, &component)
+            }
+        }
+    }
+    
+    while !stack.isEmpty {
+        let v = stack.removeLast()
+        if !visited[v] {
+            var component: [Int] = []
+            dfsUtil(v, &component)
+            sccs.append(component)
+        }
+    }
+    
+    return sccs
+}
+
+// Union-Find Data Structure
+class UnionFind {
+    private var parent: [Int]
+    private var rank: [Int]
+    
+    init(_ n: Int) {
+        parent = Array(0..<n)
+        rank = Array(repeating: 0, count: n)
+    }
+    
+    func find(_ x: Int) -> Int {
+        if parent[x] != x {
+            parent[x] = find(parent[x])
+        }
+        return parent[x]
+    }
+    
+    func union(_ x: Int, _ y: Int) -> Bool {
+        let rootX = find(x)
+        let rootY = find(y)
+        
+        if rootX != rootY {
+            if rank[rootX] < rank[rootY] {
+                parent[rootX] = rootY
+            } else if rank[rootX] > rank[rootY] {
+                parent[rootY] = rootX
+            } else {
+                parent[rootY] = rootX
+                rank[rootX] += 1
+            }
+            return true
+        }
+        return false
+    }
+}
+
+// Kruskal's Minimum Spanning Tree
+struct WeightedEdge {
+    let u: Int
+    let v: Int
+    let weight: Int
+}
+
+func kruskalMST(_ edges: [WeightedEdge], _ V: Int) -> (mst: [WeightedEdge], weight: Int) {
+    let sortedEdges = edges.sorted { $0.weight < $1.weight }
+    let uf = UnionFind(V)
+    var mst: [WeightedEdge] = []
+    var mstWeight = 0
+    
+    for edge in sortedEdges {
+        if uf.union(edge.u, edge.v) {
+            mst.append(edge)
+            mstWeight += edge.weight
+            
+            if mst.count == V - 1 {
+                break
+            }
+        }
+    }
+    
+    return (mst: mst, weight: mstWeight)
+}
+
+// Cycle Detection in Directed Graph
+func hasCycleDirected(_ graph: Graph) -> Bool {
+    let V = graph.V
+    enum Color { case white, gray, black }
+    var color = Array(repeating: Color.white, count: V)
+    
+    func dfsVisit(_ u: Int) -> Bool {
+        color[u] = .gray
+        
+        for edge in graph.adjList[u] {
+            let v = edge.node
+            
+            if color[v] == .gray {
+                return true // Back edge found, cycle detected
+            }
+            
+            if color[v] == .white && dfsVisit(v) {
+                return true
+            }
+        }
+        
+        color[u] = .black
+        return false
+    }
+    
+    for i in 0..<V {
+        if color[i] == .white {
+            if dfsVisit(i) {
+                return true
+            }
+        }
+    }
+    
+    return false
+}
+
+// Articulation Points (Cut Vertices)
+func findArticulationPoints(_ graph: Graph) -> [Int] {
+    let V = graph.V
+    var visited = Array(repeating: false, count: V)
+    var disc = Array(repeating: 0, count: V)
+    var low = Array(repeating: 0, count: V)
+    var parent = Array(repeating: -1, count: V)
+    var ap = Array(repeating: false, count: V)
+    var time = 0
+    
+    func bridgeUtil(_ u: Int) {
+        var children = 0
+        visited[u] = true
+        time += 1
+        disc[u] = time
+        low[u] = time
+        
+        for edge in graph.adjList[u] {
+            let v = edge.node
+            
+            if !visited[v] {
+                children += 1
+                parent[v] = u
+                bridgeUtil(v)
+                
+                low[u] = min(low[u], low[v])
+                
+                // u is an articulation point in following cases:
+                if parent[u] == -1 && children > 1 {
+                    ap[u] = true
+                }
+                
+                if parent[u] != -1 && low[v] >= disc[u] {
+                    ap[u] = true
+                }
+            } else if v != parent[u] {
+                low[u] = min(low[u], disc[v])
+            }
+        }
+    }
+    
+    for i in 0..<V {
+        if !visited[i] {
+            bridgeUtil(i)
+        }
+    }
+    
+    var articulationPoints: [Int] = []
+    for i in 0..<V {
+        if ap[i] {
+            articulationPoints.append(i)
+        }
+    }
+    
+    return articulationPoints
+}
+
+// Bellman-Ford Algorithm
+func bellmanFord(_ graph: Graph, _ src: Int) -> (distances: [Int]?, hasNegativeCycle: Bool) {
+    let V = graph.V
+    var dist = Array(repeating: Int.max, count: V)
+    dist[src] = 0
+    
+    // Relax all edges V-1 times
+    for _ in 0..<V-1 {
+        for u in 0..<V {
+            for edge in graph.adjList[u] {
+                let v = edge.node
+                let weight = edge.weight
+                
+                if dist[u] != Int.max && dist[u] + weight < dist[v] {
+                    dist[v] = dist[u] + weight
+                }
+            }
+        }
+    }
+    
+    // Check for negative-weight cycles
+    for u in 0..<V {
+        for edge in graph.adjList[u] {
+            let v = edge.node
+            let weight = edge.weight
+            
+            if dist[u] != Int.max && dist[u] + weight < dist[v] {
+                return (distances: nil, hasNegativeCycle: true)
+            }
+        }
+    }
+    
+    return (distances: dist, hasNegativeCycle: false)
+}
+
+// Example usage
+let graph = Graph(6)
+graph.addEdge(0, 1, weight: 4)
+graph.addEdge(0, 2, weight: 3)
+graph.addEdge(1, 2, weight: 1)
+graph.addEdge(1, 3, weight: 2)
+graph.addEdge(2, 3, weight: 4)
+graph.addEdge(3, 4, weight: 2)
+graph.addEdge(4, 5, weight: 6)
+
+let result = dijkstra(graph, 0)
+print("Dijkstra distances from vertex 0:", result.distances)
+print("Has cycle:", hasCycleDirected(graph))
+
+let bellmanResult = bellmanFord(graph, 0)
+print("Bellman-Ford distances:", bellmanResult.distances ?? [])`
+            },
+            cpp: {
+                title: 'Advanced Graphs in C++',
+                code: `#include <iostream>
+#include <vector>
+#include <queue>
+#include <stack>
+#include <algorithm>
+#include <climits>
+#include <unordered_map>
+#include <functional>
+
+// Edge structure
+struct Edge {
+    int node;
+    int weight;
+    
+    Edge(int n, int w) : node(n), weight(w) {}
+};
+
+// Graph class
+class Graph {
+public:
+    int V;
+    std::vector<std::vector<Edge>> adjList;
+    std::vector<std::vector<int>> adjMatrix;
+    
+    Graph(int vertices) : V(vertices) {
+        adjList.resize(vertices);
+        adjMatrix.assign(vertices, std::vector<int>(vertices, 0));
+    }
+    
+    void addEdge(int u, int v, int weight = 1) {
+        adjList[u].emplace_back(v, weight);
+        adjMatrix[u][v] = weight;
+    }
+    
+    void addUndirectedEdge(int u, int v, int weight = 1) {
+        addEdge(u, v, weight);
+        addEdge(v, u, weight);
+    }
+};
+
+// Dijkstra's Shortest Path Algorithm
+std::pair<std::vector<int>, std::vector<int>> dijkstra(const Graph& graph, int src) {
+    int V = graph.V;
+    std::vector<int> dist(V, INT_MAX);
+    std::vector<bool> visited(V, false);
+    std::vector<int> parent(V, -1);
+    
+    dist[src] = 0;
+    
+    for (int count = 0; count < V - 1; count++) {
+        int u = -1;
+        for (int v = 0; v < V; v++) {
+            if (!visited[v] && (u == -1 || dist[v] < dist[u])) {
+                u = v;
+            }
+        }
+        
+        visited[u] = true;
+        
+        for (const auto& edge : graph.adjList[u]) {
+            int v = edge.node;
+            int weight = edge.weight;
+            
+            if (!visited[v] && dist[u] != INT_MAX && dist[u] + weight < dist[v]) {
+                dist[v] = dist[u] + weight;
+                parent[v] = u;
+            }
+        }
+    }
+    
+    return {dist, parent};
+}
+
+// Strongly Connected Components (Kosaraju's Algorithm)
+std::vector<std::vector<int>> kosaraju(const Graph& graph) {
+    int V = graph.V;
+    std::vector<bool> visited(V, false);
+    std::stack<int> st;
+    
+    // Step 1: Fill stack according to finish times
+    std::function<void(int)> fillOrder = [&](int v) {
+        visited[v] = true;
+        
+        for (const auto& edge : graph.adjList[v]) {
+            if (!visited[edge.node]) {
+                fillOrder(edge.node);
+            }
+        }
+        
+        st.push(v);
+    };
+    
+    for (int i = 0; i < V; i++) {
+        if (!visited[i]) {
+            fillOrder(i);
+        }
+    }
+    
+    // Step 2: Create transpose graph
+    Graph transpose(V);
+    for (int v = 0; v < V; v++) {
+        for (const auto& edge : graph.adjList[v]) {
+            transpose.addEdge(edge.node, v, edge.weight);
+        }
+    }
+    
+    // Step 3: Process all vertices in order defined by stack
+    std::fill(visited.begin(), visited.end(), false);
+    std::vector<std::vector<int>> sccs;
+    
+    std::function<void(int, std::vector<int>&)> dfsUtil = [&](int v, std::vector<int>& component) {
+        visited[v] = true;
+        component.push_back(v);
+        
+        for (const auto& edge : transpose.adjList[v]) {
+            if (!visited[edge.node]) {
+                dfsUtil(edge.node, component);
+            }
+        }
+    };
+    
+    while (!st.empty()) {
+        int v = st.top();
+        st.pop();
+        
+        if (!visited[v]) {
+            std::vector<int> component;
+            dfsUtil(v, component);
+            sccs.push_back(component);
+        }
+    }
+    
+    return sccs;
+}
+
+// Union-Find Data Structure
+class UnionFind {
+private:
+    std::vector<int> parent, rank;
+    
+public:
+    UnionFind(int n) : parent(n), rank(n, 0) {
+        std::iota(parent.begin(), parent.end(), 0);
+    }
+    
+    int find(int x) {
+        if (parent[x] != x) {
+            parent[x] = find(parent[x]);
+        }
+        return parent[x];
+    }
+    
+    bool unite(int x, int y) {
+        int rootX = find(x);
+        int rootY = find(y);
+        
+        if (rootX != rootY) {
+            if (rank[rootX] < rank[rootY]) {
+                parent[rootX] = rootY;
+            } else if (rank[rootX] > rank[rootY]) {
+                parent[rootY] = rootX;
+            } else {
+                parent[rootY] = rootX;
+                rank[rootX]++;
+            }
+            return true;
+        }
+        return false;
+    }
+};
+
+// Kruskal's Minimum Spanning Tree
+struct WeightedEdge {
+    int u, v, weight;
+    
+    WeightedEdge(int u, int v, int w) : u(u), v(v), weight(w) {}
+    
+    bool operator<(const WeightedEdge& other) const {
+        return weight < other.weight;
+    }
+};
+
+std::pair<std::vector<WeightedEdge>, int> kruskalMST(std::vector<WeightedEdge> edges, int V) {
+    std::sort(edges.begin(), edges.end());
+    
+    UnionFind uf(V);
+    std::vector<WeightedEdge> mst;
+    int mstWeight = 0;
+    
+    for (const auto& edge : edges) {
+        if (uf.unite(edge.u, edge.v)) {
+            mst.push_back(edge);
+            mstWeight += edge.weight;
+            
+            if (mst.size() == V - 1) {
+                break;
+            }
+        }
+    }
+    
+    return {mst, mstWeight};
+}
+
+// Cycle Detection in Directed Graph
+bool hasCycleDirected(const Graph& graph) {
+    int V = graph.V;
+    enum Color { WHITE, GRAY, BLACK };
+    std::vector<Color> color(V, WHITE);
+    
+    std::function<bool(int)> dfsVisit = [&](int u) -> bool {
+        color[u] = GRAY;
+        
+        for (const auto& edge : graph.adjList[u]) {
+            int v = edge.node;
+            
+            if (color[v] == GRAY) {
+                return true; // Back edge found, cycle detected
+            }
+            
+            if (color[v] == WHITE && dfsVisit(v)) {
+                return true;
+            }
+        }
+        
+        color[u] = BLACK;
+        return false;
+    };
+    
+    for (int i = 0; i < V; i++) {
+        if (color[i] == WHITE) {
+            if (dfsVisit(i)) {
+                return true;
+            }
+        }
+    }
+    
+    return false;
+}
+
+// Articulation Points (Cut Vertices)
+std::vector<int> findArticulationPoints(const Graph& graph) {
+    int V = graph.V;
+    std::vector<bool> visited(V, false);
+    std::vector<int> disc(V), low(V), parent(V, -1);
+    std::vector<bool> ap(V, false);
+    int time = 0;
+    
+    std::function<void(int)> bridgeUtil = [&](int u) {
+        int children = 0;
+        visited[u] = true;
+        disc[u] = low[u] = ++time;
+        
+        for (const auto& edge : graph.adjList[u]) {
+            int v = edge.node;
+            
+            if (!visited[v]) {
+                children++;
+                parent[v] = u;
+                bridgeUtil(v);
+                
+                low[u] = std::min(low[u], low[v]);
+                
+                if (parent[u] == -1 && children > 1) {
+                    ap[u] = true;
+                }
+                
+                if (parent[u] != -1 && low[v] >= disc[u]) {
+                    ap[u] = true;
+                }
+            } else if (v != parent[u]) {
+                low[u] = std::min(low[u], disc[v]);
+            }
+        }
+    };
+    
+    for (int i = 0; i < V; i++) {
+        if (!visited[i]) {
+            bridgeUtil(i);
+        }
+    }
+    
+    std::vector<int> articulationPoints;
+    for (int i = 0; i < V; i++) {
+        if (ap[i]) {
+            articulationPoints.push_back(i);
+        }
+    }
+    
+    return articulationPoints;
+}
+
+// Bellman-Ford Algorithm
+std::pair<std::vector<int>, bool> bellmanFord(const Graph& graph, int src) {
+    int V = graph.V;
+    std::vector<int> dist(V, INT_MAX);
+    dist[src] = 0;
+    
+    // Relax all edges V-1 times
+    for (int i = 0; i < V - 1; i++) {
+        for (int u = 0; u < V; u++) {
+            for (const auto& edge : graph.adjList[u]) {
+                int v = edge.node;
+                int weight = edge.weight;
+                
+                if (dist[u] != INT_MAX && dist[u] + weight < dist[v]) {
+                    dist[v] = dist[u] + weight;
+                }
+            }
+        }
+    }
+    
+    // Check for negative-weight cycles
+    for (int u = 0; u < V; u++) {
+        for (const auto& edge : graph.adjList[u]) {
+            int v = edge.node;
+            int weight = edge.weight;
+            
+            if (dist[u] != INT_MAX && dist[u] + weight < dist[v]) {
+                return {{}, true}; // Negative cycle detected
+            }
+        }
+    }
+    
+    return {dist, false};
+}
+
+// Example usage
+int main() {
+    Graph graph(6);
+    graph.addEdge(0, 1, 4);
+    graph.addEdge(0, 2, 3);
+    graph.addEdge(1, 2, 1);
+    graph.addEdge(1, 3, 2);
+    graph.addEdge(2, 3, 4);
+    graph.addEdge(3, 4, 2);
+    graph.addEdge(4, 5, 6);
+    
+    auto [distances, parents] = dijkstra(graph, 0);
+    std::cout << "Dijkstra distances from vertex 0: ";
+    for (int d : distances) {
+        std::cout << d << " ";
+    }
+    std::cout << std::endl;
+    
+    std::cout << "Has cycle: " << hasCycleDirected(graph) << std::endl;
+    
+    auto [bellmanDist, hasNegCycle] = bellmanFord(graph, 0);
+    if (!hasNegCycle) {
+        std::cout << "Bellman-Ford distances: ";
+        for (int d : bellmanDist) {
+            std::cout << d << " ";
+        }
+        std::cout << std::endl;
+    }
     
     return 0;
 }`
