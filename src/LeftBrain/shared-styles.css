@@ -59,90 +59,89 @@ body.dark-mode {
     --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
 }
 
-/* Base container styles */
+/* Base container styles - COMPACT */
 .leftbrain-container {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-    line-height: 1.2;
+    line-height: 1.1;
     color: var(--text-primary);
     background: linear-gradient(135deg, var(--background-primary) 0%, var(--background-secondary) 100%);
     min-height: 100vh;
-    padding: 0.3rem;
+    padding: 0.2rem;
     overflow-y: auto;
-    /* Better mobile overflow handling */
     overflow-x: hidden;
+    font-size: 10px;
 }
 
-/* When navigation panel is hidden, expand the content */
+/* When navigation panel is hidden, expand the content - COMPACT */
 .nav-hidden .leftbrain-container {
-    padding: 0.25rem;
+    padding: 0.15rem;
 }
 
-/* Dynamic padding based on screen size */
+/* Dynamic padding based on screen size - COMPACT */
 @media (min-width: 768px) {
     .leftbrain-container {
-        padding: 0.5rem;
+        padding: 0.25rem;
     }
 
     .nav-hidden .leftbrain-container {
-        padding: 0.4rem;
+        padding: 0.2rem;
     }
 }
 
 @media (min-width: 1024px) {
     .leftbrain-container {
-        padding: 0.6rem;
+        padding: 0.3rem;
     }
 
     .nav-hidden .leftbrain-container {
-        padding: 0.5rem;
+        padding: 0.25rem;
     }
 }
 
-/* Enhanced card containers with better responsive grid */
+/* Enhanced card containers with better responsive grid - COMPACT */
 .cards-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 0.5rem;
-    padding: 0.5rem 0;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0.3rem;
+    padding: 0.3rem 0;
     max-width: 1400px;
     margin: 0 auto;
-    /* Better mobile spacing */
 }
 
 @media (min-width: 768px) {
     .cards-container {
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 0.625rem;
-        padding: 0.625rem 0;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 0.4rem;
+        padding: 0.4rem 0;
     }
 }
 
 @media (min-width: 1024px) {
     .cards-container {
-        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-        gap: 0.75rem;
-        padding: 0.75rem 0;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 0.5rem;
+        padding: 0.5rem 0;
     }
 }
 
-/* Enhanced card styles with better mobile touch targets */
+/* Enhanced card styles with better mobile touch targets - COMPACT */
 .leftbrain-card,
 .tech-card {
     background: linear-gradient(135deg, var(--background-primary) 0%, var(--background-secondary) 100%);
-    border-radius: var(--radius-lg);
-    padding: 0.625rem;
-    margin-bottom: 0.5rem;
+    border-radius: var(--radius-md);
+    padding: 0.4rem;
+    margin-bottom: 0.3rem;
     box-shadow: var(--shadow-md);
     border: 1px solid var(--border-color);
     transition: all var(--transition-normal);
     position: relative;
     overflow: hidden;
     cursor: pointer;
-    /* Better mobile touch targets */
-    min-height: 44px;
+    min-height: 40px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    font-size: 10px;
 }
 
 @media (min-width: 768px) {
@@ -252,6 +251,89 @@ body.dark-mode {
     .tech-card p {
         font-size: 0.8125rem;
     }
+}
+
+/* Compact Global Typography Styles for LeftBrain */
+.leftbrain-container h1,
+.leftbrain-card h1,
+.tech-card h1 {
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.1;
+    margin: 0.2rem 0;
+    color: var(--text-primary);
+}
+
+.leftbrain-container h2,
+.leftbrain-card h2,
+.tech-card h2 {
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.1;
+    margin: 0.2rem 0;
+    color: var(--text-primary);
+}
+
+.leftbrain-container h3,
+.leftbrain-card h3,
+.tech-card h3 {
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.1;
+    margin: 0.2rem 0;
+    color: var(--text-primary);
+}
+
+.leftbrain-container h4,
+.leftbrain-card h4,
+.tech-card h4,
+.leftbrain-container h5,
+.leftbrain-card h5,
+.tech-card h5,
+.leftbrain-container h6,
+.leftbrain-card h6,
+.tech-card h6 {
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.1;
+    margin: 0.2rem 0;
+    color: var(--text-primary);
+}
+
+.leftbrain-container p,
+.leftbrain-card p,
+.tech-card p,
+.leftbrain-container span,
+.leftbrain-card span,
+.tech-card span,
+.leftbrain-container div,
+.leftbrain-card div,
+.tech-card div,
+.leftbrain-container li,
+.leftbrain-card li,
+.tech-card li {
+    font-size: 10px;
+    line-height: 1.1;
+    margin: 0.1rem 0;
+    color: var(--text-primary);
+}
+
+.leftbrain-container ul,
+.leftbrain-card ul,
+.tech-card ul,
+.leftbrain-container ol,
+.leftbrain-card ol,
+.tech-card ol {
+    margin: 0.2rem 0;
+    padding-left: 1rem;
+}
+
+.leftbrain-container button,
+.leftbrain-card button,
+.tech-card button {
+    font-size: 10px;
+    padding: 0.3rem 0.5rem;
+    margin: 0.1rem 0;
 }
 
 /* Section styling */

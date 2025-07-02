@@ -102,65 +102,69 @@ body.dark-mode code {
     }
 }
 
-/* Global compact font sizes for headings */
+/* Global compact font sizes for headings - UNIFORM 15px for headings, 10px for text */
 h1 {
-    font-size: 1.4rem;
-    line-height: 1.2;
-    margin: 0.3rem 0;
+    font-size: 15px;
+    line-height: 1.1;
+    margin: 0.2rem 0;
+    font-weight: 600;
 }
 
 h2 {
-    font-size: 1.2rem;
-    line-height: 1.2;
-    margin: 0.25rem 0;
+    font-size: 15px;
+    line-height: 1.1;
+    margin: 0.2rem 0;
+    font-weight: 600;
 }
 
 h3 {
-    font-size: 1rem;
-    line-height: 1.2;
+    font-size: 15px;
+    line-height: 1.1;
     margin: 0.2rem 0;
+    font-weight: 600;
 }
 
 h4 {
-    font-size: 0.9rem;
-    line-height: 1.2;
-    margin: 0.15rem 0;
+    font-size: 15px;
+    line-height: 1.1;
+    margin: 0.2rem 0;
+    font-weight: 600;
 }
 
 h5, h6 {
-    font-size: 0.8rem;
-    line-height: 1.2;
-    margin: 0.1rem 0;
+    font-size: 15px;
+    line-height: 1.1;
+    margin: 0.2rem 0;
+    font-weight: 600;
 }
 
 /* Compact paragraph spacing */
 p {
-    margin: 0.15rem 0;
-    line-height: 1.2;
+    margin: 0.1rem 0;
+    line-height: 1.1;
+    font-size: 10px;
 }
 
-/* Mobile heading adjustments */
+/* Mobile heading adjustments - UNIFORM 15px for headings */
 @media (max-width: 768px) {
-    h1 { font-size: 1.2rem; }
-    h2 { font-size: 1rem; }
-    h3 { font-size: 0.9rem; }
-    h4 { font-size: 0.8rem; }
-    h5, h6 { font-size: 0.7rem; }
+    h1, h2, h3, h4, h5, h6 { 
+        font-size: 15px; 
+        margin: 0.15rem 0;
+    }
 }
 
 @media (max-width: 480px) {
-    h1 { font-size: 1.1rem; }
-    h2 { font-size: 0.95rem; }
-    h3 { font-size: 0.85rem; }
-    h4 { font-size: 0.75rem; }
-    h5, h6 { font-size: 0.65rem; }
+    h1, h2, h3, h4, h5, h6 { 
+        font-size: 15px; 
+        margin: 0.1rem 0;
+    }
 }
 
 /* Compact form elements */
 input, textarea, select, button {
-    font-size: 0.75rem;
-    padding: 0.25rem 0.4rem;
-    margin: 0.1rem 0;
+    font-size: 10px;
+    padding: 0.2rem 0.3rem;
+    margin: 0.05rem 0;
 }
 
 /* Form element consistency across platforms */

@@ -1,22 +1,23 @@
 /* Import shared styles */
 @import url('../shared-styles.css');
 
-/* Music container specific styles */
+/* Music container specific styles - COMPACT */
 .music-container {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-    line-height: 1.6;
+    line-height: 1.1;
     color: var(--text-primary);
     background: linear-gradient(135deg, var(--background-primary) 0%, var(--background-secondary) 100%);
     min-height: 100vh;
-    padding: 2rem;
+    padding: 0.5rem;
     overflow-y: auto;
+    font-size: 10px;
 }
 
-/* Music-specific card styles */
+/* Music-specific card styles - COMPACT */
 .music-card {
     background: var(--background-primary);
-    border-radius: var(--radius-lg);
-    padding: 2rem;
+    border-radius: var(--radius-md);
+    padding: 0.6rem;
     box-shadow: var(--shadow-md);
     border: 1px solid var(--border-color);
     transition: transform var(--transition-normal), box-shadow var(--transition-normal);
@@ -31,12 +32,12 @@
     top: 0;
     left: 0;
     right: 0;
-    height: 4px;
+    height: 2px;
     background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
 }
 
 .music-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-2px);
     box-shadow: var(--shadow-xl);
 }
 

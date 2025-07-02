@@ -17,7 +17,7 @@
 }
 
 .dsa-title {
-    font-size: 1.5rem;
+    font-size: 15px;
     font-weight: 600;
     color: var(--accent-color);
     margin-bottom: 0.2rem;
@@ -28,7 +28,7 @@
 }
 
 .dsa-subtitle {
-    font-size: 0.8rem;
+    font-size: 10px;
     color: var(--text-secondary);
     margin: 0;
 }
@@ -38,7 +38,7 @@
 }
 
 .topic-tabs h3 {
-    font-size: 0.9rem;
+    font-size: 15px;
     margin-bottom: 0.5rem;
     color: var(--text-color);
     font-weight: 600;
@@ -109,7 +109,7 @@
 }
 
 .topic-info h2 {
-    font-size: 1.1rem;
+    font-size: 15px;
     color: var(--accent-color);
     margin-bottom: 0.2rem;
     font-weight: 600;
@@ -117,7 +117,7 @@
 
 .topic-info p {
     color: var(--text-secondary);
-    font-size: 0.75rem;
+    font-size: 10px;
     margin: 0;
 }
 

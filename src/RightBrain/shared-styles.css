@@ -51,14 +51,335 @@ body.dark-mode {
     --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
 }
 
-/* Base container styles */
+/* Base container styles - COMPACT */
 .rightbrain-container {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-    line-height: 1.2;
+    line-height: 1.1;
     color: var(--text-primary);
     background: linear-gradient(135deg, var(--background-primary) 0%, var(--background-secondary) 100%);
     min-height: 100vh;
-    padding: 0.3rem;
+    padding: 0.2rem;
+    overflow-y: auto;
+    overflow-x: hidden;
+    font-size: 10px;
+}
+
+/* When navigation panel is hidden, expand the content - COMPACT */
+.nav-hidden .rightbrain-container {
+    padding: 0.15rem;
+}
+
+/* Dynamic padding based on screen size - COMPACT */
+@media (min-width: 768px) {
+    .rightbrain-container {
+        padding: 0.25rem;
+    }
+
+    .nav-hidden .rightbrain-container {
+        padding: 0.2rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .rightbrain-container {
+        padding: 0.3rem;
+    }
+
+    .nav-hidden .rightbrain-container {
+        padding: 0.25rem;
+    }
+}
+
+/* Enhanced card containers with better responsive grid */
+.cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0.3rem;
+    padding: 0.3rem 0;
+    max-width: 1400px;
+    margin: 0 auto;
+    /* Better mobile spacing */
+}
+
+@media (min-width: 768px) {
+    .cards-container {
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 0.4rem;
+        padding: 0.4rem 0;
+    }
+}
+
+@media (min-width: 1024px) {
+    .cards-container {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 0.5rem;
+        padding: 0.5rem 0;
+    }
+}
+
+/* Card styles */
+.rightbrain-card {
+    background: linear-gradient(135deg, var(--background-primary) 0%, var(--background-secondary) 100%);
+    border-radius: var(--radius-md);
+    padding: 0.4rem;
+    margin-bottom: 0.3rem;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-color);
+    transition: all var(--transition-normal);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    /* Enhanced accessibility */
+    outline: none;
+    font-size: 0.8rem;
+}
+
+@media (min-width: 768px) {
+    .rightbrain-card {
+        padding: 0.5rem;
+        margin-bottom: 0.4rem;
+        font-size: 0.85rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .rightbrain-card {
+        padding: 0.6rem;
+        margin-bottom: 0.5rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* Enhanced hover effects for desktop */
+@media (hover: hover) and (pointer: fine) {
+    .rightbrain-card:hover {
+        transform: translateY(-8px);
+        box-shadow: var(--shadow-xl);
+        border-color: var(--primary-color);
+    }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+    .rightbrain-card:active {
+        transform: scale(0.98);
+        transition: transform 0.1s ease;
+    }
+}
+
+/* Typography */
+.rightbrain-card h3 {
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    font-size: 0.875rem;
+    line-height: 1.3;
+}
+
+@media (min-width: 768px) {
+    .rightbrain-card h3 {
+        font-size: 0.9375rem;
+        margin-bottom: 0.625rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .rightbrain-card h3 {
+        font-size: 1rem;
+        margin-bottom: 0.75rem;
+    }
+}
+
+.rightbrain-card p {
+    color: var(--text-secondary);
+    line-height: 1.4;
+    margin-bottom: 0.5rem;
+    font-size: 0.6875rem;
+}
+
+@media (min-width: 768px) {
+    .rightbrain-card p {
+        font-size: 0.75rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .rightbrain-card p {
+        font-size: 0.8125rem;
+    }
+}
+
+/* Section styling */
+.section-title {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    text-align: center;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+@media (min-width: 768px) {
+    .section-title {
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .section-title {
+        font-size: 2.5rem;
+        margin-bottom: 2rem;
+    }
+}
+
+/* Hero section */
+.hero-section {
+    padding: 4rem 2rem;
+    text-align: center;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.08) 0%, rgba(236, 72, 153, 0.08) 100%);
+    border-radius: var(--radius-xl);
+    margin: 2rem auto 4rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(99, 102, 241, 0.05) 0%, transparent 70%);
+    animation: float 6s ease-in-out infinite;
+}
+
+/* Animations */
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Loading spinner */
+.loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid var(--background-tertiary);
+    border-radius: 50%;
+    border-top: 4px solid var(--primary-color);
+    animation: spin 1s linear infinite;
+    margin: 2rem auto;
+}
+
+/* Button styles */
+.back-button,
+.rightbrain-button {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    justify-content: center;
+    /* Better mobile touch targets */
+    min-height: 44px;
+    min-width: 44px;
+    touch-action: manipulation; /* Improve touch responsiveness */
+}
+
+.back-button:hover,
+.rightbrain-button:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
+}
+
+body.dark-mode .back-button,
+body.dark-mode .rightbrain-button {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+}
+
+body.dark-mode .back-button:hover,
+body.dark-mode .rightbrain-button:hover {
+    background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+}
+
+/* Hover effects */
+.hover-effect {
+    transition: all var(--transition-normal);
+}
+
+.hover-effect:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+/* Image styles */
+.rightbrain-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: var(--radius-md);
+    margin: 1rem 0;
+    transition: transform var(--transition-normal);
+}
+
+.rightbrain-image:hover {
+    transform: scale(1.02);
+}
+
+/* Question/Quote styling */
+.card-question {
+    font-style: italic;
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+    background: var(--background-secondary);
+    padding: 1rem;
+    border-radius: var(--radius-md);
+    border-left: 4px solid var(--primary-color);
+}
+
+/* ===== RESPONSIVE DESIGN ENHANCEMENTS ===== */
+
+/* Enhanced responsive design for better mobile/desktop compatibility */
+
+/* Base container improvements */
+.rightbrain-container {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    line-height: 1.6;
+    color: var(--text-primary);
+    background: linear-gradient(135deg, var(--background-primary) 0%, var(--background-secondary) 100%);
+    min-height: 100vh;
+    padding: 1rem;
     overflow-y: auto;
     /* Better mobile overflow handling */
     overflow-x: hidden;
@@ -66,27 +387,27 @@ body.dark-mode {
 
 /* When navigation panel is hidden, expand the content */
 .nav-hidden .rightbrain-container {
-    padding: 0;
+    padding: 0.5rem;
 }
 
 /* Dynamic padding based on screen size */
 @media (min-width: 768px) {
     .rightbrain-container {
-        padding: 0.5rem;
+        padding: 2rem;
     }
 
     .nav-hidden .rightbrain-container {
-        padding: 0;
+        padding: 1.5rem;
     }
 }
 
 @media (min-width: 1024px) {
     .rightbrain-container {
-        padding: 1rem;
+        padding: 2.5rem;
     }
 
     .nav-hidden .rightbrain-container {
-        padding: 0;
+        padding: 2rem;
     }
 }
 
@@ -833,6 +1154,76 @@ body.dark-mode .rightbrain-button:hover {
         max-height: none;
         height: auto;
     }
+}
+
+/* Compact Global Typography Styles for RightBrain */
+.rightbrain-container h1,
+.rightbrain-card h1 {
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.1;
+    margin: 0.2rem 0;
+    color: var(--text-primary);
+}
+
+.rightbrain-container h2,
+.rightbrain-card h2 {
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.1;
+    margin: 0.2rem 0;
+    color: var(--text-primary);
+}
+
+.rightbrain-container h3,
+.rightbrain-card h3 {
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.1;
+    margin: 0.2rem 0;
+    color: var(--text-primary);
+}
+
+.rightbrain-container h4,
+.rightbrain-card h4,
+.rightbrain-container h5,
+.rightbrain-card h5,
+.rightbrain-container h6,
+.rightbrain-card h6 {
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.1;
+    margin: 0.2rem 0;
+    color: var(--text-primary);
+}
+
+.rightbrain-container p,
+.rightbrain-card p,
+.rightbrain-container span,
+.rightbrain-card span,
+.rightbrain-container div,
+.rightbrain-card div,
+.rightbrain-container li,
+.rightbrain-card li {
+    font-size: 10px;
+    line-height: 1.1;
+    margin: 0.1rem 0;
+    color: var(--text-primary);
+}
+
+.rightbrain-container ul,
+.rightbrain-card ul,
+.rightbrain-container ol,
+.rightbrain-card ol {
+    margin: 0.2rem 0;
+    padding-left: 1rem;
+}
+
+.rightbrain-container button,
+.rightbrain-card button {
+    font-size: 10px;
+    padding: 0.3rem 0.5rem;
+    margin: 0.1rem 0;
 }
 
 /* Universal nav-hidden spacing optimizations for all tools and components */

@@ -1,25 +1,25 @@
 /* Import shared styles */
 @import url('../shared-styles.css');
 
-/* Compact header for smaller literature section */
+/* Compact header for smaller literature section - COMPACT */
 .compact-header {
     text-align: center;
-    padding: 1rem 0;
-    margin-bottom: 1rem;
+    padding: 0.3rem 0;
+    margin-bottom: 0.3rem;
     border-bottom: 1px solid var(--border-color);
 }
 
 .compact-header .section-title {
-    font-size: 1.5rem;
+    font-size: 15px;
     margin: 0;
     color: var(--primary-color);
     font-weight: 600;
 }
 
-/* Literature section spacing for stacked layout */
+/* Literature section spacing for stacked layout - COMPACT */
 .literature-section {
-    margin-bottom: 3rem;
-    padding-bottom: 2rem;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.5rem;
     border-bottom: 1px solid var(--border-color);
 }
 
@@ -40,12 +40,12 @@
     width: 100vw;
 }
 
-/* Literature specific cards */
+/* Literature specific cards - COMPACT */
 .novelist-cards {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem;
-    padding: 1.5rem 0;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 0.5rem;
+    padding: 0.5rem 0;
     max-width: 1400px;
     margin: 0 auto;
 }

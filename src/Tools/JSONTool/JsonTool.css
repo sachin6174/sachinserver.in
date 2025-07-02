@@ -1,47 +1,49 @@
 .json-tool {
-    padding: 20px;
+    padding: 0.5rem;
     max-width: 100%;
     margin: 0 auto;
+    font-size: 10px;
 }
 
 .tool-container {
     background-color: var(--content-bg);
-    border-radius: 12px;
-    padding: 30px;
+    border-radius: 6px;
+    padding: 0.75rem;
     width: 100%;
 }
 
 .input-section textarea.full-width-input {
     width: 100%;
-    min-height: 200px;
-    padding: 15px;
-    margin-bottom: 20px;
-    border-radius: 4px;
+    min-height: 150px;
+    padding: 0.4rem;
+    margin-bottom: 0.5rem;
+    border-radius: 3px;
     border: 1px solid #ccc;
     font-family: monospace;
+    font-size: 10px;
 }
 
 .output-section pre.auto-height {
     height: auto;
-    min-height: 100px;
+    min-height: 80px;
     width: 100%;
-    padding: 20px;
-    font-size: 16px;
+    padding: 0.5rem;
+    font-size: 10px;
     background-color: var(--card-bg);
-    border-radius: 4px;
+    border-radius: 3px;
     white-space: pre-wrap;
     word-wrap: break-word;
 }
 
 .tree-container {
-    margin-top: 20px;
-    padding: 20px;
+    margin-top: 0.5rem;
+    padding: 0.5rem;
     background-color: var(--card-bg);
-    border-radius: 4px;
+    border-radius: 3px;
 }
 
 .tree-node {
-    margin: 5px 0;
+    margin: 0.1rem 0;
     position: relative;
 }
 
