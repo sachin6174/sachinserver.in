@@ -53,16 +53,9 @@ const EnhancedImage = ({ src, alt, className, fallback, onError }) => {
 };
 
 const Literature = () => {
-    const [activeSection, setActiveSection] = useState('famous-literature');
     const [selectedLanguage, setSelectedLanguage] = useState('hindi');
     const [selectedItem, setSelectedItem] = useState(null);
     const [selectedNovelist, setSelectedNovelist] = useState(null);
-
-    const handleSectionChange = (section) => {
-        setActiveSection(section);
-        setSelectedItem(null);
-        setSelectedNovelist(null);
-    };
 
     const handleLanguageChange = (language) => {
         setSelectedLanguage(language);
@@ -176,7 +169,7 @@ const Literature = () => {
                             <p><strong>Author:</strong> {item.author}</p>
                             <p><strong>Year:</strong> {item.year}</p>
                             <p><strong>Genre:</strong> {item.genre}</p>
-                            <p>{item.description.substring(0, 150)}...</p>
+                            <p>{item.description.substring(0, 100)}...</p>
                             {item.wikipedia && (
                                 <a href={item.wikipedia} target="_blank" rel="noopener noreferrer" className="wikipedia-link" onClick={(e) => e.stopPropagation()}>
                                     Wikipedia
@@ -280,7 +273,7 @@ const Literature = () => {
                             <p><strong>Country:</strong> {novelist.country}</p>
                             <p><strong>Languages:</strong> {novelist.languages?.join(', ')}</p>
                             <p><strong>Genre:</strong> {novelist.genre}</p>
-                            <p>{novelist.description.substring(0, 200)}...</p>
+                            <p>{novelist.description.substring(0, 100)}...</p>
                             {novelist.wikipedia && (
                                 <a href={novelist.wikipedia} target="_blank" rel="noopener noreferrer" className="wikipedia-link" onClick={(e) => e.stopPropagation()}>
                                     Wikipedia
@@ -330,7 +323,7 @@ const Literature = () => {
                                 {renderStars(book.rating)}
                             </div>
                             <p><strong>Date Read:</strong> {book.dateRead}</p>
-                            <p>{book.myReview}</p>
+                            <p>{book.myReview.substring(0, 80)}...</p>
                             {book.tags && (
                                 <div className="tags">
                                     {book.tags.map((tag, index) => (
@@ -352,40 +345,24 @@ const Literature = () => {
 
     return (
         <div className="literature-container">
-            <div className="hero-section">
-                <div className="section-header">
-                    <h1 className="section-title">Literary World</h1>
-                    <div className="section-divider"></div>
-                    <p style={{ color: 'var(--text-secondary)', fontSize: '1.1rem', marginTop: '1rem' }}>
-                        Explore the rich tapestry of world literature and storytelling
-                    </p>
-                </div>
+            <div className="compact-header">
+                <h2 className="section-title">Literary World</h2>
             </div>
 
-            <div className="literature-nav">
-                <button
-                    className={`nav-button ${activeSection === 'famous-literature' ? 'active' : ''}`}
-                    onClick={() => handleSectionChange('famous-literature')}
-                >
-                    Famous Literature
-                </button>
-                <button
-                    className={`nav-button ${activeSection === 'famous-novelists' ? 'active' : ''}`}
-                    onClick={() => handleSectionChange('famous-novelists')}
-                >
-                    Famous Novelists
-                </button>
-                <button
-                    className={`nav-button ${activeSection === 'books-i-read' ? 'active' : ''}`}
-                    onClick={() => handleSectionChange('books-i-read')}
-                >
-                    Books I Read
-                </button>
+            {/* Books I Read Section */}
+            <div className="literature-section">
+                {renderBooksIRead()}
             </div>
 
-            {activeSection === 'famous-literature' && renderFamousLiterature()}
-            {activeSection === 'famous-novelists' && renderFamousNovelists()}
-            {activeSection === 'books-i-read' && renderBooksIRead()}
+            {/* Famous Literature Section */}
+            <div className="literature-section">
+                {renderFamousLiterature()}
+            </div>
+
+            {/* Famous Novelists Section */}
+            <div className="literature-section">
+                {renderFamousNovelists()}
+            </div>
         </div>
     );
 };

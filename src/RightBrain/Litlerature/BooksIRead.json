@@ -82,6 +82,27 @@
             "wikipedia": "https://en.wikipedia.org/wiki/The_White_Tiger"
         },
         {
+            "id": "kadira-kasai-manto",
+            "title": "Kadira Kasai",
+            "author": "Saadat Hasan Manto",
+            "year": "1955",
+            "genre": "Short Stories",
+            "language": "Urdu",
+            "description": "A powerful short story by Manto that explores human nature and social issues with his characteristic bold realism.",
+            "image": "https://upload.wikimedia.org/wikipedia/en/7/71/Saadat_Hasan_Manto_photograph.jpg",
+            "rating": 5,
+            "dateRead": "2025-07-02",
+            "myReview": "Manto's incredible ability to capture the raw essence of human nature is on full display in this story. His unflinching portrayal of society's complexities and the human condition is both disturbing and enlightening. The way he writes about difficult subjects with such honesty and depth makes this a truly memorable read.",
+            "tags": [
+                "urdu-literature",
+                "short-story",
+                "social-realism",
+                "partition-literature",
+                "manto"
+            ],
+            "wikipedia": "https://en.wikipedia.org/wiki/Saadat_Hasan_Manto"
+        },
+        {
             "id": "placeholder-note",
             "title": "📝 Add Your Own Books",
             "author": "You can edit this file",
