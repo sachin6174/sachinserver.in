@@ -80,7 +80,7 @@ const YAMLTool = () => {
     };
 
     // Convert JSON to YAML
-    const jsonToYAML = (obj, indent = 0) => {
+    const jsonToYAML = useCallback((obj, indent = 0) => {
         const spaces = '  '.repeat(indent);
         let yaml = '';
 
@@ -92,14 +92,14 @@ const YAMLTool = () => {
                 yaml += jsonToYAML(value, indent + 1);
             } else if (Array.isArray(value)) {
                 yaml += `${spaces}${key}:\n`;
-                value.forEach(item => {
+                for (const item of value) {
                     if (typeof item === 'object') {
                         yaml += `${spaces}  -\n`;
                         yaml += jsonToYAML(item, indent + 2);
                     } else {
                         yaml += `${spaces}  - ${item}\n`;
                     }
-                });
+                }
             } else if (typeof value === 'string') {
                 yaml += `${spaces}${key}: "${value}"\n`;
             } else {
@@ -108,7 +108,7 @@ const YAMLTool = () => {
         }
 
         return yaml;
-    };
+    }, []);
 
     const handleYamlToJson = useCallback(() => {
         if (!yamlInput.trim()) {
@@ -147,7 +147,7 @@ const YAMLTool = () => {
         } finally {
             setIsLoading(false);
         }
-    }, [yamlInput]);
+    }, [yamlInput, jsonToYAML]);
 
     const handleValidate = useCallback(() => {
         if (!yamlInput.trim()) {

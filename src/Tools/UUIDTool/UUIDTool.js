@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useMemo } from 'react';
 import './UUIDTool.css';
 
 const UUIDTool = () => {
@@ -13,7 +13,9 @@ const UUIDTool = () => {
     const [history, setHistory] = useState([]);
 
     // UUID validation regex
-    const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+    const uuidRegex = useMemo(() => 
+        /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i,
+    []);
 
     // Generate random hex
     const randomHex = (length) => {
@@ -21,7 +23,7 @@ const UUIDTool = () => {
     };
 
     // Generate UUID v1 (timestamp-based)
-    const generateUUIDv1 = () => {
+    const generateUUIDv1 = useCallback(() => {
         const timestamp = Date.now();
         const timestampHex = timestamp.toString(16).padStart(12, '0');
         const clockSeq = Math.floor(Math.random() * 0x3fff);
@@ -34,16 +36,16 @@ const UUIDTool = () => {
             ((clockSeq >> 8) | 0x80).toString(16).padStart(2, '0') + (clockSeq & 0xff).toString(16).padStart(2, '0'),
             node
         ].join('-');
-    };
+    }, []);
 
     // Generate UUID v4 (random)
-    const generateUUIDv4 = () => {
+    const generateUUIDv4 = useCallback(() => {
         return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
             const r = Math.random() * 16 | 0;
             const v = c === 'x' ? r : ((r & 0x3) | 0x8);
             return v.toString(16);
         });
-    };
+    }, []);
 
     // Simple hash function for UUID v5 (name-based)
     const simpleHash = (str) => {
@@ -57,7 +59,7 @@ const UUIDTool = () => {
     };
 
     // Generate UUID v5 (name-based with SHA-1 - simplified version)
-    const generateUUIDv5 = (namespace, name) => {
+    const generateUUIDv5 = useCallback((namespace, name) => {
         if (!namespace || !name) return generateUUIDv4();
 
         const combined = namespace + name;
@@ -73,10 +75,10 @@ const UUIDTool = () => {
             '8' + hash4.substring(1, 3),
             hash3 + hash4.substring(4)
         ].join('-');
-    };
+    }, [generateUUIDv4]);
 
     // Generate UUIDs based on version
-    const generateUUID = (version) => {
+    const generateUUID = useCallback((version) => {
         switch (version) {
             case 'v1':
                 return generateUUIDv1();
@@ -87,7 +89,7 @@ const UUIDTool = () => {
             default:
                 return generateUUIDv4();
         }
-    };
+    }, [customNamespace, customName, generateUUIDv1, generateUUIDv5, generateUUIDv4]);
 
     // Generate multiple UUIDs
     const handleGenerate = useCallback(() => {
@@ -114,7 +116,7 @@ const UUIDTool = () => {
             preview: newUUIDs[0]?.id
         };
         setHistory(prev => [historyItem, ...prev.slice(0, 9)]);
-    }, [quantity, uuidVersion, customNamespace, customName]);
+    }, [quantity, uuidVersion, generateUUID]);
 
     // Validate UUID
     const validateUUID = useCallback(() => {
@@ -163,7 +165,7 @@ const UUIDTool = () => {
                 received: uuid
             });
         }
-    }, [inputUUID]);
+    }, [inputUUID, uuidRegex]);
 
     React.useEffect(() => {
         validateUUID();

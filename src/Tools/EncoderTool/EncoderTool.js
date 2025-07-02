@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useRef } from 'react';
+import React, { useState, useCallback, useRef, useMemo } from 'react';
 import './EncoderTool.css';
 
 const EncoderTool = () => {
@@ -10,7 +10,7 @@ const EncoderTool = () => {
     const [isDragging, setIsDragging] = useState(false);
     const fileInputRef = useRef(null);
 
-    const encodingMethods = {
+    const encodingMethods = useMemo(() => ({
         base64: {
             name: 'Base64',
             description: 'Standard Base64 encoding/decoding',
@@ -104,7 +104,7 @@ const EncoderTool = () => {
                 return String.fromCharCode(((char.charCodeAt(0) - start + 13) % 26) + start);
             })
         }
-    };
+    }), []);
 
     const processText = useCallback(() => {
         if (!inputText.trim()) {
@@ -125,7 +125,7 @@ const EncoderTool = () => {
             setError(`${direction === 'encode' ? 'Encoding' : 'Decoding'} failed: ${err.message}`);
             setOutputText('');
         }
-    }, [inputText, activeTab, direction]);
+    }, [inputText, activeTab, direction, encodingMethods]);
 
     React.useEffect(() => {
         processText();
