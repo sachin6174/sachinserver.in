@@ -3,6 +3,7 @@ import AboutMe from "./LeftBrain/AboutMe/AboutMe";
 import AppleDevelopment from "./LeftBrain/AppleDevelopment/AppleDevelopment";
 import NodeJS from "./LeftBrain/NodeJS/NodeJS";
 import ReactJS from "./LeftBrain/ReactJS/ReactJS";
+import DSA from "./LeftBrain/DSA/DSA";
 import Drawing from "./RightBrain/Drawing/Drawing";
 import Literature from "./RightBrain/Litlerature/Literature";
 import Philosophy from "./RightBrain/Philosophy/Philosophy";
@@ -115,6 +116,7 @@ const TabSystem = () => {
             { id: "apple-development", label: "Apple Development", icon: "🍎", description: <AppleDevelopment /> },
             { id: "nodejs", label: "NodeJS", icon: "🌐", description: <NodeJS /> },
             { id: "reactjs", label: "ReactJS", icon: "⚛️", description: <ReactJS /> },
+            { id: "dsa", label: "DSA", icon: "🧮", description: <DSA /> },
             { id: "about-me", label: "About Me", icon: "👤", description: <AboutMe /> },
         ],
         rightbrain: [
