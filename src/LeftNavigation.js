@@ -7,8 +7,8 @@ const LeftNavigation = ({ items, selectedNavItem, setSelectedNavItem }) => {
                 {items?.map((item) => (
                     <div
                         key={item.id}
-                        className={`nav-item ${selectedNavItem === item.label || selectedNavItem === item.id ? "selected" : ""}`}
-                        onClick={() => setSelectedNavItem(item.label)}
+                        className={`nav-item ${selectedNavItem === item.id ? "selected" : ""}`}
+                        onClick={() => setSelectedNavItem(item.id)}
                     >
                         <span className="nav-icon">{item.icon}</span>
                         {item.label}
