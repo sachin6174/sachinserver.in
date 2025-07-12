@@ -5,10 +5,20 @@ import NodeJS from "./LeftBrain/NodeJS/NodeJS";
 import ReactJS from "./LeftBrain/ReactJS/ReactJS";
 import DSA from "./LeftBrain/DSA/DSA";
 import MacTerminalScripts from "./LeftBrain/MacTerminalScripts/MacTerminalScripts";
+import SwiftNetworking from "./LeftBrain/SwiftNetworking/SwiftNetworking";
+import Swift from "./LeftBrain/Swift/Swift";
+import ObjectiveC from "./LeftBrain/ObjectiveC/ObjectiveC";
+import Debugging from "./LeftBrain/Debugging/Debugging";
+import SystemDesign from "./LeftBrain/SystemDesign/SystemDesign";
+import SwiftGUI from "./LeftBrain/SwiftGUI/SwiftGUI";
+import SwiftStorage from "./LeftBrain/SwiftStorage/SwiftStorage";
+import AIAndTools from "./LeftBrain/AIAndTools/AIAndTools";
+import DesignPatterns from "./LeftBrain/DesignPatterns/DesignPatterns";
 import Drawing from "./RightBrain/Drawing/Drawing";
 import Literature from "./RightBrain/Litlerature/Literature";
 import Philosophy from "./RightBrain/Philosophy/Philosophy";
 import Music from "./RightBrain/Music/Music";
+import Psychology from "./RightBrain/Psychology/Psychology";
 import { InfoTool, JsonTool, XmlTool, CryptoTool, WritingBoardTool, APITool, BackgroundRemoverTool, StorageTool, ColorPickerTool, ScreenRecorderTool, CSVTool, HashTool, PasswordTool, YAMLTool, RegexTool, EncoderTool, UUIDTool } from './Tools';
 import logo from './assets/logo512.png';  // Updated import path
 import './TabSystem.css';
@@ -126,9 +136,18 @@ const TabSystem = () => {
     const navigationItems = {
         leftbrain: [
             { id: "apple-development", label: "Apple Development", icon: "🍎", description: <AppleDevelopment /> },
+            { id: "swift", label: "Swift", icon: "🦉", description: <Swift /> },
+            { id: "objective-c", label: "Objective-C", icon: "🔷", description: <ObjectiveC /> },
+            { id: "swift-gui", label: "Swift GUI", icon: "🖥️", description: <SwiftGUI /> },
+            { id: "swift-storage", label: "Swift Storage", icon: "💾", description: <SwiftStorage /> },
+            { id: "swift-networking", label: "Swift Networking", icon: "🌐", description: <SwiftNetworking /> },
+            { id: "debugging", label: "Swift Debugging", icon: "🐛", description: <Debugging /> },
+            { id: "mac-terminal-scripts", label: "Mac Terminal Scripts", icon: "💻", description: <MacTerminalScripts /> },
+            { id: "ai-and-tools", label: "AI and Tools", icon: "🤖", description: <AIAndTools /> },
+            { id: "design-patterns", label: "Design Patterns", icon: "🏗️", description: <DesignPatterns /> },
+            { id: "system-design", label: "System Design", icon: "🏢", description: <SystemDesign /> },
             { id: "nodejs", label: "NodeJS", icon: "🌐", description: <NodeJS /> },
             { id: "reactjs", label: "ReactJS", icon: "⚛️", description: <ReactJS /> },
-            { id: "mac-terminal-scripts", label: "Mac Terminal Scripts", icon: "💻", description: <MacTerminalScripts /> },
             { id: "dsa", label: "DSA", icon: "🧮", description: <DSA /> },
             { id: "about-me", label: "About Me", icon: "👤", description: <AboutMe /> },
         ],
@@ -136,6 +155,7 @@ const TabSystem = () => {
             { id: "drawing", label: "Drawing", icon: "✏️", description: <Drawing /> },
             { id: "literature", label: "Literature", icon: "📖", description: <Literature /> },
             { id: "philosophy", label: "Philosophy", icon: "🤔", description: <Philosophy /> },
+            { id: "psychology", label: "Psychology", icon: "🧠", description: <Psychology /> },
             { id: "music", label: "Music", icon: "🎵", description: <Music /> },
         ],
         tools: [

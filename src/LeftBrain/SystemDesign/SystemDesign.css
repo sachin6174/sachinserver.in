@@ -1,0 +1,304 @@
+/* System Design specific styles */
+.system-design-section {
+    /* Inherits from shared-styles.css */
+}
+
+.system-component-card {
+    background: linear-gradient(135deg, #059669 0%, #10B981 100%);
+    color: white;
+    border: none;
+    margin-bottom: 0.75rem;
+}
+
+.system-component-card h3 {
+    color: white;
+}
+
+.system-component-card p {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.system-design-code-block {
+    background: var(--background-tertiary);
+    border-left: 4px solid #059669;
+    border-radius: var(--radius-md);
+    padding: 1rem;
+    margin: 0.75rem 0;
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    font-size: 0.75rem;
+    line-height: 1.4;
+    overflow-x: auto;
+}
+
+.design-pattern-badge {
+    background: linear-gradient(135deg, #059669, #10B981);
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin: 0.25rem;
+    display: inline-block;
+}
+
+.architecture-diagram {
+    background: var(--background-secondary);
+    border: 2px solid #D1FAE5;
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    margin: 1.5rem 0;
+    text-align: center;
+}
+
+.architecture-diagram.complex {
+    border-color: #059669;
+    background: linear-gradient(135deg, rgba(5, 150, 105, 0.05) 0%, rgba(16, 185, 129, 0.05) 100%);
+}
+
+.architecture-flow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.flow-component {
+    background: var(--background-primary);
+    border: 2px solid #10B981;
+    border-radius: var(--radius-md);
+    padding: 1rem;
+    min-width: 120px;
+    text-align: center;
+    position: relative;
+}
+
+.flow-component.critical {
+    border-color: #DC2626;
+    background: #FEF2F2;
+}
+
+.flow-component.database {
+    border-color: #7C3AED;
+    background: #F5F3FF;
+}
+
+.flow-arrow {
+    font-size: 1.5rem;
+    color: #059669;
+    align-self: center;
+}
+
+@media (max-width: 768px) {
+    .architecture-flow {
+        flex-direction: column;
+    }
+    
+    .flow-arrow {
+        transform: rotate(90deg);
+    }
+}
+
+.scalability-metrics {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.metric-card {
+    background: var(--background-secondary);
+    padding: 1rem;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-color);
+    text-align: center;
+}
+
+.metric-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #059669;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.metric-label {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.design-principle {
+    background: var(--background-secondary);
+    border-left: 4px solid #10B981;
+    padding: 1rem;
+    margin: 0.75rem 0;
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+}
+
+.design-principle h4 {
+    color: #059669;
+    margin-bottom: 0.5rem;
+}
+
+.trade-offs-comparison {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+@media (max-width: 768px) {
+    .trade-offs-comparison {
+        grid-template-columns: 1fr;
+    }
+}
+
+.trade-off-card {
+    background: var(--background-secondary);
+    padding: 1.5rem;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-color);
+}
+
+.trade-off-card.pros {
+    border-left: 4px solid #10B981;
+}
+
+.trade-off-card.cons {
+    border-left: 4px solid #EF4444;
+}
+
+.trade-off-card h4 {
+    margin-bottom: 1rem;
+}
+
+.trade-off-card.pros h4 {
+    color: #059669;
+}
+
+.trade-off-card.cons h4 {
+    color: #DC2626;
+}
+
+.system-timeline {
+    position: relative;
+    padding-left: 2rem;
+}
+
+.system-timeline::before {
+    content: '';
+    position: absolute;
+    left: 0.5rem;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, #059669, #10B981);
+}
+
+.timeline-phase {
+    position: relative;
+    margin-bottom: 1.5rem;
+    background: var(--background-secondary);
+    padding: 1rem;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-color);
+}
+
+.timeline-phase::before {
+    content: '';
+    position: absolute;
+    left: -1.75rem;
+    top: 1rem;
+    width: 12px;
+    height: 12px;
+    background: #059669;
+    border-radius: 50%;
+    border: 2px solid var(--background-primary);
+}
+
+.capacity-planning {
+    background: linear-gradient(135deg, rgba(5, 150, 105, 0.1) 0%, rgba(16, 185, 129, 0.1) 100%);
+    border: 1px solid #D1FAE5;
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    margin: 1rem 0;
+}
+
+.capacity-planning h4 {
+    color: #059669;
+    margin-bottom: 1rem;
+}
+
+.load-testing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.load-test-card {
+    background: var(--background-secondary);
+    padding: 1rem;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-color);
+    text-align: center;
+}
+
+.load-test-icon {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.caching-strategy {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.cache-layer {
+    background: var(--background-secondary);
+    border: 2px solid #D1FAE5;
+    border-radius: var(--radius-md);
+    padding: 1rem;
+    position: relative;
+}
+
+.cache-layer.l1 {
+    border-color: #10B981;
+}
+
+.cache-layer.l2 {
+    border-color: #059669;
+}
+
+.cache-layer.l3 {
+    border-color: #065F46;
+}
+
+.microservices-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 0.75rem;
+    margin: 1rem 0;
+}
+
+.microservice-card {
+    background: var(--background-secondary);
+    border: 1px solid #D1FAE5;
+    border-radius: var(--radius-md);
+    padding: 0.75rem;
+    text-align: center;
+    font-size: 0.875rem;
+    transition: transform var(--transition-normal);
+}
+
+.microservice-card:hover {
+    transform: translateY(-2px);
+    border-color: #10B981;
+    box-shadow: var(--shadow-md);
+}

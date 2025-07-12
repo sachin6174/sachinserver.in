@@ -1,0 +1,197 @@
+/* Debugging specific styles */
+.debugging-section {
+    /* Inherits from shared-styles.css */
+}
+
+.debugging-tool-card {
+    background: linear-gradient(135deg, #DC2626 0%, #EF4444 100%);
+    color: white;
+    border: none;
+    margin-bottom: 0.75rem;
+}
+
+.debugging-tool-card h3 {
+    color: white;
+}
+
+.debugging-tool-card p {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.debug-code-block {
+    background: var(--background-tertiary);
+    border-left: 4px solid #DC2626;
+    border-radius: var(--radius-md);
+    padding: 1rem;
+    margin: 0.75rem 0;
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    font-size: 0.75rem;
+    line-height: 1.4;
+    overflow-x: auto;
+}
+
+.debugging-technique-badge {
+    background: linear-gradient(135deg, #DC2626, #EF4444);
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin: 0.25rem;
+    display: inline-block;
+}
+
+.debugging-scenario {
+    background: var(--background-secondary);
+    border: 2px solid #FEE2E2;
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    margin: 1rem 0;
+}
+
+.debugging-scenario.critical {
+    border-color: #DC2626;
+    background: linear-gradient(135deg, rgba(220, 38, 38, 0.05) 0%, rgba(239, 68, 68, 0.05) 100%);
+}
+
+.debugging-scenario h4 {
+    color: #DC2626;
+    margin-bottom: 1rem;
+}
+
+.platform-debugging {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.platform-card {
+    background: var(--background-secondary);
+    padding: 1.5rem;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-color);
+}
+
+.platform-card h4 {
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.debug-timeline {
+    position: relative;
+    padding-left: 2rem;
+}
+
+.debug-timeline::before {
+    content: '';
+    position: absolute;
+    left: 0.5rem;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, #DC2626, #EF4444);
+}
+
+.debug-step {
+    position: relative;
+    margin-bottom: 1.5rem;
+    background: var(--background-secondary);
+    padding: 1rem;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-color);
+}
+
+.debug-step::before {
+    content: '';
+    position: absolute;
+    left: -1.75rem;
+    top: 1rem;
+    width: 12px;
+    height: 12px;
+    background: #DC2626;
+    border-radius: 50%;
+    border: 2px solid var(--background-primary);
+}
+
+.debug-step.completed::before {
+    background: #059669;
+}
+
+.error-type {
+    display: inline-block;
+    background: #FEE2E2;
+    color: #991B1B;
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin: 0.25rem 0.25rem 0.25rem 0;
+}
+
+.debug-tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.debug-tool-item {
+    background: var(--background-secondary);
+    padding: 1rem;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-color);
+    text-align: center;
+    transition: transform var(--transition-normal);
+}
+
+.debug-tool-item:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.debug-tool-icon {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.breakpoint-indicator {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    background: #DC2626;
+    border-radius: 50%;
+    margin-right: 0.5rem;
+}
+
+.log-level {
+    padding: 0.25rem 0.5rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-right: 0.5rem;
+}
+
+.log-level.error {
+    background: #FEE2E2;
+    color: #991B1B;
+}
+
+.log-level.warning {
+    background: #FEF3C7;
+    color: #92400E;
+}
+
+.log-level.info {
+    background: #DBEAFE;
+    color: #1E40AF;
+}
+
+.log-level.debug {
+    background: #F3F4F6;
+    color: #374151;
+}

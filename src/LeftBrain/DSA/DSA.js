@@ -126,6 +126,331 @@ int main() {
 }`
             }
         },
+        'swift-syntax': {
+            title: 'Swift Data Structures Syntax',
+            description: 'Comprehensive Swift syntax guide for implementing various data structures',
+            questions: [
+                'How do you implement a generic stack in Swift?',
+                'What is the difference between Array and ContiguousArray?',
+                'How do you create a hash table using Dictionary?',
+                'What are the performance characteristics of Set operations?',
+                'How do you implement a binary tree with protocols?',
+                'What is the difference between class and struct for data structures?',
+                'How do you use inout parameters for reference semantics?',
+                'What are the benefits of using generics in data structures?'
+            ],
+            swift: {
+                title: 'Swift Data Structures Implementation',
+                code: `// MARK: - Array (Dynamic Array)
+// Creation and initialization
+var dynamicArray: [Int] = []
+var initializedArray = [1, 2, 3, 4, 5]
+var repeatedArray = Array(repeating: 0, count: 10)
+
+// Common operations
+dynamicArray.append(10)           // O(1) amortized
+dynamicArray.insert(5, at: 0)     // O(n)
+dynamicArray.remove(at: 0)        // O(n)
+let element = dynamicArray[0]     // O(1) access
+
+// MARK: - Stack Implementation
+struct Stack<T> {
+    private var items: [T] = []
+    
+    mutating func push(_ item: T) {
+        items.append(item)
+    }
+    
+    mutating func pop() -> T? {
+        return items.popLast()
+    }
+    
+    func peek() -> T? {
+        return items.last
+    }
+    
+    var isEmpty: Bool {
+        return items.isEmpty
+    }
+    
+    var count: Int {
+        return items.count
+    }
+}
+
+// Usage
+var stack = Stack<Int>()
+stack.push(1)
+stack.push(2)
+let top = stack.pop() // Returns 2
+
+// MARK: - Queue Implementation
+struct Queue<T> {
+    private var items: [T] = []
+    
+    mutating func enqueue(_ item: T) {
+        items.append(item)
+    }
+    
+    mutating func dequeue() -> T? {
+        return items.isEmpty ? nil : items.removeFirst()
+    }
+    
+    func front() -> T? {
+        return items.first
+    }
+    
+    var isEmpty: Bool {
+        return items.isEmpty
+    }
+}
+
+// MARK: - Linked List Implementation
+class ListNode<T> {
+    var value: T
+    var next: ListNode<T>?
+    
+    init(_ value: T) {
+        self.value = value
+    }
+}
+
+class LinkedList<T> {
+    private var head: ListNode<T>?
+    
+    func append(_ value: T) {
+        let newNode = ListNode(value)
+        
+        guard let head = head else {
+            self.head = newNode
+            return
+        }
+        
+        var current = head
+        while current.next != nil {
+            current = current.next!
+        }
+        current.next = newNode
+    }
+    
+    func prepend(_ value: T) {
+        let newNode = ListNode(value)
+        newNode.next = head
+        head = newNode
+    }
+    
+    func remove(_ value: T) where T: Equatable {
+        guard let head = head else { return }
+        
+        if head.value == value {
+            self.head = head.next
+            return
+        }
+        
+        var current = head
+        while current.next != nil {
+            if current.next!.value == value {
+                current.next = current.next!.next
+                return
+            }
+            current = current.next!
+        }
+    }
+}
+
+// MARK: - Hash Table (Dictionary)
+var hashTable: [String: Int] = [:]
+hashTable["apple"] = 5           // O(1) average
+hashTable["banana"] = 3
+let appleCount = hashTable["apple"] // O(1) average
+
+// Custom hash table implementation
+struct HashTable<Key: Hashable, Value> {
+    private var buckets: [[(Key, Value)]]
+    private let capacity: Int
+    
+    init(capacity: Int = 16) {
+        self.capacity = capacity
+        self.buckets = Array(repeating: [], count: capacity)
+    }
+    
+    private func hash(_ key: Key) -> Int {
+        return abs(key.hashValue) % capacity
+    }
+    
+    mutating func set(_ key: Key, _ value: Value) {
+        let index = hash(key)
+        
+        for (i, pair) in buckets[index].enumerated() {
+            if pair.0 == key {
+                buckets[index][i] = (key, value)
+                return
+            }
+        }
+        
+        buckets[index].append((key, value))
+    }
+    
+    func get(_ key: Key) -> Value? {
+        let index = hash(key)
+        
+        for pair in buckets[index] {
+            if pair.0 == key {
+                return pair.1
+            }
+        }
+        
+        return nil
+    }
+}
+
+// MARK: - Set Operations
+var numberSet: Set<Int> = [1, 2, 3, 4, 5]
+numberSet.insert(6)              // O(1) average
+numberSet.remove(3)              // O(1) average
+let contains = numberSet.contains(4) // O(1) average
+
+// Set operations
+let set1: Set = [1, 2, 3]
+let set2: Set = [3, 4, 5]
+let union = set1.union(set2)        // [1, 2, 3, 4, 5]
+let intersection = set1.intersection(set2) // [3]
+
+// MARK: - Binary Tree Implementation
+class TreeNode<T> {
+    var value: T
+    var left: TreeNode<T>?
+    var right: TreeNode<T>?
+    
+    init(_ value: T) {
+        self.value = value
+    }
+}
+
+class BinarySearchTree<T: Comparable> {
+    private var root: TreeNode<T>?
+    
+    func insert(_ value: T) {
+        root = insertRecursive(root, value)
+    }
+    
+    private func insertRecursive(_ node: TreeNode<T>?, _ value: T) -> TreeNode<T> {
+        guard let node = node else {
+            return TreeNode(value)
+        }
+        
+        if value < node.value {
+            node.left = insertRecursive(node.left, value)
+        } else if value > node.value {
+            node.right = insertRecursive(node.right, value)
+        }
+        
+        return node
+    }
+    
+    func search(_ value: T) -> Bool {
+        return searchRecursive(root, value)
+    }
+    
+    private func searchRecursive(_ node: TreeNode<T>?, _ value: T) -> Bool {
+        guard let node = node else { return false }
+        
+        if value == node.value {
+            return true
+        } else if value < node.value {
+            return searchRecursive(node.left, value)
+        } else {
+            return searchRecursive(node.right, value)
+        }
+    }
+}
+
+// MARK: - Protocol-Oriented Data Structure
+protocol Collection {
+    associatedtype Element
+    mutating func add(_ element: Element)
+    mutating func remove() -> Element?
+    var isEmpty: Bool { get }
+    var count: Int { get }
+}
+
+// MARK: - Heap Implementation
+struct MinHeap<T: Comparable> {
+    private var elements: [T] = []
+    
+    var isEmpty: Bool {
+        return elements.isEmpty
+    }
+    
+    var count: Int {
+        return elements.count
+    }
+    
+    func peek() -> T? {
+        return elements.first
+    }
+    
+    mutating func insert(_ element: T) {
+        elements.append(element)
+        heapifyUp(from: elements.count - 1)
+    }
+    
+    mutating func removeMin() -> T? {
+        guard !elements.isEmpty else { return nil }
+        
+        if elements.count == 1 {
+            return elements.removeLast()
+        }
+        
+        let min = elements[0]
+        elements[0] = elements.removeLast()
+        heapifyDown(from: 0)
+        return min
+    }
+    
+    private mutating func heapifyUp(from index: Int) {
+        let parentIndex = (index - 1) / 2
+        
+        if index > 0 && elements[index] < elements[parentIndex] {
+            elements.swapAt(index, parentIndex)
+            heapifyUp(from: parentIndex)
+        }
+    }
+    
+    private mutating func heapifyDown(from index: Int) {
+        let leftChild = 2 * index + 1
+        let rightChild = 2 * index + 2
+        var smallest = index
+        
+        if leftChild < elements.count && elements[leftChild] < elements[smallest] {
+            smallest = leftChild
+        }
+        
+        if rightChild < elements.count && elements[rightChild] < elements[smallest] {
+            smallest = rightChild
+        }
+        
+        if smallest != index {
+            elements.swapAt(index, smallest)
+            heapifyDown(from: smallest)
+        }
+    }
+}
+
+// MARK: - Usage Examples
+var bst = BinarySearchTree<Int>()
+bst.insert(5)
+bst.insert(3)
+bst.insert(7)
+print(bst.search(3)) // true
+
+var heap = MinHeap<Int>()
+heap.insert(10)
+heap.insert(5)
+heap.insert(15)
+print(heap.removeMin()) // Optional(5)`
+            }
+        },
         warmup: {
             title: 'Warm Up Problems',
             description: 'Simple problems to get started with programming logic',

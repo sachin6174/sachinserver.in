@@ -1,0 +1,325 @@
+/* Swift GUI specific styles */
+.swift-gui-section {
+    /* Inherits from shared-styles.css */
+}
+
+.gui-framework-card {
+    background: linear-gradient(135deg, #0066CC 0%, #007AFF 100%);
+    color: white;
+    border: none;
+    margin-bottom: 0.75rem;
+}
+
+.gui-framework-card h3 {
+    color: white;
+}
+
+.gui-framework-card p {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.swift-gui-code-block {
+    background: var(--background-tertiary);
+    border-left: 4px solid #0066CC;
+    border-radius: var(--radius-md);
+    padding: 1rem;
+    margin: 0.75rem 0;
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    font-size: 0.75rem;
+    line-height: 1.4;
+    overflow-x: auto;
+}
+
+.gui-technology-badge {
+    background: linear-gradient(135deg, #0066CC, #007AFF);
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin: 0.25rem;
+    display: inline-block;
+}
+
+.ui-component-showcase {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.ui-component-card {
+    background: var(--background-secondary);
+    border: 2px solid #DBEAFE;
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    transition: transform var(--transition-normal);
+}
+
+.ui-component-card:hover {
+    transform: translateY(-2px);
+    border-color: #0066CC;
+    box-shadow: var(--shadow-md);
+}
+
+.ui-component-card h4 {
+    color: #0066CC;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.layout-comparison {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin: 1.5rem 0;
+}
+
+@media (max-width: 768px) {
+    .layout-comparison {
+        grid-template-columns: 1fr;
+    }
+}
+
+.layout-example {
+    background: var(--background-secondary);
+    border: 1px solid #DBEAFE;
+    border-radius: var(--radius-md);
+    padding: 1.5rem;
+}
+
+.layout-example h4 {
+    color: #0066CC;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.swiftui-vs-uikit {
+    background: linear-gradient(135deg, rgba(0, 102, 204, 0.05) 0%, rgba(0, 122, 255, 0.05) 100%);
+    border: 1px solid #DBEAFE;
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    margin: 1rem 0;
+}
+
+.swiftui-vs-uikit h4 {
+    color: #0066CC;
+    margin-bottom: 1rem;
+}
+
+.design-patterns-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.design-pattern-card {
+    background: var(--background-secondary);
+    border: 1px solid #DBEAFE;
+    border-radius: var(--radius-md);
+    padding: 1rem;
+    transition: transform var(--transition-normal);
+}
+
+.design-pattern-card:hover {
+    transform: translateY(-2px);
+    border-color: #0066CC;
+    box-shadow: var(--shadow-sm);
+}
+
+.design-pattern-card h5 {
+    color: #0066CC;
+    margin-bottom: 0.5rem;
+}
+
+.animation-showcase {
+    background: var(--background-secondary);
+    border: 2px solid #DBEAFE;
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    margin: 1.5rem 0;
+    text-align: center;
+}
+
+.animation-showcase h4 {
+    color: #0066CC;
+    margin-bottom: 1rem;
+}
+
+.animation-types {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 0.75rem;
+    margin: 1rem 0;
+}
+
+.animation-type {
+    background: #F0F9FF;
+    border: 1px solid #0066CC;
+    border-radius: var(--radius-md);
+    padding: 0.75rem;
+    text-align: center;
+    font-size: 0.875rem;
+    transition: all var(--transition-normal);
+}
+
+.animation-type:hover {
+    background: #0066CC;
+    color: white;
+    transform: scale(1.05);
+}
+
+.responsive-design-tips {
+    background: var(--background-secondary);
+    border-left: 4px solid #0066CC;
+    padding: 1rem;
+    margin: 0.75rem 0;
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+}
+
+.responsive-design-tips h4 {
+    color: #0066CC;
+    margin-bottom: 0.5rem;
+}
+
+.device-targets {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 0.75rem;
+    margin: 1rem 0;
+}
+
+.device-card {
+    background: var(--background-secondary);
+    border: 1px solid #DBEAFE;
+    border-radius: var(--radius-md);
+    padding: 1rem;
+    text-align: center;
+    transition: transform var(--transition-normal);
+}
+
+.device-card:hover {
+    transform: translateY(-2px);
+    border-color: #0066CC;
+}
+
+.device-icon {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.accessibility-features {
+    background: linear-gradient(135deg, rgba(0, 102, 204, 0.1) 0%, rgba(0, 122, 255, 0.1) 100%);
+    border: 1px solid #DBEAFE;
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    margin: 1rem 0;
+}
+
+.accessibility-features h4 {
+    color: #0066CC;
+    margin-bottom: 1rem;
+}
+
+.performance-optimization {
+    background: var(--background-secondary);
+    border: 2px solid #DBEAFE;
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    margin: 1rem 0;
+}
+
+.performance-optimization h4 {
+    color: #0066CC;
+    margin-bottom: 1rem;
+}
+
+.ui-testing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.testing-approach-card {
+    background: var(--background-secondary);
+    padding: 1rem;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-color);
+    text-align: center;
+}
+
+.testing-icon {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    display: block;
+    color: #0066CC;
+}
+
+.framework-evolution {
+    position: relative;
+    padding-left: 2rem;
+}
+
+.framework-evolution::before {
+    content: '';
+    position: absolute;
+    left: 0.5rem;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, #0066CC, #007AFF);
+}
+
+.evolution-milestone {
+    position: relative;
+    margin-bottom: 1.5rem;
+    background: var(--background-secondary);
+    padding: 1rem;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-color);
+}
+
+.evolution-milestone::before {
+    content: '';
+    position: absolute;
+    left: -1.75rem;
+    top: 1rem;
+    width: 12px;
+    height: 12px;
+    background: #0066CC;
+    border-radius: 50%;
+    border: 2px solid var(--background-primary);
+}
+
+.best-practices-checklist {
+    background: var(--background-secondary);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    margin: 1rem 0;
+}
+
+.best-practices-checklist h4 {
+    color: #0066CC;
+    margin-bottom: 1rem;
+}
+
+.checklist-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    margin: 0.5rem 0;
+    padding: 0.5rem;
+    background: #F0F9FF;
+    border-radius: var(--radius-sm);
+}
+
+.checklist-check {
+    color: #059669;
+    font-weight: bold;
+    margin-top: 0.1rem;
+}

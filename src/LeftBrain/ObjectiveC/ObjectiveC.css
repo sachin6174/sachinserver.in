@@ -1,0 +1,145 @@
+/* Objective-C specific styles */
+.objc-section {
+    /* Inherits from shared-styles.css */
+}
+
+.objc-feature-card {
+    background: linear-gradient(135deg, #007AFF 0%, #5856D6 100%);
+    color: white;
+    border: none;
+    margin-bottom: 0.75rem;
+}
+
+.objc-feature-card h3 {
+    color: white;
+}
+
+.objc-feature-card p {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.objc-code-block {
+    background: var(--background-tertiary);
+    border-left: 4px solid #007AFF;
+    border-radius: var(--radius-md);
+    padding: 1rem;
+    margin: 0.75rem 0;
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    font-size: 0.75rem;
+    line-height: 1.4;
+    overflow-x: auto;
+}
+
+.objc-version-badge {
+    background: linear-gradient(135deg, #007AFF, #5856D6);
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin: 0.25rem;
+    display: inline-block;
+}
+
+.memory-management-card {
+    background: var(--background-secondary);
+    border: 2px solid #007AFF;
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    margin: 1rem 0;
+}
+
+.memory-management-card h4 {
+    color: #007AFF;
+    margin-bottom: 1rem;
+}
+
+.legacy-warning {
+    background: linear-gradient(135deg, #FF9500 0%, #FF3B30 100%);
+    color: white;
+    padding: 1rem;
+    border-radius: var(--radius-md);
+    margin: 1rem 0;
+    border-left: 4px solid #FF3B30;
+}
+
+.legacy-warning h4 {
+    color: white;
+    margin-bottom: 0.5rem;
+}
+
+.syntax-comparison {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+@media (max-width: 768px) {
+    .syntax-comparison {
+        grid-template-columns: 1fr;
+    }
+}
+
+.objc-timeline {
+    position: relative;
+    padding-left: 2rem;
+}
+
+.objc-timeline::before {
+    content: '';
+    position: absolute;
+    left: 0.5rem;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, #007AFF, #5856D6);
+}
+
+.objc-timeline-item {
+    position: relative;
+    margin-bottom: 1.5rem;
+    background: var(--background-secondary);
+    padding: 1rem;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-color);
+}
+
+.objc-timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -1.75rem;
+    top: 1rem;
+    width: 12px;
+    height: 12px;
+    background: #007AFF;
+    border-radius: 50%;
+    border: 2px solid var(--background-primary);
+}
+
+.framework-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.framework-card {
+    background: var(--background-secondary);
+    padding: 1rem;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-color);
+    text-align: center;
+    transition: transform var(--transition-normal);
+}
+
+.framework-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.framework-icon {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    display: block;
+}
