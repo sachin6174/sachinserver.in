@@ -40,6 +40,129 @@ const AppleDevelopment = () => {
         { name: "iOS SDK", level: 87 }
     ];
 
+    const appleDocumentation = [
+        {
+            category: "Official Documentation",
+            icon: "📚",
+            resources: [
+                {
+                    name: "Swift Documentation",
+                    description: "Complete Swift language guide and API reference",
+                    url: "https://swift.org/documentation/",
+                    type: "Language Guide"
+                },
+                {
+                    name: "SwiftUI Documentation",
+                    description: "Comprehensive SwiftUI framework documentation",
+                    url: "https://developer.apple.com/documentation/swiftui",
+                    type: "Framework"
+                },
+                {
+                    name: "UIKit Documentation",
+                    description: "Complete UIKit framework reference and guides",
+                    url: "https://developer.apple.com/documentation/uikit",
+                    type: "Framework"
+                },
+                {
+                    name: "iOS App Dev Documentation",
+                    description: "Complete iOS development guide and best practices",
+                    url: "https://developer.apple.com/ios/",
+                    type: "Platform Guide"
+                }
+            ]
+        },
+        {
+            category: "WWDC Sessions",
+            icon: "🎥",
+            resources: [
+                {
+                    name: "WWDC 2023 Videos",
+                    description: "Latest Apple developer conference sessions",
+                    url: "https://developer.apple.com/videos/wwdc2023/",
+                    type: "Conference"
+                },
+                {
+                    name: "What's New in SwiftUI",
+                    description: "Annual SwiftUI updates and new features",
+                    url: "https://developer.apple.com/videos/play/wwdc2023/10148/",
+                    type: "Session"
+                },
+                {
+                    name: "Swift Concurrency Updates",
+                    description: "Latest async/await and actor improvements",
+                    url: "https://developer.apple.com/videos/play/wwdc2023/10170/",
+                    type: "Session"
+                },
+                {
+                    name: "Xcode 15 Features",
+                    description: "New Xcode capabilities and improvements",
+                    url: "https://developer.apple.com/videos/play/wwdc2023/10149/",
+                    type: "Tools"
+                }
+            ]
+        },
+        {
+            category: "Sample Code & Tutorials",
+            icon: "💻",
+            resources: [
+                {
+                    name: "Apple Sample Code",
+                    description: "Official Apple code examples and projects",
+                    url: "https://developer.apple.com/sample-code/",
+                    type: "Code Examples"
+                },
+                {
+                    name: "SwiftUI Tutorials",
+                    description: "Step-by-step SwiftUI learning path",
+                    url: "https://developer.apple.com/tutorials/swiftui",
+                    type: "Tutorial"
+                },
+                {
+                    name: "App Development Tutorial",
+                    description: "Complete iOS app development course",
+                    url: "https://developer.apple.com/tutorials/app-dev-training",
+                    type: "Course"
+                },
+                {
+                    name: "Swift Playgrounds",
+                    description: "Interactive Swift learning platform",
+                    url: "https://developer.apple.com/swift-playgrounds/",
+                    type: "Interactive"
+                }
+            ]
+        },
+        {
+            category: "Design & Guidelines",
+            icon: "🎨",
+            resources: [
+                {
+                    name: "Human Interface Guidelines",
+                    description: "Apple's design principles and interface standards",
+                    url: "https://developer.apple.com/design/human-interface-guidelines/",
+                    type: "Design Guide"
+                },
+                {
+                    name: "SF Symbols",
+                    description: "Apple's comprehensive symbol library",
+                    url: "https://developer.apple.com/sf-symbols/",
+                    type: "Assets"
+                },
+                {
+                    name: "App Store Guidelines",
+                    description: "Review guidelines and submission requirements",
+                    url: "https://developer.apple.com/app-store/review/guidelines/",
+                    type: "Guidelines"
+                },
+                {
+                    name: "Accessibility Guidelines",
+                    description: "Making apps accessible to all users",
+                    url: "https://developer.apple.com/accessibility/",
+                    type: "Accessibility"
+                }
+            ]
+        }
+    ];
+
     // Helpful development apps
     const developmentApps = developmentAppsData;
 
@@ -99,6 +222,41 @@ const AppleDevelopment = () => {
                         </div>
                     ))}
                 </div>
+            </div>
+
+            {/* Apple Documentation & Resources */}
+            <div className="section">
+                <h2>Apple Documentation & Resources</h2>
+                <p style={{ color: 'var(--text-secondary)', fontSize: '1rem', marginBottom: '2rem', textAlign: 'center' }}>
+                    Essential Apple developer resources, documentation, and learning materials
+                </p>
+                {appleDocumentation.map((category, categoryIndex) => (
+                    <div key={categoryIndex} className="documentation-category">
+                        <div className="category-header">
+                            <span className="category-icon">{category.icon}</span>
+                            <h3>{category.category}</h3>
+                        </div>
+                        <div className="documentation-grid">
+                            {category.resources.map((resource, resourceIndex) => (
+                                <div key={resourceIndex} className="documentation-card">
+                                    <div className="doc-header">
+                                        <h4>{resource.name}</h4>
+                                        <span className="doc-type">{resource.type}</span>
+                                    </div>
+                                    <p>{resource.description}</p>
+                                    <a
+                                        href={resource.url}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="leftbrain-button doc-link"
+                                    >
+                                        View Resource ↗
+                                    </a>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                ))}
             </div>
 
             {/* Helpful Apps for Development */}

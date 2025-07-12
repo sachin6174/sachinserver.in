@@ -1,0 +1,107 @@
+.swift-testing-theme {
+    --current-theme: #4CAF50;
+    --current-theme-dark: #388E3C;
+    --current-theme-light: #C8E6C9;
+    --current-theme-bg: rgba(76, 175, 80, 0.1);
+}
+
+.swift-testing-theme .theme-card {
+    border-left: 4px solid var(--current-theme);
+    background: var(--current-theme-bg);
+}
+
+.swift-testing-theme .theme-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(76, 175, 80, 0.2);
+}
+
+.swift-testing-theme .theme-badge {
+    background: var(--current-theme);
+    color: white;
+}
+
+.swift-testing-theme .tech-tag {
+    background: var(--current-theme-light);
+    color: var(--current-theme-dark);
+}
+
+.swift-testing-theme .interactive-card {
+    border: 2px solid var(--current-theme-light);
+}
+
+.swift-testing-theme .interactive-card:hover {
+    border-color: var(--current-theme);
+    background: var(--current-theme-bg);
+}
+
+.swift-testing-theme .code-block {
+    border-left: 4px solid var(--current-theme);
+}
+
+.swift-testing-theme .content-card {
+    border: 1px solid var(--current-theme-light);
+}
+
+.swift-testing-theme .content-card:hover {
+    border-color: var(--current-theme);
+}
+
+.swift-testing-theme .progress-fill {
+    background: linear-gradient(90deg, var(--current-theme), var(--current-theme-dark)) !important;
+}
+
+.swift-testing-theme .tech-icon {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.swift-testing-theme .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0.75rem;
+    margin-top: 0.75rem;
+}
+
+.swift-testing-theme .stat-card {
+    background: var(--bg-secondary);
+    padding: 0.75rem;
+    border-radius: 8px;
+    border: 1px solid var(--current-theme-light);
+    transition: all 0.3s ease;
+}
+
+.swift-testing-theme .stat-card:hover {
+    border-color: var(--current-theme);
+    transform: translateY(-2px);
+}
+
+.swift-testing-theme .progress-bar {
+    width: 100%;
+    height: 8px;
+    background: var(--bg-tertiary);
+    border-radius: 4px;
+    margin: 0.8rem 0;
+    overflow: hidden;
+}
+
+.swift-testing-theme .highlight-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.swift-testing-theme .grid-2 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+@media (max-width: 768px) {
+    .swift-testing-theme .stats-grid,
+    .swift-testing-theme .highlight-section,
+    .swift-testing-theme .grid-2 {
+        grid-template-columns: 1fr;
+    }
+}

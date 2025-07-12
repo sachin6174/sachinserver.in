@@ -1,0 +1,390 @@
+.chrome-extensions-theme {
+    --current-theme: #4285F4;
+    --current-theme-dark: #3367D6;
+    --current-theme-light: #E3F2FD;
+    --current-theme-bg: rgba(66, 133, 244, 0.1);
+    --google-green: #34A853;
+    --google-yellow: #FBBC04;
+    --google-red: #EA4335;
+}
+
+.chrome-extensions-theme .theme-card {
+    border-left: 4px solid var(--current-theme);
+    background: var(--current-theme-bg);
+}
+
+.chrome-extensions-theme .theme-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(66, 133, 244, 0.2);
+}
+
+.chrome-extensions-theme .theme-badge {
+    background: var(--current-theme);
+    color: white;
+}
+
+.chrome-extensions-theme .tech-tag {
+    background: var(--current-theme-light);
+    color: var(--current-theme-dark);
+}
+
+/* Section Tabs */
+.section-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 0.25rem;
+    margin: 0.75rem 0;
+    padding: 0.25rem;
+    background: var(--bg-secondary);
+    border-radius: 8px;
+    flex-wrap: wrap;
+}
+
+.section-tab {
+    flex: 1;
+    min-width: 140px;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 6px;
+    background: transparent;
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.375rem;
+}
+
+.section-tab.active {
+    background: var(--current-theme);
+    color: white;
+    transform: translateY(-2px);
+}
+
+.section-tab:hover:not(.active) {
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+}
+
+.tab-icon {
+    font-size: 1.2rem;
+}
+
+/* Tab Content */
+.tab-content {
+    margin-top: 2rem;
+}
+
+/* Section Content */
+.section-content {
+    margin-top: 1.5rem;
+}
+
+.section-content h5 {
+    color: var(--current-theme);
+    margin: 1rem 0 0.5rem 0;
+    font-size: 0.95rem;
+}
+
+/* Use Case Lists */
+.use-case-list {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+}
+
+.use-case-list li {
+    padding: 0.5rem;
+    margin-bottom: 0.3rem;
+    background: var(--bg-primary);
+    border-radius: 4px;
+    border-left: 2px solid var(--current-theme);
+    font-size: 0.9rem;
+}
+
+/* API Categories */
+.api-category {
+    margin-bottom: 3rem;
+}
+
+.api-category h3 {
+    color: var(--current-theme);
+    margin-bottom: 1.5rem;
+    font-size: 1.4rem;
+    border-bottom: 2px solid var(--current-theme-light);
+    padding-bottom: 0.5rem;
+}
+
+.api-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.api-card {
+    background: var(--bg-secondary);
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 1px solid var(--current-theme-light);
+    transition: all 0.3s ease;
+}
+
+.api-card:hover {
+    border-color: var(--current-theme);
+    transform: translateY(-2px);
+}
+
+.api-card h4 {
+    color: var(--current-theme);
+    margin: 0 0 0.8rem 0;
+    font-size: 1.1rem;
+    font-family: 'SF Mono', 'Monaco', 'Consolas', monospace;
+}
+
+.api-card p {
+    margin-bottom: 1.2rem;
+    color: var(--text-secondary);
+}
+
+/* Code Blocks */
+.chrome-extensions-theme .code-block {
+    margin: 1.5rem 0;
+    border-left: 4px solid var(--current-theme);
+    background: var(--bg-primary);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.chrome-extensions-theme .code-block h5 {
+    margin: 0;
+    padding: 0.8rem 1rem;
+    background: var(--current-theme);
+    color: white;
+    font-size: 0.9rem;
+}
+
+.chrome-extensions-theme .code-block pre {
+    margin: 0;
+    padding: 1rem;
+    background: var(--bg-primary);
+    overflow-x: auto;
+    line-height: 1.4;
+}
+
+.chrome-extensions-theme .code-block code {
+    font-family: 'SF Mono', 'Monaco', 'Consolas', monospace;
+    font-size: 0.85rem;
+    color: var(--text-primary);
+}
+
+/* Deployment Timeline */
+.deployment-timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-top: 1.5rem;
+}
+
+.deployment-phase {
+    background: var(--bg-secondary);
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 1px solid var(--current-theme-light);
+    position: relative;
+}
+
+.deployment-phase h4 {
+    color: var(--current-theme);
+    margin: 0 0 1rem 0;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.deployment-phase h4::before {
+    content: counter(phase-counter);
+    counter-increment: phase-counter;
+    background: var(--current-theme);
+    color: white;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+.deployment-timeline {
+    counter-reset: phase-counter;
+}
+
+.task-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.task-list li {
+    padding: 0.8rem;
+    margin-bottom: 0.5rem;
+    background: var(--bg-primary);
+    border-radius: 6px;
+    border-left: 3px solid var(--current-theme);
+    position: relative;
+    padding-left: 2.5rem;
+}
+
+.task-list li::before {
+    content: "✓";
+    position: absolute;
+    left: 0.8rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--current-theme);
+    font-weight: bold;
+}
+
+/* Feature List */
+.chrome-extensions-theme .feature-list {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+}
+
+.chrome-extensions-theme .feature-list li {
+    padding: 0.8rem;
+    margin-bottom: 0.5rem;
+    background: var(--bg-secondary);
+    border-radius: 6px;
+    border-left: 3px solid var(--current-theme);
+    position: relative;
+    padding-left: 2.5rem;
+}
+
+.chrome-extensions-theme .feature-list li::before {
+    content: "💡";
+    position: absolute;
+    left: 0.8rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.9rem;
+}
+
+/* Stats Grid */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.stat-card {
+    background: var(--bg-secondary);
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 1px solid var(--current-theme-light);
+    transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+    border-color: var(--current-theme);
+    transform: translateY(-2px);
+}
+
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background: var(--bg-tertiary);
+    border-radius: 4px;
+    margin: 0.8rem 0;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    border-radius: inherit;
+    transition: width 0.3s ease;
+}
+
+/* Tech Icon */
+.chrome-extensions-theme .tech-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+/* Chrome Brand Colors */
+.section-tab:nth-child(1).active {
+    background: var(--current-theme);
+}
+
+.section-tab:nth-child(2).active {
+    background: var(--google-green);
+}
+
+.section-tab:nth-child(3).active {
+    background: var(--google-yellow);
+    color: #333;
+}
+
+.section-tab:nth-child(4).active {
+    background: var(--google-red);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .section-tabs {
+        flex-direction: column;
+    }
+    
+    .section-tab {
+        min-width: auto;
+    }
+    
+    .api-list {
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .section-tabs {
+        gap: 0.3rem;
+        padding: 0.3rem;
+    }
+    
+    .section-tab {
+        padding: 0.8rem 1rem;
+        font-size: 0.85rem;
+    }
+    
+    .deployment-timeline {
+        gap: 1.5rem;
+    }
+    
+    .deployment-phase h4::before {
+        width: 24px;
+        height: 24px;
+        font-size: 0.8rem;
+    }
+    
+    .task-list li {
+        padding-left: 2rem;
+    }
+    
+    .task-list li::before {
+        left: 0.5rem;
+    }
+    
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .chrome-extensions-theme .code-block pre {
+        font-size: 0.8rem;
+    }
+}
