@@ -1,0 +1,9 @@
+/* ReactJS Component - Unified Design System Styles */
+
+/* Component inherits all styling from shared-styles.css */
+/* Only component-specific customizations are defined here */
+
+/* React theme is automatically applied via .react-theme class on container */
+/* This provides: --current-theme: #61DAFB, --current-theme-light: #9EEEF9, --current-theme-dark: #21A0C4 */
+
+/* No additional custom styles needed - unified design system handles everything */

@@ -1,92 +1,18 @@
-/* SwiftNetworking specific styles */
-.swift-networking {
-    /* Inherits from shared-styles.css */
-}
+/* Swift Networking Component - Unified Design System Styles */
 
-.networking-pattern-card {
-    background: linear-gradient(135deg, #007AFF 0%, #34C759 100%);
-    color: white;
-    border: none;
-    margin-bottom: 0.75rem;
-}
+/* Component inherits all styling from shared-styles.css */
+/* Only component-specific customizations are defined here */
 
-.networking-pattern-card h3 {
-    color: white;
-}
+/* Swift Networking theme is automatically applied via .swift-networking-theme class on container */
+/* This provides: --current-theme: #007AFF, --current-theme-light: #4DA5FF, --current-theme-dark: #0051CC */
 
-.networking-pattern-card p {
-    color: rgba(255, 255, 255, 0.9);
-}
-
-.code-example {
-    background: var(--background-tertiary);
-    border-left: 4px solid #007AFF;
-    border-radius: var(--radius-md);
-    padding: 1rem;
-    margin: 0.75rem 0;
-    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
-    font-size: 0.75rem;
-    line-height: 1.4;
-    overflow-x: auto;
-}
-
-.networking-stats {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    gap: 0.5rem;
-    margin: 1rem 0;
-}
-
-.networking-stat {
-    background: var(--background-secondary);
-    padding: 0.75rem;
-    border-radius: var(--radius-md);
-    text-align: center;
-    border: 1px solid var(--border-color);
-}
-
-.networking-stat .stat-value {
-    font-size: 1.25rem;
+/* Custom styling for highlighted text in stat cards */
+.highlight-text {
+    font-size: 1.5rem;
     font-weight: 700;
-    color: #007AFF;
+    color: var(--current-theme);
     display: block;
+    margin-top: 0.5rem;
 }
 
-.networking-stat .stat-label {
-    font-size: 0.75rem;
-    color: var(--text-secondary);
-}
-
-.protocol-tag {
-    background: linear-gradient(135deg, #007AFF, #5856D6);
-    color: white;
-    padding: 0.25rem 0.75rem;
-    border-radius: var(--radius-sm);
-    font-size: 0.75rem;
-    font-weight: 600;
-    margin: 0.25rem;
-    display: inline-block;
-}
-
-.best-practices-list {
-    list-style: none;
-    padding: 0;
-}
-
-.best-practices-list li {
-    background: var(--background-secondary);
-    padding: 0.75rem;
-    margin: 0.5rem 0;
-    border-radius: var(--radius-md);
-    border-left: 4px solid #34C759;
-    position: relative;
-    padding-left: 2rem;
-}
-
-.best-practices-list li::before {
-    content: '✓';
-    position: absolute;
-    left: 0.75rem;
-    color: #34C759;
-    font-weight: bold;
-}
+/* No additional custom styles needed - unified design system handles everything */

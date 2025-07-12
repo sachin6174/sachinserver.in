@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import '../shared-styles.css';
 import './DSA.css';
 
 const DSA = () => {
@@ -11779,41 +11780,40 @@ int main() {
     const currentCode = currentTopic[selectedLanguage];
 
     return (
-        <div className="dsa-container">
-            <div className="dsa-header">
-                <h1 className="dsa-title">Data Structures & Algorithms</h1>
-                <p className="dsa-subtitle">
-                    Code snippets and implementations in JavaScript, Swift, and C++
-                </p>
-            </div>
-
-            <div className="dsa-navigation">
-                <div className="topic-tabs">
-                    <h3>Topics</h3>
-                    <div className="tabs-grid">
-                        {topics.map(topic => (
-                            <button
-                                key={topic.id}
-                                className={`topic-tab ${selectedTopic === topic.id ? 'active' : ''}`}
-                                onClick={() => setSelectedTopic(topic.id)}
-                            >
-                                {topic.name}
-                            </button>
-                        ))}
-                    </div>
+        <div className="leftbrain-container dsa-theme">
+            <div className="hero-section">
+                <h1 className="section-title">Data Structures & Algorithms</h1>
+                <p>Code snippets and implementations in JavaScript, Swift, and C++</p>
+                <div className="tech-stack">
+                    <span className="theme-badge">JavaScript</span>
+                    <span className="theme-badge">Swift</span>
+                    <span className="theme-badge">C++</span>
                 </div>
             </div>
 
-            <div className="dsa-content">
-                <div className="left-column">
-                    <div className="topic-info">
-                        <h2>{currentTopic.title}</h2>
-                        <p>{currentTopic.description}</p>
-                    </div>
+            <div className="section">
+                <h2>Topics</h2>
+                <div className="grid-4">
+                    {topics.map(topic => (
+                        <button
+                            key={topic.id}
+                            className={`leftbrain-button ${selectedTopic === topic.id ? 'active' : ''}`}
+                            onClick={() => setSelectedTopic(topic.id)}
+                        >
+                            {topic.name}
+                        </button>
+                    ))}
+                </div>
+            </div>
+
+            <div className="grid-2">
+                <div className="content-card">
+                    <h3>{currentTopic.title}</h3>
+                    <p>{currentTopic.description}</p>
                     
                     {currentTopic.questions && (
-                        <div className="questions-section">
-                            <h3>Practice Questions</h3>
+                        <div className="info-section">
+                            <h4>Practice Questions</h4>
                             <div className="questions-list">
                                 {currentTopic.questions.map((question, index) => (
                                     <div key={index} className="question-item">
@@ -11825,12 +11825,12 @@ int main() {
                         </div>
                     )}
                     
-                    <div className="complexity-info">
-                        <h3>Time & Space Complexity</h3>
-                        <div className="complexity-grid">
+                    <div className="highlight-section">
+                        <h4>Time & Space Complexity</h4>
+                        <div className="grid-2">
                             {selectedTopic === 'arrays' && (
-                                <div className="complexity-card">
-                                    <h4>Array Operations</h4>
+                                <div className="interactive-card">
+                                    <h5>Array Operations</h5>
                                     <ul>
                                         <li>Access: O(1)</li>
                                         <li>Search: O(n)</li>
@@ -11840,8 +11840,8 @@ int main() {
                                 </div>
                             )}
                             {selectedTopic === 'linkedlist' && (
-                                <div className="complexity-card">
-                                    <h4>Linked List Operations</h4>
+                                <div className="interactive-card">
+                                    <h5>Linked List Operations</h5>
                                     <ul>
                                         <li>Access: O(n)</li>
                                         <li>Search: O(n)</li>
@@ -11851,8 +11851,8 @@ int main() {
                                 </div>
                             )}
                             {selectedTopic === 'trees' && (
-                                <div className="complexity-card">
-                                    <h4>Binary Tree Traversal</h4>
+                                <div className="interactive-card">
+                                    <h5>Binary Tree Traversal</h5>
                                     <ul>
                                         <li>Inorder: O(n)</li>
                                         <li>Preorder: O(n)</li>
@@ -11862,8 +11862,8 @@ int main() {
                                 </div>
                             )}
                             {selectedTopic === 'sorting' && (
-                                <div className="complexity-card">
-                                    <h4>Sorting Algorithms</h4>
+                                <div className="interactive-card">
+                                    <h5>Sorting Algorithms</h5>
                                     <ul>
                                         <li>Bubble Sort: O(n²)</li>
                                         <li>Quick Sort: O(n log n)</li>
@@ -11876,36 +11876,33 @@ int main() {
                     </div>
                 </div>
 
-                <div className="code-section">
-                    <div className="code-header">
+                <div className="content-card">
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 'var(--space-md)' }}>
                         <h3>{currentCode.title}</h3>
-                        <div className="code-header-controls">
-                            <div className="language-tabs-small">
-                                {languages.map(lang => (
-                                    <button
-                                        key={lang.id}
-                                        className={`language-btn-small ${selectedLanguage === lang.id ? 'active' : ''}`}
-                                        onClick={() => setSelectedLanguage(lang.id)}
-                                        title={lang.name}
-                                    >
-                                        {lang.name}
-                                    </button>
-                                ))}
-                            </div>
+                        <div style={{ display: 'flex', gap: 'var(--space-sm)' }}>
+                            {languages.map(lang => (
+                                <button
+                                    key={lang.id}
+                                    className={`tech-tag ${selectedLanguage === lang.id ? 'active' : ''}`}
+                                    onClick={() => setSelectedLanguage(lang.id)}
+                                    title={lang.name}
+                                >
+                                    {lang.name}
+                                </button>
+                            ))}
                             <button 
-                                className="copy-btn"
+                                className="leftbrain-button"
                                 onClick={() => copyToClipboard(currentCode.code)}
                                 title="Copy code"
+                                style={{ padding: 'var(--space-xs) var(--space-sm)', fontSize: 'var(--font-xs)' }}
                             >
                                 Copy
                             </button>
                         </div>
                     </div>
                     
-                    <div className="code-container">
-                        <pre className="code-block">
-                            <code>{currentCode.code}</code>
-                        </pre>
+                    <div className="code-block">
+                        <pre><code>{currentCode.code}</code></pre>
                     </div>
                 </div>
             </div>

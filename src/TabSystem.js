@@ -14,6 +14,7 @@ import SwiftGUI from "./LeftBrain/SwiftGUI/SwiftGUI";
 import SwiftStorage from "./LeftBrain/SwiftStorage/SwiftStorage";
 import AIAndTools from "./LeftBrain/AIAndTools/AIAndTools";
 import DesignPatterns from "./LeftBrain/DesignPatterns/DesignPatterns";
+import SoftwareArchitecture from "./LeftBrain/SoftwareArchitecture/SoftwareArchitecture";
 import Drawing from "./RightBrain/Drawing/Drawing";
 import Literature from "./RightBrain/Litlerature/Literature";
 import Philosophy from "./RightBrain/Philosophy/Philosophy";
@@ -135,6 +136,7 @@ const TabSystem = () => {
 
     const navigationItems = {
         leftbrain: [
+            { id: "dsa", label: "DSA", icon: "🧮", description: <DSA /> },
             { id: "apple-development", label: "Apple Development", icon: "🍎", description: <AppleDevelopment /> },
             { id: "swift", label: "Swift", icon: "🦉", description: <Swift /> },
             { id: "objective-c", label: "Objective-C", icon: "🔷", description: <ObjectiveC /> },
@@ -145,10 +147,10 @@ const TabSystem = () => {
             { id: "mac-terminal-scripts", label: "Mac Terminal Scripts", icon: "💻", description: <MacTerminalScripts /> },
             { id: "ai-and-tools", label: "AI and Tools", icon: "🤖", description: <AIAndTools /> },
             { id: "design-patterns", label: "Design Patterns", icon: "🏗️", description: <DesignPatterns /> },
+            { id: "software-architecture", label: "Software Architecture", icon: "🏛️", description: <SoftwareArchitecture /> },
             { id: "system-design", label: "System Design", icon: "🏢", description: <SystemDesign /> },
             { id: "nodejs", label: "NodeJS", icon: "🌐", description: <NodeJS /> },
             { id: "reactjs", label: "ReactJS", icon: "⚛️", description: <ReactJS /> },
-            { id: "dsa", label: "DSA", icon: "🧮", description: <DSA /> },
             { id: "about-me", label: "About Me", icon: "👤", description: <AboutMe /> },
         ],
         rightbrain: [

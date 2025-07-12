@@ -1,5 +1,6 @@
 import React from "react";
 import "../shared-styles.css";
+import "./ReactJS.css";
 
 const ReactJS = () => {
     const concepts = [
@@ -57,68 +58,68 @@ const ReactJS = () => {
     ];
 
     return (
-        <div className="leftbrain-container">
+        <div className="leftbrain-container react-theme">
             <div className="hero-section">
-                <div className="section-header">
-                    <h1 className="section-title">React Development</h1>
-                    <div className="section-divider"></div>
-                    <p style={{ color: 'var(--text-secondary)', fontSize: '1.1rem', marginTop: '1rem' }}>
-                        Building modern, interactive user interfaces with React.js and its ecosystem
-                    </p>
+                <h1 className="section-title">React Development</h1>
+                <p>Building modern, interactive user interfaces with React.js and its ecosystem</p>
+                <div className="tech-stack">
+                    <span className="theme-badge">React 18</span>
+                    <span className="theme-badge">Hooks</span>
+                    <span className="theme-badge">TypeScript</span>
+                    <span className="theme-badge">Redux</span>
                 </div>
             </div>
 
             {/* Skills Overview */}
-            <section>
-                <div className="section-header">
-                    <h2 style={{ fontSize: '2rem', color: 'var(--text-primary)', marginBottom: '1rem' }}>Frontend Skills</h2>
-                </div>
+            <div className="section">
+                <h2>Frontend Skills</h2>
                 <div className="stats-grid">
                     {skills.map((skill, index) => (
                         <div key={index} className="stat-card">
-                            <span className="stat-number">{skill.level}%</span>
-                            <span className="stat-label">{skill.name}</span>
+                            <h4>{skill.name}</h4>
                             <div className="progress-bar">
-                                <div
-                                    className="progress-fill"
-                                    style={{ width: `${skill.level}%` }}
+                                <div 
+                                    className="progress-fill" 
+                                    style={{
+                                        width: `${skill.level}%`,
+                                        background: 'linear-gradient(90deg, var(--current-theme), var(--current-theme-dark))',
+                                        height: '100%',
+                                        borderRadius: 'inherit'
+                                    }}
                                 ></div>
+                            </div>
+                            <span>{skill.level}%</span>
+                        </div>
+                    ))}
+                </div>
+            </div>
+
+            {/* Core Concepts */}
+            <div className="section">
+                <h2>Core Concepts</h2>
+                <div className="cards-container">
+                    {concepts.map((concept, index) => (
+                        <div key={index} className="theme-card">
+                            <div className="tech-icon">{concept.icon}</div>
+                            <h3>{concept.name}</h3>
+                            <p>{concept.description}</p>
+                            <div className="tech-stack">
+                                {concept.features.map((feature, idx) => (
+                                    <span key={idx} className="tech-tag">{feature}</span>
+                                ))}
                             </div>
                         </div>
                     ))}
                 </div>
-            </section>
-
-            {/* Core Concepts */}
-            <section>
-                <div className="section-header">
-                    <h2 style={{ fontSize: '2rem', color: 'var(--text-primary)', marginBottom: '1rem' }}>Core Concepts</h2>
-                </div>
-                <div className="cards-container">
-                    {concepts.map((concept, index) => (
-                        <div key={index} className="tech-card react hover-effect">
-                            <div className="tech-icon">{concept.icon}</div>
-                            <h3>{concept.name}</h3>
-                            <p>{concept.description}</p>
-                            <ul className="feature-list">
-                                {concept.features.map((feature, idx) => (
-                                    <li key={idx}>{feature}</li>
-                                ))}
-                            </ul>
-                        </div>
-                    ))}
-                </div>
-            </section>
+            </div>
 
             {/* Projects */}
-            <section>
-                <div className="section-header">
-                    <h2 style={{ fontSize: '2rem', color: 'var(--text-primary)', marginBottom: '1rem' }}>Featured Projects</h2>
-                </div>
-                <div className="features-grid">
+            <div className="section">
+                <h2>Featured Projects</h2>
+                <div className="grid-2">
                     {projects.map((project, index) => (
-                        <div key={index} className="leftbrain-card hover-effect">
-                            <h3>{project.name}</h3>
+                        <div key={index} className="content-card">
+                            <h4>{project.name}</h4>
                             <p>{project.description}</p>
                             <div className="tech-stack">
                                 {project.tech.map((tech, idx) => (
@@ -128,17 +129,14 @@ const ReactJS = () => {
                         </div>
                     ))}
                 </div>
-            </section>
+            </div>
 
             {/* Code Example */}
-            <section>
-                <div className="section-header">
-                    <h2 style={{ fontSize: '2rem', color: 'var(--text-primary)', marginBottom: '1rem' }}>Code Example</h2>
-                </div>
-                <div className="leftbrain-card">
-                    <h3>Custom Hook for API Calls</h3>
-                    <div className="code-snippet" data-language="JavaScript">
-                        {`import { useState, useEffect } from 'react';
+            <div className="section">
+                <h2>Code Example</h2>
+                <div className="code-block">
+                    <h4>Custom Hook for API Calls</h4>
+                    <pre><code>{`import { useState, useEffect } from 'react';
 
 const useApiData = (url) => {
     const [data, setData] = useState(null);
@@ -186,16 +184,15 @@ const UserProfile = ({ userId }) => {
             <p>{user.email}</p>
         </div>
     );
-};`}
-                    </div>
+};`}</code></pre>
                     <div className="tech-stack">
-                        <span className="tech-tag primary">React Hooks</span>
+                        <span className="tech-tag">React Hooks</span>
                         <span className="tech-tag">Custom Hook</span>
                         <span className="tech-tag">Async/Await</span>
                         <span className="tech-tag">Error Handling</span>
                     </div>
                 </div>
-            </section>
+            </div>
         </div>
     );
 };

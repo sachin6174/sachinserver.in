@@ -1,5 +1,6 @@
 import React from "react";
 import "../shared-styles.css";
+import "./NodeJS.css";
 
 const NodeJS = () => {
     const technologies = [
@@ -57,68 +58,68 @@ const NodeJS = () => {
     ];
 
     return (
-        <div className="leftbrain-container">
+        <div className="leftbrain-container nodejs-theme">
             <div className="hero-section">
-                <div className="section-header">
-                    <h1 className="section-title">Node.js Development</h1>
-                    <div className="section-divider"></div>
-                    <p style={{ color: 'var(--text-secondary)', fontSize: '1.1rem', marginTop: '1rem' }}>
-                        Building scalable server-side applications and APIs using JavaScript runtime environment
-                    </p>
+                <h1 className="section-title">Node.js Development</h1>
+                <p>Building scalable server-side applications and APIs using JavaScript runtime environment</p>
+                <div className="tech-stack">
+                    <span className="theme-badge">Node.js</span>
+                    <span className="theme-badge">Express</span>
+                    <span className="theme-badge">MongoDB</span>
+                    <span className="theme-badge">Socket.IO</span>
                 </div>
             </div>
 
             {/* Skills Overview */}
-            <section>
-                <div className="section-header">
-                    <h2 style={{ fontSize: '2rem', color: 'var(--text-primary)', marginBottom: '1rem' }}>Backend Skills</h2>
-                </div>
+            <div className="section">
+                <h2>Backend Skills</h2>
                 <div className="stats-grid">
                     {skills.map((skill, index) => (
                         <div key={index} className="stat-card">
-                            <span className="stat-number">{skill.level}%</span>
-                            <span className="stat-label">{skill.name}</span>
+                            <h4>{skill.name}</h4>
                             <div className="progress-bar">
-                                <div
-                                    className="progress-fill"
-                                    style={{ width: `${skill.level}%` }}
+                                <div 
+                                    className="progress-fill" 
+                                    style={{
+                                        width: `${skill.level}%`,
+                                        background: 'linear-gradient(90deg, var(--current-theme), var(--current-theme-dark))',
+                                        height: '100%',
+                                        borderRadius: 'inherit'
+                                    }}
                                 ></div>
+                            </div>
+                            <span>{skill.level}%</span>
+                        </div>
+                    ))}
+                </div>
+            </div>
+
+            {/* Technologies */}
+            <div className="section">
+                <h2>Technologies & Frameworks</h2>
+                <div className="cards-container">
+                    {technologies.map((tech, index) => (
+                        <div key={index} className="theme-card">
+                            <div className="tech-icon">{tech.icon}</div>
+                            <h3>{tech.name}</h3>
+                            <p>{tech.description}</p>
+                            <div className="tech-stack">
+                                {tech.features.map((feature, idx) => (
+                                    <span key={idx} className="tech-tag">{feature}</span>
+                                ))}
                             </div>
                         </div>
                     ))}
                 </div>
-            </section>
-
-            {/* Technologies */}
-            <section>
-                <div className="section-header">
-                    <h2 style={{ fontSize: '2rem', color: 'var(--text-primary)', marginBottom: '1rem' }}>Technologies & Frameworks</h2>
-                </div>
-                <div className="cards-container">
-                    {technologies.map((tech, index) => (
-                        <div key={index} className="tech-card nodejs hover-effect">
-                            <div className="tech-icon">{tech.icon}</div>
-                            <h3>{tech.name}</h3>
-                            <p>{tech.description}</p>
-                            <ul className="feature-list">
-                                {tech.features.map((feature, idx) => (
-                                    <li key={idx}>{feature}</li>
-                                ))}
-                            </ul>
-                        </div>
-                    ))}
-                </div>
-            </section>
+            </div>
 
             {/* Projects */}
-            <section>
-                <div className="section-header">
-                    <h2 style={{ fontSize: '2rem', color: 'var(--text-primary)', marginBottom: '1rem' }}>Featured Projects</h2>
-                </div>
-                <div className="features-grid">
+            <div className="section">
+                <h2>Featured Projects</h2>
+                <div className="grid-2">
                     {projects.map((project, index) => (
-                        <div key={index} className="leftbrain-card hover-effect">
-                            <h3>{project.name}</h3>
+                        <div key={index} className="content-card">
+                            <h4>{project.name}</h4>
                             <p>{project.description}</p>
                             <div className="tech-stack">
                                 {project.tech.map((tech, idx) => (
@@ -128,17 +129,14 @@ const NodeJS = () => {
                         </div>
                     ))}
                 </div>
-            </section>
+            </div>
 
             {/* Code Example */}
-            <section>
-                <div className="section-header">
-                    <h2 style={{ fontSize: '2rem', color: 'var(--text-primary)', marginBottom: '1rem' }}>Code Example</h2>
-                </div>
-                <div className="leftbrain-card">
-                    <h3>Express.js API Route</h3>
-                    <div className="code-snippet" data-language="JavaScript">
-                        {`const express = require('express');
+            <div className="section">
+                <h2>Code Example</h2>
+                <div className="code-block">
+                    <h4>Express.js API Route</h4>
+                    <pre><code>{`const express = require('express');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 
@@ -176,16 +174,15 @@ router.post('/login', async (req, res) => {
     }
 });
 
-module.exports = router;`}
-                    </div>
+module.exports = router;`}</code></pre>
                     <div className="tech-stack">
-                        <span className="tech-tag primary">Express.js</span>
+                        <span className="tech-tag">Express.js</span>
                         <span className="tech-tag">JWT</span>
                         <span className="tech-tag">MongoDB</span>
                         <span className="tech-tag">Async/Await</span>
                     </div>
                 </div>
-            </section>
+            </div>
         </div>
     );
 };

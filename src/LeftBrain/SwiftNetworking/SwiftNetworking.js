@@ -87,44 +87,56 @@ const SwiftNetworking = () => {
     ];
 
     return (
-        <div className="leftbrain-container swift-networking">
+        <div className="leftbrain-container swift-networking-theme">
             {/* Header Section */}
             <div className="hero-section">
                 <h1 className="section-title">Swift Networking</h1>
                 <p>Modern networking solutions for iOS applications using URLSession, Async/Await, and Combine framework</p>
+                <div className="tech-stack">
+                    <span className="theme-badge">URLSession</span>
+                    <span className="theme-badge">Async/Await</span>
+                    <span className="theme-badge">Combine</span>
+                    <span className="theme-badge">REST API</span>
+                </div>
             </div>
 
             {/* Networking Stats */}
-            <div className="networking-stats">
-                {networkingStats.map((stat, index) => (
-                    <div key={index} className="networking-stat">
-                        <span className="stat-value">{stat.value}</span>
-                        <span className="stat-label">{stat.label}</span>
-                    </div>
-                ))}
+            <div className="section">
+                <h2>Key Technologies</h2>
+                <div className="stats-grid">
+                    {networkingStats.map((stat, index) => (
+                        <div key={index} className="stat-card">
+                            <h4>{stat.label}</h4>
+                            <span className="highlight-text">{stat.value}</span>
+                        </div>
+                    ))}
+                </div>
             </div>
 
             {/* Networking Patterns */}
-            <div className="cards-container">
-                {networkingPatterns.map((pattern, index) => (
-                    <div key={index} className="leftbrain-card networking-pattern-card">
-                        <div className="tech-icon">{pattern.icon}</div>
-                        <h3>{pattern.name}</h3>
-                        <p>{pattern.description}</p>
-                        <div className="tech-stack">
-                            {pattern.features.map((feature, idx) => (
-                                <span key={idx} className="tech-tag">{feature}</span>
-                            ))}
+            <div className="section">
+                <h2>Networking Patterns</h2>
+                <div className="cards-container">
+                    {networkingPatterns.map((pattern, index) => (
+                        <div key={index} className="theme-card">
+                            <div className="tech-icon">{pattern.icon}</div>
+                            <h3>{pattern.name}</h3>
+                            <p>{pattern.description}</p>
+                            <div className="tech-stack">
+                                {pattern.features.map((feature, idx) => (
+                                    <span key={idx} className="tech-tag">{feature}</span>
+                                ))}
+                            </div>
                         </div>
-                    </div>
-                ))}
+                    ))}
+                </div>
             </div>
 
             {/* Code Examples */}
             <div className="section">
                 <h2>Code Examples</h2>
                 {codeExamples.map((example, index) => (
-                    <div key={index} className="code-example">
+                    <div key={index} className="code-block">
                         <h4>{example.title}</h4>
                         <pre><code>{example.code}</code></pre>
                     </div>
@@ -143,7 +155,7 @@ const SwiftNetworking = () => {
                                     className="progress-fill" 
                                     style={{
                                         width: `${skill.level}%`,
-                                        background: 'linear-gradient(90deg, #007AFF, #34C759)',
+                                        background: 'linear-gradient(90deg, var(--current-theme), var(--current-theme-dark))',
                                         height: '100%',
                                         borderRadius: 'inherit'
                                     }}
@@ -158,7 +170,7 @@ const SwiftNetworking = () => {
             {/* Best Practices */}
             <div className="section">
                 <h2>Networking Best Practices</h2>
-                <ul className="best-practices-list">
+                <ul className="feature-list">
                     {bestPractices.map((practice, index) => (
                         <li key={index}>{practice}</li>
                     ))}
@@ -169,14 +181,14 @@ const SwiftNetworking = () => {
             <div className="section">
                 <h2>Supported Protocols & Standards</h2>
                 <div className="tech-stack">
-                    <span className="protocol-tag">HTTP/1.1</span>
-                    <span className="protocol-tag">HTTP/2</span>
-                    <span className="protocol-tag">WebSocket</span>
-                    <span className="protocol-tag">TLS 1.3</span>
-                    <span className="protocol-tag">OAuth 2.0</span>
-                    <span className="protocol-tag">JWT</span>
-                    <span className="protocol-tag">GraphQL</span>
-                    <span className="protocol-tag">REST</span>
+                    <span className="tech-tag">HTTP/1.1</span>
+                    <span className="tech-tag">HTTP/2</span>
+                    <span className="tech-tag">WebSocket</span>
+                    <span className="tech-tag">TLS 1.3</span>
+                    <span className="tech-tag">OAuth 2.0</span>
+                    <span className="tech-tag">JWT</span>
+                    <span className="tech-tag">GraphQL</span>
+                    <span className="tech-tag">REST</span>
                 </div>
             </div>
         </div>

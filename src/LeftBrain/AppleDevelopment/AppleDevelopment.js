@@ -45,121 +45,116 @@ const AppleDevelopment = () => {
 
 
     return (
-        <div className="apple-development-container">
+        <div className="leftbrain-container apple-theme">
             {/* Hero Section */}
-            <div className="apple-hero-section">
-                <div className="apple-hero-content">
-                    <h1 className="apple-hero-title">Apple Development</h1>
-                    <p className="apple-hero-subtitle">
-                        Building native applications for iOS, macOS, watchOS, and tvOS using Swift and Apple's frameworks
-                    </p>
+            <div className="hero-section">
+                <h1 className="section-title">Apple Development</h1>
+                <p>Building native applications for iOS, macOS, watchOS, and tvOS using Swift and Apple's frameworks</p>
+                <div className="tech-stack">
+                    <span className="theme-badge">Swift</span>
+                    <span className="theme-badge">SwiftUI</span>
+                    <span className="theme-badge">Xcode</span>
+                    <span className="theme-badge">iOS 17</span>
                 </div>
             </div>
 
             {/* Skills Overview */}
-            <section className="skills-showcase">
-                <div className="section-header">
-                    <h2 className="section-title">Development Skills</h2>
-                </div>
-                <div className="skills-grid">
+            <div className="section">
+                <h2>Development Skills</h2>
+                <div className="stats-grid">
                     {skills.map((skill, index) => (
-                        <div key={index} className="skill-item">
-                            <div className="skill-name">{skill.name}</div>
-                            <div className="skill-level">{skill.level}%</div>
-                            <div className="skill-progress">
-                                <div
-                                    className="skill-progress-fill"
-                                    style={{ width: `${skill.level}%` }}
+                        <div key={index} className="stat-card">
+                            <h4>{skill.name}</h4>
+                            <div className="progress-bar">
+                                <div 
+                                    className="progress-fill" 
+                                    style={{
+                                        width: `${skill.level}%`,
+                                        background: 'linear-gradient(90deg, var(--current-theme), var(--current-theme-dark))',
+                                        height: '100%',
+                                        borderRadius: 'inherit'
+                                    }}
                                 ></div>
                             </div>
+                            <span>{skill.level}%</span>
                         </div>
                     ))}
                 </div>
-            </section>
+            </div>
 
             {/* Frameworks & Tools */}
-            <section>
-                <div className="section-header">
-                    <h2 className="section-title">Frameworks & Tools</h2>
-                </div>
-                <div className="frameworks-grid">
+            <div className="section">
+                <h2>Frameworks & Tools</h2>
+                <div className="cards-container">
                     {frameworks.map((framework, index) => (
-                        <div key={index} className="framework-card">
-                            <div className="framework-header">
-                                <div className="framework-icon">{framework.icon}</div>
-                                <h3 className="framework-title">{framework.name}</h3>
-                            </div>
-                            <p className="framework-description">{framework.description}</p>
-                            <ul className="framework-features">
+                        <div key={index} className="theme-card">
+                            <div className="tech-icon">{framework.icon}</div>
+                            <h3>{framework.name}</h3>
+                            <p>{framework.description}</p>
+                            <div className="tech-stack">
                                 {framework.features.map((feature, idx) => (
-                                    <li key={idx}>{feature}</li>
+                                    <span key={idx} className="tech-tag">{feature}</span>
                                 ))}
-                            </ul>
+                            </div>
                         </div>
                     ))}
                 </div>
-            </section>
+            </div>
 
             {/* Helpful Apps for Development */}
-            <section className="development-apps-section">
-                <div className="section-header">
-                    <h2 className="section-title">Helpful Apps for Development</h2>
-                    <p style={{ color: 'var(--text-secondary)', fontSize: '1rem', marginBottom: '2rem', textAlign: 'center' }}>
-                        Essential tools and applications that enhance iOS and macOS development workflow
-                    </p>
-                </div>
-                <div className="apps-grid">
+            <div className="section">
+                <h2>Helpful Apps for Development</h2>
+                <p style={{ color: 'var(--text-secondary)', fontSize: '1rem', marginBottom: '2rem', textAlign: 'center' }}>
+                    Essential tools and applications that enhance iOS and macOS development workflow
+                </p>
+                <div className="cards-container">
                     {developmentApps.map((app, index) => (
-                        <div key={index} className="app-card">
-                            <div className="app-header">
+                        <div key={index} className="theme-card">
+                            <div className="tech-icon">
                                 <img
                                     src={app.icon}
                                     alt={`${app.name} icon`}
-                                    className="app-icon"
+                                    style={{ width: '40px', height: '40px', borderRadius: '8px' }}
                                     onError={(e) => {
                                         e.target.style.display = 'none';
                                         e.target.nextSibling.style.display = 'flex';
                                     }}
                                 />
-                                <div className="app-icon-fallback" style={{ display: 'none' }}>
+                                <div style={{ display: 'none', width: '40px', height: '40px', background: 'var(--current-theme)', color: 'white', borderRadius: '8px', alignItems: 'center', justifyContent: 'center', fontSize: '1.2rem', fontWeight: 'bold' }}>
                                     {app.name.charAt(0)}
                                 </div>
-                                <div className="app-info">
-                                    <h3 className="app-name">{app.name}</h3>
-                                    <span className="app-category">{app.category}</span>
-                                </div>
                             </div>
-                            <p className="app-description">{app.description}</p>
+                            <h3>{app.name}</h3>
+                            <span className="theme-badge">{app.category}</span>
+                            <p>{app.description}</p>
                             {app.features && app.features.length > 0 && (
-                                <ul className="app-features">
+                                <div className="tech-stack">
                                     {app.features.slice(0, 3).map((feature, idx) => (
-                                        <li key={idx}>{feature}</li>
+                                        <span key={idx} className="tech-tag">{feature}</span>
                                     ))}
-                                </ul>
+                                </div>
                             )}
                             <a
                                 href={app.downloadLink}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="app-link"
+                                className="leftbrain-button"
+                                style={{ marginTop: 'auto' }}
                             >
                                 Download / Learn More ↗
                             </a>
                         </div>
                     ))}
                 </div>
-            </section>
+            </div>
 
 
             {/* Code Example */}
-            <section>
-                <div className="section-header">
-                    <h2 className="section-title">Code Example</h2>
-                </div>
-                <div className="leftbrain-card">
-                    <h3>SwiftUI Hello World</h3>
-                    <div className="code-snippet">
-                        {`import SwiftUI
+            <div className="section">
+                <h2>Code Example</h2>
+                <div className="code-block">
+                    <h4>SwiftUI Hello World</h4>
+                    <pre><code>{`import SwiftUI
 
 struct ContentView: View {
     var body: some View {
@@ -184,10 +179,9 @@ struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
     }
-}`}
-                    </div>
+}`}</code></pre>
                 </div>
-            </section>
+            </div>
         </div>
     );
 };

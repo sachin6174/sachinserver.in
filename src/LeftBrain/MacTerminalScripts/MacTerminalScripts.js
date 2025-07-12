@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import '../shared-styles.css';
 import './MacTerminalScripts.css';
 
 const MacTerminalScripts = () => {
@@ -194,63 +195,69 @@ const MacTerminalScripts = () => {
     };
 
     return (
-        <div className="mac-terminal-container">
-            <div className="mac-terminal-header">
-                <h1 className="mac-terminal-title">Mac Terminal Scripts</h1>
-                <p className="mac-terminal-subtitle">Essential macOS terminal commands and automation scripts</p>
-            </div>
-
-            <div className="category-tabs">
-                {Object.entries(scriptCategories).map(([key, category]) => (
-                    <button
-                        key={key}
-                        className={`category-tab ${selectedCategory === key ? 'active' : ''}`}
-                        onClick={() => setSelectedCategory(key)}
-                    >
-                        <span className="category-icon">{category.icon}</span>
-                        <span className="category-title">{category.title}</span>
-                    </button>
-                ))}
-            </div>
-
-            <div className="scripts-content">
-                <div className="category-header">
-                    <h2>{scriptCategories[selectedCategory].title}</h2>
-                    <p>Click any command to copy to clipboard</p>
+        <div className="leftbrain-container terminal-theme">
+            <div className="hero-section">
+                <h1 className="section-title">Mac Terminal Scripts</h1>
+                <p>Essential macOS terminal commands and automation scripts</p>
+                <div className="tech-stack">
+                    <span className="theme-badge">Bash</span>
+                    <span className="theme-badge">Zsh</span>
+                    <span className="theme-badge">macOS</span>
+                    <span className="theme-badge">CLI</span>
                 </div>
+            </div>
 
-                <div className="scripts-grid">
+            <div className="section">
+                <h2>Script Categories</h2>
+                <div className="filter-buttons">
+                    {Object.entries(scriptCategories).map(([key, category]) => (
+                        <button
+                            key={key}
+                            className={`leftbrain-button ${selectedCategory === key ? 'active' : ''}`}
+                            onClick={() => setSelectedCategory(key)}
+                        >
+                            <span>{category.icon}</span>
+                            <span>{category.title}</span>
+                        </button>
+                    ))}
+                </div>
+            </div>
+
+            <div className="section">
+                <h2>{scriptCategories[selectedCategory].title}</h2>
+                <p style={{ color: 'var(--text-secondary)', marginBottom: '2rem', textAlign: 'center' }}>Click any command to copy to clipboard</p>
+
+                <div className="cards-container">
                     {scriptCategories[selectedCategory].scripts.map((script, index) => (
-                        <div key={index} className="script-card">
-                            <div className="script-header">
-                                <h3 className="script-name">{script.name}</h3>
+                        <div key={index} className="theme-card">
+                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1rem' }}>
+                                <h3>{script.name}</h3>
                                 <button 
-                                    className="copy-button"
+                                    className="leftbrain-button"
                                     onClick={() => copyToClipboard(script.command)}
                                     title="Copy to clipboard"
+                                    style={{ minWidth: 'auto', padding: '0.5rem' }}
                                 >
                                     📋
                                 </button>
                             </div>
                             
-                            <div className="script-command" onClick={() => copyToClipboard(script.command)}>
-                                <code>{script.command}</code>
+                            <div className="code-block" onClick={() => copyToClipboard(script.command)} style={{ cursor: 'pointer', marginBottom: '1rem' }}>
+                                <pre><code>{script.command}</code></pre>
                             </div>
                             
-                            <div className="script-info">
-                                <p className="script-description">{script.description}</p>
-                                <div className="script-usage">
-                                    <strong>Usage:</strong> {script.usage}
-                                </div>
+                            <p style={{ marginBottom: '1rem' }}>{script.description}</p>
+                            <div style={{ padding: '1rem', background: 'var(--background-secondary)', borderRadius: 'var(--radius-md)', borderLeft: '3px solid var(--current-theme)' }}>
+                                <strong style={{ color: 'var(--current-theme)' }}>Usage:</strong> {script.usage}
                             </div>
                         </div>
                     ))}
                 </div>
             </div>
 
-            <div className="terminal-tips">
-                <h3>💡 Terminal Tips</h3>
-                <ul>
+            <div className="section">
+                <h2>💡 Terminal Tips</h2>
+                <ul className="feature-list">
                     <li><strong>Sudo Commands:</strong> Commands with 'sudo' require administrator password</li>
                     <li><strong>Backup First:</strong> Always backup important data before running system commands</li>
                     <li><strong>Tab Completion:</strong> Use Tab key to auto-complete file paths and commands</li>

@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 This is a React-based personal portfolio website called "sachinserver.in" showcasing technical skills, creative work, and developer tools. The application features a three-tab system representing different aspects of skills and interests:
 
-- **LeftBrain**: Technical/logical content (Apple Development, Swift, Objective-C, Swift GUI, Swift Storage, Swift Networking, Swift Debugging, Mac Terminal Scripts, AI and Tools, Design Patterns, System Design, NodeJS, ReactJS, DSA, About Me)
+- **LeftBrain**: Technical/logical content (DSA, Apple Development, Swift, Objective-C, Swift GUI, Swift Storage, Swift Networking, Swift Debugging, Mac Terminal Scripts, AI and Tools, Design Patterns, Software Architecture, System Design, NodeJS, ReactJS, About Me)
 - **RightBrain**: Creative content (Drawing, Literature, Philosophy, Psychology, Music)  
 - **Tools**: Utility applications organized by category (Data Processing, Security & Crypto, Text Utilities, Media & Design, Development)
 

@@ -254,23 +254,23 @@ actor UserCache {
     ];
 
     return (
-        <div className="leftbrain-container swift-section">
+        <div className="leftbrain-container swift-theme">
             {/* Header Section */}
             <div className="hero-section">
                 <h1 className="section-title">Swift Programming</h1>
                 <p>Modern, safe, and expressive programming language for iOS, macOS, watchOS, and tvOS development</p>
                 <div className="tech-stack">
-                    <span className="swift-version-badge">Swift 5.9</span>
-                    <span className="swift-version-badge">iOS 17</span>
-                    <span className="swift-version-badge">Xcode 15</span>
-                    <span className="swift-version-badge">SwiftUI</span>
+                    <span className="theme-badge">Swift 5.9</span>
+                    <span className="theme-badge">iOS 17</span>
+                    <span className="theme-badge">Xcode 15</span>
+                    <span className="theme-badge">SwiftUI</span>
                 </div>
             </div>
 
             {/* Swift Features */}
             <div className="cards-container">
                 {swiftFeatures.map((feature, index) => (
-                    <div key={index} className="leftbrain-card swift-feature-card">
+                    <div key={index} className="theme-card">
                         <div className="tech-icon">{feature.icon}</div>
                         <h3>{feature.name}</h3>
                         <p>{feature.description}</p>
@@ -287,7 +287,7 @@ actor UserCache {
             <div className="section">
                 <h2>Swift Code Examples</h2>
                 {codeExamples.map((example, index) => (
-                    <div key={index} className="swift-code-block">
+                    <div key={index} className="code-block">
                         <h4>{example.title}</h4>
                         <pre><code>{example.code}</code></pre>
                     </div>
@@ -297,8 +297,8 @@ actor UserCache {
             {/* Language Comparison */}
             <div className="section">
                 <h2>Swift vs Other Languages</h2>
-                <div className="language-comparison">
-                    <div className="comparison-card">
+                <div className="grid-2">
+                    <div className="content-card">
                         <h4>Swift vs Objective-C</h4>
                         <ul>
                             <li>✅ Cleaner, more readable syntax</li>
@@ -308,7 +308,7 @@ actor UserCache {
                             <li>⚠️ Learning curve for existing ObjC developers</li>
                         </ul>
                     </div>
-                    <div className="comparison-card">
+                    <div className="content-card">
                         <h4>Swift vs Kotlin</h4>
                         <ul>
                             <li>✅ Similar modern syntax approach</li>
@@ -324,9 +324,9 @@ actor UserCache {
             {/* Swift Evolution Timeline */}
             <div className="section">
                 <h2>Swift Evolution</h2>
-                <div className="swift-evolution-timeline">
+                <div className="highlight-section">
                     {swiftEvolution.map((version, index) => (
-                        <div key={index} className="timeline-item">
+                        <div key={index} className="interactive-card">
                             <h4>{version.version} ({version.year})</h4>
                             <ul>
                                 {version.features.map((feature, idx) => (
@@ -350,7 +350,7 @@ actor UserCache {
                                     className="progress-fill" 
                                     style={{
                                         width: `${skill.level}%`,
-                                        background: 'linear-gradient(90deg, #FA7343, #FF9500)',
+                                        background: 'linear-gradient(90deg, var(--current-theme), var(--current-theme-dark))',
                                         height: '100%',
                                         borderRadius: 'inherit'
                                     }}
