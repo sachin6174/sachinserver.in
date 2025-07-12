@@ -12,6 +12,11 @@ import Debugging from "./LeftBrain/Debugging/Debugging";
 import SystemDesign from "./LeftBrain/SystemDesign/SystemDesign";
 import SwiftGUI from "./LeftBrain/SwiftGUI/SwiftGUI";
 import SwiftStorage from "./LeftBrain/SwiftStorage/SwiftStorage";
+import SwiftTesting from "./LeftBrain/SwiftTesting/SwiftTesting";
+import AppleLanguages from "./LeftBrain/AppleLanguages/AppleLanguages";
+import PackageDeployment from "./LeftBrain/PackageDeployment/PackageDeployment";
+import ChromeExtensions from "./LeftBrain/ChromeExtensions/ChromeExtensions";
+import Blog from "./LeftBrain/Blogs/Blog";
 import AIAndTools from "./LeftBrain/AIAndTools/AIAndTools";
 import DesignPatterns from "./LeftBrain/DesignPatterns/DesignPatterns";
 import SoftwareArchitecture from "./LeftBrain/SoftwareArchitecture/SoftwareArchitecture";
@@ -136,14 +141,16 @@ const TabSystem = () => {
 
     const navigationItems = {
         leftbrain: [
+            { id: "about-me", label: "About Me", icon: "👤", description: <AboutMe /> },
             { id: "dsa", label: "DSA", icon: "🧮", description: <DSA /> },
             { id: "apple-development", label: "Apple Development", icon: "🍎", description: <AppleDevelopment /> },
-            { id: "swift", label: "Swift", icon: "🦉", description: <Swift /> },
-            { id: "objective-c", label: "Objective-C", icon: "🔷", description: <ObjectiveC /> },
+            { id: "apple-languages", label: "Apple Languages", icon: "🍎", description: <AppleLanguages /> },
             { id: "swift-gui", label: "Swift GUI", icon: "🖥️", description: <SwiftGUI /> },
             { id: "swift-storage", label: "Swift Storage", icon: "💾", description: <SwiftStorage /> },
             { id: "swift-networking", label: "Swift Networking", icon: "🌐", description: <SwiftNetworking /> },
             { id: "debugging", label: "Swift Debugging", icon: "🐛", description: <Debugging /> },
+            { id: "swift-testing", label: "Swift Testing", icon: "🧪", description: <SwiftTesting /> },
+            { id: "package-deployment", label: "Package & Deployment", icon: "📦", description: <PackageDeployment /> },
             { id: "mac-terminal-scripts", label: "Mac Terminal Scripts", icon: "💻", description: <MacTerminalScripts /> },
             { id: "ai-and-tools", label: "AI and Tools", icon: "🤖", description: <AIAndTools /> },
             { id: "design-patterns", label: "Design Patterns", icon: "🏗️", description: <DesignPatterns /> },
@@ -151,7 +158,8 @@ const TabSystem = () => {
             { id: "system-design", label: "System Design", icon: "🏢", description: <SystemDesign /> },
             { id: "nodejs", label: "NodeJS", icon: "🌐", description: <NodeJS /> },
             { id: "reactjs", label: "ReactJS", icon: "⚛️", description: <ReactJS /> },
-            { id: "about-me", label: "About Me", icon: "👤", description: <AboutMe /> },
+            { id: "chrome-extensions", label: "Chrome Extensions", icon: "🧩", description: <ChromeExtensions /> },
+            { id: "blogs", label: "Blogs", icon: "📝", description: <Blog /> },
         ],
         rightbrain: [
             { id: "drawing", label: "Drawing", icon: "✏️", description: <Drawing /> },
