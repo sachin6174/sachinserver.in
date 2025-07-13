@@ -39,16 +39,16 @@
     margin-top: auto;
 }
 
-/* Apple Documentation Styles */
+/* Apple Documentation Styles - MINIMAL SPACING */
 .documentation-category {
-    margin-bottom: 3rem;
+    margin-bottom: var(--space-lg);
 }
 
 .category-header {
     display: flex;
     align-items: center;
     gap: 1rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: var(--space-sm);
     padding-bottom: 0.5rem;
     border-bottom: 2px solid var(--current-theme-light);
 }
@@ -90,7 +90,7 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    margin-bottom: 1rem;
+    margin-bottom: var(--space-sm);
     gap: 1rem;
 }
 

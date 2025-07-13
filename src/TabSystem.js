@@ -6,8 +6,6 @@ import ReactJS from "./LeftBrain/ReactJS/ReactJS";
 import DSA from "./LeftBrain/DSA/DSA";
 import MacTerminalScripts from "./LeftBrain/MacTerminalScripts/MacTerminalScripts";
 import SwiftNetworking from "./LeftBrain/SwiftNetworking/SwiftNetworking";
-import Swift from "./LeftBrain/Swift/Swift";
-import ObjectiveC from "./LeftBrain/ObjectiveC/ObjectiveC";
 import Debugging from "./LeftBrain/Debugging/Debugging";
 import SystemDesign from "./LeftBrain/SystemDesign/SystemDesign";
 import SwiftGUI from "./LeftBrain/SwiftGUI/SwiftGUI";

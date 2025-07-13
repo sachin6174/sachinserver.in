@@ -76,14 +76,14 @@ body.dark-mode {
     }
 }
 
-/* Typography */
+/* Typography - MINIMAL SPACING */
 .about-me-container h1,
 .about-me-container h2,
 .about-me-container h3,
 .about-me-container h4 {
     font-weight: 700;
     line-height: 1.2;
-    margin-bottom: 1rem;
+    margin: 0 0 var(--space-xs) 0;
     color: var(--text-primary);
 }
 
@@ -100,7 +100,7 @@ body.dark-mode {
 }
 
 .about-me-container p {
-    margin-bottom: 1rem;
+    margin-bottom: var(--space-sm);
     color: var(--text-secondary);
     font-size: 1rem;
     line-height: 1.7;

@@ -95,7 +95,7 @@ class UserValidatorTests: XCTestCase {
         // When & Then
         for email in invalidEmails {
             XCTAssertFalse(validator.isValidEmail(email), 
-                          "Invalid email '\(email)' should return false")
+                          "Invalid email '\\(email)' should return false")
         }
     }
     

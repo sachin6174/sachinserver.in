@@ -419,7 +419,7 @@ body.dark-mode {
     font-size: var(--font-4xl);
     font-weight: 800;
     line-height: 1.2;
-    margin: var(--space-lg) 0 var(--space-md);
+    margin: 0 0 var(--space-xs);
     color: var(--text-primary);
 }
 
@@ -429,7 +429,7 @@ body.dark-mode {
     font-size: var(--font-2xl);
     font-weight: 700;
     line-height: 1.3;
-    margin: var(--space-lg) 0 var(--space-md);
+    margin: var(--space-sm) 0 var(--space-xs);
     color: var(--text-primary);
 }
 
@@ -439,7 +439,7 @@ body.dark-mode {
     font-size: var(--font-xl);
     font-weight: 600;
     line-height: 1.4;
-    margin: var(--space-md) 0 var(--space-sm);
+    margin: var(--space-xs) 0 var(--space-xs);
     color: var(--text-primary);
 }
 
@@ -449,7 +449,7 @@ body.dark-mode {
     font-size: var(--font-lg);
     font-weight: 600;
     line-height: 1.4;
-    margin: var(--space-md) 0 var(--space-sm);
+    margin: var(--space-xs) 0 var(--space-xs);
     color: var(--current-theme, var(--primary-color));
 }
 
@@ -459,7 +459,7 @@ body.dark-mode {
     font-size: var(--font-base);
     font-weight: 600;
     line-height: 1.5;
-    margin: var(--space-sm) 0;
+    margin: var(--space-xs) 0;
     color: var(--text-primary);
 }
 
@@ -469,7 +469,7 @@ body.dark-mode {
     font-size: var(--font-sm);
     font-weight: 600;
     line-height: 1.5;
-    margin: var(--space-sm) 0;
+    margin: var(--space-xs) 0;
     color: var(--text-primary);
 }
 
@@ -478,7 +478,7 @@ body.dark-mode {
 .tech-card p {
     font-size: var(--font-base);
     line-height: 1.6;
-    margin: var(--space-sm) 0;
+    margin: var(--space-xs) 0;
     color: var(--text-secondary);
 }
 
@@ -488,7 +488,7 @@ body.dark-mode {
 .leftbrain-container ol,
 .leftbrain-card ol,
 .tech-card ol {
-    margin: var(--space-md) 0;
+    margin: var(--space-xs) 0;
     padding-left: var(--space-lg);
 }
 
@@ -509,36 +509,37 @@ body.dark-mode {
     margin: var(--space-xs) 0;
 }
 
-/* Section styling - COMPACT */
+/* Section styling - MINIMAL SPACING */
 .section-title {
     font-size: var(--font-xl);
     font-weight: 700;
     color: var(--text-primary);
-    margin-bottom: var(--space-sm);
+    margin: 0 0 var(--space-xs) 0;
     text-align: center;
     background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    line-height: 1.2;
 }
 
 @media (min-width: 768px) {
     .section-title {
         font-size: var(--font-2xl);
-        margin-bottom: var(--space-md);
+        margin-bottom: var(--space-xs);
     }
 }
 
 @media (min-width: 1024px) {
     .section-title {
         font-size: var(--font-3xl);
-        margin-bottom: var(--space-lg);
+        margin-bottom: var(--space-sm);
     }
 }
 
-/* Standardized Section Layouts - COMPACT */
+/* Standardized Section Layouts - MINIMAL SPACING */
 .section {
-    margin: var(--space-lg) 0;
+    margin: var(--space-sm) 0;
     padding: 0;
 }
 
@@ -546,10 +547,11 @@ body.dark-mode {
     font-size: var(--font-lg);
     font-weight: 600;
     color: var(--text-primary);
-    margin-bottom: var(--space-sm);
+    margin: 0 0 var(--space-xs) 0;
     padding-bottom: var(--space-xs);
     border-bottom: 1px solid var(--current-theme, var(--primary-color));
     position: relative;
+    line-height: 1.3;
 }
 
 .section h2::after {
@@ -562,15 +564,15 @@ body.dark-mode {
     background: linear-gradient(90deg, var(--current-theme-light, var(--primary-color)), var(--current-theme-dark, var(--primary-dark)));
 }
 
-/* Hero section - COMPACT */
+/* Hero section - MINIMAL SPACING */
 .hero-section {
-    padding: var(--space-lg) var(--space-md);
+    padding: var(--space-sm) var(--space-sm);
     text-align: center;
     background: linear-gradient(135deg, 
         rgba(var(--current-theme, 99, 102, 241), 0.06) 0%, 
         rgba(var(--current-theme, 99, 102, 241), 0.02) 100%);
     border-radius: var(--radius-lg);
-    margin: var(--space-md) auto var(--space-lg);
+    margin: 0 auto var(--space-sm);
     position: relative;
     overflow: hidden;
     border: 1px solid rgba(var(--current-theme, 99, 102, 241), 0.1);
@@ -595,7 +597,7 @@ body.dark-mode {
 .hero-section p {
     font-size: var(--font-sm);
     color: var(--text-secondary);
-    margin: var(--space-sm) auto;
+    margin: var(--space-xs) auto 0;
     max-width: 500px;
     position: relative;
     z-index: 2;
@@ -621,7 +623,7 @@ body.dark-mode {
     display: flex;
     flex-wrap: wrap;
     gap: var(--space-xs);
-    margin: var(--space-sm) 0;
+    margin: var(--space-xs) 0 0;
     justify-content: center;
 }
 
