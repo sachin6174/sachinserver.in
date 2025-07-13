@@ -23,7 +23,7 @@ import Literature from "./RightBrain/Litlerature/Literature";
 import Philosophy from "./RightBrain/Philosophy/Philosophy";
 import Music from "./RightBrain/Music/Music";
 import Psychology from "./RightBrain/Psychology/Psychology";
-import { InfoTool, JsonTool, XmlTool, CryptoTool, WritingBoardTool, APITool, BackgroundRemoverTool, StorageTool, ColorPickerTool, ScreenRecorderTool, CSVTool, HashTool, PasswordTool, YAMLTool, RegexTool, EncoderTool, UUIDTool, MarkdownRenderer, PassportPhotoMaker, PDFTool } from './Tools';
+import { InfoTool, JsonTool, XmlTool, CryptoTool, WritingBoardTool, APITool, BackgroundRemoverTool, StorageTool, ColorPickerTool, ScreenRecorderTool, CSVTool, HashTool, PasswordTool, YAMLTool, RegexTool, EncoderTool, UUIDTool, MarkdownRenderer, PassportPhotoMaker, PDFTool, QRCodeTool } from './Tools';
 import logo from './assets/logo512.png';  // Updated import path
 import './TabSystem.css';
 import LeftNavigation from './LeftNavigation';
@@ -222,6 +222,7 @@ const TabSystem = () => {
                 icon: "🌐", 
                 isCategory: true,
                 tools: [
+                    { id: "qr-code-tool", label: "QR Code Tool", icon: "🔲", description: <QRCodeTool /> },
                     { id: "pdf-tool", label: "PDF Tool", icon: "📄", description: <PDFTool /> },
                     { id: "api-tool", label: "API Tool", icon: "🌐", description: <APITool /> },
                     { id: "storage-tool", label: "Storage Tool", icon: "💾", description: <StorageTool /> },
