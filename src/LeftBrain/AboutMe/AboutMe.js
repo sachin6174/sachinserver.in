@@ -115,9 +115,30 @@ const AboutMe = () => {
     return (
         <div className="about-me-container">
             {/* Hero Section */}
-            <section className="simple-header">
-                <h1>About Me</h1>
-                <p>Mac/iOS Developer & Software Engineer at 42 Gears Mobility Systems</p>
+            <section className="hero-section fade-in-section" id="hero">
+                <div className="hero-content">
+                    <div className="avatar-container">
+                        <img
+                            src={profileImage}
+                            alt="Sachin Kumar - Profile"
+                            className="avatar-image"
+                        />
+                        <div className="status-indicator"></div>
+                    </div>
+                    <div className="hero-text">
+                        <h1 className="hero-name">Sachin Kumar</h1>
+                        <p className="hero-tagline">Mac/iOS Developer & Software Engineer</p>
+                        <p className="hero-description">
+                            Passionate Mac/iOS developer at 42 Gears Mobility Systems,
+                            specializing in enterprise mobility solutions and native app development.
+                        </p>
+                        <div className="hero-contact">
+                            <span>📧 sachinmehtab@gmail.com</span>
+                            <span>📱 +91 9501841073</span>
+                            <span>🌐 sachinserver.in</span>
+                        </div>
+                    </div>
+                </div>
             </section>
 
             {/* About Section */}
