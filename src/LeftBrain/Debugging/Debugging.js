@@ -319,15 +319,9 @@ struct ContentView: View {
     return (
         <div className="leftbrain-container debugging-section">
             {/* Header Section */}
-            <div className="hero-section">
-                <h1 className="section-title">Debugging Mastery</h1>
+            <div className="simple-header">
+                <h1>Debugging Mastery</h1>
                 <p>Essential debugging techniques, tools, and methodologies for efficient problem-solving in software development</p>
-                <div className="tech-stack">
-                    <span className="debugging-technique-badge">LLDB</span>
-                    <span className="debugging-technique-badge">Instruments</span>
-                    <span className="debugging-technique-badge">Static Analysis</span>
-                    <span className="debugging-technique-badge">Profiling</span>
-                </div>
             </div>
 
             {/* Common Error Types */}

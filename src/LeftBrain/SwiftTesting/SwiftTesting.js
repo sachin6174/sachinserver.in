@@ -368,15 +368,9 @@ class LoginUITests: XCTestCase {
     return (
         <div className="leftbrain-container swift-testing-theme">
             {/* Header Section */}
-            <div className="hero-section">
-                <h1 className="section-title">Swift Testing</h1>
+            <div className="simple-header">
+                <h1>Swift Testing</h1>
                 <p>Comprehensive testing strategies and frameworks for reliable Swift applications</p>
-                <div className="tech-stack">
-                    <span className="theme-badge">XCTest</span>
-                    <span className="theme-badge">Swift Testing</span>
-                    <span className="theme-badge">Quick/Nimble</span>
-                    <span className="theme-badge">XCUITest</span>
-                </div>
             </div>
 
             {/* Testing Frameworks */}

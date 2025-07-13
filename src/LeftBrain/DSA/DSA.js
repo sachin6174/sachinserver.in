@@ -11781,14 +11781,9 @@ int main() {
 
     return (
         <div className="leftbrain-container dsa-theme">
-            <div className="hero-section">
-                <h1 className="section-title">Data Structures & Algorithms</h1>
+            <div className="simple-header">
+                <h1>Data Structures & Algorithms</h1>
                 <p>Code snippets and implementations in JavaScript, Swift, and C++</p>
-                <div className="tech-stack">
-                    <span className="theme-badge">JavaScript</span>
-                    <span className="theme-badge">Swift</span>
-                    <span className="theme-badge">C++</span>
-                </div>
             </div>
 
             <div className="section">

@@ -455,15 +455,9 @@ class SlideTransition: NSObject, UIViewControllerAnimatedTransitioning {
     return (
         <div className="leftbrain-container swift-gui-section">
             {/* Header Section */}
-            <div className="hero-section">
-                <h1 className="section-title">Swift GUI Development</h1>
+            <div className="simple-header">
+                <h1>Swift GUI Development</h1>
                 <p>Building beautiful, responsive user interfaces for Apple platforms using SwiftUI and UIKit</p>
-                <div className="tech-stack">
-                    <span className="gui-technology-badge">SwiftUI</span>
-                    <span className="gui-technology-badge">UIKit</span>
-                    <span className="gui-technology-badge">Core Animation</span>
-                    <span className="gui-technology-badge">Auto Layout</span>
-                </div>
             </div>
 
             {/* GUI Frameworks */}

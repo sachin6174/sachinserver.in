@@ -197,15 +197,9 @@ const SystemDesign = () => {
     return (
         <div className="leftbrain-container system-design-section">
             {/* Header Section */}
-            <div className="hero-section">
-                <h1 className="section-title">System Design</h1>
+            <div className="simple-header">
+                <h1>System Design</h1>
                 <p>Scalable architecture design, distributed systems, and performance optimization strategies</p>
-                <div className="tech-stack">
-                    <span className="design-pattern-badge">Microservices</span>
-                    <span className="design-pattern-badge">Load Balancing</span>
-                    <span className="design-pattern-badge">Caching</span>
-                    <span className="design-pattern-badge">Distributed Systems</span>
-                </div>
             </div>
 
             {/* Scalability Metrics */}

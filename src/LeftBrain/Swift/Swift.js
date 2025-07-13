@@ -256,15 +256,9 @@ actor UserCache {
     return (
         <div className="leftbrain-container swift-theme">
             {/* Header Section */}
-            <div className="hero-section">
-                <h1 className="section-title">Swift Programming</h1>
+            <div className="simple-header">
+                <h1>Swift Programming</h1>
                 <p>Modern, safe, and expressive programming language for iOS, macOS, watchOS, and tvOS development</p>
-                <div className="tech-stack">
-                    <span className="theme-badge">Swift 5.9</span>
-                    <span className="theme-badge">iOS 17</span>
-                    <span className="theme-badge">Xcode 15</span>
-                    <span className="theme-badge">SwiftUI</span>
-                </div>
             </div>
 
             {/* Swift Features */}

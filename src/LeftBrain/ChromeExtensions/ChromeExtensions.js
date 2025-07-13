@@ -952,15 +952,9 @@ window.addEventListener('extensionMessage', (event) => {
     return (
         <div className="leftbrain-container chrome-extensions-theme">
             {/* Header Section */}
-            <div className="hero-section">
-                <h1 className="section-title">Chrome Extension Development</h1>
+            <div className="simple-header">
+                <h1>Chrome Extension Development</h1>
                 <p>Build powerful browser extensions with modern APIs and best practices</p>
-                <div className="tech-stack">
-                    <span className="theme-badge">Manifest V3</span>
-                    <span className="theme-badge">Chrome APIs</span>
-                    <span className="theme-badge">Service Workers</span>
-                    <span className="theme-badge">Content Scripts</span>
-                </div>
             </div>
 
             {/* Section Tabs */}

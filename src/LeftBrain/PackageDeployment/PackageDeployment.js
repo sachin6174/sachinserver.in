@@ -613,15 +613,9 @@ jobs:
     return (
         <div className="leftbrain-container package-deployment-theme">
             {/* Header Section */}
-            <div className="hero-section">
-                <h1 className="section-title">Package & Deployment</h1>
+            <div className="simple-header">
+                <h1>Package & Deployment</h1>
                 <p>Comprehensive guide to packaging, dependencies, system services, and deployment for Apple platforms</p>
-                <div className="tech-stack">
-                    <span className="theme-badge">App Store</span>
-                    <span className="theme-badge">SPM</span>
-                    <span className="theme-badge">CocoaPods</span>
-                    <span className="theme-badge">Launch Services</span>
-                </div>
             </div>
 
             {/* Section Tabs */}

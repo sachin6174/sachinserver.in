@@ -347,15 +347,9 @@ void dynamicMethodImplementation(id self, SEL _cmd) {
     return (
         <div className="leftbrain-container objc-section">
             {/* Header Section */}
-            <div className="hero-section">
-                <h1 className="section-title">Objective-C Programming</h1>
+            <div className="simple-header">
+                <h1>Objective-C Programming</h1>
                 <p>Dynamic, object-oriented language that powered iOS and macOS development for decades</p>
-                <div className="tech-stack">
-                    <span className="objc-version-badge">Objective-C 2.0</span>
-                    <span className="objc-version-badge">ARC</span>
-                    <span className="objc-version-badge">Runtime</span>
-                    <span className="objc-version-badge">Foundation</span>
-                </div>
             </div>
 
             {/* Legacy Warning */}

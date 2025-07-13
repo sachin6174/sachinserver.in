@@ -59,15 +59,9 @@ const ReactJS = () => {
 
     return (
         <div className="leftbrain-container react-theme">
-            <div className="hero-section">
-                <h1 className="section-title">React Development</h1>
+            <div className="simple-header">
+                <h1>React Development</h1>
                 <p>Building modern, interactive user interfaces with React.js and its ecosystem</p>
-                <div className="tech-stack">
-                    <span className="theme-badge">React 18</span>
-                    <span className="theme-badge">Hooks</span>
-                    <span className="theme-badge">TypeScript</span>
-                    <span className="theme-badge">Redux</span>
-                </div>
             </div>
 
             {/* Skills Overview */}

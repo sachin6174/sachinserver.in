@@ -89,15 +89,9 @@ const SwiftNetworking = () => {
     return (
         <div className="leftbrain-container swift-networking-theme">
             {/* Header Section */}
-            <div className="hero-section">
-                <h1 className="section-title">Swift Networking</h1>
+            <div className="simple-header">
+                <h1>Swift Networking</h1>
                 <p>Modern networking solutions for iOS applications using URLSession, Async/Await, and Combine framework</p>
-                <div className="tech-stack">
-                    <span className="theme-badge">URLSession</span>
-                    <span className="theme-badge">Async/Await</span>
-                    <span className="theme-badge">Combine</span>
-                    <span className="theme-badge">REST API</span>
-                </div>
             </div>
 
             {/* Networking Stats */}

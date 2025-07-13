@@ -247,15 +247,9 @@ NSString *str = [[NSString alloc] initWithString:@"Hello"];
     return (
         <div className="leftbrain-container apple-languages-theme">
             {/* Header Section */}
-            <div className="hero-section">
-                <h1 className="section-title">Apple Programming Languages</h1>
+            <div className="simple-header">
+                <h1>Apple Programming Languages</h1>
                 <p>Master both Swift and Objective-C for comprehensive iOS/macOS development</p>
-                <div className="tech-stack">
-                    <span className="theme-badge">Swift 5.9</span>
-                    <span className="theme-badge">Objective-C 2.0</span>
-                    <span className="theme-badge">Interoperability</span>
-                    <span className="theme-badge">Legacy Support</span>
-                </div>
             </div>
 
             {/* Language Toggle */}

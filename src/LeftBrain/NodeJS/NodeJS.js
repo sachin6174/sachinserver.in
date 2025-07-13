@@ -59,15 +59,9 @@ const NodeJS = () => {
 
     return (
         <div className="leftbrain-container nodejs-theme">
-            <div className="hero-section">
-                <h1 className="section-title">Node.js Development</h1>
+            <div className="simple-header">
+                <h1>Node.js Development</h1>
                 <p>Building scalable server-side applications and APIs using JavaScript runtime environment</p>
-                <div className="tech-stack">
-                    <span className="theme-badge">Node.js</span>
-                    <span className="theme-badge">Express</span>
-                    <span className="theme-badge">MongoDB</span>
-                    <span className="theme-badge">Socket.IO</span>
-                </div>
             </div>
 
             {/* Skills Overview */}

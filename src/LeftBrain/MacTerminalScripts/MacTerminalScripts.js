@@ -196,15 +196,9 @@ const MacTerminalScripts = () => {
 
     return (
         <div className="leftbrain-container terminal-theme">
-            <div className="hero-section">
-                <h1 className="section-title">Mac Terminal Scripts</h1>
+            <div className="simple-header">
+                <h1>Mac Terminal Scripts</h1>
                 <p>Essential macOS terminal commands and automation scripts</p>
-                <div className="tech-stack">
-                    <span className="theme-badge">Bash</span>
-                    <span className="theme-badge">Zsh</span>
-                    <span className="theme-badge">macOS</span>
-                    <span className="theme-badge">CLI</span>
-                </div>
             </div>
 
             <div className="section">

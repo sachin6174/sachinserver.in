@@ -782,15 +782,9 @@ function UserComponent() {
     return (
         <div className="leftbrain-container design-patterns-section">
             {/* Header Section */}
-            <div className="hero-section">
-                <h1 className="section-title">Design Patterns & Architecture</h1>
+            <div className="simple-header">
+                <h1>Design Patterns & Architecture</h1>
                 <p>Software design principles, architectural patterns, and best practices for building maintainable and scalable applications</p>
-                <div className="tech-stack">
-                    <span className="architecture-badge">SOLID</span>
-                    <span className="architecture-badge">GoF Patterns</span>
-                    <span className="architecture-badge">Clean Architecture</span>
-                    <span className="architecture-badge">DDD</span>
-                </div>
             </div>
 
             {/* Pattern Categories */}

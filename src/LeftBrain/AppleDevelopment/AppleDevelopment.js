@@ -170,15 +170,9 @@ const AppleDevelopment = () => {
     return (
         <div className="leftbrain-container apple-theme">
             {/* Hero Section */}
-            <div className="hero-section">
-                <h1 className="section-title">Apple Development</h1>
+            <div className="simple-header">
+                <h1>Apple Development</h1>
                 <p>Building native applications for iOS, macOS, watchOS, and tvOS using Swift and Apple's frameworks</p>
-                <div className="tech-stack">
-                    <span className="theme-badge">Swift</span>
-                    <span className="theme-badge">SwiftUI</span>
-                    <span className="theme-badge">Xcode</span>
-                    <span className="theme-badge">iOS 17</span>
-                </div>
             </div>
 
             {/* Skills Overview */}

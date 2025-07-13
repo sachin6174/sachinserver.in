@@ -713,15 +713,9 @@ struct StorageExamples {
     return (
         <div className="leftbrain-container swift-storage-section">
             {/* Header Section */}
-            <div className="hero-section">
-                <h1 className="section-title">Swift Storage Solutions</h1>
+            <div className="simple-header">
+                <h1>Swift Storage Solutions</h1>
                 <p>Comprehensive data persistence, file management, and storage optimization for iOS applications</p>
-                <div className="tech-stack">
-                    <span className="storage-type-badge">Core Data</span>
-                    <span className="storage-type-badge">SwiftData</span>
-                    <span className="storage-type-badge">SQLite</span>
-                    <span className="storage-type-badge">CloudKit</span>
-                </div>
             </div>
 
             {/* Storage Solutions */}

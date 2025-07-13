@@ -1287,15 +1287,9 @@ class UserListRouter: RouterProtocol {
     return (
         <div className="leftbrain-container software-architecture-section">
             {/* Header Section */}
-            <div className="hero-section">
-                <h1 className="section-title">Software Architecture Patterns</h1>
+            <div className="simple-header">
+                <h1>Software Architecture Patterns</h1>
                 <p>Comprehensive guide to architectural patterns including VIPER, MVC, MVP, MVVM and modern application design</p>
-                <div className="tech-stack">
-                    <span className="architecture-type-badge">VIPER</span>
-                    <span className="architecture-type-badge">MVC</span>
-                    <span className="architecture-type-badge">MVP</span>
-                    <span className="architecture-type-badge">MVVM</span>
-                </div>
             </div>
 
             {/* Architecture Patterns Overview */}

@@ -564,6 +564,26 @@ body.dark-mode {
     background: linear-gradient(90deg, var(--current-theme-light, var(--primary-color)), var(--current-theme-dark, var(--primary-dark)));
 }
 
+/* Simple Header - CLEAN AND MINIMAL */
+.simple-header {
+    margin-bottom: var(--space-md);
+}
+
+.simple-header h1 {
+    font-size: var(--font-2xl);
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0 0 var(--space-xs) 0;
+    line-height: 1.2;
+}
+
+.simple-header p {
+    color: var(--text-secondary);
+    font-size: var(--font-base);
+    margin: 0;
+    line-height: 1.4;
+}
+
 /* Hero section - MINIMAL SPACING */
 .hero-section {
     padding: var(--space-sm) var(--space-sm);

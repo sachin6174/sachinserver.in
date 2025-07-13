@@ -647,15 +647,9 @@ class MLModelMonitor {
     return (
         <div className="leftbrain-container ai-tools-section">
             {/* Header Section */}
-            <div className="hero-section">
-                <h1 className="section-title">AI and Tools</h1>
+            <div className="simple-header">
+                <h1>AI and Tools</h1>
                 <p>Machine learning frameworks, artificial intelligence development tools, and modern ML workflows</p>
-                <div className="tech-stack">
-                    <span className="ai-technology-badge">TensorFlow</span>
-                    <span className="ai-technology-badge">PyTorch</span>
-                    <span className="ai-technology-badge">Core ML</span>
-                    <span className="ai-technology-badge">MLOps</span>
-                </div>
             </div>
 
             {/* AI Frameworks */}

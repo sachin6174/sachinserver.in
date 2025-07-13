@@ -159,14 +159,9 @@ const Blog = () => {
                 </div>
             ) : (
                 <div>
-                    <div className="hero-section">
-                        <div className="section-header">
-                            <h1 className="section-title">Tech Blog</h1>
-                            <div className="section-divider"></div>
-                            <p style={{ color: 'var(--text-secondary)', fontSize: '1.1rem', marginTop: '1rem' }}>
-                                Sharing insights, tutorials, and experiences in software development
-                            </p>
-                        </div>
+                    <div className="simple-header">
+                        <h1>Tech Blog</h1>
+                        <p>Sharing insights, tutorials, and experiences in software development</p>
                     </div>
 
                     {/* Blog Stats */}
