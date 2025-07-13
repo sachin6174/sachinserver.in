@@ -23,7 +23,7 @@ import Literature from "./RightBrain/Litlerature/Literature";
 import Philosophy from "./RightBrain/Philosophy/Philosophy";
 import Music from "./RightBrain/Music/Music";
 import Psychology from "./RightBrain/Psychology/Psychology";
-import { InfoTool, JsonTool, XmlTool, CryptoTool, WritingBoardTool, APITool, BackgroundRemoverTool, StorageTool, ColorPickerTool, ScreenRecorderTool, CSVTool, HashTool, PasswordTool, YAMLTool, RegexTool, EncoderTool, UUIDTool } from './Tools';
+import { InfoTool, JsonTool, XmlTool, CryptoTool, WritingBoardTool, APITool, BackgroundRemoverTool, StorageTool, ColorPickerTool, ScreenRecorderTool, CSVTool, HashTool, PasswordTool, YAMLTool, RegexTool, EncoderTool, UUIDTool, MarkdownRenderer, PassportPhotoMaker, PDFTool } from './Tools';
 import logo from './assets/logo512.png';  // Updated import path
 import './TabSystem.css';
 import LeftNavigation from './LeftNavigation';
@@ -200,6 +200,7 @@ const TabSystem = () => {
                 tools: [
                     { id: "regex-tool", label: "Regex Tool", icon: "🔍", description: <RegexTool /> },
                     { id: "uuid-tool", label: "UUID Tool", icon: "🆔", description: <UUIDTool /> },
+                    { id: "markdown-renderer", label: "Markdown Renderer", icon: "📄", description: <MarkdownRenderer /> },
                     { id: "writing-board", label: "Writing Board", icon: "✏️", description: <WritingBoardTool /> },
                 ]
             },
@@ -209,6 +210,7 @@ const TabSystem = () => {
                 icon: "🎨", 
                 isCategory: true,
                 tools: [
+                    { id: "passport-photo-maker", label: "Passport Photo Maker", icon: "📷", description: <PassportPhotoMaker /> },
                     { id: "background-remover", label: "Background Remover", icon: "🖼️", description: <BackgroundRemoverTool /> },
                     { id: "color-picker", label: "Color Picker", icon: "🎨", description: <ColorPickerTool /> },
                     { id: "screen-recorder", label: "Screen Recorder", icon: "🎥", description: <ScreenRecorderTool /> },
@@ -220,6 +222,7 @@ const TabSystem = () => {
                 icon: "🌐", 
                 isCategory: true,
                 tools: [
+                    { id: "pdf-tool", label: "PDF Tool", icon: "📄", description: <PDFTool /> },
                     { id: "api-tool", label: "API Tool", icon: "🌐", description: <APITool /> },
                     { id: "storage-tool", label: "Storage Tool", icon: "💾", description: <StorageTool /> },
                 ]

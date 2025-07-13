@@ -17,3 +17,6 @@ export { default as YAMLTool } from './YAMLTool/YAMLTool';
 export { default as RegexTool } from './RegexTool/RegexTool';
 export { default as EncoderTool } from './EncoderTool/EncoderTool';
 export { default as UUIDTool } from './UUIDTool/UUIDTool';
+export { default as MarkdownRenderer } from './MarkdownRenderer/MarkdownRenderer';
+export { default as PassportPhotoMaker } from './PassportPhotoMaker/PassportPhotoMaker';
+export { default as PDFTool } from './PDFTool/PDFTool';
