@@ -32,7 +32,24 @@ const ScreenRecorderTool = () => {
         if (savedRecordings) {
             setRecordings(JSON.parse(savedRecordings));
         }
+        
+        // Clear any stuck focus states on component mount
+        const selectElements = document.querySelectorAll('.screen-recorder-tool select');
+        selectElements.forEach(select => {
+            select.blur();
+        });
     }, []);
+
+    // Focus management effect
+    useEffect(() => {
+        // Clear any stuck focus states when recording state changes
+        const selectElements = document.querySelectorAll('.screen-recorder-tool select');
+        selectElements.forEach(select => {
+            if (document.activeElement !== select) {
+                select.blur();
+            }
+        });
+    }, [isRecording, recordingMode, audioSource, quality]);
 
     // Timer effect
     useEffect(() => {
@@ -349,44 +366,46 @@ const ScreenRecorderTool = () => {
                 <div className="settings-section">
                     <h3>Recording Settings</h3>
 
-                    <div className="setting-group">
-                        <label>Recording Mode:</label>
-                        <select
-                            value={recordingMode}
-                            onChange={(e) => setRecordingMode(e.target.value)}
-                            disabled={isRecording}
-                        >
-                            <option value="screen">🖥️ Entire Screen</option>
-                            <option value="window">🪟 Application Window</option>
-                            <option value="tab">🌐 Browser Tab</option>
-                        </select>
-                    </div>
+                    <div className="settings-grid">
+                        <div className="setting-item">
+                            <label>🖥️ Recording Mode:</label>
+                            <select
+                                value={recordingMode}
+                                onChange={(e) => setRecordingMode(e.target.value)}
+                                disabled={isRecording}
+                            >
+                                <option value="screen">Entire Screen</option>
+                                <option value="window">Application Window</option>
+                                <option value="tab">Browser Tab</option>
+                            </select>
+                        </div>
 
-                    <div className="setting-group">
-                        <label>Audio Source:</label>
-                        <select
-                            value={audioSource}
-                            onChange={(e) => setAudioSource(e.target.value)}
-                            disabled={isRecording}
-                        >
-                            <option value="system">🔊 System Audio</option>
-                            <option value="microphone">🎤 Microphone</option>
-                            <option value="both">🔊🎤 Both</option>
-                            <option value="none">🔇 No Audio</option>
-                        </select>
-                    </div>
+                        <div className="setting-item">
+                            <label>🔊 Audio Source:</label>
+                            <select
+                                value={audioSource}
+                                onChange={(e) => setAudioSource(e.target.value)}
+                                disabled={isRecording}
+                            >
+                                <option value="system">System Audio</option>
+                                <option value="microphone">Microphone</option>
+                                <option value="both">Both</option>
+                                <option value="none">No Audio</option>
+                            </select>
+                        </div>
 
-                    <div className="setting-group">
-                        <label>Quality:</label>
-                        <select
-                            value={quality}
-                            onChange={(e) => setQuality(e.target.value)}
-                            disabled={isRecording}
-                        >
-                            <option value="low">📺 Low (720p, 15fps)</option>
-                            <option value="medium">📹 Medium (1080p, 30fps)</option>
-                            <option value="high">🎬 High (1080p, 60fps)</option>
-                        </select>
+                        <div className="setting-item">
+                            <label>⚡ Quality:</label>
+                            <select
+                                value={quality}
+                                onChange={(e) => setQuality(e.target.value)}
+                                disabled={isRecording}
+                            >
+                                <option value="low">Low (720p, 15fps)</option>
+                                <option value="medium">Medium (1080p, 30fps)</option>
+                                <option value="high">High (1080p, 60fps)</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
 
