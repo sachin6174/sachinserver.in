@@ -41,9 +41,11 @@ const TabSystem = () => {
     const [lastSelectedItems, setLastSelectedItems] = useState(() => {
         const stored = localStorage.getItem('lastSelectedItems');
         return stored ? JSON.parse(stored) : {
-            leftbrain: "about-me",        // Default for first load
-            rightbrain: "drawing",        // Default when switching to rightbrain
-            tools: "data-processing"      // Default when switching to tools
+            leftbrain: "about-me",           // Default for first load
+            rightbrain: "drawing",           // Default when switching to rightbrain
+            "developer-tools": "api-tool",   // Default when switching to developer tools
+            "qa-tools": "regex-tool",        // Default when switching to qa tools
+            "general-tools": "info-tool"     // Default when switching to general tools
         };
     });
 
@@ -52,16 +54,21 @@ const TabSystem = () => {
         const lastItems = localStorage.getItem('lastSelectedItems');
         if (stored && lastItems) {
             const parsedItems = JSON.parse(lastItems);
-            return parsedItems[stored] || (stored === "tools" ? "data-processing" : "about-me");
+            return parsedItems[stored] || getDefaultItemForTab(stored);
         }
-        return stored === "tools" ? "data-processing" : "about-me"; // Default based on tab
+        return getDefaultItemForTab(stored || "leftbrain");
     });
 
-    // New state for selected tool within a category (only for tools tab)
-    const [selectedTool, setSelectedTool] = useState(() => {
-        const stored = localStorage.getItem('selectedTool');
-        return stored || "info-tool"; // Default to first tool
-    });
+    const getDefaultItemForTab = (tab) => {
+        switch (tab) {
+            case "developer-tools": return "api-tool";
+            case "qa-tools": return "regex-tool";
+            case "general-tools": return "info-tool";
+            case "rightbrain": return "drawing";
+            default: return "about-me";
+        }
+    };
+
 
     const [isDarkMode, setIsDarkMode] = useState(() => {
         const stored = localStorage.getItem('isDarkMode');
@@ -111,11 +118,11 @@ const TabSystem = () => {
                 setIsDarkMode(e.matches);
             };
             
-            mediaQuery.addListener(handleSystemThemeChange);
+            mediaQuery.addEventListener('change', handleSystemThemeChange);
             
             // Cleanup listener on unmount
             return () => {
-                mediaQuery.removeListener(handleSystemThemeChange);
+                mediaQuery.removeEventListener('change', handleSystemThemeChange);
             };
         }
     }, []);
@@ -124,10 +131,6 @@ const TabSystem = () => {
         localStorage.setItem('isLeftNavVisible', JSON.stringify(isLeftNavVisible));
     }, [isLeftNavVisible]);
 
-    // Save selected tool to localStorage
-    useEffect(() => {
-        localStorage.setItem('selectedTool', selectedTool);
-    }, [selectedTool]);
 
     const toggleTheme = () => {
         setIsDarkMode((prevMode) => !prevMode);
@@ -166,82 +169,38 @@ const TabSystem = () => {
             { id: "psychology", label: "Psychology", icon: "🧠", description: <Psychology /> },
             { id: "music", label: "Music", icon: "🎵", description: <Music /> },
         ],
-        tools: [
-            { 
-                id: "data-processing", 
-                label: "Data Processing", 
-                icon: "📊", 
-                isCategory: true,
-                tools: [
-                    { id: "info-tool", label: "Info Tool", icon: "📊", description: <InfoTool /> },
-                    { id: "JSON-Tool", label: "JSON Tool", icon: "📝", description: <JsonTool /> },
-                    { id: "XML-Tool", label: "XML Tool", icon: "🔧", description: <XmlTool /> },
-                    { id: "yaml-tool", label: "YAML Tool", icon: "📄", description: <YAMLTool /> },
-                    { id: "csv-tool", label: "CSV Tool", icon: "📊", description: <CSVTool /> },
-                ]
-            },
-            { 
-                id: "security-crypto", 
-                label: "Security & Crypto", 
-                icon: "🔒", 
-                isCategory: true,
-                tools: [
-                    { id: "Encryption-Decryption-Tool", label: "Crypto Tool", icon: "🔒", description: <CryptoTool /> },
-                    { id: "hash-tool", label: "Hash Tool", icon: "🔑", description: <HashTool /> },
-                    { id: "password-tool", label: "Password Tool", icon: "🛡️", description: <PasswordTool /> },
-                    { id: "encoder-tool", label: "Encoder Tool", icon: "🔤", description: <EncoderTool /> },
-                ]
-            },
-            { 
-                id: "text-utilities", 
-                label: "Text Utilities", 
-                icon: "📝", 
-                isCategory: true,
-                tools: [
-                    { id: "regex-tool", label: "Regex Tool", icon: "🔍", description: <RegexTool /> },
-                    { id: "uuid-tool", label: "UUID Tool", icon: "🆔", description: <UUIDTool /> },
-                    { id: "markdown-renderer", label: "Markdown Renderer", icon: "📄", description: <MarkdownRenderer /> },
-                    { id: "writing-board", label: "Writing Board", icon: "✏️", description: <WritingBoardTool /> },
-                    { id: "diff-checker", label: "Diff Checker", icon: "🔄", description: <DiffChecker /> },
-                ]
-            },
-            { 
-                id: "media-design", 
-                label: "Media & Design", 
-                icon: "🎨", 
-                isCategory: true,
-                tools: [
-                    { id: "passport-photo-maker", label: "Passport Photo Maker", icon: "📷", description: <PassportPhotoMaker /> },
-                    { id: "color-picker", label: "Color Picker", icon: "🎨", description: <ColorPickerTool /> },
-                    { id: "screen-recorder", label: "Screen Recorder", icon: "🎥", description: <ScreenRecorderTool /> },
-                ]
-            },
-            { 
-                id: "development", 
-                label: "Development", 
-                icon: "🌐", 
-                isCategory: true,
-                tools: [
-                    { id: "qr-code-tool", label: "QR Code Tool", icon: "🔲", description: <QRCodeTool /> },
-                    { id: "pdf-tool", label: "PDF Tool", icon: "📄", description: <PDFTool /> },
-                    { id: "api-tool", label: "API Tool", icon: "🌐", description: <APITool /> },
-                    { id: "storage-tool", label: "Storage Tool", icon: "💾", description: <StorageTool /> },
-                ]
-            },
+        "developer-tools": [
+            { id: "api-tool", label: "API Tool", icon: "🌐", description: <APITool /> },
+            { id: "storage-tool", label: "Storage Tool", icon: "💾", description: <StorageTool /> },
+            { id: "qr-code-tool", label: "QR Code Tool", icon: "🔲", description: <QRCodeTool /> },
+            { id: "pdf-tool", label: "PDF Tool", icon: "📄", description: <PDFTool /> },
+            { id: "JSON-Tool", label: "JSON Tool", icon: "📝", description: <JsonTool /> },
+            { id: "XML-Tool", label: "XML Tool", icon: "🔧", description: <XmlTool /> },
+            { id: "yaml-tool", label: "YAML Tool", icon: "📄", description: <YAMLTool /> },
+            { id: "csv-tool", label: "CSV Tool", icon: "📊", description: <CSVTool /> },
+            { id: "Encryption-Decryption-Tool", label: "Crypto Tool", icon: "🔒", description: <CryptoTool /> },
+            { id: "hash-tool", label: "Hash Tool", icon: "🔑", description: <HashTool /> },
+            { id: "encoder-tool", label: "Encoder Tool", icon: "🔤", description: <EncoderTool /> },
+        ],
+        "qa-tools": [
+            { id: "regex-tool", label: "Regex Tool", icon: "🔍", description: <RegexTool /> },
+            { id: "diff-checker", label: "Diff Checker", icon: "🔄", description: <DiffChecker /> },
+            { id: "password-tool", label: "Password Tool", icon: "🛡️", description: <PasswordTool /> },
+            { id: "uuid-tool", label: "UUID Tool", icon: "🆔", description: <UUIDTool /> },
+            { id: "markdown-renderer", label: "Markdown Renderer", icon: "📄", description: <MarkdownRenderer /> },
+            { id: "writing-board", label: "Writing Board", icon: "✏️", description: <WritingBoardTool /> },
+        ],
+        "general-tools": [
+            { id: "info-tool", label: "Info Tool", icon: "📊", description: <InfoTool /> },
+            { id: "passport-photo-maker", label: "Passport Photo Maker", icon: "📷", description: <PassportPhotoMaker /> },
+            { id: "color-picker", label: "Color Picker", icon: "🎨", description: <ColorPickerTool /> },
+            { id: "screen-recorder", label: "Screen Recorder", icon: "🎥", description: <ScreenRecorderTool /> },
         ],
     };
 
     // Custom setSelectedNavItem that also updates localStorage
     const handleNavItemChange = (newItem) => {
         setSelectedNavItem(newItem);
-
-        // If it's tools tab and selecting a category, set default tool for that category
-        if (activeTab === "tools") {
-            const category = navigationItems.tools.find(cat => cat.id === newItem);
-            if (category && category.tools && category.tools.length > 0) {
-                setSelectedTool(category.tools[0].id);
-            }
-        }
 
         // Update the last selected item for the current tab
         const updatedLastSelectedItems = {
@@ -252,10 +211,6 @@ const TabSystem = () => {
         localStorage.setItem('lastSelectedItems', JSON.stringify(updatedLastSelectedItems));
     };
 
-    // Handle tool selection within a category
-    const handleToolSelection = (toolId) => {
-        setSelectedTool(toolId);
-    };
 
     return (
         <div className="main-container">
@@ -265,16 +220,22 @@ const TabSystem = () => {
                         src={logo}
                         alt="Tab Icon"
                     />
-                    {["leftbrain", "rightbrain", "tools"].map((tab) => (
+                    {["leftbrain", "rightbrain", "developer-tools", "qa-tools", "general-tools"].map((tab) => (
                         <div
                             key={tab}
                             className={`tab ${activeTab === tab ? "active" : ""}`}
                             onClick={() => setActiveTab(tab)}
                         >
                             <span className="tab-icon">
-                                {tab === "leftbrain" ? "🧠" : tab === "rightbrain" ? "🎨" : "🛠️"}
+                                {tab === "leftbrain" ? "🧠" : 
+                                 tab === "rightbrain" ? "🎨" : 
+                                 tab === "developer-tools" ? "💻" : 
+                                 tab === "qa-tools" ? "🧪" : "🛠️"}
                             </span>
-                            {tab === "leftbrain" ? "LeftBrain" : tab === "rightbrain" ? "RightBrain" : "Tools"}
+                            {tab === "leftbrain" ? "LeftBrain" : 
+                             tab === "rightbrain" ? "RightBrain" : 
+                             tab === "developer-tools" ? "Developer Tools" : 
+                             tab === "qa-tools" ? "QA Tools" : "General Tools"}
                         </div>
                     ))}
                 </div>
@@ -314,8 +275,6 @@ const TabSystem = () => {
                     selectedNavItem={selectedNavItem}
                     navigationItems={navigationItems}
                     isLeftNavVisible={isLeftNavVisible}
-                    selectedTool={selectedTool}
-                    onToolSelection={handleToolSelection}
                 />
             </div>
         </div>
