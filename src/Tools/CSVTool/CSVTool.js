@@ -211,13 +211,6 @@ const CSVTool = () => {
 
     return (
         <div className="csv-tool">
-            <div className="tool-header">
-                <div className="tool-header-content">
-                    <h2 className="tool-title">CSV Tool</h2>
-                    <p className="tool-subtitle">Convert, validate and manipulate CSV & JSON data</p>
-                </div>
-            </div>
-
             <div className="tool-container">
                 {/* File Upload Section */}
                 <div className="upload-section">

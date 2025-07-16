@@ -238,13 +238,6 @@ const UUIDTool = () => {
 
     return (
         <div className="tools-container">
-            <div className="tool-header">
-                <div className="tool-header-content">
-                    <h1 className="tool-title">UUID Generator & Validator</h1>
-                    <p className="tool-subtitle">Generate, validate, and analyze UUIDs (Universally Unique Identifiers)</p>
-                </div>
-            </div>
-
             <div className="uuid-tool">
                 <div className="tool-tabs">
                     <button
@@ -522,23 +515,6 @@ const UUIDTool = () => {
                             </div>
                         )}
 
-                        <div className="uuid-info-section">
-                            <h3>UUID Information</h3>
-                            <div className="info-grid">
-                                <div className="info-card">
-                                    <h4>🕐 Version 1</h4>
-                                    <p>Timestamp-based UUIDs that include the current time and MAC address. Provides temporal ordering but may reveal information about the generating system.</p>
-                                </div>
-                                <div className="info-card">
-                                    <h4>🎲 Version 4</h4>
-                                    <p>Randomly generated UUIDs. Most commonly used version providing excellent uniqueness with 122 bits of randomness.</p>
-                                </div>
-                                <div className="info-card">
-                                    <h4>🏷️ Version 5</h4>
-                                    <p>Name-based UUIDs generated using SHA-1 hash of a namespace and name. Deterministic - same inputs always produce the same UUID.</p>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 )}
             </div>

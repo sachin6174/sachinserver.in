@@ -343,10 +343,6 @@ const ScreenRecorderTool = () => {
 
     return (
         <div className="screen-recorder-tool">
-            <div className="recorder-header">
-                <h2>🎥 Screen Recorder</h2>
-                <p>Record your screen, window, or browser tab with audio support</p>
-            </div>
 
             {error && (
                 <div className="error-message">
@@ -362,14 +358,15 @@ const ScreenRecorderTool = () => {
                 </div>
             )}
 
-            <div className="recorder-controls">
+            <div className="tool-container recorder-controls">
                 <div className="settings-section">
-                    <h3>Recording Settings</h3>
+                    <h3 className="tool-section-title">Recording Settings</h3>
 
-                    <div className="settings-grid">
-                        <div className="setting-item">
-                            <label>🖥️ Recording Mode:</label>
+                    <div className="tool-settings-grid settings-grid">
+                        <div className="tool-form-group setting-item">
+                            <label className="tool-form-label">🖥️ Recording Mode:</label>
                             <select
+                                className="tool-select"
                                 value={recordingMode}
                                 onChange={(e) => setRecordingMode(e.target.value)}
                                 disabled={isRecording}
@@ -380,9 +377,10 @@ const ScreenRecorderTool = () => {
                             </select>
                         </div>
 
-                        <div className="setting-item">
-                            <label>🔊 Audio Source:</label>
+                        <div className="tool-form-group setting-item">
+                            <label className="tool-form-label">🔊 Audio Source:</label>
                             <select
+                                className="tool-select"
                                 value={audioSource}
                                 onChange={(e) => setAudioSource(e.target.value)}
                                 disabled={isRecording}
@@ -394,9 +392,10 @@ const ScreenRecorderTool = () => {
                             </select>
                         </div>
 
-                        <div className="setting-item">
-                            <label>⚡ Quality:</label>
+                        <div className="tool-form-group setting-item">
+                            <label className="tool-form-label">⚡ Quality:</label>
                             <select
+                                className="tool-select"
                                 value={quality}
                                 onChange={(e) => setQuality(e.target.value)}
                                 disabled={isRecording}
@@ -409,12 +408,12 @@ const ScreenRecorderTool = () => {
                     </div>
                 </div>
 
-                <div className="recording-section">
-                    <div className="recording-status">
+                <div className="tool-control-section recording-section">
+                    <div className="tool-status recording-status">
                         {isRecording && (
                             <>
-                                <div className="recording-indicator">
-                                    <div className={`rec-dot ${isPaused ? 'paused' : ''}`}></div>
+                                <div className="tool-status-indicator recording-indicator">
+                                    <div className={`tool-status-dot rec-dot ${isPaused ? 'paused' : ''}`}></div>
                                     <span>{isPaused ? 'PAUSED' : 'RECORDING'}</span>
                                 </div>
                                 <div className="recording-timer">
@@ -424,10 +423,10 @@ const ScreenRecorderTool = () => {
                         )}
                     </div>
 
-                    <div className="control-buttons">
+                    <div className="tool-control-buttons control-buttons">
                         {!isRecording ? (
                             <button
-                                className="start-btn"
+                                className="tool-button start-btn"
                                 onClick={startRecording}
                                 disabled={countdown > 0}
                             >
@@ -436,13 +435,13 @@ const ScreenRecorderTool = () => {
                         ) : (
                             <>
                                 <button
-                                    className="pause-btn"
+                                    className="tool-button pause-btn"
                                     onClick={pauseRecording}
                                 >
                                     {isPaused ? '▶️ Resume' : '⏸️ Pause'}
                                 </button>
                                 <button
-                                    className="stop-btn"
+                                    className="tool-button stop-btn"
                                     onClick={stopRecording}
                                 >
                                     ⏹️ Stop
@@ -454,8 +453,8 @@ const ScreenRecorderTool = () => {
             </div>
 
             {recordings.length > 0 && (
-                <div className="recordings-section">
-                    <h3>📁 Recorded Videos ({recordings.length})</h3>
+                <div className="tool-container recordings-section">
+                    <h3 className="tool-section-title">📁 Recorded Videos ({recordings.length})</h3>
                     <div className="recordings-list">
                         {recordings.map((recording) => (
                             <div key={recording.id} className="recording-item">
@@ -476,7 +475,7 @@ const ScreenRecorderTool = () => {
                                     {recording.blob && (
                                         <>
                                             <button
-                                                className="preview-btn"
+                                                className="tool-button preview-btn"
                                                 onClick={() => {
                                                     const video = document.createElement('video');
                                                     video.src = recording.url;
@@ -504,7 +503,7 @@ const ScreenRecorderTool = () => {
                                                 👁️ Preview
                                             </button>
                                             <button
-                                                className="download-btn"
+                                                className="tool-button download-btn"
                                                 onClick={() => downloadRecording(recording.blob, recording.filename)}
                                             >
                                                 💾 Download
@@ -512,7 +511,7 @@ const ScreenRecorderTool = () => {
                                         </>
                                     )}
                                     <button
-                                        className="delete-btn"
+                                        className="tool-button delete-btn"
                                         onClick={() => deleteRecording(recording.id)}
                                     >
                                         🗑️ Delete
@@ -524,27 +523,6 @@ const ScreenRecorderTool = () => {
                 </div>
             )}
 
-            <div className="info-section">
-                <h3>ℹ️ Information</h3>
-                <div className="info-grid">
-                    <div className="info-item">
-                        <strong>Browser Support:</strong>
-                        <span>Chrome, Firefox, Edge (latest versions)</span>
-                    </div>
-                    <div className="info-item">
-                        <strong>File Format:</strong>
-                        <span>WebM (VP9/VP8 + Opus)</span>
-                    </div>
-                    <div className="info-item">
-                        <strong>Max Recording:</strong>
-                        <span>Limited by available storage</span>
-                    </div>
-                    <div className="info-item">
-                        <strong>Auto-Save:</strong>
-                        <span>Downloads folder</span>
-                    </div>
-                </div>
-            </div>
         </div>
     );
 };

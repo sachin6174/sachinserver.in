@@ -245,13 +245,6 @@ const PasswordTool = () => {
 
     return (
         <div className="password-tool">
-            <div className="tool-header">
-                <div className="tool-header-content">
-                    <h2 className="tool-title">🔐 Password Generator</h2>
-                    <p className="tool-subtitle">Generate secure passwords and check their strength</p>
-                </div>
-            </div>
-
             <div className="tool-container">
                 {/* Password Display */}
                 <div className="password-section">

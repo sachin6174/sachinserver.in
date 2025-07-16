@@ -1,71 +1,42 @@
-/* ===== SCREEN RECORDER TOOL - REDESIGNED ===== */
+/* ===== SCREEN RECORDER TOOL - UNIFIED DESIGN SYSTEM ===== */
 
-/* Base styles - Mobile First */
+/* Import shared styles */
+@import '../shared-styles.css';
+
+/* Main container following unified design */
 .screen-recorder-tool {
+    width: 100%;
+    margin: 0;
     padding: 1rem;
-    max-width: 100%;
-    margin: 0 auto;
-    background: var(--content-bg);
-    color: var(--text-color);
-    border-radius: 12px;
+    background: var(--tool-background-primary);
+    color: var(--tool-text-primary);
+    border-radius: var(--tool-radius-lg);
     height: 100%;
     overflow-y: auto;
     box-sizing: border-box;
-    container-type: inline-size;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    line-height: 1.5;
+    font-size: 14px;
 }
 
-/* Reset any focus states on component mount */
-.screen-recorder-tool select {
-    border-color: var(--border-color);
-    box-shadow: none;
-}
 
-/* Header */
-.recorder-header {
-    text-align: center;
-    margin-bottom: 2rem;
-    padding-bottom: 1.5rem;
-    border-bottom: 2px solid var(--border-color);
-}
-
-.recorder-header h2 {
-    color: var(--accent-color);
-    margin: 0 0 0.75rem 0;
-    font-size: clamp(1.5rem, 4vw, 2rem);
-    font-weight: 600;
-    line-height: 1.2;
-}
-
-.recorder-header p {
-    color: var(--text-color);
-    opacity: 0.8;
-    font-size: clamp(0.875rem, 2.5vw, 1rem);
-    margin: 0;
-    max-width: 600px;
-    margin-inline: auto;
-}
-
-/* Error Message */
+/* Error messages using unified design */
 .error-message {
-    background: rgba(220, 53, 69, 0.1);
-    border: 1px solid rgba(220, 53, 69, 0.3);
-    border-radius: 8px;
-    padding: 1rem;
-    margin-bottom: 1.5rem;
-    color: #dc3545;
+    background: rgba(239, 68, 68, 0.1);
+    color: var(--tool-error-color);
+    border: 1px solid rgba(239, 68, 68, 0.2);
+    padding: 0.75rem 1rem;
+    border-radius: var(--tool-radius-md);
+    margin: 1rem 0;
+    font-size: 0.875rem;
     display: flex;
-    align-items: flex-start;
-    gap: 0.75rem;
+    align-items: center;
+    gap: 0.5rem;
     font-weight: 500;
     line-height: 1.4;
 }
 
-.error-message span {
-    flex-shrink: 0;
-    font-size: 1.125rem;
-}
-
-/* Countdown Overlay */
+/* Countdown overlay */
 .countdown-overlay {
     position: fixed;
     inset: 0;
@@ -74,16 +45,16 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    z-index: 9999;
+    z-index: var(--z-modal);
     backdrop-filter: blur(8px);
 }
 
 .countdown-number {
     font-size: clamp(3rem, 15vw, 8rem);
     font-weight: 700;
-    color: #ff4757;
-    text-shadow: 0 0 2rem rgba(255, 71, 87, 0.6);
-    animation: pulse 1s infinite;
+    color: var(--tool-error-color);
+    text-shadow: 0 0 2rem rgba(239, 68, 68, 0.6);
+    animation: pulseCountdown 1s infinite;
     margin-bottom: 1rem;
 }
 
@@ -94,28 +65,28 @@
     font-weight: 500;
 }
 
-@keyframes pulse {
+@keyframes pulseCountdown {
     0%, 100% { transform: scale(1); opacity: 1; }
     50% { transform: scale(1.05); opacity: 0.8; }
 }
 
-/* Main Controls Container */
+/* Main controls using unified container */
 .recorder-controls {
-    background: var(--card-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 16px;
+    background: var(--tool-background-primary);
+    border-radius: var(--tool-radius-lg);
     padding: 1.5rem;
     margin-bottom: 2rem;
-    box-shadow: 0 4px 20px var(--shadow-color);
+    box-shadow: var(--tool-shadow-md);
+    border: 1px solid var(--tool-border-color);
 }
 
-/* Settings Section */
+/* Settings section using unified design */
 .settings-section {
     margin-bottom: 2rem;
 }
 
 .settings-section h3 {
-    color: var(--accent-color);
+    color: var(--tool-primary-color);
     margin: 0 0 1.5rem 0;
     font-size: 1.25rem;
     font-weight: 600;
@@ -129,35 +100,39 @@
     font-size: 1.125rem;
 }
 
-/* Settings Grid */
+/* Settings grid using unified layout */
 .settings-grid {
     display: grid;
     gap: 1.5rem;
     grid-template-columns: 1fr;
-    width: 100%;
-    max-width: 100%;
-    overflow: hidden;
+    margin-bottom: 2rem;
 }
 
-/* Ensure focus is properly managed */
-.settings-grid:focus-within select:not(:focus) {
-    border-color: var(--border-color);
-    box-shadow: none;
+@media (min-width: 640px) {
+    .settings-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+    }
 }
 
+@media (min-width: 1024px) {
+    .settings-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+    }
+}
+
+/* Form groups using unified design */
 .setting-item {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-    min-width: 0;
-    max-width: 100%;
-    overflow: hidden;
+    margin-bottom: 1.5rem;
 }
 
 .setting-item label {
+    display: block;
     font-weight: 600;
-    color: var(--text-color);
+    color: var(--tool-text-primary);
     font-size: 0.875rem;
+    margin-bottom: 0.5rem;
     text-transform: uppercase;
     letter-spacing: 0.025em;
     display: flex;
@@ -167,232 +142,183 @@
 
 .setting-item select {
     width: 100%;
-    max-width: 100%;
     padding: 0.875rem 3rem 0.875rem 1rem;
-    border: 2px solid var(--border-color);
-    border-radius: 8px;
-    background: var(--content-bg);
-    color: var(--text-color);
+    border: 2px solid var(--tool-border-color);
+    border-radius: var(--tool-radius-lg);
+    background: var(--tool-background-primary);
+    color: var(--tool-text-primary);
     font-size: 0.875rem;
     font-weight: 500;
-    cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all var(--tool-transition-normal);
     min-height: 48px;
     box-sizing: border-box;
+    font-family: inherit;
     appearance: none;
     background-image: url("data:image/svg+xml;charset=US-ASCII,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path fill='%23666' d='M4.5 6L8 9.5L11.5 6z'/></svg>");
     background-repeat: no-repeat;
     background-position: right 1rem center;
     background-size: 1rem;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    cursor: pointer;
 }
 
-/* Force initial state */
-.setting-item select:not(:focus):not(:hover):not(:active) {
-    border-color: var(--border-color) !important;
-    box-shadow: none !important;
-}
-
-.setting-item select:hover:not(:focus) {
-    border-color: var(--accent-color);
-    background-color: var(--card-bg);
+.setting-item select:hover {
+    border-color: var(--tool-primary-color);
+    background-color: var(--tool-background-secondary);
 }
 
 .setting-item select:focus {
     outline: none;
-    border-color: var(--accent-color);
-    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
-}
-
-.setting-item select:not(:focus):not(:hover) {
-    border-color: var(--border-color);
-    box-shadow: none;
-}
-
-.setting-item select:focus-visible {
-    outline: 2px solid var(--accent-color);
-    outline-offset: 2px;
-    border-color: var(--accent-color);
-    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+    border-color: var(--tool-primary-color);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
 }
 
 .setting-item select:disabled {
     opacity: 0.5;
     cursor: not-allowed;
-    background-color: var(--border-color);
-    border-color: var(--border-color);
+    background-color: var(--tool-background-tertiary);
 }
 
-.setting-item select option {
-    padding: 0.75rem;
-    background: var(--content-bg);
-    color: var(--text-color);
-    max-width: 100%;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
-/* Recording Status Section */
+/* Recording section using unified design */
 .recording-section {
-    border-top: 1px solid var(--border-color);
+    border-top: 1px solid var(--tool-border-color);
     padding-top: 2rem;
+    margin-top: 2rem;
     text-align: center;
 }
 
 .recording-status {
-    margin-bottom: 2rem;
-    min-height: 80px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 1rem;
+    margin-bottom: 2rem;
+    min-height: 80px;
 }
 
 .recording-indicator {
     display: flex;
     align-items: center;
     gap: 0.75rem;
-    font-weight: 700;
+    font-weight: 600;
     font-size: 1.125rem;
-    color: var(--text-color);
+    color: var(--tool-text-primary);
     text-transform: uppercase;
     letter-spacing: 0.025em;
 }
 
 .rec-dot {
-    width: 16px;
-    height: 16px;
-    background: #ff4757;
+    width: 12px;
+    height: 12px;
     border-radius: 50%;
-    animation: blink 1s infinite;
-    box-shadow: 0 0 1rem rgba(255, 71, 87, 0.4);
+    background: var(--tool-error-color);
+    animation: pulse 2s infinite;
 }
 
 .rec-dot.paused {
-    background: #ffa502;
+    background: var(--tool-warning-color);
     animation: none;
-}
-
-@keyframes blink {
-    0%, 50% { opacity: 1; }
-    51%, 100% { opacity: 0.3; }
 }
 
 .recording-timer {
     font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
     font-size: clamp(1.5rem, 5vw, 2rem);
     font-weight: 700;
-    color: var(--accent-color);
-    background: var(--content-bg);
+    color: var(--tool-primary-color);
+    background: var(--tool-background-secondary);
     padding: 0.75rem 1.5rem;
-    border-radius: 12px;
-    border: 2px solid var(--border-color);
+    border-radius: var(--tool-radius-lg);
+    border: 2px solid var(--tool-border-color);
     min-width: 200px;
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+    box-shadow: var(--tool-shadow-sm);
 }
 
-/* Control Buttons */
+/* Control buttons using unified design */
 .control-buttons {
     display: flex;
     gap: 1rem;
     justify-content: center;
     flex-wrap: wrap;
+    margin-top: 2rem;
+}
+
+@media (min-width: 640px) {
+    .control-buttons {
+        flex-wrap: nowrap;
+    }
 }
 
 .control-buttons button {
-    padding: 1rem 2rem;
+    background: linear-gradient(135deg, var(--tool-primary-color), var(--tool-primary-light));
+    color: white;
     border: none;
-    border-radius: 12px;
-    font-size: 1rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--tool-radius-lg);
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.2s ease;
-    min-height: 56px;
+    transition: all var(--tool-transition-normal);
+    min-height: 48px;
     min-width: 140px;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 0.75rem;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    box-shadow: var(--tool-shadow-sm);
     position: relative;
     overflow: hidden;
-    text-transform: uppercase;
-    letter-spacing: 0.025em;
 }
 
-.control-buttons button:before {
+.control-buttons button::before {
     content: '';
     position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    transition: width 0.3s ease, height 0.3s ease;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
 }
 
-.control-buttons button:hover:before {
-    width: 300px;
-    height: 300px;
+.control-buttons button:hover::before {
+    left: 100%;
+}
+
+.control-buttons button:hover:not(:disabled) {
+    background: linear-gradient(135deg, var(--tool-primary-light), var(--tool-accent-color));
+    box-shadow: var(--tool-shadow-lg);
+    transform: translateY(-2px);
+}
+
+.control-buttons button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
 }
 
 .start-btn {
-    background: linear-gradient(135deg, #28a745, #20c997);
-    color: white;
-    box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
-}
-
-.start-btn:hover:not(:disabled) {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(40, 167, 69, 0.4);
-}
-
-.start-btn:disabled {
-    background: #6c757d;
-    cursor: not-allowed;
-    transform: none;
-    box-shadow: none;
+    background: linear-gradient(135deg, var(--tool-success-color), #059669);
 }
 
 .pause-btn {
-    background: linear-gradient(135deg, #ffc107, #fd7e14);
-    color: #212529;
-    box-shadow: 0 4px 15px rgba(255, 193, 7, 0.3);
-}
-
-.pause-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(255, 193, 7, 0.4);
+    background: linear-gradient(135deg, var(--tool-warning-color), #d97706);
 }
 
 .stop-btn {
-    background: linear-gradient(135deg, #dc3545, #e83e8c);
-    color: white;
-    box-shadow: 0 4px 15px rgba(220, 53, 69, 0.3);
+    background: linear-gradient(135deg, var(--tool-error-color), #dc2626);
 }
 
-.stop-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(220, 53, 69, 0.4);
-}
-
-/* Recordings Section */
+/* Recordings section using unified design */
 .recordings-section {
-    background: var(--card-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 16px;
+    background: var(--tool-background-primary);
+    border-radius: var(--tool-radius-lg);
     padding: 1.5rem;
     margin-bottom: 2rem;
-    box-shadow: 0 4px 20px var(--shadow-color);
+    box-shadow: var(--tool-shadow-md);
+    border: 1px solid var(--tool-border-color);
 }
 
 .recordings-section h3 {
-    color: var(--accent-color);
+    color: var(--tool-primary-color);
     margin: 0 0 1.5rem 0;
     font-size: 1.25rem;
     font-weight: 600;
@@ -407,19 +333,31 @@
     grid-template-columns: 1fr;
 }
 
+@media (min-width: 768px) {
+    .recordings-list {
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    }
+}
+
+@media (min-width: 1280px) {
+    .recordings-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
 .recording-item {
-    background: var(--content-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 12px;
+    background: var(--tool-background-secondary);
+    border: 1px solid var(--tool-border-color);
+    border-radius: var(--tool-radius-lg);
     padding: 1.25rem;
-    transition: all 0.2s ease;
+    transition: all var(--tool-transition-normal);
     position: relative;
     overflow: hidden;
 }
 
 .recording-item:hover {
-    border-color: var(--accent-color);
-    box-shadow: 0 4px 20px var(--shadow-color);
+    border-color: var(--tool-primary-color);
+    box-shadow: var(--tool-shadow-lg);
     transform: translateY(-2px);
 }
 
@@ -429,7 +367,7 @@
 
 .recording-name {
     font-weight: 600;
-    color: var(--text-color);
+    color: var(--tool-text-primary);
     margin-bottom: 0.75rem;
     display: flex;
     align-items: center;
@@ -448,8 +386,7 @@
     grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
     gap: 0.75rem;
     font-size: 0.8125rem;
-    color: var(--text-color);
-    opacity: 0.8;
+    color: var(--tool-text-secondary);
 }
 
 .recording-details span {
@@ -457,8 +394,8 @@
     align-items: center;
     gap: 0.375rem;
     padding: 0.25rem 0.5rem;
-    background: rgba(0, 0, 0, 0.05);
-    border-radius: 6px;
+    background: var(--tool-background-tertiary);
+    border-radius: var(--tool-radius-sm);
     font-weight: 500;
 }
 
@@ -468,14 +405,21 @@
     flex-wrap: wrap;
 }
 
+@media (min-width: 640px) {
+    .recording-actions {
+        flex-wrap: nowrap;
+    }
+}
+
 .recording-actions button {
+    background: linear-gradient(135deg, var(--tool-primary-color), var(--tool-primary-light));
+    color: white;
+    border: none;
     padding: 0.5rem 1rem;
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    font-size: 0.8125rem;
+    border-radius: var(--tool-radius-md);
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all var(--tool-transition-normal);
     min-height: 40px;
     display: flex;
     align-items: center;
@@ -483,214 +427,75 @@
     flex: 1;
     min-width: 80px;
     justify-content: center;
+    font-size: 0.8125rem;
+    box-shadow: var(--tool-shadow-sm);
+}
+
+.recording-actions button:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--tool-shadow-md);
 }
 
 .preview-btn {
-    background: linear-gradient(135deg, #17a2b8, #6f42c1);
-    color: white;
-    border-color: transparent;
-}
-
-.preview-btn:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(23, 162, 184, 0.3);
+    background: linear-gradient(135deg, var(--tool-info-color), var(--tool-accent-color));
 }
 
 .download-btn {
-    background: linear-gradient(135deg, #28a745, #20c997);
-    color: white;
-    border-color: transparent;
-}
-
-.download-btn:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+    background: linear-gradient(135deg, var(--tool-success-color), #059669);
 }
 
 .delete-btn {
-    background: linear-gradient(135deg, #dc3545, #e83e8c);
-    color: white;
-    border-color: transparent;
+    background: linear-gradient(135deg, var(--tool-error-color), #dc2626);
 }
 
-.delete-btn:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);
-}
 
-/* Info Section */
-.info-section {
-    background: var(--card-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 16px;
-    padding: 1.5rem;
-    box-shadow: 0 4px 20px var(--shadow-color);
-}
-
-.info-section h3 {
-    color: var(--accent-color);
-    margin: 0 0 1.5rem 0;
-    font-size: 1.25rem;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.info-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1rem;
-}
-
-.info-item {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    padding: 1rem;
-    background: var(--content-bg);
-    border-radius: 8px;
-    border: 1px solid var(--border-color);
-}
-
-.info-item strong {
-    color: var(--text-color);
-    font-weight: 600;
-    font-size: 0.875rem;
-}
-
-.info-item span {
-    color: var(--text-color);
-    opacity: 0.8;
-    font-size: 0.8125rem;
-    line-height: 1.4;
-}
-
-/* ===== RESPONSIVE BREAKPOINTS ===== */
-
-/* Small tablets and large phones */
-@media (min-width: 640px) {
+/* Responsive optimizations */
+@media (max-width: 768px) {
     .screen-recorder-tool {
-        padding: 1.5rem;
-        max-width: 1200px;
+        padding: 0.75rem;
     }
     
-    .settings-grid {
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        max-width: 100%;
-    }
-    
-    .setting-item {
-        min-width: 0;
-        max-width: 100%;
-    }
-    
-    .setting-item select {
-        max-width: 100%;
-        min-width: 0;
+    .recorder-controls,
+    .recordings-section {
+        padding: 1rem;
+        margin-bottom: 1.5rem;
     }
     
     .control-buttons {
-        flex-wrap: nowrap;
+        flex-direction: column;
+        gap: 0.75rem;
     }
     
-    .recording-actions {
-        flex-wrap: nowrap;
-    }
-    
-    .recording-actions button {
-        flex: 0 1 auto;
-        min-width: 100px;
-    }
-}
-
-/* Tablets */
-@media (min-width: 768px) {
-    .recorder-controls,
-    .recordings-section,
-    .info-section {
-        padding: 2rem;
-    }
-    
-    .recordings-list {
-        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-    }
-    
-    .recording-item {
-        padding: 1.5rem;
-    }
-    
-    .recording-details {
-        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    }
-}
-
-/* Desktop */
-@media (min-width: 1024px) {
-    .screen-recorder-tool {
-        padding: 2rem;
-    }
-    
-    .settings-grid {
-        grid-template-columns: repeat(3, 1fr);
-        max-width: 100%;
-        gap: 1.5rem;
-    }
-    
-    .setting-item {
-        min-width: 0;
-        max-width: 100%;
-    }
-    
-    .setting-item select {
-        max-width: 100%;
-        min-width: 0;
+    .control-buttons button {
         width: 100%;
-    }
-    
-    .recording-item {
-        display: grid;
-        grid-template-columns: 1fr auto;
-        gap: 1.5rem;
-        align-items: start;
-    }
-    
-    .recording-info {
-        margin-bottom: 0;
+        min-width: auto;
     }
     
     .recording-actions {
         flex-direction: column;
-        align-self: start;
+        gap: 0.5rem;
     }
     
     .recording-actions button {
+        width: 100%;
         flex: none;
-        min-width: 120px;
     }
 }
 
-/* Large desktop */
-@media (min-width: 1280px) {
-    .recordings-list {
-        grid-template-columns: repeat(2, 1fr);
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+    .control-buttons button:hover,
+    .recording-actions button:hover,
+    .recording-item:hover {
+        transform: none;
     }
     
-    .info-grid {
-        grid-template-columns: repeat(4, 1fr);
+    .control-buttons button:before {
+        display: none;
     }
 }
 
-/* ===== ACCESSIBILITY & INTERACTION ===== */
-
-/* Focus styles */
-button:focus-visible,
-select:focus-visible {
-    outline: 2px solid var(--accent-color);
-    outline-offset: 2px;
-}
-
-/* Reduced motion */
+/* Accessibility improvements */
 @media (prefers-reduced-motion: reduce) {
     * {
         animation-duration: 0.01ms !important;
@@ -707,71 +512,14 @@ select:focus-visible {
     }
 }
 
-/* High contrast mode */
-@media (prefers-contrast: high) {
-    .setting-item select,
-    .recording-item,
-    .info-item {
-        border-width: 2px;
-    }
-}
-
-/* Dark mode adjustments */
+/* Dark mode specific adjustments */
 @media (prefers-color-scheme: dark) {
     .setting-item select {
         background-image: url("data:image/svg+xml;charset=US-ASCII,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path fill='%23ccc' d='M4.5 6L8 9.5L11.5 6z'/></svg>");
     }
     
-    .error-message {
-        background: rgba(220, 53, 69, 0.2);
-        border-color: rgba(220, 53, 69, 0.5);
-    }
-    
     .countdown-overlay {
         background: rgba(0, 0, 0, 0.95);
-    }
-}
-
-/* Very small screens - Extra containment */
-@media (max-width: 480px) {
-    .settings-grid {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-    }
-    
-    .setting-item {
-        min-width: 0;
-        max-width: 100%;
-    }
-    
-    .setting-item select {
-        max-width: 100%;
-        min-width: 0;
-        font-size: 0.8125rem;
-        padding: 0.75rem 2.5rem 0.75rem 0.875rem;
-    }
-    
-    .setting-item select option {
-        font-size: 0.8125rem;
-    }
-}
-
-/* Touch device optimizations */
-@media (hover: none) and (pointer: coarse) {
-    .control-buttons button,
-    .recording-actions button,
-    .setting-item select {
-        min-height: 48px;
-    }
-    
-    .control-buttons button:hover,
-    .recording-actions button:hover,
-    .recording-item:hover {
-        transform: none;
-    }
-    
-    .control-buttons button:before {
-        display: none;
     }
 }
 

@@ -8,25 +8,6 @@
     overflow-y: auto;
 }
 
-.info-header {
-    text-align: center;
-    margin-bottom: 30px;
-    padding-bottom: 20px;
-    border-bottom: 2px solid var(--border-color);
-}
-
-.info-header h2 {
-    color: var(--accent-color);
-    margin-bottom: 10px;
-    font-size: 24px;
-    font-weight: 600;
-}
-
-.info-header p {
-    color: var(--text-color);
-    opacity: 0.8;
-    font-size: 14px;
-}
 
 .refresh-button {
     margin-top: 10px !important;
@@ -185,13 +166,6 @@
         padding: 12px;
     }
 
-    .info-header h2 {
-        font-size: 17px;
-    }
-
-    .info-header p {
-        font-size: 13px;
-    }
 
     .info-grid {
         grid-template-columns: 1fr;
@@ -228,19 +202,6 @@
         padding: 8px;
     }
 
-    .info-header {
-        margin-bottom: 15px;
-        padding-bottom: 12px;
-    }
-
-    .info-header h2 {
-        font-size: 16px;
-        margin-bottom: 8px;
-    }
-
-    .info-header p {
-        font-size: 12px;
-    }
 
     .info-grid {
         gap: 8px;
@@ -295,13 +256,6 @@
         padding: 6px;
     }
 
-    .info-header h2 {
-        font-size: 14px;
-    }
-
-    .info-header p {
-        font-size: 11px;
-    }
 
     .info-card {
         padding: 8px;
@@ -330,14 +284,6 @@
         padding: 8px;
     }
 
-    .info-header {
-        margin-bottom: 12px;
-        padding-bottom: 8px;
-    }
-
-    .info-header h2 {
-        font-size: 16px;
-    }
 
     .info-grid {
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -416,9 +362,6 @@
         border-bottom-color: rgba(255, 255, 255, 0.08);
     }
 
-    body.dark-mode .info-header {
-        border-bottom-color: #444;
-    }
 }
 
 /* iOS Safari specific fixes */
@@ -496,9 +439,6 @@ body.dark-mode .info-item {
     border-bottom-color: rgba(255, 255, 255, 0.1);
 }
 
-body.dark-mode .info-header {
-    border-bottom-color: #333;
-}
 
 body.dark-mode .info-card h3 {
     border-bottom-color: #333;
@@ -555,10 +495,6 @@ body.dark-mode .info-card h3 {
     padding: 10px;
 }
 
-.nav-hidden .info-header {
-    margin-bottom: 20px;
-    padding-bottom: 15px;
-}
 
 /* Responsive nav-hidden adjustments for InfoTool */
 @media (min-width: 768px) {

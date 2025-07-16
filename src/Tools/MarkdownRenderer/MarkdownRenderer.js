@@ -208,13 +208,6 @@ ${renderedHtml}
 
     return (
         <div className="tools-container">
-            <div className="tool-header">
-                <div className="tool-header-content">
-                    <h1 className="tool-title">Markdown Renderer</h1>
-                    <p className="tool-subtitle">Write and preview Markdown content with real-time rendering</p>
-                </div>
-            </div>
-
             <div className="markdown-tool">
                 <div className="tool-tabs">
                     <button

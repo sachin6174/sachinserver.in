@@ -244,8 +244,6 @@ const InfoTool = () => {
     return (
         <div className="info-tool">
             <div className="info-header">
-                <h2>📊 System Information</h2>
-                <p>Real-time system, browser, and environmental data</p>
                 <button
                     className="refresh-button"
                     onClick={refreshData}

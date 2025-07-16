@@ -9,25 +9,6 @@
     overflow-y: auto;
 }
 
-.storage-header {
-    text-align: center;
-    margin-bottom: 30px;
-    padding-bottom: 20px;
-    border-bottom: 2px solid var(--border-color);
-}
-
-.storage-header h2 {
-    color: var(--accent-color);
-    margin-bottom: 10px;
-    font-size: 28px;
-    font-weight: 600;
-}
-
-.storage-header p {
-    color: var(--text-color);
-    opacity: 0.8;
-    font-size: 16px;
-}
 
 .storage-controls {
     background: var(--card-bg);
@@ -336,50 +317,6 @@
     content: "❌";
 }
 
-.info-section {
-    background: var(--card-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 12px;
-    padding: 25px;
-    box-shadow: 0 4px 12px var(--shadow-color);
-}
-
-.info-section h3 {
-    color: var(--accent-color);
-    margin-bottom: 20px;
-    font-size: 18px;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.info-section h3::before {
-    content: "ℹ️";
-}
-
-.info-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 15px;
-}
-
-.info-item {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-}
-
-.info-item strong {
-    color: var(--text-color);
-    font-weight: 600;
-}
-
-.info-item span {
-    color: var(--text-color);
-    opacity: 0.8;
-    font-size: 14px;
-}
 
 /* ===== RESPONSIVE DESIGN ===== */
 
@@ -391,13 +328,8 @@
     }
 
     .storage-controls,
-    .storage-items-section,
-    .info-section {
+    .storage-items-section {
         padding: 20px;
-    }
-
-    .info-grid {
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     }
 
     .control-buttons {
@@ -428,17 +360,9 @@
         padding: 10px;
     }
 
-    .storage-header h2 {
-        font-size: 24px;
-    }
-
-    .storage-header p {
-        font-size: 14px;
-    }
 
     .storage-controls,
-    .storage-items-section,
-    .info-section {
+    .storage-items-section {
         padding: 15px;
         border-radius: 8px;
         margin-bottom: 15px;
@@ -487,10 +411,6 @@
         min-height: 36px;
     }
 
-    .info-grid {
-        grid-template-columns: 1fr;
-        gap: 12px;
-    }
 }
 
 /* Small mobile */
@@ -499,13 +419,9 @@
         padding: 8px;
     }
 
-    .storage-header h2 {
-        font-size: 20px;
-    }
 
     .storage-controls,
-    .storage-items-section,
-    .info-section {
+    .storage-items-section {
         padding: 12px;
         margin-bottom: 12px;
     }
@@ -551,8 +467,7 @@
     }
 
     .storage-controls,
-    .storage-items-section,
-    .info-section {
+    .storage-items-section {
         padding: 10px;
     }
 
@@ -608,7 +523,6 @@ body.dark-mode .error-message {
 
     .storage-controls,
     .storage-items-section,
-    .info-section,
     .storage-item {
         border-width: 0.5px;
     }

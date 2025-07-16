@@ -311,13 +311,6 @@ console.log('Total with tax:', finalTotal);`);
 
     return (
         <div className="tools-container">
-            <div className="tool-header">
-                <div className="tool-header-content">
-                    <h1 className="tool-title">Diff Checker</h1>
-                    <p className="tool-subtitle">Compare text differences with detailed line-by-line analysis</p>
-                </div>
-            </div>
-
             <div className="diff-checker">
                 <div className="diff-controls">
                     <div className="control-group">

@@ -215,13 +215,6 @@ Invalid emails: @invalid.com, test@, incomplete@domain`);
 
     return (
         <div className="tools-container">
-            <div className="tool-header">
-                <div className="tool-header-content">
-                    <h1 className="tool-title">Regex Tool</h1>
-                    <p className="tool-subtitle">Test, build, and debug regular expressions with real-time feedback</p>
-                </div>
-            </div>
-
             <div className="regex-tool">
                 <div className="tool-tabs">
                     <button

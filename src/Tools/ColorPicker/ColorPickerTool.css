@@ -12,25 +12,6 @@
     font-size: 10px;
 }
 
-.color-picker-header {
-    text-align: center;
-    margin-bottom: 0.75rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 1px solid var(--border-color);
-}
-
-.color-picker-header h2 {
-    color: var(--accent-color);
-    margin-bottom: 0.25rem;
-    font-size: 15px;
-    font-weight: 600;
-}
-
-.color-picker-header p {
-    color: var(--text-color);
-    opacity: 0.8;
-    font-size: 10px;
-}
 
 .color-picker-container {
     background: var(--card-bg);
@@ -440,13 +421,6 @@ body.dark-mode .message {
         padding: 10px;
     }
 
-    .color-picker-header h2 {
-        font-size: 24px;
-    }
-
-    .color-picker-header p {
-        font-size: 14px;
-    }
 
     .color-picker-container,
     .saved-colors {
@@ -518,9 +492,6 @@ body.dark-mode .message {
         padding: 8px;
     }
 
-    .color-picker-header h2 {
-        font-size: 20px;
-    }
 
     .color-picker-container,
     .saved-colors {

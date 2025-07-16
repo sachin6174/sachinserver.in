@@ -132,11 +132,6 @@ const WritingBoardTool = () => {
 
     return (
         <div className="writing-board-tool">
-            <div className="board-header">
-                <h2>🎨 Writing Board</h2>
-                <p>Draw, sketch, and add text with a full-featured digital canvas</p>
-            </div>
-
             <div className="board-controls">
                 <div className="tools-section">
                     <h3>Drawing Tools</h3>
@@ -256,27 +251,6 @@ const WritingBoardTool = () => {
                 </div>
             </div>
 
-            <div className="info-section">
-                <h3>ℹ️ Information</h3>
-                <div className="info-grid">
-                    <div className="info-item">
-                        <strong>Canvas Size:</strong>
-                        <span>800 × 600 pixels</span>
-                    </div>
-                    <div className="info-item">
-                        <strong>Export Format:</strong>
-                        <span>PNG with transparency support</span>
-                    </div>
-                    <div className="info-item">
-                        <strong>Tools Available:</strong>
-                        <span>Pen drawing, Text insertion</span>
-                    </div>
-                    <div className="info-item">
-                        <strong>History:</strong>
-                        <span>Unlimited undo/redo operations</span>
-                    </div>
-                </div>
-            </div>
         </div>
     );
 };

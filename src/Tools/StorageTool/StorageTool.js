@@ -70,11 +70,6 @@ const StorageTool = () => {
 
     return (
         <div className="storage-tool">
-            <div className="storage-header">
-                <h2>💾 Local Storage Manager</h2>
-                <p>Manage browser local storage with easy create, edit, and delete operations</p>
-            </div>
-
             {error && <div className="error-message">{error}</div>}
 
             <div className="storage-controls">
@@ -180,27 +175,6 @@ const StorageTool = () => {
                 </div>
             )}
 
-            <div className="info-section">
-                <h3>Information</h3>
-                <div className="info-grid">
-                    <div className="info-item">
-                        <strong>Storage Type:</strong>
-                        <span>Browser Local Storage</span>
-                    </div>
-                    <div className="info-item">
-                        <strong>Persistence:</strong>
-                        <span>Data persists until manually cleared</span>
-                    </div>
-                    <div className="info-item">
-                        <strong>Storage Limit:</strong>
-                        <span>~5-10MB per domain (browser dependent)</span>
-                    </div>
-                    <div className="info-item">
-                        <strong>Data Types:</strong>
-                        <span>Strings, JSON, Numbers, Booleans</span>
-                    </div>
-                </div>
-            </div>
         </div>
     );
 };

@@ -201,12 +201,6 @@ const QRCodeTool = () => {
 
     return (
         <div className="tools-container">
-            <div className="tool-header">
-                <div className="tool-header-content">
-                    <h1 className="tool-title">QR Code Tool</h1>
-                    <p className="tool-subtitle">Generate and decode QR codes with customization options</p>
-                </div>
-            </div>
 
             <div className="qr-tool">
                 <div className="tool-tabs">

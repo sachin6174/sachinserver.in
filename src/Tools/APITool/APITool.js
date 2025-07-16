@@ -77,11 +77,6 @@ const APITool = () => {
 
     return (
         <div className="api-tool">
-            <div className="api-header">
-                <h2>🌐 API Tester</h2>
-                <p>Test REST APIs with custom headers, methods, and request bodies</p>
-            </div>
-
             {error && (
                 <div className="error-message">
                     <span>❌</span>
@@ -227,27 +222,6 @@ const APITool = () => {
                 </div>
             )}
 
-            <div className="info-section">
-                <h3>ℹ️ Information</h3>
-                <div className="info-grid">
-                    <div className="info-item">
-                        <strong>Supported Methods:</strong>
-                        <span>GET, POST, PUT, DELETE, PATCH, HEAD, OPTIONS</span>
-                    </div>
-                    <div className="info-item">
-                        <strong>Request Format:</strong>
-                        <span>JSON, XML, Plain Text, Form Data</span>
-                    </div>
-                    <div className="info-item">
-                        <strong>Authentication:</strong>
-                        <span>Bearer Token, API Key, Basic Auth via headers</span>
-                    </div>
-                    <div className="info-item">
-                        <strong>History:</strong>
-                        <span>Last 10 requests automatically saved</span>
-                    </div>
-                </div>
-            </div>
         </div>
     );
 };

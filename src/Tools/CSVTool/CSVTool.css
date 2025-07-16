@@ -8,34 +8,6 @@
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
-.tool-header {
-    text-align: center;
-    margin-bottom: 2rem;
-    padding: 2rem 0;
-    background: linear-gradient(135deg, var(--tool-primary-color) 0%, var(--tool-secondary-color) 100%);
-    color: white;
-    border-radius: var(--tool-radius-xl);
-    box-shadow: var(--tool-shadow-lg);
-}
-
-.tool-header-content {
-    max-width: 600px;
-    margin: 0 auto;
-}
-
-.tool-title {
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin: 0 0 0.5rem 0;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.tool-subtitle {
-    font-size: 1.1rem;
-    margin: 0;
-    opacity: 0.9;
-    font-weight: 400;
-}
 
 .tool-container {
     background: var(--tool-background-secondary);
@@ -384,9 +356,6 @@ body.dark-mode .validation-value.warning {
         padding: 1rem;
     }
 
-    .tool-title {
-        font-size: 2rem;
-    }
 
     .tool-container {
         padding: 1rem;
@@ -424,13 +393,6 @@ body.dark-mode .validation-value.warning {
 }
 
 @media (max-width: 480px) {
-    .tool-title {
-        font-size: 1.75rem;
-    }
-
-    .tool-subtitle {
-        font-size: 1rem;
-    }
 
     .tab-nav {
         flex-direction: column;

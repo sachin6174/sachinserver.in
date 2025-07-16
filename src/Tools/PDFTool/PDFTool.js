@@ -227,13 +227,6 @@ const PDFTool = () => {
 
     return (
         <div className="tools-container">
-            <div className="tool-header">
-                <div className="tool-header-content">
-                    <h1 className="tool-title">PDF Tool</h1>
-                    <p className="tool-subtitle">Extract pages, merge, split, and manipulate PDF files</p>
-                </div>
-            </div>
-
             <div className="pdf-tool">
                 <div className="tool-tabs">
                     <button
@@ -253,12 +246,6 @@ const PDFTool = () => {
                         onClick={() => setActiveTab('split')}
                     >
                         ✂️ Split PDF
-                    </button>
-                    <button
-                        className={`tool-tab ${activeTab === 'info' ? 'active' : ''}`}
-                        onClick={() => setActiveTab('info')}
-                    >
-                        ℹ️ PDF Info
                     </button>
                 </div>
 
@@ -460,37 +447,6 @@ const PDFTool = () => {
                         </div>
                     )}
 
-                    {activeTab === 'info' && (
-                        <div className="info-section">
-                            <h3>PDF Information</h3>
-                            
-                            {uploadedFiles.length === 0 ? (
-                                <p>Upload PDF files to view their information.</p>
-                            ) : (
-                                <div className="info-list">
-                                    {uploadedFiles.map((file) => (
-                                        <div key={file.id} className="info-item">
-                                            <h4>{file.name}</h4>
-                                            <div className="info-details">
-                                                <div className="info-row">
-                                                    <span className="info-label">Pages:</span>
-                                                    <span className="info-value">{file.pageCount}</span>
-                                                </div>
-                                                <div className="info-row">
-                                                    <span className="info-label">File Size:</span>
-                                                    <span className="info-value">{file.size}</span>
-                                                </div>
-                                                <div className="info-row">
-                                                    <span className="info-label">Type:</span>
-                                                    <span className="info-value">PDF Document</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    ))}
-                                </div>
-                            )}
-                        </div>
-                    )}
                 </div>
             </div>
         </div>

@@ -102,11 +102,6 @@ const ColorPickerTool = () => {
 
     return (
         <div className="color-picker-tool">
-            <div className="color-picker-header">
-                <h2>🎨 Color Picker</h2>
-                <p>Pick, save, and manage colors with multiple format support</p>
-            </div>
-
             {message && <div className="message">{message}</div>}
 
             <div className="color-picker-container">

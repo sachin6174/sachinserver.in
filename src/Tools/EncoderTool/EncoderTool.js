@@ -222,13 +222,6 @@ const EncoderTool = () => {
 
     return (
         <div className="tools-container">
-            <div className="tool-header">
-                <div className="tool-header-content">
-                    <h1 className="tool-title">Encoder/Decoder Tool</h1>
-                    <p className="tool-subtitle">Encode and decode text using various methods - Base64, URL, HTML, ASCII, and more</p>
-                </div>
-            </div>
-
             <div className="encoder-tool">
                 <div className="encoding-tabs">
                     {Object.entries(encodingMethods).map(([key, method]) => (

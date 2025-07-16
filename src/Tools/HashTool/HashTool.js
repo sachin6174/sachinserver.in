@@ -180,13 +180,6 @@ const HashTool = () => {
 
     return (
         <div className="hash-tool">
-            <div className="tool-header">
-                <div className="tool-header-content">
-                    <h2 className="tool-title">🔐 Hash Generator</h2>
-                    <p className="tool-subtitle">Generate cryptographic hashes for text and files</p>
-                </div>
-            </div>
-
             <div className="tool-container">
                 {/* Tab Navigation */}
                 <div className="tab-nav">
@@ -390,24 +383,6 @@ const HashTool = () => {
                     </div>
                 )}
 
-                {/* Info Section */}
-                <div className="info-section">
-                    <h3>ℹ️ Hash Algorithm Information</h3>
-                    <div className="info-grid">
-                        <div className="info-card">
-                            <h4>🔒 Secure Algorithms</h4>
-                            <p>SHA-256, SHA-384, and SHA-512 are considered cryptographically secure and suitable for security applications.</p>
-                        </div>
-                        <div className="info-card">
-                            <h4>⚠️ Deprecated Algorithms</h4>
-                            <p>MD5 and SHA-1 have known vulnerabilities and should not be used for security-critical applications.</p>
-                        </div>
-                        <div className="info-card">
-                            <h4>🔍 Use Cases</h4>
-                            <p>File integrity verification, password storage (with salt), digital signatures, and data deduplication.</p>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     );

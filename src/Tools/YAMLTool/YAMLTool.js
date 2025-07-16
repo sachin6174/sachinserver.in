@@ -257,13 +257,6 @@ servers:
 
     return (
         <div className="tools-container">
-            <div className="tool-header">
-                <div className="tool-header-content">
-                    <h1 className="tool-title">YAML Tool</h1>
-                    <p className="tool-subtitle">Convert, validate, and format YAML/JSON data with ease</p>
-                </div>
-            </div>
-
             <div className="yaml-tool">
                 <div className="tool-tabs">
                     <button

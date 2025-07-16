@@ -164,7 +164,6 @@ const XmlTool = () => {
 
     return (
         <div className="xml-tool">
-            <h2>XML Tool</h2>
             <div className="tool-container">
                 <div className="control-panel">
                     <button onClick={() => fileInputRef.current.click()}>Load Data</button>

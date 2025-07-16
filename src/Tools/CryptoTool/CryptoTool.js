@@ -52,7 +52,6 @@ const CryptoTool = () => {
 
     return (
         <div className="crypto-tool">
-            <h2>Crypto Tool</h2>
             <div className="mode-selector">
                 <button 
                     className={method === 'encrypt' ? 'active' : ''} 

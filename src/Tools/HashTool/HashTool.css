@@ -8,34 +8,6 @@
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
-.tool-header {
-    text-align: center;
-    margin-bottom: 2rem;
-    padding: 2rem 0;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    border-radius: var(--tool-radius-xl);
-    box-shadow: var(--tool-shadow-lg);
-}
-
-.tool-header-content {
-    max-width: 600px;
-    margin: 0 auto;
-}
-
-.tool-title {
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin: 0 0 0.5rem 0;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.tool-subtitle {
-    font-size: 1.1rem;
-    margin: 0;
-    opacity: 0.9;
-    font-weight: 400;
-}
 
 .tool-container {
     background: var(--tool-background-secondary);
@@ -472,46 +444,6 @@ body.dark-mode .compare-result.no-match {
     border-color: #667eea;
 }
 
-/* Info Section */
-.info-section {
-    background: var(--tool-background-primary);
-    border-radius: var(--tool-radius-md);
-    padding: 1.5rem;
-    border: 1px solid var(--tool-border-color);
-}
-
-.info-section h3 {
-    margin: 0 0 1rem 0;
-    color: var(--tool-text-primary);
-    font-weight: 600;
-}
-
-.info-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1rem;
-}
-
-.info-card {
-    background: var(--tool-background-secondary);
-    padding: 1rem;
-    border-radius: var(--tool-radius-sm);
-    border: 1px solid var(--tool-border-color);
-}
-
-.info-card h4 {
-    margin: 0 0 0.5rem 0;
-    color: var(--tool-text-primary);
-    font-weight: 600;
-    font-size: 1rem;
-}
-
-.info-card p {
-    margin: 0;
-    color: var(--tool-text-secondary);
-    font-size: 0.875rem;
-    line-height: 1.5;
-}
 
 /* Responsive Design */
 @media (max-width: 768px) {
@@ -519,9 +451,6 @@ body.dark-mode .compare-result.no-match {
         padding: 1rem;
     }
 
-    .tool-title {
-        font-size: 2rem;
-    }
 
     .tool-container {
         padding: 1rem;
@@ -545,9 +474,6 @@ body.dark-mode .compare-result.no-match {
         grid-template-columns: 1fr;
     }
 
-    .info-grid {
-        grid-template-columns: 1fr;
-    }
 
     .tab-nav {
         flex-direction: column;
@@ -555,13 +481,6 @@ body.dark-mode .compare-result.no-match {
 }
 
 @media (max-width: 480px) {
-    .tool-title {
-        font-size: 1.75rem;
-    }
-
-    .tool-subtitle {
-        font-size: 1rem;
-    }
 
     .hash-header {
         flex-direction: column;
