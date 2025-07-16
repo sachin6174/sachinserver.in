@@ -23,7 +23,7 @@ import Literature from "./RightBrain/Litlerature/Literature";
 import Philosophy from "./RightBrain/Philosophy/Philosophy";
 import Music from "./RightBrain/Music/Music";
 import Psychology from "./RightBrain/Psychology/Psychology";
-import { InfoTool, JsonTool, XmlTool, CryptoTool, WritingBoardTool, APITool, BackgroundRemoverTool, StorageTool, ColorPickerTool, ScreenRecorderTool, CSVTool, HashTool, PasswordTool, YAMLTool, RegexTool, EncoderTool, UUIDTool, MarkdownRenderer, PassportPhotoMaker, PDFTool, QRCodeTool, DiffChecker } from './Tools';
+import { InfoTool, JsonTool, XmlTool, CryptoTool, WritingBoardTool, APITool, StorageTool, ColorPickerTool, ScreenRecorderTool, CSVTool, HashTool, PasswordTool, YAMLTool, RegexTool, EncoderTool, UUIDTool, MarkdownRenderer, PassportPhotoMaker, PDFTool, QRCodeTool, DiffChecker } from './Tools';
 import logo from './assets/logo512.png';  // Updated import path
 import './TabSystem.css';
 import LeftNavigation from './LeftNavigation';
@@ -212,7 +212,6 @@ const TabSystem = () => {
                 isCategory: true,
                 tools: [
                     { id: "passport-photo-maker", label: "Passport Photo Maker", icon: "📷", description: <PassportPhotoMaker /> },
-                    { id: "background-remover", label: "Background Remover", icon: "🖼️", description: <BackgroundRemoverTool /> },
                     { id: "color-picker", label: "Color Picker", icon: "🎨", description: <ColorPickerTool /> },
                     { id: "screen-recorder", label: "Screen Recorder", icon: "🎥", description: <ScreenRecorderTool /> },
                 ]

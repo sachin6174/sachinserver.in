@@ -26,18 +26,29 @@ html {
     scroll-behavior: smooth;
 }
 
-/* Improve mobile text readability */
+/* Enhanced Mobile Experience */
 @media (max-width: 768px) {
     body {
-        font-size: 9px;
-        line-height: 1.1;
+        font-size: 16px; /* Prevent iOS zoom */
+        line-height: 1.6;
+    }
+    
+    input, textarea, select, button {
+        font-size: 16px; /* Prevent iOS zoom */
+        padding: 0.875rem 1rem;
+        min-height: 44px; /* Touch target */
     }
 }
 
 @media (max-width: 480px) {
     body {
-        font-size: 8px;
-        line-height: 1.1;
+        font-size: 16px;
+        line-height: 1.5;
+    }
+    
+    input, textarea, select, button {
+        padding: 1rem;
+        font-size: 16px;
     }
 }
 

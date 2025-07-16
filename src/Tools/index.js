@@ -4,7 +4,6 @@ export { default as XmlTool } from './XMLTool/XmlTool';
 export { default as CryptoTool } from './CryptoTool/CryptoTool';
 export { default as WritingBoardTool } from './WritingBoard/WritingBoardTool';
 export { default as APITool } from './APITool/APITool';
-export { default as BackgroundRemoverTool } from './BackgroundRemover/BackgroundRemoverTool';
 export { default as StorageTool } from './StorageTool/StorageTool';
 export { default as ColorPickerTool } from './ColorPicker/ColorPickerTool';
 export { default as ScreenRecorderTool } from './ScreenRecorder/ScreenRecorderTool';
