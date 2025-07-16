@@ -1,10 +1,10 @@
-/* Premium Design System for LeftBrain Components */
+/* Modern Design System with Color Theory for LeftBrain Components */
 :root {
     /* Core Brand Colors */
-    --primary-color: #2c3e50;
-    --primary-dark: #1a252f;
-    --secondary-color: #34495e;
-    --accent-color: #3498db;
+    --primary-color: #6366f1;
+    --primary-dark: #4f46e5;
+    --secondary-color: #8b5cf6;
+    --accent-color: #06b6d4;
     
     /* Unified Theme Colors for Sections */
     --theme-dsa: #3B82F6;
@@ -136,11 +136,11 @@
     --z-max: 9999;
 }
 
-/* Premium dark mode overrides */
+/* Modern dark mode overrides */
 body.dark-mode {
-    --primary-color: #34495e;
-    --secondary-color: #5d6d7e;
-    --accent-color: #5dade2;
+    --primary-color: #818cf8;
+    --secondary-color: #a78bfa;
+    --accent-color: #22d3ee;
     --text-primary: #ffffff;
     --text-secondary: #b8bcc8;
     --text-light: #9ca3af;
@@ -509,7 +509,10 @@ body.dark-mode {
 .section-title {
     font-size: 1.5rem;
     font-weight: 600;
-    color: var(--primary-color);
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     margin: 0 0 1rem 0;
     text-align: center;
     line-height: 1.3;
@@ -728,18 +731,18 @@ body.dark-mode {
     margin: 2rem auto;
 }
 
-/* Premium button styles */
+/* Modern button styles with gradients */
 .leftbrain-button,
 .action-button {
-    background: var(--primary-color);
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     color: white;
     border: none;
     padding: 0.75rem 1.5rem;
-    border-radius: 6px;
+    border-radius: 8px;
     font-weight: 500;
     font-size: 0.875rem;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all 0.3s ease;
     text-decoration: none;
     display: inline-flex;
     align-items: center;
@@ -748,13 +751,33 @@ body.dark-mode {
     min-height: 44px;
     min-width: 44px;
     touch-action: manipulation;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    box-shadow: 0 4px 6px rgba(99, 102, 241, 0.25);
+    position: relative;
+    overflow: hidden;
+}
+
+.leftbrain-button::before,
+.action-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.leftbrain-button:hover::before,
+.action-button:hover::before {
+    left: 100%;
 }
 
 .leftbrain-button:hover,
 .action-button:hover {
-    background: var(--secondary-color);
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+    box-shadow: 0 8px 15px rgba(99, 102, 241, 0.4);
+    transform: translateY(-3px);
 }
 
 @media (min-width: 768px) {

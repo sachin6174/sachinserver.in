@@ -1,40 +1,48 @@
-/* Premium Design System Variables */
+/* Modern Design System with Color Theory */
 :root {
-  /* Sophisticated Color Palette */
-  --primary-color: #2c3e50;
-  --primary-light: #34495e;
-  --primary-dark: #1a252f;
-  --accent-color: #3498db;
-  --accent-light: #5dade2;
-  --accent-subtle: rgba(52, 152, 219, 0.1);
+  /* Primary Triadic Color Scheme */
+  --primary-color: #6366f1;        /* Indigo - trust, intelligence */
+  --primary-light: #8b5cf6;        /* Purple - creativity, luxury */
+  --primary-dark: #4f46e5;         /* Deep indigo - stability */
+  --secondary-color: #06b6d4;      /* Cyan - freshness, clarity */
+  --tertiary-color: #f59e0b;       /* Amber - energy, optimism */
   
-  /* Premium Neutral Colors */
-  --bg-primary: #fafbfc;
-  --bg-secondary: #ffffff;
-  --bg-tertiary: #f8f9fa;
+  /* Complementary Accents */
+  --accent-warm: #ef4444;          /* Red - urgency, attention */
+  --accent-cool: #10b981;          /* Emerald - success, growth */
+  --accent-neutral: #64748b;       /* Slate - sophistication */
+  
+  /* Sophisticated Backgrounds */
+  --bg-primary: #fefefe;
+  --bg-secondary: #f8fafc;
+  --bg-tertiary: #f1f5f9;
+  --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   --surface: #ffffff;
-  --surface-hover: #f1f3f4;
-  --surface-active: #e8eaed;
+  --surface-hover: rgba(99, 102, 241, 0.05);
+  --surface-active: rgba(99, 102, 241, 0.1);
   --surface-elevated: #ffffff;
   
-  /* Text Colors */
-  --text-primary: #2c3e50;
-  --text-secondary: #5a6c7d;
-  --text-tertiary: #7b8794;
-  --text-muted: #95a5a6;
+  /* Text Hierarchy */
+  --text-primary: #1e293b;
+  --text-secondary: #475569;
+  --text-tertiary: #64748b;
+  --text-muted: #94a3b8;
   --text-inverse: #ffffff;
+  --text-accent: #6366f1;
   
-  /* Border & Dividers */
-  --border-subtle: #e9ecef;
-  --border-medium: #dee2e6;
-  --border-strong: #ced4da;
-  --border-accent: #3498db;
+  /* Borders with Color Theory */
+  --border-subtle: #e2e8f0;
+  --border-medium: #cbd5e1;
+  --border-strong: #94a3b8;
+  --border-accent: #6366f1;
+  --border-gradient: linear-gradient(90deg, #6366f1, #06b6d4);
   
-  /* Premium Shadows */
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-  --shadow-md: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-  --shadow-lg: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-  --shadow-xl: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  /* Enhanced Shadows */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --shadow-colored: 0 4px 14px rgba(99, 102, 241, 0.25);
   
   /* Typography */
   --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
@@ -60,31 +68,44 @@
   --transition-slow: 0.3s ease;
 }
 
-/* Dark Mode Overrides */
+/* Dark Mode with Enhanced Color Theory */
 body.dark-mode {
-  --bg-primary: #1a1d23;
-  --bg-secondary: #252932;
-  --bg-tertiary: #2f3349;
-  --surface: #252932;
-  --surface-hover: #2f3349;
-  --surface-active: #3a3f54;
-  --surface-elevated: #2f3349;
+  --primary-color: #818cf8;        /* Lighter indigo for contrast */
+  --primary-light: #a78bfa;        /* Soft purple */
+  --primary-dark: #6366f1;         /* Original indigo */
+  --secondary-color: #22d3ee;      /* Bright cyan */
+  --tertiary-color: #fbbf24;       /* Warm amber */
   
-  --text-primary: #ffffff;
-  --text-secondary: #b8bcc8;
-  --text-tertiary: #9ca3af;
-  --text-muted: #6b7280;
-  --text-inverse: #1a1d23;
+  --accent-warm: #f87171;          /* Soft red */
+  --accent-cool: #34d399;          /* Mint green */
+  --accent-neutral: #94a3b8;       /* Light slate */
   
-  --border-subtle: #3a3f54;
-  --border-medium: #4b5165;
-  --border-strong: #5d6276;
-  --border-accent: #3498db;
+  --bg-primary: #0f172a;
+  --bg-secondary: #1e293b;
+  --bg-tertiary: #334155;
+  --bg-gradient: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+  --surface: #1e293b;
+  --surface-hover: rgba(129, 140, 248, 0.1);
+  --surface-active: rgba(129, 140, 248, 0.2);
+  --surface-elevated: #334155;
   
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.5);
-  --shadow-md: 0 3px 6px rgba(0, 0, 0, 0.6);
-  --shadow-lg: 0 10px 20px rgba(0, 0, 0, 0.7);
-  --shadow-xl: 0 14px 28px rgba(0, 0, 0, 0.8);
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-tertiary: #94a3b8;
+  --text-muted: #64748b;
+  --text-inverse: #0f172a;
+  --text-accent: #818cf8;
+  
+  --border-subtle: #334155;
+  --border-medium: #475569;
+  --border-strong: #64748b;
+  --border-accent: #818cf8;
+  
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.4);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.6), 0 10px 10px -5px rgba(0, 0, 0, 0.5);
+  --shadow-colored: 0 4px 14px rgba(129, 140, 248, 0.3);
 }
 
 /* Global Styles */
@@ -128,7 +149,7 @@ body {
   overflow: hidden;
 }
 
-/* Subtle Background */
+/* Dynamic Background with Visual Interest */
 .main-container::before {
   content: '';
   position: fixed;
@@ -136,23 +157,33 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-tertiary) 100%);
+  background: 
+    radial-gradient(circle at 20% 20%, rgba(99, 102, 241, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(6, 182, 212, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 40% 60%, rgba(245, 158, 11, 0.05) 0%, transparent 50%),
+    linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-tertiary) 100%);
   z-index: -1;
 }
 
-/* Clean Navigation Bar */
+/* Modern Navigation with Depth */
 .tabs {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: var(--space-sm) var(--space-md);
-  background: var(--surface-elevated);
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--border-subtle);
   position: relative;
   z-index: 100;
   transition: all var(--transition-base);
   min-height: 60px;
-  box-shadow: var(--shadow-sm);
+  box-shadow: var(--shadow-md);
+}
+
+body.dark-mode .tabs {
+  background: rgba(30, 41, 59, 0.95);
 }
 
 /* Navigation Items Container */
@@ -176,7 +207,7 @@ body {
   filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.5));
 }
 
-/* Refined Tab Buttons */
+/* Enhanced Tab Buttons with Color Theory */
 .tab {
   position: relative;
   padding: var(--space-sm) var(--space-md);
@@ -193,19 +224,41 @@ body {
   align-items: center;
   gap: var(--space-xs);
   min-height: 40px;
+  overflow: hidden;
+}
+
+.tab::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.1), transparent);
+  transition: left 0.5s ease;
+}
+
+.tab:hover::before {
+  left: 100%;
 }
 
 .tab:hover {
   color: var(--text-primary);
   background: var(--surface-hover);
-  border-color: var(--border-subtle);
+  border-color: var(--border-accent);
+  transform: translateY(-1px);
 }
 
 .tab.active {
   color: var(--text-inverse);
-  background: var(--primary-color);
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
   border-color: var(--primary-color);
-  box-shadow: var(--shadow-sm);
+  box-shadow: var(--shadow-colored);
+  transform: translateY(-2px);
+}
+
+.tab.active::before {
+  display: none;
 }
 
 /* Tab Icons */
@@ -223,26 +276,44 @@ body {
   filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.5));
 }
 
-/* Minimal Theme Toggle */
+/* Enhanced Theme Toggle */
 .theme-toggle {
   position: relative;
   padding: var(--space-sm) var(--space-md);
   border-radius: var(--radius-md);
   border: 1px solid var(--border-medium);
-  background: var(--surface);
-  color: var(--text-secondary);
+  background: linear-gradient(135deg, var(--secondary-color), var(--tertiary-color));
+  color: var(--text-inverse);
   font-weight: 500;
   font-size: 0.8125rem;
   cursor: pointer;
   white-space: nowrap;
   transition: all var(--transition-base);
   min-height: 36px;
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+
+.theme-toggle::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, rgba(255, 255, 255, 0.2), transparent);
+  opacity: 0;
+  transition: opacity var(--transition-fast);
 }
 
 .theme-toggle:hover {
-  background: var(--surface-hover);
-  color: var(--text-primary);
-  border-color: var(--border-strong);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  background: linear-gradient(135deg, var(--tertiary-color), var(--secondary-color));
+}
+
+.theme-toggle:hover::before {
+  opacity: 1;
 }
 
 /* Clean Content Container */
@@ -343,11 +414,11 @@ body {
   transform: rotate(180deg);
 }
 
-/* Clean Navigation Items */
+/* Enhanced Navigation with Color Coding */
 .nav-items {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 4px;
 }
 
 .nav-item {
@@ -364,6 +435,7 @@ body {
   align-items: center;
   gap: var(--space-sm);
   min-height: 44px;
+  overflow: hidden;
 }
 
 .nav-item::before {
@@ -374,25 +446,48 @@ body {
   transform: translateY(-50%);
   width: 3px;
   height: 20px;
-  background: var(--accent-color);
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
   border-radius: 0 2px 2px 0;
   opacity: 0;
   transition: all var(--transition-base);
 }
 
+.nav-item::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.1), transparent);
+  transition: left 0.5s ease;
+}
+
+.nav-item:hover::after {
+  left: 100%;
+}
+
 .nav-item:hover {
   color: var(--text-primary);
   background: var(--surface-hover);
+  transform: translateX(4px);
 }
 
 .nav-item.selected {
-  color: var(--text-primary);
-  background: var(--accent-subtle);
+  color: var(--text-accent);
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(6, 182, 212, 0.05));
   font-weight: 600;
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  transform: translateX(6px);
+  box-shadow: var(--shadow-sm);
 }
 
 .nav-item.selected::before {
   opacity: 1;
+}
+
+.nav-item.selected::after {
+  display: none;
 }
 
 /* Clean Main Content Area */
@@ -441,7 +536,7 @@ body {
   opacity: 0.7;
 }
 
-/* Minimal Tools Sub-Navigation */
+/* Enhanced Tools Sub-Navigation */
 .tools-sub-nav {
   display: flex;
   flex-wrap: wrap;
@@ -451,6 +546,7 @@ body {
   background: var(--surface);
   border-radius: var(--radius-md);
   border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-sm);
 }
 
 .tool-nav-btn {
@@ -469,18 +565,42 @@ body {
   gap: var(--space-xs);
   white-space: nowrap;
   min-height: 36px;
+  overflow: hidden;
+}
+
+.tool-nav-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(6, 182, 212, 0.1), transparent);
+  transition: left 0.5s ease;
+}
+
+.tool-nav-btn:hover::before {
+  left: 100%;
 }
 
 .tool-nav-btn:hover {
   color: var(--text-primary);
   background: var(--surface-hover);
-  border-color: var(--border-medium);
+  border-color: var(--secondary-color);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
 }
 
 .tool-nav-btn.active {
   color: var(--text-inverse);
-  background: var(--accent-color);
-  border-color: var(--accent-color);
+  background: linear-gradient(135deg, var(--secondary-color), var(--tertiary-color));
+  border-color: var(--secondary-color);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.tool-nav-btn.active::before {
+  display: none;
 }
 
 .tool-icon {

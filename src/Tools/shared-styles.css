@@ -1,14 +1,14 @@
-/* Premium Shared CSS Variables for Tools Components */
+/* Modern Shared CSS Variables with Color Theory */
 :root {
-    --tool-primary-color: #2c3e50;
-    --tool-primary-light: #34495e;
-    --tool-primary-dark: #1a252f;
-    --tool-accent-color: #3498db;
-    --tool-accent-light: #5dade2;
-    --tool-success-color: #27ae60;
-    --tool-warning-color: #f39c12;
-    --tool-error-color: #e74c3c;
-    --tool-info-color: #3498db;
+    --tool-primary-color: #6366f1;
+    --tool-primary-light: #8b5cf6;
+    --tool-primary-dark: #4f46e5;
+    --tool-accent-color: #06b6d4;
+    --tool-accent-light: #22d3ee;
+    --tool-success-color: #10b981;
+    --tool-warning-color: #f59e0b;
+    --tool-error-color: #ef4444;
+    --tool-info-color: #6366f1;
     --tool-text-primary: #2c3e50;
     --tool-text-secondary: #5a6c7d;
     --tool-text-light: #95a5a6;
@@ -38,17 +38,17 @@
     --z-max: 9999;
 }
 
-/* Premium dark mode overrides */
+/* Modern dark mode overrides */
 body.dark-mode {
-    --tool-primary-color: #34495e;
-    --tool-primary-light: #5d6d7e;
-    --tool-primary-dark: #2c3e50;
-    --tool-accent-color: #5dade2;
-    --tool-accent-light: #85c1e9;
-    --tool-success-color: #58d68d;
-    --tool-warning-color: #f8c471;
-    --tool-error-color: #ec7063;
-    --tool-info-color: #5dade2;
+    --tool-primary-color: #818cf8;
+    --tool-primary-light: #a78bfa;
+    --tool-primary-dark: #6366f1;
+    --tool-accent-color: #22d3ee;
+    --tool-accent-light: #67e8f9;
+    --tool-success-color: #34d399;
+    --tool-warning-color: #fbbf24;
+    --tool-error-color: #f87171;
+    --tool-info-color: #818cf8;
     --tool-text-primary: #ffffff;
     --tool-text-secondary: #b8bcc8;
     --tool-text-light: #9ca3af;
@@ -101,16 +101,33 @@ body.dark-mode {
     }
 }
 
-/* Clean tool header styles */
+/* Modern tool header with gradients */
 .tool-header {
-    background: var(--tool-primary-color);
+    background: linear-gradient(135deg, var(--tool-primary-color), var(--tool-primary-light));
     color: white;
     padding: 1.5rem;
     border-radius: var(--tool-radius-lg);
     margin-bottom: 1.5rem;
     text-align: center;
     position: relative;
-    box-shadow: var(--tool-shadow-sm);
+    box-shadow: var(--tool-shadow-md);
+    overflow: hidden;
+}
+
+.tool-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, rgba(255, 255, 255, 0.1), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.tool-header:hover::before {
+    opacity: 1;
 }
 
 .tool-header-content {
@@ -254,9 +271,9 @@ body.dark-mode {
     margin: 0.1rem 0;
 }
 
-/* Premium tool button styles */
+/* Modern tool button styles with gradients */
 .tool-button {
-    background: var(--tool-primary-color);
+    background: linear-gradient(135deg, var(--tool-primary-color), var(--tool-primary-light));
     color: white;
     border: none;
     padding: 0.75rem 1.5rem;
@@ -272,11 +289,29 @@ body.dark-mode {
     min-width: 44px;
     touch-action: manipulation;
     box-shadow: var(--tool-shadow-sm);
+    position: relative;
+    overflow: hidden;
+}
+
+.tool-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.tool-button:hover::before {
+    left: 100%;
 }
 
 .tool-button:hover:not(:disabled) {
-    background: var(--tool-primary-light);
-    box-shadow: var(--tool-shadow-md);
+    background: linear-gradient(135deg, var(--tool-primary-light), var(--tool-accent-color));
+    box-shadow: var(--tool-shadow-lg);
+    transform: translateY(-2px);
 }
 
 .tool-button:disabled {
@@ -285,25 +320,26 @@ body.dark-mode {
 }
 
 .tool-button.secondary {
-    background: var(--tool-background-secondary);
+    background: linear-gradient(135deg, var(--tool-background-secondary), var(--tool-background-tertiary));
     color: var(--tool-text-primary);
     border: 1px solid var(--tool-border-color);
 }
 
 .tool-button.secondary:hover:not(:disabled) {
-    background: var(--tool-background-tertiary);
+    background: linear-gradient(135deg, var(--tool-background-tertiary), var(--tool-accent-color));
+    color: white;
 }
 
 .tool-button.success {
-    background: var(--tool-success-color);
+    background: linear-gradient(135deg, var(--tool-success-color), #059669);
 }
 
 .tool-button.warning {
-    background: var(--tool-warning-color);
+    background: linear-gradient(135deg, var(--tool-warning-color), #d97706);
 }
 
 .tool-button.error {
-    background: var(--tool-error-color);
+    background: linear-gradient(135deg, var(--tool-error-color), #dc2626);
 }
 
 /* Responsive button adjustments */
