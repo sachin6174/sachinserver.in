@@ -21,3 +21,4 @@ export { default as MarkdownRenderer } from './MarkdownRenderer/MarkdownRenderer
 export { default as PassportPhotoMaker } from './PassportPhotoMaker/PassportPhotoMaker';
 export { default as PDFTool } from './PDFTool/PDFTool';
 export { default as QRCodeTool } from './QRCodeTool/QRCodeTool';
+export { default as DiffChecker } from './DiffChecker/DiffChecker';

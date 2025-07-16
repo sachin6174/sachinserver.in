@@ -1,10 +1,10 @@
-/* Unified Design System for LeftBrain Components */
+/* Premium Design System for LeftBrain Components */
 :root {
     /* Core Brand Colors */
-    --primary-color: #6366f1;
-    --primary-dark: #4f46e5;
-    --secondary-color: #ec4899;
-    --accent-color: #10b981;
+    --primary-color: #2c3e50;
+    --primary-dark: #1a252f;
+    --secondary-color: #34495e;
+    --accent-color: #3498db;
     
     /* Unified Theme Colors for Sections */
     --theme-dsa: #3B82F6;
@@ -136,39 +136,35 @@
     --z-max: 9999;
 }
 
-/* Dark mode overrides */
+/* Premium dark mode overrides */
 body.dark-mode {
-    --primary-color: #818cf8;
-    --secondary-color: #f472b6;
-    --accent-color: #34d399;
-    --tech-blue: #38bdf8;
-    --tech-green: #4ade80;
-    --tech-orange: #fb923c;
-    --tech-purple: #a78bfa;
-    --text-primary: #f9fafb;
-    --text-secondary: #d1d5db;
+    --primary-color: #34495e;
+    --secondary-color: #5d6d7e;
+    --accent-color: #5dade2;
+    --text-primary: #ffffff;
+    --text-secondary: #b8bcc8;
     --text-light: #9ca3af;
-    --background-primary: #111827;
-    --background-secondary: #1f2937;
-    --background-tertiary: #374151;
-    --border-color: #374151;
-    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
-    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
-    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
-    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+    --background-primary: #1a1d23;
+    --background-secondary: #252932;
+    --background-tertiary: #2f3349;
+    --border-color: #3a3f54;
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.5);
+    --shadow-md: 0 3px 6px rgba(0, 0, 0, 0.6);
+    --shadow-lg: 0 10px 20px rgba(0, 0, 0, 0.7);
+    --shadow-xl: 0 14px 28px rgba(0, 0, 0, 0.8);
 }
 
-/* Base container styles - COMPACT */
+/* Premium container styles */
 .leftbrain-container {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-    line-height: 1.3;
+    line-height: 1.5;
     color: var(--text-primary);
-    background: linear-gradient(135deg, var(--background-primary) 0%, var(--background-secondary) 100%);
+    background: var(--background-primary);
     min-height: 100vh;
-    padding: var(--space-sm);
+    padding: 1.5rem;
     overflow-y: auto;
     overflow-x: hidden;
-    font-size: var(--font-sm);
+    font-size: 14px;
 }
 
 /* Theme-specific containers */
@@ -511,16 +507,12 @@ body.dark-mode {
 
 /* Section styling - MINIMAL SPACING */
 .section-title {
-    font-size: var(--font-xl);
-    font-weight: 700;
-    color: var(--text-primary);
-    margin: 0 0 var(--space-xs) 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin: 0 0 1rem 0;
     text-align: center;
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    line-height: 1.2;
+    line-height: 1.3;
 }
 
 @media (min-width: 768px) {
@@ -736,27 +728,33 @@ body.dark-mode {
     margin: 2rem auto;
 }
 
-/* Enhanced button styles with better touch targets */
+/* Premium button styles */
 .leftbrain-button,
 .action-button {
-    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    background: var(--primary-color);
     color: white;
     border: none;
     padding: 0.75rem 1.5rem;
-    border-radius: var(--radius-md);
-    font-weight: 600;
+    border-radius: 6px;
+    font-weight: 500;
     font-size: 0.875rem;
     cursor: pointer;
-    transition: all var(--transition-normal);
+    transition: all 0.2s ease;
     text-decoration: none;
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
     justify-content: center;
-    /* Better mobile touch targets */
     min-height: 44px;
     min-width: 44px;
-    touch-action: manipulation; /* Improve touch responsiveness */
+    touch-action: manipulation;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+.leftbrain-button:hover,
+.action-button:hover {
+    background: var(--secondary-color);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 
 @media (min-width: 768px) {

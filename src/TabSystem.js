@@ -23,7 +23,7 @@ import Literature from "./RightBrain/Litlerature/Literature";
 import Philosophy from "./RightBrain/Philosophy/Philosophy";
 import Music from "./RightBrain/Music/Music";
 import Psychology from "./RightBrain/Psychology/Psychology";
-import { InfoTool, JsonTool, XmlTool, CryptoTool, WritingBoardTool, APITool, BackgroundRemoverTool, StorageTool, ColorPickerTool, ScreenRecorderTool, CSVTool, HashTool, PasswordTool, YAMLTool, RegexTool, EncoderTool, UUIDTool, MarkdownRenderer, PassportPhotoMaker, PDFTool, QRCodeTool } from './Tools';
+import { InfoTool, JsonTool, XmlTool, CryptoTool, WritingBoardTool, APITool, BackgroundRemoverTool, StorageTool, ColorPickerTool, ScreenRecorderTool, CSVTool, HashTool, PasswordTool, YAMLTool, RegexTool, EncoderTool, UUIDTool, MarkdownRenderer, PassportPhotoMaker, PDFTool, QRCodeTool, DiffChecker } from './Tools';
 import logo from './assets/logo512.png';  // Updated import path
 import './TabSystem.css';
 import LeftNavigation from './LeftNavigation';
@@ -202,6 +202,7 @@ const TabSystem = () => {
                     { id: "uuid-tool", label: "UUID Tool", icon: "🆔", description: <UUIDTool /> },
                     { id: "markdown-renderer", label: "Markdown Renderer", icon: "📄", description: <MarkdownRenderer /> },
                     { id: "writing-board", label: "Writing Board", icon: "✏️", description: <WritingBoardTool /> },
+                    { id: "diff-checker", label: "Diff Checker", icon: "🔄", description: <DiffChecker /> },
                 ]
             },
             { 

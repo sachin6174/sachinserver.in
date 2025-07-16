@@ -1,31 +1,32 @@
-/* Shared CSS Variables and Styles for Tools Components */
+/* Premium Shared CSS Variables for Tools Components */
 :root {
-    --tool-primary-color: #6366f1;
-    --tool-primary-dark: #4f46e5;
-    --tool-secondary-color: #ec4899;
-    --tool-accent-color: #10b981;
-    --tool-success-color: #22c55e;
-    --tool-warning-color: #f59e0b;
-    --tool-error-color: #ef4444;
-    --tool-info-color: #3b82f6;
-    --tool-text-primary: #1f2937;
-    --tool-text-secondary: #6b7280;
-    --tool-text-light: #9ca3af;
+    --tool-primary-color: #2c3e50;
+    --tool-primary-light: #34495e;
+    --tool-primary-dark: #1a252f;
+    --tool-accent-color: #3498db;
+    --tool-accent-light: #5dade2;
+    --tool-success-color: #27ae60;
+    --tool-warning-color: #f39c12;
+    --tool-error-color: #e74c3c;
+    --tool-info-color: #3498db;
+    --tool-text-primary: #2c3e50;
+    --tool-text-secondary: #5a6c7d;
+    --tool-text-light: #95a5a6;
     --tool-background-primary: #ffffff;
-    --tool-background-secondary: #f9fafb;
-    --tool-background-tertiary: #f3f4f6;
-    --tool-border-color: #e5e7eb;
-    --tool-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-    --tool-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-    --tool-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-    --tool-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-    --tool-radius-sm: 0.375rem;
-    --tool-radius-md: 0.5rem;
-    --tool-radius-lg: 0.75rem;
-    --tool-radius-xl: 1rem;
-    --tool-transition-fast: 0.15s ease-in-out;
-    --tool-transition-normal: 0.3s ease-in-out;
-    --tool-transition-slow: 0.5s ease-in-out;
+    --tool-background-secondary: #fafbfc;
+    --tool-background-tertiary: #f8f9fa;
+    --tool-border-color: #e9ecef;
+    --tool-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    --tool-shadow-md: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    --tool-shadow-lg: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+    --tool-shadow-xl: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    --tool-radius-sm: 4px;
+    --tool-radius-md: 6px;
+    --tool-radius-lg: 8px;
+    --tool-radius-xl: 12px;
+    --tool-transition-fast: 0.15s ease;
+    --tool-transition-normal: 0.2s ease;
+    --tool-transition-slow: 0.3s ease;
 
     /* Z-index system for consistent layering */
     --z-base: 1;
@@ -37,39 +38,41 @@
     --z-max: 9999;
 }
 
-/* Dark mode overrides */
+/* Premium dark mode overrides */
 body.dark-mode {
-    --tool-primary-color: #818cf8;
-    --tool-secondary-color: #f472b6;
-    --tool-accent-color: #34d399;
-    --tool-success-color: #4ade80;
-    --tool-warning-color: #fbbf24;
-    --tool-error-color: #f87171;
-    --tool-info-color: #60a5fa;
-    --tool-text-primary: #f9fafb;
-    --tool-text-secondary: #d1d5db;
+    --tool-primary-color: #34495e;
+    --tool-primary-light: #5d6d7e;
+    --tool-primary-dark: #2c3e50;
+    --tool-accent-color: #5dade2;
+    --tool-accent-light: #85c1e9;
+    --tool-success-color: #58d68d;
+    --tool-warning-color: #f8c471;
+    --tool-error-color: #ec7063;
+    --tool-info-color: #5dade2;
+    --tool-text-primary: #ffffff;
+    --tool-text-secondary: #b8bcc8;
     --tool-text-light: #9ca3af;
-    --tool-background-primary: #111827;
-    --tool-background-secondary: #1f2937;
-    --tool-background-tertiary: #374151;
-    --tool-border-color: #374151;
-    --tool-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
-    --tool-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
-    --tool-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
-    --tool-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+    --tool-background-primary: #252932;
+    --tool-background-secondary: #1a1d23;
+    --tool-background-tertiary: #2f3349;
+    --tool-border-color: #3a3f54;
+    --tool-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.5);
+    --tool-shadow-md: 0 3px 6px rgba(0, 0, 0, 0.6);
+    --tool-shadow-lg: 0 10px 20px rgba(0, 0, 0, 0.7);
+    --tool-shadow-xl: 0 14px 28px rgba(0, 0, 0, 0.8);
 }
 
-/* Base container styles - COMPACT */
+/* Premium container styles */
 .tools-container {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-    line-height: 1.1;
+    line-height: 1.5;
     color: var(--tool-text-primary);
-    background: linear-gradient(135deg, var(--tool-background-primary) 0%, var(--tool-background-secondary) 100%);
+    background: var(--tool-background-primary);
     min-height: 100vh;
-    padding: 0.2rem;
+    padding: 1.5rem;
     overflow-y: auto;
     overflow-x: hidden;
-    font-size: 10px;
+    font-size: 14px;
 }
 
 /* When navigation panel is hidden, expand the content - COMPACT */
@@ -98,28 +101,16 @@ body.dark-mode {
     }
 }
 
-/* Tool header styles */
+/* Clean tool header styles */
 .tool-header {
-    background: linear-gradient(135deg, var(--tool-primary-color) 0%, var(--tool-secondary-color) 100%);
+    background: var(--tool-primary-color);
     color: white;
-    padding: 0.4rem;
+    padding: 1.5rem;
     border-radius: var(--tool-radius-lg);
-    margin-bottom: 0.75rem;
+    margin-bottom: 1.5rem;
     text-align: center;
     position: relative;
-    overflow: hidden;
-}
-
-.tool-header::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    z-index: 0;
+    box-shadow: var(--tool-shadow-sm);
 }
 
 .tool-header-content {
@@ -263,14 +254,14 @@ body.dark-mode {
     margin: 0.1rem 0;
 }
 
-/* Enhanced tool button styles */
+/* Premium tool button styles */
 .tool-button {
-    background: linear-gradient(135deg, var(--tool-primary-color), var(--tool-primary-dark));
+    background: var(--tool-primary-color);
     color: white;
     border: none;
-    padding: var(--tool-spacing-md) var(--tool-spacing-lg);
+    padding: 0.75rem 1.5rem;
     border-radius: var(--tool-radius-md);
-    font-weight: 600;
+    font-weight: 500;
     font-size: 0.875rem;
     cursor: pointer;
     transition: all var(--tool-transition-normal);
@@ -279,18 +270,18 @@ body.dark-mode {
     justify-content: center;
     min-height: 44px;
     min-width: 44px;
-    touch-action: manipulation; /* Improve touch responsiveness */
+    touch-action: manipulation;
+    box-shadow: var(--tool-shadow-sm);
 }
 
 .tool-button:hover:not(:disabled) {
-    transform: translateY(-1px);
-    box-shadow: var(--tool-shadow-lg);
+    background: var(--tool-primary-light);
+    box-shadow: var(--tool-shadow-md);
 }
 
 .tool-button:disabled {
     opacity: 0.6;
     cursor: not-allowed;
-    transform: none;
 }
 
 .tool-button.secondary {
@@ -299,16 +290,20 @@ body.dark-mode {
     border: 1px solid var(--tool-border-color);
 }
 
+.tool-button.secondary:hover:not(:disabled) {
+    background: var(--tool-background-tertiary);
+}
+
 .tool-button.success {
-    background: linear-gradient(135deg, var(--tool-success-color), #16a34a);
+    background: var(--tool-success-color);
 }
 
 .tool-button.warning {
-    background: linear-gradient(135deg, var(--tool-warning-color), #d97706);
+    background: var(--tool-warning-color);
 }
 
 .tool-button.error {
-    background: linear-gradient(135deg, var(--tool-error-color), #dc2626);
+    background: var(--tool-error-color);
 }
 
 /* Responsive button adjustments */
