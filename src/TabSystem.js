@@ -24,7 +24,7 @@ import Literature from "./RightBrain/Litlerature/Literature";
 import Philosophy from "./RightBrain/Philosophy/Philosophy";
 import Music from "./RightBrain/Music/Music";
 import Psychology from "./RightBrain/Psychology/Psychology";
-import { InfoTool, JsonTool, XmlTool, CryptoTool, WritingBoardTool, APITool, StorageTool, ColorPickerTool, ScreenRecorderTool, CSVTool, HashTool, PasswordTool, YAMLTool, RegexTool, EncoderTool, UUIDTool, MarkdownRenderer, LaTeXRenderer, PassportPhotoMaker, PDFTool, QRCodeTool, DiffChecker, TextGenerator, QATools, AIToolsChannels } from './Tools';
+import { InfoTool, JsonTool, XmlTool, CryptoTool, WritingBoardTool, APITool, StorageTool, ColorPickerTool, ScreenRecorderTool, CSVTool, HashTool, PasswordTool, YAMLTool, RegexTool, EncoderTool, UUIDTool, MarkdownRenderer, LaTeXRenderer, PassportPhotoMaker, PDFTool, QRCodeTool, DiffChecker, TextGenerator, QATools, AIToolsChannels, ImportantWebsites, MacOSAppCatalog } from './Tools';
 import logo from './assets/logo512.png';  // Updated import path
 import './TabSystem.css';
 import LeftNavigation from './LeftNavigation';
@@ -187,7 +187,8 @@ const TabSystem = () => {
             { id: "encoder-tool", label: "Encoder Tool", icon: "🔤", description: <EncoderTool /> },
         ],
         "qa-tools": [
-            { id: "qa-testing-apps", label: "QA Testing Apps", icon: "📱", description: <QATools /> },
+            { id: "qa-testing-apps", label: "QA Testing Apps", icon: "🧪", description: <QATools /> },
+            { id: "macos-app-catalog", label: "macOS App Catalog", icon: "📱", description: <MacOSAppCatalog /> },
             { id: "regex-tool", label: "Regex Tool", icon: "🔍", description: <RegexTool /> },
             { id: "diff-checker", label: "Diff Checker", icon: "🔄", description: <DiffChecker /> },
             { id: "password-tool", label: "Password Tool", icon: "🛡️", description: <PasswordTool /> },
@@ -202,6 +203,7 @@ const TabSystem = () => {
             { id: "passport-photo-maker", label: "Passport Photo Maker", icon: "📷", description: <PassportPhotoMaker /> },
             { id: "color-picker", label: "Color Picker", icon: "🎨", description: <ColorPickerTool /> },
             { id: "screen-recorder", label: "Screen Recorder", icon: "🎥", description: <ScreenRecorderTool /> },
+            { id: "important-websites", label: "Important Websites", icon: "🌐", description: <ImportantWebsites /> },
         ],
     };
 
