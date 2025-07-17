@@ -58,6 +58,17 @@ Welcome to the **Markdown Renderer**! This comprehensive guide showcases all mar
 ![Alt text](https://via.placeholder.com/300x200 "Image title")
 ![Reference image][image-ref]
 
+### Images with Links (Clickable Images)
+[![Click this image to visit example.com](https://via.placeholder.com/300x150/0066cc/ffffff?text=Click+Me)](https://example.com "Click to visit example.com")
+
+[![GitHub Logo](https://via.placeholder.com/200x100/333333/ffffff?text=GitHub)](https://github.com "Visit GitHub")
+
+### Complex Image Links
+[![Product Image](https://via.placeholder.com/250x200/ff6b6b/ffffff?text=Product+Image)](https://example.com/product "View Product Details")
+
+### Reference-Style Image Links
+[![Reference Image Link][linked-img-ref]][link-ref]
+
 ## Code
 
 ### Inline Code
@@ -203,6 +214,8 @@ Use backslash to escape: \\*not italic\\* and \\**not bold\\**
 [1]: https://example.com "Example link"
 [example]: https://example.com "Another example"
 [image-ref]: https://via.placeholder.com/150x100 "Reference image"
+[linked-img-ref]: https://via.placeholder.com/200x120/28a745/ffffff?text=Linked+Image "Linked image"
+[link-ref]: https://example.com/page "Target page for linked image"
 
 ---
 
@@ -288,9 +301,9 @@ Use backslash to escape: \\*not italic\\* and \\**not bold\\**
         },
         {
             title: "Links, Images & References",
-            content: "Connect your content with links and images. Use reference-style links for cleaner markdown.",
-            example: "## Links\n[Simple link](https://example.com)\n[Link with title](https://example.com \"Hover for title\")\n[Reference link][1]\n[Another reference][example-ref]\n\n## Images\n![Alt text](https://via.placeholder.com/300x200 \"Image title\")\n![Reference image][img-ref]\n\n## Email & Auto-links\n<user@example.com>\n<https://example.com>\n\n## Reference Definitions\n[1]: https://example.com \"Example link\"\n[example-ref]: https://github.com \"GitHub\"\n[img-ref]: https://via.placeholder.com/150x100 \"Reference image\"",
-            tryIt: "[My Link](https://example.com)\n![My Image](https://via.placeholder.com/200x100)"
+            content: "Connect your content with links and images. You can combine images with links to create clickable images that navigate to other pages.",
+            example: "## Links\n[Simple link](https://example.com)\n[Link with title](https://example.com \"Hover for title\")\n[Reference link][1]\n[Another reference][example-ref]\n\n## Images\n![Alt text](https://via.placeholder.com/300x200 \"Image title\")\n![Reference image][img-ref]\n\n## Images with Links (Clickable Images)\n[![Click this image](https://via.placeholder.com/300x150/0066cc/ffffff?text=Click+Me)](https://example.com \"Click to visit example.com\")\n\n[![GitHub Logo](https://via.placeholder.com/200x100/333333/ffffff?text=GitHub)](https://github.com \"Visit GitHub\")\n\n## Complex Image Links\n[![Product Image](https://via.placeholder.com/250x200/ff6b6b/ffffff?text=Product+Image)](https://example.com/product \"View Product Details\")\n\n## Reference-Style Image Links\n[![Reference Image Link][linked-img-ref]][link-ref]\n\n## Email & Auto-links\n<user@example.com>\n<https://example.com>\n\n## Reference Definitions\n[1]: https://example.com \"Example link\"\n[example-ref]: https://github.com \"GitHub\"\n[img-ref]: https://via.placeholder.com/150x100 \"Reference image\"\n[linked-img-ref]: https://via.placeholder.com/200x120/28a745/ffffff?text=Linked+Image \"Linked image\"\n[link-ref]: https://example.com/page \"Target page for linked image\"",
+            tryIt: "[My Link](https://example.com)\n![My Image](https://via.placeholder.com/200x100)\n\n[![Clickable Image](https://via.placeholder.com/150x100/007bff/ffffff?text=Click+Me)](https://example.com)"
         },
         {
             title: "Code & Syntax Highlighting",
