@@ -443,6 +443,187 @@
                     "description": "Aboriginal Australian wind instrument with unique sound"
                 }
             ]
+        },
+        {
+            "id": "vocals",
+            "name": "Vocals",
+            "icon": "🎤",
+            "origin": "Global",
+            "era": "Ancient-present",
+            "description": "Comprehensive vocal training covering Indian classical music theory, swar system, and practical vocal techniques.",
+            "characteristics": [
+                "Swar system mastery",
+                "Raga understanding",
+                "Vocal exercises",
+                "Saptak knowledge",
+                "Alankaar practice"
+            ],
+            "sections": [
+                {
+                    "title": "Basic Swar System",
+                    "content": {
+                        "swars": [
+                            { "name": "Sa", "symbol": "सा", "note": "Do", "position": 1 },
+                            { "name": "Re", "symbol": "रे", "note": "Re", "position": 2 },
+                            { "name": "Ga", "symbol": "गा", "note": "Mi", "position": 3 },
+                            { "name": "Ma", "symbol": "मा", "note": "Fa", "position": 4 },
+                            { "name": "Pa", "symbol": "पा", "note": "So", "position": 5 },
+                            { "name": "Dha", "symbol": "धा", "note": "La", "position": 6 },
+                            { "name": "Ni", "symbol": "नि", "note": "Ti", "position": 7 }
+                        ],
+                        "description": "The seven basic notes (swars) form the foundation of Indian classical music. Each swar has specific characteristics and emotional qualities."
+                    }
+                },
+                {
+                    "title": "Saptak System",
+                    "content": {
+                        "saptaks": [
+                            {
+                                "name": "Mandra Saptak",
+                                "description": "Lower octave - deep, foundational notes",
+                                "range": "Lower register",
+                                "symbol": "मंद्र सप्तक"
+                            },
+                            {
+                                "name": "Madhya Saptak",
+                                "description": "Middle octave - primary singing range",
+                                "range": "Middle register",
+                                "symbol": "मध्य सप्तक"
+                            },
+                            {
+                                "name": "Taar Saptak",
+                                "description": "Upper octave - high, bright notes",
+                                "range": "Upper register",
+                                "symbol": "तार सप्तक"
+                            }
+                        ],
+                        "description": "The three octaves (saptaks) provide the complete vocal range for Indian classical music performance."
+                    }
+                },
+                {
+                    "title": "Alankaar Patterns",
+                    "content": {
+                        "patterns": [
+                            {
+                                "number": "Alankaar 1",
+                                "pattern": "Sa Re Ga Ma Pa Dha Ni Sa",
+                                "description": "Basic ascending pattern - foundation exercise"
+                            },
+                            {
+                                "number": "Alankaar 2",
+                                "pattern": "Sa Re Ga Ma, Re Ga Ma Pa",
+                                "description": "Four-note ascending progression"
+                            },
+                            {
+                                "number": "Alankaar 3",
+                                "pattern": "Sa Re Ga Ma Pa, Re Ga Ma Pa Dha",
+                                "description": "Five-note ascending progression"
+                            },
+                            {
+                                "number": "Alankaar 4",
+                                "pattern": "Sa Re Ga Ma Pa Dha, Re Ga Ma Pa Dha Ni",
+                                "description": "Six-note ascending progression"
+                            },
+                            {
+                                "number": "Alankaar 5",
+                                "pattern": "Sa Re Ga Ma Pa Dha Ni, Re Ga Ma Pa Dha Ni Sa",
+                                "description": "Seven-note ascending progression"
+                            },
+                            {
+                                "number": "Alankaar 6",
+                                "pattern": "Sa Re, Sa Re Ga Re",
+                                "description": "Oscillating pattern with return notes"
+                            },
+                            {
+                                "number": "Alankaar 7",
+                                "pattern": "Sa Re Ga Ma Pa Dha Ni Sa, Sa Ni Dha Pa Ma Ga Re Sa",
+                                "description": "Complete ascending-descending pattern"
+                            },
+                            {
+                                "number": "Alankaar 8",
+                                "pattern": "Sa Re Ga, Re Ga Ma, Ga Ma Pa",
+                                "description": "Overlapping three-note patterns"
+                            }
+                        ],
+                        "description": "Alankaar are systematic vocal exercises that help develop pitch accuracy, voice control, and musical understanding."
+                    }
+                },
+                {
+                    "title": "Raga Bhupali",
+                    "content": {
+                        "details": {
+                            "varjit_swar": "Ma (म), Ni (नि)",
+                            "aaroh": "Sa Re Ga Pa Dha Sa",
+                            "avroh": "Sa Dha Pa Ga Re Sa",
+                            "pakad": "Sa Re Dha Sa Re Ga, Pa Ga Dha Pa Re Sa",
+                            "singing_time": "रात्रि का प्रथम प्रहर (6 to 9 pm)",
+                            "vadi_swar": "Ga (गा)",
+                            "samvadi_swar": "Dha (धा)"
+                        },
+                        "description": "Raga Bhupali is a pentatonic raga that creates a peaceful and devotional mood. It's one of the most fundamental ragas for beginners."
+                    }
+                },
+                {
+                    "title": "Learning Methodology",
+                    "content": {
+                        "steps": [
+                            {
+                                "step": 1,
+                                "title": "Listen to it a few times",
+                                "description": "Familiarize yourself with the melody and rhythm"
+                            },
+                            {
+                                "step": 2,
+                                "title": "Analyse the situation. Respect the song",
+                                "description": "Understand the cultural context and emotional content"
+                            },
+                            {
+                                "step": 3,
+                                "title": "Write down the lyrics. Reduce the volume and sing along",
+                                "description": "Learn the words and practice with the original recording"
+                            },
+                            {
+                                "step": 4,
+                                "title": "Recording is very important. Document your progress",
+                                "description": "Record yourself to track improvement and identify areas for work"
+                            },
+                            {
+                                "step": 5,
+                                "title": "Remember the TUNE, DETAIL and FEEL",
+                                "description": "Focus on melody accuracy, nuanced expression, and emotional connection"
+                            }
+                        ],
+                        "description": "A systematic approach to learning vocal pieces, emphasizing both technical precision and emotional expression."
+                    }
+                },
+                {
+                    "title": "Practice Songs",
+                    "content": {
+                        "songs": [
+                            {
+                                "title": "Happy Birthday Song",
+                                "lyrics": [
+                                    "Happy Birthday to you!",
+                                    "सा सा रे गा प गा",
+                                    "Happy Birthday to you!",
+                                    "सा सा रे गा प गा",
+                                    "Happy Birthday Dear [Your Name] :)",
+                                    "सा सा सा प गा रे",
+                                    "Happy Birthday to you!",
+                                    "धि धि प गा प गा"
+                                ],
+                                "description": "Simple practice song with swar notations for beginners"
+                            },
+                            {
+                                "title": "Mere Dholna",
+                                "lyrics": "सा नि धि, नि धि मा, प गा सा नि धि नि धि सा प मा | प गा सा नि धि सा प (२), प गा मा | सा नि धि प गा मा धि (२), सा नि धि नि | धि नि सा (४), प धि सा (४), धि सा नि (४) | धि नि धि सा सा, नि धि सा सा मा | धि नि सा सा सा, नि धि सा सा मा, प धि सा सा सा | धि नि सा सा सा, नि धि सा प मा, प धि सा सा सा",
+                                "description": "Classical practice piece with complex swar patterns for advanced students"
+                            }
+                        ],
+                        "description": "Practice songs with swar notations to develop vocal technique and musicality."
+                    }
+                }
+            ]
         }
     ]
 }
