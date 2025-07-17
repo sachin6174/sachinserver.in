@@ -1,0 +1,220 @@
+/* Apple Dev YouTube Channels Container */
+.apple-dev-youtube-channels {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background: var(--bg-color);
+    color: var(--text-color);
+    min-height: 100vh;
+}
+
+.channels-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.channels-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    background: linear-gradient(45deg, #ff6b6b 0%, #ee5a24 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.channels-header p {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    margin-bottom: 0;
+}
+
+/* Channels Grid */
+.channels-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 25px;
+    margin-bottom: 40px;
+}
+
+.channel-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 25px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.channel-card:hover {
+    background: var(--hover-bg);
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}
+
+.channel-avatar {
+    flex-shrink: 0;
+}
+
+.channel-avatar img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--border-color);
+    transition: transform 0.3s ease;
+}
+
+.channel-card:hover .channel-avatar img {
+    transform: scale(1.1);
+}
+
+.channel-info {
+    flex: 1;
+}
+
+.channel-name {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin: 0 0 15px 0;
+    color: var(--text-color);
+}
+
+.channel-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.link-btn {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.link-btn:hover {
+    transform: scale(1.05);
+}
+
+.youtube-btn {
+    background: linear-gradient(45deg, #ff0000 0%, #cc0000 100%);
+    color: white;
+}
+
+.youtube-btn:hover {
+    background: linear-gradient(45deg, #cc0000 0%, #990000 100%);
+}
+
+.github-btn {
+    background: linear-gradient(45deg, #333333 0%, #000000 100%);
+    color: white;
+}
+
+.github-btn:hover {
+    background: linear-gradient(45deg, #000000 0%, #333333 100%);
+}
+
+.devnotes-btn {
+    background: linear-gradient(45deg, #10b981 0%, #059669 100%);
+    color: white;
+}
+
+.devnotes-btn:hover {
+    background: linear-gradient(45deg, #047857 0%, #065f46 100%);
+}
+
+.website-btn {
+    background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.website-btn:hover {
+    background: linear-gradient(45deg, #5a67d8 0%, #6b46c1 100%);
+}
+
+/* Footer */
+.channels-footer {
+    margin-top: 40px;
+    padding: 20px;
+    background: var(--card-bg);
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    text-align: center;
+}
+
+.channels-footer p {
+    margin: 0;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .apple-dev-youtube-channels {
+        padding: 15px;
+    }
+    
+    .channels-header h1 {
+        font-size: 2rem;
+    }
+    
+    .channels-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .channel-card {
+        padding: 20px;
+    }
+    
+    .channel-avatar img {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .channel-name {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .channel-card {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+    
+    .channel-links {
+        justify-content: center;
+    }
+    
+    .link-btn {
+        font-size: 0.8rem;
+        padding: 5px 10px;
+    }
+}
+
+/* Dark mode specific adjustments */
+.dark-mode .apple-dev-youtube-channels {
+    --bg-color: #1a1a1a;
+    --text-color: #e2e8f0;
+    --text-secondary: #a0aec0;
+    --card-bg: #2d3748;
+    --border-color: #4a5568;
+    --hover-bg: #374151;
+}
+
+.light-mode .apple-dev-youtube-channels {
+    --bg-color: #ffffff;
+    --text-color: #2d3748;
+    --text-secondary: #718096;
+    --card-bg: #f7fafc;
+    --border-color: #e2e8f0;
+    --hover-bg: #edf2f7;
+}

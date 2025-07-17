@@ -24,3 +24,4 @@ export { default as QRCodeTool } from './QRCodeTool/QRCodeTool';
 export { default as DiffChecker } from './DiffChecker/DiffChecker';
 export { default as TextGenerator } from './TextUtilities/TextGenerator';
 export { default as QATools } from './QATools/QATools';
+export { default as AIToolsChannels } from './AIToolsChannels/AIToolsChannels';

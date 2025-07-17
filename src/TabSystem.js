@@ -4,6 +4,7 @@ import AppleDevelopment from "./LeftBrain/AppleDevelopment/AppleDevelopment";
 import NodeJS from "./LeftBrain/NodeJS/NodeJS";
 import ReactJS from "./LeftBrain/ReactJS/ReactJS";
 import DSA from "./LeftBrain/DSA/DSA";
+import AppleDevYouTubeChannels from "./LeftBrain/AppleDevYouTubeChannels/AppleDevYouTubeChannels";
 import MacTerminalScripts from "./LeftBrain/MacTerminalScripts/MacTerminalScripts";
 import SwiftNetworking from "./LeftBrain/SwiftNetworking/SwiftNetworking";
 import Debugging from "./LeftBrain/Debugging/Debugging";
@@ -23,7 +24,7 @@ import Literature from "./RightBrain/Litlerature/Literature";
 import Philosophy from "./RightBrain/Philosophy/Philosophy";
 import Music from "./RightBrain/Music/Music";
 import Psychology from "./RightBrain/Psychology/Psychology";
-import { InfoTool, JsonTool, XmlTool, CryptoTool, WritingBoardTool, APITool, StorageTool, ColorPickerTool, ScreenRecorderTool, CSVTool, HashTool, PasswordTool, YAMLTool, RegexTool, EncoderTool, UUIDTool, MarkdownRenderer, LaTeXRenderer, PassportPhotoMaker, PDFTool, QRCodeTool, DiffChecker, TextGenerator, QATools } from './Tools';
+import { InfoTool, JsonTool, XmlTool, CryptoTool, WritingBoardTool, APITool, StorageTool, ColorPickerTool, ScreenRecorderTool, CSVTool, HashTool, PasswordTool, YAMLTool, RegexTool, EncoderTool, UUIDTool, MarkdownRenderer, LaTeXRenderer, PassportPhotoMaker, PDFTool, QRCodeTool, DiffChecker, TextGenerator, QATools, AIToolsChannels } from './Tools';
 import logo from './assets/logo512.png';  // Updated import path
 import './TabSystem.css';
 import LeftNavigation from './LeftNavigation';
@@ -42,8 +43,8 @@ const TabSystem = () => {
         const stored = localStorage.getItem('lastSelectedItems');
         return stored ? JSON.parse(stored) : {
             leftbrain: "about-me",           // Default for first load
-            rightbrain: "drawing",           // Default when switching to rightbrain
-            "developer-tools": "api-tool",   // Default when switching to developer tools
+            rightbrain: "apple-dev-youtube-rb", // Default when switching to rightbrain
+            "developer-tools": "ai-tools-channels", // Default when switching to developer tools
             "qa-tools": "qa-testing-apps",   // Default when switching to qa tools
             "general-tools": "info-tool"     // Default when switching to general tools
         };
@@ -61,10 +62,10 @@ const TabSystem = () => {
 
     const getDefaultItemForTab = (tab) => {
         switch (tab) {
-            case "developer-tools": return "api-tool";
+            case "developer-tools": return "ai-tools-channels";
             case "qa-tools": return "qa-testing-apps";
             case "general-tools": return "info-tool";
-            case "rightbrain": return "drawing";
+            case "rightbrain": return "apple-dev-youtube-rb";
             default: return "about-me";
         }
     };
@@ -144,6 +145,7 @@ const TabSystem = () => {
         leftbrain: [
             { id: "about-me", label: "About Me", icon: "👤", description: <AboutMe /> },
             { id: "dsa", label: "DSA", icon: "🧮", description: <DSA /> },
+            { id: "apple-dev-youtube", label: "Apple Dev YouTube", icon: "📺", description: <AppleDevYouTubeChannels /> },
             { id: "apple-development", label: "Apple Development", icon: "🍎", description: <AppleDevelopment /> },
             { id: "apple-languages", label: "Apple Languages", icon: "🍎", description: <AppleLanguages /> },
             { id: "swift-gui", label: "Swift GUI", icon: "🖥️", description: <SwiftGUI /> },
@@ -163,6 +165,7 @@ const TabSystem = () => {
             { id: "blogs", label: "Blogs", icon: "📝", description: <Blog /> },
         ],
         rightbrain: [
+            { id: "apple-dev-youtube-rb", label: "Apple Dev YouTube", icon: "📺", description: <AppleDevYouTubeChannels /> },
             { id: "drawing", label: "Drawing", icon: "✏️", description: <Drawing /> },
             { id: "literature", label: "Literature", icon: "📖", description: <Literature /> },
             { id: "philosophy", label: "Philosophy", icon: "🤔", description: <Philosophy /> },
@@ -170,6 +173,7 @@ const TabSystem = () => {
             { id: "music", label: "Music", icon: "🎵", description: <Music /> },
         ],
         "developer-tools": [
+            { id: "ai-tools-channels", label: "AI Tools Channels", icon: "🤖", description: <AIToolsChannels /> },
             { id: "api-tool", label: "API Tool", icon: "🌐", description: <APITool /> },
             { id: "storage-tool", label: "Storage Tool", icon: "💾", description: <StorageTool /> },
             { id: "qr-code-tool", label: "QR Code Tool", icon: "🔲", description: <QRCodeTool /> },
