@@ -1,0 +1,653 @@
+.latex-tool {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background: #2f3129;
+}
+
+/* Tool tabs styling - Overleaf style */
+.tool-tabs {
+    display: flex;
+    background: #2f3129;
+    border-bottom: 1px solid #4a4a4a;
+    padding: 0;
+    margin: 0;
+}
+
+.tool-tab {
+    background: #2f3129;
+    color: #ffffff;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    border-bottom: 2px solid transparent;
+}
+
+.tool-tab:hover {
+    background: #3a3d33;
+    color: #ffffff;
+}
+
+.tool-tab.active {
+    background: #2f3129;
+    color: #ffffff;
+    border-bottom: 2px solid #138b41;
+}
+
+.latex-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 180px);
+    min-height: 400px;
+}
+
+/* Tutorial Mode Styles */
+.tutorial-mode {
+    padding: 1rem;
+    height: 100%;
+    overflow-y: auto;
+    background: #2f3129;
+}
+
+.tutorial-header {
+    margin-bottom: 1rem;
+    padding: 0.75rem 1rem;
+    background: #3a3d33;
+    border: 1px solid #4a4a4a;
+    border-radius: 6px;
+}
+
+.tutorial-header h3 {
+    margin: 0;
+    color: #ffffff;
+    font-size: 1.2rem;
+}
+
+.tutorial-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.lesson-card {
+    border: 1px solid #4a4a4a;
+    border-radius: 6px;
+    padding: 1rem;
+    background: #3a3d33;
+    transition: all 0.3s ease;
+}
+
+.lesson-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.lesson-header h4 {
+    margin: 0;
+    color: #ffffff;
+    font-size: 1.1rem;
+}
+
+.lesson-content {
+    color: #cccccc;
+    font-size: 0.9rem;
+    margin-bottom: 0.75rem;
+    line-height: 1.4;
+}
+
+.lesson-example {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.example-section, .preview-section {
+    background: #2f3129;
+    padding: 0.75rem;
+    border-radius: 4px;
+    border: 1px solid #4a4a4a;
+}
+
+.example-section strong, .preview-section strong {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #ffffff;
+    font-size: 0.875rem;
+}
+
+.code-block {
+    font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
+    font-size: 0.8rem;
+    color: #cccccc;
+    white-space: pre-line;
+    background: #1a1c17;
+    padding: 0.75rem;
+    border-radius: 4px;
+    border: 1px solid #4a4a4a;
+}
+
+.mini-preview {
+    font-size: 0.85rem;
+    line-height: 1.4;
+}
+
+.mini-preview h3, .mini-preview h4 {
+    margin: 0.5rem 0;
+    font-size: 1em;
+}
+
+.mini-preview p {
+    margin: 0.5rem 0;
+}
+
+.mini-preview ul, .mini-preview ol {
+    margin: 0.5rem 0;
+    padding-left: 1.5rem;
+}
+
+.mini-preview li {
+    margin-bottom: 0.25rem;
+}
+
+.mini-preview code {
+    background: var(--surface-color);
+    padding: 0.1rem 0.3rem;
+    border-radius: 3px;
+    font-size: 0.8rem;
+}
+
+/* Split Mode - Overleaf Style */
+.split-mode {
+    height: 100%;
+    display: flex;
+    gap: 0;
+    padding: 0;
+    background: #2f3129;
+}
+
+.split-editor, .split-preview {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.split-editor {
+    background: #2f3129;
+    border-right: 1px solid #4a4a4a;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid #4a4a4a;
+    background: #2f3129;
+}
+
+.split-editor .section-header {
+    background: #2f3129;
+    color: #ffffff;
+}
+
+.split-preview .section-header {
+    background: #f8f9fa;
+    color: #333;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.section-header h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.download-btn {
+    padding: 0.4rem 0.8rem;
+    border: 1px solid #4a4a4a;
+    border-radius: 4px;
+    background: #2f3129;
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 0.75rem;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.split-editor .download-btn {
+    background: #2f3129;
+    color: #ffffff;
+    border-color: #4a4a4a;
+}
+
+.split-preview .download-btn {
+    background: #f8f9fa;
+    color: #333;
+    border-color: #e9ecef;
+}
+
+.download-btn:hover {
+    background: #138b41;
+    color: #ffffff;
+    transform: translateY(-1px);
+}
+
+.split-preview .download-btn:hover {
+    background: #138b41;
+    color: #ffffff;
+}
+
+.latex-textarea {
+    flex: 1;
+    width: 100%;
+    padding: 1rem;
+    border: none;
+    border-radius: 0;
+    background: #2f3129;
+    color: #ffffff;
+    font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
+    font-size: 14px;
+    line-height: 1.5;
+    resize: vertical;
+    outline: none;
+    transition: none;
+    tab-size: 4;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.latex-textarea:focus {
+    outline: none;
+    border: none;
+}
+
+.latex-textarea.split {
+    height: 100%;
+    resize: none;
+}
+
+.latex-preview {
+    flex: 1;
+    padding: 2rem;
+    border: none;
+    border-radius: 0;
+    background: #ffffff;
+    overflow-y: auto;
+    line-height: 1.6;
+}
+
+.latex-preview.split {
+    height: 100%;
+}
+
+/* LaTeX-specific styling - Overleaf Style */
+.latex-document {
+    font-family: 'Times New Roman', serif;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    color: #333;
+    background: #ffffff;
+}
+
+/* Resume-specific styling */
+.latex-center {
+    text-align: center;
+    margin: 1rem 0;
+}
+
+.resume-section {
+    margin: 1rem 0;
+}
+
+.resume-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin: 0.5rem 0;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #333;
+}
+
+.resume-heading-left {
+    flex: 1;
+}
+
+.resume-heading-right {
+    text-align: right;
+    flex-shrink: 0;
+}
+
+.resume-project-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin: 0.5rem 0;
+    padding: 0.25rem 0;
+    border-bottom: 1px solid #333;
+}
+
+.resume-project-left {
+    flex: 1;
+}
+
+.resume-project-right {
+    text-align: right;
+    flex-shrink: 0;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.resume-items {
+    margin: 0.5rem 0;
+    padding-left: 1rem;
+    list-style: none;
+}
+
+.resume-item {
+    margin: 0.25rem 0;
+    padding-left: 1rem;
+    position: relative;
+}
+
+.resume-item:before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: #333;
+}
+
+.resume-subitem {
+    margin: 0.2rem 0;
+    padding-left: 1rem;
+    position: relative;
+    font-size: 0.9rem;
+}
+
+.resume-subitem:before {
+    content: "◦";
+    position: absolute;
+    left: 0;
+    color: #666;
+}
+
+.latex-link {
+    color: #0066cc;
+    text-decoration: none;
+}
+
+.latex-link:hover {
+    text-decoration: underline;
+}
+
+.technical-skills {
+    list-style: none;
+    padding: 0;
+    margin: 0.5rem 0;
+    line-height: 1.6;
+}
+
+.technical-skills li {
+    margin: 0.3rem 0;
+    padding: 0.2rem 0;
+    line-height: 1.5;
+}
+
+.technical-skills strong {
+    color: #333;
+    font-weight: bold;
+    display: inline-block;
+    min-width: 180px;
+}
+
+.technical-skills br {
+    margin-bottom: 0.3rem;
+}
+
+.latex-title {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    color: #333;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.latex-author {
+    text-align: center;
+    font-size: 1.1rem;
+    margin-bottom: 0.3rem;
+    color: #666;
+}
+
+.latex-date {
+    text-align: center;
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    color: #666;
+}
+
+.latex-toc {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 2rem 0;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--border-color);
+    color: var(--text-color);
+}
+
+.latex-section {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: #333;
+    counter-increment: section;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid #333;
+    padding-bottom: 0.2rem;
+}
+
+.latex-subsection {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-top: 1.5rem;
+    margin-bottom: 0.8rem;
+    color: var(--text-color);
+}
+
+.latex-subsubsection {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+}
+
+.latex-math {
+    font-family: 'Times New Roman', serif;
+    font-style: italic;
+    color: var(--accent-color);
+    background: var(--surface-color);
+    padding: 0.1rem 0.2rem;
+    border-radius: 2px;
+}
+
+.latex-equation {
+    display: block;
+    text-align: center;
+    margin: 1.5rem 0;
+    padding: 1rem;
+    background: var(--surface-color);
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+    font-family: 'Times New Roman', serif;
+    font-style: italic;
+    color: var(--text-color);
+}
+
+.latex-align {
+    display: block;
+    margin: 1.5rem 0;
+    padding: 1rem;
+    background: var(--surface-color);
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+    font-family: 'Times New Roman', serif;
+    font-style: italic;
+    color: var(--text-color);
+}
+
+.latex-itemize, .latex-enumerate {
+    margin: 1rem 0;
+    padding-left: 2rem;
+}
+
+.latex-itemize li, .latex-enumerate li {
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+}
+
+.latex-table {
+    margin: 1.5rem 0;
+    text-align: center;
+}
+
+.latex-tabular {
+    border-collapse: collapse;
+    margin: 0 auto;
+    border: 1px solid var(--border-color);
+}
+
+.latex-tabular th, .latex-tabular td {
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--border-color);
+    text-align: center;
+    color: var(--text-color);
+}
+
+.latex-tabular th {
+    background: var(--surface-color);
+    font-weight: bold;
+}
+
+.latex-tabular caption {
+    margin-top: 0.5rem;
+    font-style: italic;
+    color: var(--text-secondary);
+}
+
+.latex-code {
+    background: var(--surface-color);
+    padding: 1rem;
+    border-radius: 6px;
+    overflow-x: auto;
+    margin: 1rem 0;
+    border: 1px solid var(--border-color);
+    font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
+    font-size: 0.9rem;
+    color: var(--text-color);
+}
+
+.latex-theorem {
+    background: var(--surface-color);
+    padding: 1rem;
+    border-radius: 6px;
+    margin: 1rem 0;
+    border-left: 4px solid var(--accent-color);
+    color: var(--text-color);
+}
+
+.latex-proof {
+    background: var(--bg-secondary);
+    padding: 1rem;
+    border-radius: 6px;
+    margin: 1rem 0;
+    border-left: 4px solid var(--text-secondary);
+    color: var(--text-color);
+}
+
+.latex-cite {
+    color: var(--accent-color);
+    font-size: 0.8rem;
+}
+
+.latex-bibliography {
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.latex-bibliography h3 {
+    color: var(--text-color);
+    margin-bottom: 1rem;
+}
+
+.latex-bibliography ul {
+    list-style: none;
+    padding: 0;
+}
+
+.latex-bibliography li {
+    margin-bottom: 0.5rem;
+    padding-left: 1rem;
+    text-indent: -1rem;
+    color: var(--text-color);
+}
+
+/* Font size classes */
+.latex-tiny { font-size: 0.5rem; }
+.latex-scriptsize { font-size: 0.7rem; }
+.latex-footnotesize { font-size: 0.8rem; }
+.latex-small { font-size: 0.9rem; }
+.latex-normalsize { font-size: 1rem; }
+.latex-large { font-size: 1.2rem; }
+.latex-Large { font-size: 1.4rem; }
+.latex-LARGE { font-size: 1.7rem; }
+.latex-huge { font-size: 2rem; }
+.latex-Huge { font-size: 2.5rem; }
+
+/* Error styling */
+.latex-preview .error {
+    color: #dc3545;
+    background: #f8d7da;
+    padding: 0.75rem;
+    border-radius: 6px;
+    border: 1px solid #f5c6cb;
+}
+
+.dark-mode .latex-preview .error {
+    background: #2d1b1e;
+    border-color: #842029;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .split-mode {
+        flex-direction: column;
+        height: auto;
+    }
+    
+    .split-editor, .split-preview {
+        min-height: 300px;
+    }
+    
+    .lesson-example {
+        grid-template-columns: 1fr;
+    }
+    
+    .tutorial-header {
+        padding: 0.5rem;
+    }
+}

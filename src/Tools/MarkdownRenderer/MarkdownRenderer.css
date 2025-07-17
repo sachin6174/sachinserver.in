@@ -69,6 +69,24 @@
     color: var(--text-color);
 }
 
+.download-btn {
+    padding: 0.25rem 0.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    background: var(--background-color);
+    color: var(--text-color);
+    cursor: pointer;
+    font-size: 0.75rem;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.download-btn:hover {
+    background: var(--accent-color);
+    color: var(--background-color);
+    transform: translateY(-1px);
+}
+
 
 .markdown-textarea {
     flex: 1;

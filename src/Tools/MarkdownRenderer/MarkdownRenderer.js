@@ -260,6 +260,127 @@ Use backslash to escape: \\*not italic\\* and \\**not bold\\**
         });
     }, [options]);
 
+    const downloadMarkdownText = () => {
+        const blob = new Blob([markdownText], { type: 'text/markdown' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'document.md';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+    };
+
+    const downloadPreviewAsPDF = () => {
+        const printWindow = window.open('', '_blank');
+        printWindow.document.write(`
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <title>Markdown Document</title>
+                <style>
+                    body { 
+                        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
+                        line-height: 1.6; 
+                        max-width: 800px; 
+                        margin: 0 auto; 
+                        padding: 20px; 
+                        color: #333;
+                    }
+                    h1, h2, h3, h4, h5, h6 { 
+                        color: #333; 
+                        margin-top: 1.5rem; 
+                        margin-bottom: 0.5rem; 
+                    }
+                    h1 { 
+                        font-size: 2rem; 
+                        border-bottom: 2px solid #eee; 
+                        padding-bottom: 0.3rem; 
+                    }
+                    h2 { 
+                        font-size: 1.5rem; 
+                        border-bottom: 1px solid #eee; 
+                        padding-bottom: 0.3rem; 
+                    }
+                    table { 
+                        border-collapse: collapse; 
+                        width: 100%; 
+                        margin: 1rem 0; 
+                    }
+                    th, td { 
+                        border: 1px solid #ddd; 
+                        padding: 8px; 
+                        text-align: left; 
+                    }
+                    th { 
+                        background-color: #f2f2f2; 
+                        font-weight: bold; 
+                    }
+                    code { 
+                        background-color: #f4f4f4; 
+                        padding: 2px 4px; 
+                        border-radius: 3px; 
+                        font-family: 'Courier New', monospace;
+                    }
+                    pre { 
+                        background-color: #f4f4f4; 
+                        padding: 10px; 
+                        border-radius: 5px; 
+                        overflow-x: auto; 
+                        font-family: 'Courier New', monospace;
+                    }
+                    blockquote { 
+                        border-left: 4px solid #ddd; 
+                        margin: 0; 
+                        padding-left: 20px; 
+                        color: #666; 
+                        font-style: italic;
+                    }
+                    ul, ol { 
+                        margin: 1rem 0; 
+                        padding-left: 2rem; 
+                    }
+                    li { 
+                        margin-bottom: 0.5rem; 
+                    }
+                    img { 
+                        max-width: 100%; 
+                        height: auto; 
+                    }
+                    a { 
+                        color: #0066cc; 
+                        text-decoration: none; 
+                    }
+                    a:hover { 
+                        text-decoration: underline; 
+                    }
+                    hr { 
+                        border: none; 
+                        border-top: 1px solid #ddd; 
+                        margin: 2rem 0; 
+                    }
+                    @media print {
+                        body { margin: 0; padding: 15px; }
+                        h1, h2, h3, h4, h5, h6 { page-break-after: avoid; }
+                        pre, blockquote { page-break-inside: avoid; }
+                        img { page-break-inside: avoid; }
+                    }
+                </style>
+            </head>
+            <body>
+                ${renderedHtml}
+            </body>
+            </html>
+        `);
+        printWindow.document.close();
+        printWindow.focus();
+        setTimeout(() => {
+            printWindow.print();
+            printWindow.close();
+        }, 250);
+    };
+
     const renderMarkdown = useCallback(() => {
         if (!markdownText.trim()) {
             setRenderedHtml('');
@@ -396,6 +517,9 @@ Use backslash to escape: \\*not italic\\* and \\**not bold\\**
                             <div className="split-editor">
                                 <div className="section-header">
                                     <h3>Editor</h3>
+                                    <button className="download-btn" onClick={downloadMarkdownText} title="Download as Markdown">
+                                        💾 Download .md
+                                    </button>
                                 </div>
                                 <textarea
                                     value={markdownText}
@@ -408,6 +532,9 @@ Use backslash to escape: \\*not italic\\* and \\**not bold\\**
                             <div className="split-preview">
                                 <div className="section-header">
                                     <h3>Live Preview</h3>
+                                    <button className="download-btn" onClick={downloadPreviewAsPDF} title="Download as PDF">
+                                        📄 Download PDF
+                                    </button>
                                 </div>
                                 <div
                                     className="markdown-preview split"
