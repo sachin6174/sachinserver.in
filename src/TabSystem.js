@@ -23,7 +23,7 @@ import Literature from "./RightBrain/Litlerature/Literature";
 import Philosophy from "./RightBrain/Philosophy/Philosophy";
 import Music from "./RightBrain/Music/Music";
 import Psychology from "./RightBrain/Psychology/Psychology";
-import { InfoTool, JsonTool, XmlTool, CryptoTool, WritingBoardTool, APITool, StorageTool, ColorPickerTool, ScreenRecorderTool, CSVTool, HashTool, PasswordTool, YAMLTool, RegexTool, EncoderTool, UUIDTool, MarkdownRenderer, LaTeXRenderer, PassportPhotoMaker, PDFTool, QRCodeTool, DiffChecker, TextGenerator } from './Tools';
+import { InfoTool, JsonTool, XmlTool, CryptoTool, WritingBoardTool, APITool, StorageTool, ColorPickerTool, ScreenRecorderTool, CSVTool, HashTool, PasswordTool, YAMLTool, RegexTool, EncoderTool, UUIDTool, MarkdownRenderer, LaTeXRenderer, PassportPhotoMaker, PDFTool, QRCodeTool, DiffChecker, TextGenerator, QATools } from './Tools';
 import logo from './assets/logo512.png';  // Updated import path
 import './TabSystem.css';
 import LeftNavigation from './LeftNavigation';
@@ -44,7 +44,7 @@ const TabSystem = () => {
             leftbrain: "about-me",           // Default for first load
             rightbrain: "drawing",           // Default when switching to rightbrain
             "developer-tools": "api-tool",   // Default when switching to developer tools
-            "qa-tools": "regex-tool",        // Default when switching to qa tools
+            "qa-tools": "qa-testing-apps",   // Default when switching to qa tools
             "general-tools": "info-tool"     // Default when switching to general tools
         };
     });
@@ -62,7 +62,7 @@ const TabSystem = () => {
     const getDefaultItemForTab = (tab) => {
         switch (tab) {
             case "developer-tools": return "api-tool";
-            case "qa-tools": return "regex-tool";
+            case "qa-tools": return "qa-testing-apps";
             case "general-tools": return "info-tool";
             case "rightbrain": return "drawing";
             default: return "about-me";
@@ -183,6 +183,7 @@ const TabSystem = () => {
             { id: "encoder-tool", label: "Encoder Tool", icon: "🔤", description: <EncoderTool /> },
         ],
         "qa-tools": [
+            { id: "qa-testing-apps", label: "QA Testing Apps", icon: "📱", description: <QATools /> },
             { id: "regex-tool", label: "Regex Tool", icon: "🔍", description: <RegexTool /> },
             { id: "diff-checker", label: "Diff Checker", icon: "🔄", description: <DiffChecker /> },
             { id: "password-tool", label: "Password Tool", icon: "🛡️", description: <PasswordTool /> },
