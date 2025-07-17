@@ -22,3 +22,4 @@ export { default as PassportPhotoMaker } from './PassportPhotoMaker/PassportPhot
 export { default as PDFTool } from './PDFTool/PDFTool';
 export { default as QRCodeTool } from './QRCodeTool/QRCodeTool';
 export { default as DiffChecker } from './DiffChecker/DiffChecker';
+export { default as TextGenerator } from './TextUtilities/TextGenerator';

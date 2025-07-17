@@ -23,7 +23,7 @@ import Literature from "./RightBrain/Litlerature/Literature";
 import Philosophy from "./RightBrain/Philosophy/Philosophy";
 import Music from "./RightBrain/Music/Music";
 import Psychology from "./RightBrain/Psychology/Psychology";
-import { InfoTool, JsonTool, XmlTool, CryptoTool, WritingBoardTool, APITool, StorageTool, ColorPickerTool, ScreenRecorderTool, CSVTool, HashTool, PasswordTool, YAMLTool, RegexTool, EncoderTool, UUIDTool, MarkdownRenderer, LaTeXRenderer, PassportPhotoMaker, PDFTool, QRCodeTool, DiffChecker } from './Tools';
+import { InfoTool, JsonTool, XmlTool, CryptoTool, WritingBoardTool, APITool, StorageTool, ColorPickerTool, ScreenRecorderTool, CSVTool, HashTool, PasswordTool, YAMLTool, RegexTool, EncoderTool, UUIDTool, MarkdownRenderer, LaTeXRenderer, PassportPhotoMaker, PDFTool, QRCodeTool, DiffChecker, TextGenerator } from './Tools';
 import logo from './assets/logo512.png';  // Updated import path
 import './TabSystem.css';
 import LeftNavigation from './LeftNavigation';
@@ -190,6 +190,7 @@ const TabSystem = () => {
             { id: "markdown-renderer", label: "Markdown Renderer", icon: "📄", description: <MarkdownRenderer /> },
             { id: "latex-renderer", label: "LaTeX Renderer", icon: "📝", description: <LaTeXRenderer /> },
             { id: "writing-board", label: "Writing Board", icon: "✏️", description: <WritingBoardTool /> },
+            { id: "text-generator", label: "Text Util", icon: "🎲", description: <TextGenerator /> },
         ],
         "general-tools": [
             { id: "info-tool", label: "Info Tool", icon: "📊", description: <InfoTool /> },

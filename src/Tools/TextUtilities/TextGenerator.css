@@ -1,0 +1,434 @@
+.text-generator-tool {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background: var(--background-color);
+}
+
+.tool-tabs {
+    display: flex;
+    border-bottom: 1px solid var(--border-color);
+    background: var(--surface-color);
+    padding: 0;
+    margin: 0;
+}
+
+.tool-tab {
+    background: var(--background-color);
+    color: var(--text-color);
+    border: none;
+    padding: 0.75rem 1.5rem;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    border-bottom: 2px solid transparent;
+}
+
+.tool-tab:hover {
+    background: var(--surface-color);
+    color: var(--text-color);
+}
+
+.tool-tab.active {
+    background: var(--background-color);
+    color: var(--accent-color);
+    border-bottom: 2px solid var(--accent-color);
+}
+
+.tool-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    overflow-y: auto;
+}
+
+/* Generator Section */
+.generator-section {
+    margin-bottom: 1rem;
+}
+
+.generator-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.control-group {
+    background: var(--surface-color);
+    padding: 1rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+
+.control-group h3 {
+    margin: 0 0 1rem 0;
+    color: var(--text-color);
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.control-group h4 {
+    margin: 0 0 0.5rem 0;
+    color: var(--text-color);
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.demo-text-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+}
+
+.demo-category {
+    background: var(--bg-secondary);
+    padding: 0.75rem;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+}
+
+.length-buttons {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.length-buttons button {
+    flex: 1;
+    padding: 0.5rem;
+    background: var(--background-color);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: all 0.2s ease;
+}
+
+.length-buttons button:hover {
+    background: var(--accent-color);
+    color: var(--background-color);
+    transform: translateY(-1px);
+}
+
+.random-char-options {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.char-length {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.char-length label {
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+.char-length input {
+    width: 100px;
+    padding: 0.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    background: var(--background-color);
+    color: var(--text-color);
+    font-size: 0.9rem;
+}
+
+.char-sets {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 0.5rem;
+}
+
+.char-sets label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-color);
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.char-sets input[type="checkbox"] {
+    accent-color: var(--accent-color);
+}
+
+.repeat-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.repeat-options input[type="text"], .repeat-options input[type="number"] {
+    padding: 0.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    background: var(--background-color);
+    color: var(--text-color);
+    font-size: 0.9rem;
+}
+
+.repeat-options input[type="text"] {
+    flex: 1;
+    min-width: 150px;
+}
+
+.repeat-options input[type="number"] {
+    width: 80px;
+}
+
+.control-group button, .repeat-options button {
+    padding: 0.5rem 1rem;
+    background: var(--accent-color);
+    color: var(--background-color);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.control-group button:hover, .repeat-options button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Manipulator Section */
+.manipulator-section {
+    margin-bottom: 1rem;
+}
+
+.manipulation-controls {
+    background: var(--surface-color);
+    padding: 1rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+
+.manipulation-controls h3 {
+    margin: 0 0 1rem 0;
+    color: var(--text-color);
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.control-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.control-category {
+    background: var(--bg-secondary);
+    padding: 0.75rem;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+}
+
+.control-category h4 {
+    margin: 0 0 0.75rem 0;
+    color: var(--text-color);
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.control-category button {
+    display: block;
+    width: 100%;
+    margin-bottom: 0.5rem;
+    padding: 0.5rem;
+    background: var(--background-color);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: all 0.2s ease;
+}
+
+.control-category button:hover {
+    background: var(--accent-color);
+    color: var(--background-color);
+    transform: translateY(-1px);
+}
+
+.control-category button:last-child {
+    margin-bottom: 0;
+}
+
+/* Stats Section */
+.stats-section {
+    margin-bottom: 1rem;
+}
+
+.stats-section h3 {
+    margin: 0 0 1rem 0;
+    color: var(--text-color);
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    background: var(--surface-color);
+    padding: 1rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+
+.stat-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem;
+    background: var(--bg-secondary);
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+}
+
+.stat-label {
+    font-weight: 500;
+    color: var(--text-color);
+    font-size: 0.9rem;
+}
+
+.stat-value {
+    font-weight: 600;
+    color: var(--accent-color);
+    font-size: 1rem;
+}
+
+/* Text Editor */
+.text-editor {
+    background: var(--surface-color);
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    overflow: hidden;
+}
+
+.editor-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.editor-header h3 {
+    margin: 0;
+    color: var(--text-color);
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.editor-controls {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.editor-controls button {
+    padding: 0.4rem 0.8rem;
+    background: var(--background-color);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: all 0.2s ease;
+}
+
+.editor-controls button:hover {
+    background: var(--accent-color);
+    color: var(--background-color);
+    transform: translateY(-1px);
+}
+
+.text-input {
+    width: 100%;
+    padding: 1rem;
+    border: none;
+    background: var(--background-color);
+    color: var(--text-color);
+    font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    resize: vertical;
+    outline: none;
+    min-height: 300px;
+}
+
+.text-input:focus {
+    outline: none;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .demo-text-options {
+        grid-template-columns: 1fr;
+    }
+    
+    .control-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .repeat-options {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .repeat-options input[type="text"] {
+        min-width: auto;
+    }
+    
+    .char-sets {
+        grid-template-columns: 1fr;
+    }
+    
+    .editor-header {
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: stretch;
+    }
+    
+    .editor-controls {
+        justify-content: center;
+    }
+}
+
+/* Dark mode specific adjustments */
+.dark-mode .text-input {
+    background: var(--bg-secondary);
+}
+
+.dark-mode .control-group button:hover,
+.dark-mode .repeat-options button:hover {
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+}
+
+/* Animation for button interactions */
+@keyframes buttonPress {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(1px); }
+    100% { transform: translateY(0); }
+}
+
+.control-category button:active,
+.length-buttons button:active,
+.editor-controls button:active {
+    animation: buttonPress 0.1s ease;
+}
