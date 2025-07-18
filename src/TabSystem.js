@@ -24,7 +24,7 @@ import Literature from "./RightBrain/Litlerature/Literature";
 import Philosophy from "./RightBrain/Philosophy/Philosophy";
 import Music from "./RightBrain/Music/Music";
 import Psychology from "./RightBrain/Psychology/Psychology";
-import { InfoTool, JsonTool, XmlTool, CryptoTool, WritingBoardTool, APITool, StorageTool, ColorPickerTool, ScreenRecorderTool, CSVTool, HashTool, PasswordTool, YAMLTool, RegexTool, EncoderTool, UUIDTool, MarkdownRenderer, LaTeXRenderer, PassportPhotoMaker, PDFTool, QRCodeTool, DiffChecker, TextGenerator, QATools, AIToolsChannels, ImportantWebsites, MacOSAppCatalog } from './Tools';
+import { InfoTool, JsonTool, XmlTool, CryptoTool, WritingBoardTool, APITool, StorageTool, ColorPickerTool, ScreenRecorderTool, CSVTool, HashTool, PasswordTool, YAMLTool, RegexTool, EncoderTool, UUIDTool, MarkdownRenderer, LaTeXRenderer, PassportPhotoMaker, PDFTool, QRCodeTool, DiffChecker, TextGenerator, QATools, AIToolsChannels, ImportantWebsites, MacOSAppCatalog, EmojiPicker, NumberToUnicode } from './Tools';
 import logo from './assets/logo512.png';  // Updated import path
 import './TabSystem.css';
 import LeftNavigation from './LeftNavigation';
@@ -204,6 +204,8 @@ const TabSystem = () => {
             { id: "color-picker", label: "Color Picker", icon: "🎨", description: <ColorPickerTool /> },
             { id: "screen-recorder", label: "Screen Recorder", icon: "🎥", description: <ScreenRecorderTool /> },
             { id: "important-websites", label: "Important Websites", icon: "🌐", description: <ImportantWebsites /> },
+            { id: "emoji-picker", label: "Emoji Picker", icon: "😀", description: <EmojiPicker /> },
+            { id: "number-to-unicode", label: "Number Base Converter", icon: "🔢", description: <NumberToUnicode /> },
         ],
     };
 

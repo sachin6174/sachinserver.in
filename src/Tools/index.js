@@ -27,3 +27,5 @@ export { default as QATools } from './QATools/QATools';
 export { default as AIToolsChannels } from './AIToolsChannels/AIToolsChannels';
 export { default as ImportantWebsites } from './ImportantWebsites/ImportantWebsites';
 export { default as MacOSAppCatalog } from './MacOSAppCatalog/MacOSAppCatalog';
+export { default as EmojiPicker } from './EmojiPicker/EmojiPicker';
+export { default as NumberToUnicode } from './NumberToUnicode/NumberToUnicode';
