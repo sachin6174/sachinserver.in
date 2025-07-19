@@ -11381,18 +11381,18 @@ int main() {
 
     return (
         <div className="leftbrain-container dsa-theme">
-            <div className="dsa-hero">
+            <div className="simple-header">
                 <h1>Data Structures & Algorithms</h1>
-                <p>Master problem-solving with curated LeetCode challenges and comprehensive guides</p>
+                <p>Master problem-solving with curated LeetCode challenges and comprehensive Swift programming guides</p>
             </div>
 
-            <div className="topics-nav">
-                <h2>📚 Choose Your Focus</h2>
-                <div className="topics-grid">
+            <div className="section">
+                <h2>Topics</h2>
+                <div className="grid-4">
                     {topics.map(topic => (
                         <button
                             key={topic.id}
-                            className={`topic-button ${selectedTopic === topic.id ? 'active' : ''}`}
+                            className={`leftbrain-button ${selectedTopic === topic.id ? 'active' : ''}`}
                             onClick={() => setSelectedTopic(topic.id)}
                         >
                             {topic.name}
