@@ -11461,8 +11461,8 @@ int main() {
                                     
                                     return (
                                         <div key={index} className="question-card">
-                                            <div className="question-header">
-                                                <span className="question-number">#{index}</span>
+                                            <div className="question-card-header">
+                                                <span className="question-number">#{index + 1}</span>
                                                 <span className={`question-difficulty ${
                                                     // Determine difficulty based on position in the problems array
                                                     (index >= 0 && index <= 4) ? 'difficulty-easy' :
