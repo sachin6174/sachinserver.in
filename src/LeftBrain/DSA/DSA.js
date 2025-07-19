@@ -3,8 +3,7 @@ import '../shared-styles.css';
 import './DSA.css';
 
 const DSA = () => {
-    const [selectedLanguage, setSelectedLanguage] = useState('javascript');
-    const [selectedTopic, setSelectedTopic] = useState('introduction');
+    const [selectedTopic, setSelectedTopic] = useState('array');
 
     const dsaTopics = {
         introduction: {
@@ -770,193 +769,449 @@ std::vector<int> createArray(int n) {
 }`
             }
         },
-        'arrays-0': {
-            title: 'Arrays - Level 0',
-            description: 'Basic array operations and fundamental concepts',
+        'array': {
+            title: 'Array',
+            description: 'Complete guide to arrays - from fundamentals to advanced problems',
+            explanation: `
+## What is an Array?
+An array is a linear data structure that stores elements of the same type in contiguous memory locations. Elements are accessed using their index (position).
+
+## Key Characteristics
+- **Fixed Size**: Size is determined at creation time
+- **Homogeneous**: All elements are of the same data type
+- **Zero-indexed**: First element is at index 0
+- **Random Access**: Direct access to any element using index
+- **Contiguous Memory**: Elements stored in adjacent memory locations
+
+## Time Complexity
+| Operation | Time Complexity |
+|-----------|----------------|
+| Access    | O(1)          |
+| Search    | O(n)          |
+| Insertion | O(n)          |
+| Deletion  | O(n)          |
+
+## Array Syntax in Swift
+
+### Declaration and Initialization
+\`\`\`swift
+// Empty array
+var emptyArray: [Int] = []
+var anotherEmpty = [String]()
+
+// Array with initial values
+var numbers = [1, 2, 3, 4, 5]
+var fruits = ["apple", "banana", "orange"]
+
+// Array with repeated values
+var zeros = Array(repeating: 0, count: 5) // [0, 0, 0, 0, 0]
+
+// Array with capacity
+var arrayWithCapacity = Array<Int>()
+arrayWithCapacity.reserveCapacity(100)
+\`\`\`
+
+### Basic Operations
+\`\`\`swift
+var arr = [1, 2, 3, 4, 5]
+
+// Access elements
+let first = arr[0]        // 1
+let last = arr[arr.count - 1]  // 5
+
+// Safe access
+let safeFirst = arr.first  // Optional(1)
+let safeLast = arr.last    // Optional(5)
+
+// Modify elements
+arr[0] = 10              // [10, 2, 3, 4, 5]
+
+// Insert elements
+arr.append(6)            // [10, 2, 3, 4, 5, 6]
+arr.insert(0, at: 0)     // [0, 10, 2, 3, 4, 5, 6]
+
+// Remove elements
+arr.removeLast()         // [0, 10, 2, 3, 4, 5]
+arr.removeFirst()        // [10, 2, 3, 4, 5]
+arr.remove(at: 2)        // [10, 2, 4, 5]
+
+// Check properties
+print(arr.count)         // 4
+print(arr.isEmpty)       // false
+\`\`\`
+
+### Array Traversal
+\`\`\`swift
+let numbers = [1, 2, 3, 4, 5]
+
+// For-in loop
+for number in numbers {
+    print(number)
+}
+
+// With index using enumerated()
+for (index, number) in numbers.enumerated() {
+    print("Index \\(index): \\(number)")
+}
+
+// Traditional for loop
+for i in 0..<numbers.count {
+    print("numbers[\\(i)] = \\(numbers[i])")
+}
+
+// Using indices
+for index in numbers.indices {
+    print("numbers[\\(index)] = \\(numbers[index])")
+}
+\`\`\`
+
+### Advanced Operations
+\`\`\`swift
+var arr = [1, 2, 3, 4, 5]
+
+// Slicing
+let slice = arr[1...3]   // [2, 3, 4]
+let prefix = arr.prefix(3) // [1, 2, 3]
+let suffix = arr.suffix(2) // [4, 5]
+
+// Searching
+let index = arr.firstIndex(of: 3)  // Optional(2)
+let contains = arr.contains(4)     // true
+
+// Sorting
+arr.sort()               // Sorts in place
+let sorted = arr.sorted() // Returns new sorted array
+
+// Filtering and Mapping
+let evens = arr.filter { $0 % 2 == 0 }  // [2, 4]
+let doubled = arr.map { $0 * 2 }        // [2, 4, 6, 8, 10]
+
+// Reducing
+let sum = arr.reduce(0, +)  // 15
+\`\`\`
+
+### 2D Arrays
+\`\`\`swift
+// Declaration
+var matrix: [[Int]] = []
+var grid = Array(repeating: Array(repeating: 0, count: 3), count: 3)
+
+// Initialization with values
+let matrix2D = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+]
+
+// Access elements
+let element = matrix2D[1][2]  // 6
+
+// Modify elements
+var mutableMatrix = matrix2D
+mutableMatrix[0][0] = 10
+
+// Traverse 2D array
+for row in matrix2D {
+    for element in row {
+        print(element, terminator: " ")
+    }
+    print() // New line after each row
+}
+\`\`\`
+
+## When to Use Arrays
+✅ **Use when:**
+- Need random access to elements
+- Memory usage is a concern
+- Cache performance is important
+- Working with numerical computations
+
+❌ **Avoid when:**
+- Frequent insertions/deletions at arbitrary positions
+- Size varies significantly during runtime
+- Need to store different data types together
+`,
             questions: [
-                'Two Sum: Find two numbers that add up to a target',
-                'Maximum Subarray: Find contiguous subarray with largest sum',
-                'Remove Duplicates: Remove duplicates from sorted array',
-                'Rotate Array: Rotate array to the right by k steps',
-                'Contains Duplicate: Check if array contains any duplicates',
-                'Best Time to Buy and Sell Stock',
-                'Merge Two Sorted Arrays',
-                'Find Missing Number in array from 1 to n',
-                'Move Zeros to the end of array',
-                'Intersection of Two Arrays'
-            ],
-            javascript: {
-                title: 'JavaScript Arrays Basics',
-                code: `// Array Declaration and Initialization
-let arr1 = [1, 2, 3, 4, 5];
-let arr2 = new Array(5).fill(0);
+                
+                // Easy Problems (5)
+                'Two Sum - https://leetcode.com/problems/two-sum/',
+                'Best Time to Buy and Sell Stock - https://leetcode.com/problems/best-time-to-buy-and-sell-stock/',
+                'Contains Duplicate - https://leetcode.com/problems/contains-duplicate/',
+                'Move Zeroes - https://leetcode.com/problems/move-zeroes/',
+                'Merge Sorted Array - https://leetcode.com/problems/merge-sorted-array/',
+                
+                // Medium Problems (5)
+                'Product of Array Except Self - https://leetcode.com/problems/product-of-array-except-self/',
+                '3Sum - https://leetcode.com/problems/3sum/',
+                'Container With Most Water - https://leetcode.com/problems/container-with-most-water/',
+                'Subarray Sum Equals K - https://leetcode.com/problems/subarray-sum-equals-k/',
+                'Search in Rotated Sorted Array - https://leetcode.com/problems/search-in-rotated-sorted-array/',
+                
+                // Hard Problems (3)
+                'Trapping Rain Water - https://leetcode.com/problems/trapping-rain-water/',
+                'Median of Two Sorted Arrays - https://leetcode.com/problems/median-of-two-sorted-arrays/',
+                'First Missing Positive - https://leetcode.com/problems/first-missing-positive/'
+            ]
+        },
+        'linkedlist': {
+            title: 'Linked List',
+            description: 'Complete guide to linked lists - from fundamentals to advanced problems',
+            explanation: `
+## What is a Linked List?
+A linked list is a linear data structure where elements (nodes) are stored in a sequence, but unlike arrays, elements are not stored in contiguous memory locations. Each node contains data and a reference (or link) to the next node in the sequence.
 
-// Basic Operations
-// Access: O(1)
-console.log(arr1[0]); // 1
+## Key Characteristics
+- **Dynamic Size**: Size can grow or shrink during runtime
+- **Non-contiguous Memory**: Nodes can be stored anywhere in memory
+- **Sequential Access**: Must traverse from head to reach any element
+- **Efficient Insertion/Deletion**: O(1) at known positions
+- **Extra Memory**: Requires additional memory for storing pointers
 
-// Insert at end: O(1)
-arr1.push(6);
+## Time Complexity
+| Operation | Time Complexity |
+|-----------|----------------|
+| Access    | O(n)          |
+| Search    | O(n)          |
+| Insertion | O(1)*         |
+| Deletion  | O(1)*         |
+*At known position. O(n) if position needs to be found.
 
-// Insert at beginning: O(n)
-arr1.unshift(0);
+## Types of Linked Lists
+1. **Singly Linked List**: Each node points to the next node
+2. **Doubly Linked List**: Each node has pointers to both next and previous nodes
+3. **Circular Linked List**: Last node points back to the first node
 
-// Delete from end: O(1)
-arr1.pop();
+## Linked List Syntax in Swift
 
-// Delete from beginning: O(n)
-arr1.shift();
-
-// Search: O(n)
-function linearSearch(arr, target) {
-    for (let i = 0; i < arr.length; i++) {
-        if (arr[i] === target) return i;
-    }
-    return -1;
-}
-
-// Common Problems
-// 1. Two Sum
-function twoSum(nums, target) {
-    const map = new Map();
-    for (let i = 0; i < nums.length; i++) {
-        const complement = target - nums[i];
-        if (map.has(complement)) {
-            return [map.get(complement), i];
-        }
-        map.set(nums[i], i);
-    }
-    return [];
-}
-
-// 2. Maximum Subarray (Kadane's Algorithm)
-function maxSubArray(nums) {
-    let maxSum = nums[0];
-    let currentSum = nums[0];
+### Node Structure
+\`\`\`swift
+// Singly Linked List Node
+class ListNode {
+    var val: Int
+    var next: ListNode?
     
-    for (let i = 1; i < nums.length; i++) {
-        currentSum = Math.max(nums[i], currentSum + nums[i]);
-        maxSum = Math.max(maxSum, currentSum);
+    init(_ val: Int) {
+        self.val = val
+        self.next = nil
     }
-    return maxSum;
-}`
-            },
-            swift: {
-                title: 'Swift Arrays Basics',
-                code: `// Array Declaration and Initialization
-var arr1 = [1, 2, 3, 4, 5]
-var arr2 = Array(repeating: 0, count: 5)
-
-// Basic Operations
-// Access: O(1)
-print(arr1[0]) // 1
-
-// Insert at end: O(1)
-arr1.append(6)
-
-// Insert at beginning: O(n)
-arr1.insert(0, at: 0)
-
-// Delete from end: O(1)
-arr1.removeLast()
-
-// Delete from beginning: O(n)
-arr1.removeFirst()
-
-// Search: O(n)
-func linearSearch(_ arr: [Int], _ target: Int) -> Int? {
-    for (index, value) in arr.enumerated() {
-        if value == target { return index }
-    }
-    return nil
 }
 
-// Common Problems
-// 1. Two Sum
-func twoSum(_ nums: [Int], _ target: Int) -> [Int] {
-    var map: [Int: Int] = [:]
-    for (i, num) in nums.enumerated() {
-        let complement = target - num
-        if let index = map[complement] {
-            return [index, i]
-        }
-        map[num] = i
-    }
-    return []
-}
-
-// 2. Maximum Subarray (Kadane's Algorithm)
-func maxSubArray(_ nums: [Int]) -> Int {
-    var maxSum = nums[0]
-    var currentSum = nums[0]
+// Doubly Linked List Node
+class DoublyListNode {
+    var val: Int
+    var next: DoublyListNode?
+    var prev: DoublyListNode?
     
-    for i in 1..<nums.count {
-        currentSum = max(nums[i], currentSum + nums[i])
-        maxSum = max(maxSum, currentSum)
+    init(_ val: Int) {
+        self.val = val
+        self.next = nil
+        self.prev = nil
     }
-    return maxSum
-}`
-            },
-            cpp: {
-                title: 'C++ Arrays Basics',
-                code: `#include <vector>
-#include <unordered_map>
-#include <algorithm>
-
-// Array Declaration and Initialization
-std::vector<int> arr1 = {1, 2, 3, 4, 5};
-std::vector<int> arr2(5, 0);
-
-// Basic Operations
-// Access: O(1)
-std::cout << arr1[0] << std::endl; // 1
-
-// Insert at end: O(1)
-arr1.push_back(6);
-
-// Insert at beginning: O(n)
-arr1.insert(arr1.begin(), 0);
-
-// Delete from end: O(1)
-arr1.pop_back();
-
-// Delete from beginning: O(n)
-arr1.erase(arr1.begin());
-
-// Search: O(n)
-int linearSearch(const std::vector<int>& arr, int target) {
-    for (int i = 0; i < arr.size(); i++) {
-        if (arr[i] == target) return i;
-    }
-    return -1;
 }
+\`\`\`
 
-// Common Problems
-// 1. Two Sum
-std::vector<int> twoSum(std::vector<int>& nums, int target) {
-    std::unordered_map<int, int> map;
-    for (int i = 0; i < nums.size(); i++) {
-        int complement = target - nums[i];
-        if (map.find(complement) != map.end()) {
-            return {map[complement], i};
-        }
-        map[nums[i]] = i;
-    }
-    return {};
-}
-
-// 2. Maximum Subarray (Kadane's Algorithm)
-int maxSubArray(std::vector<int>& nums) {
-    int maxSum = nums[0];
-    int currentSum = nums[0];
+### Basic Linked List Operations
+\`\`\`swift
+class LinkedList {
+    private var head: ListNode?
+    private var size: Int = 0
     
-    for (int i = 1; i < nums.size(); i++) {
-        currentSum = std::max(nums[i], currentSum + nums[i]);
-        maxSum = std::max(maxSum, currentSum);
+    // Add at head (beginning)
+    func addAtHead(_ val: Int) {
+        let newNode = ListNode(val)
+        newNode.next = head
+        head = newNode
+        size += 1
     }
-    return maxSum;
-}`
-            }
+    
+    // Add at tail (end)
+    func addAtTail(_ val: Int) {
+        let newNode = ListNode(val)
+        
+        guard let head = head else {
+            self.head = newNode
+            size += 1
+            return
+        }
+        
+        var current = head
+        while current.next != nil {
+            current = current.next!
+        }
+        current.next = newNode
+        size += 1
+    }
+    
+    // Add at specific index
+    func addAtIndex(_ index: Int, _ val: Int) {
+        if index < 0 || index > size { return }
+        
+        if index == 0 {
+            addAtHead(val)
+            return
+        }
+        
+        let newNode = ListNode(val)
+        var current = head
+        
+        for _ in 0..<(index - 1) {
+            current = current?.next
+        }
+        
+        newNode.next = current?.next
+        current?.next = newNode
+        size += 1
+    }
+    
+    // Delete at specific index
+    func deleteAtIndex(_ index: Int) {
+        if index < 0 || index >= size { return }
+        
+        if index == 0 {
+            head = head?.next
+            size -= 1
+            return
+        }
+        
+        var current = head
+        for _ in 0..<(index - 1) {
+            current = current?.next
+        }
+        
+        current?.next = current?.next?.next
+        size -= 1
+    }
+    
+    // Get value at index
+    func get(_ index: Int) -> Int {
+        if index < 0 || index >= size { return -1 }
+        
+        var current = head
+        for _ in 0..<index {
+            current = current?.next
+        }
+        
+        return current?.val ?? -1
+    }
+}
+\`\`\`
+
+### Common Linked List Algorithms
+\`\`\`swift
+// Reverse a linked list
+func reverseList(_ head: ListNode?) -> ListNode? {
+    var prev: ListNode? = nil
+    var current = head
+    
+    while current != nil {
+        let nextTemp = current?.next
+        current?.next = prev
+        prev = current
+        current = nextTemp
+    }
+    
+    return prev
+}
+
+// Find middle of linked list (Floyd's slow-fast pointer)
+func findMiddle(_ head: ListNode?) -> ListNode? {
+    var slow = head
+    var fast = head
+    
+    while fast != nil && fast?.next != nil {
+        slow = slow?.next
+        fast = fast?.next?.next
+    }
+    
+    return slow
+}
+
+// Detect cycle in linked list
+func hasCycle(_ head: ListNode?) -> Bool {
+    var slow = head
+    var fast = head
+    
+    while fast != nil && fast?.next != nil {
+        slow = slow?.next
+        fast = fast?.next?.next
+        
+        if slow === fast {
+            return true
+        }
+    }
+    
+    return false
+}
+
+// Merge two sorted linked lists
+func mergeTwoLists(_ l1: ListNode?, _ l2: ListNode?) -> ListNode? {
+    let dummy = ListNode(0)
+    var current = dummy
+    var list1 = l1
+    var list2 = l2
+    
+    while list1 != nil && list2 != nil {
+        if list1!.val <= list2!.val {
+            current.next = list1
+            list1 = list1?.next
+        } else {
+            current.next = list2
+            list2 = list2?.next
+        }
+        current = current.next!
+    }
+    
+    // Attach remaining nodes
+    current.next = list1 ?? list2
+    
+    return dummy.next
+}
+\`\`\`
+
+## Linked List vs Array
+| Aspect | Linked List | Array |
+|--------|-------------|-------|
+| Memory | Non-contiguous | Contiguous |
+| Access Time | O(n) | O(1) |
+| Insertion/Deletion | O(1) at known position | O(n) |
+| Memory Overhead | Extra pointer storage | No extra overhead |
+| Cache Performance | Poor | Good |
+
+## When to Use Linked Lists
+✅ **Use when:**
+- Frequent insertions/deletions at arbitrary positions
+- Size varies significantly during runtime
+- Memory is not allocated contiguously
+- Don't need random access to elements
+
+❌ **Avoid when:**
+- Need frequent random access to elements
+- Memory usage is critical
+- Cache performance is important
+- Working with numerical computations
+`,
+            questions: [
+                // Easy Problems
+                'Design Linked List - https://leetcode.com/problems/design-linked-list/',
+                'Adding Nodes to Linked List (addAtHead, addAtTail, addAtIndex) - https://leetcode.com/problems/design-linked-list/',
+                'Deleting Nodes in Linked List (deleteAtIndex) - https://leetcode.com/problems/design-linked-list/',
+                'Middle of Linked List - https://leetcode.com/problems/middle-of-the-linked-list/',
+                'Reverse Linked List - https://leetcode.com/problems/reverse-linked-list/',
+                'Linked List Cycle – Hash Table - https://leetcode.com/problems/linked-list-cycle/',
+                'Linked List Cycle – Floyd\'s Algorithm - https://leetcode.com/problems/linked-list-cycle/',
+                'Palindrome Linked List - https://leetcode.com/problems/palindrome-linked-list/',
+                'Intersection of Two Linked Lists - https://leetcode.com/problems/intersection-of-two-linked-lists/',
+                'Remove Linked List Elements - https://leetcode.com/problems/remove-linked-list-elements/',
+                
+                // Medium Problems
+                'Remove Nth Node from End of List (Two‐Pass & One‐Pass) - https://leetcode.com/problems/remove-nth-node-from-end-of-list/',
+                'Remove Duplicates from Sorted List - https://leetcode.com/problems/remove-duplicates-from-sorted-list/',
+                'Odd Even Linked List - https://leetcode.com/problems/odd-even-linked-list/',
+                'Add Two Numbers - https://leetcode.com/problems/add-two-numbers/',
+                'Merge Two Sorted Lists - https://leetcode.com/problems/merge-two-sorted-lists/',
+                'Rotate List - https://leetcode.com/problems/rotate-list/',
+                'Swap Nodes in Pairs (iterative or recursive) - https://leetcode.com/problems/swap-nodes-in-pairs/'
+            ]
         },
         'recursion-0': {
             title: 'Recursion - Level 0',
@@ -7570,626 +7825,6 @@ int main() {
 }`
             }
         },
-        'arrays-1': {
-            title: 'Arrays – Level 1',
-            description: 'Advanced array manipulation and optimization techniques',
-            questions: [
-                'How do you find all subarrays with given sum?',
-                'Explain the sliding window maximum problem.',
-                'How do you merge overlapping intervals?',
-                'What is the maximum subarray problem (Kadane\'s algorithm)?',
-                'How do you rotate an array by k positions?',
-                'Explain the trapping rainwater problem.',
-                'How do you find the minimum window substring?',
-                'What is the next greater element problem?',
-                'How do you implement a circular array?',
-                'Explain the maximum product subarray problem.',
-                'How do you find duplicates in an array with constraints?',
-                'What is the best time to buy and sell stock problem?'
-            ],
-            javascript: {
-                title: 'Advanced Arrays in JavaScript',
-                code: `// Kadane's Algorithm - Maximum Subarray Sum
-function maxSubArray(nums) {
-    let maxSum = nums[0];
-    let currentSum = nums[0];
-    
-    for (let i = 1; i < nums.length; i++) {
-        currentSum = Math.max(nums[i], currentSum + nums[i]);
-        maxSum = Math.max(maxSum, currentSum);
-    }
-    
-    return maxSum;
-}
-
-// Sliding Window Maximum
-function maxSlidingWindow(nums, k) {
-    const result = [];
-    const deque = []; // Store indices
-    
-    for (let i = 0; i < nums.length; i++) {
-        // Remove indices outside current window
-        while (deque.length && deque[0] <= i - k) {
-            deque.shift();
-        }
-        
-        // Remove smaller elements from back
-        while (deque.length && nums[deque[deque.length - 1]] <= nums[i]) {
-            deque.pop();
-        }
-        
-        deque.push(i);
-        
-        // Add to result when window is complete
-        if (i >= k - 1) {
-            result.push(nums[deque[0]]);
-        }
-    }
-    
-    return result;
-}
-
-// Merge Overlapping Intervals
-function mergeIntervals(intervals) {
-    if (intervals.length <= 1) return intervals;
-    
-    intervals.sort((a, b) => a[0] - b[0]);
-    const merged = [intervals[0]];
-    
-    for (let i = 1; i < intervals.length; i++) {
-        const current = intervals[i];
-        const lastMerged = merged[merged.length - 1];
-        
-        if (current[0] <= lastMerged[1]) {
-            lastMerged[1] = Math.max(lastMerged[1], current[1]);
-        } else {
-            merged.push(current);
-        }
-    }
-    
-    return merged;
-}
-
-// Rotate Array
-function rotateArray(nums, k) {
-    const n = nums.length;
-    k = k % n;
-    
-    // Three reversals approach
-    reverse(nums, 0, n - 1);
-    reverse(nums, 0, k - 1);
-    reverse(nums, k, n - 1);
-    
-    return nums;
-}
-
-function reverse(nums, start, end) {
-    while (start < end) {
-        [nums[start], nums[end]] = [nums[end], nums[start]];
-        start++;
-        end--;
-    }
-}
-
-// Trapping Rain Water
-function trapRainWater(height) {
-    if (height.length < 3) return 0;
-    
-    let left = 0, right = height.length - 1;
-    let leftMax = 0, rightMax = 0;
-    let water = 0;
-    
-    while (left < right) {
-        if (height[left] < height[right]) {
-            if (height[left] >= leftMax) {
-                leftMax = height[left];
-            } else {
-                water += leftMax - height[left];
-            }
-            left++;
-        } else {
-            if (height[right] >= rightMax) {
-                rightMax = height[right];
-            } else {
-                water += rightMax - height[right];
-            }
-            right--;
-        }
-    }
-    
-    return water;
-}
-
-// Next Greater Element
-function nextGreaterElement(nums) {
-    const result = new Array(nums.length).fill(-1);
-    const stack = [];
-    
-    for (let i = 0; i < nums.length; i++) {
-        while (stack.length && nums[stack[stack.length - 1]] < nums[i]) {
-            const index = stack.pop();
-            result[index] = nums[i];
-        }
-        stack.push(i);
-    }
-    
-    return result;
-}
-
-// Product of Array Except Self
-function productExceptSelf(nums) {
-    const result = new Array(nums.length);
-    
-    // Left products
-    result[0] = 1;
-    for (let i = 1; i < nums.length; i++) {
-        result[i] = result[i - 1] * nums[i - 1];
-    }
-    
-    // Right products
-    let right = 1;
-    for (let i = nums.length - 1; i >= 0; i--) {
-        result[i] *= right;
-        right *= nums[i];
-    }
-    
-    return result;
-}
-
-// Find All Duplicates (1 to n array)
-function findDuplicates(nums) {
-    const result = [];
-    
-    for (let i = 0; i < nums.length; i++) {
-        const index = Math.abs(nums[i]) - 1;
-        
-        if (nums[index] < 0) {
-            result.push(index + 1);
-        } else {
-            nums[index] = -nums[index];
-        }
-    }
-    
-    return result;
-}
-
-// Best Time to Buy and Sell Stock
-function maxProfit(prices) {
-    let minPrice = Infinity;
-    let maxProfit = 0;
-    
-    for (let price of prices) {
-        if (price < minPrice) {
-            minPrice = price;
-        } else if (price - minPrice > maxProfit) {
-            maxProfit = price - minPrice;
-        }
-    }
-    
-    return maxProfit;
-}
-
-// Subarray Sum Equals K
-function subarraySum(nums, k) {
-    const prefixSumCount = new Map();
-    prefixSumCount.set(0, 1);
-    
-    let count = 0;
-    let sum = 0;
-    
-    for (let num of nums) {
-        sum += num;
-        
-        if (prefixSumCount.has(sum - k)) {
-            count += prefixSumCount.get(sum - k);
-        }
-        
-        prefixSumCount.set(sum, (prefixSumCount.get(sum) || 0) + 1);
-    }
-    
-    return count;
-}
-
-// Example usage
-console.log("Max Subarray:", maxSubArray([-2,1,-3,4,-1,2,1,-5,4])); // 6
-console.log("Sliding Window Max:", maxSlidingWindow([1,3,-1,-3,5,3,6,7], 3));
-console.log("Merge Intervals:", mergeIntervals([[1,3],[2,6],[8,10],[15,18]]));
-console.log("Trapped Water:", trapRainWater([0,1,0,2,1,0,1,3,2,1,2,1])); // 6`
-            },
-            swift: {
-                title: 'Advanced Arrays in Swift',
-                code: `// Kadane's Algorithm - Maximum Subarray Sum
-func maxSubArray(_ nums: [Int]) -> Int {
-    guard !nums.isEmpty else { return 0 }
-    
-    var maxSum = nums[0]
-    var currentSum = nums[0]
-    
-    for i in 1..<nums.count {
-        currentSum = max(nums[i], currentSum + nums[i])
-        maxSum = max(maxSum, currentSum)
-    }
-    
-    return maxSum
-}
-
-// Sliding Window Maximum
-func maxSlidingWindow(_ nums: [Int], _ k: Int) -> [Int] {
-    var result: [Int] = []
-    var deque: [Int] = [] // Store indices
-    
-    for i in 0..<nums.count {
-        // Remove indices outside current window
-        while !deque.isEmpty && deque.first! <= i - k {
-            deque.removeFirst()
-        }
-        
-        // Remove smaller elements from back
-        while !deque.isEmpty && nums[deque.last!] <= nums[i] {
-            deque.removeLast()
-        }
-        
-        deque.append(i)
-        
-        // Add to result when window is complete
-        if i >= k - 1 {
-            result.append(nums[deque.first!])
-        }
-    }
-    
-    return result
-}
-
-// Merge Overlapping Intervals
-func mergeIntervals(_ intervals: [[Int]]) -> [[Int]] {
-    guard intervals.count > 1 else { return intervals }
-    
-    let sorted = intervals.sorted { $0[0] < $1[0] }
-    var merged: [[Int]] = [sorted[0]]
-    
-    for i in 1..<sorted.count {
-        let current = sorted[i]
-        let lastMerged = merged[merged.count - 1]
-        
-        if current[0] <= lastMerged[1] {
-            merged[merged.count - 1][1] = max(lastMerged[1], current[1])
-        } else {
-            merged.append(current)
-        }
-    }
-    
-    return merged
-}
-
-// Rotate Array
-func rotateArray(_ nums: inout [Int], _ k: Int) {
-    let n = nums.count
-    let k = k % n
-    
-    // Three reversals approach
-    reverse(&nums, 0, n - 1)
-    reverse(&nums, 0, k - 1)
-    reverse(&nums, k, n - 1)
-}
-
-func reverse(_ nums: inout [Int], _ start: Int, _ end: Int) {
-    var start = start
-    var end = end
-    
-    while start < end {
-        nums.swapAt(start, end)
-        start += 1
-        end -= 1
-    }
-}
-
-// Trapping Rain Water
-func trapRainWater(_ height: [Int]) -> Int {
-    guard height.count >= 3 else { return 0 }
-    
-    var left = 0
-    var right = height.count - 1
-    var leftMax = 0
-    var rightMax = 0
-    var water = 0
-    
-    while left < right {
-        if height[left] < height[right] {
-            if height[left] >= leftMax {
-                leftMax = height[left]
-            } else {
-                water += leftMax - height[left]
-            }
-            left += 1
-        } else {
-            if height[right] >= rightMax {
-                rightMax = height[right]
-            } else {
-                water += rightMax - height[right]
-            }
-            right -= 1
-        }
-    }
-    
-    return water
-}
-
-// Next Greater Element
-func nextGreaterElement(_ nums: [Int]) -> [Int] {
-    var result = Array(repeating: -1, count: nums.count)
-    var stack: [Int] = []
-    
-    for i in 0..<nums.count {
-        while !stack.isEmpty && nums[stack.last!] < nums[i] {
-            let index = stack.removeLast()
-            result[index] = nums[i]
-        }
-        stack.append(i)
-    }
-    
-    return result
-}
-
-// Product of Array Except Self
-func productExceptSelf(_ nums: [Int]) -> [Int] {
-    var result = Array(repeating: 1, count: nums.count)
-    
-    // Left products
-    for i in 1..<nums.count {
-        result[i] = result[i - 1] * nums[i - 1]
-    }
-    
-    // Right products
-    var right = 1
-    for i in stride(from: nums.count - 1, through: 0, by: -1) {
-        result[i] *= right
-        right *= nums[i]
-    }
-    
-    return result
-}
-
-// Best Time to Buy and Sell Stock
-func maxProfit(_ prices: [Int]) -> Int {
-    var minPrice = Int.max
-    var maxProfit = 0
-    
-    for price in prices {
-        if price < minPrice {
-            minPrice = price
-        } else if price - minPrice > maxProfit {
-            maxProfit = price - minPrice
-        }
-    }
-    
-    return maxProfit
-}
-
-// Subarray Sum Equals K
-func subarraySum(_ nums: [Int], _ k: Int) -> Int {
-    var prefixSumCount: [Int: Int] = [0: 1]
-    var count = 0
-    var sum = 0
-    
-    for num in nums {
-        sum += num
-        
-        if let prevCount = prefixSumCount[sum - k] {
-            count += prevCount
-        }
-        
-        prefixSumCount[sum, default: 0] += 1
-    }
-    
-    return count
-}
-
-// Example usage
-print("Max Subarray:", maxSubArray([-2,1,-3,4,-1,2,1,-5,4])) // 6
-print("Sliding Window Max:", maxSlidingWindow([1,3,-1,-3,5,3,6,7], 3))
-print("Merge Intervals:", mergeIntervals([[1,3],[2,6],[8,10],[15,18]]))
-print("Trapped Water:", trapRainWater([0,1,0,2,1,0,1,3,2,1,2,1])) // 6`
-            },
-            cpp: {
-                title: 'Advanced Arrays in C++',
-                code: `#include <iostream>
-#include <vector>
-#include <algorithm>
-#include <deque>
-#include <unordered_map>
-
-// Kadane's Algorithm - Maximum Subarray Sum
-int maxSubArray(std::vector<int>& nums) {
-    int maxSum = nums[0];
-    int currentSum = nums[0];
-    
-    for (int i = 1; i < nums.size(); i++) {
-        currentSum = std::max(nums[i], currentSum + nums[i]);
-        maxSum = std::max(maxSum, currentSum);
-    }
-    
-    return maxSum;
-}
-
-// Sliding Window Maximum
-std::vector<int> maxSlidingWindow(std::vector<int>& nums, int k) {
-    std::vector<int> result;
-    std::deque<int> dq; // Store indices
-    
-    for (int i = 0; i < nums.size(); i++) {
-        // Remove indices outside current window
-        while (!dq.empty() && dq.front() <= i - k) {
-            dq.pop_front();
-        }
-        
-        // Remove smaller elements from back
-        while (!dq.empty() && nums[dq.back()] <= nums[i]) {
-            dq.pop_back();
-        }
-        
-        dq.push_back(i);
-        
-        // Add to result when window is complete
-        if (i >= k - 1) {
-            result.push_back(nums[dq.front()]);
-        }
-    }
-    
-    return result;
-}
-
-// Merge Overlapping Intervals
-std::vector<std::vector<int>> mergeIntervals(std::vector<std::vector<int>>& intervals) {
-    if (intervals.size() <= 1) return intervals;
-    
-    std::sort(intervals.begin(), intervals.end());
-    std::vector<std::vector<int>> merged = {intervals[0]};
-    
-    for (int i = 1; i < intervals.size(); i++) {
-        auto& current = intervals[i];
-        auto& lastMerged = merged.back();
-        
-        if (current[0] <= lastMerged[1]) {
-            lastMerged[1] = std::max(lastMerged[1], current[1]);
-        } else {
-            merged.push_back(current);
-        }
-    }
-    
-    return merged;
-}
-
-// Rotate Array
-void rotateArray(std::vector<int>& nums, int k) {
-    int n = nums.size();
-    k = k % n;
-    
-    // Three reversals approach
-    std::reverse(nums.begin(), nums.end());
-    std::reverse(nums.begin(), nums.begin() + k);
-    std::reverse(nums.begin() + k, nums.end());
-}
-
-// Trapping Rain Water
-int trapRainWater(std::vector<int>& height) {
-    if (height.size() < 3) return 0;
-    
-    int left = 0, right = height.size() - 1;
-    int leftMax = 0, rightMax = 0;
-    int water = 0;
-    
-    while (left < right) {
-        if (height[left] < height[right]) {
-            if (height[left] >= leftMax) {
-                leftMax = height[left];
-            } else {
-                water += leftMax - height[left];
-            }
-            left++;
-        } else {
-            if (height[right] >= rightMax) {
-                rightMax = height[right];
-            } else {
-                water += rightMax - height[right];
-            }
-            right--;
-        }
-    }
-    
-    return water;
-}
-
-// Next Greater Element
-std::vector<int> nextGreaterElement(std::vector<int>& nums) {
-    std::vector<int> result(nums.size(), -1);
-    std::vector<int> stack;
-    
-    for (int i = 0; i < nums.size(); i++) {
-        while (!stack.empty() && nums[stack.back()] < nums[i]) {
-            int index = stack.back();
-            stack.pop_back();
-            result[index] = nums[i];
-        }
-        stack.push_back(i);
-    }
-    
-    return result;
-}
-
-// Product of Array Except Self
-std::vector<int> productExceptSelf(std::vector<int>& nums) {
-    std::vector<int> result(nums.size(), 1);
-    
-    // Left products
-    for (int i = 1; i < nums.size(); i++) {
-        result[i] = result[i - 1] * nums[i - 1];
-    }
-    
-    // Right products
-    int right = 1;
-    for (int i = nums.size() - 1; i >= 0; i--) {
-        result[i] *= right;
-        right *= nums[i];
-    }
-    
-    return result;
-}
-
-// Best Time to Buy and Sell Stock
-int maxProfit(std::vector<int>& prices) {
-    int minPrice = INT_MAX;
-    int maxProfit = 0;
-    
-    for (int price : prices) {
-        if (price < minPrice) {
-            minPrice = price;
-        } else if (price - minPrice > maxProfit) {
-            maxProfit = price - minPrice;
-        }
-    }
-    
-    return maxProfit;
-}
-
-// Subarray Sum Equals K
-int subarraySum(std::vector<int>& nums, int k) {
-    std::unordered_map<int, int> prefixSumCount;
-    prefixSumCount[0] = 1;
-    
-    int count = 0;
-    int sum = 0;
-    
-    for (int num : nums) {
-        sum += num;
-        
-        if (prefixSumCount.find(sum - k) != prefixSumCount.end()) {
-            count += prefixSumCount[sum - k];
-        }
-        
-        prefixSumCount[sum]++;
-    }
-    
-    return count;
-}
-
-// Example usage
-int main() {
-    std::vector<int> arr1 = {-2,1,-3,4,-1,2,1,-5,4};
-    std::cout << "Max Subarray: " << maxSubArray(arr1) << std::endl; // 6
-    
-    std::vector<int> arr2 = {1,3,-1,-3,5,3,6,7};
-    auto result = maxSlidingWindow(arr2, 3);
-    std::cout << "Sliding Window Max: ";
-    for (int num : result) std::cout << num << " ";
-    std::cout << std::endl;
-    
-    std::vector<int> heights = {0,1,0,2,1,0,1,3,2,1,2,1};
-    std::cout << "Trapped Water: " << trapRainWater(heights) << std::endl; // 6
-    
-    return 0;
-}`
-            }
-        },
         'linkedlist-1': {
             title: 'Linked List – Level 1',
             description: 'Advanced linked list operations and algorithms',
@@ -11736,48 +11371,13 @@ int main() {
         }
     };
 
-    const languages = [
-        { id: 'javascript', name: 'JS' },
-        { id: 'swift', name: 'Swift' },
-        { id: 'cpp', name: 'C++' }
-    ];
 
     const topics = [
-        { id: 'introduction', name: 'Introduction' },
-        { id: 'warmup', name: 'Warm Up' },
-        { id: 'complexity', name: 'Time/Space Complexity' },
-        { id: 'arrays-0', name: 'Arrays – Level 0' },
-        { id: 'recursion-0', name: 'Recursion – Level 0' },
-        { id: 'searching-sorting-0', name: 'Searching & Sorting – Level 0' },
-        { id: 'linkedlist-0', name: 'Linked List – Level 0' },
-        { id: 'strings-0', name: 'Strings – Level 0' },
-        { id: 'stack-queues', name: 'Stack and Queues' },
-        { id: 'binary-search', name: 'Binary Search Algorithm' },
-        { id: 'two-pointers', name: 'Two Pointers & Sliding Window' },
-        { id: 'trees-0', name: 'Trees – Level 0' },
-        { id: 'bst', name: 'Binary Search Tree' },
-        { id: 'heap', name: 'Heap' },
-        { id: 'backtracking', name: 'Backtracking' },
-        { id: 'greedy', name: 'Greedy Algorithm' },
-        { id: 'dp-0', name: 'Dynamic Programming – Level 0' },
-        { id: 'graphs-0', name: 'Graphs – Level 0' },
-        { id: 'tries', name: 'Tries' },
-        { id: 'searching-sorting-1', name: 'Searching & Sorting – Level 1' },
-        { id: 'arrays-1', name: 'Arrays – Level 1' },
-        { id: 'linkedlist-1', name: 'Linked List – Level 1' },
-        { id: 'strings-1', name: 'Strings – Level 1' },
-        { id: 'trees-1', name: 'Trees – Level 1' },
-        { id: 'graphs-1', name: 'Graph – Level 1' }
+        { id: 'array', name: 'Array' },
+        { id: 'linkedlist', name: 'Linked List' }
     ];
 
-    const copyToClipboard = (code) => {
-        navigator.clipboard.writeText(code).then(() => {
-            // Could add a toast notification here
-        });
-    };
-
     const currentTopic = dsaTopics[selectedTopic];
-    const currentCode = currentTopic[selectedLanguage];
 
     return (
         <div className="leftbrain-container dsa-theme">
@@ -11803,103 +11403,115 @@ int main() {
 
             <div className="grid-2">
                 <div className="content-card">
+                    {/* LeetCode Stats Section - Compact */}
+                    <div className="leetcode-compact-section">
+                        <div className="leetcode-compact-header">
+                            <div className="profile-compact">
+                                <span className="leetcode-icon">🔥</span>
+                                <span className="profile-name">sachinkumar6174</span>
+                            </div>
+                            <a 
+                                href="https://leetcode.com/sachinkumar6174" 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                className="leetcode-compact-link"
+                            >
+                                View Profile ↗
+                            </a>
+                        </div>
+                        <div className="leetcode-compact-stats">
+                            <img 
+                                src="https://leetcard.jacoblin.cool/sachinkumar6174?theme=dark&font=Karma" 
+                                alt="LeetCode Stats"
+                                className="leetcode-compact-card"
+                                onError={(e) => {
+                                    e.target.style.display = 'none';
+                                    e.target.nextSibling.style.display = 'flex';
+                                }}
+                            />
+                            <div className="compact-fallback-stats" style={{display: 'none'}}>
+                                <div className="compact-stat">
+                                    <span className="compact-number">30</span>
+                                    <span className="compact-label">2025 Contributions</span>
+                                </div>
+                                <div className="compact-stat">
+                                    <span className="compact-number">Active</span>
+                                    <span className="compact-label">July Streak</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
                     <h3>{currentTopic.title}</h3>
                     <p>{currentTopic.description}</p>
                     
-                    {currentTopic.questions && (
+                    {currentTopic.explanation && (
                         <div className="info-section">
-                            <h4>Practice Questions</h4>
-                            <div className="questions-list">
-                                {currentTopic.questions.map((question, index) => (
-                                    <div key={index} className="question-item">
-                                        <span className="question-number">{index + 1}.</span>
-                                        <span className="question-text">{question}</span>
-                                    </div>
-                                ))}
+                            <h4>📚 Fundamentals & Syntax</h4>
+                            <div className="explanation-content">
+                                <div dangerouslySetInnerHTML={{ 
+                                    __html: currentTopic.explanation
+                                        .replace(/\n/g, '<br/>')
+                                        .replace(/## (.*)/g, '<h3>$1</h3>')
+                                        .replace(/### (.*)/g, '<h4>$1</h4>')
+                                        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                                        .replace(/`([^`]+)`/g, '<code>$1</code>')
+                                        .replace(/```swift\n([\s\S]*?)```/g, '<pre class="code-block"><code>$1</code></pre>')
+                                        .replace(/\| (.*) \|/g, '<tr><td>$1</td></tr>')
+                                        .replace(/\|---/g, '<table class="complexity-table">')
+                                        .replace(/✅ \*\*(.*?)\*\*/g, '<div class="pro-tip">✅ <strong>$1</strong>')
+                                        .replace(/❌ \*\*(.*?)\*\*/g, '<div class="con-tip">❌ <strong>$1</strong>')
+                                }} />
                             </div>
                         </div>
                     )}
                     
-                    <div className="highlight-section">
-                        <h4>Time & Space Complexity</h4>
-                        <div className="grid-2">
-                            {selectedTopic === 'arrays' && (
-                                <div className="interactive-card">
-                                    <h5>Array Operations</h5>
-                                    <ul>
-                                        <li>Access: O(1)</li>
-                                        <li>Search: O(n)</li>
-                                        <li>Insertion: O(n)</li>
-                                        <li>Deletion: O(n)</li>
-                                    </ul>
-                                </div>
-                            )}
-                            {selectedTopic === 'linkedlist' && (
-                                <div className="interactive-card">
-                                    <h5>Linked List Operations</h5>
-                                    <ul>
-                                        <li>Access: O(n)</li>
-                                        <li>Search: O(n)</li>
-                                        <li>Insertion: O(1)</li>
-                                        <li>Deletion: O(1)</li>
-                                    </ul>
-                                </div>
-                            )}
-                            {selectedTopic === 'trees' && (
-                                <div className="interactive-card">
-                                    <h5>Binary Tree Traversal</h5>
-                                    <ul>
-                                        <li>Inorder: O(n)</li>
-                                        <li>Preorder: O(n)</li>
-                                        <li>Postorder: O(n)</li>
-                                        <li>Level Order: O(n)</li>
-                                    </ul>
-                                </div>
-                            )}
-                            {selectedTopic === 'sorting' && (
-                                <div className="interactive-card">
-                                    <h5>Sorting Algorithms</h5>
-                                    <ul>
-                                        <li>Bubble Sort: O(n²)</li>
-                                        <li>Quick Sort: O(n log n)</li>
-                                        <li>Merge Sort: O(n log n)</li>
-                                        <li>Heap Sort: O(n log n)</li>
-                                    </ul>
-                                </div>
-                            )}
+                    {currentTopic.questions && (
+                        <div className="info-section">
+                            <h4>🎯 Practice Problems</h4>
+                            <div className="questions-grid">
+                                {currentTopic.questions.map((question, index) => {
+                                    // Parse question text and URL
+                                    const parts = question.split(' - https://');
+                                    const questionTitle = parts[0];
+                                    const leetcodeUrl = parts[1] ? `https://${parts[1]}` : null;
+                                    
+                                    // Only render LeetCode problems, skip concept questions
+                                    if (!leetcodeUrl) return null;
+                                    
+                                    return (
+                                        <div key={index} className="question-card">
+                                            <div className="question-header">
+                                                <span className="question-number">#{index}</span>
+                                                <span className={`question-difficulty ${
+                                                    // Determine difficulty based on position in the problems array
+                                                    (index >= 0 && index <= 4) ? 'difficulty-easy' :
+                                                    (index >= 5 && index <= 9) ? 'difficulty-medium' :
+                                                    'difficulty-hard'
+                                                }`}>
+                                                    {(index >= 0 && index <= 4) ? 'Easy' :
+                                                     (index >= 5 && index <= 9) ? 'Medium' :
+                                                     'Hard'}
+                                                </span>
+                                            </div>
+                                            <h5 className="question-title">{questionTitle}</h5>
+                                            <a 
+                                                href={leetcodeUrl} 
+                                                target="_blank" 
+                                                rel="noopener noreferrer"
+                                                className="leetcode-link"
+                                            >
+                                                <span>Solve on LeetCode</span>
+                                                <span className="external-icon">↗</span>
+                                            </a>
+                                        </div>
+                                    );
+                                })}
+                            </div>
                         </div>
-                    </div>
+                    )}
                 </div>
 
-                <div className="content-card">
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 'var(--space-md)' }}>
-                        <h3>{currentCode.title}</h3>
-                        <div style={{ display: 'flex', gap: 'var(--space-sm)' }}>
-                            {languages.map(lang => (
-                                <button
-                                    key={lang.id}
-                                    className={`tech-tag ${selectedLanguage === lang.id ? 'active' : ''}`}
-                                    onClick={() => setSelectedLanguage(lang.id)}
-                                    title={lang.name}
-                                >
-                                    {lang.name}
-                                </button>
-                            ))}
-                            <button 
-                                className="leftbrain-button"
-                                onClick={() => copyToClipboard(currentCode.code)}
-                                title="Copy code"
-                                style={{ padding: 'var(--space-xs) var(--space-sm)', fontSize: 'var(--font-xs)' }}
-                            >
-                                Copy
-                            </button>
-                        </div>
-                    </div>
-                    
-                    <div className="code-block">
-                        <pre><code>{currentCode.code}</code></pre>
-                    </div>
-                </div>
             </div>
         </div>
     );
