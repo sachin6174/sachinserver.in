@@ -11381,18 +11381,18 @@ int main() {
 
     return (
         <div className="leftbrain-container dsa-theme">
-            <div className="simple-header">
+            <div className="dsa-hero">
                 <h1>Data Structures & Algorithms</h1>
-                <p>Code snippets and implementations in JavaScript, Swift, and C++</p>
+                <p>Master problem-solving with curated LeetCode challenges and comprehensive guides</p>
             </div>
 
-            <div className="section">
-                <h2>Topics</h2>
-                <div className="grid-4">
+            <div className="topics-nav">
+                <h2>📚 Choose Your Focus</h2>
+                <div className="topics-grid">
                     {topics.map(topic => (
                         <button
                             key={topic.id}
-                            className={`leftbrain-button ${selectedTopic === topic.id ? 'active' : ''}`}
+                            className={`topic-button ${selectedTopic === topic.id ? 'active' : ''}`}
                             onClick={() => setSelectedTopic(topic.id)}
                         >
                             {topic.name}
@@ -11445,27 +11445,6 @@ int main() {
                     <h3>{currentTopic.title}</h3>
                     <p>{currentTopic.description}</p>
                     
-                    {currentTopic.explanation && (
-                        <div className="info-section">
-                            <h4>📚 Fundamentals & Syntax</h4>
-                            <div className="explanation-content">
-                                <div dangerouslySetInnerHTML={{ 
-                                    __html: currentTopic.explanation
-                                        .replace(/\n/g, '<br/>')
-                                        .replace(/## (.*)/g, '<h3>$1</h3>')
-                                        .replace(/### (.*)/g, '<h4>$1</h4>')
-                                        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-                                        .replace(/`([^`]+)`/g, '<code>$1</code>')
-                                        .replace(/```swift\n([\s\S]*?)```/g, '<pre class="code-block"><code>$1</code></pre>')
-                                        .replace(/\| (.*) \|/g, '<tr><td>$1</td></tr>')
-                                        .replace(/\|---/g, '<table class="complexity-table">')
-                                        .replace(/✅ \*\*(.*?)\*\*/g, '<div class="pro-tip">✅ <strong>$1</strong>')
-                                        .replace(/❌ \*\*(.*?)\*\*/g, '<div class="con-tip">❌ <strong>$1</strong>')
-                                }} />
-                            </div>
-                        </div>
-                    )}
-                    
                     {currentTopic.questions && (
                         <div className="info-section">
                             <h4>🎯 Practice Problems</h4>
@@ -11475,6 +11454,7 @@ int main() {
                                     const parts = question.split(' - https://');
                                     const questionTitle = parts[0];
                                     const leetcodeUrl = parts[1] ? `https://${parts[1]}` : null;
+                                    
                                     
                                     // Only render LeetCode problems, skip concept questions
                                     if (!leetcodeUrl) return null;
@@ -11494,7 +11474,7 @@ int main() {
                                                      'Hard'}
                                                 </span>
                                             </div>
-                                            <h5 className="question-title">{questionTitle}</h5>
+                                            <h3 className="question-title">{questionTitle}</h3>
                                             <a 
                                                 href={leetcodeUrl} 
                                                 target="_blank" 
@@ -11507,6 +11487,27 @@ int main() {
                                         </div>
                                     );
                                 })}
+                            </div>
+                        </div>
+                    )}
+                    
+                    {currentTopic.explanation && (
+                        <div className="info-section">
+                            <h4>📚 Fundamentals & Syntax</h4>
+                            <div className="explanation-content">
+                                <div dangerouslySetInnerHTML={{ 
+                                    __html: currentTopic.explanation
+                                        .replace(/\n/g, '<br/>')
+                                        .replace(/## (.*)/g, '<h3>$1</h3>')
+                                        .replace(/### (.*)/g, '<h4>$1</h4>')
+                                        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                                        .replace(/`([^`]+)`/g, '<code>$1</code>')
+                                        .replace(/```swift\n([\s\S]*?)```/g, '<pre class="code-block"><code>$1</code></pre>')
+                                        .replace(/\| (.*) \|/g, '<tr><td>$1</td></tr>')
+                                        .replace(/\|---/g, '<table class="complexity-table">')
+                                        .replace(/✅ \*\*(.*?)\*\*/g, '<div class="pro-tip">✅ <strong>$1</strong>')
+                                        .replace(/❌ \*\*(.*?)\*\*/g, '<div class="con-tip">❌ <strong>$1</strong>')
+                                }} />
                             </div>
                         </div>
                     )}
