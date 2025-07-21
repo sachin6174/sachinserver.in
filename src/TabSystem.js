@@ -4,6 +4,7 @@ import AppleDevelopment from "./LeftBrain/AppleDevelopment/AppleDevelopment";
 import NodeJS from "./LeftBrain/NodeJS/NodeJS";
 import ReactJS from "./LeftBrain/ReactJS/ReactJS";
 import DSA from "./LeftBrain/DSA/DSA";
+import XcodeShortcuts from "./LeftBrain/XcodeShortcuts/XcodeShortcuts";
 import AppleDevYouTubeChannels from "./LeftBrain/AppleDevYouTubeChannels/AppleDevYouTubeChannels";
 import MacTerminalScripts from "./LeftBrain/MacTerminalScripts/MacTerminalScripts";
 import SwiftNetworking from "./LeftBrain/SwiftNetworking/SwiftNetworking";
@@ -145,6 +146,7 @@ const TabSystem = () => {
         leftbrain: [
             { id: "about-me", label: "About Me", icon: "👤", description: <AboutMe /> },
             { id: "dsa", label: "DSA", icon: "🧮", description: <DSA /> },
+            { id: "xcode-shortcuts", label: "Xcode Shortcuts", icon: "⌨️", description: <XcodeShortcuts /> },
             { id: "apple-dev-youtube", label: "Apple Dev YouTube", icon: "📺", description: <AppleDevYouTubeChannels /> },
             { id: "apple-development", label: "Apple Development", icon: "🍎", description: <AppleDevelopment /> },
             { id: "apple-languages", label: "Apple Languages", icon: "🍎", description: <AppleLanguages /> },

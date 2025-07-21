@@ -1,0 +1,172 @@
+.shortcuts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.shortcut-category {
+    background: var(--card-background);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: var(--card-shadow);
+}
+
+.category-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--accent-color);
+}
+
+.category-icon {
+    font-size: 1.5rem;
+    margin-right: 0.75rem;
+}
+
+.category-title {
+    margin: 0;
+    color: var(--primary-color);
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.shortcuts-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.shortcut-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem;
+    background: var(--background-subtle);
+    border-radius: 8px;
+    border: 1px solid var(--border-light);
+}
+
+.shortcut-keys {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    flex-shrink: 0;
+}
+
+.key {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    background: var(--key-background);
+    border: 1px solid var(--key-border);
+    border-radius: 4px;
+    font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--key-color);
+    box-shadow: 0 2px 0 var(--key-shadow);
+    min-width: 1.8rem;
+    text-align: center;
+}
+
+.plus {
+    color: var(--text-muted);
+    font-weight: 500;
+    margin: 0 0.25rem;
+}
+
+.shortcut-description {
+    flex: 1;
+    margin-left: 1rem;
+    color: var(--text-color);
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.tips-section {
+    margin-top: 3rem;
+}
+
+.tips-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.tip-card {
+    background: var(--card-background);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: var(--card-shadow);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.tip-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--card-shadow-hover);
+}
+
+.tip-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.tip-icon {
+    font-size: 1.5rem;
+    margin-right: 0.75rem;
+}
+
+.tip-title {
+    margin: 0;
+    color: var(--primary-color);
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.tip-content {
+    margin: 0;
+    color: var(--text-color);
+    line-height: 1.5;
+    font-size: 0.95rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .shortcuts-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .shortcut-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+    
+    .shortcut-description {
+        margin-left: 0;
+    }
+    
+    .tips-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Dark mode specific styles */
+:root {
+    --key-background: #f8f9fa;
+    --key-border: #dee2e6;
+    --key-color: #495057;
+    --key-shadow: rgba(0, 0, 0, 0.1);
+}
+
+.dark-mode {
+    --key-background: #343a40;
+    --key-border: #495057;
+    --key-color: #f8f9fa;
+    --key-shadow: rgba(0, 0, 0, 0.3);
+}
