@@ -33,6 +33,17 @@ import MainContent from './MainContent';
 import { ReactComponent as ToggleIcon } from './assets/svgs/toggle-icon.svg';
 
 const TabSystem = () => {
+    // Helper function to get default item for a tab
+    const getDefaultItemForTab = (tab) => {
+        switch (tab) {
+            case "developer-tools": return "ai-tools-channels";
+            case "qa-tools": return "qa-testing-apps";
+            case "general-tools": return "info-tool";
+            case "rightbrain": return "apple-dev-youtube-rb";
+            default: return "about-me";
+        }
+    };
+
     // Initialize state with stored values or defaults
     const [activeTab, setActiveTab] = useState(() => {
         const stored = localStorage.getItem('activeTab');
@@ -60,16 +71,6 @@ const TabSystem = () => {
         }
         return getDefaultItemForTab(stored || "leftbrain");
     });
-
-    const getDefaultItemForTab = (tab) => {
-        switch (tab) {
-            case "developer-tools": return "ai-tools-channels";
-            case "qa-tools": return "qa-testing-apps";
-            case "general-tools": return "info-tool";
-            case "rightbrain": return "apple-dev-youtube-rb";
-            default: return "about-me";
-        }
-    };
 
 
     const [isDarkMode, setIsDarkMode] = useState(() => {
@@ -119,9 +120,9 @@ const TabSystem = () => {
             const handleSystemThemeChange = (e) => {
                 setIsDarkMode(e.matches);
             };
-            
+
             mediaQuery.addEventListener('change', handleSystemThemeChange);
-            
+
             // Cleanup listener on unmount
             return () => {
                 mediaQuery.removeEventListener('change', handleSystemThemeChange);
@@ -240,15 +241,15 @@ const TabSystem = () => {
                             onClick={() => setActiveTab(tab)}
                         >
                             <span className="tab-icon">
-                                {tab === "leftbrain" ? "🧠" : 
-                                 tab === "rightbrain" ? "🎨" : 
-                                 tab === "developer-tools" ? "💻" : 
-                                 tab === "qa-tools" ? "🧪" : "🛠️"}
+                                {tab === "leftbrain" ? "🧠" :
+                                    tab === "rightbrain" ? "🎨" :
+                                        tab === "developer-tools" ? "💻" :
+                                            tab === "qa-tools" ? "🧪" : "🛠️"}
                             </span>
-                            {tab === "leftbrain" ? "LeftBrain" : 
-                             tab === "rightbrain" ? "RightBrain" : 
-                             tab === "developer-tools" ? "Developer Tools" : 
-                             tab === "qa-tools" ? "QA Tools" : "General Tools"}
+                            {tab === "leftbrain" ? "LeftBrain" :
+                                tab === "rightbrain" ? "RightBrain" :
+                                    tab === "developer-tools" ? "Developer Tools" :
+                                        tab === "qa-tools" ? "QA Tools" : "General Tools"}
                         </div>
                     ))}
                 </div>

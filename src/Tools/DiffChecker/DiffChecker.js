@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useRef } from 'react';
+import React, { useState, useMemo, useRef, useCallback } from 'react';
 import './DiffChecker.css';
 
 const DiffChecker = () => {
@@ -13,7 +13,7 @@ const DiffChecker = () => {
     const fileInputOriginal = useRef(null);
     const fileInputModified = useRef(null);
 
-    const normalizeLine = (line) => {
+    const normalizeLine = useCallback((line) => {
         let normalized = line;
         if (ignoreWhitespace) {
             normalized = normalized.replace(/\s+/g, ' ').trim();
@@ -22,20 +22,20 @@ const DiffChecker = () => {
             normalized = normalized.toLowerCase();
         }
         return normalized;
-    };
+    }, [ignoreWhitespace, ignoreCase]);
 
     const getWordDiff = (text1, text2) => {
-        const words1 = text1.split(/([\s\.,;:!?\(\)\[\]{}"'])/g).filter(w => w.length > 0);
-        const words2 = text2.split(/([\s\.,;:!?\(\)\[\]{}"'])/g).filter(w => w.length > 0);
-        
+        const words1 = text1.split(/([\s.,;:!?()[\]{}"'])/g).filter(w => w.length > 0);
+        const words2 = text2.split(/([\s.,;:!?()[\]{}"'])/g).filter(w => w.length > 0);
+
         const maxLen = Math.max(words1.length, words2.length);
         const result1 = [];
         const result2 = [];
-        
+
         for (let i = 0; i < maxLen; i++) {
             const word1 = words1[i] || '';
             const word2 = words2[i] || '';
-            
+
             if (word1 === word2) {
                 result1.push({ text: word1, type: 'equal' });
                 result2.push({ text: word2, type: 'equal' });
@@ -50,22 +50,22 @@ const DiffChecker = () => {
                 result2.push({ text: word2, type: 'insert' });
             }
         }
-        
+
         return { words1: result1, words2: result2 };
     };
 
     const getCharDiff = (text1, text2) => {
         const chars1 = text1.split('');
         const chars2 = text2.split('');
-        
+
         const maxLen = Math.max(chars1.length, chars2.length);
         const result1 = [];
         const result2 = [];
-        
+
         for (let i = 0; i < maxLen; i++) {
             const char1 = chars1[i] || '';
             const char2 = chars2[i] || '';
-            
+
             if (char1 === char2) {
                 result1.push({ text: char1, type: 'equal' });
                 result2.push({ text: char2, type: 'equal' });
@@ -80,7 +80,7 @@ const DiffChecker = () => {
                 result2.push({ text: char2, type: 'insert' });
             }
         }
-        
+
         return { chars1: result1, chars2: result2 };
     };
 
@@ -91,14 +91,14 @@ const DiffChecker = () => {
 
         const originalLines = originalText.split('\n');
         const modifiedLines = modifiedText.split('\n');
-        
+
         const maxLines = Math.max(originalLines.length, modifiedLines.length);
         const diff = [];
 
         for (let i = 0; i < maxLines; i++) {
             const originalLine = originalLines[i] || '';
             const modifiedLine = modifiedLines[i] || '';
-            
+
             const normalizedOriginal = normalizeLine(originalLine);
             const normalizedModified = normalizeLine(modifiedLine);
 
@@ -113,7 +113,7 @@ const DiffChecker = () => {
 
             let wordDiff = null;
             let charDiff = null;
-            
+
             if (status === 'modified') {
                 if (highlightMode === 'word') {
                     wordDiff = getWordDiff(originalLine, modifiedLine);
@@ -138,7 +138,7 @@ const DiffChecker = () => {
         }
 
         return diff;
-    }, [originalText, modifiedText, ignoreWhitespace, ignoreCase, highlightMode, collapseLines, realTimeDiff]);
+    }, [originalText, modifiedText, highlightMode, collapseLines, realTimeDiff, normalizeLine]);
 
     const stats = useMemo(() => {
         const added = computeDiff.filter(line => line.status === 'added').length;
@@ -213,13 +213,13 @@ const DiffChecker = () => {
         report += `- Removed lines: ${stats.removed}\n`;
         report += `- Modified lines: ${stats.modified}\n`;
         report += `- Unchanged lines: ${stats.unchanged}\n\n`;
-        
+
         report += `**Changes:**\n\n`;
         computeDiff.forEach(line => {
             if (line.status !== 'unchanged') {
-                const prefix = line.status === 'added' ? '+ ' : 
-                             line.status === 'removed' ? '- ' : 
-                             '~ ';
+                const prefix = line.status === 'added' ? '+ ' :
+                    line.status === 'removed' ? '- ' :
+                        '~ ';
                 const text = line.status === 'removed' ? line.original : line.modified;
                 report += `${prefix}Line ${line.lineNumber}: ${text}\n`;
             }
@@ -272,7 +272,7 @@ console.log('Total with tax:', finalTotal);`);
         if (line.status === 'unchanged') {
             return line.original;
         }
-        
+
         if (line.status === 'added' || line.status === 'removed') {
             const text = isOriginal ? line.original : line.modified;
             return <span className={`diff-highlight ${line.status}`}>{text}</span>;
@@ -282,8 +282,8 @@ console.log('Total with tax:', finalTotal);`);
             if (highlightMode === 'word' && line.wordDiff) {
                 const words = isOriginal ? line.wordDiff.words1 : line.wordDiff.words2;
                 return words.map((word, index) => (
-                    <span 
-                        key={index} 
+                    <span
+                        key={index}
                         className={word.type !== 'equal' && word.type !== 'missing' ? `diff-highlight ${word.type}` : ''}
                     >
                         {word.text}
@@ -292,8 +292,8 @@ console.log('Total with tax:', finalTotal);`);
             } else if (highlightMode === 'character' && line.charDiff) {
                 const chars = isOriginal ? line.charDiff.chars1 : line.charDiff.chars2;
                 return chars.map((char, index) => (
-                    <span 
-                        key={index} 
+                    <span
+                        key={index}
                         className={char.type !== 'equal' && char.type !== 'missing' ? `diff-highlight ${char.type}` : ''}
                     >
                         {char.text}
@@ -413,8 +413,8 @@ console.log('Total with tax:', finalTotal);`);
                             <button className="btn btn-clear" onClick={clearAll}>
                                 🗑️ Clear All
                             </button>
-                            <button 
-                                className="btn btn-copy" 
+                            <button
+                                className="btn btn-copy"
                                 onClick={() => copyToClipboard(generateDiffReport())}
                             >
                                 📋 Copy Report
@@ -540,8 +540,8 @@ console.log('Total with tax:', finalTotal);`);
                                 <h4>Original</h4>
                                 <div className="diff-content">
                                     {computeDiff.map((line, index) => (
-                                        <div 
-                                            key={index} 
+                                        <div
+                                            key={index}
                                             className={`diff-line ${line.status}`}
                                         >
                                             <span className="line-number">{line.lineNumber}</span>
@@ -552,13 +552,13 @@ console.log('Total with tax:', finalTotal);`);
                                     ))}
                                 </div>
                             </div>
-                            
+
                             <div className="diff-column">
                                 <h4>Modified</h4>
                                 <div className="diff-content">
                                     {computeDiff.map((line, index) => (
-                                        <div 
-                                            key={index} 
+                                        <div
+                                            key={index}
                                             className={`diff-line ${line.status}`}
                                         >
                                             <span className="line-number">{line.lineNumber}</span>

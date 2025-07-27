@@ -222,20 +222,18 @@ Use backslash to escape: \\*not italic\\* and \\**not bold\\**
 *This document demonstrates the full power of Markdown!*`);
     const [renderedHtml, setRenderedHtml] = useState('');
     const [activeTab, setActiveTab] = useState('tutorial');
-    const [tryItMarkdown, setTryItMarkdown] = useState('');
-    const options = {
-        breaks: true,
-        gfm: true,
-        tables: true,
-        pedantic: false,
-        sanitize: false,
-        smartLists: true,
-        smartypants: false
-    };
-
-
     // Configure marked options
     useEffect(() => {
+        const options = {
+            breaks: true,
+            gfm: true,
+            tables: true,
+            pedantic: false,
+            sanitize: false,
+            smartLists: true,
+            smartypants: false
+        };
+
         marked.setOptions({
             breaks: options.breaks,
             gfm: options.gfm,
@@ -244,7 +242,7 @@ Use backslash to escape: \\*not italic\\* and \\**not bold\\**
             sanitize: options.sanitize,
             smartLists: options.smartLists,
             smartypants: options.smartypants,
-            highlight: function(code, lang) {
+            highlight: function (code, lang) {
                 // Basic syntax highlighting for common languages
                 if (lang === 'javascript' || lang === 'js') {
                     return code
@@ -258,7 +256,7 @@ Use backslash to escape: \\*not italic\\* and \\**not bold\\**
                 return code;
             }
         });
-    }, [options]);
+    }, []);
 
     const downloadMarkdownText = () => {
         const blob = new Blob([markdownText], { type: 'text/markdown' });
@@ -429,7 +427,7 @@ Use backslash to escape: \\*not italic\\* and \\**not bold\\**
         {
             title: "Code & Syntax Highlighting",
             content: "Display code with proper formatting. Use backticks for inline code and triple backticks for code blocks with syntax highlighting.",
-            example: "## Inline Code\nUse `console.log()` for debugging.\nInstall with `npm install package-name`.\nThe `Array.map()` method is powerful.\n\n## Code Blocks\n\n```javascript\nfunction greetUser(name) {\n    console.log(`Hello, ${name}!`);\n    return `Welcome, ${name}!`;\n}\n\nconst user = \"John\";\ngreetUser(user);\n```\n\n```python\ndef calculate_area(radius):\n    import math\n    return math.pi * radius ** 2\n\narea = calculate_area(5)\nprint(f\"Area: {area:.2f}\")\n```\n\n```css\n.container {\n    max-width: 1200px;\n    margin: 0 auto;\n    padding: 20px;\n}\n```",
+            example: "## Inline Code\nUse `console.log()` for debugging.\nInstall with `npm install package-name`.\nThe `Array.map()` method is powerful.\n\n## Code Blocks\n\n```javascript\nfunction greetUser(name) {\n    console.log('Hello, ' + name + '!');\n    return 'Welcome, ' + name + '!';\n}\n\nconst user = \"John\";\ngreetUser(user);\n```\n\n```python\ndef calculate_area(radius):\n    import math\n    return math.pi * radius ** 2\n\narea = calculate_area(5)\nprint(f\"Area: {area:.2f}\")\n```\n\n```css\n.container {\n    max-width: 1200px;\n    margin: 0 auto;\n    padding: 20px;\n}\n```",
             tryIt: "`inline code`\n\n```javascript\nconsole.log('Hello World');\n```"
         },
         {

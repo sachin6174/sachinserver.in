@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useMemo } from 'react';
 import './EmojiPicker.css';
 
 const EmojiPicker = () => {
@@ -11,7 +11,7 @@ const EmojiPicker = () => {
     const [unicodeError, setUnicodeError] = useState('');
 
     // Comprehensive emoji database organized by categories
-    const emojiDatabase = {
+    const emojiDatabase = useMemo(() => ({
         faces: {
             name: 'Faces & Emotions',
             icon: '😀',
@@ -638,36 +638,36 @@ const EmojiPicker = () => {
                 { emoji: '🎷', name: 'Saxophone', unicode: 'U+1F3B7' }
             ]
         }
-    };
+    }), []);
 
     // Get all emojis for filtering
-    const getAllEmojis = () => {
+    const getAllEmojis = useCallback(() => {
         return Object.values(emojiDatabase).reduce((acc, category) => {
             return acc.concat(category.emojis);
         }, []);
-    };
+    }, [emojiDatabase]);
 
     // Filter emojis based on search term and category
     const getFilteredEmojis = useCallback(() => {
         const allEmojis = getAllEmojis();
-        
+
         let filtered = allEmojis;
-        
+
         // Filter by category
         if (selectedCategory !== 'all') {
             filtered = emojiDatabase[selectedCategory]?.emojis || [];
         }
-        
+
         // Filter by search term
         if (searchTerm) {
-            filtered = filtered.filter(emoji => 
+            filtered = filtered.filter(emoji =>
                 emoji.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
                 emoji.emoji.includes(searchTerm)
             );
         }
-        
+
         return filtered;
-    }, [selectedCategory, searchTerm]);
+    }, [selectedCategory, searchTerm, emojiDatabase, getAllEmojis]);
 
     // Copy emoji to clipboard
     const copyEmoji = async (emoji) => {
@@ -753,11 +753,11 @@ const EmojiPicker = () => {
     const getCategoryStats = () => {
         const allEmojis = getAllEmojis();
         const categoryStats = {};
-        
+
         Object.keys(emojiDatabase).forEach(key => {
             categoryStats[key] = emojiDatabase[key].emojis.length;
         });
-        
+
         return {
             total: allEmojis.length,
             categories: categoryStats

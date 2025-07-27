@@ -2,7 +2,6 @@ import React, { useState, useCallback } from 'react';
 import './TextGenerator.css';
 
 const TextGenerator = () => {
-    const [generatedText, setGeneratedText] = useState('');
     const [inputText, setInputText] = useState('');
     const [charCount, setCharCount] = useState(0);
     const [wordCount, setWordCount] = useState(0);
@@ -56,7 +55,7 @@ const TextGenerator = () => {
         const words = text.trim() ? text.trim().split(/\s+/).length : 0;
         const lines = text.split('\n').length;
         const spaces = (text.match(/\s/g) || []).length;
-        
+
         setCharCount(chars);
         setWordCount(words);
         setLineCount(lines);
@@ -66,7 +65,6 @@ const TextGenerator = () => {
     // Generate demo text
     const generateDemoText = (type, length) => {
         const text = demoTexts[type][length];
-        setGeneratedText(text);
         setInputText(text);
         updateStats(text);
     };
@@ -77,13 +75,12 @@ const TextGenerator = () => {
         includeCharSets.forEach(set => {
             charset += charSets[set];
         });
-        
+
         let result = '';
         for (let i = 0; i < length; i++) {
             result += charset.charAt(Math.floor(Math.random() * charset.length));
         }
-        
-        setGeneratedText(result);
+
         setInputText(result);
         updateStats(result);
     };
@@ -91,7 +88,6 @@ const TextGenerator = () => {
     // Generate repeated text
     const generateRepeatedText = (text, count, separator = '') => {
         const result = Array(count).fill(text).join(separator);
-        setGeneratedText(result);
         setInputText(result);
         updateStats(result);
     };
@@ -164,7 +160,7 @@ const TextGenerator = () => {
     };
 
     const titleCaseText = () => {
-        const result = inputText.replace(/\w\S*/g, (txt) => 
+        const result = inputText.replace(/\w\S*/g, (txt) =>
             txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()
         );
         setInputText(result);
@@ -184,7 +180,7 @@ const TextGenerator = () => {
     };
 
     const makeBoldWords = () => {
-        const result = formatType === 'rich' 
+        const result = formatType === 'rich'
             ? inputText.replace(/\b\w+\b/g, (word) => `<strong>${word}</strong>`)
             : inputText.replace(/\b\w+\b/g, (word) => `**${word}**`);
         setInputText(result);
@@ -250,7 +246,6 @@ const TextGenerator = () => {
 
     const clearText = () => {
         setInputText('');
-        setGeneratedText('');
         updateStats('');
     };
 
@@ -279,16 +274,16 @@ const TextGenerator = () => {
             // Create a temporary div to convert HTML to rich text
             const tempDiv = document.createElement('div');
             tempDiv.innerHTML = inputText;
-            
+
             // Copy as rich text
             const blob = new Blob([inputText], { type: 'text/html' });
             const plainTextBlob = new Blob([tempDiv.textContent || tempDiv.innerText || ''], { type: 'text/plain' });
-            
+
             const clipboardItem = new ClipboardItem({
                 'text/html': blob,
                 'text/plain': plainTextBlob
             });
-            
+
             await navigator.clipboard.write([clipboardItem]);
         } catch (err) {
             console.error('Failed to copy as rich text:', err);
@@ -393,8 +388,8 @@ const TextGenerator = () => {
                                 <h3>Text Manipulation</h3>
                                 <div className="format-toggle">
                                     <label>Format Type:</label>
-                                    <select 
-                                        value={formatType} 
+                                    <select
+                                        value={formatType}
                                         onChange={(e) => setFormatType(e.target.value)}
                                         className="format-select"
                                     >
@@ -412,7 +407,7 @@ const TextGenerator = () => {
                                     <button onClick={removeSpecialChars}>Remove Special Chars</button>
                                     <button onClick={removeDuplicateSpaces}>Remove Duplicate Spaces</button>
                                 </div>
-                                
+
                                 <div className="control-category">
                                     <h4>Transform Operations</h4>
                                     <button onClick={addSpaces}>Add Spaces</button>
@@ -420,14 +415,14 @@ const TextGenerator = () => {
                                     <button onClick={shuffleText}>Shuffle Characters</button>
                                     <button onClick={duplicateText}>Duplicate Text</button>
                                 </div>
-                                
+
                                 <div className="control-category">
                                     <h4>Case Operations</h4>
                                     <button onClick={upperCaseText}>UPPERCASE</button>
                                     <button onClick={lowerCaseText}>lowercase</button>
                                     <button onClick={titleCaseText}>Title Case</button>
                                 </div>
-                                
+
                                 <div className="control-category">
                                     <h4>Formatting Operations</h4>
                                     <button onClick={makeBold}>
@@ -449,7 +444,7 @@ const TextGenerator = () => {
                                         {formatType === 'rich' ? 'Italic Sentences' : '*Italic Sentences*'}
                                     </button>
                                 </div>
-                                
+
                                 <div className="control-category">
                                     <h4>Remove Formatting</h4>
                                     <button onClick={removeBold}>Remove Bold</button>

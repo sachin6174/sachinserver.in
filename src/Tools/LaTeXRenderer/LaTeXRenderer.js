@@ -152,7 +152,6 @@ const LaTeXRenderer = () => {
 \\end{document}`);
     const [renderedHtml, setRenderedHtml] = useState('');
     const [activeTab, setActiveTab] = useState('tutorial');
-    const [tryItLatex, setTryItLatex] = useState('');
 
     const downloadLatexText = () => {
         const blob = new Blob([latexText], { type: 'text/plain' });
@@ -313,10 +312,10 @@ const LaTeXRenderer = () => {
 
         try {
             let html = latexText;
-            
+
             // Remove comments first
             html = html.replace(/%.*$/gm, '');
-            
+
             // Document structure
             html = html
                 .replace(/\\documentclass(\[[^\]]*\])?\{[^}]+\}/g, '')
@@ -337,18 +336,18 @@ const LaTeXRenderer = () => {
             // Remove all command definitions and fragments more aggressively
             // First, find and remove the entire command definition section
             html = html.replace(/%-------------------------[\s\S]*?Custom commands[\s\S]*?%-------------------------------------------/g, '');
-            
+
             // Remove any remaining newcommand definitions with better pattern matching
             html = html.replace(/\\newcommand\{[^}]+\}(\[[^\]]*\])?\{[\s\S]*?\n\}/g, '');
             html = html.replace(/\\renewcommand[^}]*\{[^}]*\}/g, '');
-            
+
             // More aggressive fragment removal
             html = html.replace(/\{[\s\S]*?\}\[t\]\{l@\{\\extracolsep\{\\fill\}\}r\}/g, '');
             html = html.replace(/\{0\.97\\textwidth\}\{l@\{\\extracolsep\{\\fill\}\}r\}/g, '');
             html = html.replace(/\[leftmargin=0\.15in, label=\{\}\]/g, '');
             html = html.replace(/#[1-4]/g, '');
             html = html.replace(/\$\\vcenter\{\\hbox\{\\tiny\$\\bullet\$\}\}\$/g, '');
-            
+
             // Remove specific problematic patterns
             html = html.replace(/\\begin\s*$/gm, '');
             html = html.replace(/\\textbf\{\}\s*$/gm, '');
@@ -358,7 +357,7 @@ const LaTeXRenderer = () => {
             html = html.replace(/^\s*\}\s*\}\s*\}\s*\}\s*$/gm, '');
             html = html.replace(/^\s*\$\}\s*$/gm, '');
             html = html.replace(/^\s*\}\s*\$\}\s*$/gm, '');
-            
+
             // Clean up any orphaned braces and fragments line by line
             html = html.replace(/^\s*\[t\]\{l@\{\\extracolsep\{\\fill\}\}r\}.*$/gm, '');
             html = html.replace(/^\s*\{0\.97\\textwidth\}.*$/gm, '');
@@ -368,14 +367,14 @@ const LaTeXRenderer = () => {
             html = html.replace(/^\s*\\begin\s*\\textbf\{\}\s*$/gm, '');
             html = html.replace(/^\s*\\begin\s*$/gm, '');
             html = html.replace(/^\s*\\textbf\{\}\s*$/gm, '');
-            
+
             // Remove empty lines and multiple consecutive newlines
             html = html.replace(/^\s*\n$/gm, '');
             html = html.replace(/\n\s*\n\s*\n/g, '\n\n');
-            
+
             // Final cleanup for any remaining orphaned elements
-            html = html.replace(/^\s*[\{\}\$]+\s*$/gm, '');
-            html = html.replace(/^\s*\\[a-zA-Z]*\{\}\s*$/gm, '');
+            html = html.replace(/^\s*[{}$]+\s*$/gm, '');
+            html = html.replace(/^\s*\\[a-zA-Z]*{}\s*$/gm, '');
 
             // Handle document structure
             html = html
@@ -419,38 +418,38 @@ const LaTeXRenderer = () => {
 
             // Handle technical skills section specially BEFORE other processing
             // Look for the specific technical skills pattern in the itemize environment
-            html = html.replace(/\\begin\{itemize\}\[leftmargin=0\.15in, label=\{\}\]\s*\\small\{\\item\{([\s\S]*?)\}\}\s*\\end\{itemize\}/g, function(match, content) {
+            html = html.replace(/\\begin\{itemize\}\[leftmargin=0\.15in, label=\{\}\]\s*\\small\{\\item\{([\s\S]*?)\}\}\s*\\end\{itemize\}/g, function (match, content) {
                 console.log('Found technical skills itemize match:', match);
                 console.log('Content:', content);
-                
+
                 // Split by \\ to get each line
                 let lines = content.split('\\\\').map(line => line.trim()).filter(line => line.length > 0);
-                
+
                 let processedLines = lines.map(line => {
                     // Handle the specific pattern \textbf{Category}{: Items}
                     line = line.replace(/\\textbf\{([^}]+)\}\{:\s*([^}]+)\}/g, '<strong>$1</strong>: $2');
                     line = line.replace(/\\&/g, '&');
                     return line;
                 });
-                
+
                 return `<ul class="technical-skills">${processedLines.map(line => `<li>${line}</li>`).join('')}</ul>`;
             });
 
             // Fallback: If the above doesn't match, try the simpler pattern
-            html = html.replace(/\\small\{\\item\{([\s\S]*?)\}\}/g, function(match, content) {
+            html = html.replace(/\\small\{\\item\{([\s\S]*?)\}\}/g, function (match, content) {
                 console.log('Found fallback technical skills match:', match);
                 console.log('Content:', content);
-                
+
                 // Split by \\ to get each line
                 let lines = content.split('\\\\').map(line => line.trim()).filter(line => line.length > 0);
-                
+
                 let processedLines = lines.map(line => {
                     // Handle the specific pattern \textbf{Category}{: Items}
                     line = line.replace(/\\textbf\{([^}]+)\}\{:\s*([^}]+)\}/g, '<strong>$1</strong>: $2');
                     line = line.replace(/\\&/g, '&');
                     return line;
                 });
-                
+
                 return `<ul class="technical-skills">${processedLines.map(line => `<li>${line}</li>`).join('')}</ul>`;
             });
 
@@ -464,10 +463,10 @@ const LaTeXRenderer = () => {
                 .replace(/\\resumeSubItem\{([^}]+)\}/g, '<li class="resume-subitem">$1</li>');
 
             // Handle resume headings (complex tabular structures)
-            html = html.replace(/\\resumeSubheading\s*\{([^}]+)\}\s*\{([^}]+)\}\s*\{([^}]+)\}\s*\{([^}]+)\}/g, 
+            html = html.replace(/\\resumeSubheading\s*\{([^}]+)\}\s*\{([^}]+)\}\s*\{([^}]+)\}\s*\{([^}]+)\}/g,
                 '<div class="resume-heading"><div class="resume-heading-left"><strong>$1</strong><br><em>$3</em></div><div class="resume-heading-right">$2<br><em>$4</em></div></div>');
 
-            html = html.replace(/\\resumeProjectHeading\s*\{([^}]+)\}\s*\{([^}]+)\}/g, 
+            html = html.replace(/\\resumeProjectHeading\s*\{([^}]+)\}\s*\{([^}]+)\}/g,
                 '<div class="resume-project-heading"><div class="resume-project-left">$1</div><div class="resume-project-right">$2</div></div>');
 
             // Handle tabular environments
