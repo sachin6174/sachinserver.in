@@ -1,0 +1,329 @@
+/* LeetCode Contribution Graph - GitHub-style */
+
+.contribution-graph-container {
+    background: var(--background-primary);
+    border-radius: var(--radius-md);
+    padding: var(--space-md);
+    margin: var(--space-md) 0;
+    border: 1px solid var(--border-color);
+}
+
+.contribution-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-lg);
+}
+
+.contribution-title {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+}
+
+.contribution-icon {
+    font-size: var(--font-lg);
+}
+
+.contribution-count {
+    font-size: var(--font-lg);
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.contribution-year {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    color: var(--text-secondary);
+    font-size: var(--font-sm);
+}
+
+.info-icon {
+    background: var(--text-secondary);
+    color: var(--background-primary);
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.contribution-graph {
+    margin-bottom: var(--space-md);
+}
+
+.month-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: var(--space-xs);
+    padding-left: 24px; /* Align with grid */
+}
+
+.month-label {
+    font-size: var(--font-xs);
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.graph-content {
+    display: flex;
+    gap: var(--space-xs);
+}
+
+.day-labels {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 20px;
+    padding-right: var(--space-xs);
+}
+
+.day-label {
+    font-size: var(--font-xs);
+    color: var(--text-secondary);
+    line-height: 11px;
+    text-align: right;
+}
+
+.contribution-grid {
+    display: flex;
+    gap: 3px;
+    flex: 1;
+}
+
+.week-column {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.contribution-day {
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: all 0.1s ease;
+}
+
+/* Contribution levels - Dark theme colors matching GitHub */
+[data-theme="dark"] .contribution-day.level-0 {
+    background-color: #161b22;
+    border: 1px solid #21262d;
+}
+
+[data-theme="dark"] .contribution-day.level-1 {
+    background-color: #0e4429;
+}
+
+[data-theme="dark"] .contribution-day.level-2 {
+    background-color: #006d32;
+}
+
+[data-theme="dark"] .contribution-day.level-3 {
+    background-color: #26a641;
+}
+
+[data-theme="dark"] .contribution-day.level-4 {
+    background-color: #39d353;
+}
+
+/* Light theme colors */
+[data-theme="light"] .contribution-day.level-0 {
+    background-color: #ebedf0;
+    border: 1px solid #d0d7de;
+}
+
+[data-theme="light"] .contribution-day.level-1 {
+    background-color: #9be9a8;
+}
+
+[data-theme="light"] .contribution-day.level-2 {
+    background-color: #40c463;
+}
+
+[data-theme="light"] .contribution-day.level-3 {
+    background-color: #30a14e;
+}
+
+[data-theme="light"] .contribution-day.level-4 {
+    background-color: #216e39;
+}
+
+/* Default fallback (matches dark theme) */
+.contribution-day.level-0 {
+    background-color: #161b22;
+    border: 1px solid #21262d;
+}
+
+.contribution-day.level-1 {
+    background-color: #0e4429;
+}
+
+.contribution-day.level-2 {
+    background-color: #006d32;
+}
+
+.contribution-day.level-3 {
+    background-color: #26a641;
+}
+
+.contribution-day.level-4 {
+    background-color: #39d353;
+}
+
+.contribution-day:hover {
+    outline: 1px solid var(--text-secondary);
+    outline-offset: 1px;
+}
+
+.contribution-legend {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: var(--space-xs);
+    margin-top: var(--space-md);
+}
+
+.legend-text {
+    font-size: var(--font-xs);
+    color: var(--text-secondary);
+}
+
+.legend-squares {
+    display: flex;
+    gap: 3px;
+}
+
+.legend-square {
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+}
+
+/* Legend squares follow same color scheme */
+[data-theme="dark"] .legend-square.level-0 {
+    background-color: #161b22;
+    border: 1px solid #21262d;
+}
+
+[data-theme="dark"] .legend-square.level-1 {
+    background-color: #0e4429;
+}
+
+[data-theme="dark"] .legend-square.level-2 {
+    background-color: #006d32;
+}
+
+[data-theme="dark"] .legend-square.level-3 {
+    background-color: #26a641;
+}
+
+[data-theme="dark"] .legend-square.level-4 {
+    background-color: #39d353;
+}
+
+[data-theme="light"] .legend-square.level-0 {
+    background-color: #ebedf0;
+    border: 1px solid #d0d7de;
+}
+
+[data-theme="light"] .legend-square.level-1 {
+    background-color: #9be9a8;
+}
+
+[data-theme="light"] .legend-square.level-2 {
+    background-color: #40c463;
+}
+
+[data-theme="light"] .legend-square.level-3 {
+    background-color: #30a14e;
+}
+
+[data-theme="light"] .legend-square.level-4 {
+    background-color: #216e39;
+}
+
+/* Default fallback for legend */
+.legend-square.level-0 {
+    background-color: #161b22;
+    border: 1px solid #21262d;
+}
+
+.legend-square.level-1 {
+    background-color: #0e4429;
+}
+
+.legend-square.level-2 {
+    background-color: #006d32;
+}
+
+.legend-square.level-3 {
+    background-color: #26a641;
+}
+
+.legend-square.level-4 {
+    background-color: #39d353;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .contribution-graph-container {
+        padding: var(--space-md);
+    }
+    
+    .contribution-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--space-sm);
+    }
+    
+    .month-labels {
+        padding-left: 20px;
+    }
+    
+    .month-label:nth-child(2n) {
+        display: none; /* Hide every other month on mobile */
+    }
+    
+    .day-labels {
+        width: 16px;
+    }
+    
+    .contribution-day,
+    .legend-square {
+        width: 10px;
+        height: 10px;
+    }
+    
+    .contribution-grid {
+        gap: 2px;
+    }
+    
+    .week-column {
+        gap: 2px;
+    }
+}
+
+@media (max-width: 480px) {
+    .contribution-day,
+    .legend-square {
+        width: 8px;
+        height: 8px;
+    }
+    
+    .contribution-grid {
+        gap: 1px;
+    }
+    
+    .week-column {
+        gap: 1px;
+    }
+    
+    .month-label:nth-child(3n) {
+        display: none; /* Hide every third month on very small screens */
+    }
+}

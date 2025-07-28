@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import '../shared-styles.css';
 import './DSA.css';
+import ContributionGraph from './ContributionGraph';
 
 const DSA = () => {
     const [selectedTopic, setSelectedTopic] = useState('array');
@@ -11441,6 +11442,9 @@ int main() {
                             </div>
                         </div>
                     </div>
+                    
+                    {/* LeetCode Contribution Graph */}
+                    <ContributionGraph />
                     
                     <h3>{currentTopic.title}</h3>
                     <p>{currentTopic.description}</p>
