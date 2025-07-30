@@ -1,27 +1,29 @@
-import React, { useState, useEffect } from 'react';
-import './ContributionGraph.css';
+import { useState, useEffect } from 'react';
+import '../DSA/ContributionGraph.css';
 
-const ContributionGraph = () => {
+const GitHubContributionGraph = () => {
     const [contributions, setContributions] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    // Fetch real LeetCode data for sachinkumar6174
-    const fetchLeetCodeData = async () => {
+    // Fetch real GitHub data for sachin6174
+    const fetchGitHubData = async () => {
         const apis = [
-            // Try multiple LeetCode API endpoints
-            'https://leetcode-stats-api.herokuapp.com/sachinkumar6174',
-            'https://alfa-leetcode-api.onrender.com/sachinkumar6174',
-            'https://alfa-leetcode-api.onrender.com/sachinkumar6174/submission'
+            // Try GitHub contributions API
+            'https://github-contributions-api.jogruber.de/v4/sachin6174',
+            // Try GitHub API for user events
+            'https://api.github.com/users/sachin6174/events',
+            // Alternative GitHub stats API
+            'https://github-readme-stats.vercel.app/api?username=sachin6174&show_icons=true&count_private=true'
         ];
 
         setLoading(true);
         setError(null);
 
-        // Try each LeetCode API endpoint
+        // Try each GitHub API endpoint
         for (let i = 0; i < apis.length; i++) {
             try {
-                console.log(`Trying LeetCode API ${i + 1}:`, apis[i]);
+                console.log(`Trying GitHub API ${i + 1}:`, apis[i]);
                 
                 const response = await fetch(apis[i]);
                 
@@ -30,20 +32,20 @@ const ContributionGraph = () => {
                 }
                 
                 const data = await response.json();
-                console.log('LeetCode API Response:', data);
+                console.log('GitHub API Response:', data);
                 
                 // Transform the data into contribution format
-                const contributionData = generateContributionDataFromLeetCodeAPI(data, i);
+                const contributionData = generateContributionDataFromGitHubAPI(data, i);
                 setContributions(contributionData);
                 setError(null);
                 setLoading(false);
                 return; // Success, exit the loop
                 
             } catch (err) {
-                console.error(`LeetCode API ${i + 1} failed:`, err);
+                console.error(`GitHub API ${i + 1} failed:`, err);
                 if (i === apis.length - 1) {
                     // All APIs failed
-                    setError('Unable to fetch LeetCode data from any API');
+                    setError('Unable to fetch GitHub data from any API');
                     setContributions(generateFallbackData());
                 }
             }
@@ -52,43 +54,45 @@ const ContributionGraph = () => {
         setLoading(false);
     };
 
-    // Generate contribution data from LeetCode API response
-    const generateContributionDataFromLeetCodeAPI = (apiData, apiIndex = 0) => {
+    // Generate contribution data from GitHub API response
+    const generateContributionDataFromGitHubAPI = (apiData, apiIndex = 0) => {
         const contributions = [];
         const startDate = new Date('2025-01-01');
         const currentDate = new Date();
         
-        let submissionCalendar = {};
+        let contributionCalendar = {};
         
-        // Handle different LeetCode API response formats
+        // Handle different GitHub API response formats
         if (apiIndex === 0) {
-            // leetcode-stats-api.herokuapp.com format
-            submissionCalendar = apiData.submissionCalendar || {};
-        } else if (apiIndex === 1 || apiIndex === 2) {
-            // alfa-leetcode-api.onrender.com format
-            submissionCalendar = apiData.submissionCalendar || apiData.data?.submissionCalendar || {};
-        }
-        
-        // If submissionCalendar is a string, parse it as JSON
-        if (typeof submissionCalendar === 'string') {
-            try {
-                submissionCalendar = JSON.parse(submissionCalendar);
-            } catch (e) {
-                console.error('Failed to parse submission calendar:', e);
-                submissionCalendar = {};
+            // github-contributions-api.jogruber.de format
+            if (apiData.contributions) {
+                Object.keys(apiData.contributions).forEach(date => {
+                    const dateObj = new Date(date);
+                    const dateKey = dateObj.toISOString().split('T')[0]; // YYYY-MM-DD format
+                    contributionCalendar[dateKey] = apiData.contributions[date];
+                });
+            }
+        } else if (apiIndex === 1) {
+            // GitHub events API format - process events into daily counts
+            if (Array.isArray(apiData)) {
+                apiData.forEach(event => {
+                    const eventDate = new Date(event.created_at);
+                    const dateKey = eventDate.toISOString().split('T')[0]; // YYYY-MM-DD format
+                    contributionCalendar[dateKey] = (contributionCalendar[dateKey] || 0) + 1;
+                });
             }
         }
         
-        console.log('Parsed LeetCode submission calendar:', submissionCalendar);
+        console.log('Parsed GitHub contribution calendar:', contributionCalendar);
         
         for (let d = new Date(startDate); d <= currentDate; d.setDate(d.getDate() + 1)) {
-            const dateKey = Math.floor(d.getTime() / 1000).toString();
-            const count = parseInt(submissionCalendar[dateKey]) || 0;
+            const dateKey = d.toISOString().split('T')[0]; // YYYY-MM-DD format
+            const count = parseInt(contributionCalendar[dateKey]) || 0;
             
-            // Calculate level based on submission count
+            // Calculate level based on contribution count
             let level = 0;
             if (count > 0) {
-                if (count >= 10) level = 4;
+                if (count >= 12) level = 4;
                 else if (count >= 6) level = 3;
                 else if (count >= 3) level = 2;
                 else level = 1;
@@ -110,7 +114,7 @@ const ContributionGraph = () => {
         const startDate = new Date('2025-01-01');
         const currentDate = new Date();
         
-        // Create realistic LeetCode problem-solving patterns
+        // Create realistic GitHub contribution patterns
         const weekdays = [1, 2, 3, 4, 5]; // Monday to Friday (work days)
         const currentMonth = new Date().getMonth();
         
@@ -121,35 +125,35 @@ const ContributionGraph = () => {
             const dayOfWeek = d.getDay();
             const month = d.getMonth();
             
-            // Higher activity on weekdays (typical coding practice pattern)
+            // Higher activity on weekdays (typical developer pattern)
             const isWeekday = weekdays.includes(dayOfWeek);
             
             // Higher activity in current month
             const isCurrentMonth = month === currentMonth;
             
-            // Generate realistic LeetCode solving patterns
-            let activityChance = 0.20; // Base 20% chance
-            if (isWeekday) activityChance += 0.40; // +40% on weekdays
-            if (isCurrentMonth) activityChance += 0.25; // +25% in current month
+            // Generate realistic GitHub activity patterns
+            let activityChance = 0.25; // Base 25% chance for active developer
+            if (isWeekday) activityChance += 0.35; // +35% on weekdays
+            if (isCurrentMonth) activityChance += 0.20; // +20% in current month
             
-            // Weekend practice sessions (less frequent but happen)
-            if (!isWeekday && Math.random() < 0.35) {
+            // Weekend coding sessions (less frequent but happen)
+            if (!isWeekday && Math.random() < 0.4) {
                 activityChance += 0.15;
             }
             
             if (Math.random() < activityChance) {
-                // Determine problem count (1-12 problems per day)
-                // Higher numbers represent intensive practice days
-                if (Math.random() < 0.05) {
-                    count = Math.floor(Math.random() * 5) + 8; // 8-12 (intensive days)
-                } else if (Math.random() < 0.25) {
-                    count = Math.floor(Math.random() * 4) + 4; // 4-7 (good practice days)
+                // Determine contribution count (1-15 contributions)
+                // Higher numbers represent commit streaks or major coding days
+                if (Math.random() < 0.1) {
+                    count = Math.floor(Math.random() * 8) + 8; // 8-15 (major work days)
+                } else if (Math.random() < 0.3) {
+                    count = Math.floor(Math.random() * 5) + 3; // 3-7 (productive days)
                 } else {
                     count = Math.floor(Math.random() * 3) + 1; // 1-3 (regular days)
                 }
                 
-                // Calculate level based on LeetCode problem-solving levels
-                if (count >= 10) level = 4;
+                // Calculate level based on GitHub's typical contribution levels
+                if (count >= 12) level = 4;
                 else if (count >= 6) level = 3;
                 else if (count >= 3) level = 2;
                 else level = 1;
@@ -167,8 +171,9 @@ const ContributionGraph = () => {
 
     // Fetch data on component mount
     useEffect(() => {
-        fetchLeetCodeData();
+        fetchGitHubData();
     }, []);
+
     const totalContributions = contributions.reduce((sum, day) => sum + day.count, 0);
     
     // Calculate weeks for grid layout
@@ -210,7 +215,7 @@ const ContributionGraph = () => {
                 <div className="contribution-header">
                     <div className="contribution-title">
                         <span className="contribution-icon">🔄</span>
-                        <span className="contribution-count">Loading LeetCode data...</span>
+                        <span className="contribution-count">Loading GitHub data...</span>
                     </div>
                     <div className="contribution-year">
                         <span className="info-icon">ⓘ</span>
@@ -238,7 +243,7 @@ const ContributionGraph = () => {
                 <div className="contribution-title">
                     <span className="contribution-icon">🔥</span>
                     <span className="contribution-count">
-                        {totalContributions} problems solved in 2025
+                        {totalContributions} contributions in 2025
                         {error && <span className="api-status"> (simulated data - API unavailable)</span>}
                     </span>
                 </div>
@@ -247,11 +252,11 @@ const ContributionGraph = () => {
                     <span>2025</span>
                     {!error && <span className="live-indicator">●</span>}
                     <a 
-                        href="https://leetcode.com/sachinkumar6174" 
+                        href="https://github.com/sachin6174" 
                         target="_blank" 
                         rel="noopener noreferrer"
                         className="github-profile-link"
-                        title="View LeetCode Profile"
+                        title="View GitHub Profile"
                     >
                         View Profile ↗
                     </a>
@@ -292,7 +297,7 @@ const ContributionGraph = () => {
                                         <div
                                             key={dayIndex}
                                             className={`contribution-day level-${contribution.level}`}
-                                            title={`${contribution.count} ${contribution.count === 1 ? 'problem solved' : 'problems solved'} on ${formatDate(contribution.date)}`}
+                                            title={`${contribution.count} ${contribution.count === 1 ? 'contribution' : 'contributions'} on ${formatDate(contribution.date)}`}
                                         />
                                     );
                                 })}
@@ -315,4 +320,4 @@ const ContributionGraph = () => {
     );
 };
 
-export default ContributionGraph;
+export default GitHubContributionGraph;
