@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./AboutMe.css";
 import profileImage from "../../assets/images/ProfilePic/profile1.jpeg";
+import ContributionGraph from "../DSA/ContributionGraph";
 
 const AboutMe = () => {
     const [isVisible, setIsVisible] = useState({});
@@ -198,6 +199,35 @@ const AboutMe = () => {
                             <span className="skill-percentage">{skill.level}%</span>
                         </div>
                     ))}
+                </div>
+            </section>
+
+            {/* GitHub Activity Section */}
+            <section className="github-activity-section fade-in-section" id="github-activity">
+                <div className="section-header">
+                    <h2>GitHub Activity</h2>
+                    <div className="section-divider"></div>
+                </div>
+                <div className="github-content">
+                    <div className="github-intro">
+                        <h3>LeetCode Problem Solving Activity</h3>
+                        <p>My daily problem-solving journey on LeetCode, tracking progress and consistency in algorithmic thinking.</p>
+                        <div className="github-stats">
+                            <div className="stat-item">
+                                <span className="stat-icon">🔥</span>
+                                <span className="stat-label">Consistent Practice</span>
+                            </div>
+                            <div className="stat-item">
+                                <span className="stat-icon">💪</span>
+                                <span className="stat-label">Problem Solving</span>
+                            </div>
+                            <div className="stat-item">
+                                <span className="stat-icon">📊</span>
+                                <span className="stat-label">Data Structures & Algorithms</span>
+                            </div>
+                        </div>
+                    </div>
+                    <ContributionGraph />
                 </div>
             </section>
 

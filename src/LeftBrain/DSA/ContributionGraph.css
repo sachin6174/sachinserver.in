@@ -269,6 +269,78 @@
     background-color: #39d353;
 }
 
+/* Loading and Status Indicators */
+.api-status {
+    font-size: var(--font-sm);
+    color: var(--text-tertiary);
+    font-weight: normal;
+}
+
+.live-indicator {
+    color: #26a641;
+    font-size: 8px;
+    margin-left: var(--space-xs);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+/* Loading Skeleton */
+.loading-skeleton {
+    opacity: 0.6;
+}
+
+.skeleton-grid {
+    display: flex;
+    gap: 3px;
+    padding-left: 24px;
+}
+
+.skeleton-week {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.skeleton-day {
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+    background: var(--border-color);
+    animation: skeleton-loading 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes skeleton-loading {
+    0% { opacity: 0.3; }
+    100% { opacity: 0.7; }
+}
+
+/* LeetCode Profile Link */
+.leetcode-profile-link {
+    color: var(--primary-color, #6366f1);
+    text-decoration: none;
+    font-size: var(--font-sm);
+    font-weight: 500;
+    margin-left: var(--space-sm);
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--primary-color, #6366f1);
+    transition: all var(--transition-fast);
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+}
+
+.leetcode-profile-link:hover {
+    background: var(--primary-color, #6366f1);
+    color: white;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(99, 102, 241, 0.3);
+}
+
 /* Responsive design */
 @media (max-width: 768px) {
     .contribution-graph-container {
@@ -279,6 +351,20 @@
         flex-direction: column;
         align-items: flex-start;
         gap: var(--space-sm);
+    }
+    
+    .contribution-year {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: var(--space-xs);
+    }
+    
+    .leetcode-profile-link {
+        margin-left: 0;
+        margin-top: var(--space-xs);
+        font-size: var(--font-xs);
+        padding: var(--space-xs);
     }
     
     .month-labels {

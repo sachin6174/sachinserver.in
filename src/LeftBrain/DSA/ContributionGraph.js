@@ -1,36 +1,197 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './ContributionGraph.css';
 
 const ContributionGraph = () => {
-    // Generate sample data for 2025 LeetCode solving activity
-    const generateContributionData = () => {
+    const [contributions, setContributions] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    // Fetch real LeetCode data for sachinkumar6174
+    const fetchLeetCodeData = async () => {
+        const apis = [
+            // Try multiple LeetCode API endpoints
+            'https://leetcode-stats-api.herokuapp.com/sachinkumar6174',
+            'https://alfa-leetcode-api.onrender.com/sachinkumar6174',
+            'https://alfa-leetcode-api.onrender.com/sachinkumar6174/submission',
+            'https://leetcode.com/graphql'
+        ];
+
+        setLoading(true);
+        setError(null);
+
+        // Try each API endpoint
+        for (let i = 0; i < apis.length; i++) {
+            try {
+                console.log(`Trying API ${i + 1}:`, apis[i]);
+                
+                let response;
+                let data;
+
+                if (apis[i].includes('graphql')) {
+                    // GraphQL request for official LeetCode API
+                    response = await fetch(apis[i], {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            query: `
+                                query userPublicProfile($username: String!) {
+                                    matchedUser(username: $username) {
+                                        username
+                                        submissionCalendar
+                                        profile {
+                                            realName
+                                            aboutMe
+                                        }
+                                    }
+                                }
+                            `,
+                            variables: {
+                                username: "sachinkumar6174"
+                            }
+                        })
+                    });
+                } else {
+                    // Regular REST API call
+                    response = await fetch(apis[i]);
+                }
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                data = await response.json();
+                console.log('API Response:', data);
+                
+                // Transform the data into contribution format
+                const contributionData = generateContributionDataFromAPI(data, i);
+                setContributions(contributionData);
+                setError(null);
+                setLoading(false);
+                return; // Success, exit the loop
+                
+            } catch (err) {
+                console.error(`API ${i + 1} failed:`, err);
+                if (i === apis.length - 1) {
+                    // All APIs failed
+                    setError('Unable to fetch LeetCode data from any API');
+                    setContributions(generateFallbackData());
+                }
+            }
+        }
+        
+        setLoading(false);
+    };
+
+    // Generate contribution data from API response
+    const generateContributionDataFromAPI = (apiData, apiIndex = 0) => {
         const contributions = [];
         const startDate = new Date('2025-01-01');
         const currentDate = new Date();
-        const oneDay = 24 * 60 * 60 * 1000;
+        
+        let submissionCalendar = {};
+        
+        // Handle different API response formats
+        if (apiIndex === 0) {
+            // leetcode-stats-api.herokuapp.com format
+            submissionCalendar = apiData.submissionCalendar || {};
+        } else if (apiIndex === 1 || apiIndex === 2) {
+            // alfa-leetcode-api.onrender.com format
+            submissionCalendar = apiData.submissionCalendar || apiData.data?.submissionCalendar || {};
+        } else if (apiIndex === 3) {
+            // GraphQL API format
+            submissionCalendar = apiData.data?.matchedUser?.submissionCalendar || {};
+        }
+        
+        // If submissionCalendar is a string, parse it as JSON
+        if (typeof submissionCalendar === 'string') {
+            try {
+                submissionCalendar = JSON.parse(submissionCalendar);
+            } catch (e) {
+                console.error('Failed to parse submission calendar:', e);
+                submissionCalendar = {};
+            }
+        }
+        
+        console.log('Parsed submission calendar:', submissionCalendar);
         
         for (let d = new Date(startDate); d <= currentDate; d.setDate(d.getDate() + 1)) {
-            const dayOfYear = Math.floor((d - startDate) / oneDay);
-            // Create realistic LeetCode solving pattern with higher activity in July
-            let level = 0;
+            const dateKey = Math.floor(d.getTime() / 1000).toString();
+            const count = parseInt(submissionCalendar[dateKey]) || 0;
             
-            if (d.getMonth() === 6) { // July (0-indexed)
-                level = Math.random() > 0.3 ? Math.floor(Math.random() * 4) + 1 : 0;
-            } else {
-                level = Math.random() > 0.7 ? Math.floor(Math.random() * 3) + 1 : 0;
+            // Calculate level based on submission count
+            let level = 0;
+            if (count > 0) {
+                if (count >= 10) level = 4;
+                else if (count >= 6) level = 3;
+                else if (count >= 3) level = 2;
+                else level = 1;
             }
             
             contributions.push({
                 date: new Date(d),
                 level: level,
-                count: level > 0 ? Math.floor(Math.random() * 5) + 1 : 0 // 1-5 problems per active day
+                count: count
             });
         }
         
         return contributions;
     };
 
-    const contributions = generateContributionData();
+    // Fallback data generation if API fails
+    const generateFallbackData = () => {
+        const contributions = [];
+        const startDate = new Date('2025-01-01');
+        const currentDate = new Date();
+        
+        // Create more realistic patterns based on typical coding habits
+        const weekdays = [0, 1, 2, 3, 4]; // Monday to Friday
+        const currentMonth = new Date().getMonth();
+        
+        for (let d = new Date(startDate); d <= currentDate; d.setDate(d.getDate() + 1)) {
+            let level = 0;
+            let count = 0;
+            
+            const dayOfWeek = d.getDay();
+            const month = d.getMonth();
+            
+            // Higher activity on weekdays
+            const isWeekday = weekdays.includes(dayOfWeek);
+            
+            // Higher activity in current month (July)
+            const isCurrentMonth = month === currentMonth;
+            
+            // Generate realistic activity patterns
+            let activityChance = 0.2; // Base 20% chance
+            if (isWeekday) activityChance += 0.3; // +30% on weekdays
+            if (isCurrentMonth) activityChance += 0.4; // +40% in current month
+            
+            if (Math.random() < activityChance) {
+                // Determine problem count (1-8 problems)
+                count = Math.floor(Math.random() * 8) + 1;
+                
+                // Calculate level based on count
+                if (count >= 6) level = 4;
+                else if (count >= 4) level = 3;
+                else if (count >= 2) level = 2;
+                else level = 1;
+            }
+            
+            contributions.push({
+                date: new Date(d),
+                level: level,
+                count: count
+            });
+        }
+        
+        return contributions;
+    };
+
+    // Fetch data on component mount
+    useEffect(() => {
+        fetchLeetCodeData();
+    }, []);
     const totalContributions = contributions.reduce((sum, day) => sum + day.count, 0);
     
     // Calculate weeks for grid layout
@@ -65,22 +226,64 @@ const ContributionGraph = () => {
         });
     };
 
+    // Show loading state
+    if (loading) {
+        return (
+            <div className="contribution-graph-container">
+                <div className="contribution-header">
+                    <div className="contribution-title">
+                        <span className="contribution-icon">🔄</span>
+                        <span className="contribution-count">Loading LeetCode data...</span>
+                    </div>
+                    <div className="contribution-year">
+                        <span className="info-icon">ⓘ</span>
+                        <span>2025</span>
+                    </div>
+                </div>
+                <div className="contribution-graph loading-skeleton">
+                    <div className="skeleton-grid">
+                        {Array.from({length: 53}, (_, i) => (
+                            <div key={i} className="skeleton-week">
+                                {Array.from({length: 7}, (_, j) => (
+                                    <div key={j} className="skeleton-day" />
+                                ))}
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
     return (
         <div className="contribution-graph-container">
             <div className="contribution-header">
                 <div className="contribution-title">
                     <span className="contribution-icon">🔥</span>
-                    <span className="contribution-count">{totalContributions} problems solved in 2025</span>
+                    <span className="contribution-count">
+                        {totalContributions} problems solved in 2025
+                        {error && <span className="api-status"> (simulated data - API unavailable)</span>}
+                    </span>
                 </div>
                 <div className="contribution-year">
                     <span className="info-icon">ⓘ</span>
                     <span>2025</span>
+                    {!error && <span className="live-indicator">●</span>}
+                    <a 
+                        href="https://leetcode.com/sachinkumar6174" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="leetcode-profile-link"
+                        title="View LeetCode Profile"
+                    >
+                        View Profile ↗
+                    </a>
                 </div>
             </div>
             
             <div className="contribution-graph">
                 <div className="month-labels">
-                    {months.map((month, index) => (
+                    {months.map((month) => (
                         <span key={month} className="month-label">{month}</span>
                     ))}
                 </div>
