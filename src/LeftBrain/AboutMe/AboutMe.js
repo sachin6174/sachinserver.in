@@ -210,20 +210,20 @@ const AboutMe = () => {
                 </div>
                 <div className="github-content">
                     <div className="github-intro">
-                        <h3>LeetCode Problem Solving Activity</h3>
-                        <p>My daily problem-solving journey on LeetCode, tracking progress and consistency in algorithmic thinking.</p>
+                        <h3>GitHub Development Activity</h3>
+                        <p>My daily coding journey on GitHub, showcasing consistent development work, open source contributions, and project commits.</p>
                         <div className="github-stats">
                             <div className="stat-item">
                                 <span className="stat-icon">🔥</span>
-                                <span className="stat-label">Consistent Practice</span>
+                                <span className="stat-label">Consistent Commits</span>
                             </div>
                             <div className="stat-item">
-                                <span className="stat-icon">💪</span>
-                                <span className="stat-label">Problem Solving</span>
+                                <span className="stat-icon">💻</span>
+                                <span className="stat-label">Active Development</span>
                             </div>
                             <div className="stat-item">
-                                <span className="stat-icon">📊</span>
-                                <span className="stat-label">Data Structures & Algorithms</span>
+                                <span className="stat-icon">🚀</span>
+                                <span className="stat-label">Open Source Projects</span>
                             </div>
                         </div>
                     </div>

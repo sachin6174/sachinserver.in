@@ -803,6 +803,7 @@ std::vector<int> createArray(int n) {
                             className={`leftbrain-button ${selectedTopic === topic.id ? 'active' : ''}`}
                             onClick={() => setSelectedTopic(topic.id)}
                         >
+                            {selectedTopic === topic.id && <span className="selected-indicator">✓</span>}
                             {topic.name}
                         </button>
                     ))}
