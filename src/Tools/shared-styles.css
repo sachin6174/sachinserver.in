@@ -62,10 +62,13 @@ body.dark-mode {
     --tool-shadow-xl: 0 14px 28px rgba(0, 0, 0, 0.8);
 }
 
-/* Premium container styles */
+/* Enhanced container styles with better typography */
 .tools-container {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-    line-height: 1.5;
+    font-weight: 400;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+    line-height: 1.6;
+    letter-spacing: -0.01em;
     color: var(--tool-text-primary);
     background: var(--tool-background-primary);
     min-height: 100vh;
@@ -73,6 +76,9 @@ body.dark-mode {
     overflow-y: auto;
     overflow-x: hidden;
     font-size: 14px;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 /* When navigation panel is hidden, expand the content - COMPACT */
@@ -182,14 +188,26 @@ body.dark-mode {
     }
 }
 
-/* Tool content containers */
+/* Enhanced tool content containers */
 .tool-container {
-    background: var(--tool-background-primary);
-    border-radius: var(--tool-radius-lg);
-    padding: 0.5rem;
-    box-shadow: var(--tool-shadow-md);
-    border: 1px solid var(--tool-border-color);
-    margin-bottom: 0.5rem;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(248, 250, 252, 0.8));
+    border-radius: var(--tool-radius-xl);
+    padding: var(--space-lg);
+    box-shadow: var(--tool-shadow-lg);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(20px) saturate(120%);
+    -webkit-backdrop-filter: blur(20px) saturate(120%);
+    margin-bottom: var(--space-lg);
+    transition: all var(--tool-transition-normal);
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.tool-container:hover {
+    transform: translateY(-6px) scale(1.01);
+    box-shadow: 
+        var(--tool-shadow-xl),
+        0 0 20px rgba(99, 102, 241, 0.15);
+    border-color: rgba(99, 102, 241, 0.2);
 }
 
 @media (max-width: 768px) {
@@ -474,21 +492,25 @@ body.dark-mode {
     border: 1px solid rgba(59, 130, 246, 0.2);
 }
 
-/* Code output areas */
+/* Enhanced code output areas */
 .tool-output {
-    background: var(--tool-background-tertiary);
-    border: 1px solid var(--tool-border-color);
-    border-radius: var(--tool-radius-md);
-    padding: 1rem;
-    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
-    font-size: 0.8125rem;
-    line-height: 1.5;
+    background: linear-gradient(135deg, var(--tool-background-tertiary), rgba(248, 250, 252, 0.8));
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--tool-radius-lg);
+    padding: var(--space-lg);
+    font-family: 'JetBrains Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    font-size: 0.875rem;
+    font-weight: 400;
+    font-feature-settings: 'liga', 'calt';
+    line-height: 1.6;
     overflow-x: auto;
     white-space: pre-wrap;
     word-break: break-word;
-    min-height: 100px;
+    min-height: 120px;
     max-height: 400px;
     overflow-y: auto;
+    backdrop-filter: blur(10px);
+    box-shadow: var(--tool-shadow-sm);
 }
 
 @media (max-width: 768px) {

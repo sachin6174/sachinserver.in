@@ -1,0 +1,268 @@
+/**
+ * Skeleton Loader Styles
+ * Animated loading placeholders for better UX
+ */
+
+/* Base skeleton animation */
+@keyframes skeleton-loading {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: calc(200px + 100%) 0;
+  }
+}
+
+.skeleton-box {
+  display: inline-block;
+  background: linear-gradient(90deg, 
+    var(--skeleton-base, #f0f0f0) 25%, 
+    var(--skeleton-highlight, #e0e0e0) 50%, 
+    var(--skeleton-base, #f0f0f0) 75%
+  );
+  background-size: 200px 100%;
+  animation: skeleton-loading 1.5s infinite;
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Dark mode skeleton colors */
+body.dark-mode .skeleton-box {
+  --skeleton-base: #2a2a2a;
+  --skeleton-highlight: #3a3a3a;
+}
+
+/* Skeleton text */
+.skeleton-text {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.skeleton-text-line {
+  margin-bottom: 8px;
+}
+
+.skeleton-text-line:last-child {
+  margin-bottom: 0;
+}
+
+/* Skeleton card */
+.skeleton-card {
+  border: 1px solid var(--skeleton-base, #f0f0f0);
+  border-radius: 8px;
+  padding: 16px;
+  background: var(--background-color, #fff);
+}
+
+.skeleton-card-image {
+  margin-bottom: 12px;
+  border-radius: 4px;
+}
+
+.skeleton-card-content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.skeleton-card-title {
+  margin-bottom: 8px;
+}
+
+/* Skeleton list */
+.skeleton-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.skeleton-list-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 0;
+}
+
+.skeleton-list-icon {
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.skeleton-list-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* Skeleton navigation */
+.skeleton-navigation {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px;
+}
+
+.skeleton-nav-header {
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--skeleton-base, #f0f0f0);
+}
+
+.skeleton-nav-items {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.skeleton-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 12px;
+  border-radius: 6px;
+}
+
+.skeleton-nav-icon {
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+/* Skeleton code block */
+.skeleton-code-block {
+  border: 1px solid var(--skeleton-base, #f0f0f0);
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--code-background, #fafafa);
+}
+
+.skeleton-code-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  background: var(--skeleton-base, #f0f0f0);
+  border-bottom: 1px solid var(--skeleton-highlight, #e0e0e0);
+}
+
+.skeleton-code-controls {
+  display: flex;
+  gap: 8px;
+}
+
+.skeleton-code-content {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.skeleton-code-line {
+  font-family: 'Courier New', monospace;
+}
+
+/* Skeleton DSA specific */
+.skeleton-dsa {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 20px;
+}
+
+.skeleton-dsa-header {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.skeleton-dsa-topics {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.skeleton-topic-buttons {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.skeleton-dsa-content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.skeleton-dsa-stats {
+  padding: 16px;
+  border: 1px solid var(--skeleton-base, #f0f0f0);
+  border-radius: 8px;
+}
+
+.skeleton-dsa-problems {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.skeleton-problem-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px;
+}
+
+/* Skeleton tool specific */
+.skeleton-tool {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+}
+
+.skeleton-tool-header {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.skeleton-tool-controls {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.skeleton-tool-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .skeleton-problem-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .skeleton-topic-buttons {
+    flex-direction: column;
+  }
+  
+  .skeleton-tool-controls {
+    flex-direction: column;
+  }
+}
+
+/* Performance optimizations */
+.skeleton-box {
+  will-change: background-position;
+  transform: translateZ(0); /* Force hardware acceleration */
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .skeleton-box {
+    animation: none;
+    background: var(--skeleton-base, #f0f0f0);
+  }
+}

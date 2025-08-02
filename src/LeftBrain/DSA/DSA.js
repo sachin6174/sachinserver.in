@@ -1,18 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo, useCallback, memo } from 'react';
 import '../shared-styles.css';
 import './DSA.css';
 import ContributionGraph from './ContributionGraph';
 import { arrayData } from './data/array.js';
 import { linkedListData } from './data/linkedlist.js';
+import { stackQueueData } from './data/stackqueue.js';
 import { binaryTreeData } from './data/binarytree.js';
+import { stringsData } from './data/strings.js';
 
-const DSA = () => {
+const DSA = memo(() => {
     const [selectedTopic, setSelectedTopic] = useState('array');
 
-    const dsaTopics = {
+    // Memoize topic selection handler
+    const handleTopicChange = useCallback((topicId) => {
+        setSelectedTopic(topicId);
+    }, []);
+
+    // Memoize DSA topics to prevent recreation on every render
+    const dsaTopics = useMemo(() => ({
         array: arrayData,
         linkedlist: linkedListData,
+        stackqueue: stackQueueData,
         binarytree: binaryTreeData,
+        strings: stringsData,
         introduction: {
             title: 'Introduction to DSA',
             description: 'Foundation concepts and importance of Data Structures and Algorithms',
@@ -776,16 +786,20 @@ std::vector<int> createArray(int n) {
 }`
             }
         }
-    };
+    }), []);
 
 
-    const topics = [
+    // Memoize topics array
+    const topics = useMemo(() => [
         { id: 'array', name: 'Array' },
         { id: 'linkedlist', name: 'Linked List' },
-        { id: 'binarytree', name: 'Binary Tree' }
-    ];
+        { id: 'stackqueue', name: 'Stack & Queue' },
+        { id: 'binarytree', name: 'Binary Tree' },
+        { id: 'strings', name: 'Strings' }
+    ], []);
 
-    const currentTopic = dsaTopics[selectedTopic];
+    // Memoize current topic calculation
+    const currentTopic = useMemo(() => dsaTopics[selectedTopic], [dsaTopics, selectedTopic]);
 
     return (
         <div className="leftbrain-container dsa-theme">
@@ -801,7 +815,7 @@ std::vector<int> createArray(int n) {
                         <button
                             key={topic.id}
                             className={`leftbrain-button ${selectedTopic === topic.id ? 'active' : ''}`}
-                            onClick={() => setSelectedTopic(topic.id)}
+                            onClick={() => handleTopicChange(topic.id)}
                         >
                             {selectedTopic === topic.id && <span className="selected-indicator">✓</span>}
                             {topic.name}
@@ -928,6 +942,8 @@ std::vector<int> createArray(int n) {
             </div>
         </div>
     );
-};
+});
+
+DSA.displayName = 'DSA';
 
 export default DSA;

@@ -154,10 +154,13 @@ body.dark-mode {
     --shadow-xl: 0 14px 28px rgba(0, 0, 0, 0.8);
 }
 
-/* Premium container styles */
+/* Enhanced container styles with better typography */
 .leftbrain-container {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-    line-height: 1.4;
+    font-weight: 400;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+    line-height: 1.6;
+    letter-spacing: -0.01em;
     color: var(--text-primary);
     background: var(--background-primary);
     min-height: 100vh;
@@ -165,6 +168,9 @@ body.dark-mode {
     overflow-y: auto;
     overflow-x: hidden;
     font-size: 14px;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 /* Theme-specific containers */
@@ -237,23 +243,26 @@ body.dark-mode {
     }
 }
 
-/* Unified Card Components - COMPACT */
+/* Enhanced Card Components with Modern Design */
 .leftbrain-card,
 .tech-card,
 .content-card {
-    background: var(--background-primary);
-    border-radius: var(--radius-md);
-    padding: var(--space-md);
-    margin-bottom: var(--space-md);
-    box-shadow: var(--shadow-sm);
-    border: 1px solid var(--border-color);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(248, 250, 252, 0.8));
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+    margin-bottom: var(--space-lg);
+    box-shadow: var(--shadow-md);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(20px) saturate(120%);
+    -webkit-backdrop-filter: blur(20px) saturate(120%);
     transition: all var(--transition-normal);
     position: relative;
     overflow: hidden;
     cursor: pointer;
     display: flex;
     flex-direction: column;
-    min-height: 80px;
+    min-height: 120px;
+    animation: fadeInUp 0.6s ease-out;
 }
 
 /* Theme-specific card styling */
@@ -808,20 +817,24 @@ body.dark-mode {
     box-shadow: var(--shadow-lg);
 }
 
-/* Unified Code Block Styling - COMPACT */
+/* Enhanced Code Block Styling with Better Typography */
 .code-block,
 .code-snippet {
-    background: var(--background-tertiary);
-    border-left: 3px solid var(--current-theme, var(--primary-color));
-    border-radius: var(--radius-sm);
-    padding: var(--space-sm);
-    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Cascadia Code', 'Fira Code', monospace;
-    font-size: var(--font-xs);
-    line-height: 1.4;
+    background: linear-gradient(135deg, var(--background-tertiary), rgba(248, 250, 252, 0.8));
+    border-left: 4px solid var(--current-theme, var(--primary-color));
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+    font-family: 'JetBrains Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Cascadia Code', 'Fira Code', monospace;
+    font-size: var(--font-sm);
+    font-weight: 400;
+    font-feature-settings: 'liga', 'calt';
+    line-height: 1.6;
     overflow-x: auto;
-    margin: var(--space-sm) 0;
+    margin: var(--space-lg) 0;
     position: relative;
     -webkit-overflow-scrolling: touch;
+    box-shadow: var(--shadow-sm);
+    backdrop-filter: blur(10px);
 }
 
 .code-block h4,
