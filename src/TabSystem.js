@@ -87,7 +87,7 @@ const TabSystem = () => {
             case "developer-tools": return "ai-tools-channels";
             case "qa-tools": return "qa-testing-apps";
             case "general-tools": return "info-tool";
-            case "rightbrain": return "apple-dev-youtube-rb";
+            case "rightbrain": return "drawing";
             default: return "about-me";
         }
     }, []);
@@ -103,7 +103,7 @@ const TabSystem = () => {
         const stored = localStorage.getItem('lastSelectedItems');
         return stored ? JSON.parse(stored) : {
             leftbrain: "about-me",           // Default for first load
-            rightbrain: "apple-dev-youtube-rb", // Default when switching to rightbrain
+            rightbrain: "drawing", // Default when switching to rightbrain
             "developer-tools": "ai-tools-channels", // Default when switching to developer tools
             "qa-tools": "qa-testing-apps",   // Default when switching to qa tools
             "general-tools": "info-tool"     // Default when switching to general tools
@@ -217,7 +217,6 @@ const TabSystem = () => {
             { id: "blogs", label: "Blogs", icon: "📝", description: <LazyBlog /> },
         ],
         rightbrain: [
-            { id: "apple-dev-youtube-rb", label: "Apple Dev YouTube", icon: "📺", description: <LazyAppleDevYouTubeChannels /> },
             { id: "drawing", label: "Drawing", icon: "✏️", description: <LazyDrawing /> },
             { id: "literature", label: "Literature", icon: "📖", description: <LazyLiterature /> },
             { id: "philosophy", label: "Philosophy", icon: "🤔", description: <LazyPhilosophy /> },
