@@ -6,6 +6,10 @@ import { arrayData } from './data/array.js';
 import { linkedListData } from './data/linkedlist.js';
 import { stackQueueData } from './data/stackqueue.js';
 import { binaryTreeData } from './data/binarytree.js';
+import { bstData } from './data/bst.js';
+import { heapData } from './data/heap.js';
+import { hashingData } from './data/hashing.js';
+import { twoPointersData } from './data/twopointers.js';
 import { stringsData } from './data/strings.js';
 
 const DSA = memo(() => {
@@ -22,6 +26,10 @@ const DSA = memo(() => {
         linkedlist: linkedListData,
         stackqueue: stackQueueData,
         binarytree: binaryTreeData,
+        bst: bstData,
+        heap: heapData,
+        hashing: hashingData,
+        twopointers: twoPointersData,
         strings: stringsData,
         introduction: {
             title: 'Introduction to DSA',
@@ -795,6 +803,10 @@ std::vector<int> createArray(int n) {
         { id: 'linkedlist', name: 'Linked List' },
         { id: 'stackqueue', name: 'Stack & Queue' },
         { id: 'binarytree', name: 'Binary Tree' },
+        { id: 'bst', name: 'Binary Search Tree' },
+        { id: 'heap', name: 'Heap / Priority Queue' },
+        { id: 'hashing', name: 'Hashing' },
+        { id: 'twopointers', name: 'Two Pointers & Sliding Window' },
         { id: 'strings', name: 'Strings' }
     ], []);
 
