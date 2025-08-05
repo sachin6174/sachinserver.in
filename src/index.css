@@ -201,6 +201,19 @@ input, textarea, select, button {
     }
 }
 
+/* Custom cursor styles */
+* {
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="28" viewBox="0 0 24 28" fill="none"><path d="M6 2L6 20L10.5 15.5L14 24L17 22.5L13.5 13.5L20 13.5L6 2Z" fill="%23A855F7" stroke="%23A855F7" stroke-width="1"/></svg>'), auto;
+}
+
+a, button, [role="button"], .clickable, input[type="button"], input[type="submit"] {
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="28" viewBox="0 0 24 28" fill="none"><path d="M6 2L6 20L10.5 15.5L14 24L17 22.5L13.5 13.5L20 13.5L6 2Z" fill="%238B5CF6" stroke="%238B5CF6" stroke-width="1"/></svg>'), pointer;
+}
+
+input[type="text"], input[type="email"], input[type="password"], input[type="number"], input[type="url"], textarea, select {
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="28" viewBox="0 0 24 28" fill="none"><path d="M6 2L6 20L10.5 15.5L14 24L17 22.5L13.5 13.5L20 13.5L6 2Z" fill="%236366F1" stroke="%236366F1" stroke-width="1"/></svg>'), text;
+}
+
 /* Universal nav-hidden spacing optimizations */
 .nav-hidden [class*="tool"] {
     padding: 0.5rem !important;
