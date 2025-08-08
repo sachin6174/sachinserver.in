@@ -394,25 +394,45 @@ body.dark-mode .tabs {
 /* Enhanced Theme Toggle with Improved Gradients */
 .theme-toggle {
   position: relative;
-  padding: 0.125rem var(--space-sm);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 60px;
+  height: 32px;
+  padding: 0;
   border-radius: var(--radius-xl);
   border: 1px solid rgba(255, 255, 255, 0.25);
   background: linear-gradient(135deg, var(--secondary-color), var(--tertiary-color), var(--quaternary-color));
-  color: #ffffff;
-  font-weight: 700;
-  font-size: 0.8125rem;
   cursor: pointer;
-  white-space: nowrap;
   transition: all var(--transition-slow);
-  min-height: 32px;
-  box-shadow: 
+  box-shadow:
     var(--shadow-colored),
     0 0 18px rgba(245, 158, 11, 0.2),
     inset 0 1px 1px rgba(255, 255, 255, 0.35);
   overflow: hidden;
   backdrop-filter: blur(15px);
-  font-feature-settings: 'cv02', 'cv03', 'cv04';
-  letter-spacing: -0.005em;
+}
+
+.theme-toggle .icon {
+  flex: 1;
+  text-align: center;
+  pointer-events: none;
+  font-size: 0.875rem;
+}
+
+.theme-toggle .toggle-thumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 28px;
+  height: 28px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+}
+
+.theme-toggle.dark .toggle-thumb {
+  transform: translateX(28px);
 }
 
 .theme-toggle::before {
@@ -1192,12 +1212,10 @@ body.dark-mode .description::before {
   }
   
   .theme-toggle {
-    padding: var(--space-sm) var(--space-md);
-    font-size: 0.8125rem;
-    min-height: 40px;
-    font-weight: 600;
-    /* Better touch targets */
-    min-width: 44px;
+    width: 60px;
+    height: 32px;
+    padding: 0;
+    min-width: 60px;
   }
   
   .tab-content-container {
@@ -1276,10 +1294,10 @@ body.dark-mode .description::before {
   .theme-toggle {
     align-self: center;
     order: -1;
-    font-size: 0.75rem;
-    padding: var(--space-sm) var(--space-lg);
-    min-height: 36px;
-    min-width: 120px;
+    width: 60px;
+    height: 32px;
+    padding: 0;
+    min-width: 60px;
   }
   
   .tab-content {

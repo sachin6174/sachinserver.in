@@ -304,11 +304,13 @@ const TabSystem = () => {
                     ))}
                 </div>
                 <button
-                    className="theme-toggle"
+                    className={`theme-toggle ${isDarkMode ? 'dark' : 'light'}`}
                     onClick={toggleTheme}
-                    aria-label="Toggle Theme"
+                    aria-label={`Switch to ${isDarkMode ? 'light' : 'dark'} mode`}
                 >
-                    {isDarkMode ? "☀️ Day Mode" : "🌙 Night Mode"}
+                    <span className="icon sun" aria-hidden="true">☀️</span>
+                    <span className="icon moon" aria-hidden="true">🌙</span>
+                    <span className="toggle-thumb" aria-hidden="true"></span>
                 </button>
             </div>
 
