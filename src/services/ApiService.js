@@ -117,7 +117,19 @@ class ApiCache {
 
   generateKey(url, options = {}) {
     const keyData = { url, method: options.method || 'GET', body: options.body };
-    return btoa(JSON.stringify(keyData));
+    const keyString = JSON.stringify(keyData);
+
+    // Use browser btoa when available, fall back to Node Buffer in non-browser environments
+    if (typeof btoa === 'function') {
+      return btoa(keyString);
+    }
+
+    if (typeof Buffer !== 'undefined') {
+      return Buffer.from(keyString).toString('base64');
+    }
+
+    // As a last resort, return the raw string (shouldn't happen in modern environments)
+    return keyString;
   }
 
   set(key, data, ttl = this.defaultTTL) {
