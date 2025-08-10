@@ -22,12 +22,6 @@
     "performance:audit": "npm run build && npx lighthouse http://localhost:3000 --view",
     "size:analyze": "npm run build && npx bundlesize"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
   "browserslist": {
     "production": [
       ">0.2%",
