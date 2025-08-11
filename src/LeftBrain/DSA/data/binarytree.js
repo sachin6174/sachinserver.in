@@ -1,6 +1,6 @@
 export const binaryTreeData = {
-    title: 'Binary Tree',
-    description: 'Complete guide to binary trees - from fundamentals to advanced traversal algorithms',
+    title: 'Binary Trees & Binary Search Trees',
+    description: 'Complete guide to binary trees and BSTs - from fundamentals to advanced algorithms, traversals, and search operations',
     explanation: `
 ## What is a Binary Tree?
 A binary tree is a hierarchical data structure where each node has at most two children, referred to as the left child and the right child. It's one of the most fundamental tree structures in computer science.
@@ -18,15 +18,34 @@ A binary tree is a hierarchical data structure where each node has at most two c
 2. **Complete Binary Tree**: All levels are filled except possibly the last level
 3. **Perfect Binary Tree**: All internal nodes have 2 children, all leaves at same level
 4. **Balanced Binary Tree**: Height difference between left and right subtrees ≤ 1
-5. **Binary Search Tree**: Left subtree < node < right subtree
+5. **Binary Search Tree (BST)**: Left subtree < node < right subtree
+
+## What is a Binary Search Tree (BST)?
+A **Binary Search Tree (BST)** is a special type of binary tree where:
+- **Left subtree** contains only nodes with values **less than** the node's value
+- **Right subtree** contains only nodes with values **greater than** the node's value
+- Both left and right subtrees are also BSTs
+- This property enables efficient search, insertion, and deletion operations
 
 ## Time Complexity
+
+### General Binary Tree
 | Operation | Average | Worst Case |
 |-----------|---------|------------|
-| Search    | O(log n)| O(n)       |
-| Insert    | O(log n)| O(n)       |
-| Delete    | O(log n)| O(n)       |
+| Search    | O(n)    | O(n)       |
+| Insert    | O(1)*   | O(1)*      |
+| Delete    | O(n)    | O(n)       |
 | Traversal | O(n)    | O(n)       |
+
+*Insert is O(1) if you have a reference to the parent node
+
+### Binary Search Tree (BST)
+| Operation | Balanced BST | Worst Case (Unbalanced) |
+|-----------|--------------|------------------------|
+| Search    | O(log n)     | O(n)                   |
+| Insert    | O(log n)     | O(n)                   |
+| Delete    | O(log n)     | O(n)                   |
+| Traversal | O(n)         | O(n)                   |
 
 ## Binary Tree Node in Swift
 \`\`\`swift
@@ -322,21 +341,137 @@ func hasPathSum(_ root: TreeNode?, _ targetSum: Int) -> Bool {
 }
 \`\`\`
 
-## When to Use Binary Trees
-✅ **Use when:**
-- Need hierarchical data representation
-- Implementing search algorithms
-- Expression parsing and evaluation
-- File system organization
-- Decision-making processes
+## BST-Specific Operations
 
-❌ **Avoid when:**
-- Need frequent sequential access
-- Memory usage is extremely critical
-- Simple linear operations are sufficient
+### BST Validation
+\`\`\`swift
+func isValidBST(_ root: TreeNode?) -> Bool {
+    func validate(_ node: TreeNode?, _ minVal: Int, _ maxVal: Int) -> Bool {
+        guard let node = node else { return true }
+        
+        if node.val <= minVal || node.val >= maxVal {
+            return false
+        }
+        
+        return validate(node.left, minVal, node.val) && 
+               validate(node.right, node.val, maxVal)
+    }
+    
+    return validate(root, Int.min, Int.max)
+}
+\`\`\`
+
+### BST Search Operation
+\`\`\`swift
+func searchBST(_ root: TreeNode?, _ val: Int) -> TreeNode? {
+    guard let root = root else { return nil }
+    
+    if val == root.val {
+        return root
+    } else if val < root.val {
+        return searchBST(root.left, val)
+    } else {
+        return searchBST(root.right, val)
+    }
+}
+\`\`\`
+
+### BST Insert Operation
+\`\`\`swift
+func insertIntoBST(_ root: TreeNode?, _ val: Int) -> TreeNode? {
+    guard let root = root else {
+        return TreeNode(val)
+    }
+    
+    if val < root.val {
+        root.left = insertIntoBST(root.left, val)
+    } else {
+        root.right = insertIntoBST(root.right, val)
+    }
+    
+    return root
+}
+\`\`\`
+
+### Kth Smallest Element in BST
+\`\`\`swift
+func kthSmallest(_ root: TreeNode?, _ k: Int) -> Int {
+    var count = 0
+    var result = 0
+    
+    func inOrder(_ node: TreeNode?) {
+        guard let node = node, count < k else { return }
+        
+        inOrder(node.left)
+        
+        count += 1
+        if count == k {
+            result = node.val
+            return
+        }
+        
+        inOrder(node.right)
+    }
+    
+    inOrder(root)
+    return result
+}
+\`\`\`
+
+### Lowest Common Ancestor in BST
+\`\`\`swift
+func lowestCommonAncestorBST(_ root: TreeNode?, _ p: TreeNode?, _ q: TreeNode?) -> TreeNode? {
+    guard let root = root, let p = p, let q = q else { return nil }
+    
+    // If both nodes are in left subtree
+    if p.val < root.val && q.val < root.val {
+        return lowestCommonAncestorBST(root.left, p, q)
+    }
+    
+    // If both nodes are in right subtree
+    if p.val > root.val && q.val > root.val {
+        return lowestCommonAncestorBST(root.right, p, q)
+    }
+    
+    // If nodes are on different sides, current node is LCA
+    return root
+}
+\`\`\`
+
+## BST vs Binary Tree Comparison
+
+| Aspect | Binary Tree | Binary Search Tree |
+|--------|-------------|---------------------|
+| **Structure** | Any arrangement | Left < Root < Right |
+| **Search** | O(n) - must check all nodes | O(log n) average |
+| **Insert** | O(1) with parent reference | O(log n) average |
+| **Delete** | O(n) - need to find node | O(log n) average |
+| **Inorder Traversal** | Random order | Sorted order |
+| **Use Case** | Hierarchical data | Searching & sorting |
+
+## When to Use Binary Trees vs BSTs
+
+✅ Need hierarchical data representation
+✅ Expression parsing and evaluation
+✅ File system organization
+✅ Decision trees and game trees
+✅ Heap implementation (complete binary trees)
+
+### Use Binary Search Trees when:
+✅ Need efficient searching (O(log n))
+✅ Need sorted data retrieval
+✅ Implementing dictionaries/maps
+✅ Range queries and closest element searches
+✅ Dynamic insertion/deletion with search
+
+### Avoid when:
+❌ Need frequent sequential access
+❌ Memory usage is extremely critical
+❌ Simple linear operations are sufficient
+❌ Data doesn't have natural ordering (for BSTs)
 `,
     questions: [
-        // Easy Problems - Foundation
+        // Easy Problems - Binary Tree Foundation
         'Binary Tree Inorder Traversal - https://leetcode.com/problems/binary-tree-inorder-traversal/',
         'Binary Tree Preorder Traversal - https://leetcode.com/problems/binary-tree-preorder-traversal/',
         'Binary Tree Postorder Traversal - https://leetcode.com/problems/binary-tree-postorder-traversal/',
@@ -348,7 +483,13 @@ func hasPathSum(_ root: TreeNode?, _ targetSum: Int) -> Bool {
         'Path Sum - https://leetcode.com/problems/path-sum/',
         'Balanced Binary Tree - https://leetcode.com/problems/balanced-binary-tree/',
         
-        // Medium Problems - Advanced Concepts
+        // Easy Problems - BST Foundation
+        'Search in a Binary Search Tree - https://leetcode.com/problems/search-in-a-binary-search-tree/',
+        'Insert into a Binary Search Tree - https://leetcode.com/problems/insert-into-a-binary-search-tree/',
+        'Validate Binary Search Tree - https://leetcode.com/problems/validate-binary-search-tree/',
+        'Lowest Common Ancestor of a BST - https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/',
+        
+        // Medium Problems - Advanced Binary Tree Concepts
         'Binary Tree Zigzag Level Order Traversal - https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/',
         'Binary Tree Right Side View - https://leetcode.com/problems/binary-tree-right-side-view/',
         'Count Good Nodes in Binary Tree - https://leetcode.com/problems/count-good-nodes-in-binary-tree/',
@@ -357,9 +498,19 @@ func hasPathSum(_ root: TreeNode?, _ targetSum: Int) -> Bool {
         'Subtree of Another Tree - https://leetcode.com/problems/subtree-of-another-tree/',
         'Populating Next Right Pointers in Each Node - https://leetcode.com/problems/populating-next-right-pointers-in-each-node/',
         
+        // Medium Problems - Advanced BST Concepts
+        'Kth Smallest Element in a BST - https://leetcode.com/problems/kth-smallest-element-in-a-bst/',
+        'Delete Node in a BST - https://leetcode.com/problems/delete-node-in-a-bst/',
+        'Convert BST to Greater Tree - https://leetcode.com/problems/convert-bst-to-greater-tree/',
+        'Construct BST from Preorder Traversal - https://leetcode.com/problems/construct-binary-search-tree-from-preorder-traversal/',
+        
         // Hard Problems - Complex Algorithms
         'Binary Tree Maximum Path Sum - https://leetcode.com/problems/binary-tree-maximum-path-sum/',
         'Serialize and Deserialize Binary Tree - https://leetcode.com/problems/serialize-and-deserialize-binary-tree/',
-        'Binary Tree Cameras - https://leetcode.com/problems/binary-tree-cameras/'
+        'Binary Tree Cameras - https://leetcode.com/problems/binary-tree-cameras/',
+        'Recover Binary Search Tree - https://leetcode.com/problems/recover-binary-search-tree/'
     ]
 };
+
+// Export BST data for backward compatibility (will be removed after migration)
+export const bstData = binaryTreeData;
