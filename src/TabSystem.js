@@ -305,7 +305,6 @@ const TabSystem = memo(() => {
                         alt="Tab Icon"
                         loading="lazy"
                         decoding="async"
-                        style={{ width: 'auto', height: 'auto', maxWidth: '100%' }}
                     />
                     {["leftbrain", "rightbrain", "developer-tools", "qa-tools", "general-tools"].map((tab) => (
                         <div
