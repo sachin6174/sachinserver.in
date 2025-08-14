@@ -1,6 +1,6 @@
 export const binaryTreeData = {
-    title: 'Binary Trees & Binary Search Trees',
-    description: 'Complete guide to binary trees and BSTs - from fundamentals to advanced algorithms, traversals, and search operations',
+    title: 'Binary Tree',
+    description: 'Master binary trees with problems covering tree traversals, tree construction, path problems, and fundamental tree algorithms',
     explanation: `
 ## What is a Binary Tree?
 A binary tree is a hierarchical data structure where each node has at most two children, referred to as the left child and the right child. It's one of the most fundamental tree structures in computer science.

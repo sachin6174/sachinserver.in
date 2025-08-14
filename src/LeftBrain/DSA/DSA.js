@@ -801,8 +801,9 @@ std::vector<int> createArray(int n) {
     const topics = useMemo(() => [
         { id: 'array', name: 'Array' },
         { id: 'linkedlist', name: 'Linked List' },
+        { id: 'binarytree', name: 'Binary Tree' },
+        { id: 'bst', name: 'Binary Search Tree' },
         { id: 'stackqueue', name: 'Stack & Queue' },
-        { id: 'binarytree', name: 'Binary Trees & BST' },
         { id: 'heap', name: 'Heap / Priority Queue' },
         { id: 'hashing', name: 'Hashing' },
         { id: 'twopointers', name: 'Two Pointers & Sliding Window' },
