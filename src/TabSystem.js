@@ -3,6 +3,7 @@ import { createLazyComponent } from './utils/lazyLoading';
 import LoadingSpinner from './components/LoadingSpinner/LoadingSpinner';
 import SkeletonLoader from './components/SkeletonLoader/SkeletonLoader';
 import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
+import { usePerformanceMonitor } from './utils/performanceMonitoring';
 import logo from './assets/logo512.png';
 import './TabSystem.css';
 import LeftNavigation from './LeftNavigation';
@@ -80,7 +81,10 @@ const LazyMacOSAppCatalog = createLazyComponent(() => import('./Tools/MacOSAppCa
 const LazyEmojiPicker = createLazyComponent(() => import('./Tools/EmojiPicker/EmojiPicker'), { componentName: 'EmojiPicker' });
 const LazyNumberToUnicode = createLazyComponent(() => import('./Tools/NumberToUnicode/NumberToUnicode'), { componentName: 'NumberToUnicode' });
 
-const TabSystem = () => {
+const TabSystem = memo(() => {
+    // Performance monitoring
+    const { trackFunction } = usePerformanceMonitor('TabSystem');
+
     // Helper function to get default item for a tab (memoized)
     const getDefaultItemForTab = useCallback((tab) => {
         switch (tab) {
@@ -141,23 +145,30 @@ const TabSystem = () => {
         return stored !== null ? JSON.parse(stored) : true; // Default to visible
     });
 
-    // Handle tab changes and update selected nav item
-    // Handle tab changes and update selected nav item
+    // Handle tab changes and update selected nav item (debounced)
     useEffect(() => {
-        localStorage.setItem('activeTab', activeTab);
+        const timeoutId = setTimeout(() => {
+            localStorage.setItem('activeTab', activeTab);
+        }, 100);
 
         // Update selectedNavItem to the last selected item for this tab
         const lastSelected = lastSelectedItems[activeTab];
         if (lastSelected && lastSelected !== selectedNavItem) {
             setSelectedNavItem(lastSelected);
         }
+        
+        return () => clearTimeout(timeoutId);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [activeTab]); // Only depend on activeTab to prevent infinite loops
 
-    // Save localStorage when selectedNavItem changes
+    // Save localStorage when selectedNavItem changes (debounced)
     useEffect(() => {
-        localStorage.setItem('isDarkMode', JSON.stringify(isDarkMode));
+        const timeoutId = setTimeout(() => {
+            localStorage.setItem('isDarkMode', JSON.stringify(isDarkMode));
+        }, 100);
         document.body.className = isDarkMode ? "dark-mode" : "light-mode";
+        
+        return () => clearTimeout(timeoutId);
     }, [isDarkMode]);
 
     // Listen for system theme changes (only if no stored preference exists)
@@ -179,7 +190,11 @@ const TabSystem = () => {
     }, []);
 
     useEffect(() => {
-        localStorage.setItem('isLeftNavVisible', JSON.stringify(isLeftNavVisible));
+        const timeoutId = setTimeout(() => {
+            localStorage.setItem('isLeftNavVisible', JSON.stringify(isLeftNavVisible));
+        }, 100);
+        
+        return () => clearTimeout(timeoutId);
     }, [isLeftNavVisible]);
 
 
@@ -260,7 +275,7 @@ const TabSystem = () => {
         ],
     }), []);
 
-    // Custom setSelectedNavItem that also updates localStorage (memoized)
+    // Custom setSelectedNavItem that also updates localStorage (memoized and debounced)
     const handleNavItemChange = useCallback((newItem) => {
         setSelectedNavItem(newItem);
 
@@ -270,7 +285,12 @@ const TabSystem = () => {
                 ...prevItems,
                 [activeTab]: newItem
             };
-            localStorage.setItem('lastSelectedItems', JSON.stringify(updatedLastSelectedItems));
+            
+            // Debounce localStorage update
+            setTimeout(() => {
+                localStorage.setItem('lastSelectedItems', JSON.stringify(updatedLastSelectedItems));
+            }, 100);
+            
             return updatedLastSelectedItems;
         });
     }, [activeTab]);
@@ -283,6 +303,9 @@ const TabSystem = () => {
                     <img
                         src={logo}
                         alt="Tab Icon"
+                        loading="lazy"
+                        decoding="async"
+                        style={{ width: 'auto', height: 'auto', maxWidth: '100%' }}
                     />
                     {["leftbrain", "rightbrain", "developer-tools", "qa-tools", "general-tools"].map((tab) => (
                         <div
@@ -345,6 +368,9 @@ const TabSystem = () => {
             </div>
         </div>
     );
-};
+
+});
+
+TabSystem.displayName = 'TabSystem';
 
 export default TabSystem;

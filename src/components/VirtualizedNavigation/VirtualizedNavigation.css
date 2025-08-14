@@ -1,0 +1,121 @@
+.virtualized-nav {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.nav-scroll-container {
+    flex: 1;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border-color) transparent;
+}
+
+.nav-scroll-container::-webkit-scrollbar {
+    width: 6px;
+}
+
+.nav-scroll-container::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.nav-scroll-container::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 3px;
+}
+
+.nav-scroll-container::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-color);
+}
+
+.nav-items-container {
+    width: 100%;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    cursor: pointer;
+    border-radius: 8px;
+    margin: 2px 8px;
+    transition: all 0.2s ease;
+    user-select: none;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.nav-item:hover {
+    background: var(--hover-background);
+    transform: translateX(4px);
+}
+
+.nav-item.selected {
+    background: var(--primary-background);
+    color: var(--primary-text);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.nav-item:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+.nav-icon {
+    font-size: 18px;
+    flex-shrink: 0;
+    width: 24px;
+    text-align: center;
+}
+
+.nav-label {
+    font-size: 14px;
+    font-weight: 500;
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.fade-in-up {
+    animation: fadeInUp 0.3s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Performance optimizations */
+.nav-item * {
+    pointer-events: none;
+}
+
+.nav-item {
+    pointer-events: auto;
+    will-change: transform;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .nav-item {
+        padding: 10px 12px;
+        gap: 10px;
+    }
+    
+    .nav-icon {
+        font-size: 16px;
+        width: 20px;
+    }
+    
+    .nav-label {
+        font-size: 13px;
+    }
+}

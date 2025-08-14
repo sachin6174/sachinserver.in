@@ -15,16 +15,23 @@ const MainContent = memo(({ activeTab, selectedNavItem, navigationItems, isLeftN
     }, [selectedNavItem, navigationItems, activeTab]);
 
     useEffect(() => {
-        // Animate content change
-        setIsContentVisible(false);
-        
-        const timer = setTimeout(() => {
-            setCurrentContent(selectedContent);
-            setIsContentVisible(true);
-        }, 150);
-
-        return () => clearTimeout(timer);
-    }, [selectedContent, activeTab, selectedNavItem]);
+        // Optimize content change animation
+        if (selectedContent !== currentContent) {
+            setIsContentVisible(false);
+            
+            // Use requestAnimationFrame for better performance
+            const animationFrame = requestAnimationFrame(() => {
+                const timer = setTimeout(() => {
+                    setCurrentContent(selectedContent);
+                    setIsContentVisible(true);
+                }, 100); // Reduced delay for snappier UI
+                
+                return () => clearTimeout(timer);
+            });
+            
+            return () => cancelAnimationFrame(animationFrame);
+        }
+    }, [selectedContent, currentContent]);
 
     // Memoize tab configuration to prevent recreation
     const tabConfig = useMemo(() => ({

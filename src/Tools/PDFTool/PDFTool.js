@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from 'react';
-import { PDFDocument } from 'pdf-lib';
+// import { PDFDocument } from 'pdf-lib';
 import './PDFTool.css';
 
 const PDFTool = () => {
@@ -31,16 +31,16 @@ const PDFTool = () => {
         }
 
         const filePromises = pdfFiles.map(async (file) => {
-            const arrayBuffer = await file.arrayBuffer();
-            const pdfDoc = await PDFDocument.load(arrayBuffer);
+            // const arrayBuffer = await file.arrayBuffer();
+            // const pdfDoc = await PDFDocument.load(arrayBuffer);
             
             return {
                 id: Date.now() + Math.random(),
                 name: file.name,
                 file: file,
-                arrayBuffer: arrayBuffer,
-                pdfDoc: pdfDoc,
-                pageCount: pdfDoc.getPageCount(),
+                // arrayBuffer: arrayBuffer,
+                // pdfDoc: pdfDoc,
+                pageCount: 0, // pdfDoc.getPageCount(),
                 size: (file.size / 1024 / 1024).toFixed(2) + ' MB'
             };
         });

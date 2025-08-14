@@ -15,14 +15,22 @@ const LeftNavigation = memo(({ items, selectedNavItem, setSelectedNavItem }) => 
     const handleItemClick = useCallback((itemId) => {
         setSelectedNavItem(itemId);
         
-        // Add a subtle click animation
-        const element = document.querySelector(`[data-item-id="${itemId}"]`);
-        if (element) {
-            element.style.transform = 'scale(0.98)';
-            setTimeout(() => {
-                element.style.transform = '';
-            }, 100);
-        }
+        // Optimized click animation using requestAnimationFrame
+        requestAnimationFrame(() => {
+            const element = document.querySelector(`[data-item-id="${itemId}"]`);
+            if (element) {
+                element.style.transform = 'scale(0.98)';
+                element.style.transition = 'transform 0.1s ease';
+                
+                requestAnimationFrame(() => {
+                    setTimeout(() => {
+                        if (element) {
+                            element.style.transform = '';
+                        }
+                    }, 100);
+                });
+            }
+        });
     }, [setSelectedNavItem]);
 
     return (
