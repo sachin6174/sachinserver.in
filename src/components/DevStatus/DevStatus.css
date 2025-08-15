@@ -1,0 +1,200 @@
+/* Development Status Component Styles */
+.dev-status-indicator {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: rgba(0, 0, 0, 0.9);
+  color: white;
+  padding: 12px;
+  border-radius: 8px;
+  font-family: 'Monaco', 'Courier New', monospace;
+  font-size: 12px;
+  z-index: 10000;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  min-width: 140px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dev-status-indicator.hidden {
+  transform: translateY(-10px);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.dev-status-indicator.visible {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.dev-status-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+  animation: pulse 2s infinite;
+}
+
+.status-dot.connected {
+  background: #4ade80;
+}
+
+.status-dot.updating {
+  background: #fbbf24;
+  animation: pulse 0.5s infinite;
+}
+
+.status-dot.checking {
+  background: #94a3b8;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.dev-status-details {
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  padding-top: 8px;
+}
+
+.status-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.status-item span:first-child {
+  color: #94a3b8;
+}
+
+.enabled {
+  color: #4ade80;
+}
+
+.disabled {
+  color: #f87171;
+}
+
+.server-status.connected {
+  color: #4ade80;
+}
+
+.server-status.updating {
+  color: #fbbf24;
+}
+
+.server-status.checking {
+  color: #94a3b8;
+}
+
+.dev-actions {
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.dev-actions button {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  padding: 6px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.dev-actions button:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.dev-toggle-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 12px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 9999;
+  font-size: 18px;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(10px);
+}
+
+.dev-toggle-btn:hover {
+  background: rgba(0, 0, 0, 0.9);
+  transform: scale(1.05);
+}
+
+/* Dark theme adjustments */
+[data-theme="dark"] .dev-status-indicator {
+  background: rgba(255, 255, 255, 0.95);
+  color: #1a1a1a;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="dark"] .dev-status-details {
+  border-top-color: rgba(0, 0, 0, 0.2);
+}
+
+[data-theme="dark"] .status-item span:first-child {
+  color: #666;
+}
+
+[data-theme="dark"] .dev-actions button {
+  background: rgba(0, 0, 0, 0.1);
+  border-color: rgba(0, 0, 0, 0.2);
+  color: #1a1a1a;
+}
+
+[data-theme="dark"] .dev-actions button:hover {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+[data-theme="dark"] .dev-toggle-btn {
+  background: rgba(255, 255, 255, 0.9);
+  color: #1a1a1a;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+[data-theme="dark"] .dev-toggle-btn:hover {
+  background: rgba(255, 255, 255, 1);
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .dev-status-indicator {
+    top: 10px;
+    right: 10px;
+    min-width: 120px;
+    font-size: 11px;
+    padding: 10px;
+  }
+
+  .dev-toggle-btn {
+    bottom: 10px;
+    right: 10px;
+    width: 45px;
+    height: 45px;
+    font-size: 16px;
+  }
+}

@@ -1,0 +1,415 @@
+/* App Icon Generator Styles */
+.app-icon-generator {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.generator-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.generator-header h2 {
+    font-size: 2.5rem;
+    margin: 0 0 10px 0;
+    color: var(--text-color);
+}
+
+.generator-header p {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+/* Upload Section */
+.upload-section {
+    margin-bottom: 30px;
+}
+
+.upload-area {
+    border: 3px dashed var(--border-color);
+    border-radius: 12px;
+    padding: 40px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-secondary);
+}
+
+.upload-area:hover {
+    border-color: var(--primary-color);
+    background: var(--bg-hover);
+}
+
+.upload-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.upload-icon {
+    font-size: 4rem;
+    opacity: 0.7;
+}
+
+.upload-placeholder p {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin: 0;
+    color: var(--text-color);
+}
+
+.upload-placeholder small {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    display: block;
+}
+
+.uploaded-image {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.uploaded-image img {
+    max-width: 200px;
+    max-height: 200px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.image-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.clear-btn {
+    background: var(--danger-color);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: opacity 0.2s;
+}
+
+.clear-btn:hover {
+    opacity: 0.8;
+}
+
+/* Platform Selection */
+.platform-selection {
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.platform-selection h3 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: var(--text-color);
+}
+
+.platform-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.platform-btn {
+    padding: 15px 30px;
+    border: 2px solid var(--border-color);
+    background: var(--bg-secondary);
+    color: var(--text-color);
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    min-width: 120px;
+}
+
+.platform-btn:hover {
+    border-color: var(--primary-color);
+    transform: translateY(-2px);
+}
+
+.platform-btn.active {
+    background: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+/* Generate Section */
+.generate-section {
+    text-align: center;
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.generate-btn, .download-all-btn {
+    padding: 15px 30px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 200px;
+}
+
+.generate-btn {
+    background: var(--primary-color);
+    color: white;
+}
+
+.generate-btn:hover:not(:disabled) {
+    background: var(--primary-hover);
+    transform: translateY(-2px);
+}
+
+.generate-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.download-all-btn {
+    background: var(--success-color);
+    color: white;
+}
+
+.download-all-btn:hover {
+    background: var(--success-hover);
+    transform: translateY(-2px);
+}
+
+/* Generated Icons */
+.generated-icons {
+    margin-bottom: 40px;
+}
+
+.generated-icons h3 {
+    font-size: 1.8rem;
+    margin-bottom: 25px;
+    color: var(--text-color);
+    text-align: center;
+}
+
+.icons-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.icon-item {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    transition: all 0.3s ease;
+}
+
+.icon-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.icon-preview {
+    width: 50px;
+    height: 50px;
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    border: 1px solid var(--border-light);
+}
+
+.icon-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.icon-details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.icon-name {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--text-color);
+}
+
+.icon-size {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    font-family: 'Monaco', 'Courier New', monospace;
+}
+
+.icon-description {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+.download-icon-btn {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 10px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+}
+
+.download-icon-btn:hover {
+    background: var(--primary-hover);
+    transform: scale(1.05);
+}
+
+/* Features Info */
+.features-info {
+    margin-top: 40px;
+    text-align: center;
+}
+
+.features-info h3 {
+    font-size: 1.8rem;
+    margin-bottom: 25px;
+    color: var(--text-color);
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.feature {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    text-align: left;
+}
+
+.feature-icon {
+    font-size: 2rem;
+    display: block;
+}
+
+.feature strong {
+    font-size: 1.1rem;
+    color: var(--text-color);
+    display: block;
+    margin-bottom: 8px;
+}
+
+.feature p {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    margin: 0;
+    line-height: 1.4;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .app-icon-generator {
+        padding: 15px;
+    }
+    
+    .generator-header h2 {
+        font-size: 2rem;
+    }
+    
+    .upload-area {
+        padding: 30px 20px;
+        min-height: 150px;
+    }
+    
+    .upload-icon {
+        font-size: 3rem;
+    }
+    
+    .platform-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .platform-btn {
+        width: 200px;
+    }
+    
+    .generate-section {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .icons-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    .icon-preview {
+        background: #2a2a2a;
+    }
+}
+
+/* CSS Variables for theming */
+:root {
+    --primary-color: #007AFF;
+    --primary-hover: #0056b3;
+    --success-color: #28a745;
+    --success-hover: #1e7e34;
+    --danger-color: #dc3545;
+    --bg-secondary: #f8f9fa;
+    --bg-hover: #e9ecef;
+    --text-color: #333;
+    --text-secondary: #666;
+    --border-color: #ddd;
+    --border-light: #eee;
+}
+
+[data-theme="dark"] {
+    --bg-secondary: #2a2a2a;
+    --bg-hover: #3a3a3a;
+    --text-color: #fff;
+    --text-secondary: #ccc;
+    --border-color: #555;
+    --border-light: #444;
+}

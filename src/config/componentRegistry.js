@@ -459,7 +459,36 @@ export const initializeComponentRegistry = () => {
     description: 'Number base conversion utility'
   });
 
+  registerLazyComponent('app-icon-generator', 
+    () => import('../Tools/AppIconGenerator/AppIconGenerator'), {
+    label: 'App Icon Generator',
+    icon: '🍎',
+    category: 'general-tools',
+    description: 'Generate app icons for iOS, Android, and macOS'
+  });
+
   console.log('Component registry initialized with lazy loading');
+  
+  // Development auto-reload enhancement
+  if (process.env.NODE_ENV === 'development') {
+    console.log('🔧 Development mode: Component registry auto-reload enabled');
+    
+    // Add registry info to window for debugging
+    window.componentRegistry = {
+      getAllComponents: getAllComponents,
+      getCategories: getCategories,
+      getComponentsByCategory: getComponentsByCategory,
+      refreshRegistry: () => {
+        console.log('🔄 Refreshing component registry...');
+        window.location.reload();
+      }
+    };
+    
+    console.log('💡 Available debug commands:');
+    console.log('  - window.componentRegistry.getAllComponents()');
+    console.log('  - window.componentRegistry.getCategories()');
+    console.log('  - window.componentRegistry.refreshRegistry()');
+  }
 };
 
 /**
