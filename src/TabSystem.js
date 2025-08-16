@@ -80,6 +80,8 @@ const LazyImportantWebsites = createLazyComponent(() => import('./Tools/Importan
 const LazyMacOSAppCatalog = createLazyComponent(() => import('./Tools/MacOSAppCatalog/MacOSAppCatalog'), { componentName: 'MacOSAppCatalog' });
 const LazyEmojiPicker = createLazyComponent(() => import('./Tools/EmojiPicker/EmojiPicker'), { componentName: 'EmojiPicker' });
 const LazyNumberToUnicode = createLazyComponent(() => import('./Tools/NumberToUnicode/NumberToUnicode'), { componentName: 'NumberToUnicode' });
+const LazyVideoTrimmer = createLazyComponent(() => import('./Tools/VideoTrimmer/VideoTrimmer'), { componentName: 'VideoTrimmer' });
+const LazyAppIconGenerator = createLazyComponent(() => import('./Tools/AppIconGenerator/AppIconGenerator'), { componentName: 'AppIconGenerator' });
 
 const TabSystem = memo(() => {
     // Performance monitoring
@@ -267,8 +269,10 @@ const TabSystem = memo(() => {
         "general-tools": [
             { id: "info-tool", label: "Info Tool", icon: "📊", description: <LazyInfoTool /> },
             { id: "passport-photo-maker", label: "Passport Photo Maker", icon: "📷", description: <LazyPassportPhotoMaker /> },
+            { id: "app-icon-generator", label: "App Icon Generator", icon: "🍎", description: <LazyAppIconGenerator /> },
             { id: "color-picker", label: "Color Picker", icon: "🎨", description: <LazyColorPickerTool /> },
             { id: "screen-recorder", label: "Screen Recorder", icon: "🎥", description: <LazyScreenRecorderTool /> },
+            { id: "video-trimmer", label: "Video Trimmer", icon: "✂️", description: <LazyVideoTrimmer /> },
             { id: "important-websites", label: "Important Websites", icon: "🌐", description: <LazyImportantWebsites /> },
             { id: "emoji-picker", label: "Emoji Picker", icon: "😀", description: <LazyEmojiPicker /> },
             { id: "number-to-unicode", label: "Number Base Converter", icon: "🔢", description: <LazyNumberToUnicode /> },

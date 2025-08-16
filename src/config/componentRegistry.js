@@ -467,6 +467,14 @@ export const initializeComponentRegistry = () => {
     description: 'Generate app icons for iOS, Android, and macOS'
   });
 
+  registerLazyComponent('video-trimmer', 
+    () => import('../Tools/VideoTrimmer/VideoTrimmer'), {
+    label: 'Video Trimmer',
+    icon: '✂️',
+    category: 'general-tools',
+    description: 'Trim video files by selecting start and end times'
+  });
+
   console.log('Component registry initialized with lazy loading');
   
   // Development auto-reload enhancement

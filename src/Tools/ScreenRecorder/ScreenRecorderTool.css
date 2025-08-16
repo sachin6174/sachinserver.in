@@ -523,6 +523,85 @@
     }
 }
 
+/* Region selection styles */
+.region-selection-section {
+    background: var(--tool-background-secondary);
+    border: 1px solid var(--tool-border-color);
+    border-radius: var(--tool-radius-lg);
+    padding: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.region-selection-section h4 {
+    color: var(--tool-primary-color);
+    margin: 0 0 1rem 0;
+    font-size: 1.125rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.region-info {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+    font-size: 0.875rem;
+    color: var(--tool-text-secondary);
+}
+
+.region-info span {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    background: var(--tool-background-tertiary);
+    border-radius: var(--tool-radius-md);
+    border: 1px solid var(--tool-border-color);
+    font-weight: 500;
+    font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
+}
+
+.select-region-btn {
+    background: linear-gradient(135deg, var(--tool-accent-color), var(--tool-primary-color));
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--tool-radius-lg);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--tool-transition-normal);
+    font-size: 0.875rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    box-shadow: var(--tool-shadow-sm);
+    margin-bottom: 1rem;
+}
+
+.select-region-btn:hover:not(:disabled) {
+    background: linear-gradient(135deg, var(--tool-primary-light), var(--tool-accent-color));
+    box-shadow: var(--tool-shadow-lg);
+    transform: translateY(-2px);
+}
+
+.select-region-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.region-help {
+    font-size: 0.8125rem;
+    color: var(--tool-text-secondary);
+    background: var(--tool-background-tertiary);
+    padding: 0.75rem 1rem;
+    border-radius: var(--tool-radius-md);
+    border-left: 3px solid var(--tool-info-color);
+    line-height: 1.5;
+}
+
 /* Print styles */
 @media print {
     .countdown-overlay {

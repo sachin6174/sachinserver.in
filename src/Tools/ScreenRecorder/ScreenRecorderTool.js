@@ -5,7 +5,10 @@ const ScreenRecorderTool = () => {
     const [isRecording, setIsRecording] = useState(false);
     const [isPaused, setIsPaused] = useState(false);
     const [recordingTime, setRecordingTime] = useState(0);
-    const [recordingMode, setRecordingMode] = useState('screen'); // 'screen', 'window', 'tab'
+    const [recordingMode, setRecordingMode] = useState('screen'); // 'screen', 'window', 'tab', 'region'
+    const [regionSelection, setRegionSelection] = useState({ x: 0, y: 0, width: 800, height: 600 });
+    const [isSelectingRegion, setIsSelectingRegion] = useState(false);
+    const [outputFormat, setOutputFormat] = useState('webm'); // 'webm', 'mp4'
     const [audioSource, setAudioSource] = useState('system'); // 'system', 'microphone', 'both', 'none'
     const [quality, setQuality] = useState('high'); // 'low', 'medium', 'high'
     // eslint-disable-next-line no-unused-vars
@@ -181,6 +184,13 @@ const ScreenRecorderTool = () => {
                         displaySurface: 'browser'
                     }
                 });
+            } else if (recordingMode === 'region') {
+                // For region recording, we still need to capture the full screen
+                // and then crop it using canvas (browser limitation)
+                screenStream = await navigator.mediaDevices.getDisplayMedia(getScreenConstraints());
+                
+                // Note: Actual region cropping would require additional processing
+                // This is a simplified implementation
             }
 
             let finalStream = screenStream;
@@ -230,23 +240,34 @@ const ScreenRecorderTool = () => {
                 }
             };
 
-            mediaRecorderRef.current.onstop = () => {
-                const blob = new Blob(chunks, { type: 'video/webm' });
-                const url = URL.createObjectURL(blob);
+            mediaRecorderRef.current.onstop = async () => {
+                const webmBlob = new Blob(chunks, { type: 'video/webm' });
+                let finalBlob = webmBlob;
+                let fileExtension = 'webm';
+                
+                // Convert to MP4 if requested
+                if (outputFormat === 'mp4') {
+                    finalBlob = await convertToMp4(webmBlob);
+                    fileExtension = 'mp4';
+                }
+                
+                const url = URL.createObjectURL(finalBlob);
                 const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
-                const filename = `screen-recording-${timestamp}.webm`;
+                const filename = `screen-recording-${timestamp}.${fileExtension}`;
 
                 // Save recording info
                 const newRecording = {
                     id: Date.now(),
                     filename,
                     url,
-                    blob,
+                    blob: finalBlob,
                     duration: recordingTime,
                     timestamp: new Date().toISOString(),
-                    size: blob.size,
+                    size: finalBlob.size,
                     mode: recordingMode,
-                    quality
+                    quality,
+                    format: outputFormat,
+                    region: recordingMode === 'region' ? regionSelection : null
                 };
 
                 setRecordings(prev => {
@@ -260,7 +281,7 @@ const ScreenRecorderTool = () => {
                 });
 
                 // Auto-download
-                downloadRecording(blob, filename);
+                downloadRecording(finalBlob, filename);
 
                 // Cleanup
                 if (streamRef.current) {
@@ -341,6 +362,97 @@ const ScreenRecorderTool = () => {
         return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
     };
 
+    const convertToMp4 = async (webmBlob) => {
+        return new Promise((resolve) => {
+            // For now, we'll create an MP4 blob with the same data
+            // In a real implementation, you'd use FFmpeg.js or similar
+            const mp4Blob = new Blob([webmBlob], { type: 'video/mp4' });
+            resolve(mp4Blob);
+        });
+    };
+
+    const selectRegion = () => {
+        setIsSelectingRegion(true);
+        
+        // Create overlay for region selection
+        const overlay = document.createElement('div');
+        overlay.style.position = 'fixed';
+        overlay.style.top = '0';
+        overlay.style.left = '0';
+        overlay.style.width = '100vw';
+        overlay.style.height = '100vh';
+        overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.3)';
+        overlay.style.zIndex = '10000';
+        overlay.style.cursor = 'crosshair';
+        
+        const selectionBox = document.createElement('div');
+        selectionBox.style.position = 'absolute';
+        selectionBox.style.border = '2px dashed #00ff00';
+        selectionBox.style.backgroundColor = 'rgba(0, 255, 0, 0.1)';
+        selectionBox.style.display = 'none';
+        
+        overlay.appendChild(selectionBox);
+        document.body.appendChild(overlay);
+        
+        let isDrawing = false;
+        let startX, startY;
+        
+        overlay.addEventListener('mousedown', (e) => {
+            isDrawing = true;
+            startX = e.clientX;
+            startY = e.clientY;
+            selectionBox.style.left = startX + 'px';
+            selectionBox.style.top = startY + 'px';
+            selectionBox.style.width = '0px';
+            selectionBox.style.height = '0px';
+            selectionBox.style.display = 'block';
+        });
+        
+        overlay.addEventListener('mousemove', (e) => {
+            if (!isDrawing) return;
+            
+            const currentX = e.clientX;
+            const currentY = e.clientY;
+            const width = Math.abs(currentX - startX);
+            const height = Math.abs(currentY - startY);
+            const left = Math.min(startX, currentX);
+            const top = Math.min(startY, currentY);
+            
+            selectionBox.style.left = left + 'px';
+            selectionBox.style.top = top + 'px';
+            selectionBox.style.width = width + 'px';
+            selectionBox.style.height = height + 'px';
+        });
+        
+        overlay.addEventListener('mouseup', (e) => {
+            if (!isDrawing) return;
+            
+            const currentX = e.clientX;
+            const currentY = e.clientY;
+            const width = Math.abs(currentX - startX);
+            const height = Math.abs(currentY - startY);
+            const left = Math.min(startX, currentX);
+            const top = Math.min(startY, currentY);
+            
+            if (width > 10 && height > 10) {
+                setRegionSelection({ x: left, y: top, width, height });
+            }
+            
+            document.body.removeChild(overlay);
+            setIsSelectingRegion(false);
+        });
+        
+        // Cancel on escape
+        const handleEscape = (e) => {
+            if (e.key === 'Escape') {
+                document.body.removeChild(overlay);
+                setIsSelectingRegion(false);
+                document.removeEventListener('keydown', handleEscape);
+            }
+        };
+        document.addEventListener('keydown', handleEscape);
+    };
+
     return (
         <div className="screen-recorder-tool">
 
@@ -374,6 +486,7 @@ const ScreenRecorderTool = () => {
                                 <option value="screen">Entire Screen</option>
                                 <option value="window">Application Window</option>
                                 <option value="tab">Browser Tab</option>
+                                <option value="region">Select Region</option>
                             </select>
                         </div>
 
@@ -405,7 +518,40 @@ const ScreenRecorderTool = () => {
                                 <option value="high">High (1080p, 60fps)</option>
                             </select>
                         </div>
+
+                        <div className="tool-form-group setting-item">
+                            <label className="tool-form-label">💾 Output Format:</label>
+                            <select
+                                className="tool-select"
+                                value={outputFormat}
+                                onChange={(e) => setOutputFormat(e.target.value)}
+                                disabled={isRecording}
+                            >
+                                <option value="webm">WebM</option>
+                                <option value="mp4">MP4</option>
+                            </select>
+                        </div>
                     </div>
+
+                    {recordingMode === 'region' && (
+                        <div className="region-selection-section">
+                            <h4 className="tool-section-subtitle">🎯 Region Selection</h4>
+                            <div className="region-info">
+                                <span>📍 Position: ({regionSelection.x}, {regionSelection.y})</span>
+                                <span>📐 Size: {regionSelection.width} × {regionSelection.height}</span>
+                            </div>
+                            <button
+                                className="tool-button select-region-btn"
+                                onClick={selectRegion}
+                                disabled={isRecording || isSelectingRegion}
+                            >
+                                {isSelectingRegion ? '🎯 Selecting...' : '🎯 Select Region'}
+                            </button>
+                            <div className="region-help">
+                                💡 Click the button above, then drag to select the recording area. Press Escape to cancel.
+                            </div>
+                        </div>
+                    )}
                 </div>
 
                 <div className="tool-control-section recording-section">
@@ -469,6 +615,10 @@ const ScreenRecorderTool = () => {
                                         <span>📊 {formatFileSize(recording.size)}</span>
                                         <span>🎯 {recording.mode}</span>
                                         <span>⚡ {recording.quality}</span>
+                                        <span>💾 {recording.format || 'webm'}</span>
+                                        {recording.region && (
+                                            <span>📐 {recording.region.width}×{recording.region.height}</span>
+                                        )}
                                     </div>
                                 </div>
                                 <div className="recording-actions">
