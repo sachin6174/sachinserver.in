@@ -892,7 +892,10 @@ std::vector<int> createArray(int n) {
                                     const parts = question.split(' - https://');
                                     const questionTitle = parts[0];
                                     const leetcodeUrl = parts[1] ? `https://${parts[1]}` : null;
-                                    
+
+                                    if (question.startsWith('---')) {
+                                        return <h3 key={index} className="separator">{questionTitle.replaceAll('---', '')}</h3>;
+                                    }
                                     
                                     // Only render LeetCode problems, skip concept questions
                                     if (!leetcodeUrl) return null;

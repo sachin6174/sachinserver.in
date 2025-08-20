@@ -656,3 +656,15 @@
         margin-right: 6px;
     }
 }
+
+.separator {
+    grid-column: 1 / -1;
+    text-align: center;
+    margin: 20px 0;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: var(--current-theme);
+    padding: 10px;
+    background: var(--background-secondary);
+    border-radius: var(--radius-md);
+}

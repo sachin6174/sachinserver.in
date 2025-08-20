@@ -17,6 +17,7 @@ export const stringsData = {
         'Isomorphic Strings - https://leetcode.com/problems/isomorphic-strings/',
         'Group Anagrams - Approach 1 - Sorted Key - https://leetcode.com/problems/group-anagrams/',
         'Group Anagrams - Approach 2 - Hashed Key - https://leetcode.com/problems/group-anagrams/',
+        '--- Phase 2: New Questions ---',
         'Partition Labels (LeetCode 763) - https://leetcode.com/problems/partition-labels/',
         'Permutations (LeetCode 46) - https://leetcode.com/problems/permutations/',
         'Permutations 2 (LeetCode 47) - https://leetcode.com/problems/permutations-ii/',
