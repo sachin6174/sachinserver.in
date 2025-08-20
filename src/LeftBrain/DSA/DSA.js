@@ -800,14 +800,14 @@ std::vector<int> createArray(int n) {
     // Memoize topics array
     const topics = useMemo(() => [
         { id: 'array', name: 'Array' },
+        { id: 'strings', name: 'Strings' },
         { id: 'linkedlist', name: 'Linked List' },
         { id: 'binarytree', name: 'Binary Tree' },
         { id: 'bst', name: 'Binary Search Tree' },
         { id: 'stackqueue', name: 'Stack & Queue' },
         { id: 'heap', name: 'Heap / Priority Queue' },
         { id: 'hashing', name: 'Hashing' },
-        { id: 'twopointers', name: 'Two Pointers & Sliding Window' },
-        { id: 'strings', name: 'Strings' }
+        { id: 'twopointers', name: 'Two Pointers & Sliding Window' }
     ], []);
 
     // Memoize current topic calculation
@@ -922,7 +922,7 @@ std::vector<int> createArray(int n) {
                                                 rel="noopener noreferrer"
                                                 className="leetcode-link"
                                             >
-                                                <span>Solve on LeetCode</span>
+                                                <span>{leetcodeUrl.includes('hackerrank') ? 'Solve on HackerRank' : 'Solve on LeetCode'}</span>
                                                 <span className="external-icon">↗</span>
                                             </a>
                                         </div>
