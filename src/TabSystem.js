@@ -304,12 +304,17 @@ const TabSystem = memo(() => {
         <div className="main-container">
             <div className="tabs">
                 <div className="nav-section">
-                    <img
-                        src={logo}
-                        alt="Tab Icon"
-                        loading="lazy"
-                        decoding="async"
-                    />
+                    <picture>
+                        <source srcSet={`${logo.replace('.png', '.webp')}`} type="image/webp" />
+                        <img
+                            src={logo}
+                            alt="Tab Icon"
+                            loading="lazy"
+                            decoding="async"
+                            width="32"
+                            height="32"
+                        />
+                    </picture>
                     {["leftbrain", "rightbrain", "developer-tools", "qa-tools", "general-tools"].map((tab) => (
                         <div
                             key={tab}

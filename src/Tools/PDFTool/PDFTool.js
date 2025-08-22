@@ -1,6 +1,12 @@
 import React, { useState, useCallback } from 'react';
-// import { PDFDocument } from 'pdf-lib';
 import './PDFTool.css';
+
+// Lazy load PDF-lib (temporarily disabled due to build issues)
+const loadPDFLib = async () => {
+    throw new Error('PDF-lib currently disabled for build optimization');
+    // const { PDFDocument } = await import('pdf-lib');
+    // return { PDFDocument };
+};
 
 const PDFTool = () => {
     const [activeTab, setActiveTab] = useState('extract');
@@ -31,16 +37,12 @@ const PDFTool = () => {
         }
 
         const filePromises = pdfFiles.map(async (file) => {
-            // const arrayBuffer = await file.arrayBuffer();
-            // const pdfDoc = await PDFDocument.load(arrayBuffer);
-            
+            // Fallback to basic file info without PDF processing
             return {
                 id: Date.now() + Math.random(),
                 name: file.name,
                 file: file,
-                // arrayBuffer: arrayBuffer,
-                // pdfDoc: pdfDoc,
-                pageCount: 0, // pdfDoc.getPageCount(),
+                pageCount: 0,
                 size: (file.size / 1024 / 1024).toFixed(2) + ' MB'
             };
         });
