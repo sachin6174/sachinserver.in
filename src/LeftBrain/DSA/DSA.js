@@ -36,7 +36,7 @@ const DSA = memo(() => {
         hashing: hashingData,
         twopointers: twoPointersData,
         strings: stringsData,
-        '1ddp': oneDDPData,
+        oneddp: oneDDPData,
         introduction: {
             title: 'Introduction to DSA',
             description: 'Foundation concepts and importance of Data Structures and Algorithms',
@@ -816,7 +816,7 @@ std::vector<int> createArray(int n) {
         { id: 'bst', name: 'Binary Search Tree' },
         { id: 'heap', name: 'Heap / Priority Queue' },
         { id: 'twopointers', name: 'Two Pointers & Sliding Window' },
-        { id: '1ddp', name: '1D Dynamic Programming' }
+        { id: 'oneddp', name: '1D Dynamic Programming' }
     ], []);
 
     // Memoize current topic calculation
