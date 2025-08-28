@@ -3,7 +3,7 @@ import { createLazyComponent } from './utils/lazyLoading';
 import LoadingSpinner from './components/LoadingSpinner/LoadingSpinner';
 import SkeletonLoader from './components/SkeletonLoader/SkeletonLoader';
 import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
-import { usePerformanceMonitor } from './utils/performanceMonitoring';
+import { optimizedStorage, usePerformanceTracker } from './utils/performanceOptimizer';
 import logo from './assets/logo512.png';
 import './TabSystem.css';
 import LeftNavigation from './LeftNavigation';
@@ -84,9 +84,9 @@ const LazyVideoTrimmer = createLazyComponent(() => import('./Tools/VideoTrimmer/
 const LazyAppIconGenerator = createLazyComponent(() => import('./Tools/AppIconGenerator/AppIconGenerator'), { componentName: 'AppIconGenerator' });
 
 const TabSystem = memo(() => {
-    // Performance monitoring
-    const { trackFunction } = usePerformanceMonitor('TabSystem');
-
+    // Performance tracking for development
+    usePerformanceTracker('TabSystem');
+    
     // Helper function to get default item for a tab (memoized)
     const getDefaultItemForTab = useCallback((tab) => {
         switch (tab) {
@@ -147,35 +147,27 @@ const TabSystem = memo(() => {
         return stored !== null ? JSON.parse(stored) : true; // Default to visible
     });
 
-    // Handle tab changes and update selected nav item (debounced)
+    // Handle tab changes and update selected nav item (optimized)
     useEffect(() => {
-        const timeoutId = setTimeout(() => {
-            localStorage.setItem('activeTab', activeTab);
-        }, 100);
+        // Optimized localStorage update
+        optimizedStorage.set('activeTab', activeTab);
 
         // Update selectedNavItem to the last selected item for this tab
         const lastSelected = lastSelectedItems[activeTab];
         if (lastSelected && lastSelected !== selectedNavItem) {
             setSelectedNavItem(lastSelected);
         }
-        
-        return () => clearTimeout(timeoutId);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [activeTab]); // Only depend on activeTab to prevent infinite loops
+    }, [activeTab, lastSelectedItems, selectedNavItem]);
 
-    // Save localStorage when selectedNavItem changes (debounced)
+    // Save localStorage when theme changes (optimized)
     useEffect(() => {
-        const timeoutId = setTimeout(() => {
-            localStorage.setItem('isDarkMode', JSON.stringify(isDarkMode));
-        }, 100);
+        optimizedStorage.set('isDarkMode', isDarkMode);
         document.body.className = isDarkMode ? "dark-mode" : "light-mode";
-        
-        return () => clearTimeout(timeoutId);
     }, [isDarkMode]);
 
     // Listen for system theme changes (only if no stored preference exists)
     useEffect(() => {
-        const stored = localStorage.getItem('isDarkMode');
+        const stored = optimizedStorage.get('isDarkMode');
         if (stored === null && window.matchMedia) {
             const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
             const handleSystemThemeChange = (e) => {
@@ -192,11 +184,7 @@ const TabSystem = memo(() => {
     }, []);
 
     useEffect(() => {
-        const timeoutId = setTimeout(() => {
-            localStorage.setItem('isLeftNavVisible', JSON.stringify(isLeftNavVisible));
-        }, 100);
-        
-        return () => clearTimeout(timeoutId);
+        optimizedStorage.set('isLeftNavVisible', isLeftNavVisible);
     }, [isLeftNavVisible]);
 
 
@@ -290,15 +278,26 @@ const TabSystem = memo(() => {
                 [activeTab]: newItem
             };
             
-            // Debounce localStorage update
-            setTimeout(() => {
-                localStorage.setItem('lastSelectedItems', JSON.stringify(updatedLastSelectedItems));
-            }, 100);
+            // Optimized localStorage update
+            optimizedStorage.set('lastSelectedItems', updatedLastSelectedItems);
             
             return updatedLastSelectedItems;
         });
     }, [activeTab]);
 
+    // Memoized tab configuration for better performance
+    const tabConfig = useMemo(() => [
+        { key: "leftbrain", icon: "🧠", label: "LeftBrain" },
+        { key: "rightbrain", icon: "🎨", label: "RightBrain" },
+        { key: "developer-tools", icon: "💻", label: "Developer Tools" },
+        { key: "qa-tools", icon: "🧪", label: "QA Tools" },
+        { key: "general-tools", icon: "🛠️", label: "General Tools" }
+    ], []);
+
+    // Memoized tab click handler to prevent recreation
+    const handleTabClick = useCallback((tab) => {
+        setActiveTab(tab);
+    }, []);
 
     return (
         <div className="main-container">
@@ -312,22 +311,14 @@ const TabSystem = memo(() => {
                         width="32"
                         height="32"
                     />
-                    {["leftbrain", "rightbrain", "developer-tools", "qa-tools", "general-tools"].map((tab) => (
+                    {tabConfig.map((tab) => (
                         <div
-                            key={tab}
-                            className={`tab ${activeTab === tab ? "active" : ""}`}
-                            onClick={() => setActiveTab(tab)}
+                            key={tab.key}
+                            className={`tab ${activeTab === tab.key ? "active" : ""}`}
+                            onClick={() => handleTabClick(tab.key)}
                         >
-                            <span className="tab-icon">
-                                {tab === "leftbrain" ? "🧠" :
-                                    tab === "rightbrain" ? "🎨" :
-                                        tab === "developer-tools" ? "💻" :
-                                            tab === "qa-tools" ? "🧪" : "🛠️"}
-                            </span>
-                            {tab === "leftbrain" ? "LeftBrain" :
-                                tab === "rightbrain" ? "RightBrain" :
-                                    tab === "developer-tools" ? "Developer Tools" :
-                                        tab === "qa-tools" ? "QA Tools" : "General Tools"}
+                            <span className="tab-icon">{tab.icon}</span>
+                            {tab.label}
                         </div>
                     ))}
                 </div>
