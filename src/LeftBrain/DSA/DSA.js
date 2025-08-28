@@ -13,6 +13,7 @@ import { heapData } from './data/heap.js';
 import { hashingData } from './data/hashing.js';
 import { twoPointersData } from './data/twopointers.js';
 import { stringsData } from './data/strings.js';
+import { oneDDPData } from './data/1ddp.js';
 
 const DSA = memo(() => {
     const [selectedTopic, setSelectedTopic] = useState('top150');
@@ -35,6 +36,7 @@ const DSA = memo(() => {
         hashing: hashingData,
         twopointers: twoPointersData,
         strings: stringsData,
+        '1ddp': oneDDPData,
         introduction: {
             title: 'Introduction to DSA',
             description: 'Foundation concepts and importance of Data Structures and Algorithms',
@@ -813,7 +815,8 @@ std::vector<int> createArray(int n) {
         { id: 'binarytree', name: 'Binary Tree' },
         { id: 'bst', name: 'Binary Search Tree' },
         { id: 'heap', name: 'Heap / Priority Queue' },
-        { id: 'twopointers', name: 'Two Pointers & Sliding Window' }
+        { id: 'twopointers', name: 'Two Pointers & Sliding Window' },
+        { id: '1ddp', name: '1D Dynamic Programming' }
     ], []);
 
     // Memoize current topic calculation
