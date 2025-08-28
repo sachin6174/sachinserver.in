@@ -1,6 +1,13 @@
 import React, { useState, useRef, useEffect } from 'react';
 import './VideoTrimmer.css';
 
+// Lazy load FFmpeg
+const loadFFmpeg = async () => {
+    const { FFmpeg } = await import('@ffmpeg/ffmpeg');
+    const { fetchFile } = await import('@ffmpeg/util');
+    return { FFmpeg, fetchFile };
+};
+
 const VideoTrimmer = () => {
     const [videoFile, setVideoFile] = useState(null);
     const [videoUrl, setVideoUrl] = useState('');

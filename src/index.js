@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import { initializeDevHelpers } from './utils/devHelpers';
-
+import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 
 // Initialize development helpers
 initializeDevHelpers();
@@ -14,6 +14,21 @@ root.render(
     <App />
   </React.StrictMode>
 );
+
+// Register service worker for caching and offline functionality
+serviceWorkerRegistration.register({
+  onSuccess: () => {
+    console.log('App is cached and ready for offline use');
+  },
+  onUpdate: (registration) => {
+    console.log('New content is available; please refresh');
+    // Optional: Show update notification to user
+    if (window.confirm('A new version is available. Refresh to update?')) {
+      registration.waiting?.postMessage({ type: 'SKIP_WAITING' });
+      window.location.reload();
+    }
+  }
+});
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
