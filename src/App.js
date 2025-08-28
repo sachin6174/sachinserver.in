@@ -2,7 +2,6 @@ import React from "react";
 import TabSystem from "./TabSystem";
 import { PerformanceProvider } from './contexts/PerformanceContext';
 import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
-import DevStatus from './components/DevStatus/DevStatus';
 // import PerformanceDashboard from './components/PerformanceDashboard/PerformanceDashboard';
 
 function App() {
@@ -14,7 +13,6 @@ function App() {
         <PerformanceProvider>
           <div className="App">
             <TabSystem />
-            <DevStatus />
             {/* Performance Dashboard disabled for production */}
             {/* <PerformanceDashboard /> */}
           </div>
