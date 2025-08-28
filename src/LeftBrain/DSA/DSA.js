@@ -3,6 +3,7 @@ import '../shared-styles.css';
 import './DSA.css';
 import ContributionGraph from './ContributionGraph';
 import { arrayData } from './data/array.js';
+import { matrixData } from './data/matrix.js';
 import { linkedListData } from './data/linkedlist.js';
 import { stackQueueData } from './data/stackqueue.js';
 import { binaryTreeData } from './data/binarytree.js';
@@ -23,6 +24,7 @@ const DSA = memo(() => {
     // Memoize DSA topics to prevent recreation on every render
     const dsaTopics = useMemo(() => ({
         array: arrayData,
+        matrix: matrixData,
         linkedlist: linkedListData,
         stackqueue: stackQueueData,
         binarytree: binaryTreeData,
@@ -800,6 +802,7 @@ std::vector<int> createArray(int n) {
     // Memoize topics array
     const topics = useMemo(() => [
         { id: 'array', name: 'Array' },
+        { id: 'matrix', name: 'Matrix' },
         { id: 'strings', name: 'Strings' },
         { id: 'stackqueue', name: 'Stack & Queue' },
         { id: 'linkedlist', name: 'Linked List' },
