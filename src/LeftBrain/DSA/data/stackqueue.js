@@ -14,8 +14,7 @@ export const stackQueueData = {
         'Evaluate Reverse Polish Notation - https://leetcode.com/problems/evaluate-reverse-polish-notation/',
         'Next Greater Element - https://leetcode.com/problems/next-greater-element-i/',
         'Daily Temperatures - https://leetcode.com/problems/daily-temperatures/',
-        'Next Greater Element - II - https://leetcode.com/problems/next-greater-element-ii/',
-        'Rotting Oranges - https://leetcode.com/problems/rotting-oranges/'
+        'Next Greater Element - II - https://leetcode.com/problems/next-greater-element-ii/'
     ],
     explanation: `## Stack and Queue Fundamentals
 
