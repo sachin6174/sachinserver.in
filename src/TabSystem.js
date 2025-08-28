@@ -81,6 +81,7 @@ const LazyMacOSAppCatalog = createLazyComponent(() => import('./Tools/MacOSAppCa
 const LazyEmojiPicker = createLazyComponent(() => import('./Tools/EmojiPicker/EmojiPicker'), { componentName: 'EmojiPicker' });
 const LazyNumberToUnicode = createLazyComponent(() => import('./Tools/NumberToUnicode/NumberToUnicode'), { componentName: 'NumberToUnicode' });
 const LazyVideoTrimmer = createLazyComponent(() => import('./Tools/VideoTrimmer/VideoTrimmer'), { componentName: 'VideoTrimmer' });
+const LazyYouTubeDownloader = createLazyComponent(() => import('./Tools/YouTubeDownloader/YouTubeDownloader'), { componentName: 'YouTubeDownloader' });
 const LazyAppIconGenerator = createLazyComponent(() => import('./Tools/AppIconGenerator/AppIconGenerator'), { componentName: 'AppIconGenerator' });
 
 const TabSystem = memo(() => {
@@ -261,6 +262,7 @@ const TabSystem = memo(() => {
             { id: "color-picker", label: "Color Picker", icon: "🎨", description: <LazyColorPickerTool /> },
             { id: "screen-recorder", label: "Screen Recorder", icon: "🎥", description: <LazyScreenRecorderTool /> },
             { id: "video-trimmer", label: "Video Trimmer", icon: "✂️", description: <LazyVideoTrimmer /> },
+            { id: "youtube-downloader", label: "YouTube Downloader", icon: "📹", description: <LazyYouTubeDownloader /> },
             { id: "important-websites", label: "Important Websites", icon: "🌐", description: <LazyImportantWebsites /> },
             { id: "emoji-picker", label: "Emoji Picker", icon: "😀", description: <LazyEmojiPicker /> },
             { id: "number-to-unicode", label: "Number Base Converter", icon: "🔢", description: <LazyNumberToUnicode /> },
