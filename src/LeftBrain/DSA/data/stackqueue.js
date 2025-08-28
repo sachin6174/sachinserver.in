@@ -136,10 +136,10 @@ struct Queue<T> {
 - Stack-based parsing and evaluation
 - Alternative approaches without extra space
 
-#### Advanced Applications (10-14)
+#### Advanced Applications (10-13)
 - Monotonic stack for next greater elements
-- BFS applications like rotting oranges
 - Complex expression evaluation
+- Circular array processing
 
 ### Design Patterns
 
@@ -533,47 +533,6 @@ function nextGreaterElements(nums) {
     return result;
 }
 
-// 14. Rotting Oranges (BFS with Queue)
-function orangesRotting(grid) {
-    const rows = grid.length;
-    const cols = grid[0].length;
-    const queue = [];
-    let freshCount = 0;
-    
-    // Find all rotten oranges and count fresh ones
-    for (let i = 0; i < rows; i++) {
-        for (let j = 0; j < cols; j++) {
-            if (grid[i][j] === 2) {
-                queue.push([i, j, 0]); // [row, col, time]
-            } else if (grid[i][j] === 1) {
-                freshCount++;
-            }
-        }
-    }
-    
-    if (freshCount === 0) return 0;
-    
-    const directions = [[0, 1], [0, -1], [1, 0], [-1, 0]];
-    let time = 0;
-    
-    while (queue.length > 0) {
-        const [row, col, currentTime] = queue.shift();
-        time = currentTime;
-        
-        for (let [dr, dc] of directions) {
-            const newRow = row + dr;
-            const newCol = col + dc;
-            
-            if (newRow >= 0 && newRow < rows && newCol >= 0 && newCol < cols && grid[newRow][newCol] === 1) {
-                grid[newRow][newCol] = 2;
-                freshCount--;
-                queue.push([newRow, newCol, currentTime + 1]);
-            }
-        }
-    }
-    
-    return freshCount === 0 ? time : -1;
-}
 
 // Test cases
 console.log(isValid("()[]{}"));  // true
@@ -914,48 +873,6 @@ func nextGreaterElements(_ nums: [Int]) -> [Int] {
     return result
 }
 
-// 14. Rotting Oranges (BFS with Queue)
-func orangesRotting(_ grid: [[Int]]) -> Int {
-    var grid = grid
-    let rows = grid.count
-    let cols = grid[0].count
-    var queue = Queue<(Int, Int, Int)>() // (row, col, time)
-    var freshCount = 0
-    
-    // Find all rotten oranges and count fresh ones
-    for i in 0..<rows {
-        for j in 0..<cols {
-            if grid[i][j] == 2 {
-                queue.enqueue((i, j, 0))
-            } else if grid[i][j] == 1 {
-                freshCount += 1
-            }
-        }
-    }
-    
-    if freshCount == 0 { return 0 }
-    
-    let directions = [(0, 1), (0, -1), (1, 0), (-1, 0)]
-    var time = 0
-    
-    while !queue.isEmpty {
-        let (row, col, currentTime) = queue.dequeue()!
-        time = currentTime
-        
-        for (dr, dc) in directions {
-            let newRow = row + dr
-            let newCol = col + dc
-            
-            if newRow >= 0 && newRow < rows && newCol >= 0 && newCol < cols && grid[newRow][newCol] == 1 {
-                grid[newRow][newCol] = 2
-                freshCount -= 1
-                queue.enqueue((newRow, newCol, currentTime + 1))
-            }
-        }
-    }
-    
-    return freshCount == 0 ? time : -1
-}
 
 // Test cases
 print(isValid("()[]{}"))  // true
@@ -1337,48 +1254,6 @@ vector<int> nextGreaterElements(vector<int>& nums) {
     return result;
 }
 
-// 14. Rotting Oranges (BFS with Queue)
-int orangesRotting(vector<vector<int>>& grid) {
-    int rows = grid.size();
-    int cols = grid[0].size();
-    queue<tuple<int, int, int>> q; // row, col, time
-    int freshCount = 0;
-    
-    // Find all rotten oranges and count fresh ones
-    for (int i = 0; i < rows; i++) {
-        for (int j = 0; j < cols; j++) {
-            if (grid[i][j] == 2) {
-                q.push({i, j, 0});
-            } else if (grid[i][j] == 1) {
-                freshCount++;
-            }
-        }
-    }
-    
-    if (freshCount == 0) return 0;
-    
-    vector<pair<int, int>> directions = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
-    int time = 0;
-    
-    while (!q.empty()) {
-        auto [row, col, currentTime] = q.front();
-        q.pop();
-        time = currentTime;
-        
-        for (auto [dr, dc] : directions) {
-            int newRow = row + dr;
-            int newCol = col + dc;
-            
-            if (newRow >= 0 && newRow < rows && newCol >= 0 && newCol < cols && grid[newRow][newCol] == 1) {
-                grid[newRow][newCol] = 2;
-                freshCount--;
-                q.push({newRow, newCol, currentTime + 1});
-            }
-        }
-    }
-    
-    return freshCount == 0 ? time : -1;
-}
 
 // Test function
 int main() {
