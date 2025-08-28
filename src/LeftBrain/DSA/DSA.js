@@ -2,6 +2,7 @@ import React, { useState, useMemo, useCallback, memo } from 'react';
 import '../shared-styles.css';
 import './DSA.css';
 import ContributionGraph from './ContributionGraph';
+import { top150Data } from './data/top150.js';
 import { arrayData } from './data/array.js';
 import { matrixData } from './data/matrix.js';
 import { linkedListData } from './data/linkedlist.js';
@@ -14,7 +15,7 @@ import { twoPointersData } from './data/twopointers.js';
 import { stringsData } from './data/strings.js';
 
 const DSA = memo(() => {
-    const [selectedTopic, setSelectedTopic] = useState('array');
+    const [selectedTopic, setSelectedTopic] = useState('top150');
 
     // Memoize topic selection handler
     const handleTopicChange = useCallback((topicId) => {
@@ -23,6 +24,7 @@ const DSA = memo(() => {
 
     // Memoize DSA topics to prevent recreation on every render
     const dsaTopics = useMemo(() => ({
+        top150: top150Data,
         array: arrayData,
         matrix: matrixData,
         linkedlist: linkedListData,
@@ -801,15 +803,16 @@ std::vector<int> createArray(int n) {
 
     // Memoize topics array
     const topics = useMemo(() => [
+        { id: 'top150', name: 'Top 150 Interview Questions' },
         { id: 'array', name: 'Array' },
         { id: 'matrix', name: 'Matrix' },
         { id: 'strings', name: 'Strings' },
         { id: 'stackqueue', name: 'Stack & Queue' },
+        { id: 'hashing', name: 'Hashing' },
         { id: 'linkedlist', name: 'Linked List' },
         { id: 'binarytree', name: 'Binary Tree' },
         { id: 'bst', name: 'Binary Search Tree' },
         { id: 'heap', name: 'Heap / Priority Queue' },
-        { id: 'hashing', name: 'Hashing' },
         { id: 'twopointers', name: 'Two Pointers & Sliding Window' }
     ], []);
 
