@@ -271,14 +271,15 @@ body.dark-mode .tabs {
 
 /* Enchanting Logo with Magical Effects */
 .tabs img {
-  width: 24px;
-  height: 24px;
+  width: 32px;
+  height: 32px;
   object-fit: contain;
   filter: drop-shadow(0 0 12px rgba(99, 102, 241, 0.6));
   transition: all var(--transition-slow);
   border-radius: 50%;
   background: radial-gradient(circle, rgba(255, 255, 255, 0.2), transparent);
   padding: 2px;
+  display: block;
 }
 
 .tabs img:hover {
