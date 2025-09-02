@@ -23,6 +23,7 @@
 
 .contribution-icon {
     font-size: var(--font-lg);
+    flex-shrink: 0; /* Prevent emoji from shrinking */
 }
 
 .contribution-count {
@@ -57,12 +58,10 @@
 }
 
 .month-labels {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: var(--space-xs);
-    padding-left: 24px; /* Align with grid */
+    display: none; /* Hidden in new monthly layout */
 }
 
+/* Old month label styles */
 .month-label {
     font-size: var(--font-xs);
     color: var(--text-secondary);
@@ -252,12 +251,21 @@
     display: flex;
     flex-direction: column;
     gap: var(--space-xs);
+    align-items: flex-start;
+}
+
+.contribution-line {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
 }
 
 .username-section {
     display: flex;
     flex-direction: column;
     gap: var(--space-xs);
+    align-items: flex-start;
+    margin-left: calc(var(--font-lg) + var(--space-xs)); /* Align with the text after fire emoji */
 }
 
 .username-display {
@@ -365,6 +373,60 @@
     gap: 2px;
 }
 
+/* Monthly Layout Styles */
+.contribution-grid-monthly {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: var(--space-sm) 0;
+    overflow-x: auto;
+    scrollbar-width: thin;
+}
+
+.month-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: fit-content;
+    position: relative;
+}
+
+.month-section:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: -6px;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: var(--border-color);
+    opacity: 0.3;
+}
+
+.month-grid {
+    display: flex;
+    gap: 2px;
+    margin-bottom: var(--space-xs);
+}
+
+/* Monthly layout month labels */
+.month-section .month-label {
+    font-size: var(--font-xs);
+    color: var(--text-secondary);
+    font-weight: 500;
+    text-align: center;
+    min-width: 30px;
+}
+
+/* Days from other months should be more subtle */
+.contribution-day.other-month {
+    opacity: 0.3;
+}
+
+/* Update existing grid styles to work with monthly layout */
+.contribution-grid {
+    display: none; /* Hide old layout */
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
     .contribution-header {
@@ -375,10 +437,25 @@
     
     .username-section {
         align-self: flex-start;
+        margin-left: calc(var(--font-md) + var(--space-xs)); /* Smaller fire emoji on mobile */
     }
     
     .username-input {
         min-width: 120px;
+    }
+    
+    .contribution-grid-monthly {
+        gap: 4px;
+        padding: var(--space-xs) 0;
+    }
+    
+    .month-grid {
+        gap: 1px;
+    }
+    
+    .month-section .month-label {
+        font-size: 10px;
+        min-width: 25px;
     }
 }
 

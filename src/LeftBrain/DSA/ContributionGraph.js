@@ -209,27 +209,67 @@ const ContributionGraph = () => {
     }, [username]);
     const totalContributions = contributions.reduce((sum, day) => sum + day.count, 0);
     
-    // Calculate weeks for grid layout
-    const weeks = [];
-    let currentWeek = [];
-    
-    // Start from first Sunday of the year
-    const startDate = new Date('2025-01-01');
-    const firstSunday = new Date(startDate);
-    firstSunday.setDate(startDate.getDate() - startDate.getDay());
-    
-    contributions.forEach((contribution, index) => {
-        currentWeek.push(contribution);
+    // Organize contributions by months (GitHub-style)
+    const organizeContributionsByMonths = () => {
+        const monthsData = [];
+        const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 
+                          'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        const currentDate = new Date();
         
-        if (currentWeek.length === 7 || index === contributions.length - 1) {
-            weeks.push([...currentWeek]);
-            currentWeek = [];
+        // Show only months that have passed or current month
+        for (let month = 0; month <= currentDate.getMonth(); month++) {
+            const monthContributions = contributions.filter(contribution => {
+                return contribution.date.getMonth() === month && contribution.date.getFullYear() === 2025;
+            });
+            
+            // Get first and last day of the month
+            const firstDay = new Date(2025, month, 1);
+            const lastDay = new Date(2025, month + 1, 0);
+            
+            // Find the start of the first week (previous Sunday)
+            const startOfWeek = new Date(firstDay);
+            startOfWeek.setDate(firstDay.getDate() - firstDay.getDay());
+            
+            // Find the end of the last week (following Saturday)
+            const endOfWeek = new Date(lastDay);
+            endOfWeek.setDate(lastDay.getDate() + (6 - lastDay.getDay()));
+            
+            // Create all days for this month's grid
+            const monthWeeks = [];
+            let currentWeek = [];
+            
+            for (let d = new Date(startOfWeek); d <= endOfWeek; d.setDate(d.getDate() + 1)) {
+                // Find contribution for this day
+                const dayContribution = contributions.find(c => 
+                    c.date.toDateString() === d.toDateString()
+                ) || { date: new Date(d), level: 0, count: 0 };
+                
+                currentWeek.push(dayContribution);
+                
+                if (currentWeek.length === 7) {
+                    monthWeeks.push([...currentWeek]);
+                    currentWeek = [];
+                }
+            }
+            
+            if (currentWeek.length > 0) {
+                monthWeeks.push([...currentWeek]);
+            }
+            
+            if (monthWeeks.length > 0) {
+                monthsData.push({
+                    name: monthNames[month],
+                    month: month,
+                    weeks: monthWeeks,
+                    totalContributions: monthContributions.reduce((sum, c) => sum + c.count, 0)
+                });
+            }
         }
-    });
-
-    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 
-                   'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        
+        return monthsData;
+    };
     
+    const monthsData = organizeContributionsByMonths();
     const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
     const formatDate = (date) => {
@@ -274,12 +314,14 @@ const ContributionGraph = () => {
         <div className="contribution-graph-container">
             <div className="contribution-header">
                 <div className="contribution-title">
-                    <span className="contribution-icon">🔥</span>
                     <div className="contribution-info">
-                        <span className="contribution-count">
-                            LeetCode Activity for {username}
-                            {error && <span className="api-status"> (simulated data - API unavailable)</span>}
-                        </span>
+                        <div className="contribution-line">
+                            <span className="contribution-icon">🔥</span>
+                            <span className="contribution-count">
+                                LeetCode Activity for {username}
+                                {error && <span className="api-status"> (simulated data - API unavailable)</span>}
+                            </span>
+                        </div>
                         <div className="username-section">
                             {isEditingUsername ? (
                                 <form onSubmit={handleUsernameSubmit} className="username-edit-form">
@@ -327,12 +369,6 @@ const ContributionGraph = () => {
             </div>
             
             <div className="contribution-graph">
-                <div className="month-labels">
-                    {months.map((month) => (
-                        <span key={month} className="month-label">{month}</span>
-                    ))}
-                </div>
-                
                 <div className="graph-content">
                     <div className="day-labels">
                         {days.map((day, index) => (
@@ -342,28 +378,26 @@ const ContributionGraph = () => {
                         ))}
                     </div>
                     
-                    <div className="contribution-grid">
-                        {weeks.map((week, weekIndex) => (
-                            <div key={weekIndex} className="week-column">
-                                {Array.from({length: 7}, (_, dayIndex) => {
-                                    const contribution = week[dayIndex];
-                                    if (!contribution) {
-                                        return (
-                                            <div 
-                                                key={dayIndex} 
-                                                className="contribution-day level-0"
-                                            />
-                                        );
-                                    }
-                                    
-                                    return (
-                                        <div
-                                            key={dayIndex}
-                                            className={`contribution-day level-${contribution.level}`}
-                                            title={`${contribution.count} ${contribution.count === 1 ? 'problem solved' : 'problems solved'} on ${formatDate(contribution.date)}`}
-                                        />
-                                    );
-                                })}
+                    <div className="contribution-grid-monthly">
+                        {monthsData.map((monthData, monthIndex) => (
+                            <div key={monthData.name} className="month-section">
+                                <div className="month-grid">
+                                    {monthData.weeks.map((week, weekIndex) => (
+                                        <div key={weekIndex} className="week-column">
+                                            {week.map((contribution, dayIndex) => {
+                                                const isCurrentMonth = contribution.date.getMonth() === monthData.month;
+                                                return (
+                                                    <div
+                                                        key={dayIndex}
+                                                        className={`contribution-day level-${contribution.level} ${!isCurrentMonth ? 'other-month' : ''}`}
+                                                        title={`${contribution.count} ${contribution.count === 1 ? 'problem solved' : 'problems solved'} on ${formatDate(contribution.date)}`}
+                                                    />
+                                                );
+                                            })}
+                                        </div>
+                                    ))}
+                                </div>
+                                <div className="month-label">{monthData.name}</div>
                             </div>
                         ))}
                     </div>
