@@ -243,7 +243,7 @@ const GitHubContributionGraph = () => {
                 <div className="contribution-title">
                     <span className="contribution-icon">🔥</span>
                     <span className="contribution-count">
-                        {totalContributions} contributions in 2025
+                        {totalContributions} total contributions
                         {error && <span className="api-status"> (simulated data - API unavailable)</span>}
                     </span>
                 </div>

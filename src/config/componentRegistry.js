@@ -328,13 +328,6 @@ export const initializeComponentRegistry = () => {
   });
 
   // QA Tools
-  registerLazyComponent('qa-testing-apps', 
-    () => import('../Tools/QATools/QATools'), {
-    label: 'QA Testing Apps',
-    icon: '🧪',
-    category: 'qa-tools',
-    description: 'Quality assurance testing tools'
-  });
 
   registerLazyComponent('macos-app-catalog', 
     () => import('../Tools/MacOSAppCatalog/MacOSAppCatalog'), {

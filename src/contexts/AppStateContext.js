@@ -31,7 +31,7 @@ const initialState = {
     leftbrain: 'about-me',
     rightbrain: 'drawing',
     'developer-tools': 'ai-tools-channels',
-    'qa-tools': 'qa-testing-apps',
+    'qa-tools': 'macos-app-catalog',
     'general-tools': 'info-tool'
   },
   loading: false,
@@ -110,7 +110,7 @@ const appStateReducer = (state, action) => {
 const getDefaultItemForTab = (tab) => {
   const defaults = {
     'developer-tools': 'ai-tools-channels',
-    'qa-tools': 'qa-testing-apps',
+    'qa-tools': 'macos-app-catalog',
     'general-tools': 'info-tool',
     'rightbrain': 'drawing',
     'leftbrain': 'about-me'

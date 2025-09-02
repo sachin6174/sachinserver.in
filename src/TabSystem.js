@@ -74,7 +74,6 @@ const LazyPDFTool = createLazyComponent(() => import('./Tools/PDFTool/PDFTool'),
 const LazyQRCodeTool = createLazyComponent(() => import('./Tools/QRCodeTool/QRCodeTool'), { componentName: 'QRCodeTool' });
 const LazyDiffChecker = createLazyComponent(() => import('./Tools/DiffChecker/DiffChecker'), { componentName: 'DiffChecker' });
 const LazyTextGenerator = createLazyComponent(() => import('./Tools/TextUtilities/TextGenerator'), { componentName: 'TextGenerator' });
-const LazyQATools = createLazyComponent(() => import('./Tools/QATools/QATools'), { componentName: 'QATools' });
 const LazyAIToolsChannels = createLazyComponent(() => import('./Tools/AIToolsChannels/AIToolsChannels'), { componentName: 'AIToolsChannels' });
 const LazyImportantWebsites = createLazyComponent(() => import('./Tools/ImportantWebsites/ImportantWebsites'), { componentName: 'ImportantWebsites' });
 const LazyMacOSAppCatalog = createLazyComponent(() => import('./Tools/MacOSAppCatalog/MacOSAppCatalog'), { componentName: 'MacOSAppCatalog' });
@@ -92,7 +91,7 @@ const TabSystem = memo(() => {
     const getDefaultItemForTab = useCallback((tab) => {
         switch (tab) {
             case "developer-tools": return "ai-tools-channels";
-            case "qa-tools": return "qa-testing-apps";
+            case "qa-tools": return "macos-app-catalog";
             case "general-tools": return "info-tool";
             case "rightbrain": return "drawing";
             default: return "about-me";
@@ -112,7 +111,7 @@ const TabSystem = memo(() => {
             leftbrain: "about-me",           // Default for first load
             rightbrain: "drawing", // Default when switching to rightbrain
             "developer-tools": "ai-tools-channels", // Default when switching to developer tools
-            "qa-tools": "qa-testing-apps",   // Default when switching to qa tools
+            "qa-tools": "macos-app-catalog",   // Default when switching to qa tools
             "general-tools": "info-tool"     // Default when switching to general tools
         };
     });
@@ -253,7 +252,6 @@ const TabSystem = memo(() => {
             { id: "encoder-tool", label: "Encoder Tool", icon: "🔤", description: <LazyEncoderTool /> },
         ],
         "qa-tools": [
-            { id: "qa-testing-apps", label: "QA Testing Apps", icon: "🧪", description: <LazyQATools /> },
             { id: "macos-app-catalog", label: "macOS App Catalog", icon: "📱", description: <LazyMacOSAppCatalog /> },
             { id: "regex-tool", label: "Regex Tool", icon: "🔍", description: <LazyRegexTool /> },
             { id: "diff-checker", label: "Diff Checker", icon: "🔄", description: <LazyDiffChecker /> },

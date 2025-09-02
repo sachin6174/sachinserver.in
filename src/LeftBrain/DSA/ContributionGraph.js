@@ -238,7 +238,7 @@ const ContributionGraph = () => {
                 <div className="contribution-title">
                     <span className="contribution-icon">🔥</span>
                     <span className="contribution-count">
-                        {totalContributions} problems solved in 2025
+                        LeetCode Activity
                         {error && <span className="api-status"> (simulated data - API unavailable)</span>}
                     </span>
                 </div>

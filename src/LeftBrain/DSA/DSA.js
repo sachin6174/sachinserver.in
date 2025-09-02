@@ -65,7 +65,7 @@ const DSA = memo(() => {
                             <div className="compact-fallback-stats" style={{display: 'none'}}>
                                 <div className="compact-stat">
                                     <span className="compact-number">30</span>
-                                    <span className="compact-label">2025 Contributions</span>
+                                    <span className="compact-label">Total Contributions</span>
                                 </div>
                                 <div className="compact-stat">
                                     <span className="compact-number">Active</span>
@@ -86,31 +86,29 @@ const DSA = memo(() => {
                             <h4>🎯 Practice Problems</h4>
                             <div className="questions-grid">
                                 {currentTopic.questions.map((question, index) => {
-                                    // Parse question text and URL
-                                    const parts = question.split(' - https://');
-                                    const questionTitle = parts[0];
-                                    const leetcodeUrl = parts[1] ? `https://${parts[1]}` : null;
-
                                     if (question.startsWith('---')) {
-                                        return <h3 key={index} className="separator">{questionTitle.replaceAll('---', '')}</h3>;
+                                        return <h3 key={index} className="separator">{question.replaceAll('---', '').trim()}</h3>;
                                     }
+                                    
+                                    // Parse question text, difficulty, and URL
+                                    const parts = question.split(' - https://');
+                                    const titleAndDifficulty = parts[0];
+                                    const leetcodeUrl = parts[1] ? `https://${parts[1]}` : null;
                                     
                                     // Only render LeetCode problems, skip concept questions
                                     if (!leetcodeUrl) return null;
+                                    
+                                    // Extract difficulty from title
+                                    const difficultyMatch = titleAndDifficulty.match(/\[(Easy|Medium|Hard)\]$/);
+                                    const difficulty = difficultyMatch ? difficultyMatch[1] : 'Medium';
+                                    const questionTitle = titleAndDifficulty.replace(/\s*\[(Easy|Medium|Hard)\]$/, '');
                                     
                                     return (
                                         <div key={index} className="question-card">
                                             <div className="question-card-header">
                                                 <span className="question-number">#{index + 1}</span>
-                                                <span className={`question-difficulty ${
-                                                    // Determine difficulty based on position in the problems array
-                                                    (index >= 0 && index <= 4) ? 'difficulty-easy' :
-                                                    (index >= 5 && index <= 9) ? 'difficulty-medium' :
-                                                    'difficulty-hard'
-                                                }`}>
-                                                    {(index >= 0 && index <= 4) ? 'Easy' :
-                                                     (index >= 5 && index <= 9) ? 'Medium' :
-                                                     'Hard'}
+                                                <span className={`question-difficulty difficulty-${difficulty.toLowerCase()}`}>
+                                                    {difficulty}
                                                 </span>
                                             </div>
                                             <h3 className="question-title">{questionTitle}</h3>

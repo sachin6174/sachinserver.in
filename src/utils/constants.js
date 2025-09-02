@@ -42,7 +42,7 @@ export const DEFAULT_NAV_ITEMS = {
   [TABS.LEFT_BRAIN]: 'about-me',
   [TABS.RIGHT_BRAIN]: 'drawing',
   [TABS.DEVELOPER_TOOLS]: 'ai-tools-channels',
-  [TABS.QA_TOOLS]: 'qa-testing-apps',
+  [TABS.QA_TOOLS]: 'macos-app-catalog',
   [TABS.GENERAL_TOOLS]: 'info-tool'
 };
 
