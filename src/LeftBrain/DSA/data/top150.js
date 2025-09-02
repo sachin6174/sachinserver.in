@@ -2,7 +2,7 @@ export const top150Data = {
     title: 'Top 150 Interview Questions',
     description: 'LeetCode\'s curated list of the most frequently asked coding interview questions at top tech companies',
     questions: [
-        // Array / String (24 problems)
+        // Array / String
         '--- Array / String ---',
         'Merge Sorted Array - https://leetcode.com/problems/merge-sorted-array/',
         'Remove Element - https://leetcode.com/problems/remove-element/',
@@ -29,7 +29,7 @@ export const top150Data = {
         'Find the Index of the First Occurrence in a String - https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/',
         'Text Justification - https://leetcode.com/problems/text-justification/',
 
-        // Two Pointers (5 problems)
+        // Two Pointers
         '--- Two Pointers ---',
         'Valid Palindrome - https://leetcode.com/problems/valid-palindrome/',
         'Is Subsequence - https://leetcode.com/problems/is-subsequence/',
@@ -37,23 +37,22 @@ export const top150Data = {
         'Container With Most Water - https://leetcode.com/problems/container-with-most-water/',
         '3Sum - https://leetcode.com/problems/3sum/',
 
-        // Sliding Window (4 problems)
+        // Sliding Window
         '--- Sliding Window ---',
-        'Minimum Window Substring - https://leetcode.com/problems/minimum-window-substring/',
-        'Substring with Concatenation of All Words - https://leetcode.com/problems/substring-with-concatenation-of-all-words/',
-        'Longest Substring Without Repeating Characters - https://leetcode.com/problems/longest-substring-without-repeating-characters/',
         'Minimum Size Subarray Sum - https://leetcode.com/problems/minimum-size-subarray-sum/',
+        'Longest Substring Without Repeating Characters - https://leetcode.com/problems/longest-substring-without-repeating-characters/',
+        'Substring with Concatenation of All Words - https://leetcode.com/problems/substring-with-concatenation-of-all-words/',
+        'Minimum Window Substring - https://leetcode.com/problems/minimum-window-substring/',
 
-        // Matrix (6 problems)
+        // Matrix
         '--- Matrix ---',
         'Valid Sudoku - https://leetcode.com/problems/valid-sudoku/',
         'Spiral Matrix - https://leetcode.com/problems/spiral-matrix/',
         'Rotate Image - https://leetcode.com/problems/rotate-image/',
         'Set Matrix Zeroes - https://leetcode.com/problems/set-matrix-zeroes/',
         'Game of Life - https://leetcode.com/problems/game-of-life/',
-        'Search a 2D Matrix - https://leetcode.com/problems/search-a-2d-matrix/',
 
-        // Hashmap (13 problems)
+        // Hashmap
         '--- Hashmap ---',
         'Ransom Note - https://leetcode.com/problems/ransom-note/',
         'Isomorphic Strings - https://leetcode.com/problems/isomorphic-strings/',
@@ -64,17 +63,15 @@ export const top150Data = {
         'Happy Number - https://leetcode.com/problems/happy-number/',
         'Contains Duplicate II - https://leetcode.com/problems/contains-duplicate-ii/',
         'Longest Consecutive Sequence - https://leetcode.com/problems/longest-consecutive-sequence/',
+
+        // Intervals
+        '--- Intervals ---',
         'Summary Ranges - https://leetcode.com/problems/summary-ranges/',
         'Merge Intervals - https://leetcode.com/problems/merge-intervals/',
         'Insert Interval - https://leetcode.com/problems/insert-interval/',
-        'Non-overlapping Intervals - https://leetcode.com/problems/non-overlapping-intervals/',
+        'Minimum Number of Arrows to Burst Balloons - https://leetcode.com/problems/minimum-number-of-arrows-to-burst-balloons/',
 
-        // Intervals (2 problems)
-        '--- Intervals ---',
-        'Meeting Rooms - https://leetcode.com/problems/meeting-rooms/',
-        'Meeting Rooms II - https://leetcode.com/problems/meeting-rooms-ii/',
-
-        // Stack (5 problems)
+        // Stack
         '--- Stack ---',
         'Valid Parentheses - https://leetcode.com/problems/valid-parentheses/',
         'Simplify Path - https://leetcode.com/problems/simplify-path/',
@@ -82,7 +79,7 @@ export const top150Data = {
         'Evaluate Reverse Polish Notation - https://leetcode.com/problems/evaluate-reverse-polish-notation/',
         'Basic Calculator - https://leetcode.com/problems/basic-calculator/',
 
-        // Linked List (13 problems)
+        // Linked List
         '--- Linked List ---',
         'Linked List Cycle - https://leetcode.com/problems/linked-list-cycle/',
         'Add Two Numbers - https://leetcode.com/problems/add-two-numbers/',
@@ -95,10 +92,8 @@ export const top150Data = {
         'Rotate List - https://leetcode.com/problems/rotate-list/',
         'Partition List - https://leetcode.com/problems/partition-list/',
         'LRU Cache - https://leetcode.com/problems/lru-cache/',
-        'Sort List - https://leetcode.com/problems/sort-list/',
-        'Merge k Sorted Lists - https://leetcode.com/problems/merge-k-sorted-lists/',
 
-        // Binary Tree General (16 problems)
+        // Binary Tree General
         '--- Binary Tree General ---',
         'Maximum Depth of Binary Tree - https://leetcode.com/problems/maximum-depth-of-binary-tree/',
         'Same Tree - https://leetcode.com/problems/same-tree/',
@@ -111,74 +106,67 @@ export const top150Data = {
         'Path Sum - https://leetcode.com/problems/path-sum/',
         'Sum Root to Leaf Numbers - https://leetcode.com/problems/sum-root-to-leaf-numbers/',
         'Binary Tree Maximum Path Sum - https://leetcode.com/problems/binary-tree-maximum-path-sum/',
-        'Binary Tree Level Order Traversal - https://leetcode.com/problems/binary-tree-level-order-traversal/',
-        'Binary Tree Zigzag Level Order Traversal - https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/',
+        'Binary Search Tree Iterator - https://leetcode.com/problems/binary-search-tree-iterator/',
+        'Count Complete Tree Nodes - https://leetcode.com/problems/count-complete-tree-nodes/',
+        'Lowest Common Ancestor of a Binary Tree - https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/',
+
+        // Binary Tree BFS
+        '--- Binary Tree BFS ---',
         'Binary Tree Right Side View - https://leetcode.com/problems/binary-tree-right-side-view/',
         'Average of Levels in Binary Tree - https://leetcode.com/problems/average-of-levels-in-binary-tree/',
-        'Count Complete Tree Nodes - https://leetcode.com/problems/count-complete-tree-nodes/',
+        'Binary Tree Level Order Traversal - https://leetcode.com/problems/binary-tree-level-order-traversal/',
+        'Binary Tree Zigzag Level Order Traversal - https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/',
 
-        // Binary Tree BFS (4 problems)
-        '--- Binary Tree BFS ---',
-        'Binary Tree Level Order Traversal II - https://leetcode.com/problems/binary-tree-level-order-traversal-ii/',
-        'Minimum Depth of Binary Tree - https://leetcode.com/problems/minimum-depth-of-binary-tree/',
-        'Word Ladder - https://leetcode.com/problems/word-ladder/',
-        'Surrounded Regions - https://leetcode.com/problems/surrounded-regions/',
-
-        // Binary Search Tree (6 problems)
+        // Binary Search Tree
         '--- Binary Search Tree ---',
         'Minimum Absolute Difference in BST - https://leetcode.com/problems/minimum-absolute-difference-in-bst/',
         'Kth Smallest Element in a BST - https://leetcode.com/problems/kth-smallest-element-in-a-bst/',
         'Validate Binary Search Tree - https://leetcode.com/problems/validate-binary-search-tree/',
-        'Recover Binary Search Tree - https://leetcode.com/problems/recover-binary-search-tree/',
-        'Convert Sorted Array to Binary Search Tree - https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/',
-        'Convert BST to Greater Tree - https://leetcode.com/problems/convert-bst-to-greater-tree/',
 
-        // Graph General (6 problems)
+        // Graph General
         '--- Graph General ---',
         'Number of Islands - https://leetcode.com/problems/number-of-islands/',
+        'Surrounded Regions - https://leetcode.com/problems/surrounded-regions/',
         'Clone Graph - https://leetcode.com/problems/clone-graph/',
         'Evaluate Division - https://leetcode.com/problems/evaluate-division/',
         'Course Schedule - https://leetcode.com/problems/course-schedule/',
         'Course Schedule II - https://leetcode.com/problems/course-schedule-ii/',
-        'Snakes and Ladders - https://leetcode.com/problems/snakes-and-ladders/',
 
-        // Graph BFS (2 problems)
+        // Graph BFS
         '--- Graph BFS ---',
+        'Snakes and Ladders - https://leetcode.com/problems/snakes-and-ladders/',
         'Minimum Genetic Mutation - https://leetcode.com/problems/minimum-genetic-mutation/',
-        'Word Ladder II - https://leetcode.com/problems/word-ladder-ii/',
+        'Word Ladder - https://leetcode.com/problems/word-ladder/',
 
-        // Trie (3 problems)
+        // Trie
         '--- Trie ---',
         'Implement Trie (Prefix Tree) - https://leetcode.com/problems/implement-trie-prefix-tree/',
         'Design Add and Search Words Data Structure - https://leetcode.com/problems/design-add-and-search-words-data-structure/',
         'Word Search II - https://leetcode.com/problems/word-search-ii/',
 
-        // Backtracking (11 problems)
+        // Backtracking
         '--- Backtracking ---',
         'Letter Combinations of a Phone Number - https://leetcode.com/problems/letter-combinations-of-a-phone-number/',
-        'Generate Parentheses - https://leetcode.com/problems/generate-parentheses/',
-        'Word Search - https://leetcode.com/problems/word-search/',
         'Combinations - https://leetcode.com/problems/combinations/',
         'Permutations - https://leetcode.com/problems/permutations/',
         'Combination Sum - https://leetcode.com/problems/combination-sum/',
         'N-Queens II - https://leetcode.com/problems/n-queens-ii/',
-        'Sudoku Solver - https://leetcode.com/problems/sudoku-solver/',
-        'Palindrome Partitioning - https://leetcode.com/problems/palindrome-partitioning/',
-        'Subsets - https://leetcode.com/problems/subsets/',
-        'Restore IP Addresses - https://leetcode.com/problems/restore-ip-addresses/',
+        'Generate Parentheses - https://leetcode.com/problems/generate-parentheses/',
+        'Word Search - https://leetcode.com/problems/word-search/',
 
-        // Divide & Conquer (4 problems)
+        // Divide & Conquer
         '--- Divide & Conquer ---',
         'Convert Sorted Array to Binary Search Tree - https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/',
         'Sort List - https://leetcode.com/problems/sort-list/',
         'Construct Quad Tree - https://leetcode.com/problems/construct-quad-tree/',
         'Merge k Sorted Lists - https://leetcode.com/problems/merge-k-sorted-lists/',
 
-        // Kadane's Algorithm (1 problem)
+        // Kadane's Algorithm
         '--- Kadane\'s Algorithm ---',
         'Maximum Subarray - https://leetcode.com/problems/maximum-subarray/',
+        'Maximum Sum Circular Subarray - https://leetcode.com/problems/maximum-sum-circular-subarray/',
 
-        // Binary Search (7 problems)
+        // Binary Search
         '--- Binary Search ---',
         'Search Insert Position - https://leetcode.com/problems/search-insert-position/',
         'Search a 2D Matrix - https://leetcode.com/problems/search-a-2d-matrix/',
@@ -188,21 +176,23 @@ export const top150Data = {
         'Find Minimum in Rotated Sorted Array - https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/',
         'Median of Two Sorted Arrays - https://leetcode.com/problems/median-of-two-sorted-arrays/',
 
-        // Heap (3 problems)
+        // Heap
         '--- Heap ---',
         'Kth Largest Element in an Array - https://leetcode.com/problems/kth-largest-element-in-an-array/',
         'IPO - https://leetcode.com/problems/ipo/',
         'Find K Pairs with Smallest Sums - https://leetcode.com/problems/find-k-pairs-with-smallest-sums/',
+        'Find Median from Data Stream - https://leetcode.com/problems/find-median-from-data-stream/',
 
-        // Bit Manipulation (5 problems)
+        // Bit Manipulation
         '--- Bit Manipulation ---',
         'Add Binary - https://leetcode.com/problems/add-binary/',
         'Reverse Bits - https://leetcode.com/problems/reverse-bits/',
         'Number of 1 Bits - https://leetcode.com/problems/number-of-1-bits/',
         'Single Number - https://leetcode.com/problems/single-number/',
+        'Single Number II - https://leetcode.com/problems/single-number-ii/',
         'Bitwise AND of Numbers Range - https://leetcode.com/problems/bitwise-and-of-numbers-range/',
 
-        // Math (7 problems)
+        // Math
         '--- Math ---',
         'Palindrome Number - https://leetcode.com/problems/palindrome-number/',
         'Plus One - https://leetcode.com/problems/plus-one/',
@@ -210,22 +200,16 @@ export const top150Data = {
         'Sqrt(x) - https://leetcode.com/problems/sqrtx/',
         'Pow(x, n) - https://leetcode.com/problems/powx-n/',
         'Max Points on a Line - https://leetcode.com/problems/max-points-on-a-line/',
-        'Integer to English Words - https://leetcode.com/problems/integer-to-english-words/',
 
-        // 1D DP (10 problems)
+        // 1D DP
         '--- 1D DP ---',
         'Climbing Stairs - https://leetcode.com/problems/climbing-stairs/',
         'House Robber - https://leetcode.com/problems/house-robber/',
         'Word Break - https://leetcode.com/problems/word-break/',
         'Coin Change - https://leetcode.com/problems/coin-change/',
         'Longest Increasing Subsequence - https://leetcode.com/problems/longest-increasing-subsequence/',
-        'Partition Equal Subset Sum - https://leetcode.com/problems/partition-equal-subset-sum/',
-        'Maximum Product Subarray - https://leetcode.com/problems/maximum-product-subarray/',
-        'Decode Ways - https://leetcode.com/problems/decode-ways/',
-        'Perfect Squares - https://leetcode.com/problems/perfect-squares/',
-        'Combination Sum IV - https://leetcode.com/problems/combination-sum-iv/',
 
-        // Multidimensional DP (14 problems)
+        // Multidimensional DP
         '--- Multidimensional DP ---',
         'Triangle - https://leetcode.com/problems/triangle/',
         'Minimum Path Sum - https://leetcode.com/problems/minimum-path-sum/',
@@ -235,12 +219,7 @@ export const top150Data = {
         'Edit Distance - https://leetcode.com/problems/edit-distance/',
         'Best Time to Buy and Sell Stock III - https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iii/',
         'Best Time to Buy and Sell Stock IV - https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iv/',
-        'Maximal Square - https://leetcode.com/problems/maximal-square/',
-        'Minimum Window Substring - https://leetcode.com/problems/minimum-window-substring/',
-        'Substring with Concatenation of All Words - https://leetcode.com/problems/substring-with-concatenation-of-all-words/',
-        'Longest Common Subsequence - https://leetcode.com/problems/longest-common-subsequence/',
-        'Distinct Subsequences - https://leetcode.com/problems/distinct-subsequences/',
-        'Shortest Common Supersequence - https://leetcode.com/problems/shortest-common-supersequence/'
+        'Maximal Square - https://leetcode.com/problems/maximal-square/'
     ],
     explanation: `## LeetCode Top 150 Interview Questions
 
