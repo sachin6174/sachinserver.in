@@ -3,6 +3,7 @@ import '../shared-styles.css';
 import './DSA.css';
 import ContributionGraph from './ContributionGraph';
 import { top150Data } from './data/top150.js';
+import { getSolutionData, hasSolutionVideo } from './data/solutionLinks.js';
 
 const DSA = memo(() => {
     const [selectedTopic, setSelectedTopic] = useState('top150');
@@ -129,6 +130,9 @@ const DSA = memo(() => {
                                     const difficulty = difficultyMatch ? difficultyMatch[1] : 'Medium';
                                     const questionTitle = titleAndDifficulty.replace(/\s*\[(Easy|Medium|Hard)\]$/, '');
                                     
+                                    const hasSolution = hasSolutionVideo(questionTitle);
+                                    const solutionData = hasSolution ? getSolutionData(questionTitle) : null;
+
                                     return (
                                         <div key={index} className="question-card">
                                             <div className="question-card-header">
@@ -138,15 +142,32 @@ const DSA = memo(() => {
                                                 </span>
                                             </div>
                                             <h3 className="question-title">{questionTitle}</h3>
-                                            <a 
-                                                href={leetcodeUrl} 
-                                                target="_blank" 
-                                                rel="noopener noreferrer"
-                                                className="leetcode-link"
-                                            >
-                                                <span>{leetcodeUrl.includes('hackerrank') ? 'Solve on HackerRank' : 'Solve on LeetCode'}</span>
-                                                <span className="external-icon">↗</span>
-                                            </a>
+                                            
+                                            <div className="question-actions">
+                                                <a 
+                                                    href={leetcodeUrl} 
+                                                    target="_blank" 
+                                                    rel="noopener noreferrer"
+                                                    className="leetcode-link"
+                                                >
+                                                    <span>{leetcodeUrl.includes('hackerrank') ? 'Solve on HackerRank' : 'Solve on LeetCode'}</span>
+                                                    <span className="external-icon">↗</span>
+                                                </a>
+                                            </div>
+                                            
+                                            {hasSolution && (
+                                                <div className="solution-section">
+                                                    <a
+                                                        href={solutionData.videoUrl}
+                                                        target="_blank"
+                                                        rel="noopener noreferrer"
+                                                        className="solution-link"
+                                                        title="Watch solution video"
+                                                    >
+                                                        <span>📺 Solution</span>
+                                                    </a>
+                                                </div>
+                                            )}
                                         </div>
                                     );
                                 })}

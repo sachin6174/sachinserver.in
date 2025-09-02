@@ -668,3 +668,53 @@
     background: var(--background-secondary);
     border-radius: var(--radius-md);
 }
+
+/* Solution Links Functionality */
+
+/* Question actions container */
+.question-actions {
+    margin-top: var(--space-md);
+}
+
+/* Solution section - appears below LeetCode link */
+.solution-section {
+    margin-top: var(--space-sm);
+    padding-top: var(--space-sm);
+    border-top: 1px solid var(--border-color);
+}
+
+/* Solution link styling */
+.solution-link {
+    background: linear-gradient(135deg, #FF6B6B 0%, #FF8E8E 100%);
+    color: white;
+    text-decoration: none;
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: var(--radius-md);
+    font-size: var(--font-sm);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    min-height: 36px;
+    width: 100%;
+    justify-content: center;
+}
+
+.solution-link:hover {
+    background: linear-gradient(135deg, #FF5252 0%, #FF7B7B 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
+    color: white;
+    text-decoration: none;
+}
+
+.solution-link:active {
+    transform: translateY(0);
+}
+
+.solution-link:visited {
+    color: white;
+}
+
