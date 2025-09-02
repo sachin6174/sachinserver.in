@@ -2,7 +2,7 @@ import React, { useState, useMemo, useCallback, memo, useEffect } from 'react';
 import '../shared-styles.css';
 import './DSA.css';
 import ContributionGraph from './ContributionGraph';
-import { top150Data } from './data/top150.js';
+import { leetcode150Data } from './data/leetcode150.js';
 import { getSolutionData, hasSolutionVideo } from './data/solutionLinks.js';
 
 const DSA = memo(() => {
@@ -41,13 +41,13 @@ const DSA = memo(() => {
 
     // Memoize DSA topics to prevent recreation on every render
     const dsaTopics = useMemo(() => ({
-        top150: top150Data
+        top150: leetcode150Data
     }), []);
 
 
-    // Memoize topics array - Now only showing Top 150
+    // Memoize topics array - Now only showing LeetCode 150
     const topics = useMemo(() => [
-        { id: 'top150', name: 'Top 150 Interview Questions' }
+        { id: 'top150', name: 'LeetCode Top 150 Interview Questions' }
     ], []);
 
     // Memoize current topic calculation
@@ -112,31 +112,36 @@ const DSA = memo(() => {
                         <div className="info-section">
                             <h4>🎯 Practice Problems</h4>
                             <div className="questions-grid">
-                                {currentTopic.questions.map((question, index) => {
-                                    if (question.startsWith('---')) {
-                                        return <h3 key={index} className="separator">{question.replaceAll('---', '').trim()}</h3>;
-                                    }
-                                    
-                                    // Parse question text, difficulty, and URL
-                                    const parts = question.split(' - https://');
-                                    const titleAndDifficulty = parts[0];
-                                    const leetcodeUrl = parts[1] ? `https://${parts[1]}` : null;
-                                    
-                                    // Only render LeetCode problems, skip concept questions
-                                    if (!leetcodeUrl) return null;
-                                    
-                                    // Extract difficulty from title
-                                    const difficultyMatch = titleAndDifficulty.match(/\[(Easy|Medium|Hard)\]$/);
-                                    const difficulty = difficultyMatch ? difficultyMatch[1] : 'Medium';
-                                    const questionTitle = titleAndDifficulty.replace(/\s*\[(Easy|Medium|Hard)\]$/, '');
-                                    
-                                    const hasSolution = hasSolutionVideo(questionTitle);
-                                    const solutionData = hasSolution ? getSolutionData(questionTitle) : null;
+                                {(() => {
+                                    let questionNumber = 0;
+                                    return currentTopic.questions.map((question, index) => {
+                                        if (question.startsWith('---')) {
+                                            return <h3 key={index} className="separator">{question.replaceAll('---', '').trim()}</h3>;
+                                        }
+                                        
+                                        // Parse question text, difficulty, and URL
+                                        const parts = question.split(' - https://');
+                                        const titleAndDifficulty = parts[0];
+                                        const leetcodeUrl = parts[1] ? `https://${parts[1]}` : null;
+                                        
+                                        // Only render LeetCode problems, skip concept questions
+                                        if (!leetcodeUrl) return null;
+                                        
+                                        // Increment question number only for actual questions
+                                        questionNumber++;
+                                        
+                                        // Extract difficulty from title
+                                        const difficultyMatch = titleAndDifficulty.match(/\[(Easy|Medium|Hard)\]$/);
+                                        const difficulty = difficultyMatch ? difficultyMatch[1] : 'Medium';
+                                        const questionTitle = titleAndDifficulty.replace(/\s*\[(Easy|Medium|Hard)\]$/, '');
+                                        
+                                        const hasSolution = hasSolutionVideo(questionTitle);
+                                        const solutionData = hasSolution ? getSolutionData(questionTitle) : null;
 
-                                    return (
-                                        <div key={index} className="question-card">
-                                            <div className="question-card-header">
-                                                <span className="question-number">#{index + 1}</span>
+                                        return (
+                                            <div key={index} className="question-card">
+                                                <div className="question-card-header">
+                                                    <span className="question-number">#{questionNumber}</span>
                                                 <span className={`question-difficulty difficulty-${difficulty.toLowerCase()}`}>
                                                     {difficulty}
                                                 </span>
@@ -169,8 +174,9 @@ const DSA = memo(() => {
                                                 </div>
                                             )}
                                         </div>
-                                    );
-                                })}
+                                        );
+                                    });
+                                })()}
                             </div>
                         </div>
                     )}
