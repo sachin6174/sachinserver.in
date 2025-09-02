@@ -247,6 +247,141 @@
     background-color: #216e39;
 }
 
+/* Username editing styles */
+.contribution-info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+}
+
+.username-section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+}
+
+.username-display {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+}
+
+.username-text {
+    font-size: var(--font-sm);
+    font-weight: 500;
+    color: var(--text-secondary);
+    padding: 2px 6px;
+    background: var(--background-secondary);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-color);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.username-text:hover {
+    color: var(--text-primary);
+    border-color: var(--accent-color);
+}
+
+.username-edit-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 2px;
+    border-radius: var(--radius-sm);
+    font-size: 12px;
+    transition: all 0.2s ease;
+    opacity: 0.7;
+}
+
+.username-edit-btn:hover {
+    opacity: 1;
+    background: var(--background-secondary);
+}
+
+.username-edit-form {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+}
+
+.username-input {
+    padding: 4px 8px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    background: var(--background-primary);
+    color: var(--text-primary);
+    font-size: var(--font-sm);
+    min-width: 150px;
+}
+
+.username-input:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 2px rgba(var(--accent-color-rgb), 0.1);
+}
+
+.username-save-btn,
+.username-cancel-btn {
+    background: none;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    padding: 4px 8px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: all 0.2s ease;
+    min-width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.username-save-btn {
+    color: var(--success-color);
+    border-color: var(--success-color);
+}
+
+.username-save-btn:hover {
+    background: var(--success-color);
+    color: white;
+}
+
+.username-cancel-btn {
+    color: var(--text-secondary);
+}
+
+.username-cancel-btn:hover {
+    background: var(--background-secondary);
+    color: var(--text-primary);
+}
+
+.username-hint {
+    font-size: var(--font-xs);
+    color: var(--text-tertiary);
+    font-style: italic;
+    display: flex;
+    align-items: center;
+    gap: 2px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .contribution-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--space-sm);
+    }
+    
+    .username-section {
+        align-self: flex-start;
+    }
+    
+    .username-input {
+        min-width: 120px;
+    }
+}
+
 /* Default fallback for legend */
 .legend-square.level-0 {
     background-color: #161b22;

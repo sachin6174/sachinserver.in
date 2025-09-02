@@ -5,14 +5,52 @@ const ContributionGraph = () => {
     const [contributions, setContributions] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [username, setUsername] = useState(() => {
+        // Get username from localStorage or use default
+        return localStorage.getItem('leetcode-username') || 'sachinkumar6174';
+    });
+    const [isEditingUsername, setIsEditingUsername] = useState(false);
+    const [tempUsername, setTempUsername] = useState(username);
 
-    // Fetch real LeetCode data for sachinkumar6174
-    const fetchLeetCodeData = async () => {
+    // Save username to localStorage
+    const saveUsername = (newUsername) => {
+        if (newUsername.trim()) {
+            localStorage.setItem('leetcode-username', newUsername.trim());
+            setUsername(newUsername.trim());
+            setTempUsername(newUsername.trim());
+            setIsEditingUsername(false);
+            // Refetch data with new username
+            fetchLeetCodeData(newUsername.trim());
+        }
+    };
+
+    // Handle username edit
+    const handleUsernameEdit = () => {
+        setIsEditingUsername(true);
+        setTempUsername(username);
+    };
+
+    const handleUsernameCancel = () => {
+        setIsEditingUsername(false);
+        setTempUsername(username);
+    };
+
+    const handleUsernameSubmit = (e) => {
+        e.preventDefault();
+        if (tempUsername.trim() && tempUsername.trim() !== username) {
+            saveUsername(tempUsername.trim());
+        } else {
+            setIsEditingUsername(false);
+        }
+    };
+
+    // Fetch real LeetCode data for given username
+    const fetchLeetCodeData = async (targetUsername = username) => {
         const apis = [
             // Try multiple LeetCode API endpoints
-            'https://leetcode-stats-api.herokuapp.com/sachinkumar6174',
-            'https://alfa-leetcode-api.onrender.com/sachinkumar6174',
-            'https://alfa-leetcode-api.onrender.com/sachinkumar6174/submission'
+            `https://leetcode-stats-api.herokuapp.com/${targetUsername}`,
+            `https://alfa-leetcode-api.onrender.com/${targetUsername}`,
+            `https://alfa-leetcode-api.onrender.com/${targetUsername}/submission`
         ];
 
         setLoading(true);
@@ -165,10 +203,10 @@ const ContributionGraph = () => {
         return contributions;
     };
 
-    // Fetch data on component mount
+    // Fetch data on component mount or when username changes
     useEffect(() => {
         fetchLeetCodeData();
-    }, []);
+    }, [username]);
     const totalContributions = contributions.reduce((sum, day) => sum + day.count, 0);
     
     // Calculate weeks for grid layout
@@ -237,17 +275,47 @@ const ContributionGraph = () => {
             <div className="contribution-header">
                 <div className="contribution-title">
                     <span className="contribution-icon">🔥</span>
-                    <span className="contribution-count">
-                        LeetCode Activity
-                        {error && <span className="api-status"> (simulated data - API unavailable)</span>}
-                    </span>
+                    <div className="contribution-info">
+                        <span className="contribution-count">
+                            LeetCode Activity for {username}
+                            {error && <span className="api-status"> (simulated data - API unavailable)</span>}
+                        </span>
+                        <div className="username-section">
+                            {isEditingUsername ? (
+                                <form onSubmit={handleUsernameSubmit} className="username-edit-form">
+                                    <input
+                                        type="text"
+                                        value={tempUsername}
+                                        onChange={(e) => setTempUsername(e.target.value)}
+                                        className="username-input"
+                                        placeholder="Enter LeetCode username"
+                                        autoFocus
+                                    />
+                                    <button type="submit" className="username-save-btn" title="Save username">
+                                        ✓
+                                    </button>
+                                    <button type="button" onClick={handleUsernameCancel} className="username-cancel-btn" title="Cancel">
+                                        ✕
+                                    </button>
+                                </form>
+                            ) : (
+                                <div className="username-display">
+                                    <span className="username-text">@{username}</span>
+                                    <button onClick={handleUsernameEdit} className="username-edit-btn" title="Click to edit username">
+                                        ✏️
+                                    </button>
+                                </div>
+                            )}
+                            <span className="username-hint">💡 Click the username to customize</span>
+                        </div>
+                    </div>
                 </div>
                 <div className="contribution-year">
                     <span className="info-icon">ⓘ</span>
                     <span>2025</span>
                     {!error && <span className="live-indicator">●</span>}
                     <a 
-                        href="https://leetcode.com/sachinkumar6174" 
+                        href={`https://leetcode.com/${username}`} 
                         target="_blank" 
                         rel="noopener noreferrer"
                         className="github-profile-link"

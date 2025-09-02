@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useCallback, memo } from 'react';
+import React, { useState, useMemo, useCallback, memo, useEffect } from 'react';
 import '../shared-styles.css';
 import './DSA.css';
 import ContributionGraph from './ContributionGraph';
@@ -6,6 +6,32 @@ import { top150Data } from './data/top150.js';
 
 const DSA = memo(() => {
     const [selectedTopic, setSelectedTopic] = useState('top150');
+    const [username, setUsername] = useState(() => {
+        return localStorage.getItem('leetcode-username') || 'sachinkumar6174';
+    });
+
+    // Listen for username changes in localStorage
+    useEffect(() => {
+        const handleStorageChange = () => {
+            const newUsername = localStorage.getItem('leetcode-username') || 'sachinkumar6174';
+            setUsername(newUsername);
+        };
+        
+        window.addEventListener('storage', handleStorageChange);
+        
+        // Also check for updates from the same window
+        const interval = setInterval(() => {
+            const newUsername = localStorage.getItem('leetcode-username') || 'sachinkumar6174';
+            if (newUsername !== username) {
+                setUsername(newUsername);
+            }
+        }, 1000);
+
+        return () => {
+            window.removeEventListener('storage', handleStorageChange);
+            clearInterval(interval);
+        };
+    }, [username]);
 
     // Memoize topic selection handler
     const handleTopicChange = useCallback((topicId) => {
@@ -41,10 +67,10 @@ const DSA = memo(() => {
                         <div className="leetcode-compact-header">
                             <div className="profile-compact">
                                 <span className="leetcode-icon">🔥</span>
-                                <span className="profile-name">sachinkumar6174</span>
+                                <span className="profile-name">{username}</span>
                             </div>
                             <a 
-                                href="https://leetcode.com/sachinkumar6174" 
+                                href={`https://leetcode.com/${username}`} 
                                 target="_blank" 
                                 rel="noopener noreferrer"
                                 className="leetcode-compact-link"
@@ -54,7 +80,7 @@ const DSA = memo(() => {
                         </div>
                         <div className="leetcode-compact-stats">
                             <img 
-                                src="https://leetcard.jacoblin.cool/sachinkumar6174?theme=dark&font=Karma" 
+                                src={`https://leetcard.jacoblin.cool/${username}?theme=dark&font=Karma`} 
                                 alt="LeetCode Stats"
                                 className="leetcode-compact-card"
                                 onError={(e) => {

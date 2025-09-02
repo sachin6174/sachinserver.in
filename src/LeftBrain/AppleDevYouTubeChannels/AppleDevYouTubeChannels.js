@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import './AppleDevYouTubeChannels.css';
 
 const AppleDevYouTubeChannels = () => {
@@ -317,6 +317,113 @@ const AppleDevYouTubeChannels = () => {
         }
     ];
 
+    // Resolve channel thumbnails via YouTube Data API v3 (optional)
+    // If REACT_APP_YOUTUBE_API_KEY is defined (or set in localStorage under 'yt_api_key'),
+    // we try to fetch the channel's official thumbnail and cache the result.
+    const apiKey = useMemo(() => {
+        return process.env.REACT_APP_YOUTUBE_API_KEY || localStorage.getItem('yt_api_key') || '';
+    }, []);
+
+    const [resolvedThumbs, setResolvedThumbs] = useState({});
+
+    // LocalStorage cache helpers with 7-day TTL
+    const getCachedThumb = (url) => {
+        try {
+            const raw = localStorage.getItem(`yt_thumb_${url}`);
+            if (!raw) return null;
+            const data = JSON.parse(raw);
+            if (!data || !data.url || !data.exp) return null;
+            if (Date.now() > data.exp) {
+                localStorage.removeItem(`yt_thumb_${url}`);
+                return null;
+            }
+            return data.url;
+        } catch { return null; }
+    };
+
+    const putCachedThumb = (url, thumb) => {
+        try {
+            const ttl = 7 * 24 * 60 * 60 * 1000; // 7 days
+            localStorage.setItem(`yt_thumb_${url}`, JSON.stringify({ url: thumb, exp: Date.now() + ttl }));
+        } catch {}
+    };
+
+    const parseChannelIdentifier = (youtubeUrl) => {
+        try {
+            const u = new URL(youtubeUrl);
+            const path = u.pathname; // e.g., /@handle, /channel/UC..., /c/Name, /user/Name
+            if (path.startsWith('/channel/')) {
+                const id = path.split('/')[2];
+                return { channelId: id };
+            }
+            if (path.startsWith('/@')) {
+                return { handle: path.slice(1) }; // include @
+            }
+            const parts = path.split('/').filter(Boolean);
+            if (parts[0] === 'c' || parts[0] === 'user') {
+                return { custom: parts[1] };
+            }
+            // Fallback: query the full URL string
+            return { query: youtubeUrl };
+        } catch {
+            return { query: youtubeUrl };
+        }
+    };
+
+    const fetchChannelThumb = async (youtubeUrl) => {
+        if (!apiKey) return null;
+        const cached = getCachedThumb(youtubeUrl);
+        if (cached) return cached;
+
+        const { channelId, handle, custom, query } = parseChannelIdentifier(youtubeUrl);
+        try {
+            if (channelId) {
+                const resp = await fetch(`https://www.googleapis.com/youtube/v3/channels?part=snippet&id=${encodeURIComponent(channelId)}&key=${apiKey}`);
+                const json = await resp.json();
+                const item = json.items && json.items[0];
+                const thumb = item?.snippet?.thumbnails?.high?.url || item?.snippet?.thumbnails?.default?.url;
+                if (thumb) return thumb;
+            }
+            const q = handle || custom || query || youtubeUrl;
+            if (q) {
+                const resp = await fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&type=channel&maxResults=1&q=${encodeURIComponent(q)}&key=${apiKey}`);
+                const json = await resp.json();
+                const item = json.items && json.items[0];
+                const thumb = item?.snippet?.thumbnails?.high?.url || item?.snippet?.thumbnails?.default?.url;
+                if (thumb) return thumb;
+            }
+        } catch (e) {
+            // swallow; fallback will be used
+        }
+        return null;
+    };
+
+    useEffect(() => {
+        let cancelled = false;
+        const run = async () => {
+            if (!apiKey) return; // no API key, keep existing icons
+            const updates = {};
+            for (const ch of channels) {
+                const cached = getCachedThumb(ch.youtubeUrl);
+                if (cached) {
+                    updates[ch.youtubeUrl] = cached;
+                    continue;
+                }
+                const t = await fetchChannelThumb(ch.youtubeUrl);
+                if (t) {
+                    updates[ch.youtubeUrl] = t;
+                    putCachedThumb(ch.youtubeUrl, t);
+                }
+            }
+            if (!cancelled && Object.keys(updates).length) {
+                setResolvedThumbs(prev => ({ ...prev, ...updates }));
+            }
+        };
+        run();
+        return () => { cancelled = true; };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [apiKey]);
+
     const handleLinkClick = (url) => {
         if (url) {
             window.open(url, '_blank', 'noopener,noreferrer');
@@ -331,14 +438,17 @@ const AppleDevYouTubeChannels = () => {
             </div>
 
             <div className="channels-grid">
-                {channels.map((channel, index) => (
+                {channels.map((channel, index) => {
+                    const iconUrl = resolvedThumbs[channel.youtubeUrl] || channel.icon;
+                    return (
                     <div key={index} className="channel-card">
                         <div className="channel-avatar">
                             <img 
-                                src={channel.icon} 
+                                src={iconUrl}
                                 alt={`${channel.name} avatar`}
+                                referrerPolicy="no-referrer"
                                 onError={(e) => {
-                                    e.target.src = 'https://via.placeholder.com/50x50/667eea/white?text=' + channel.name.charAt(0);
+                                    e.currentTarget.src = channel.icon || ('https://via.placeholder.com/50x50/667eea/white?text=' + channel.name.charAt(0));
                                 }}
                             />
                         </div>
@@ -387,7 +497,8 @@ const AppleDevYouTubeChannels = () => {
                             </div>
                         </div>
                     </div>
-                ))}
+                    );
+                })}
             </div>
 
             <div className="channels-footer">
