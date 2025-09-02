@@ -251,3 +251,4 @@ input[type="text"], input[type="email"], input[type="password"], input[type="num
         padding: 1.5rem !important;
     }
 }
+@import "./styles/site.css";

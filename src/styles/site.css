@@ -1,0 +1,92 @@
+/* Site-wide UI consistency styles */
+
+/* Consistent page bounds for all sections */
+.leftbrain-container,
+.rightbrain-container,
+.tools-container,
+.description .content-wrapper {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Consistent card look across sections */
+.tool-container,
+.leftbrain-card,
+.rightbrain-card,
+.card,
+.content-card,
+.tech-card {
+  background: linear-gradient(135deg,
+    rgba(255, 255, 255, 0.9),
+    rgba(248, 250, 252, 0.85)
+  );
+  background: linear-gradient(135deg,
+    var(--background-color, #ffffff),
+    var(--surface-color, #f8f9fa)
+  );
+  border: 1px solid var(--border-color, #e5e7eb);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+/* Dark-mode friendly shadow */
+body.dark-mode .tool-container,
+body.dark-mode .leftbrain-card,
+body.dark-mode .rightbrain-card,
+body.dark-mode .card,
+body.dark-mode .content-card,
+body.dark-mode .tech-card {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+}
+
+/* Section headers unified */
+.section-header,
+.tool-header {
+  padding-bottom: 0.75rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--border-color, #e5e7eb);
+}
+
+.section-title,
+.section-header h2,
+.tool-title {
+  color: var(--text-color, #1f2937);
+  background: linear-gradient(135deg, var(--accent-color, #6366f1), var(--accent-color, #6366f1));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Buttons baseline inside all pages */
+.leftbrain-container button,
+.rightbrain-container button,
+.tools-container button {
+  border-radius: 8px;
+  font-weight: 600;
+  font-family: inherit;
+}
+
+/* Inputs baseline inside all pages */
+.leftbrain-container input,
+.leftbrain-container textarea,
+.leftbrain-container select,
+.rightbrain-container input,
+.rightbrain-container textarea,
+.rightbrain-container select,
+.tools-container input,
+.tools-container textarea,
+.tools-container select {
+  border-radius: 8px;
+  border: 1px solid var(--border-color, #e5e7eb);
+  background: var(--background-color, #ffffff);
+  color: var(--text-color, #1f2937);
+}
+
+/* Content spacing harmony */
+.leftbrain-container section,
+.rightbrain-container section,
+.tools-container section {
+  margin-bottom: 1.25rem;
+}
+
