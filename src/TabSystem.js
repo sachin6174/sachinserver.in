@@ -163,7 +163,16 @@ const TabSystem = memo(() => {
     // Save localStorage when theme changes (optimized)
     useEffect(() => {
         optimizedStorage.set('isDarkMode', isDarkMode);
-        document.body.className = isDarkMode ? "dark-mode" : "light-mode";
+        // Toggle body theme classes without clobbering other classes
+        const dark = 'dark-mode';
+        const light = 'light-mode';
+        if (isDarkMode) {
+            document.body.classList.remove(light);
+            document.body.classList.add(dark);
+        } else {
+            document.body.classList.remove(dark);
+            document.body.classList.add(light);
+        }
     }, [isDarkMode]);
 
     // Listen for system theme changes (only if no stored preference exists)

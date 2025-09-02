@@ -154,6 +154,19 @@ body.dark-mode {
     --shadow-xl: 0 14px 28px rgba(0, 0, 0, 0.8);
 }
 
+/* Bridge generic CSS variables to LeftBrain theme vars */
+.leftbrain-container,
+.leftbrain-card,
+.tech-card,
+.content-card,
+.about-me-container {
+    --background-color: var(--background-primary);
+    --surface-color: var(--background-secondary);
+    --text-color: var(--text-primary);
+    --border-color: var(--border-color);
+    --accent-color: var(--primary-color);
+}
+
 /* Enhanced container styles with better typography */
 .leftbrain-container {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
