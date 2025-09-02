@@ -1,9 +1,12 @@
-const CACHE_NAME = 'sachinserver-v1.0';
+const CACHE_NAME = 'sachinserver-v1.1';
+// Only cache stable, non-hashed assets that exist at known paths
 const STATIC_CACHE = [
   '/',
-  '/static/js/main.js',
-  '/static/css/main.css',
+  '/index.html',
   '/manifest.json',
+  '/favicon.ico',
+  '/logo192.png',
+  '/logo512.png',
 ];
 
 // Install event - cache static assets
@@ -11,9 +14,14 @@ self.addEventListener('install', (event) => {
   console.log('Service worker installing...');
   event.waitUntil(
     caches.open(CACHE_NAME)
-      .then((cache) => {
+      .then(async (cache) => {
         console.log('Caching static assets');
-        return cache.addAll(STATIC_CACHE);
+        try {
+          await cache.addAll(STATIC_CACHE);
+        } catch (e) {
+          // Ignore failures for optional assets; proceed with install
+          console.warn('Some static assets failed to cache:', e);
+        }
       })
       .then(() => self.skipWaiting())
   );

@@ -4,7 +4,13 @@
  * Implements lazy loading for better performance
  */
 
-import { registerComponent, registerLazyComponent } from '../factories/ComponentFactory';
+import { 
+  registerComponent, 
+  registerLazyComponent,
+  getAllComponents,
+  getCategories,
+  getComponentsByCategory
+} from '../factories/ComponentFactory';
 
 // Import eager-loaded components (critical components)
 import AboutMe from '../LeftBrain/AboutMe/AboutMe';
