@@ -3,6 +3,7 @@ import famousArtsData from "./FamousArts.json";
 import famousArtistsData from "./FamousArtists.json";
 import artFormsData from "./ArtForms.json";
 import myPortraitsData from "./MyPortraits.json";
+import DrawingTutorials from "./DrawingTutorials";
 import "./Drawing.css";
 
 const Drawing = () => {
@@ -95,6 +96,11 @@ const Drawing = () => {
                     <h3>🖼️ Different Art Forms</h3>
                     <p>Explore various artistic mediums and techniques. From traditional painting to modern digital art, discover the diversity of artistic expression.</p>
                     <p><strong>Covers:</strong> Painting, Sculpture, Drawing, Digital Art, and more...</p>
+                </div>
+                <div className="card hover-effect" onClick={() => handleSectionClick('drawing-tutorials')}>
+                    <h3>🎨 Drawing Tutorials</h3>
+                    <p>Master drawing with 294+ expert YouTube tutorials. Features include progress tracking, category filtering, and detailed step-by-step guidance.</p>
+                    <p><strong>Features:</strong> Video tutorials, progress tracking, categories, and more...</p>
                 </div>
                 <div className="card hover-effect" onClick={() => handleSectionClick('my-portraits')}>
                     <h3>🎭 My Portraits</h3>
@@ -414,6 +420,8 @@ const Drawing = () => {
                 renderDetailedView()
             ) : currentSection === 'main' ? (
                 renderMainSections()
+            ) : currentSection === 'drawing-tutorials' ? (
+                <DrawingTutorials onBack={handleBackToMain} />
             ) : currentSection === 'famous-arts' ? (
                 renderFamousArts()
             ) : currentSection === 'famous-artists' ? (
