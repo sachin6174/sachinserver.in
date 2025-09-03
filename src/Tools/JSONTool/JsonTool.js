@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './JsonTool.css';
+import { Button, Textarea } from '../../ui';
 import TreeView from './TreeView';
 
 const JsonTool = () => {
@@ -73,23 +74,24 @@ const JsonTool = () => {
             <div className="tool-container">
                 <div className="input-section">
                     <h3>Input JSON</h3>
-                    <textarea
+                    <Textarea
                         value={input}
                         onChange={(e) => setInput(e.target.value)}
                         placeholder="Paste your JSON here..."
                         className="full-width-input"
+                        rows={12}
                     />
                 </div>
                 
                 <div className="actions">
-                    <button onClick={validateJSON}>Validate</button>
-                    <button onClick={formatJSON}>Beautify</button>
-                    <button onClick={minifyJSON}>Minify</button>
-                    <button onClick={downloadJSON}>Download</button>
-                    <button onClick={viewTree}>View Tree</button>
+                    <Button onClick={validateJSON}>Validate</Button>
+                    <Button onClick={formatJSON}>Beautify</Button>
+                    <Button onClick={minifyJSON}>Minify</Button>
+                    <Button onClick={downloadJSON}>Download</Button>
+                    <Button onClick={viewTree}>View Tree</Button>
                 </div>
 
-                {error && <div className="error-message">{error}</div>}
+                {error && <div className="error-message" role="alert" aria-live="assertive">{error}</div>}
                 
                 {showTree && !error && (
                     <div className="tree-view-section">

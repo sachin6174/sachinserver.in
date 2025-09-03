@@ -11,6 +11,8 @@ import {
   getCategories,
   getComponentsByCategory
 } from '../factories/ComponentFactory';
+import ComponentFactory from '../factories/ComponentFactory';
+import { makeAlertFallback } from '../ui/fallbacks';
 
 // Import eager-loaded components (critical components)
 import AboutMe from '../LeftBrain/AboutMe/AboutMe';
@@ -26,7 +28,8 @@ export const initializeComponentRegistry = () => {
     label: 'About Me',
     icon: '👤',
     category: 'leftbrain',
-    description: 'Personal information and skills overview'
+    description: 'Personal information and skills overview',
+    errorFallback: makeAlertFallback({ title: 'Failed to render About Me' })
   });
 
   registerLazyComponent('dsa', 
@@ -34,7 +37,9 @@ export const initializeComponentRegistry = () => {
     label: 'DSA',
     icon: '🧮',
     category: 'leftbrain',
-    description: 'Data Structures and Algorithms'
+    description: 'Data Structures and Algorithms',
+    loadingSkeleton: 'dsa',
+    errorFallback: makeAlertFallback({ title: 'Failed to load DSA' })
   });
 
   registerLazyComponent('xcode-shortcuts', 
@@ -42,7 +47,8 @@ export const initializeComponentRegistry = () => {
     label: 'Xcode Shortcuts',
     icon: '⌨️',
     category: 'leftbrain',
-    description: 'Useful Xcode keyboard shortcuts'
+    description: 'Useful Xcode keyboard shortcuts',
+    errorFallback: makeAlertFallback({ title: 'Failed to load Xcode Shortcuts' })
   });
 
   registerLazyComponent('apple-dev-youtube', 
@@ -50,7 +56,8 @@ export const initializeComponentRegistry = () => {
     label: 'Apple Dev YouTube',
     icon: '📺',
     category: 'leftbrain',
-    description: 'Apple Development YouTube channels'
+    description: 'Apple Development YouTube channels',
+    errorFallback: makeAlertFallback({ title: 'Failed to load Apple Dev YouTube' })
   });
 
   registerLazyComponent('apple-development', 
@@ -58,7 +65,8 @@ export const initializeComponentRegistry = () => {
     label: 'Apple Development',
     icon: '🍎',
     category: 'leftbrain',
-    description: 'Apple platform development resources'
+    description: 'Apple platform development resources',
+    errorFallback: makeAlertFallback({ title: 'Failed to load Apple Development' })
   });
 
   registerLazyComponent('apple-languages', 
@@ -66,7 +74,8 @@ export const initializeComponentRegistry = () => {
     label: 'Apple Languages',
     icon: '🍎',
     category: 'leftbrain',
-    description: 'Programming languages for Apple platforms'
+    description: 'Programming languages for Apple platforms',
+    errorFallback: makeAlertFallback({ title: 'Failed to load Apple Languages' })
   });
 
   registerLazyComponent('swift-gui', 
@@ -74,7 +83,8 @@ export const initializeComponentRegistry = () => {
     label: 'Swift GUI',
     icon: '🖥️',
     category: 'leftbrain',
-    description: 'SwiftUI and UIKit development'
+    description: 'SwiftUI and UIKit development',
+    errorFallback: makeAlertFallback({ title: 'Failed to load Swift GUI' })
   });
 
   registerLazyComponent('swift-storage', 
@@ -82,7 +92,8 @@ export const initializeComponentRegistry = () => {
     label: 'Swift Storage',
     icon: '💾',
     category: 'leftbrain',
-    description: 'Data persistence in Swift'
+    description: 'Data persistence in Swift',
+    errorFallback: makeAlertFallback({ title: 'Failed to load Swift Storage' })
   });
 
   registerLazyComponent('swift-networking', 
@@ -90,7 +101,8 @@ export const initializeComponentRegistry = () => {
     label: 'Swift Networking',
     icon: '🌐',
     category: 'leftbrain',
-    description: 'Network programming in Swift'
+    description: 'Network programming in Swift',
+    errorFallback: makeAlertFallback({ title: 'Failed to load Swift Networking' })
   });
 
   registerLazyComponent('debugging', 
@@ -98,7 +110,8 @@ export const initializeComponentRegistry = () => {
     label: 'Swift Debugging',
     icon: '🐛',
     category: 'leftbrain',
-    description: 'Debugging techniques and tools'
+    description: 'Debugging techniques and tools',
+    errorFallback: makeAlertFallback({ title: 'Failed to load Debugging' })
   });
 
   registerLazyComponent('swift-testing', 
@@ -106,7 +119,8 @@ export const initializeComponentRegistry = () => {
     label: 'Swift Testing',
     icon: '🧪',
     category: 'leftbrain',
-    description: 'Testing frameworks and practices'
+    description: 'Testing frameworks and practices',
+    errorFallback: makeAlertFallback({ title: 'Failed to load Swift Testing' })
   });
 
   registerLazyComponent('package-deployment', 
@@ -114,7 +128,8 @@ export const initializeComponentRegistry = () => {
     label: 'Package & Deployment',
     icon: '📦',
     category: 'leftbrain',
-    description: 'Package management and deployment'
+    description: 'Package management and deployment',
+    errorFallback: makeAlertFallback({ title: 'Failed to load Package & Deployment' })
   });
 
   registerLazyComponent('mac-terminal-scripts', 
@@ -122,7 +137,8 @@ export const initializeComponentRegistry = () => {
     label: 'Mac Terminal Scripts',
     icon: '💻',
     category: 'leftbrain',
-    description: 'Useful terminal scripts for Mac'
+    description: 'Useful terminal scripts for Mac',
+    errorFallback: makeAlertFallback({ title: 'Failed to load Mac Terminal Scripts' })
   });
 
   registerLazyComponent('ai-and-tools', 
@@ -162,7 +178,8 @@ export const initializeComponentRegistry = () => {
     label: 'NodeJS',
     icon: '🌐',
     category: 'leftbrain',
-    description: 'Node.js development'
+    description: 'Node.js development',
+    errorFallback: makeAlertFallback({ title: 'Failed to load NodeJS' })
   });
 
   registerLazyComponent('reactjs', 
@@ -170,7 +187,8 @@ export const initializeComponentRegistry = () => {
     label: 'ReactJS',
     icon: '⚛️',
     category: 'leftbrain',
-    description: 'React.js development'
+    description: 'React.js development',
+    errorFallback: makeAlertFallback({ title: 'Failed to load ReactJS' })
   });
 
   registerLazyComponent('chrome-extensions', 
@@ -178,7 +196,8 @@ export const initializeComponentRegistry = () => {
     label: 'Chrome Extensions',
     icon: '🧩',
     category: 'leftbrain',
-    description: 'Chrome extension development'
+    description: 'Chrome extension development',
+    errorFallback: makeAlertFallback({ title: 'Failed to load Chrome Extensions' })
   });
 
   registerLazyComponent('blogs', 
@@ -186,7 +205,8 @@ export const initializeComponentRegistry = () => {
     label: 'Blogs',
     icon: '📝',
     category: 'leftbrain',
-    description: 'Technical blog posts'
+    description: 'Technical blog posts',
+    errorFallback: makeAlertFallback({ title: 'Failed to load Blogs' })
   });
 
   // RightBrain Components - Creative Content
@@ -195,7 +215,8 @@ export const initializeComponentRegistry = () => {
     label: 'Drawing',
     icon: '✏️',
     category: 'rightbrain',
-    description: 'Digital and traditional artwork'
+    description: 'Digital and traditional artwork',
+    errorFallback: makeAlertFallback({ title: 'Failed to load Drawing' })
   });
 
   registerLazyComponent('literature', 
@@ -203,7 +224,8 @@ export const initializeComponentRegistry = () => {
     label: 'Literature',
     icon: '📖',
     category: 'rightbrain',
-    description: 'Books and literary works'
+    description: 'Books and literary works',
+    errorFallback: makeAlertFallback({ title: 'Failed to load Literature' })
   });
 
   registerLazyComponent('philosophy', 
@@ -211,7 +233,8 @@ export const initializeComponentRegistry = () => {
     label: 'Philosophy',
     icon: '🤔',
     category: 'rightbrain',
-    description: 'Philosophical thoughts and concepts'
+    description: 'Philosophical thoughts and concepts',
+    errorFallback: makeAlertFallback({ title: 'Failed to load Philosophy' })
   });
 
   registerLazyComponent('psychology', 
@@ -219,7 +242,8 @@ export const initializeComponentRegistry = () => {
     label: 'Psychology',
     icon: '🧠',
     category: 'rightbrain',
-    description: 'Psychology concepts and studies'
+    description: 'Psychology concepts and studies',
+    errorFallback: makeAlertFallback({ title: 'Failed to load Psychology' })
   });
 
   registerLazyComponent('music', 
@@ -227,7 +251,8 @@ export const initializeComponentRegistry = () => {
     label: 'Music',
     icon: '🎵',
     category: 'rightbrain',
-    description: 'Music and audio content'
+    description: 'Music and audio content',
+    errorFallback: makeAlertFallback({ title: 'Failed to load Music' })
   });
 
   // Developer Tools
@@ -236,7 +261,8 @@ export const initializeComponentRegistry = () => {
     label: 'AI Tools Channels',
     icon: '🤖',
     category: 'developer-tools',
-    description: 'AI development tools and channels'
+    description: 'AI development tools and channels',
+    errorFallback: makeAlertFallback({ title: 'Failed to load AI Tools Channels' })
   });
 
   registerLazyComponent('api-tool', 
@@ -244,7 +270,8 @@ export const initializeComponentRegistry = () => {
     label: 'API Tool',
     icon: '🌐',
     category: 'developer-tools',
-    description: 'API testing and development'
+    description: 'API testing and development',
+    errorFallback: makeAlertFallback({ title: 'Failed to load API Tool' })
   });
 
   registerLazyComponent('storage-tool', 
@@ -252,7 +279,8 @@ export const initializeComponentRegistry = () => {
     label: 'Storage Tool',
     icon: '💾',
     category: 'developer-tools',
-    description: 'Browser storage management'
+    description: 'Browser storage management',
+    errorFallback: makeAlertFallback({ title: 'Failed to load Storage Tool' })
   });
 
   registerLazyComponent('qr-code-tool', 
@@ -260,7 +288,8 @@ export const initializeComponentRegistry = () => {
     label: 'QR Code Tool',
     icon: '🔲',
     category: 'developer-tools',
-    description: 'QR code generation and scanning'
+    description: 'QR code generation and scanning',
+    errorFallback: makeAlertFallback({ title: 'Failed to load QR Code Tool' })
   });
 
   registerLazyComponent('pdf-tool', 
@@ -268,7 +297,8 @@ export const initializeComponentRegistry = () => {
     label: 'PDF Tool',
     icon: '📄',
     category: 'developer-tools',
-    description: 'PDF manipulation tools'
+    description: 'PDF manipulation tools',
+    errorFallback: makeAlertFallback({ title: 'Failed to load PDF Tool' })
   });
 
   registerLazyComponent('JSON-Tool', 
@@ -276,7 +306,8 @@ export const initializeComponentRegistry = () => {
     label: 'JSON Tool',
     icon: '📝',
     category: 'developer-tools',
-    description: 'JSON formatting and validation'
+    description: 'JSON formatting and validation',
+    errorFallback: makeAlertFallback({ title: 'Failed to load JSON Tool' })
   });
 
   registerLazyComponent('XML-Tool', 
@@ -284,7 +315,8 @@ export const initializeComponentRegistry = () => {
     label: 'XML Tool',
     icon: '🔧',
     category: 'developer-tools',
-    description: 'XML formatting and validation'
+    description: 'XML formatting and validation',
+    errorFallback: makeAlertFallback({ title: 'Failed to load XML Tool' })
   });
 
   registerLazyComponent('yaml-tool', 
@@ -292,7 +324,8 @@ export const initializeComponentRegistry = () => {
     label: 'YAML Tool',
     icon: '📄',
     category: 'developer-tools',
-    description: 'YAML formatting and validation'
+    description: 'YAML formatting and validation',
+    errorFallback: makeAlertFallback({ title: 'Failed to load YAML Tool' })
   });
 
   registerLazyComponent('csv-tool', 
@@ -300,7 +333,8 @@ export const initializeComponentRegistry = () => {
     label: 'CSV Tool',
     icon: '📊',
     category: 'developer-tools',
-    description: 'CSV data processing'
+    description: 'CSV data processing',
+    errorFallback: makeAlertFallback({ title: 'Failed to load CSV Tool' })
   });
 
   registerLazyComponent('Encryption-Decryption-Tool', 
@@ -308,7 +342,8 @@ export const initializeComponentRegistry = () => {
     label: 'Crypto Tool',
     icon: '🔒',
     category: 'developer-tools',
-    description: 'Encryption and decryption utilities'
+    description: 'Encryption and decryption utilities',
+    errorFallback: makeAlertFallback({ title: 'Failed to load Crypto Tool' })
   });
 
   registerLazyComponent('hash-tool', 
@@ -316,7 +351,8 @@ export const initializeComponentRegistry = () => {
     label: 'Hash Tool',
     icon: '🔑',
     category: 'developer-tools',
-    description: 'Hash generation and verification'
+    description: 'Hash generation and verification',
+    errorFallback: makeAlertFallback({ title: 'Failed to load Hash Tool' })
   });
 
   registerLazyComponent('encoder-tool', 
@@ -324,7 +360,8 @@ export const initializeComponentRegistry = () => {
     label: 'Encoder Tool',
     icon: '🔤',
     category: 'developer-tools',
-    description: 'Text encoding and decoding'
+    description: 'Text encoding and decoding',
+    errorFallback: makeAlertFallback({ title: 'Failed to load Encoder Tool' })
   });
 
   // QA Tools
@@ -334,7 +371,8 @@ export const initializeComponentRegistry = () => {
     label: 'macOS App Catalog',
     icon: '📱',
     category: 'qa-tools',
-    description: 'macOS application catalog'
+    description: 'macOS application catalog',
+    errorFallback: makeAlertFallback({ title: 'Failed to load macOS App Catalog' })
   });
 
   registerLazyComponent('regex-tool', 
@@ -342,7 +380,8 @@ export const initializeComponentRegistry = () => {
     label: 'Regex Tool',
     icon: '🔍',
     category: 'qa-tools',
-    description: 'Regular expression testing'
+    description: 'Regular expression testing',
+    errorFallback: makeAlertFallback({ title: 'Failed to load Regex Tool' })
   });
 
   registerLazyComponent('diff-checker', 
@@ -350,7 +389,8 @@ export const initializeComponentRegistry = () => {
     label: 'Diff Checker',
     icon: '🔄',
     category: 'qa-tools',
-    description: 'Text and file difference checker'
+    description: 'Text and file difference checker',
+    errorFallback: makeAlertFallback({ title: 'Failed to load Diff Checker' })
   });
 
   registerLazyComponent('password-tool', 
@@ -358,7 +398,8 @@ export const initializeComponentRegistry = () => {
     label: 'Password Tool',
     icon: '🛡️',
     category: 'qa-tools',
-    description: 'Password generation and testing'
+    description: 'Password generation and testing',
+    errorFallback: makeAlertFallback({ title: 'Failed to load Password Tool' })
   });
 
   registerLazyComponent('uuid-tool', 
@@ -366,7 +407,8 @@ export const initializeComponentRegistry = () => {
     label: 'UUID Tool',
     icon: '🆔',
     category: 'qa-tools',
-    description: 'UUID generation and validation'
+    description: 'UUID generation and validation',
+    errorFallback: makeAlertFallback({ title: 'Failed to load UUID Tool' })
   });
 
   registerLazyComponent('markdown-renderer', 
@@ -374,7 +416,8 @@ export const initializeComponentRegistry = () => {
     label: 'Markdown Renderer',
     icon: '📄',
     category: 'qa-tools',
-    description: 'Markdown preview and conversion'
+    description: 'Markdown preview and conversion',
+    errorFallback: makeAlertFallback({ title: 'Failed to load Markdown Renderer' })
   });
 
   registerLazyComponent('latex-renderer', 
@@ -382,7 +425,8 @@ export const initializeComponentRegistry = () => {
     label: 'LaTeX Renderer',
     icon: '📝',
     category: 'qa-tools',
-    description: 'LaTeX formula rendering'
+    description: 'LaTeX formula rendering',
+    errorFallback: makeAlertFallback({ title: 'Failed to load LaTeX Renderer' })
   });
 
   registerLazyComponent('writing-board', 
@@ -390,7 +434,8 @@ export const initializeComponentRegistry = () => {
     label: 'Writing Board',
     icon: '✏️',
     category: 'qa-tools',
-    description: 'Digital writing and note-taking'
+    description: 'Digital writing and note-taking',
+    errorFallback: makeAlertFallback({ title: 'Failed to load Writing Board' })
   });
 
   registerLazyComponent('text-generator', 
@@ -398,7 +443,8 @@ export const initializeComponentRegistry = () => {
     label: 'Text Util',
     icon: '🎲',
     category: 'qa-tools',
-    description: 'Text generation and utilities'
+    description: 'Text generation and utilities',
+    errorFallback: makeAlertFallback({ title: 'Failed to load Text Utilities' })
   });
 
   // General Tools
@@ -407,7 +453,8 @@ export const initializeComponentRegistry = () => {
     label: 'Info Tool',
     icon: '📊',
     category: 'general-tools',
-    description: 'System and browser information'
+    description: 'System and browser information',
+    errorFallback: makeAlertFallback({ title: 'Failed to load Info Tool' })
   });
 
   registerLazyComponent('passport-photo-maker', 
@@ -415,7 +462,8 @@ export const initializeComponentRegistry = () => {
     label: 'Passport Photo Maker',
     icon: '📷',
     category: 'general-tools',
-    description: 'Passport photo creation tool'
+    description: 'Passport photo creation tool',
+    errorFallback: makeAlertFallback({ title: 'Failed to load Passport Photo Maker' })
   });
 
   registerLazyComponent('color-picker', 
@@ -423,7 +471,8 @@ export const initializeComponentRegistry = () => {
     label: 'Color Picker',
     icon: '🎨',
     category: 'general-tools',
-    description: 'Color selection and conversion'
+    description: 'Color selection and conversion',
+    errorFallback: makeAlertFallback({ title: 'Failed to load Color Picker' })
   });
 
   registerLazyComponent('screen-recorder', 
@@ -431,7 +480,8 @@ export const initializeComponentRegistry = () => {
     label: 'Screen Recorder',
     icon: '🎥',
     category: 'general-tools',
-    description: 'Screen recording functionality'
+    description: 'Screen recording functionality',
+    errorFallback: makeAlertFallback({ title: 'Failed to load Screen Recorder' })
   });
 
   registerLazyComponent('important-websites', 
@@ -439,7 +489,8 @@ export const initializeComponentRegistry = () => {
     label: 'Important Websites',
     icon: '🌐',
     category: 'general-tools',
-    description: 'Curated list of useful websites'
+    description: 'Curated list of useful websites',
+    errorFallback: makeAlertFallback({ title: 'Failed to load Important Websites' })
   });
 
   registerLazyComponent('emoji-picker', 
@@ -447,7 +498,8 @@ export const initializeComponentRegistry = () => {
     label: 'Emoji Picker',
     icon: '😀',
     category: 'general-tools',
-    description: 'Emoji selection and copying'
+    description: 'Emoji selection and copying',
+    errorFallback: makeAlertFallback({ title: 'Failed to load Emoji Picker' })
   });
 
   registerLazyComponent('number-to-unicode', 
@@ -455,7 +507,8 @@ export const initializeComponentRegistry = () => {
     label: 'Number Base Converter',
     icon: '🔢',
     category: 'general-tools',
-    description: 'Number base conversion utility'
+    description: 'Number base conversion utility',
+    errorFallback: makeAlertFallback({ title: 'Failed to load Number Converter' })
   });
 
   registerLazyComponent('app-icon-generator', 
@@ -463,7 +516,8 @@ export const initializeComponentRegistry = () => {
     label: 'App Icon Generator',
     icon: '🍎',
     category: 'general-tools',
-    description: 'Generate app icons for iOS, Android, and macOS'
+    description: 'Generate app icons for iOS, Android, and macOS',
+    errorFallback: makeAlertFallback({ title: 'Failed to load App Icon Generator' })
   });
 
   registerLazyComponent('video-trimmer', 
@@ -471,7 +525,8 @@ export const initializeComponentRegistry = () => {
     label: 'Video Trimmer',
     icon: '✂️',
     category: 'general-tools',
-    description: 'Trim video files by selecting start and end times'
+    description: 'Trim video files by selecting start and end times',
+    errorFallback: makeAlertFallback({ title: 'Failed to load Video Trimmer' })
   });
 
   console.log('Component registry initialized with lazy loading');
@@ -495,6 +550,24 @@ export const initializeComponentRegistry = () => {
     console.log('  - window.componentRegistry.getAllComponents()');
     console.log('  - window.componentRegistry.getCategories()');
     console.log('  - window.componentRegistry.refreshRegistry()');
+  }
+
+  // Opportunistic preloading for faster first interactions
+  const preload = () => {
+    try {
+      // Preload key categories during idle time
+      const preloadCats = ['leftbrain', 'rightbrain', 'developer-tools', 'qa-tools', 'general-tools'];
+      preloadCats.forEach((cat) => ComponentFactory.preloadByCategory(cat));
+    } catch (e) {
+      // noop
+    }
+  };
+  if (typeof window !== 'undefined') {
+    if ('requestIdleCallback' in window) {
+      window.requestIdleCallback(preload, { timeout: 2500 });
+    } else {
+      setTimeout(preload, 1500);
+    }
   }
 };
 

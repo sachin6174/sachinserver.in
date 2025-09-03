@@ -19,7 +19,7 @@
     border-radius: 6px;
     padding: 0.6rem;
     margin-bottom: 0.6rem;
-    box-shadow: 0 2px 6px var(--shadow-color);
+    box-shadow: var(--tool-shadow-sm);
 }
 
 .color-display-section {
@@ -49,7 +49,7 @@
     padding: 20px;
     transition: background-color 0.3s ease;
     margin-bottom: 20px;
-    box-shadow: 0 2px 8px var(--shadow-color);
+    box-shadow: var(--tool-shadow-sm);
 }
 
 .color-info {
@@ -120,11 +120,7 @@
     box-shadow: 0 2px 8px var(--shadow-color);
 }
 
-.color-input:hover {
-    border-color: var(--accent-color);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px var(--shadow-color);
-}
+.color-input:hover { border-color: var(--accent-color); transform: translateY(-2px); box-shadow: var(--tool-shadow-md); }
 
 .eyedropper-btn,
 .save-color-btn {
@@ -195,11 +191,7 @@
     border-color: var(--accent-color);
 }
 
-.copy-controls select:focus {
-    outline: none;
-    border-color: var(--accent-color);
-    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
-}
+.copy-controls select:focus-visible { outline: none; border-color: var(--accent-color); box-shadow: var(--shadow-focus); }
 
 .copy-btn {
     padding: 10px 20px;

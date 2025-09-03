@@ -1,5 +1,6 @@
 import React, { useState, useCallback, useRef } from 'react';
 import './HashTool.css';
+import { Button } from '../../ui';
 
 const HashTool = () => {
     const [inputText, setInputText] = useState('');
@@ -183,22 +184,26 @@ const HashTool = () => {
             <div className="tool-container">
                 {/* Tab Navigation */}
                 <div className="tab-nav">
-                    <button
-                        className={`tab-btn ${activeTab === 'text' ? 'active' : ''}`}
+                    <Button
+                        size="sm"
+                        variant={activeTab === 'text' ? 'solid' : 'outline'}
+                        className="tab-btn"
                         onClick={() => setActiveTab('text')}
                     >
                         📝 Text Input
-                    </button>
-                    <button
-                        className={`tab-btn ${activeTab === 'file' ? 'active' : ''}`}
+                    </Button>
+                    <Button
+                        size="sm"
+                        variant={activeTab === 'file' ? 'solid' : 'outline'}
+                        className="tab-btn"
                         onClick={() => setActiveTab('file')}
                     >
                         📁 File Input
-                    </button>
+                    </Button>
                 </div>
 
                 {/* Input Section */}
-                <div className="input-section">
+                <div className="input-section u-card">
                     {activeTab === 'text' ? (
                         <div className="text-input-area">
                             <label htmlFor="textInput">Text to Hash:</label>
@@ -257,22 +262,16 @@ const HashTool = () => {
 
                 {/* Hash Results */}
                 {Object.keys(hashResults).length > 0 && (
-                    <div className="results-section">
+                    <div className="results-section u-card">
                         <div className="results-header">
                             <h3>🔑 Hash Results</h3>
                             <div className="result-actions">
-                                <button
-                                    className="tool-button secondary"
-                                    onClick={() => setCompareMode(!compareMode)}
-                                >
+                                <Button variant="outline" onClick={() => setCompareMode(!compareMode)}>
                                     {compareMode ? '❌ Cancel Compare' : '🔍 Compare Hash'}
-                                </button>
-                                <button
-                                    className="tool-button secondary"
-                                    onClick={clearAll}
-                                >
+                                </Button>
+                                <Button variant="outline" onClick={clearAll}>
                                     🗑️ Clear All
-                                </button>
+                                </Button>
                             </div>
                         </div>
 
@@ -357,7 +356,7 @@ const HashTool = () => {
 
                         {/* Compare Section */}
                         {compareMode && (
-                            <div className="compare-section">
+                            <div className="compare-section u-card">
                                 <h4>🔍 Hash Comparison</h4>
                                 <div className="compare-input-group">
                                     <input
@@ -367,13 +366,9 @@ const HashTool = () => {
                                         onChange={(e) => setCompareHash(e.target.value)}
                                         placeholder="Enter hash to compare..."
                                     />
-                                    <button
-                                        className="tool-button"
-                                        onClick={compareHashes}
-                                        disabled={!compareHash.trim()}
-                                    >
+                                    <Button onClick={compareHashes} disabled={!compareHash.trim()}>
                                         Compare
-                                    </button>
+                                    </Button>
                                 </div>
                                 <p className="compare-note">
                                     Enter a hash value to compare against the generated hashes above.

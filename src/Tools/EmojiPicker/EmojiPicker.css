@@ -62,10 +62,7 @@
     transition: border-color var(--transition-normal);
 }
 
-.search-input:focus {
-    outline: none;
-    border-color: var(--primary-color);
-}
+.search-input:focus-visible { outline: none; border-color: var(--primary-color); box-shadow: var(--shadow-focus); }
 
 .search-icon {
     position: absolute;
@@ -106,10 +103,7 @@
     transition: border-color var(--transition-normal);
 }
 
-.filter-select:focus {
-    outline: none;
-    border-color: var(--primary-color);
-}
+.filter-select:focus-visible { outline: none; border-color: var(--primary-color); box-shadow: var(--shadow-focus); }
 
 /* Unicode Converter */
 .unicode-converter {
@@ -152,10 +146,7 @@
     transition: border-color var(--transition-normal);
 }
 
-.unicode-input:focus {
-    outline: none;
-    border-color: var(--primary-color);
-}
+.unicode-input:focus-visible { outline: none; border-color: var(--primary-color); box-shadow: var(--shadow-focus); }
 
 .converter-result {
     min-height: 60px;

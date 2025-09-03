@@ -1,5 +1,6 @@
 import React, { useState, useCallback, useMemo } from 'react';
 import './EmojiPicker.css';
+import { Button, Select } from '../../ui';
 
 const EmojiPicker = () => {
     const [searchTerm, setSearchTerm] = useState('');
@@ -791,30 +792,28 @@ const EmojiPicker = () => {
                 <div className="filters-container">
                     <div className="filter-group">
                         <label>Category</label>
-                        <select
+                        <Select
                             value={selectedCategory}
                             onChange={(e) => setSelectedCategory(e.target.value)}
                             className="filter-select"
-                        >
-                            <option value="all">All Categories</option>
-                            {Object.entries(emojiDatabase).map(([key, category]) => (
-                                <option key={key} value={key}>
-                                    {category.icon} {category.name}
-                                </option>
-                            ))}
-                        </select>
+                            options={[
+                                { value: 'all', label: 'All Categories' },
+                                ...Object.entries(emojiDatabase).map(([key, category]) => ({ value: key, label: `${category.icon} ${category.name}` }))
+                            ]}
+                        />
                     </div>
 
                     <div className="filter-group">
                         <label>Unicode Display</label>
-                        <select
-                            value={showUnicode}
+                        <Select
+                            value={String(showUnicode)}
                             onChange={(e) => setShowUnicode(e.target.value === 'true')}
                             className="filter-select"
-                        >
-                            <option value="true">Show Unicode</option>
-                            <option value="false">Hide Unicode</option>
-                        </select>
+                            options={[
+                                { value: 'true', label: 'Show Unicode' },
+                                { value: 'false', label: 'Hide Unicode' }
+                            ]}
+                        />
                     </div>
                 </div>
 
@@ -833,13 +832,7 @@ const EmojiPicker = () => {
                                 {convertedEmoji && (
                                     <div className="converted-emoji-display">
                                         <span className="converted-emoji">{convertedEmoji}</span>
-                                        <button
-                                            onClick={copyConvertedEmoji}
-                                            className="copy-converted-btn"
-                                            title="Copy emoji"
-                                        >
-                                            📋
-                                        </button>
+                                        <Button size="sm" onClick={copyConvertedEmoji} title="Copy emoji">📋</Button>
                                     </div>
                                 )}
                                 {unicodeError && (
@@ -874,13 +867,9 @@ const EmojiPicker = () => {
                     <div key={index} className="emoji-card">
                         <div className="emoji-display">
                             <span className="emoji-symbol">{emojiData.emoji}</span>
-                            <button
-                                onClick={() => copyEmoji(emojiData.emoji)}
-                                className={`copy-btn ${copiedEmoji === emojiData.emoji ? 'copied' : ''}`}
-                                title="Copy emoji"
-                            >
+                            <Button size="sm" variant="outline" onClick={() => copyEmoji(emojiData.emoji)} title="Copy emoji">
                                 {copiedEmoji === emojiData.emoji ? '✓' : '📋'}
-                            </button>
+                            </Button>
                         </div>
                         <div className="emoji-info">
                             <div className="emoji-name">{emojiData.name}</div>

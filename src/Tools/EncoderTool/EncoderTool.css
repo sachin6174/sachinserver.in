@@ -394,11 +394,7 @@
     transition: var(--tool-transition-fast);
 }
 
-.encoder-textarea:focus {
-    outline: none;
-    border-color: var(--tool-primary-color);
-    box-shadow: 0 0 0 3px rgba(var(--tool-primary-color), 0.1);
-}
+.encoder-textarea:focus-visible { outline: none; border-color: var(--tool-primary-color); box-shadow: 0 0 0 3px rgba(var(--tool-primary-color), 0.1); }
 
 .encoder-textarea::placeholder {
     color: var(--tool-text-light);

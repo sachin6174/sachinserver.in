@@ -1,0 +1,27 @@
+.ui-tooltip { position: relative; display: inline-flex; }
+.ui-tooltip__trigger { display: inline-flex; align-items: center; border-radius: var(--radius-sm); }
+.ui-tooltip__trigger:focus-visible { outline: none; box-shadow: var(--shadow-focus); }
+
+.ui-tooltip__bubble {
+  position: absolute;
+  z-index: var(--z-tooltip);
+  background: var(--neutral-900);
+  color: var(--neutral-50);
+  padding: 6px 8px;
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+  line-height: 1.2;
+  white-space: nowrap;
+  box-shadow: var(--shadow-md);
+  opacity: 0; pointer-events: none; transform: translateY(-4px);
+  transition: opacity var(--duration-150) var(--ease-standard), transform var(--duration-150) var(--ease-standard);
+}
+
+.ui-tooltip--top .ui-tooltip__bubble { bottom: calc(100% + 6px); left: 50%; transform: translate(-50%, -4px); }
+.ui-tooltip--right .ui-tooltip__bubble { left: calc(100% + 6px); top: 50%; transform: translate(4px, -50%); }
+.ui-tooltip--bottom .ui-tooltip__bubble { top: calc(100% + 6px); left: 50%; transform: translate(-50%, 4px); }
+.ui-tooltip--left .ui-tooltip__bubble { right: calc(100% + 6px); top: 50%; transform: translate(-4px, -50%); }
+
+.ui-tooltip:hover .ui-tooltip__bubble,
+.ui-tooltip:focus-within .ui-tooltip__bubble { opacity: 1; transform: translate(0, 0); }
+

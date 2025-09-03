@@ -435,13 +435,10 @@ body.dark-mode .control-category button[onclick*="removeAllFormatting"]:hover {
     font-size: 0.9rem;
     line-height: 1.5;
     resize: vertical;
-    outline: none;
     min-height: 300px;
 }
 
-.text-input:focus {
-    outline: none;
-}
+.text-input:focus-visible { outline: none; box-shadow: var(--shadow-focus); }
 
 /* Responsive Design */
 @media (max-width: 768px) {

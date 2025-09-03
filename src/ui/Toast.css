@@ -1,0 +1,12 @@
+.ui-toast__region { position: fixed; right: 16px; bottom: 16px; display: grid; gap: 8px; z-index: var(--z-toast); }
+.ui-toast { display: grid; grid-template-columns: 1fr auto; gap: 8px; align-items: center; min-width: 260px; max-width: 360px; padding: 10px 12px; border: 1px solid var(--border); border-radius: var(--radius-md); background: var(--surface); box-shadow: var(--shadow-lg); color: var(--text); }
+.ui-toast__title { display: block; margin-right: 8px; }
+.ui-toast__body { display: inline; }
+.ui-toast__close { background: transparent; border: none; color: var(--text-secondary); cursor: pointer; font-size: 1.1rem; border-radius: var(--radius-sm); }
+.ui-toast__close:focus-visible { outline: none; box-shadow: var(--shadow-focus); }
+
+.ui-toast--info { border-color: color-mix(in srgb, var(--info) 30%, var(--border)); background: color-mix(in srgb, var(--info) 7%, var(--surface)); }
+.ui-toast--success { border-color: color-mix(in srgb, var(--success) 30%, var(--border)); background: color-mix(in srgb, var(--success) 7%, var(--surface)); }
+.ui-toast--warning { border-color: color-mix(in srgb, var(--warning) 30%, var(--border)); background: color-mix(in srgb, var(--warning) 7%, var(--surface)); }
+.ui-toast--danger { border-color: color-mix(in srgb, var(--danger) 30%, var(--border)); background: color-mix(in srgb, var(--danger) 7%, var(--surface)); }
+

@@ -1,0 +1,12 @@
+.ui-alert { display: grid; grid-template-columns: auto 1fr auto; gap: 10px; align-items: start; padding: 12px 14px; border: 1px solid var(--border); border-radius: var(--radius-md); background: var(--surface); box-shadow: var(--shadow-sm); color: var(--text); }
+.ui-alert__icon { font-size: 1.1rem; line-height: 1; }
+.ui-alert__title { font-weight: 700; margin-bottom: 4px; }
+.ui-alert__content { font-size: 0.95rem; }
+.ui-alert__close { background: transparent; border: none; color: var(--text-secondary); cursor: pointer; font-size: 1.1rem; border-radius: var(--radius-sm); }
+.ui-alert__close:focus-visible { box-shadow: var(--shadow-focus); outline: none; }
+
+.ui-alert--info { border-color: color-mix(in srgb, var(--info) 30%, var(--border)); background: color-mix(in srgb, var(--info) 8%, var(--surface)); }
+.ui-alert--success { border-color: color-mix(in srgb, var(--success) 30%, var(--border)); background: color-mix(in srgb, var(--success) 8%, var(--surface)); }
+.ui-alert--warning { border-color: color-mix(in srgb, var(--warning) 30%, var(--border)); background: color-mix(in srgb, var(--warning) 8%, var(--surface)); }
+.ui-alert--danger { border-color: color-mix(in srgb, var(--danger) 30%, var(--border)); background: color-mix(in srgb, var(--danger) 8%, var(--surface)); }
+

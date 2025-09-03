@@ -65,10 +65,7 @@
     transition: border-color 0.3s ease;
 }
 
-.base-select:focus {
-    outline: none;
-    border-color: var(--primary-color);
-}
+.base-select:focus-visible { outline: none; border-color: var(--primary-color); box-shadow: var(--shadow-focus); }
 
 .input-group {
     display: flex;
@@ -92,10 +89,7 @@
     transition: border-color 0.3s ease;
 }
 
-.number-input:focus {
-    outline: none;
-    border-color: var(--primary-color);
-}
+.number-input:focus-visible { outline: none; border-color: var(--primary-color); box-shadow: var(--shadow-focus); }
 
 .format-selector {
     display: flex;

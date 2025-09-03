@@ -28,6 +28,8 @@
     color: var(--text-color);
 }
 
+.tab-space-select:focus-visible { outline: none; border-color: var(--accent-color); box-shadow: var(--shadow-focus); }
+
 .input-section {
     display: flex;
     flex-direction: column;
@@ -51,6 +53,8 @@ textarea {
     font-family: monospace;
     resize: vertical;
 }
+
+textarea:focus-visible { outline: none; border-color: var(--accent-color); box-shadow: var(--shadow-focus); }
 
 .actions {
     display: flex;
@@ -166,7 +170,7 @@ body.dark-mode textarea {
     }
 
     .actions button:hover {
-        background: #0056b3;
+        background: color-mix(in srgb, var(--accent-color) 85%, black);
         transform: translateY(-1px);
     }
 

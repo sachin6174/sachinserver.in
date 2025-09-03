@@ -1,0 +1,16 @@
+.ui-table { width: 100%; overflow-x: auto; border: 1px solid var(--border); border-radius: var(--radius-lg); background: var(--surface); }
+.ui-table table { width: 100%; border-collapse: separate; border-spacing: 0; }
+.ui-table caption { text-align: left; padding: 10px 12px; color: var(--text-secondary); font-size: 0.95rem; }
+.ui-table thead th { position: sticky; top: 0; background: var(--surface-2); color: var(--text); border-bottom: 1px solid var(--border); font-weight: 700; }
+.ui-table thead th, .ui-table td { padding: 12px 14px; }
+.ui-table--compact thead th, .ui-table--compact td { padding: 8px 10px; }
+.ui-table tbody tr + tr td { border-top: 1px solid var(--divider); }
+.ui-table--zebra tbody tr:nth-child(odd) { background: color-mix(in srgb, var(--primary) 3%, var(--surface)); }
+.ui-table__empty td { text-align: center; color: var(--text-muted); padding: 20px; }
+
+.ui-table__sort { display: inline-flex; align-items: center; gap: 6px; background: transparent; border: none; color: inherit; cursor: pointer; font: inherit; padding: 0; border-radius: var(--radius-sm); }
+.ui-table__sort:focus-visible { outline: none; box-shadow: var(--shadow-focus); }
+.ui-table__sort-ind { font-size: 0.75rem; opacity: .4; transform: rotate(0deg); }
+.ui-table__sort-ind.is-asc { opacity: 1; transform: rotate(0deg); }
+.ui-table__sort-ind.is-desc { opacity: 1; transform: rotate(180deg); }
+

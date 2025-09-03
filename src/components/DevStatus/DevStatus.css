@@ -9,7 +9,7 @@
   border-radius: 8px;
   font-family: 'Monaco', 'Courier New', monospace;
   font-size: 12px;
-  z-index: 10000;
+  z-index: var(--z-tooltip);
   transition: all 0.3s ease;
   cursor: pointer;
   min-width: 140px;
@@ -129,7 +129,7 @@
   padding: 12px;
   border-radius: 50%;
   cursor: pointer;
-  z-index: 9999;
+  z-index: var(--z-tooltip);
   font-size: 18px;
   width: 50px;
   height: 50px;

@@ -23,7 +23,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1000;
+    z-index: var(--z-dropdown);
 }
 
 .disclaimer-modal {
@@ -134,10 +134,7 @@
     transition: border-color var(--transition-normal);
 }
 
-.search-input:focus {
-    outline: none;
-    border-color: var(--primary-color);
-}
+.search-input:focus-visible { outline: none; border-color: var(--primary-color); box-shadow: var(--shadow-focus); }
 
 .search-icon {
     position: absolute;
@@ -178,10 +175,7 @@
     transition: border-color var(--transition-normal);
 }
 
-.filter-select:focus {
-    outline: none;
-    border-color: var(--primary-color);
-}
+.filter-select:focus-visible { outline: none; border-color: var(--primary-color); box-shadow: var(--shadow-focus); }
 
 /* Stats section */
 .stats-section {

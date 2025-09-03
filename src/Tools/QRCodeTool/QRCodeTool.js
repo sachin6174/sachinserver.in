@@ -2,6 +2,7 @@ import React, { useState, useRef, useCallback, useEffect } from 'react';
 import QRCode from 'qrcode';
 import QrScanner from 'qr-scanner';
 import './QRCodeTool.css';
+import { Button, Textarea, Select } from '../../ui';
 
 const QRCodeTool = () => {
     const [activeTab, setActiveTab] = useState('generate');
@@ -204,30 +205,10 @@ const QRCodeTool = () => {
 
             <div className="qr-tool">
                 <div className="tool-tabs">
-                    <button
-                        className={`tool-tab ${activeTab === 'generate' ? 'active' : ''}`}
-                        onClick={() => setActiveTab('generate')}
-                    >
-                        🔲 Generate QR
-                    </button>
-                    <button
-                        className={`tool-tab ${activeTab === 'decode' ? 'active' : ''}`}
-                        onClick={() => setActiveTab('decode')}
-                    >
-                        🔍 Decode QR
-                    </button>
-                    <button
-                        className={`tool-tab ${activeTab === 'batch' ? 'active' : ''}`}
-                        onClick={() => setActiveTab('batch')}
-                    >
-                        📦 Batch Generate
-                    </button>
-                    <button
-                        className={`tool-tab ${activeTab === 'customize' ? 'active' : ''}`}
-                        onClick={() => setActiveTab('customize')}
-                    >
-                        🎨 Customize
-                    </button>
+                    <Button size="sm" variant={activeTab === 'generate' ? 'solid' : 'outline'} className="tool-tab" onClick={() => setActiveTab('generate')}>🔲 Generate QR</Button>
+                    <Button size="sm" variant={activeTab === 'decode' ? 'solid' : 'outline'} className="tool-tab" onClick={() => setActiveTab('decode')}>🔍 Decode QR</Button>
+                    <Button size="sm" variant={activeTab === 'batch' ? 'solid' : 'outline'} className="tool-tab" onClick={() => setActiveTab('batch')}>📦 Batch Generate</Button>
+                    <Button size="sm" variant={activeTab === 'customize' ? 'solid' : 'outline'} className="tool-tab" onClick={() => setActiveTab('customize')}>🎨 Customize</Button>
                 </div>
 
                 {(error || success) && (
@@ -242,11 +223,10 @@ const QRCodeTool = () => {
                         <div className="generate-section">
                             <div className="input-section">
                                 <h3>📝 Enter Text or Data</h3>
-                                <textarea
+                                <Textarea
                                     value={inputText}
                                     onChange={(e) => setInputText(e.target.value)}
                                     placeholder="Enter text, URL, email, phone number, or any data to generate QR code..."
-                                    className="text-input"
                                     rows={6}
                                 />
 
@@ -254,25 +234,17 @@ const QRCodeTool = () => {
                                     <h4>Quick Templates:</h4>
                                     <div className="template-buttons">
                                         {predefinedTexts.map((template, index) => (
-                                            <button
-                                                key={index}
-                                                className="template-btn"
-                                                onClick={() => setInputText(template.value)}
-                                            >
+                                            <Button key={index} size="sm" variant="outline" onClick={() => setInputText(template.value)}>
                                                 {template.label}
-                                            </button>
+                                            </Button>
                                         ))}
                                     </div>
                                 </div>
 
                                 <div className="generate-controls">
-                                    <button
-                                        className="btn btn-generate"
-                                        onClick={() => generateQRCode()}
-                                        disabled={isGenerating || !inputText.trim()}
-                                    >
+                                    <Button onClick={() => generateQRCode()} disabled={isGenerating || !inputText.trim()}>
                                         {isGenerating ? '⏳ Generating...' : '🔲 Generate QR Code'}
-                                    </button>
+                                    </Button>
                                 </div>
                             </div>
 
@@ -294,12 +266,8 @@ const QRCodeTool = () => {
 
                                 {qrCodeURL && (
                                     <div className="qr-actions">
-                                        <button className="btn btn-download" onClick={downloadQRCode}>
-                                            💾 Download PNG
-                                        </button>
-                                        <button className="btn btn-copy" onClick={() => copyToClipboard(inputText)}>
-                                            📋 Copy Text
-                                        </button>
+                                        <Button onClick={downloadQRCode}>💾 Download PNG</Button>
+                                        <Button variant="outline" onClick={() => copyToClipboard(inputText)}>📋 Copy Text</Button>
                                     </div>
                                 )}
                             </div>
@@ -343,9 +311,9 @@ const QRCodeTool = () => {
                                         <pre>{decodedText}</pre>
                                     </div>
                                     <div className="decoded-actions">
-                                        <button className="btn btn-copy" onClick={() => copyToClipboard(decodedText)}>
+                                        <Button variant="outline" onClick={() => copyToClipboard(decodedText)}>
                                             📋 Copy Result
-                                        </button>
+                                        </Button>
                                         {decodedText.startsWith('http') && (
                                             <a
                                                 href={decodedText}
@@ -367,29 +335,24 @@ const QRCodeTool = () => {
                             <h3>📦 Batch QR Code Generation</h3>
                             
                             <div className="batch-input">
-                                <label htmlFor="batch-text">Enter multiple texts (one per line):</label>
-                                <textarea
+                                <Textarea
                                     id="batch-text"
+                                    label="Enter multiple texts (one per line):"
                                     value={batchInput}
                                     onChange={(e) => setBatchInput(e.target.value)}
-                                    placeholder="https://example1.com&#10;https://example2.com&#10;Contact: John Doe&#10;Phone: +1234567890&#10;..."
-                                    className="batch-textarea"
+                                    placeholder={"https://example1.com\nhttps://example2.com\nContact: John Doe\nPhone: +1234567890\n..."}
                                     rows={10}
                                 />
                                 
                                 <div className="batch-controls">
-                                    <button
-                                        className="btn btn-generate"
-                                        onClick={generateBatchQRCodes}
-                                        disabled={isGenerating || !batchInput.trim()}
-                                    >
+                                    <Button onClick={generateBatchQRCodes} disabled={isGenerating || !batchInput.trim()}>
                                         {isGenerating ? '⏳ Generating...' : '📦 Generate All QR Codes'}
-                                    </button>
+                                    </Button>
                                     
                                     {batchResults.length > 0 && (
-                                        <button className="btn btn-download-all" onClick={downloadAllBatch}>
+                                        <Button variant="outline" onClick={downloadAllBatch}>
                                             💾 Download All ({batchResults.filter(r => r.success).length})
-                                        </button>
+                                        </Button>
                                     )}
                                 </div>
                             </div>
@@ -404,12 +367,9 @@ const QRCodeTool = () => {
                                                     <>
                                                         <img src={result.dataURL} alt="QR Code" className="batch-qr" />
                                                         <div className="batch-text">{result.text}</div>
-                                                        <button
-                                                            className="btn-small"
-                                                            onClick={() => downloadBatchQRCode(result)}
-                                                        >
+                                                        <Button size="sm" onClick={() => downloadBatchQRCode(result)}>
                                                             💾 Download
-                                                        </button>
+                                                        </Button>
                                                     </>
                                                 ) : (
                                                     <>
@@ -445,18 +405,19 @@ const QRCodeTool = () => {
                                 </div>
 
                                 <div className="custom-group">
-                                    <label htmlFor="error-correction">Error Correction:</label>
-                                    <select
+                                    <Select
                                         id="error-correction"
+                                        label="Error Correction:"
                                         value={qrOptions.errorCorrectionLevel}
                                         onChange={(e) => updateQROptions('errorCorrectionLevel', e.target.value)}
                                         className="custom-select"
-                                    >
-                                        <option value="L">Low (7%)</option>
-                                        <option value="M">Medium (15%)</option>
-                                        <option value="Q">Quartile (25%)</option>
-                                        <option value="H">High (30%)</option>
-                                    </select>
+                                        options={[
+                                            { value: 'L', label: 'Low (7%)' },
+                                            { value: 'M', label: 'Medium (15%)' },
+                                            { value: 'Q', label: 'Quartile (25%)' },
+                                            { value: 'H', label: 'High (30%)' },
+                                        ]}
+                                    />
                                 </div>
 
                                 <div className="custom-group">

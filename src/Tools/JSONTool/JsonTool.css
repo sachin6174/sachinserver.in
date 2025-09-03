@@ -1,45 +1,51 @@
 .json-tool {
-    padding: 0.5rem;
+    padding: var(--space-2);
     max-width: 100%;
     margin: 0 auto;
-    font-size: 10px;
+    font-size: var(--font-body, 16px);
 }
 
 .tool-container {
     background-color: var(--content-bg);
-    border-radius: 6px;
-    padding: 0.75rem;
+    border-radius: var(--radius-sm);
+    padding: var(--space-3);
     width: 100%;
 }
 
 .input-section textarea.full-width-input {
     width: 100%;
     min-height: 150px;
-    padding: 0.4rem;
-    margin-bottom: 0.5rem;
-    border-radius: 3px;
-    border: 1px solid #ccc;
-    font-family: monospace;
-    font-size: 10px;
+    padding: var(--space-2);
+    margin-bottom: var(--space-2);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-color);
+    font-family: var(--font-mono, monospace);
+    font-size: 1rem;
+}
+
+.input-section textarea.full-width-input:focus-visible {
+    outline: none;
+    border-color: var(--tool-accent-color, var(--accent));
+    box-shadow: var(--shadow-focus);
 }
 
 .output-section pre.auto-height {
     height: auto;
     min-height: 80px;
     width: 100%;
-    padding: 0.5rem;
-    font-size: 10px;
+    padding: var(--space-2);
+    font-size: 0.95rem;
     background-color: var(--card-bg);
-    border-radius: 3px;
+    border-radius: var(--radius-sm);
     white-space: pre-wrap;
     word-wrap: break-word;
 }
 
 .tree-container {
-    margin-top: 0.5rem;
-    padding: 0.5rem;
+    margin-top: var(--space-2);
+    padding: var(--space-2);
     background-color: var(--card-bg);
-    border-radius: 3px;
+    border-radius: var(--radius-sm);
 }
 
 .tree-node {
@@ -47,20 +53,11 @@
     position: relative;
 }
 
-.tree-label {
-    color: #2196f3;
-    font-weight: bold;
-    margin-right: 8px;
-}
+.tree-label { color: var(--tool-info-color); font-weight: 700; margin-right: 8px; }
 
-.tree-value {
-    color: #4caf50;
-}
+.tree-value { color: var(--tool-success-color); }
 
-.tree-branch {
-    border-left: 1px solid #ccc;
-    padding-left: 10px;
-}
+.tree-branch { border-left: 1px solid var(--border-color); padding-left: 10px; }
 
 .tree-view-section {
     margin-top: 20px;
@@ -70,24 +67,13 @@
 
 /* Tablet */
 @media (max-width: 1024px) {
-    .json-tool {
-        padding: 15px;
-    }
+    .json-tool { padding: 15px; }
 
-    .tool-container {
-        padding: 20px;
-    }
+    .tool-container { padding: 20px; }
 
-    .input-section textarea.full-width-input {
-        min-height: 180px;
-        padding: 12px;
-        font-size: 14px;
-    }
+    .input-section textarea.full-width-input { min-height: 180px; padding: 12px; font-size: 14px; }
 
-    .output-section pre.auto-height {
-        padding: 15px;
-        font-size: 14px;
-    }
+    .output-section pre.auto-height { padding: 15px; font-size: 14px; }
 }
 
 /* Mobile */
@@ -96,41 +82,19 @@
         padding: 10px;
     }
 
-    .tool-container {
-        padding: 15px;
-        border-radius: 8px;
-    }
+    .tool-container { padding: 15px; border-radius: 8px; }
 
-    .input-section textarea.full-width-input {
-        min-height: 150px;
-        padding: 10px;
-        font-size: 14px;
-        margin-bottom: 15px;
-    }
+    .input-section textarea.full-width-input { min-height: 150px; padding: 10px; font-size: 14px; margin-bottom: 15px; }
 
-    .output-section pre.auto-height {
-        padding: 12px;
-        font-size: 13px;
-        min-height: 80px;
-    }
+    .output-section pre.auto-height { padding: 12px; font-size: 13px; min-height: 80px; }
 
-    .tree-container {
-        padding: 15px;
-        margin-top: 15px;
-    }
+    .tree-container { padding: 15px; margin-top: 15px; }
 
-    .tree-node {
-        margin: 3px 0;
-    }
+    .tree-node { margin: 3px 0; }
 
-    .tree-label {
-        font-size: 14px;
-    }
+    .tree-label { font-size: 14px; }
 
-    .tree-value {
-        font-size: 13px;
-        word-break: break-word;
-    }
+    .tree-value { font-size: 13px; word-break: break-word; }
 
     /* Action buttons responsive */
     .actions {
@@ -153,40 +117,19 @@
 
 /* Small mobile */
 @media (max-width: 480px) {
-    .json-tool {
-        padding: 8px;
-    }
+    .json-tool { padding: 8px; }
 
-    .tool-container {
-        padding: 12px;
-        border-radius: 6px;
-    }
+    .tool-container { padding: 12px; border-radius: 6px; }
 
-    .input-section textarea.full-width-input {
-        min-height: 120px;
-        padding: 8px;
-        font-size: 13px;
-        margin-bottom: 12px;
-    }
+    .input-section textarea.full-width-input { min-height: 120px; padding: 8px; font-size: 13px; margin-bottom: 12px; }
 
-    .output-section pre.auto-height {
-        padding: 10px;
-        font-size: 12px;
-        min-height: 60px;
-    }
+    .output-section pre.auto-height { padding: 10px; font-size: 12px; min-height: 60px; }
 
-    .tree-container {
-        padding: 12px;
-        margin-top: 12px;
-    }
+    .tree-container { padding: 12px; margin-top: 12px; }
 
-    .tree-label {
-        font-size: 13px;
-    }
+    .tree-label { font-size: 13px; }
 
-    .tree-value {
-        font-size: 12px;
-    }
+    .tree-value { font-size: 12px; }
 
     .actions button {
         min-width: 100px;

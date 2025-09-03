@@ -1,5 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import './TextGenerator.css';
+import { Button, Textarea, Select } from '../../ui';
 
 const TextGenerator = () => {
     const [inputText, setInputText] = useState('');
@@ -295,24 +296,9 @@ const TextGenerator = () => {
     return (
         <div className="text-generator-tool">
             <div className="tool-tabs">
-                <button
-                    className={`tool-tab ${activeTab === 'generator' ? 'active' : ''}`}
-                    onClick={() => setActiveTab('generator')}
-                >
-                    🎲 Generator
-                </button>
-                <button
-                    className={`tool-tab ${activeTab === 'manipulator' ? 'active' : ''}`}
-                    onClick={() => setActiveTab('manipulator')}
-                >
-                    🔧 Manipulator
-                </button>
-                <button
-                    className={`tool-tab ${activeTab === 'stats' ? 'active' : ''}`}
-                    onClick={() => setActiveTab('stats')}
-                >
-                    📊 Statistics
-                </button>
+                <Button size="sm" variant={activeTab === 'generator' ? 'solid' : 'outline'} className="tool-tab" onClick={() => setActiveTab('generator')}>🎲 Generator</Button>
+                <Button size="sm" variant={activeTab === 'manipulator' ? 'solid' : 'outline'} className="tool-tab" onClick={() => setActiveTab('manipulator')}>🔧 Manipulator</Button>
+                <Button size="sm" variant={activeTab === 'stats' ? 'solid' : 'outline'} className="tool-tab" onClick={() => setActiveTab('stats')}>📊 Statistics</Button>
             </div>
 
             <div className="tool-content">
@@ -326,9 +312,9 @@ const TextGenerator = () => {
                                         <div key={key} className="demo-category">
                                             <h4>{data.name}</h4>
                                             <div className="length-buttons">
-                                                <button onClick={() => generateDemoText(key, 'short')}>Short</button>
-                                                <button onClick={() => generateDemoText(key, 'medium')}>Medium</button>
-                                                <button onClick={() => generateDemoText(key, 'long')}>Long</button>
+                                                <Button size="sm" variant="outline" onClick={() => generateDemoText(key, 'short')}>Short</Button>
+                                                <Button size="sm" variant="outline" onClick={() => generateDemoText(key, 'medium')}>Medium</Button>
+                                                <Button size="sm" variant="outline" onClick={() => generateDemoText(key, 'long')}>Long</Button>
                                             </div>
                                         </div>
                                     ))}
@@ -351,13 +337,13 @@ const TextGenerator = () => {
                                         <label><input type="checkbox" value="emoji" /> Emojis</label>
                                         <label><input type="checkbox" value="arrows" /> Arrows</label>
                                     </div>
-                                    <button onClick={() => {
+                                    <Button onClick={() => {
                                         const length = parseInt(document.getElementById('charLength').value);
                                         const checked = Array.from(document.querySelectorAll('.char-sets input:checked')).map(cb => cb.value);
                                         generateRandomChars(length, checked);
                                     }}>
                                         Generate Random
-                                    </button>
+                                    </Button>
                                 </div>
                             </div>
 
@@ -367,14 +353,14 @@ const TextGenerator = () => {
                                     <input type="text" id="repeatText" placeholder="Enter text to repeat" />
                                     <input type="number" id="repeatCount" placeholder="Count" defaultValue="10" min="1" max="1000" />
                                     <input type="text" id="repeatSeparator" placeholder="Separator (optional)" />
-                                    <button onClick={() => {
+                                    <Button onClick={() => {
                                         const text = document.getElementById('repeatText').value;
                                         const count = parseInt(document.getElementById('repeatCount').value);
                                         const separator = document.getElementById('repeatSeparator').value;
                                         generateRepeatedText(text, count, separator);
                                     }}>
                                         Generate Repeated
-                                    </button>
+                                    </Button>
                                 </div>
                             </div>
                         </div>
@@ -388,68 +374,69 @@ const TextGenerator = () => {
                                 <h3>Text Manipulation</h3>
                                 <div className="format-toggle">
                                     <label>Format Type:</label>
-                                    <select
+                                    <Select
                                         value={formatType}
                                         onChange={(e) => setFormatType(e.target.value)}
                                         className="format-select"
-                                    >
-                                        <option value="rich">Rich Text (HTML)</option>
-                                        <option value="markdown">Markdown</option>
-                                    </select>
+                                        options={[
+                                            { value: 'rich', label: 'Rich Text (HTML)' },
+                                            { value: 'markdown', label: 'Markdown' },
+                                        ]}
+                                    />
                                 </div>
                             </div>
                             <div className="control-grid">
                                 <div className="control-category">
                                     <h4>Remove Operations</h4>
-                                    <button onClick={removeSpaces}>Remove Spaces</button>
-                                    <button onClick={removeNewlines}>Remove Newlines</button>
-                                    <button onClick={removeNumbers}>Remove Numbers</button>
-                                    <button onClick={removeSpecialChars}>Remove Special Chars</button>
-                                    <button onClick={removeDuplicateSpaces}>Remove Duplicate Spaces</button>
+                                    <Button size="sm" variant="outline" onClick={removeSpaces}>Remove Spaces</Button>
+                                    <Button size="sm" variant="outline" onClick={removeNewlines}>Remove Newlines</Button>
+                                    <Button size="sm" variant="outline" onClick={removeNumbers}>Remove Numbers</Button>
+                                    <Button size="sm" variant="outline" onClick={removeSpecialChars}>Remove Special Chars</Button>
+                                    <Button size="sm" variant="outline" onClick={removeDuplicateSpaces}>Remove Duplicate Spaces</Button>
                                 </div>
 
                                 <div className="control-category">
                                     <h4>Transform Operations</h4>
-                                    <button onClick={addSpaces}>Add Spaces</button>
-                                    <button onClick={reverseText}>Reverse Text</button>
-                                    <button onClick={shuffleText}>Shuffle Characters</button>
-                                    <button onClick={duplicateText}>Duplicate Text</button>
+                                    <Button size="sm" variant="outline" onClick={addSpaces}>Add Spaces</Button>
+                                    <Button size="sm" variant="outline" onClick={reverseText}>Reverse Text</Button>
+                                    <Button size="sm" variant="outline" onClick={shuffleText}>Shuffle Characters</Button>
+                                    <Button size="sm" variant="outline" onClick={duplicateText}>Duplicate Text</Button>
                                 </div>
 
                                 <div className="control-category">
                                     <h4>Case Operations</h4>
-                                    <button onClick={upperCaseText}>UPPERCASE</button>
-                                    <button onClick={lowerCaseText}>lowercase</button>
-                                    <button onClick={titleCaseText}>Title Case</button>
+                                    <Button size="sm" variant="outline" onClick={upperCaseText}>UPPERCASE</Button>
+                                    <Button size="sm" variant="outline" onClick={lowerCaseText}>lowercase</Button>
+                                    <Button size="sm" variant="outline" onClick={titleCaseText}>Title Case</Button>
                                 </div>
 
                                 <div className="control-category">
                                     <h4>Formatting Operations</h4>
-                                    <button onClick={makeBold}>
+                                    <Button size="sm" onClick={makeBold}>
                                         {formatType === 'rich' ? 'Bold Text' : '**Bold Text**'}
-                                    </button>
-                                    <button onClick={makeItalics}>
+                                    </Button>
+                                    <Button size="sm" onClick={makeItalics}>
                                         {formatType === 'rich' ? 'Italic Text' : '*Italic Text*'}
-                                    </button>
-                                    <button onClick={makeBoldWords}>
+                                    </Button>
+                                    <Button size="sm" onClick={makeBoldWords}>
                                         {formatType === 'rich' ? 'Bold Words' : '**Bold Words**'}
-                                    </button>
-                                    <button onClick={makeItalicsWords}>
+                                    </Button>
+                                    <Button size="sm" onClick={makeItalicsWords}>
                                         {formatType === 'rich' ? 'Italic Words' : '*Italic Words*'}
-                                    </button>
-                                    <button onClick={makeBoldSentences}>
+                                    </Button>
+                                    <Button size="sm" onClick={makeBoldSentences}>
                                         {formatType === 'rich' ? 'Bold Sentences' : '**Bold Sentences**'}
-                                    </button>
-                                    <button onClick={makeItalicsSentences}>
+                                    </Button>
+                                    <Button size="sm" onClick={makeItalicsSentences}>
                                         {formatType === 'rich' ? 'Italic Sentences' : '*Italic Sentences*'}
-                                    </button>
+                                    </Button>
                                 </div>
 
                                 <div className="control-category">
                                     <h4>Remove Formatting</h4>
-                                    <button onClick={removeBold}>Remove Bold</button>
-                                    <button onClick={removeItalics}>Remove Italics</button>
-                                    <button onClick={removeAllFormatting}>Remove All Formatting</button>
+                                    <Button size="sm" variant="outline" onClick={removeBold}>Remove Bold</Button>
+                                    <Button size="sm" variant="outline" onClick={removeItalics}>Remove Italics</Button>
+                                    <Button size="sm" variant="outline" onClick={removeAllFormatting}>Remove All Formatting</Button>
                                 </div>
                             </div>
                         </div>
@@ -492,18 +479,17 @@ const TextGenerator = () => {
                     <div className="editor-header">
                         <h3>Text Editor</h3>
                         <div className="editor-controls">
-                            <button onClick={copyToClipboard}>📋 Copy</button>
+                            <Button size="sm" variant="outline" onClick={copyToClipboard}>📋 Copy</Button>
                             {formatType === 'rich' && (
-                                <button onClick={copyAsRichText}>📋 Copy Rich Text</button>
+                                <Button size="sm" variant="outline" onClick={copyAsRichText}>📋 Copy Rich Text</Button>
                             )}
-                            <button onClick={clearText}>🗑️ Clear</button>
+                            <Button size="sm" onClick={clearText}>🗑️ Clear</Button>
                         </div>
                     </div>
-                    <textarea
+                    <Textarea
                         value={inputText}
                         onChange={handleTextChange}
                         placeholder="Enter text here or generate demo text above..."
-                        className="text-input"
                         rows={15}
                     />
                 </div>

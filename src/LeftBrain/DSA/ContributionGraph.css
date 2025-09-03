@@ -358,11 +358,12 @@
     min-width: 150px;
 }
 
-.username-input:focus {
+.username-input:focus-visible {
     outline: none;
     border-color: var(--accent-color);
     box-shadow: 0 0 0 2px rgba(var(--accent-color-rgb), 0.1);
 }
+.username-input:focus:not(:focus-visible) { outline: none; }
 
 .username-save-btn,
 .username-cancel-btn {

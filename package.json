@@ -23,10 +23,14 @@
     "build:analyze": "npm run build && npx serve -s build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
     "performance:audit": "npm run build && npx lighthouse http://localhost:3000 --view",
     "size:analyze": "npm run build && npx bundlesize",
     "clear-cache": "rm -rf node_modules/.cache && rm -rf build",
-    "fresh-start": "npm run clear-cache && npm start"
+    "fresh-start": "npm run clear-cache && npm start",
+    "lint:css": "stylelint \"src/**/*.css\"",
+    "lint:css:fix": "stylelint \"src/**/*.css\" --fix"
   },
   "browserslist": {
     "production": [
@@ -41,6 +45,8 @@
     ]
   },
   "devDependencies": {
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "stylelint": "^16.8.1",
+    "stylelint-config-standard": "^36.0.0"
   }
 }

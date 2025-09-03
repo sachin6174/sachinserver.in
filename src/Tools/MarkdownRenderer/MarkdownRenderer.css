@@ -109,13 +109,10 @@
     font-size: 14px;
     line-height: 1.4;
     resize: vertical;
-    outline: none;
     transition: border-color 0.2s ease;
 }
 
-.markdown-textarea:focus {
-    border-color: var(--accent-color);
-}
+.markdown-textarea:focus-visible { border-color: var(--accent-color); outline: none; box-shadow: var(--shadow-focus); }
 
 .markdown-textarea.split {
     height: 100%;

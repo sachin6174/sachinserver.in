@@ -1,0 +1,8 @@
+.ui-sheet { position: fixed; inset: 0; background: color-mix(in srgb, var(--neutral-900) 50%, transparent); z-index: var(--z-overlay); }
+.ui-sheet__panel { position: absolute; top: 0; bottom: 0; width: min(420px, 90vw); background: var(--surface); color: var(--text); border-left: 1px solid var(--border); border-right: 1px solid var(--border); box-shadow: var(--shadow-xl); padding: 16px; }
+.ui-sheet__panel.is-right { right: 0; }
+.ui-sheet__panel.is-left { left: 0; }
+.ui-sheet__title { margin: 0 0 8px 0; font-size: 1.1rem; }
+.ui-sheet__close { position: absolute; top: 8px; right: 8px; background: transparent; border: 1px solid var(--border); color: var(--text-secondary); border-radius: var(--radius-sm); width: 28px; height: 28px; cursor: pointer; }
+.ui-sheet__close:focus-visible { outline: none; box-shadow: var(--shadow-focus); }
+

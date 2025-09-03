@@ -30,13 +30,7 @@ class ThemeStrategy {
  */
 class LightThemeStrategy extends ThemeStrategy {
   apply() {
-    const properties = this.getProperties();
-    const root = document.documentElement;
-
-    Object.entries(properties).forEach(([property, value]) => {
-      root.style.setProperty(property, value);
-    });
-
+    // Only manage theme classes; tokens drive colors via CSS.
     document.body.classList.remove('dark-mode');
     document.body.classList.add('light-mode');
   }
@@ -46,33 +40,8 @@ class LightThemeStrategy extends ThemeStrategy {
   }
 
   getProperties() {
-    return {
-      '--background-color': '#ffffff',
-      '--text-color': '#333333',
-      '--text-color-secondary': '#666666',
-      '--text-color-muted': '#999999',
-      '--card-background': '#ffffff',
-      '--border-color': '#e1e5e9',
-      '--border-color-light': '#e9ecef',
-      '--hover-background': '#f8f9fa',
-      '--active-background': '#e9ecef',
-      '--primary-color': '#007bff',
-      '--primary-color-dark': '#0056b3',
-      '--secondary-color': '#6c757d',
-      '--secondary-color-dark': '#545b62',
-      '--success-color': '#28a745',
-      '--warning-color': '#ffc107',
-      '--error-color': '#dc3545',
-      '--info-color': '#17a2b8',
-      '--code-background': '#f8f9fa',
-      '--pre-background': '#f1f3f4',
-      '--shadow-light': '0 2px 4px rgba(0, 0, 0, 0.1)',
-      '--shadow-medium': '0 4px 12px rgba(0, 0, 0, 0.15)',
-      '--shadow-heavy': '0 8px 24px rgba(0, 0, 0, 0.2)',
-      '--transition-fast': '0.15s ease',
-      '--transition-medium': '0.3s ease',
-      '--transition-slow': '0.5s ease'
-    };
+    // Tokens live in CSS; we expose empty properties for compatibility.
+    return {};
   }
 }
 
@@ -81,13 +50,7 @@ class LightThemeStrategy extends ThemeStrategy {
  */
 class DarkThemeStrategy extends ThemeStrategy {
   apply() {
-    const properties = this.getProperties();
-    const root = document.documentElement;
-
-    Object.entries(properties).forEach(([property, value]) => {
-      root.style.setProperty(property, value);
-    });
-
+    // Only manage theme classes; tokens drive colors via CSS.
     document.body.classList.remove('light-mode');
     document.body.classList.add('dark-mode');
   }
@@ -97,33 +60,7 @@ class DarkThemeStrategy extends ThemeStrategy {
   }
 
   getProperties() {
-    return {
-      '--background-color': '#1a1a1a',
-      '--text-color': '#ffffff',
-      '--text-color-secondary': '#cccccc',
-      '--text-color-muted': '#999999',
-      '--card-background': '#2d2d2d',
-      '--border-color': '#404040',
-      '--border-color-light': '#333333',
-      '--hover-background': '#3a3a3a',
-      '--active-background': '#404040',
-      '--primary-color': '#4dabf7',
-      '--primary-color-dark': '#339af0',
-      '--secondary-color': '#868e96',
-      '--secondary-color-dark': '#495057',
-      '--success-color': '#51cf66',
-      '--warning-color': '#ffd43b',
-      '--error-color': '#ff6b6b',
-      '--info-color': '#22b8cf',
-      '--code-background': '#1e1e1e',
-      '--pre-background': '#1a1a1a',
-      '--shadow-light': '0 2px 4px rgba(0, 0, 0, 0.3)',
-      '--shadow-medium': '0 4px 12px rgba(0, 0, 0, 0.4)',
-      '--shadow-heavy': '0 8px 24px rgba(0, 0, 0, 0.5)',
-      '--transition-fast': '0.15s ease',
-      '--transition-medium': '0.3s ease',
-      '--transition-slow': '0.5s ease'
-    };
+    return {};
   }
 }
 
@@ -167,13 +104,7 @@ class AutoThemeStrategy extends ThemeStrategy {
  */
 class HighContrastThemeStrategy extends ThemeStrategy {
   apply() {
-    const properties = this.getProperties();
-    const root = document.documentElement;
-
-    Object.entries(properties).forEach(([property, value]) => {
-      root.style.setProperty(property, value);
-    });
-
+    // Only manage theme classes; tokens drive colors via CSS.
     document.body.classList.remove('light-mode', 'dark-mode');
     document.body.classList.add('high-contrast-mode');
   }
@@ -183,33 +114,7 @@ class HighContrastThemeStrategy extends ThemeStrategy {
   }
 
   getProperties() {
-    return {
-      '--background-color': '#000000',
-      '--text-color': '#ffffff',
-      '--text-color-secondary': '#ffffff',
-      '--text-color-muted': '#cccccc',
-      '--card-background': '#000000',
-      '--border-color': '#ffffff',
-      '--border-color-light': '#cccccc',
-      '--hover-background': '#333333',
-      '--active-background': '#666666',
-      '--primary-color': '#00ffff',
-      '--primary-color-dark': '#00cccc',
-      '--secondary-color': '#ffff00',
-      '--secondary-color-dark': '#cccc00',
-      '--success-color': '#00ff00',
-      '--warning-color': '#ffff00',
-      '--error-color': '#ff0000',
-      '--info-color': '#00ffff',
-      '--code-background': '#000000',
-      '--pre-background': '#111111',
-      '--shadow-light': 'none',
-      '--shadow-medium': 'none',
-      '--shadow-heavy': 'none',
-      '--transition-fast': '0s',
-      '--transition-medium': '0s',
-      '--transition-slow': '0s'
-    };
+    return {};
   }
 }
 

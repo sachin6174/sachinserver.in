@@ -1,65 +1,59 @@
 /* Modern Shared CSS Variables with Color Theory */
 :root {
-    --tool-primary-color: #6366f1;
-    --tool-primary-light: #8b5cf6;
-    --tool-primary-dark: #4f46e5;
-    --tool-accent-color: #06b6d4;
-    --tool-accent-light: #22d3ee;
-    --tool-success-color: #10b981;
-    --tool-warning-color: #f59e0b;
-    --tool-error-color: #ef4444;
-    --tool-info-color: #6366f1;
-    --tool-text-primary: #2c3e50;
-    --tool-text-secondary: #5a6c7d;
-    --tool-text-light: #95a5a6;
-    --tool-background-primary: #ffffff;
-    --tool-background-secondary: #fafbfc;
-    --tool-background-tertiary: #f8f9fa;
-    --tool-border-color: #e9ecef;
-    --tool-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-    --tool-shadow-md: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-    --tool-shadow-lg: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-    --tool-shadow-xl: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-    --tool-radius-sm: 4px;
-    --tool-radius-md: 6px;
-    --tool-radius-lg: 8px;
-    --tool-radius-xl: 12px;
-    --tool-transition-fast: 0.15s ease;
-    --tool-transition-normal: 0.2s ease;
-    --tool-transition-slow: 0.3s ease;
-
-    /* Z-index system for consistent layering */
-    --z-base: 1;
-    --z-dropdown: 100;
-    --z-overlay: 500;
-    --z-modal: 1000;
-    --z-notification: 1100;
-    --z-tooltip: 1200;
-    --z-max: 9999;
+    /* Bridge tool variables to global design tokens */
+    --tool-primary-color: var(--primary);
+    --tool-primary-light: var(--brand-400);
+    --tool-primary-dark: var(--brand-700);
+    --tool-accent-color: var(--accent);
+    --tool-accent-light: color-mix(in srgb, var(--accent) 60%, white);
+    --tool-success-color: var(--success);
+    --tool-warning-color: var(--warning);
+    --tool-error-color: var(--danger);
+    --tool-info-color: var(--info);
+    --tool-text-primary: var(--text);
+    --tool-text-secondary: var(--text-secondary);
+    --tool-text-light: var(--text-muted);
+    --tool-background-primary: var(--bg);
+    --tool-background-secondary: var(--surface);
+    --tool-background-tertiary: var(--surface-2);
+    --tool-border-color: var(--border);
+    --tool-shadow-sm: var(--shadow-sm);
+    --tool-shadow-md: var(--shadow-md);
+    --tool-shadow-lg: var(--shadow-lg);
+    --tool-shadow-xl: var(--shadow-xl);
+    --tool-radius-sm: var(--radius-sm);
+    --tool-radius-md: var(--radius-md);
+    --tool-radius-lg: var(--radius-lg);
+    --tool-radius-xl: var(--radius-xl);
+    --tool-transition-fast: var(--duration-150) var(--ease-standard);
+    --tool-transition-normal: var(--duration-200) var(--ease-standard);
+    --tool-transition-slow: var(--duration-300) var(--ease-standard);
+    --hover-color: var(--hover-background, var(--surface-hover));
 }
 
 /* Modern dark mode overrides */
 body.dark-mode {
-    --tool-primary-color: #818cf8;
-    --tool-primary-light: #a78bfa;
-    --tool-primary-dark: #6366f1;
-    --tool-accent-color: #22d3ee;
-    --tool-accent-light: #67e8f9;
-    --tool-success-color: #34d399;
-    --tool-warning-color: #fbbf24;
-    --tool-error-color: #f87171;
-    --tool-info-color: #818cf8;
-    --tool-text-primary: #ffffff;
-    --tool-text-secondary: #b8bcc8;
-    --tool-text-light: #9ca3af;
-    --tool-background-primary: #252932;
-    --tool-background-secondary: #1a1d23;
-    --tool-background-tertiary: #2f3349;
-    --tool-border-color: #3a3f54;
-    --tool-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.5);
-    --tool-shadow-md: 0 3px 6px rgba(0, 0, 0, 0.6);
-    --tool-shadow-lg: 0 10px 20px rgba(0, 0, 0, 0.7);
-    --tool-shadow-xl: 0 14px 28px rgba(0, 0, 0, 0.8);
+    /* Global tokens handle dark values; keep bridge consistent */
+    --tool-primary-color: var(--primary);
+    --tool-primary-light: var(--brand-400);
+    --tool-primary-dark: var(--brand-700);
+    --tool-accent-color: var(--accent);
+    --tool-accent-light: color-mix(in srgb, var(--accent) 60%, black);
+    --tool-success-color: var(--success);
+    --tool-warning-color: var(--warning);
+    --tool-error-color: var(--danger);
+    --tool-info-color: var(--info);
+    --tool-text-primary: var(--text);
+    --tool-text-secondary: var(--text-secondary);
+    --tool-text-light: var(--text-muted);
+    --tool-background-primary: var(--bg);
+    --tool-background-secondary: var(--surface);
+    --tool-background-tertiary: var(--surface-2);
+    --tool-border-color: var(--border);
+    --tool-shadow-sm: var(--shadow-sm);
+    --tool-shadow-md: var(--shadow-md);
+    --tool-shadow-lg: var(--shadow-lg);
+    --tool-shadow-xl: var(--shadow-xl);
 }
 
 /* Generic variable bridge so tools using generic names inherit themed values */
@@ -132,7 +126,7 @@ body.dark-mode .youtube-downloader-tool {
 
 /* Enhanced container styles with better typography */
 .tools-container {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    font-family: var(--font-sans, 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif);
     font-weight: 400;
     font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
     line-height: 1.6;
@@ -143,7 +137,7 @@ body.dark-mode .youtube-downloader-tool {
     padding: 1.5rem;
     overflow-y: auto;
     overflow-x: hidden;
-    font-size: 14px;
+    font-size: var(--font-body, 16px);
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -756,12 +750,17 @@ body.dark-mode .youtube-downloader-tool {
     background-color: var(--tool-background-secondary);
 }
 
-.tool-input:focus,
-.tool-select:focus,
-.tool-textarea:focus {
+.tool-input:focus-visible,
+.tool-select:focus-visible,
+.tool-textarea:focus-visible {
     outline: none;
     border-color: var(--tool-primary-color);
-    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+    box-shadow: var(--shadow-focus);
+}
+.tool-input:focus:not(:focus-visible),
+.tool-select:focus:not(:focus-visible),
+.tool-textarea:focus:not(:focus-visible) {
+    outline: none;
 }
 
 .tool-input:disabled,

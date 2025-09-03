@@ -120,8 +120,9 @@
     font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
     font-size: 1rem;
     color: var(--tool-text-primary);
-    outline: none;
 }
+
+.pattern-input:focus-visible { outline: none; border-color: var(--tool-primary-color); box-shadow: var(--shadow-focus); }
 
 .pattern-input::placeholder {
     color: var(--tool-text-light);
@@ -503,11 +504,7 @@
     transition: var(--tool-transition-fast);
 }
 
-.test-textarea:focus {
-    outline: none;
-    border-color: var(--tool-primary-color);
-    box-shadow: 0 0 0 3px rgba(var(--tool-primary-color), 0.1);
-}
+.test-textarea:focus-visible { outline: none; border-color: var(--tool-primary-color); box-shadow: var(--shadow-focus); }
 
 .test-textarea::placeholder {
     color: var(--tool-text-light);
@@ -696,11 +693,7 @@
     transition: var(--tool-transition-fast);
 }
 
-.replacement-input:focus {
-    outline: none;
-    border-color: var(--tool-primary-color);
-    box-shadow: 0 0 0 3px rgba(var(--tool-primary-color), 0.1);
-}
+.replacement-input:focus-visible { outline: none; border-color: var(--tool-primary-color); box-shadow: var(--shadow-focus); }
 
 .replacement-help {
     margin-top: 0.5rem;

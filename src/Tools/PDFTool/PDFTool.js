@@ -1,5 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import './PDFTool.css';
+import { Button, Input, Select } from '../../ui';
 
 // Lazy load PDF-lib (temporarily disabled due to build issues)
 const loadPDFLib = async () => {
@@ -231,24 +232,9 @@ const PDFTool = () => {
         <div className="tools-container">
             <div className="pdf-tool">
                 <div className="tool-tabs">
-                    <button
-                        className={`tool-tab ${activeTab === 'extract' ? 'active' : ''}`}
-                        onClick={() => setActiveTab('extract')}
-                    >
-                        📄 Extract Pages
-                    </button>
-                    <button
-                        className={`tool-tab ${activeTab === 'merge' ? 'active' : ''}`}
-                        onClick={() => setActiveTab('merge')}
-                    >
-                        🔗 Merge PDFs
-                    </button>
-                    <button
-                        className={`tool-tab ${activeTab === 'split' ? 'active' : ''}`}
-                        onClick={() => setActiveTab('split')}
-                    >
-                        ✂️ Split PDF
-                    </button>
+                    <Button size="sm" variant={activeTab === 'extract' ? 'solid' : 'outline'} className="tool-tab" onClick={() => setActiveTab('extract')}>📄 Extract Pages</Button>
+                    <Button size="sm" variant={activeTab === 'merge' ? 'solid' : 'outline'} className="tool-tab" onClick={() => setActiveTab('merge')}>🔗 Merge PDFs</Button>
+                    <Button size="sm" variant={activeTab === 'split' ? 'solid' : 'outline'} className="tool-tab" onClick={() => setActiveTab('split')}>✂️ Split PDF</Button>
                 </div>
 
                 <div className="pdf-upload-section">
@@ -275,9 +261,7 @@ const PDFTool = () => {
                         <div className="uploaded-files">
                             <div className="files-header">
                                 <h3>Uploaded Files ({uploadedFiles.length})</h3>
-                                <button className="btn btn-clear" onClick={clearAllFiles}>
-                                    🗑️ Clear All
-                                </button>
+                                <Button variant="outline" onClick={clearAllFiles}>🗑️ Clear All</Button>
                             </div>
                             <div className="files-list">
                                 {uploadedFiles.map((file) => (
@@ -288,12 +272,7 @@ const PDFTool = () => {
                                                 {file.pageCount} pages • {file.size}
                                             </span>
                                         </div>
-                                        <button
-                                            className="btn btn-remove"
-                                            onClick={() => removeFile(file.id)}
-                                        >
-                                            ✕
-                                        </button>
+                                        <Button size="sm" variant="outline" onClick={() => removeFile(file.id)}>✕</Button>
                                     </div>
                                 ))}
                             </div>
@@ -362,13 +341,13 @@ const PDFTool = () => {
                                         <label htmlFor="extractPages">
                                             {extractMode === 'specific' ? 'Page Numbers (comma-separated):' : 'Page Range (e.g., 1-5):'}
                                         </label>
-                                        <input
+                                        <Input
                                             id="extractPages"
+                                            label={extractMode === 'specific' ? 'Page Numbers (comma-separated):' : 'Page Range (e.g., 1-5):'}
                                             type="text"
                                             value={extractPages}
                                             onChange={(e) => setExtractPages(e.target.value)}
                                             placeholder={extractMode === 'specific' ? '1, 3, 5, 7' : '1-5'}
-                                            className="page-input"
                                         />
                                     </div>
                                 )}
@@ -378,13 +357,9 @@ const PDFTool = () => {
                                 {uploadedFiles.map((file) => (
                                     <div key={file.id} className="file-action">
                                         <span className="file-name">{file.name}</span>
-                                        <button
-                                            className="btn btn-extract"
-                                            onClick={() => extractPagesFromPDF(file)}
-                                            disabled={isProcessing || ((extractMode === 'specific' || extractMode === 'range') && !extractPages.trim())}
-                                        >
+                                        <Button onClick={() => extractPagesFromPDF(file)} disabled={isProcessing || ((extractMode === 'specific' || extractMode === 'range') && !extractPages.trim())}>
                                             {isProcessing ? '⏳ Processing...' : '📄 Extract'}
-                                        </button>
+                                        </Button>
                                     </div>
                                 ))}
                             </div>
@@ -401,13 +376,9 @@ const PDFTool = () => {
                                 <p><strong>Total pages:</strong> {uploadedFiles.reduce((sum, file) => sum + file.pageCount, 0)}</p>
                             </div>
 
-                            <button
-                                className="btn btn-merge"
-                                onClick={mergePDFs}
-                                disabled={isProcessing || uploadedFiles.length < 2}
-                            >
+                            <Button onClick={mergePDFs} disabled={isProcessing || uploadedFiles.length < 2}>
                                 {isProcessing ? '⏳ Merging...' : '🔗 Merge All PDFs'}
-                            </button>
+                            </Button>
                         </div>
                     )}
 
@@ -418,13 +389,13 @@ const PDFTool = () => {
                             <div className="split-options">
                                 <div className="input-group">
                                     <label htmlFor="splitValue">Pages per file:</label>
-                                    <input
+                                    <Input
                                         id="splitValue"
+                                        label="Pages per file:"
                                         type="number"
-                                        min="1"
+                                        min={1}
                                         value={splitValue}
                                         onChange={(e) => setSplitValue(e.target.value)}
-                                        className="split-input"
                                     />
                                 </div>
                             </div>
@@ -436,13 +407,9 @@ const PDFTool = () => {
                                         <span className="file-details">
                                             Will create ~{Math.ceil(file.pageCount / parseInt(splitValue || 1))} files
                                         </span>
-                                        <button
-                                            className="btn btn-split"
-                                            onClick={() => splitPDF(file)}
-                                            disabled={isProcessing || !splitValue || parseInt(splitValue) <= 0}
-                                        >
+                                        <Button onClick={() => splitPDF(file)} disabled={isProcessing || !splitValue || parseInt(splitValue) <= 0}>
                                             {isProcessing ? '⏳ Processing...' : '✂️ Split'}
-                                        </button>
+                                        </Button>
                                     </div>
                                 ))}
                             </div>

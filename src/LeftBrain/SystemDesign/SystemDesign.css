@@ -4,7 +4,7 @@
 }
 
 .system-component-card {
-    background: linear-gradient(135deg, #059669 0%, #10B981 100%);
+    background: linear-gradient(135deg, var(--success) 0%, color-mix(in srgb, var(--success) 70%, white) 100%);
     color: white;
     border: none;
     margin-bottom: 0.75rem;
@@ -20,7 +20,7 @@
 
 .system-design-code-block {
     background: var(--background-tertiary);
-    border-left: 4px solid #059669;
+    border-left: 4px solid var(--success);
     border-radius: var(--radius-md);
     padding: 1rem;
     margin: 0.75rem 0;
@@ -31,7 +31,7 @@
 }
 
 .design-pattern-badge {
-    background: linear-gradient(135deg, #059669, #10B981);
+    background: linear-gradient(135deg, var(--success), color-mix(in srgb, var(--success) 70%, white));
     color: white;
     padding: 0.25rem 0.75rem;
     border-radius: var(--radius-sm);
@@ -43,7 +43,7 @@
 
 .architecture-diagram {
     background: var(--background-secondary);
-    border: 2px solid #D1FAE5;
+    border: 2px solid var(--success-100);
     border-radius: var(--radius-lg);
     padding: 2rem;
     margin: 1.5rem 0;
@@ -51,8 +51,8 @@
 }
 
 .architecture-diagram.complex {
-    border-color: #059669;
-    background: linear-gradient(135deg, rgba(5, 150, 105, 0.05) 0%, rgba(16, 185, 129, 0.05) 100%);
+    border-color: var(--success);
+    background: linear-gradient(135deg, color-mix(in srgb, var(--success) 8%, transparent) 0%, color-mix(in srgb, var(--success) 6%, transparent) 100%);
 }
 
 .architecture-flow {
@@ -66,7 +66,7 @@
 
 .flow-component {
     background: var(--background-primary);
-    border: 2px solid #10B981;
+    border: 2px solid var(--success);
     border-radius: var(--radius-md);
     padding: 1rem;
     min-width: 120px;
@@ -75,18 +75,18 @@
 }
 
 .flow-component.critical {
-    border-color: #DC2626;
-    background: #FEF2F2;
+    border-color: var(--danger);
+    background: color-mix(in srgb, var(--danger) 10%, var(--surface));
 }
 
 .flow-component.database {
-    border-color: #7C3AED;
-    background: #F5F3FF;
+    border-color: var(--brand-600);
+    background: color-mix(in srgb, var(--brand-600) 10%, var(--surface));
 }
 
 .flow-arrow {
     font-size: 1.5rem;
-    color: #059669;
+    color: var(--success);
     align-self: center;
 }
 
@@ -118,7 +118,7 @@
 .metric-value {
     font-size: 1.5rem;
     font-weight: 700;
-    color: #059669;
+    color: var(--success);
     display: block;
     margin-bottom: 0.5rem;
 }

@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import './CSVTool.css';
+import { Button, Textarea } from '../../ui';
 
 const CSVTool = () => {
     const [csvData, setCsvData] = useState('');
@@ -221,12 +222,9 @@ const CSVTool = () => {
                         accept=".csv,.json"
                         className="file-input"
                     />
-                    <button
-                        className="tool-button secondary"
-                        onClick={() => fileInputRef.current?.click()}
-                    >
+                    <Button variant="outline" onClick={() => fileInputRef.current?.click()}>
                         📁 Upload File
-                    </button>
+                    </Button>
                 </div>
 
                 {/* Settings */}
@@ -258,24 +256,9 @@ const CSVTool = () => {
 
                 {/* Tab Navigation */}
                 <div className="tab-nav">
-                    <button
-                        className={`tab-btn ${activeTab === 'csv' ? 'active' : ''}`}
-                        onClick={() => setActiveTab('csv')}
-                    >
-                        📄 CSV
-                    </button>
-                    <button
-                        className={`tab-btn ${activeTab === 'json' ? 'active' : ''}`}
-                        onClick={() => setActiveTab('json')}
-                    >
-                        🔧 JSON
-                    </button>
-                    <button
-                        className={`tab-btn ${activeTab === 'table' ? 'active' : ''}`}
-                        onClick={() => setActiveTab('table')}
-                    >
-                        📊 Table View
-                    </button>
+                    <Button size="sm" variant={activeTab === 'csv' ? 'solid' : 'outline'} className="tab-btn" onClick={() => setActiveTab('csv')}>📄 CSV</Button>
+                    <Button size="sm" variant={activeTab === 'json' ? 'solid' : 'outline'} className="tab-btn" onClick={() => setActiveTab('json')}>🔧 JSON</Button>
+                    <Button size="sm" variant={activeTab === 'table' ? 'solid' : 'outline'} className="tab-btn" onClick={() => setActiveTab('table')}>📊 Table View</Button>
                 </div>
 
                 {/* Content Areas */}
@@ -285,24 +268,15 @@ const CSVTool = () => {
                             <div className="section-header">
                                 <h3>CSV Data</h3>
                                 <div className="action-buttons">
-                                    <button
-                                        className="tool-button"
-                                        onClick={parseCSVToJSON}
-                                        disabled={!csvData.trim()}
-                                    >
+                                    <Button onClick={parseCSVToJSON} disabled={!csvData.trim()}>
                                         ➡️ Convert to JSON
-                                    </button>
-                                    <button
-                                        className="tool-button secondary"
-                                        onClick={() => downloadFile(csvData, 'data.csv', 'text/csv')}
-                                        disabled={!csvData.trim()}
-                                    >
+                                    </Button>
+                                    <Button variant="outline" onClick={() => downloadFile(csvData, 'data.csv', 'text/csv')} disabled={!csvData.trim()}>
                                         💾 Download CSV
-                                    </button>
+                                    </Button>
                                 </div>
                             </div>
-                            <textarea
-                                className="tool-textarea"
+                            <Textarea
                                 value={csvData}
                                 onChange={(e) => setCsvData(e.target.value)}
                                 placeholder="Paste your CSV data here or upload a file..."
@@ -316,24 +290,15 @@ const CSVTool = () => {
                             <div className="section-header">
                                 <h3>JSON Data</h3>
                                 <div className="action-buttons">
-                                    <button
-                                        className="tool-button"
-                                        onClick={parseJSONToCSV}
-                                        disabled={!jsonData.trim()}
-                                    >
+                                    <Button onClick={parseJSONToCSV} disabled={!jsonData.trim()}>
                                         ⬅️ Convert to CSV
-                                    </button>
-                                    <button
-                                        className="tool-button secondary"
-                                        onClick={() => downloadFile(jsonData, 'data.json', 'application/json')}
-                                        disabled={!jsonData.trim()}
-                                    >
+                                    </Button>
+                                    <Button variant="outline" onClick={() => downloadFile(jsonData, 'data.json', 'application/json')} disabled={!jsonData.trim()}>
                                         💾 Download JSON
-                                    </button>
+                                    </Button>
                                 </div>
                             </div>
-                            <textarea
-                                className="tool-textarea"
+                            <Textarea
                                 value={jsonData}
                                 onChange={(e) => setJsonData(e.target.value)}
                                 placeholder="Paste your JSON data here or upload a file..."

@@ -1,5 +1,6 @@
 import React, { useState, useCallback, useMemo } from 'react';
 import './UUIDTool.css';
+import { Button, Input, Select } from '../../ui';
 
 const UUIDTool = () => {
     const [generatedUUIDs, setGeneratedUUIDs] = useState([]);
@@ -240,55 +241,35 @@ const UUIDTool = () => {
         <div className="tools-container">
             <div className="uuid-tool">
                 <div className="tool-tabs">
-                    <button
-                        className={`tool-tab ${activeTab === 'generate' ? 'active' : ''}`}
-                        onClick={() => setActiveTab('generate')}
-                    >
-                        🎲 Generate
-                    </button>
-                    <button
-                        className={`tool-tab ${activeTab === 'validate' ? 'active' : ''}`}
-                        onClick={() => setActiveTab('validate')}
-                    >
-                        ✅ Validate
-                    </button>
-                    <button
-                        className={`tool-tab ${activeTab === 'history' ? 'active' : ''}`}
-                        onClick={() => setActiveTab('history')}
-                    >
-                        📚 History
-                    </button>
+                    <Button size="sm" variant={activeTab === 'generate' ? 'solid' : 'outline'} className="tool-tab" onClick={() => setActiveTab('generate')}>🎲 Generate</Button>
+                    <Button size="sm" variant={activeTab === 'validate' ? 'solid' : 'outline'} className="tool-tab" onClick={() => setActiveTab('validate')}>✅ Validate</Button>
+                    <Button size="sm" variant={activeTab === 'history' ? 'solid' : 'outline'} className="tool-tab" onClick={() => setActiveTab('history')}>📚 History</Button>
                 </div>
 
                 {activeTab === 'generate' && (
                     <div className="generate-section">
                         <div className="generation-controls">
-                            <div className="control-group">
-                                <label htmlFor="version">UUID Version:</label>
-                                <select
-                                    id="version"
-                                    value={uuidVersion}
-                                    onChange={(e) => setUuidVersion(e.target.value)}
-                                    className="version-select"
-                                >
-                                    <option value="v1">Version 1 (Timestamp-based)</option>
-                                    <option value="v4">Version 4 (Random)</option>
-                                    <option value="v5">Version 5 (Name-based SHA-1)</option>
-                                </select>
-                            </div>
+                            <Select
+                                id="version"
+                                label="UUID Version:"
+                                value={uuidVersion}
+                                onChange={(e) => setUuidVersion(e.target.value)}
+                                options={[
+                                    { value: 'v1', label: 'Version 1 (Timestamp-based)' },
+                                    { value: 'v4', label: 'Version 4 (Random)' },
+                                    { value: 'v5', label: 'Version 5 (Name-based SHA-1)' },
+                                ]}
+                            />
 
-                            <div className="control-group">
-                                <label htmlFor="quantity">Quantity:</label>
-                                <input
-                                    id="quantity"
-                                    type="number"
-                                    min="1"
-                                    max="100"
-                                    value={quantity}
-                                    onChange={(e) => setQuantity(e.target.value)}
-                                    className="quantity-input"
-                                />
-                            </div>
+                            <Input
+                                id="quantity"
+                                label="Quantity:"
+                                type="number"
+                                min={1}
+                                max={100}
+                                value={quantity}
+                                onChange={(e) => setQuantity(e.target.value)}
+                            />
 
                             {uuidVersion === 'v5' && (
                                 <>
@@ -319,15 +300,9 @@ const UUIDTool = () => {
                         </div>
 
                         <div className="action-buttons">
-                            <button className="btn btn-primary" onClick={handleGenerate}>
-                                🎲 Generate UUIDs
-                            </button>
-                            <button className="btn btn-quick" onClick={generateSingle}>
-                                ⚡ Quick Generate & Copy
-                            </button>
-                            <button className="btn btn-clear" onClick={clearUUIDs}>
-                                🗑️ Clear
-                            </button>
+                            <Button onClick={handleGenerate}>🎲 Generate UUIDs</Button>
+                            <Button variant="outline" onClick={generateSingle}>⚡ Quick Generate & Copy</Button>
+                            <Button variant="ghost" onClick={clearUUIDs}>🗑️ Clear</Button>
                         </div>
 
                         {generatedUUIDs.length > 0 && (
@@ -479,12 +454,9 @@ const UUIDTool = () => {
                         <div className="history-header">
                             <h3>Generation History</h3>
                             {history.length > 0 && (
-                                <button
-                                    className="btn btn-clear"
-                                    onClick={() => setHistory([])}
-                                >
+                                <Button variant="outline" onClick={() => setHistory([])}>
                                     🗑️ Clear History
-                                </button>
+                                </Button>
                             )}
                         </div>
 

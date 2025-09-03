@@ -1,0 +1,8 @@
+.ui-breadcrumb { width: 100%; }
+.ui-breadcrumb__list { list-style: none; padding: 0; margin: 0; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.ui-breadcrumb__item { display: inline-flex; align-items: center; gap: 8px; color: var(--text-secondary); }
+.ui-breadcrumb__link { background: transparent; border: none; color: var(--primary); text-decoration: none; cursor: pointer; padding: 2px 4px; border-radius: var(--radius-sm); }
+.ui-breadcrumb__link:focus-visible { outline: none; box-shadow: var(--shadow-focus); }
+.ui-breadcrumb__current { color: var(--text); font-weight: 600; }
+.ui-breadcrumb__sep { color: var(--text-muted); }
+

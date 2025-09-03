@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './StorageTool.css';
+import { Button, Input, Textarea } from '../../ui';
 
 const StorageTool = () => {
     const [items, setItems] = useState([]);
@@ -79,8 +80,8 @@ const StorageTool = () => {
                     <form onSubmit={handleSubmit}>
                         <div className="input-group">
                             <div className="input-field">
-                                <label>Key:</label>
-                                <input
+                                <Input
+                                    label="Key:"
                                     type="text"
                                     placeholder="Enter storage key"
                                     value={key}
@@ -90,24 +91,23 @@ const StorageTool = () => {
                             </div>
 
                             <div className="input-field">
-                                <label>Value:</label>
-                                <textarea
+                                <Textarea
+                                    label="Value:"
                                     placeholder="Enter storage value (JSON, text, etc.)"
                                     value={value}
                                     onChange={(e) => setValue(e.target.value)}
+                                    rows={6}
                                 />
                             </div>
                         </div>
 
                         <div className="button-section">
                             <div className="control-buttons">
-                                <button type="submit" className={editMode ? 'update-btn' : 'save-btn'}>
-                                    {editMode ? '✏️ Update' : '💾 Save'}
-                                </button>
+                                <Button type="submit">{editMode ? '✏️ Update' : '💾 Save'}</Button>
                                 {editMode && (
-                                    <button
+                                    <Button
                                         type="button"
-                                        className="cancel-btn"
+                                        variant="outline"
                                         onClick={() => {
                                             setEditMode(null);
                                             setKey('');
@@ -116,15 +116,9 @@ const StorageTool = () => {
                                         }}
                                     >
                                         ❌ Cancel
-                                    </button>
+                                    </Button>
                                 )}
-                                <button
-                                    type="button"
-                                    className="clear-all-btn"
-                                    onClick={handleClear}
-                                >
-                                    🗑️ Clear All
-                                </button>
+                                <Button type="button" variant="ghost" onClick={handleClear}>🗑️ Clear All</Button>
                             </div>
                         </div>
                     </form>
@@ -147,27 +141,9 @@ const StorageTool = () => {
                                     </div>
                                 </div>
                                 <div className="storage-item-actions">
-                                    <button
-                                        className="copy-btn"
-                                        onClick={() => handleCopy(item.value)}
-                                        title="Copy value"
-                                    >
-                                        📋 Copy
-                                    </button>
-                                    <button
-                                        className="edit-btn"
-                                        onClick={() => handleEdit(item)}
-                                        title="Edit item"
-                                    >
-                                        ✏️ Edit
-                                    </button>
-                                    <button
-                                        className="delete-btn"
-                                        onClick={() => handleDelete(item.key)}
-                                        title="Delete item"
-                                    >
-                                        🗑️ Delete
-                                    </button>
+                                    <Button variant="outline" onClick={() => handleCopy(item.value)} title="Copy value">📋 Copy</Button>
+                                    <Button variant="outline" onClick={() => handleEdit(item)} title="Edit item">✏️ Edit</Button>
+                                    <Button variant="outline" onClick={() => handleDelete(item.key)} title="Delete item">🗑️ Delete</Button>
                                 </div>
                             </div>
                         ))}

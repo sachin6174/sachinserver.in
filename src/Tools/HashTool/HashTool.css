@@ -86,11 +86,12 @@
     transition: var(--tool-transition-fast);
 }
 
-.tool-textarea:focus {
+.tool-textarea:focus-visible {
     outline: none;
     border-color: #667eea;
     box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 }
+.tool-textarea:focus:not(:focus-visible) { outline: none; }
 
 .input-info {
     display: flex;
@@ -392,11 +393,7 @@ body.dark-mode .compare-result.no-match {
     font-size: 0.875rem;
 }
 
-.tool-input:focus {
-    outline: none;
-    border-color: #667eea;
-    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-}
+.tool-input:focus-visible { outline: none; border-color: #667eea; box-shadow: 0 0 0 3px rgba(102,126,234,0.1); }
 
 .compare-note {
     font-size: 0.875rem;

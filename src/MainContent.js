@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useMemo, memo } from 'react';
+import { Breadcrumb } from './ui';
 
 const MainContent = memo(({ activeTab, selectedNavItem, navigationItems, isLeftNavVisible }) => {
     const [isContentVisible, setIsContentVisible] = useState(false);
@@ -80,32 +81,27 @@ const MainContent = memo(({ activeTab, selectedNavItem, navigationItems, isLeftN
 
     return (
         <div className="tab-content" style={{ position: "relative", height: "100%" }}>
-            {/* Enhanced Breadcrumb Path */}
-            <nav className="breadcrumb-path" aria-label="Navigation breadcrumb">
-                <div className="breadcrumb-item">
-                    <span className="breadcrumb-icon" aria-hidden="true">{tabInfo.icon}</span>
-                    <span className="tab-label-mobile">{tabInfo.shortName}</span>
-                    <span className="tab-label-desktop">{tabInfo.fullName}</span>
-                </div>
-                {selectedNavItem && selectedItem && (
-                    <>
-                        <span className="breadcrumb-separator" aria-hidden="true">›</span>
-                        <div className="breadcrumb-item breadcrumb-current">
-                            <span className="breadcrumb-icon" aria-hidden="true">{selectedItem.icon}</span>
-                            <span>{selectedItem.label}</span>
-                        </div>
-                    </>
-                )}
-            </nav>
+            {/* Enhanced Breadcrumb Path using design-system Breadcrumb */}
+            <div className="breadcrumb-path">
+                <Breadcrumb
+                    items={[
+                        { label: (<><span className="breadcrumb-icon" aria-hidden>{tabInfo.icon}</span> <span className="tab-label-mobile">{tabInfo.shortName}</span><span className="tab-label-desktop">{tabInfo.fullName}</span></>), onClick: undefined },
+                        ...(selectedItem ? [{ label: (<><span className="breadcrumb-icon" aria-hidden>{selectedItem.icon}</span> <span>{selectedItem.label}</span></>), current: true }] : [])
+                    ]}
+                />
+            </div>
 
             {/* Enhanced Separator Line */}
             <div className="separator-line" role="separator" aria-hidden="true"></div>
 
             {/* Content Display with Animation */}
             <main 
+                id="main"
                 className={`description ${isContentVisible ? 'content-visible' : 'content-hidden'}`}
                 role="main"
                 aria-live="polite"
+                aria-busy={!isContentVisible}
+                tabIndex="-1"
                 aria-label="Main content area"
             >
                 <div className={`content-wrapper ${isContentVisible ? 'fade-in-up' : ''}`}>

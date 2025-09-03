@@ -249,12 +249,12 @@
 }
 
 .star {
-    color: #ffc107;
+    color: var(--warning);
     margin-right: 2px;
 }
 
 .star.empty {
-    color: #e0e0e0;
+    color: var(--divider);
 }
 
 /* Compact tags */

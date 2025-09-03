@@ -1,5 +1,6 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import './MarkdownRenderer.css';
+import { Button, Textarea } from '../../ui';
 
 // Lazy load marked
 const loadMarked = async () => {
@@ -487,18 +488,8 @@ Use backslash to escape: \\*not italic\\* and \\**not bold\\**
         <div className="tools-container">
             <div className="markdown-tool">
                 <div className="tool-tabs">
-                    <button
-                        className={`tool-tab ${activeTab === 'tutorial' ? 'active' : ''}`}
-                        onClick={() => setActiveTab('tutorial')}
-                    >
-                        📚 Tutorial
-                    </button>
-                    <button
-                        className={`tool-tab ${activeTab === 'split' ? 'active' : ''}`}
-                        onClick={() => setActiveTab('split')}
-                    >
-                        📱 Split View
-                    </button>
+                    <Button size="sm" variant={activeTab === 'tutorial' ? 'solid' : 'outline'} className={`tool-tab ${activeTab === 'tutorial' ? 'active' : ''}`} onClick={() => setActiveTab('tutorial')}>📚 Tutorial</Button>
+                    <Button size="sm" variant={activeTab === 'split' ? 'solid' : 'outline'} className={`tool-tab ${activeTab === 'split' ? 'active' : ''}`} onClick={() => setActiveTab('split')}>📱 Split View</Button>
                 </div>
 
 
@@ -520,11 +511,9 @@ Use backslash to escape: \\*not italic\\* and \\**not bold\\**
                             <div className="split-editor">
                                 <div className="section-header">
                                     <h3>Editor</h3>
-                                    <button className="download-btn" onClick={downloadMarkdownText} title="Download as Markdown">
-                                        💾 Download .md
-                                    </button>
+                                    <Button className="download-btn" onClick={downloadMarkdownText} title="Download as Markdown">💾 Download .md</Button>
                                 </div>
-                                <textarea
+                                <Textarea
                                     value={markdownText}
                                     onChange={(e) => setMarkdownText(e.target.value)}
                                     placeholder="Edit this comprehensive markdown example or clear it to start fresh..."
@@ -535,9 +524,7 @@ Use backslash to escape: \\*not italic\\* and \\**not bold\\**
                             <div className="split-preview">
                                 <div className="section-header">
                                     <h3>Live Preview</h3>
-                                    <button className="download-btn" onClick={downloadPreviewAsPDF} title="Download as PDF">
-                                        📄 Download PDF
-                                    </button>
+                                    <Button className="download-btn" onClick={downloadPreviewAsPDF} title="Download as PDF">📄 Download PDF</Button>
                                 </div>
                                 <div
                                     className="markdown-preview split"

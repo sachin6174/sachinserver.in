@@ -1,5 +1,6 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import './RegexTool.css';
+import { Button } from '../../ui';
 
 const RegexTool = () => {
     const [pattern, setPattern] = useState('');
@@ -217,24 +218,9 @@ Invalid emails: @invalid.com, test@, incomplete@domain`);
         <div className="tools-container">
             <div className="regex-tool">
                 <div className="tool-tabs">
-                    <button
-                        className={`tool-tab ${activeTab === 'test' ? 'active' : ''}`}
-                        onClick={() => setActiveTab('test')}
-                    >
-                        🔍 Test & Match
-                    </button>
-                    <button
-                        className={`tool-tab ${activeTab === 'replace' ? 'active' : ''}`}
-                        onClick={() => setActiveTab('replace')}
-                    >
-                        🔄 Replace
-                    </button>
-                    <button
-                        className={`tool-tab ${activeTab === 'learn' ? 'active' : ''}`}
-                        onClick={() => setActiveTab('learn')}
-                    >
-                        📚 Learn
-                    </button>
+                    <Button size="sm" variant={activeTab === 'test' ? 'solid' : 'outline'} className={`tool-tab ${activeTab === 'test' ? 'active' : ''}`} onClick={() => setActiveTab('test')}>🔍 Test & Match</Button>
+                    <Button size="sm" variant={activeTab === 'replace' ? 'solid' : 'outline'} className={`tool-tab ${activeTab === 'replace' ? 'active' : ''}`} onClick={() => setActiveTab('replace')}>🔄 Replace</Button>
+                    <Button size="sm" variant={activeTab === 'learn' ? 'solid' : 'outline'} className={`tool-tab ${activeTab === 'learn' ? 'active' : ''}`} onClick={() => setActiveTab('learn')}>📚 Learn</Button>
                 </div>
 
                 <div className="regex-controls">
@@ -276,26 +262,17 @@ Invalid emails: @invalid.com, test@, incomplete@domain`);
                     </div>
 
                     <div className="quick-actions">
-                        <button className="btn btn-sample" onClick={loadSample}>
-                            📄 Load Sample
-                        </button>
-                        <button className="btn btn-help" onClick={() => setShowCheatSheet(!showCheatSheet)}>
-                            📖 Cheat Sheet
-                        </button>
+                        <Button className="btn btn-sample" onClick={loadSample}>📄 Load Sample</Button>
+                        <Button className="btn btn-help" onClick={() => setShowCheatSheet(!showCheatSheet)}>📖 Cheat Sheet</Button>
                     </div>
 
                     <div className="presets-section">
                         <h3>Quick Presets:</h3>
                         <div className="presets-grid">
                             {presetPatterns.map((preset, index) => (
-                                <button
-                                    key={index}
-                                    className="preset-button"
-                                    onClick={() => loadPreset(preset)}
-                                    title={preset.pattern}
-                                >
+                                <Button key={index} size="sm" className="preset-button" onClick={() => loadPreset(preset)} title={preset.pattern}>
                                     {preset.name}
-                                </button>
+                                </Button>
                             ))}
                         </div>
                     </div>
@@ -336,13 +313,7 @@ Invalid emails: @invalid.com, test@, incomplete@domain`);
                             <div className="input-section">
                                 <div className="section-header">
                                     <h3>Test String</h3>
-                                    <button
-                                        className="btn-icon"
-                                        onClick={() => copyToClipboard(testString)}
-                                        title="Copy to clipboard"
-                                    >
-                                        📋
-                                    </button>
+                                    <Button size="sm" variant="outline" className="btn-icon" onClick={() => copyToClipboard(testString)} title="Copy to clipboard" aria-label="Copy test string">📋</Button>
                                 </div>
                                 <textarea
                                     value={testString}
@@ -446,13 +417,7 @@ Invalid emails: @invalid.com, test@, incomplete@domain`);
                             <div className="replace-result">
                                 <div className="section-header">
                                     <h3>Result</h3>
-                                    <button
-                                        className="btn-icon"
-                                        onClick={() => copyToClipboard(replacedText)}
-                                        title="Copy result"
-                                    >
-                                        📋
-                                    </button>
+                                    <Button size="sm" variant="outline" className="btn-icon" onClick={() => copyToClipboard(replacedText)} title="Copy result" aria-label="Copy replace result">📋</Button>
                                 </div>
                                 <div className="result-content">
                                     <pre>{replacedText || 'Result will appear here...'}</pre>
@@ -475,12 +440,9 @@ Invalid emails: @invalid.com, test@, incomplete@domain`);
                                                 <div className="history-meta">
                                                     {item.matchCount} matches • {new Date(item.timestamp).toLocaleTimeString()}
                                                 </div>
-                                                <button
-                                                    className="btn-small"
-                                                    onClick={() => loadFromHistory(item)}
-                                                >
+                                                <Button size="sm" variant="outline" onClick={() => loadFromHistory(item)}>
                                                     Load
-                                                </button>
+                                                </Button>
                                             </div>
                                         ))}
                                     </div>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './ImportantWebsites.css';
+import { Button, Input, Tag } from '../../ui';
 
 const ImportantWebsites = () => {
     const [searchTerm, setSearchTerm] = useState('');
@@ -272,26 +273,30 @@ const ImportantWebsites = () => {
 
             <div className="controls-section">
                 <div className="search-container">
-                    <input
-                        type="text"
+                    <Input
                         placeholder="Search websites..."
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
                         className="search-input"
+                        aria-label="Search websites"
                     />
                     <span className="search-icon">🔍</span>
                 </div>
 
                 <div className="category-filters">
                     {categories.map(category => (
-                        <button
+                        <Button
                             key={category.id}
+                            size="sm"
+                            variant={selectedCategory === category.id ? 'solid' : 'outline'}
                             onClick={() => setSelectedCategory(category.id)}
                             className={`category-btn ${selectedCategory === category.id ? 'active' : ''}`}
+                            aria-pressed={selectedCategory === category.id}
+                            aria-label={`Filter by ${category.name}`}
                         >
                             <span className="category-icon">{category.icon}</span>
                             {category.name}
-                        </button>
+                        </Button>
                     ))}
                 </div>
             </div>
@@ -307,29 +312,16 @@ const ImportantWebsites = () => {
                             <div key={website.id} className="website-card favorite">
                                 <div className="card-header">
                                     <div className="website-icon">{website.icon}</div>
-                                    <button
-                                        onClick={() => toggleFavorite(website.id)}
-                                        className="favorite-btn active"
-                                        title="Remove from favorites"
-                                    >
-                                        ⭐
-                                    </button>
+                                <Button size="sm" variant="outline" onClick={() => toggleFavorite(website.id)} className="favorite-btn active" title="Remove from favorites">⭐</Button>
                                 </div>
                                 <h4 className="website-name">{website.name}</h4>
                                 <p className="website-description">{website.description}</p>
                                 <div className="website-tags">
                                     {website.tags.slice(0, 3).map(tag => (
-                                        <span key={tag} className="tag">{tag}</span>
+                                        <Tag key={tag} size="sm" className="tag">{tag}</Tag>
                                     ))}
                                 </div>
-                                <a
-                                    href={website.url}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="visit-btn"
-                                >
-                                    Visit Website
-                                </a>
+                                <a href={website.url} target="_blank" rel="noopener noreferrer" className="visit-btn">Visit Website</a>
                             </div>
                         ))}
                     </div>
@@ -348,13 +340,9 @@ const ImportantWebsites = () => {
                         <div key={website.id} className="website-card">
                             <div className="card-header">
                                 <div className="website-icon">{website.icon}</div>
-                                <button
-                                    onClick={() => toggleFavorite(website.id)}
-                                    className={`favorite-btn ${favorites.includes(website.id) ? 'active' : ''}`}
-                                    title={favorites.includes(website.id) ? 'Remove from favorites' : 'Add to favorites'}
-                                >
+                                <Button size="sm" variant="outline" onClick={() => toggleFavorite(website.id)} className={`favorite-btn ${favorites.includes(website.id) ? 'active' : ''}`} title={favorites.includes(website.id) ? 'Remove from favorites' : 'Add to favorites'}>
                                     {favorites.includes(website.id) ? '⭐' : '☆'}
-                                </button>
+                                </Button>
                             </div>
                             <h4 className="website-name">{website.name}</h4>
                             <p className="website-description">{website.description}</p>

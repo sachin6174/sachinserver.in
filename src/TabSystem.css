@@ -1,132 +1,90 @@
 @import "./Tools/shared-styles.css";
 
-/* Modern Design System with Color Theory */
+/* Design System bridge: map local variables to global tokens */
 :root {
-  /* Enhanced Triadic Color Scheme with Better Contrast */
-  --primary-color: #6366f1;        /* Indigo - trust, intelligence */
-  --primary-light: #8b5cf6;        /* Purple - creativity, luxury */
-  --primary-dark: #4338ca;         /* Deeper indigo - better contrast */
-  --secondary-color: #0ea5e9;      /* Sky blue - modern, professional */
-  --tertiary-color: #f59e0b;       /* Amber - energy, optimism */
-  --quaternary-color: #10b981;     /* Emerald - success, growth */
-  
-  /* Complementary Accents */
-  --accent-warm: #ef4444;          /* Red - urgency, attention */
-  --accent-cool: #10b981;          /* Emerald - success, growth */
-  --accent-neutral: #64748b;       /* Slate - sophistication */
-  
-  /* Sophisticated Backgrounds with Better Depth */
-  --bg-primary: #ffffff;
-  --bg-secondary: #f8fafc;
-  --bg-tertiary: #f1f5f9;
-  --bg-quaternary: #e2e8f0;
-  --bg-gradient: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #0ea5e9 100%);
-  --bg-gradient-subtle: linear-gradient(135deg, rgba(99, 102, 241, 0.05) 0%, rgba(139, 92, 246, 0.03) 100%);
-  --surface: #ffffff;
-  --surface-hover: rgba(99, 102, 241, 0.04);
-  --surface-active: rgba(99, 102, 241, 0.08);
-  --surface-elevated: #ffffff;
-  --surface-glass: rgba(255, 255, 255, 0.9);
-  
-  /* Text Hierarchy */
-  --text-primary: #1e293b;
-  --text-secondary: #475569;
-  --text-tertiary: #64748b;
-  --text-muted: #94a3b8;
-  --text-inverse: #ffffff;
-  --text-accent: #6366f1;
-  
-  /* Borders with Color Theory */
-  --border-subtle: #e2e8f0;
-  --border-medium: #cbd5e1;
-  --border-strong: #94a3b8;
-  --border-accent: #6366f1;
-  --border-gradient: linear-gradient(90deg, #6366f1, #06b6d4);
-  
-  /* Enhanced Shadows with Color and Depth */
-  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.05);
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.08);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-  --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-  --shadow-colored: 0 4px 14px rgba(99, 102, 241, 0.25);
-  --shadow-colored-lg: 0 10px 25px rgba(99, 102, 241, 0.15);
-  --shadow-glass: 0 8px 32px rgba(31, 38, 135, 0.37);
-  --shadow-glow: 0 0 20px rgba(99, 102, 241, 0.3);
-  
-  /* Typography - Enhanced Google Fonts */
-  --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-  --font-mono: 'JetBrains Mono', 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
-  --font-display: 'Inter', system-ui, sans-serif;
-  
-  /* Compact Spacing */
-  --space-xs: 0.25rem;
-  --space-sm: 0.375rem;
-  --space-md: 0.75rem;
-  --space-lg: 1rem;
-  --space-xl: 1.25rem;
-  --space-2xl: 1.5rem;
-  
-  /* Minimal Border Radius */
-  --radius-sm: 4px;
-  --radius-md: 6px;
-  --radius-lg: 8px;
-  --radius-xl: 12px;
-  
-  /* Smooth Transitions */
-  --transition-fast: 0.15s ease;
-  --transition-base: 0.2s ease;
-  --transition-slow: 0.3s ease;
+  /* Brand & Accents */
+  --primary-color: var(--primary);
+  --primary-light: var(--brand-400);
+  --primary-dark: var(--brand-700);
+  --secondary-color: var(--accent);
+  --tertiary-color: var(--warning-500);
+  --quaternary-color: var(--success-500);
+
+  --accent-warm: var(--danger-500);
+  --accent-cool: var(--success-500);
+  --accent-neutral: var(--neutral-500);
+
+  /* Surfaces & Backgrounds */
+  --bg-primary: var(--bg);
+  --bg-secondary: var(--surface);
+  --bg-tertiary: var(--surface-2);
+  --bg-quaternary: var(--neutral-200);
+  --bg-gradient: linear-gradient(135deg, var(--brand-600) 0%, var(--brand-400) 50%, var(--secondary-500) 100%);
+  --bg-gradient-subtle: linear-gradient(135deg, color-mix(in srgb, var(--brand-500) 5%, transparent) 0%, color-mix(in srgb, var(--brand-400) 3%, transparent) 100%);
+  --surface: var(--surface);
+  --surface-hover: var(--surface-hover);
+  --surface-active: var(--surface-active);
+  --surface-elevated: var(--surface);
+  --surface-glass: color-mix(in srgb, var(--surface) 90%, transparent);
+
+  /* Text */
+  --text-primary: var(--text);
+  --text-secondary: var(--text-secondary);
+  --text-tertiary: var(--text-muted);
+  --text-muted: var(--text-muted);
+  --text-inverse: var(--neutral-50);
+  --text-accent: var(--primary);
+
+  /* Borders */
+  --border-subtle: var(--divider);
+  --border-medium: var(--border);
+  --border-strong: var(--neutral-400);
+  --border-accent: var(--primary);
+  --border-gradient: linear-gradient(90deg, var(--primary), var(--info-500));
+
+  /* Shadows (forward to system tokens) */
+  --shadow-xs: var(--shadow-sm);
+  --shadow-sm: var(--shadow-sm);
+  --shadow-md: var(--shadow-md);
+  --shadow-lg: var(--shadow-lg);
+  --shadow-xl: var(--shadow-xl);
+  --shadow-2xl: var(--shadow-xl);
+  --shadow-colored: 0 4px 14px color-mix(in srgb, var(--primary) 25%, transparent);
+  --shadow-colored-lg: 0 10px 25px color-mix(in srgb, var(--primary) 15%, transparent);
+  --shadow-glass: var(--shadow-lg);
+  --shadow-glow: 0 0 20px color-mix(in srgb, var(--primary) 30%, transparent);
+
+  /* Typography */
+  --font-primary: var(--font-sans);
+  --font-mono: var(--font-mono);
+  --font-display: var(--font-sans);
+
+  /* Spacing (mapped to 4/8px scale) */
+  --space-xs: var(--space-1);
+  --space-sm: var(--space-2);
+  --space-md: var(--space-3);
+  --space-lg: var(--space-4);
+  --space-xl: var(--space-5);
+  --space-2xl: var(--space-6);
+
+  /* Radius */
+  --radius-sm: var(--radius-xs);
+  --radius-md: var(--radius-sm);
+  --radius-lg: var(--radius-md);
+  --radius-xl: var(--radius-lg);
+
+  /* Transitions (compose duration + ease) */
+  --transition-fast: var(--duration-150) var(--ease-standard);
+  --transition-base: var(--duration-200) var(--ease-standard);
+  --transition-slow: var(--duration-300) var(--ease-standard);
 }
 
-/* Dark Mode with Enhanced Color Theory and Better Contrast */
+/* Dark mode tweaks remain token-driven via global overrides */
 body.dark-mode {
-  --primary-color: #818cf8;        /* Lighter indigo for contrast */
-  --primary-light: #a78bfa;        /* Soft purple */
-  --primary-dark: #6366f1;         /* Original indigo */
-  --secondary-color: #0ea5e9;      /* Bright sky blue */
-  --tertiary-color: #fbbf24;       /* Warm amber */
-  --quaternary-color: #34d399;     /* Mint green */
-  
-  --accent-warm: #f87171;          /* Soft red */
-  --accent-cool: #34d399;          /* Mint green */
-  --accent-neutral: #94a3b8;       /* Light slate */
-  
-  --bg-primary: #0f172a;
-  --bg-secondary: #1e293b;
-  --bg-tertiary: #334155;
-  --bg-quaternary: #475569;
-  --bg-gradient: linear-gradient(135deg, #1e293b 0%, #334155 50%, #0f172a 100%);
-  --bg-gradient-subtle: linear-gradient(135deg, rgba(129, 140, 248, 0.08) 0%, rgba(167, 139, 250, 0.05) 100%);
-  --surface: #1e293b;
-  --surface-hover: rgba(129, 140, 248, 0.08);
-  --surface-active: rgba(129, 140, 248, 0.16);
-  --surface-elevated: #334155;
-  --surface-glass: rgba(30, 41, 59, 0.9);
-  
-  --text-primary: #f8fafc;
-  --text-secondary: #cbd5e1;
-  --text-tertiary: #94a3b8;
-  --text-muted: #64748b;
-  --text-inverse: #0f172a;
-  --text-accent: #818cf8;
-  
-  --border-subtle: #334155;
-  --border-medium: #475569;
-  --border-strong: #64748b;
-  --border-accent: #818cf8;
-  
-  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.3);
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.5), 0 1px 2px rgba(0, 0, 0, 0.4);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.4);
-  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.6), 0 10px 10px -5px rgba(0, 0, 0, 0.5);
-  --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
-  --shadow-colored: 0 4px 14px rgba(129, 140, 248, 0.3);
-  --shadow-colored-lg: 0 10px 25px rgba(129, 140, 248, 0.2);
-  --shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.5);
-  --shadow-glow: 0 0 20px rgba(129, 140, 248, 0.4);
+  --surface-glass: color-mix(in srgb, var(--surface) 90%, transparent);
+  --bg-gradient: linear-gradient(135deg, var(--neutral-800) 0%, var(--neutral-700) 50%, var(--neutral-900) 100%);
+  --bg-gradient-subtle: linear-gradient(135deg, color-mix(in srgb, var(--brand-400) 8%, transparent) 0%, color-mix(in srgb, var(--brand-400) 5%, transparent) 100%);
+  --text-inverse: var(--neutral-900);
 }
 
 
@@ -170,6 +128,7 @@ body {
   flex-direction: column;
   width: 100vw;
   height: 100vh;
+  min-height: 0;
   position: relative;
   background: var(--bg-primary);
   overflow: hidden;
@@ -237,31 +196,25 @@ body {
   justify-content: space-between;
   padding: var(--space-xs) var(--space-sm);
   background: var(--surface-glass);
-  backdrop-filter: blur(20px) saturate(150%);
-  -webkit-backdrop-filter: blur(20px) saturate(150%);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px) saturate(110%);
+  -webkit-backdrop-filter: blur(8px) saturate(110%);
+  border-bottom: 1px solid var(--divider);
+  border-top: 1px solid var(--divider);
   position: relative;
-  z-index: 100;
+  z-index: var(--z-header);
   transition: all var(--transition-base);
   min-height: 55px;
-  box-shadow: 
-    var(--shadow-glass),
-    0 1px 1px rgba(255, 255, 255, 0.9) inset,
-    0 -1px 1px rgba(0, 0, 0, 0.03) inset;
-  border-radius: 0 0 16px 16px;
+  box-shadow: var(--shadow-md);
+  border-radius: 0 0 var(--radius-xl) var(--radius-xl);
   margin-bottom: 1px;
   overflow: hidden;
 }
 
 body.dark-mode .tabs {
   background: var(--surface-glass);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
-  box-shadow: 
-    var(--shadow-glass),
-    0 1px 1px rgba(255, 255, 255, 0.08) inset,
-    0 -1px 1px rgba(0, 0, 0, 0.3) inset;
+  border-bottom: 1px solid var(--divider);
+  border-top: 1px solid var(--divider);
+  box-shadow: var(--shadow-md);
 }
 
 /* Navigation Items Container */
@@ -276,7 +229,7 @@ body.dark-mode .tabs {
   width: 32px;
   height: 32px;
   object-fit: contain;
-  filter: drop-shadow(0 0 12px rgba(99, 102, 241, 0.6));
+  filter: drop-shadow(0 0 6px color-mix(in srgb, var(--primary) 35%, transparent));
   transition: all var(--transition-slow);
   border-radius: 50%;
   background: radial-gradient(circle, rgba(255, 255, 255, 0.2), transparent);
@@ -286,13 +239,13 @@ body.dark-mode .tabs {
 
 .tabs img:hover {
   transform: scale(1.2) rotate(10deg);
-  filter: drop-shadow(0 0 20px rgba(99, 102, 241, 0.8)) drop-shadow(0 0 5px rgba(255, 255, 255, 0.6));
+  filter: drop-shadow(0 0 8px color-mix(in srgb, var(--primary) 45%, transparent));
   animation: logoGlow 2s ease-in-out infinite;
 }
 
 @keyframes logoGlow {
-  0%, 100% { filter: drop-shadow(0 0 20px rgba(99, 102, 241, 0.8)) drop-shadow(0 0 5px rgba(255, 255, 255, 0.6)); }
-  50% { filter: drop-shadow(0 0 30px rgba(99, 102, 241, 1)) drop-shadow(0 0 10px rgba(255, 255, 255, 0.8)); }
+  0%, 100% { filter: drop-shadow(0 0 8px color-mix(in srgb, var(--primary) 45%, transparent)); }
+  50% { filter: drop-shadow(0 0 12px color-mix(in srgb, var(--primary) 60%, transparent)); }
 }
 
 /* Enhanced Tab Buttons with Better Glassmorphism */
@@ -313,7 +266,7 @@ body.dark-mode .tabs {
   gap: var(--space-xs);
   min-height: 32px;
   overflow: hidden;
-  backdrop-filter: blur(15px);
+  backdrop-filter: blur(8px);
   box-shadow: var(--shadow-sm);
   font-feature-settings: 'cv02', 'cv03', 'cv04';
   letter-spacing: -0.005em;
@@ -413,7 +366,7 @@ body.dark-mode .tabs {
     0 0 18px rgba(245, 158, 11, 0.2),
     inset 0 1px 1px rgba(255, 255, 255, 0.35);
   overflow: hidden;
-  backdrop-filter: blur(15px);
+  backdrop-filter: blur(8px);
 }
 
 .theme-toggle .icon {
@@ -492,6 +445,8 @@ body.dark-mode .tabs {
   overflow: hidden;
   position: relative;
   transition: all var(--transition-base);
+  /* Allow children (like left-nav) to become scroll containers */
+  min-height: 0;
 }
 
 .tab-content-container.nav-hidden {
@@ -504,10 +459,15 @@ body.dark-mode .tabs {
   border-right: 1px solid rgba(255, 255, 255, 0.25);
   padding: var(--space-sm);
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  /* Ensure it can scroll within the grid/flex parent */
+  min-height: 0;
+  max-height: 100%;
   position: relative;
   transition: all var(--transition-base);
-  backdrop-filter: blur(15px) saturate(110%);
-  -webkit-backdrop-filter: blur(15px) saturate(110%);
+  backdrop-filter: blur(8px) saturate(110%);
+  -webkit-backdrop-filter: blur(8px) saturate(110%);
   box-shadow: 
     var(--shadow-lg),
     inset -1px 0 1px rgba(255, 255, 255, 0.9),
@@ -549,7 +509,7 @@ body.dark-mode .left-nav {
   border-radius: var(--radius-md);
   border: 1px solid var(--border-medium);
   background: var(--surface);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(8px);
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -633,7 +593,7 @@ body.dark-mode .left-nav {
   width: 4px;
   height: 60%;
   background: linear-gradient(135deg, var(--primary-color), var(--secondary-color), var(--tertiary-color));
-  border-radius: 0 8px 8px 0;
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
   opacity: 0;
   transition: all var(--transition-slow);
   box-shadow: 0 0 10px rgba(99, 102, 241, 0.5);
@@ -728,9 +688,9 @@ body.dark-mode .left-nav {
   overflow-y: auto;
   position: relative;
   height: 100%;
-  backdrop-filter: blur(15px) saturate(110%);
-  -webkit-backdrop-filter: blur(15px) saturate(110%);
-  border-radius: 16px 0 0 0;
+  backdrop-filter: blur(8px) saturate(110%);
+  -webkit-backdrop-filter: blur(8px) saturate(110%);
+  border-radius: var(--radius-xl) 0 0 0;
   box-shadow: 
     inset 0 1px 1px rgba(255, 255, 255, 0.9),
     inset 0 -1px 1px rgba(0, 0, 0, 0.01),
@@ -759,8 +719,8 @@ body.dark-mode .tab-content {
   font-weight: 500;
   color: var(--text-tertiary);
   min-height: 48px;
-  backdrop-filter: blur(20px) saturate(120%);
-  -webkit-backdrop-filter: blur(20px) saturate(120%);
+  backdrop-filter: blur(8px) saturate(110%);
+  -webkit-backdrop-filter: blur(8px) saturate(110%);
   box-shadow: 
     var(--shadow-sm),
     inset 0 1px 1px rgba(255, 255, 255, 0.9);
@@ -863,7 +823,7 @@ body.dark-mode .breadcrumb-path:hover {
   );
   margin: var(--space-lg) 0;
   opacity: 0.8;
-  border-radius: 2px;
+  border-radius: var(--radius-xs);
   position: relative;
   overflow: hidden;
 }
@@ -897,7 +857,7 @@ body.dark-mode .breadcrumb-path:hover {
   box-shadow: 
     0 8px 25px rgba(0, 0, 0, 0.08),
     inset 0 1px 1px rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(20px);
+  backdrop-filter: blur(8px);
   position: relative;
   overflow: hidden;
 }
@@ -942,7 +902,7 @@ body.dark-mode .tools-sub-nav {
   white-space: nowrap;
   min-height: 28px;
   overflow: hidden;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(8px);
   box-shadow: 
     0 3px 10px rgba(0, 0, 0, 0.05),
     inset 0 1px 1px rgba(255, 255, 255, 0.8);
@@ -1086,8 +1046,8 @@ body.dark-mode .tool-nav-btn {
   box-shadow: 
     var(--shadow-lg),
     inset 0 1px 1px rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(15px) saturate(120%);
-  -webkit-backdrop-filter: blur(15px) saturate(120%);
+  backdrop-filter: blur(8px) saturate(110%);
+  -webkit-backdrop-filter: blur(8px) saturate(110%);
   position: relative;
   overflow: hidden;
   font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
@@ -1197,7 +1157,7 @@ body.dark-mode .description::before {
     flex-wrap: wrap;
     gap: var(--space-sm);
     min-height: 48px;
-    border-radius: 0 0 20px 20px;
+    border-radius: 0 0 var(--radius-xl) var(--radius-xl);
   }
   
   .nav-section {
@@ -1239,8 +1199,8 @@ body.dark-mode .description::before {
     min-width: 100% !important;
     padding: var(--space-sm);
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(248, 250, 252, 0.95));
-    backdrop-filter: blur(30px) saturate(150%);
-    -webkit-backdrop-filter: blur(30px) saturate(150%);
+    backdrop-filter: blur(12px) saturate(110%);
+    -webkit-backdrop-filter: blur(12px) saturate(110%);
     border-radius: var(--radius-lg) var(--radius-lg) 0 0;
   }
   
@@ -1261,7 +1221,7 @@ body.dark-mode .description::before {
     font-weight: 600;
     /* Better touch targets */
     border-radius: var(--radius-xl);
-    backdrop-filter: blur(12px);
+    backdrop-filter: blur(8px);
   }
   
   .tab-content {
@@ -1277,7 +1237,7 @@ body.dark-mode .description::before {
     gap: var(--space-sm);
     padding: var(--space-sm);
     min-height: 60px;
-    border-radius: 0 0 24px 24px;
+    border-radius: 0 0 var(--radius-2xl) var(--radius-2xl);
   }
   
   .nav-section {
@@ -1399,9 +1359,7 @@ body.dark-mode .description::before {
 .tab:focus:not(:focus-visible),
 .nav-item:focus:not(:focus-visible),
 .nav-toggle-btn:focus:not(:focus-visible),
-.theme-toggle:focus:not(:focus-visible) {
-  outline: none;
-}
+.theme-toggle:focus:not(:focus-visible) { outline: none; }
 
 /* High contrast support */
 @media (prefers-contrast: high) {

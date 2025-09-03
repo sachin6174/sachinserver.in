@@ -37,10 +37,7 @@
     min-width: 300px;
 }
 
-.size-dropdown:focus {
-    outline: none;
-    border-color: var(--accent-color);
-}
+.size-dropdown:focus-visible { outline: none; border-color: var(--accent-color); box-shadow: var(--shadow-focus); }
 
 .action-buttons {
     display: flex;

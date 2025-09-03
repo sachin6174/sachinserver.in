@@ -364,12 +364,14 @@ const TabSystem = memo(() => {
                 </div>
 
                 {/* Main Content Area */}
-                <MainContent
-                    activeTab={activeTab}
-                    selectedNavItem={selectedNavItem}
-                    navigationItems={navigationItems}
-                    isLeftNavVisible={isLeftNavVisible}
-                />
+                <main id="main" role="main" tabIndex="-1">
+                  <MainContent
+                      activeTab={activeTab}
+                      selectedNavItem={selectedNavItem}
+                      navigationItems={navigationItems}
+                      isLeftNavVisible={isLeftNavVisible}
+                  />
+                </main>
             </div>
         </div>
     );

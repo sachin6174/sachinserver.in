@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './APITool.css';
+import { Button, Textarea } from '../../ui';
 
 const APITool = () => {
     const [method, setMethod] = useState('GET');
@@ -131,27 +132,22 @@ const APITool = () => {
                                     onChange={(e) => handleHeaderChange(index, 'value', e.target.value)}
                                     className="header-input"
                                 />
-                                <button
-                                    onClick={() => removeHeader(index)}
-                                    className="remove-header-btn"
-                                >
+                                <Button size="sm" variant="outline" onClick={() => removeHeader(index)}>
                                     🗑️ Remove
-                                </button>
+                                </Button>
                             </div>
                         ))}
-                        <button onClick={addHeader} className="add-header-btn">
-                            ➕ Add Header
-                        </button>
+                        <Button size="sm" onClick={addHeader}>➕ Add Header</Button>
                     </div>
 
                     {['POST', 'PUT', 'PATCH'].includes(method) && (
                         <div className="body-section">
                             <h4>Request Body</h4>
-                            <textarea
+                            <Textarea
                                 value={body}
                                 onChange={(e) => setBody(e.target.value)}
                                 placeholder='{"key": "value"}'
-                                className="body-textarea"
+                                rows={8}
                             />
                         </div>
                     )}
@@ -159,20 +155,9 @@ const APITool = () => {
 
                 <div className="action-section">
                     <div className="control-buttons">
-                        <button
-                            onClick={sendRequest}
-                            disabled={loading || !url}
-                            className="send-button"
-                        >
-                            {loading ? (
-                                <>
-                                    <div className="loading-spinner"></div>
-                                    Sending...
-                                </>
-                            ) : (
-                                '🚀 Send Request'
-                            )}
-                        </button>
+                        <Button onClick={sendRequest} disabled={loading || !url} loading={loading}>
+                            🚀 Send Request
+                        </Button>
                     </div>
                 </div>
             </div>
@@ -204,7 +189,14 @@ const APITool = () => {
                     <h3>📜 Request History ({history.length})</h3>
                     <div className="history-list">
                         {history.map((item, index) => (
-                            <div key={index} className="history-item" onClick={() => loadFromHistory(item)}>
+                            <div
+                                key={index}
+                                className="history-item"
+                                role="button"
+                                tabIndex={0}
+                                onClick={() => loadFromHistory(item)}
+                                onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); loadFromHistory(item); } }}
+                            >
                                 <div className="history-info">
                                     <div className="history-name">
                                         <span className="method-icon">{item.method}</span>

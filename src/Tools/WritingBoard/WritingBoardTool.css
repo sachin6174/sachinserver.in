@@ -107,7 +107,6 @@
     height: 6px;
     background: var(--border-color);
     border-radius: 3px;
-    outline: none;
     cursor: pointer;
 }
 
@@ -186,11 +185,7 @@
     border-color: var(--accent-color);
 }
 
-.text-input:focus {
-    outline: none;
-    border-color: var(--accent-color);
-    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
-}
+.text-input:focus-visible { outline: none; border-color: var(--accent-color); box-shadow: 0 0 0 3px rgba(0,123,255,0.1); }
 
 .add-text-btn {
     padding: 10px 16px;

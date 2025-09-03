@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './YouTubeDownloader.css';
+import { Button, Input, Select } from '../../ui';
 
 const YouTubeDownloader = () => {
     const [url, setUrl] = useState('');
@@ -120,35 +121,32 @@ const YouTubeDownloader = () => {
 
             <div className="youtube-downloader__input-section">
                 <div className="input-group">
-                    <input
-                        type="text"
+                    <Input
+                        placeholder="Paste YouTube URL here (e.g., https://www.youtube.com/watch?v=...)"
                         value={url}
                         onChange={(e) => setUrl(e.target.value)}
-                        placeholder="Paste YouTube URL here (e.g., https://www.youtube.com/watch?v=...)"
                         className="url-input"
+                        aria-label="YouTube URL"
                     />
-                    <button
-                        onClick={handleDownload}
-                        disabled={downloading || !url.trim()}
-                        className="download-btn"
-                    >
+                    <Button onClick={handleDownload} disabled={downloading || !url.trim()} className="download-btn">
                         {downloading ? '🔄 Processing...' : '⬇️ Get Download Links'}
-                    </button>
+                    </Button>
                 </div>
 
                 <div className="quality-selector">
                     <label htmlFor="quality">Preferred Quality:</label>
-                    <select
+                    <Select
                         id="quality"
                         value={quality}
                         onChange={(e) => setQuality(e.target.value)}
-                    >
-                        <option value="highest">Highest Available</option>
-                        <option value="1080p">1080p HD</option>
-                        <option value="720p">720p HD</option>
-                        <option value="480p">480p</option>
-                        <option value="audio">Audio Only (MP3)</option>
-                    </select>
+                        options={[
+                            { value: 'highest', label: 'Highest Available' },
+                            { value: '1080p', label: '1080p HD' },
+                            { value: '720p', label: '720p HD' },
+                            { value: '480p', label: '480p' },
+                            { value: 'audio', label: 'Audio Only (MP3)' },
+                        ]}
+                    />
                 </div>
             </div>
 
@@ -178,11 +176,7 @@ const YouTubeDownloader = () => {
                         <h4>📥 Download Options:</h4>
                         <div className="download-links">
                             {downloadInfo.downloadLinks.map((link, index) => (
-                                <button
-                                    key={index}
-                                    onClick={() => handleDownloadClick(link)}
-                                    className="download-option"
-                                >
+                                <Button key={index} onClick={() => handleDownloadClick(link)} className="download-option">
                                     <span 
                                         className="quality-badge" 
                                         data-type={link.type}
@@ -191,7 +185,7 @@ const YouTubeDownloader = () => {
                                     </span>
                                     <span className="service-name">{link.format} • via {link.service}</span>
                                     <span className="download-icon">⬇️</span>
-                                </button>
+                                </Button>
                             ))}
                         </div>
                     </div>

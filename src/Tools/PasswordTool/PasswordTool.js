@@ -1,5 +1,6 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import './PasswordTool.css';
+import { Button, Input } from '../../ui';
 
 const PasswordTool = () => {
     const [password, setPassword] = useState('');
@@ -250,29 +251,11 @@ const PasswordTool = () => {
                 <div className="password-section">
                     <div className="password-display">
                         <div className="password-field">
-                            <input
-                                type="text"
-                                value={password}
-                                readOnly
-                                className="password-input"
-                                placeholder="Generated password will appear here..."
-                            />
-                            <button
-                                className="copy-btn"
-                                onClick={() => copyToClipboard(password)}
-                                disabled={!password}
-                                title="Copy to clipboard"
-                            >
-                                📋
-                            </button>
+                            <Input type="text" value={password} readOnly className="password-input" placeholder="Generated password will appear here..." />
+                            <Button size="sm" variant="outline" className="copy-btn" onClick={() => copyToClipboard(password)} disabled={!password} title="Copy to clipboard">📋</Button>
                         </div>
                         <div className="password-actions">
-                            <button
-                                className="tool-button"
-                                onClick={generatePassword}
-                            >
-                                🔄 Generate New Password
-                            </button>
+                            <Button onClick={generatePassword}>🔄 Generate New Password</Button>
                             <div className="entropy-info">
                                 <span className="entropy-label">Entropy:</span>
                                 <span className="entropy-value">{entropyBits.toFixed(1)} bits</span>
@@ -389,14 +372,7 @@ const PasswordTool = () => {
 
                     <div className="custom-chars-section">
                         <label htmlFor="customChars">Custom Character Set (optional):</label>
-                        <input
-                            id="customChars"
-                            type="text"
-                            value={customChars}
-                            onChange={(e) => setCustomChars(e.target.value)}
-                            placeholder="Enter custom characters to use..."
-                            className="tool-input"
-                        />
+                        <Input id="customChars" type="text" value={customChars} onChange={(e) => setCustomChars(e.target.value)} placeholder="Enter custom characters to use..." className="tool-input" />
                         <p className="setting-note">
                             If specified, only these characters will be used (overrides other settings)
                         </p>
@@ -411,25 +387,14 @@ const PasswordTool = () => {
                     <div className="history-section">
                         <div className="history-header">
                             <h3>📋 Recent Passwords</h3>
-                            <button
-                                className="tool-button secondary small"
-                                onClick={clearHistory}
-                            >
-                                🗑️ Clear History
-                            </button>
+                            <Button size="sm" variant="outline" onClick={clearHistory}>🗑️ Clear History</Button>
                         </div>
                         <div className="history-list">
                             {passwordHistory.map((entry, index) => (
                                 <div key={index} className="history-item">
                                     <div className="history-password">
                                         <span className="password-text">{entry.password}</span>
-                                        <button
-                                            className="copy-btn small"
-                                            onClick={() => copyToClipboard(entry.password)}
-                                            title="Copy to clipboard"
-                                        >
-                                            📋
-                                        </button>
+                                        <Button size="sm" variant="outline" className="copy-btn small" onClick={() => copyToClipboard(entry.password)} title="Copy to clipboard">📋</Button>
                                     </div>
                                     <div className="history-meta">
                                         <span>Length: {entry.length}</span>

@@ -1,5 +1,6 @@
 import React, { useState, useMemo, useRef, useCallback } from 'react';
 import './DiffChecker.css';
+import { Button, Textarea } from '../../ui';
 
 const DiffChecker = () => {
     const [originalText, setOriginalText] = useState('');
@@ -316,36 +317,16 @@ console.log('Total with tax:', finalTotal);`);
                     <div className="control-group">
                         <label>View Mode:</label>
                         <div className="view-mode-buttons">
-                            <button
-                                className={`btn ${viewMode === 'side-by-side' ? 'active' : ''}`}
-                                onClick={() => setViewMode('side-by-side')}
-                            >
-                                📊 Side by Side
-                            </button>
-                            <button
-                                className={`btn ${viewMode === 'unified' ? 'active' : ''}`}
-                                onClick={() => setViewMode('unified')}
-                            >
-                                📄 Unified
-                            </button>
+                            <Button size="sm" variant={viewMode === 'side-by-side' ? 'solid' : 'outline'} className={`btn ${viewMode === 'side-by-side' ? 'active' : ''}`} onClick={() => setViewMode('side-by-side')}>📊 Side by Side</Button>
+                            <Button size="sm" variant={viewMode === 'unified' ? 'solid' : 'outline'} className={`btn ${viewMode === 'unified' ? 'active' : ''}`} onClick={() => setViewMode('unified')}>📄 Unified</Button>
                         </div>
                     </div>
 
                     <div className="control-group">
                         <label>Highlight:</label>
                         <div className="view-mode-buttons">
-                            <button
-                                className={`btn ${highlightMode === 'word' ? 'active' : ''}`}
-                                onClick={() => setHighlightMode('word')}
-                            >
-                                📝 Word
-                            </button>
-                            <button
-                                className={`btn ${highlightMode === 'character' ? 'active' : ''}`}
-                                onClick={() => setHighlightMode('character')}
-                            >
-                                🔤 Character
-                            </button>
+                            <Button size="sm" variant={highlightMode === 'word' ? 'solid' : 'outline'} className={`btn ${highlightMode === 'word' ? 'active' : ''}`} onClick={() => setHighlightMode('word')}>📝 Word</Button>
+                            <Button size="sm" variant={highlightMode === 'character' ? 'solid' : 'outline'} className={`btn ${highlightMode === 'character' ? 'active' : ''}`} onClick={() => setHighlightMode('character')}>🔤 Character</Button>
                         </div>
                     </div>
 
@@ -461,23 +442,11 @@ console.log('Total with tax:', finalTotal);`);
                                     style={{ display: 'none' }}
                                     accept=".txt,.js,.css,.html,.json,.xml,.md"
                                 />
-                                <button
-                                    className="btn-icon"
-                                    onClick={() => fileInputOriginal.current.click()}
-                                    title="Upload file"
-                                >
-                                    📁
-                                </button>
-                                <button
-                                    className="btn-icon"
-                                    onClick={() => copyToClipboard(originalText)}
-                                    title="Copy original text"
-                                >
-                                    📋
-                                </button>
+                                <Button size="sm" variant="outline" className="btn-icon" onClick={() => fileInputOriginal.current.click()} title="Upload file" aria-label="Upload original file">📁</Button>
+                                <Button size="sm" variant="outline" className="btn-icon" onClick={() => copyToClipboard(originalText)} title="Copy original text" aria-label="Copy original text">📋</Button>
                             </div>
                         </div>
-                        <textarea
+                        <Textarea
                             value={originalText}
                             onChange={(e) => setOriginalText(e.target.value)}
                             placeholder="Paste or type the original text here..."
@@ -497,23 +466,11 @@ console.log('Total with tax:', finalTotal);`);
                                     style={{ display: 'none' }}
                                     accept=".txt,.js,.css,.html,.json,.xml,.md"
                                 />
-                                <button
-                                    className="btn-icon"
-                                    onClick={() => fileInputModified.current.click()}
-                                    title="Upload file"
-                                >
-                                    📁
-                                </button>
-                                <button
-                                    className="btn-icon"
-                                    onClick={() => copyToClipboard(modifiedText)}
-                                    title="Copy modified text"
-                                >
-                                    📋
-                                </button>
+                                <Button size="sm" variant="outline" className="btn-icon" onClick={() => fileInputModified.current.click()} title="Upload file" aria-label="Upload modified file">📁</Button>
+                                <Button size="sm" variant="outline" className="btn-icon" onClick={() => copyToClipboard(modifiedText)} title="Copy modified text" aria-label="Copy modified text">📋</Button>
                             </div>
                         </div>
-                        <textarea
+                        <Textarea
                             value={modifiedText}
                             onChange={(e) => setModifiedText(e.target.value)}
                             placeholder="Paste or type the modified text here..."

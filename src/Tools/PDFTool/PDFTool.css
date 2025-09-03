@@ -286,20 +286,15 @@
     color: var(--text-color);
 }
 
+/* Inputs are now tokenized via primitives; keep legacy styles for compatibility if present */
 .page-input,
 .split-input {
     width: 100%;
     max-width: 300px;
-    padding: 0.75rem;
-    border: 1px solid var(--border-color);
-    border-radius: 6px;
-    background: var(--background-color);
-    color: var(--text-color);
-    font-size: 0.9rem;
 }
 
-.page-input:focus,
-.split-input:focus {
+.page-input:focus-visible,
+.split-input:focus-visible {
     outline: none;
     border-color: var(--accent-color);
 }

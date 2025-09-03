@@ -50,9 +50,7 @@
     color: white;
 }
 
-.btn-export:hover {
-    background: #d68910;
-}
+.btn-export:hover { background: color-mix(in srgb, var(--tool-warning-color) 85%, black); }
 
 .control-group {
     display: flex;
@@ -143,9 +141,7 @@
     color: white;
 }
 
-.btn-clear:hover {
-    background: #c0392b;
-}
+.btn-clear:hover { background: color-mix(in srgb, var(--tool-error-color) 85%, black); }
 
 .btn-copy {
     background: var(--tool-success-color);
@@ -153,9 +149,7 @@
     color: white;
 }
 
-.btn-copy:hover {
-    background: #229954;
-}
+.btn-copy:hover { background: color-mix(in srgb, var(--tool-success-color) 85%, black); }
 
 .diff-stats {
     display: flex;
@@ -290,8 +284,9 @@
     line-height: 1.5;
     resize: vertical;
     min-height: 300px;
-    outline: none;
 }
+
+.diff-textarea:focus-visible { outline: none; border-color: var(--accent-color, var(--primary)); box-shadow: var(--shadow-focus); }
 
 .diff-results {
     background: var(--surface-color);
@@ -327,15 +322,9 @@
     font-weight: 500;
 }
 
-.legend-item.added {
-    background: #e8f5e8;
-    color: #4caf50;
-}
+.legend-item.added { background: color-mix(in srgb, var(--tool-success-color) 12%, var(--background-color)); color: var(--tool-success-color); }
 
-.legend-item.removed {
-    background: #ffebee;
-    color: #f44336;
-}
+.legend-item.removed { background: color-mix(in srgb, var(--tool-error-color) 12%, var(--background-color)); color: var(--tool-error-color); }
 
 .legend-item.modified {
     background: #fff3e0;
@@ -424,13 +413,9 @@
     user-select: none;
 }
 
-.diff-line.added .line-prefix {
-    color: #4caf50;
-}
+.diff-line.added .line-prefix { color: var(--tool-success-color); }
 
-.diff-line.removed .line-prefix {
-    color: #f44336;
-}
+.diff-line.removed .line-prefix { color: var(--tool-error-color); }
 
 .line-content {
     padding: 4px 8px;
@@ -439,10 +424,7 @@
     word-break: break-all;
 }
 
-.diff-highlight {
-    border-radius: 2px;
-    padding: 1px 2px;
-}
+.diff-highlight { border-radius: var(--radius-xs, 4px); padding: 1px 2px; }
 
 .diff-highlight.added {
     background: var(--tool-success-color);

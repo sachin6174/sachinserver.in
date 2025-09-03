@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import './XmlTool.css';
+import { Button } from '../../ui';
 
 const XmlTool = () => {
     const [input, setInput] = useState('');
@@ -166,7 +167,7 @@ const XmlTool = () => {
         <div className="xml-tool">
             <div className="tool-container">
                 <div className="control-panel">
-                    <button onClick={() => fileInputRef.current.click()}>Load Data</button>
+                    <Button onClick={() => fileInputRef.current.click()} size="sm">Load Data</Button>
                     <input
                         ref={fileInputRef}
                         type="file"
@@ -185,7 +186,7 @@ const XmlTool = () => {
                     </select>
                 </div>
 
-                <div className="input-section">
+                <div className="input-section u-card">
                     <h3>Input XML</h3>
                     <textarea
                         value={input}
@@ -195,16 +196,16 @@ const XmlTool = () => {
                 </div>
                 
                 <div className="actions">
-                    <button onClick={formatXML}>Format / Beautify</button>
-                    <button onClick={showXMLTree}>XML Tree</button>
-                    <button onClick={convertToJSON}>XML to JSON</button>
-                    <button onClick={downloadOutput}>Download</button>
+                    <Button variant="solid" onClick={formatXML}>Format / Beautify</Button>
+                    <Button variant="outline" onClick={showXMLTree}>XML Tree</Button>
+                    <Button variant="ghost" onClick={convertToJSON}>XML to JSON</Button>
+                    <Button variant="link" onClick={downloadOutput}>Download</Button>
                 </div>
 
                 {error && <div className="message">{error}</div>}
                 
                 {output && (
-                    <div className="output-section">
+                    <div className="output-section u-card">
                         <h3>Output</h3>
                         <pre>{output}</pre>
                     </div>

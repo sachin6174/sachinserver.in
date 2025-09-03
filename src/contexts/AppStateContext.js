@@ -6,7 +6,7 @@
 
 import React, { createContext, useContext, useReducer, useEffect } from 'react';
 import { StorageService } from '../services/StorageService';
-import { ThemeService } from '../services/ThemeService';
+import { getInitialTheme as getInitialThemeName, applyTheme as applyThemeName } from '../services/ThemeService';
 
 // Action Types (Enum-like pattern)
 export const ActionTypes = {
@@ -134,18 +134,20 @@ export const AppStateProvider = ({ children }) => {
         // Load persisted state
         const persistedState = await StorageService.getPersistedState();
         
-        // Initialize theme
-        const initialTheme = ThemeService.getInitialTheme();
+        // Initialize theme (light | dark | auto | high-contrast)
+        const themeName = await getInitialThemeName();
+        const prefersDark = typeof window !== 'undefined' && window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)').matches : false;
+        const effectiveTheme = themeName === 'auto' ? (prefersDark ? 'dark' : 'light') : themeName;
         
         const hydratedState = {
           ...persistedState,
-          isDarkMode: initialTheme
+          isDarkMode: effectiveTheme === 'dark'
         };
 
         dispatch({ type: ActionTypes.HYDRATE_STATE, payload: hydratedState });
         
-        // Apply theme
-        ThemeService.applyTheme(initialTheme);
+        // Apply theme classes via ThemeService
+        applyThemeName(themeName);
         
         dispatch({ type: ActionTypes.SET_LOADING, payload: false });
       } catch (error) {
@@ -181,13 +183,15 @@ export const AppStateProvider = ({ children }) => {
 
     setDarkMode: (isDark) => {
       dispatch({ type: ActionTypes.SET_DARK_MODE, payload: isDark });
-      ThemeService.applyTheme(isDark);
+      const themeName = isDark ? 'dark' : 'light';
+      applyThemeName(themeName);
     },
 
     toggleDarkMode: () => {
       const newMode = !state.isDarkMode;
       dispatch({ type: ActionTypes.SET_DARK_MODE, payload: newMode });
-      ThemeService.applyTheme(newMode);
+      const themeName = newMode ? 'dark' : 'light';
+      applyThemeName(themeName);
     },
 
     setLeftNavVisible: (isVisible) => {

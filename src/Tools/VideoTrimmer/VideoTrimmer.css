@@ -206,11 +206,7 @@
     box-sizing: border-box;
 }
 
-.time-input:focus {
-    outline: none;
-    border-color: var(--tool-primary-color);
-    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
-}
+.time-input:focus-visible { outline: none; border-color: var(--tool-primary-color); box-shadow: 0 0 0 3px rgba(99,102,241,0.1); }
 
 .seek-btn {
     background: linear-gradient(135deg, var(--tool-info-color), var(--tool-accent-color));

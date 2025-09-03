@@ -64,10 +64,7 @@
     transition: border-color var(--transition-normal);
 }
 
-.search-input:focus {
-    outline: none;
-    border-color: var(--primary-color);
-}
+.search-input:focus-visible { outline: none; border-color: var(--primary-color); box-shadow: var(--shadow-focus); }
 
 .search-icon {
     position: absolute;

@@ -83,6 +83,15 @@ class ErrorBoundary extends React.Component {
 
   render() {
     if (this.state.hasError) {
+      // Custom fallback support
+      if (this.props.fallback) {
+        const { error, errorInfo, errorId } = this.state;
+        const fallback = this.props.fallback;
+        if (typeof fallback === 'function') {
+          return fallback({ error, errorInfo, reset: this.handleRetry, errorId });
+        }
+        return fallback;
+      }
       // Custom fallback UI based on error type
       const isChunkLoadError = this.state.error?.name === 'ChunkLoadError';
       const isNetworkError = this.state.error?.message?.includes('fetch') || 

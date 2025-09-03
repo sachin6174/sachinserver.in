@@ -43,14 +43,10 @@
     border: 2px solid var(--border-color, #ddd);
     border-radius: 8px;
     font-size: 1rem;
-    outline: none;
     transition: border-color 0.3s ease;
 }
 
-.url-input:focus {
-    border-color: var(--primary-color, #007bff);
-    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
-}
+.url-input:focus-visible { border-color: var(--primary-color, #007bff); box-shadow: var(--shadow-focus); }
 
 .download-btn {
     padding: 12px 24px;
@@ -68,7 +64,7 @@
 .download-btn:hover:not(:disabled) {
     background: linear-gradient(135deg, #CC0000, #990000);
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(255, 0, 0, 0.3);
+    box-shadow: var(--shadow-md);
 }
 
 .download-btn:disabled {
@@ -94,9 +90,10 @@
     border: 2px solid var(--border-color, #ddd);
     border-radius: 6px;
     font-size: 0.9rem;
-    outline: none;
     cursor: pointer;
 }
+
+.quality-selector select:focus-visible { outline: none; border-color: var(--primary-color, #007bff); box-shadow: var(--shadow-focus); }
 
 .youtube-downloader__result {
     background: var(--card-background, #ffffff);
@@ -104,7 +101,7 @@
     padding: 25px;
     margin-bottom: 30px;
     border: 1px solid var(--border-color, #e0e0e0);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow-md);
 }
 
 .video-info {
@@ -119,7 +116,7 @@
     height: 112px;
     object-fit: cover;
     border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    box-shadow: var(--shadow-sm);
     flex-shrink: 0;
 }
 
@@ -182,7 +179,7 @@
     border-color: var(--primary-color, #007bff);
     background: var(--hover-background, #e7f3ff);
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.15);
+    box-shadow: var(--shadow-md);
 }
 
 .quality-badge {

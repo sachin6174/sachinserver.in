@@ -75,12 +75,8 @@
     border-color: var(--accent-color);
 }
 
-.input-field input:focus,
-.input-field textarea:focus {
-    outline: none;
-    border-color: var(--accent-color);
-    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
-}
+.input-field input:focus-visible,
+.input-field textarea:focus-visible { outline: none; border-color: var(--accent-color); box-shadow: var(--shadow-focus); }
 
 .input-field textarea {
     min-height: 100px;
@@ -117,53 +113,21 @@
     gap: 8px;
 }
 
-.save-btn {
-    background: #28a745;
-    color: white;
-    box-shadow: 0 2px 8px rgba(40, 167, 69, 0.3);
-}
+.save-btn { background: #28a745; color: white; box-shadow: var(--tool-shadow-sm); }
 
-.save-btn:hover {
-    background: #218838;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(40, 167, 69, 0.4);
-}
+.save-btn:hover { background: #218838; transform: translateY(-2px); box-shadow: var(--tool-shadow-md); }
 
-.update-btn {
-    background: #ffc107;
-    color: #212529;
-    box-shadow: 0 2px 8px rgba(255, 193, 7, 0.3);
-}
+.update-btn { background: #ffc107; color: #212529; box-shadow: var(--tool-shadow-sm); }
 
-.update-btn:hover {
-    background: #e0a800;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(255, 193, 7, 0.4);
-}
+.update-btn:hover { background: #e0a800; transform: translateY(-2px); box-shadow: var(--tool-shadow-md); }
 
-.cancel-btn {
-    background: #6c757d;
-    color: white;
-    box-shadow: 0 2px 8px rgba(108, 117, 125, 0.3);
-}
+.cancel-btn { background: #6c757d; color: white; box-shadow: var(--tool-shadow-sm); }
 
-.cancel-btn:hover {
-    background: #5a6268;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(108, 117, 125, 0.4);
-}
+.cancel-btn:hover { background: #5a6268; transform: translateY(-2px); box-shadow: var(--tool-shadow-md); }
 
-.clear-all-btn {
-    background: #dc3545;
-    color: white;
-    box-shadow: 0 2px 8px rgba(220, 53, 69, 0.3);
-}
+.clear-all-btn { background: #dc3545; color: white; box-shadow: var(--tool-shadow-sm); }
 
-.clear-all-btn:hover {
-    background: #c82333;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(220, 53, 69, 0.4);
-}
+.clear-all-btn:hover { background: #c82333; transform: translateY(-2px); box-shadow: var(--tool-shadow-md); }
 
 .storage-items-section {
     background: var(--card-bg);
@@ -206,10 +170,7 @@
     transition: all 0.2s ease;
 }
 
-.storage-item:hover {
-    border-color: var(--accent-color);
-    box-shadow: 0 2px 8px var(--shadow-color);
-}
+.storage-item:hover { border-color: var(--accent-color); box-shadow: var(--tool-shadow-sm); }
 
 .storage-item-content {
     flex: 1;

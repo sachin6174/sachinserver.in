@@ -258,17 +258,13 @@
     font-size: 14px;
     line-height: 1.5;
     resize: vertical;
-    outline: none;
     transition: none;
     tab-size: 4;
     white-space: pre-wrap;
     word-wrap: break-word;
 }
 
-.latex-textarea:focus {
-    outline: none;
-    border: none;
-}
+.latex-textarea:focus-visible { outline: none; box-shadow: var(--shadow-focus); }
 
 .latex-textarea.split {
     height: 100%;

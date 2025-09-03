@@ -1,5 +1,6 @@
 import React, { useState, useCallback, useRef, useMemo } from 'react';
 import './EncoderTool.css';
+import { Button, Textarea } from '../../ui';
 
 const EncoderTool = () => {
     const [inputText, setInputText] = useState('');
@@ -225,46 +226,30 @@ const EncoderTool = () => {
             <div className="encoder-tool">
                 <div className="encoding-tabs">
                     {Object.entries(encodingMethods).map(([key, method]) => (
-                        <button
+                        <Button
                             key={key}
+                            size="sm"
+                            variant={activeTab === key ? 'solid' : 'outline'}
                             className={`encoding-tab ${activeTab === key ? 'active' : ''}`}
                             onClick={() => setActiveTab(key)}
                             title={method.description}
                         >
                             {method.name}
-                        </button>
+                        </Button>
                     ))}
                 </div>
 
                 <div className="tool-controls">
                     <div className="direction-selector">
-                        <button
-                            className={`direction-btn ${direction === 'encode' ? 'active' : ''}`}
-                            onClick={() => setDirection('encode')}
-                        >
-                            🔒 Encode
-                        </button>
-                        <button
-                            className={`direction-btn ${direction === 'decode' ? 'active' : ''}`}
-                            onClick={() => setDirection('decode')}
-                        >
-                            🔓 Decode
-                        </button>
+                        <Button size="sm" variant={direction === 'encode' ? 'solid' : 'outline'} className={`direction-btn ${direction === 'encode' ? 'active' : ''}`} onClick={() => setDirection('encode')}>🔒 Encode</Button>
+                        <Button size="sm" variant={direction === 'decode' ? 'solid' : 'outline'} className={`direction-btn ${direction === 'decode' ? 'active' : ''}`} onClick={() => setDirection('decode')}>🔓 Decode</Button>
                     </div>
 
                     <div className="control-buttons">
-                        <button className="btn btn-sample" onClick={loadSample}>
-                            📄 Load Sample
-                        </button>
-                        <button className="btn btn-upload" onClick={() => fileInputRef.current?.click()}>
-                            📁 Upload File
-                        </button>
-                        <button className="btn btn-swap" onClick={swapInputOutput}>
-                            🔄 Swap
-                        </button>
-                        <button className="btn btn-clear" onClick={clearAll}>
-                            🗑️ Clear
-                        </button>
+                        <Button className="btn btn-sample" onClick={loadSample}>📄 Load Sample</Button>
+                        <Button className="btn btn-upload" onClick={() => fileInputRef.current?.click()}>📁 Upload File</Button>
+                        <Button className="btn btn-swap" variant="outline" onClick={swapInputOutput}>🔄 Swap</Button>
+                        <Button className="btn btn-clear" variant="ghost" onClick={clearAll}>🗑️ Clear</Button>
                     </div>
                 </div>
 
@@ -289,7 +274,7 @@ const EncoderTool = () => {
                 </div>
 
                 {error && (
-                    <div className="error-message">
+                    <div className="error-message" role="alert" aria-live="assertive">
                         <span className="error-icon">⚠️</span>
                         {error}
                     </div>
@@ -300,13 +285,7 @@ const EncoderTool = () => {
                         <div className="section-header">
                             <h3>{direction === 'encode' ? 'Input Text' : 'Encoded Text'}</h3>
                             <div className="header-actions">
-                                <button
-                                    className="btn-icon"
-                                    onClick={() => copyToClipboard(inputText)}
-                                    title="Copy input"
-                                >
-                                    📋
-                                </button>
+                                <Button size="sm" variant="outline" className="btn-icon" onClick={() => copyToClipboard(inputText)} title="Copy input" aria-label="Copy input to clipboard">📋</Button>
                             </div>
                         </div>
                         <div
@@ -315,7 +294,7 @@ const EncoderTool = () => {
                             onDragLeave={handleDragLeave}
                             onDrop={handleDrop}
                         >
-                            <textarea
+                            <Textarea
                                 value={inputText}
                                 onChange={(e) => setInputText(e.target.value)}
                                 placeholder={`Enter text to ${direction} using ${encodingMethods[activeTab].name}...`}
@@ -350,26 +329,12 @@ const EncoderTool = () => {
                         <div className="section-header">
                             <h3>{direction === 'encode' ? 'Encoded Text' : 'Decoded Text'}</h3>
                             <div className="header-actions">
-                                <button
-                                    className="btn-icon"
-                                    onClick={() => copyToClipboard(outputText)}
-                                    title="Copy output"
-                                    disabled={!outputText}
-                                >
-                                    📋
-                                </button>
-                                <button
-                                    className="btn-icon"
-                                    onClick={() => downloadFile(outputText, `${direction}d_${activeTab}.txt`)}
-                                    title="Download output"
-                                    disabled={!outputText}
-                                >
-                                    💾
-                                </button>
+                                <Button size="sm" variant="outline" className="btn-icon" onClick={() => copyToClipboard(outputText)} title="Copy output" aria-label="Copy output to clipboard" disabled={!outputText}>📋</Button>
+                                <Button size="sm" className="btn-icon" onClick={() => downloadFile(outputText, `${direction}d_${activeTab}.txt`)} title="Download output" aria-label="Download output" disabled={!outputText}>💾</Button>
                             </div>
                         </div>
                         <div className="output-container">
-                            <textarea
+                            <Textarea
                                 value={outputText}
                                 readOnly
                                 placeholder={`${direction === 'encode' ? 'Encoded' : 'Decoded'} text will appear here...`}

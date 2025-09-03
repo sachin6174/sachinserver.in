@@ -1,54 +1,47 @@
 /* Modern Shared CSS Variables with Color Theory for RightBrain Components */
 :root {
-    --primary-color: #6366f1;
-    --primary-dark: #4f46e5;
-    --secondary-color: #8b5cf6;
-    --accent-color: #06b6d4;
-    --text-primary: #1f2937;
-    --text-secondary: #6b7280;
-    --text-light: #9ca3af;
-    --background-primary: #ffffff;
-    --background-secondary: #f9fafb;
-    --background-tertiary: #f3f4f6;
-    --border-color: #e5e7eb;
-    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-    --radius-sm: 0.375rem;
-    --radius-md: 0.5rem;
-    --radius-lg: 0.75rem;
-    --radius-xl: 1rem;
-    --transition-fast: 0.15s ease-in-out;
-    --transition-normal: 0.3s ease-in-out;
-    --transition-slow: 0.5s ease-in-out;
-    
-    /* Z-index system for consistent layering */
-    --z-base: 1;
-    --z-dropdown: 100;
-    --z-overlay: 500;
-    --z-modal: 1000;
-    --z-notification: 1100;
-    --z-tooltip: 1200;
-    --z-max: 9999;
+    /* Bridge to global tokens */
+    --primary-color: var(--primary);
+    --primary-dark: var(--brand-700);
+    --secondary-color: var(--accent);
+    --accent-color: var(--accent);
+    --text-primary: var(--text);
+    --text-secondary: var(--text-secondary);
+    --text-light: var(--text-muted);
+    --background-primary: var(--surface);
+    --background-secondary: var(--surface-2);
+    --background-tertiary: var(--surface-2);
+    --border-color: var(--border);
+    --shadow-sm: var(--shadow-sm);
+    --shadow-md: var(--shadow-md);
+    --shadow-lg: var(--shadow-lg);
+    --shadow-xl: var(--shadow-xl);
+    --radius-sm: var(--radius-sm);
+    --radius-md: var(--radius-md);
+    --radius-lg: var(--radius-lg);
+    --radius-xl: var(--radius-xl);
+    --transition-fast: var(--duration-150) var(--ease-standard);
+    --transition-normal: var(--duration-200) var(--ease-standard);
+    --transition-slow: var(--duration-300) var(--ease-standard);
 }
 
 /* Modern dark mode overrides */
 body.dark-mode {
-    --primary-color: #818cf8;
-    --secondary-color: #a78bfa;
-    --accent-color: #22d3ee;
-    --text-primary: #ffffff;
-    --text-secondary: #b8bcc8;
-    --text-light: #9ca3af;
-    --background-primary: #1a1d23;
-    --background-secondary: #252932;
-    --background-tertiary: #2f3349;
-    --border-color: #3a3f54;
-    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.5);
-    --shadow-md: 0 3px 6px rgba(0, 0, 0, 0.6);
-    --shadow-lg: 0 10px 20px rgba(0, 0, 0, 0.7);
-    --shadow-xl: 0 14px 28px rgba(0, 0, 0, 0.8);
+    /* Global tokens handle dark mode values already */
+    --primary-color: var(--primary);
+    --secondary-color: var(--accent);
+    --accent-color: var(--accent);
+    --text-primary: var(--text);
+    --text-secondary: var(--text-secondary);
+    --text-light: var(--text-muted);
+    --background-primary: var(--surface);
+    --background-secondary: var(--surface-2);
+    --background-tertiary: var(--surface-2);
+    --border-color: var(--border);
+    --shadow-sm: var(--shadow-sm);
+    --shadow-md: var(--shadow-md);
+    --shadow-lg: var(--shadow-lg);
+    --shadow-xl: var(--shadow-xl);
 }
 
 /* Bridge generic CSS variables to RightBrain theme vars */
@@ -62,21 +55,21 @@ body.dark-mode {
     --background-color: var(--background-primary);
     --surface-color: var(--background-secondary);
     --text-color: var(--text-primary);
-    --border-color: var(--border-color);
+    --border-color: var(--border);
     --accent-color: var(--primary-color);
 }
 
 /* Premium container styles */
 .rightbrain-container {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-    line-height: 1.4;
+    font-family: var(--font-sans, 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif);
+    line-height: var(--lh-body, 1.6);
     color: var(--text-primary);
     background: var(--background-primary);
     min-height: 100vh;
-    padding: 0.75rem;
+    padding: var(--space-4);
     overflow-y: auto;
     overflow-x: hidden;
-    font-size: 14px;
+    font-size: var(--font-body, 16px);
 }
 
 /* When navigation panel is hidden, expand the content - COMPACT */
@@ -144,8 +137,332 @@ body.dark-mode {
     position: relative;
     overflow: hidden;
     cursor: pointer;
+    /* Rely on global focus ring; suppress non-visible focus only */
+    font-size: 0.8rem;
+}
+
+.rightbrain-card:focus:not(:focus-visible) { outline: none; }
+
+@media (min-width: 768px) {
+    .rightbrain-card {
+        padding: 0.5rem;
+        margin-bottom: 0.4rem;
+        font-size: 0.85rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .rightbrain-card {
+        padding: 0.6rem;
+        margin-bottom: 0.5rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* Enhanced hover effects for desktop */
+@media (hover: hover) and (pointer: fine) {
+    .rightbrain-card:hover {
+        transform: translateY(-8px);
+        box-shadow: var(--shadow-xl);
+        border-background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+    .rightbrain-card:active {
+        transform: scale(0.98);
+        transition: transform 0.1s ease;
+    }
+}
+
+/* Typography */
+.rightbrain-card h3 {
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    font-size: 0.875rem;
+    line-height: 1.3;
+}
+
+@media (min-width: 768px) {
+    .rightbrain-card h3 {
+        font-size: 0.9375rem;
+        margin-bottom: 0.625rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .rightbrain-card h3 {
+        font-size: 1rem;
+        margin-bottom: 0.75rem;
+    }
+}
+
+.rightbrain-card p {
+    color: var(--text-secondary);
+    line-height: 1.4;
+    margin-bottom: 0.5rem;
+    font-size: 0.6875rem;
+}
+
+@media (min-width: 768px) {
+    .rightbrain-card p {
+        font-size: 0.75rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .rightbrain-card p {
+        font-size: 0.8125rem;
+    }
+}
+
+/* Section styling */
+.section-title {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    text-align: center;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+@media (min-width: 768px) {
+    .section-title {
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .section-title {
+        font-size: 2.5rem;
+        margin-bottom: 2rem;
+    }
+}
+
+/* Hero section */
+.hero-section {
+    padding: 4rem 2rem;
+    text-align: center;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.08) 0%, rgba(236, 72, 153, 0.08) 100%);
+    border-radius: var(--radius-xl);
+    margin: 2rem auto 4rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(99, 102, 241, 0.05) 0%, transparent 70%);
+    animation: float 6s ease-in-out infinite;
+}
+
+/* Animations */
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Loading spinner */
+.loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid var(--background-tertiary);
+    border-radius: 50%;
+    border-top: 4px solid var(--primary-color);
+    animation: spin 1s linear infinite;
+    margin: 2rem auto;
+}
+
+/* Button styles */
+.back-button,
+.rightbrain-button {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    justify-content: center;
+    /* Better mobile touch targets */
+    min-height: 44px;
+    min-width: 44px;
+    touch-action: manipulation; /* Improve touch responsiveness */
+}
+
+.back-button:hover,
+.rightbrain-button:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
+}
+
+body.dark-mode .back-button,
+body.dark-mode .rightbrain-button {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+}
+
+body.dark-mode .back-button:hover,
+body.dark-mode .rightbrain-button:hover {
+    background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+}
+
+/* Hover effects */
+.hover-effect {
+    transition: all var(--transition-normal);
+}
+
+.hover-effect:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+/* Image styles */
+.rightbrain-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: var(--radius-md);
+    margin: 1rem 0;
+    transition: transform var(--transition-normal);
+}
+
+.rightbrain-image:hover {
+    transform: scale(1.02);
+}
+
+/* Question/Quote styling */
+.card-question {
+    font-style: italic;
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+    background: var(--background-secondary);
+    padding: 1rem;
+    border-radius: var(--radius-md);
+    border-left: 4px solid var(--primary-color);
+}
+
+/* ===== RESPONSIVE DESIGN ENHANCEMENTS ===== */
+
+/* Enhanced responsive design for better mobile/desktop compatibility */
+
+/* Base container improvements */
+.rightbrain-container {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    line-height: 1.6;
+    color: var(--text-primary);
+    background: linear-gradient(135deg, var(--background-primary) 0%, var(--background-secondary) 100%);
+    min-height: 100vh;
+    padding: 1rem;
+    overflow-y: auto;
+    /* Better mobile overflow handling */
+    overflow-x: hidden;
+}
+
+/* When navigation panel is hidden, expand the content */
+.nav-hidden .rightbrain-container {
+    padding: 0.5rem;
+}
+
+/* Dynamic padding based on screen size */
+@media (min-width: 768px) {
+    .rightbrain-container {
+        padding: 2rem;
+    }
+
+    .nav-hidden .rightbrain-container {
+        padding: 1.5rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .rightbrain-container {
+        padding: 2.5rem;
+    }
+
+    .nav-hidden .rightbrain-container {
+        padding: 2rem;
+    }
+}
+
+/* Enhanced card containers with better responsive grid */
+.cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0.3rem;
+    padding: 0.3rem 0;
+    max-width: 1400px;
+    margin: 0 auto;
+    /* Better mobile spacing */
+}
+
+@media (min-width: 768px) {
+    .cards-container {
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 0.4rem;
+        padding: 0.4rem 0;
+    }
+}
+
+@media (min-width: 1024px) {
+    .cards-container {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 0.5rem;
+        padding: 0.5rem 0;
+    }
+}
+
+/* Card styles */
+.rightbrain-card {
+    background: linear-gradient(135deg, var(--background-primary) 0%, var(--background-secondary) 100%);
+    border-radius: var(--radius-md);
+    padding: 0.4rem;
+    margin-bottom: 0.3rem;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-color);
+    transition: all var(--transition-normal);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
     /* Enhanced accessibility */
-    outline: none;
     font-size: 0.8rem;
 }
 
@@ -469,331 +786,6 @@ body.dark-mode .rightbrain-button:hover {
     overflow: hidden;
     cursor: pointer;
     /* Enhanced accessibility */
-    outline: none;
-    font-size: 0.8rem;
-}
-
-@media (min-width: 768px) {
-    .rightbrain-card {
-        padding: 0.5rem;
-        margin-bottom: 0.4rem;
-        font-size: 0.85rem;
-    }
-}
-
-@media (min-width: 1024px) {
-    .rightbrain-card {
-        padding: 0.6rem;
-        margin-bottom: 0.5rem;
-        font-size: 0.9rem;
-    }
-}
-
-/* Enhanced hover effects for desktop */
-@media (hover: hover) and (pointer: fine) {
-    .rightbrain-card:hover {
-        transform: translateY(-8px);
-        box-shadow: var(--shadow-xl);
-        border-background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    }
-}
-
-/* Touch device optimizations */
-@media (hover: none) and (pointer: coarse) {
-    .rightbrain-card:active {
-        transform: scale(0.98);
-        transition: transform 0.1s ease;
-    }
-}
-
-/* Typography */
-.rightbrain-card h3 {
-    color: var(--text-primary);
-    margin-bottom: 0.5rem;
-    font-weight: 600;
-    font-size: 0.875rem;
-    line-height: 1.3;
-}
-
-@media (min-width: 768px) {
-    .rightbrain-card h3 {
-        font-size: 0.9375rem;
-        margin-bottom: 0.625rem;
-    }
-}
-
-@media (min-width: 1024px) {
-    .rightbrain-card h3 {
-        font-size: 1rem;
-        margin-bottom: 0.75rem;
-    }
-}
-
-.rightbrain-card p {
-    color: var(--text-secondary);
-    line-height: 1.4;
-    margin-bottom: 0.5rem;
-    font-size: 0.6875rem;
-}
-
-@media (min-width: 768px) {
-    .rightbrain-card p {
-        font-size: 0.75rem;
-    }
-}
-
-@media (min-width: 1024px) {
-    .rightbrain-card p {
-        font-size: 0.8125rem;
-    }
-}
-
-/* Section styling */
-.section-title {
-    font-size: 1.75rem;
-    font-weight: 800;
-    color: var(--text-primary);
-    margin-bottom: 1rem;
-    text-align: center;
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-@media (min-width: 768px) {
-    .section-title {
-        font-size: 2rem;
-        margin-bottom: 1.5rem;
-    }
-}
-
-@media (min-width: 1024px) {
-    .section-title {
-        font-size: 2.5rem;
-        margin-bottom: 2rem;
-    }
-}
-
-/* Hero section */
-.hero-section {
-    padding: 4rem 2rem;
-    text-align: center;
-    background: linear-gradient(135deg, rgba(99, 102, 241, 0.08) 0%, rgba(236, 72, 153, 0.08) 100%);
-    border-radius: var(--radius-xl);
-    margin: 2rem auto 4rem;
-    position: relative;
-    overflow: hidden;
-}
-
-.hero-section::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle, rgba(99, 102, 241, 0.05) 0%, transparent 70%);
-    animation: float 6s ease-in-out infinite;
-}
-
-/* Animations */
-@keyframes float {
-
-    0%,
-    100% {
-        transform: translateY(0px);
-    }
-
-    50% {
-        transform: translateY(-10px);
-    }
-}
-
-@keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
-
-    100% {
-        transform: rotate(360deg);
-    }
-}
-
-/* Loading spinner */
-.loading-spinner {
-    width: 50px;
-    height: 50px;
-    border: 4px solid var(--background-tertiary);
-    border-radius: 50%;
-    border-top: 4px solid var(--primary-color);
-    animation: spin 1s linear infinite;
-    margin: 2rem auto;
-}
-
-/* Button styles */
-.back-button,
-.rightbrain-button {
-    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
-    color: white;
-    border: none;
-    padding: 0.75rem 1.5rem;
-    border-radius: var(--radius-md);
-    font-weight: 600;
-    font-size: 0.875rem;
-    cursor: pointer;
-    transition: all var(--transition-normal);
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    justify-content: center;
-    /* Better mobile touch targets */
-    min-height: 44px;
-    min-width: 44px;
-    touch-action: manipulation; /* Improve touch responsiveness */
-}
-
-.back-button:hover,
-.rightbrain-button:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-lg);
-    background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
-}
-
-body.dark-mode .back-button,
-body.dark-mode .rightbrain-button {
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-}
-
-body.dark-mode .back-button:hover,
-body.dark-mode .rightbrain-button:hover {
-    background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
-}
-
-/* Hover effects */
-.hover-effect {
-    transition: all var(--transition-normal);
-}
-
-.hover-effect:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-lg);
-}
-
-/* Image styles */
-.rightbrain-image {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border-radius: var(--radius-md);
-    margin: 1rem 0;
-    transition: transform var(--transition-normal);
-}
-
-.rightbrain-image:hover {
-    transform: scale(1.02);
-}
-
-/* Question/Quote styling */
-.card-question {
-    font-style: italic;
-    color: var(--text-secondary);
-    margin-bottom: 1.5rem;
-    font-size: 1.1rem;
-    background: var(--background-secondary);
-    padding: 1rem;
-    border-radius: var(--radius-md);
-    border-left: 4px solid var(--primary-color);
-}
-
-/* ===== RESPONSIVE DESIGN ENHANCEMENTS ===== */
-
-/* Enhanced responsive design for better mobile/desktop compatibility */
-
-/* Base container improvements */
-.rightbrain-container {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-    line-height: 1.6;
-    color: var(--text-primary);
-    background: linear-gradient(135deg, var(--background-primary) 0%, var(--background-secondary) 100%);
-    min-height: 100vh;
-    padding: 1rem;
-    overflow-y: auto;
-    /* Better mobile overflow handling */
-    overflow-x: hidden;
-}
-
-/* When navigation panel is hidden, expand the content */
-.nav-hidden .rightbrain-container {
-    padding: 0.5rem;
-}
-
-/* Dynamic padding based on screen size */
-@media (min-width: 768px) {
-    .rightbrain-container {
-        padding: 2rem;
-    }
-
-    .nav-hidden .rightbrain-container {
-        padding: 1.5rem;
-    }
-}
-
-@media (min-width: 1024px) {
-    .rightbrain-container {
-        padding: 2.5rem;
-    }
-
-    .nav-hidden .rightbrain-container {
-        padding: 2rem;
-    }
-}
-
-/* Enhanced card containers with better responsive grid */
-.cards-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 0.3rem;
-    padding: 0.3rem 0;
-    max-width: 1400px;
-    margin: 0 auto;
-    /* Better mobile spacing */
-}
-
-@media (min-width: 768px) {
-    .cards-container {
-        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-        gap: 0.4rem;
-        padding: 0.4rem 0;
-    }
-}
-
-@media (min-width: 1024px) {
-    .cards-container {
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 0.5rem;
-        padding: 0.5rem 0;
-    }
-}
-
-/* Card styles */
-.rightbrain-card {
-    background: linear-gradient(135deg, var(--background-primary) 0%, var(--background-secondary) 100%);
-    border-radius: var(--radius-md);
-    padding: 0.4rem;
-    margin-bottom: 0.3rem;
-    box-shadow: var(--shadow-sm);
-    border: 1px solid var(--border-color);
-    transition: all var(--transition-normal);
-    position: relative;
-    overflow: hidden;
-    cursor: pointer;
-    /* Enhanced accessibility */
-    outline: none;
     font-size: 0.8rem;
 }
 
@@ -1012,7 +1004,7 @@ body.dark-mode .rightbrain-button:hover {
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 1000;
+    z-index: var(--z-dropdown);
     padding: 1rem;
 }
 

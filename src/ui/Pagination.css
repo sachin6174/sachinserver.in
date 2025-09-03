@@ -1,0 +1,10 @@
+.ui-pagination { display: inline-flex; align-items: center; gap: 6px; }
+.ui-pagination__list { list-style: none; padding: 0; margin: 0; display: inline-flex; gap: 4px; }
+.ui-pagination__btn { background: var(--surface); color: var(--text); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 6px 8px; cursor: pointer; }
+.ui-pagination__btn:disabled { opacity: .6; cursor: not-allowed; }
+.ui-pagination__btn:focus-visible { outline: none; box-shadow: var(--shadow-focus); }
+.ui-pagination__page { background: var(--surface); color: var(--text); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 6px 10px; cursor: pointer; }
+.ui-pagination__page.is-active { background: var(--primary); color: var(--primary-contrast); border-color: var(--primary); }
+.ui-pagination__page:focus-visible { outline: none; box-shadow: var(--shadow-focus); }
+.ui-pagination__ellipsis { color: var(--text-muted); padding: 6px 10px; }
+

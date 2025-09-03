@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './ColorPickerTool.css';
+import { Button, Select } from '../../ui';
 
 const ColorPickerTool = () => {
     const [selectedColor, setSelectedColor] = useState('#1e90ff');
@@ -102,7 +103,7 @@ const ColorPickerTool = () => {
 
     return (
         <div className="color-picker-tool">
-            {message && <div className="message">{message}</div>}
+            {message && <div className="message" role="status" aria-live="polite">{message}</div>}
 
             <div className="color-picker-container">
                 <div className="color-display-section">
@@ -126,26 +127,21 @@ const ColorPickerTool = () => {
                             onChange={handleColorChange}
                             className="color-input"
                         />
-                        <button onClick={handleEyeDropper} className="eyedropper-btn">
-                            🔍 Pick from Screen
-                        </button>
-                        <button onClick={saveColor} className="save-color-btn">
-                            💾 Save Color
-                        </button>
+                        <Button className="eyedropper-btn" onClick={handleEyeDropper}>🔍 Pick from Screen</Button>
+                        <Button className="save-color-btn" onClick={saveColor}>💾 Save Color</Button>
                     </div>
 
                     <div className="copy-controls">
-                        <select
+                        <Select
                             value={copyFormat}
                             onChange={(e) => setCopyFormat(e.target.value)}
-                        >
-                            <option value="hex">HEX Format</option>
-                            <option value="rgb">RGB Format</option>
-                            <option value="hsl">HSL Format</option>
-                        </select>
-                        <button onClick={copyToClipboard} className="copy-btn">
-                            📋 Copy Color
-                        </button>
+                            options={[
+                                { value: 'hex', label: 'HEX Format' },
+                                { value: 'rgb', label: 'RGB Format' },
+                                { value: 'hsl', label: 'HSL Format' },
+                            ]}
+                        />
+                        <Button onClick={copyToClipboard} className="copy-btn">📋 Copy Color</Button>
                     </div>
                 </div>
             </div>

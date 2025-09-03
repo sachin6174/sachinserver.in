@@ -1,5 +1,6 @@
 import React, { useState, useCallback, useRef } from 'react';
 import './YAMLTool.css';
+import { Button, Textarea } from '../../ui';
 
 const YAMLTool = () => {
     const [yamlInput, setYamlInput] = useState('');
@@ -259,46 +260,16 @@ servers:
         <div className="tools-container">
             <div className="yaml-tool">
                 <div className="tool-tabs">
-                    <button
-                        className={`tool-tab ${activeTab === 'yaml-to-json' ? 'active' : ''}`}
-                        onClick={() => setActiveTab('yaml-to-json')}
-                    >
-                        YAML → JSON
-                    </button>
-                    <button
-                        className={`tool-tab ${activeTab === 'json-to-yaml' ? 'active' : ''}`}
-                        onClick={() => setActiveTab('json-to-yaml')}
-                    >
-                        JSON → YAML
-                    </button>
-                    <button
-                        className={`tool-tab ${activeTab === 'validate' ? 'active' : ''}`}
-                        onClick={() => setActiveTab('validate')}
-                    >
-                        Validate
-                    </button>
+                    <Button size="sm" variant={activeTab === 'yaml-to-json' ? 'solid' : 'outline'} className={`tool-tab ${activeTab === 'yaml-to-json' ? 'active' : ''}`} onClick={() => setActiveTab('yaml-to-json')}>YAML → JSON</Button>
+                    <Button size="sm" variant={activeTab === 'json-to-yaml' ? 'solid' : 'outline'} className={`tool-tab ${activeTab === 'json-to-yaml' ? 'active' : ''}`} onClick={() => setActiveTab('json-to-yaml')}>JSON → YAML</Button>
+                    <Button size="sm" variant={activeTab === 'validate' ? 'solid' : 'outline'} className={`tool-tab ${activeTab === 'validate' ? 'active' : ''}`} onClick={() => setActiveTab('validate')}>Validate</Button>
                 </div>
 
                 <div className="tool-controls">
                     <div className="control-group">
-                        <button
-                            className="btn btn-sample"
-                            onClick={loadSample}
-                        >
-                            📄 Load Sample
-                        </button>
-                        <button
-                            className="btn btn-upload"
-                            onClick={() => fileInputRef.current?.click()}
-                        >
-                            📁 Upload File
-                        </button>
-                        <button
-                            className="btn btn-clear"
-                            onClick={clearAll}
-                        >
-                            🗑️ Clear All
-                        </button>
+                        <Button className="btn btn-sample" onClick={loadSample}>📄 Load Sample</Button>
+                        <Button className="btn btn-upload" onClick={() => fileInputRef.current?.click()}>📁 Upload File</Button>
+                        <Button className="btn btn-clear" variant="ghost" onClick={clearAll}>🗑️ Clear All</Button>
                     </div>
                 </div>
 
@@ -332,13 +303,10 @@ servers:
                             onDragLeave={handleDragLeave}
                             onDrop={handleDrop}
                         >
-                            <textarea
+                            <Textarea
                                 value={yamlInput}
                                 onChange={(e) => setYamlInput(e.target.value)}
-                                placeholder={activeTab === 'json-to-yaml'
-                                    ? 'Enter JSON here...'
-                                    : 'Enter YAML here or drag & drop a file...'
-                                }
+                                placeholder={activeTab === 'json-to-yaml' ? 'Enter JSON here...' : 'Enter YAML here or drag & drop a file...'}
                                 className="yaml-textarea"
                                 rows={15}
                             />
@@ -359,36 +327,24 @@ servers:
                     <div className="conversion-section">
                         <div className="conversion-controls">
                             {activeTab === 'yaml-to-json' && (
-                                <button
-                                    className="btn btn-primary btn-convert"
-                                    onClick={handleYamlToJson}
-                                    disabled={isLoading || !yamlInput.trim()}
-                                >
+                                <Button onClick={handleYamlToJson} disabled={isLoading || !yamlInput.trim()}>
                                     {isLoading ? '⏳ Converting...' : '🔄 Convert to JSON'}
-                                </button>
+                                </Button>
                             )}
                             {activeTab === 'json-to-yaml' && (
-                                <button
-                                    className="btn btn-primary btn-convert"
-                                    onClick={handleJsonToYaml}
-                                    disabled={isLoading || !yamlInput.trim()}
-                                >
+                                <Button onClick={handleJsonToYaml} disabled={isLoading || !yamlInput.trim()}>
                                     {isLoading ? '⏳ Converting...' : '🔄 Convert to YAML'}
-                                </button>
+                                </Button>
                             )}
                             {activeTab === 'validate' && (
-                                <button
-                                    className="btn btn-primary btn-convert"
-                                    onClick={handleValidate}
-                                    disabled={isLoading || !yamlInput.trim()}
-                                >
+                                <Button onClick={handleValidate} disabled={isLoading || !yamlInput.trim()}>
                                     {isLoading ? '⏳ Validating...' : '✅ Validate YAML'}
-                                </button>
+                                </Button>
                             )}
                         </div>
 
                         {validationResult && (
-                            <div className={`validation-result ${validationResult.type}`}>
+                            <div className={`validation-result ${validationResult.type}`} role={validationResult.type === 'error' ? 'alert' : 'status'} aria-live={validationResult.type === 'error' ? 'assertive' : 'polite'}>
                                 <div className="validation-message">
                                     {validationResult.message}
                                 </div>
@@ -408,23 +364,8 @@ servers:
                                     {activeTab === 'yaml-to-json' ? 'JSON Output' : 'YAML Output'}
                                 </h3>
                                 <div className="header-actions">
-                                    <button
-                                        className="btn-icon"
-                                        onClick={() => copyToClipboard(activeTab === 'yaml-to-json' ? jsonOutput : convertedYaml)}
-                                        title="Copy to clipboard"
-                                    >
-                                        📋
-                                    </button>
-                                    <button
-                                        className="btn-icon"
-                                        onClick={() => downloadFile(
-                                            activeTab === 'yaml-to-json' ? jsonOutput : convertedYaml,
-                                            activeTab === 'yaml-to-json' ? 'converted.json' : 'converted.yaml'
-                                        )}
-                                        title="Download file"
-                                    >
-                                        💾
-                                    </button>
+                                    <Button size="sm" variant="outline" className="btn-icon" onClick={() => copyToClipboard(activeTab === 'yaml-to-json' ? jsonOutput : convertedYaml)} title="Copy to clipboard">📋</Button>
+                                    <Button size="sm" className="btn-icon" onClick={() => downloadFile(activeTab === 'yaml-to-json' ? jsonOutput : convertedYaml, activeTab === 'yaml-to-json' ? 'converted.json' : 'converted.yaml')} title="Download file">💾</Button>
                                 </div>
                             </div>
                             <div className="output-container">

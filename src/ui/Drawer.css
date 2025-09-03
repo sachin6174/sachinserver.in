@@ -1,0 +1,6 @@
+.ui-drawer { position: fixed; inset: 0; background: color-mix(in srgb, var(--neutral-900) 50%, transparent); z-index: var(--z-overlay); display: grid; align-items: end; }
+.ui-drawer__panel { background: var(--surface); color: var(--text); border-top: 1px solid var(--border); box-shadow: var(--shadow-xl); padding: 16px; border-radius: var(--radius-lg) var(--radius-lg) 0 0; }
+.ui-drawer__title { margin: 0 0 8px; font-size: 1.1rem; }
+.ui-drawer__close { position: absolute; right: 16px; top: 8px; background: transparent; border: 1px solid var(--border); color: var(--text-secondary); border-radius: var(--radius-sm); width: 28px; height: 28px; cursor: pointer; }
+.ui-drawer__close:focus-visible { outline: none; box-shadow: var(--shadow-focus); }
+
