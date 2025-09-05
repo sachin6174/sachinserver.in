@@ -49,6 +49,7 @@ html {
         font-size: 16px; /* Prevent iOS zoom */
         padding: 0.875rem 1rem;
         min-height: 44px; /* Touch target */
+        border-radius: var(--radius-sm, 6px);
     }
 }
 
@@ -154,7 +155,7 @@ input, textarea, select, button {
     input[type="url"],
     textarea {
         font-size: 16px; /* Prevent zoom on iOS */
-        border-radius: 0; /* Reset iOS rounded corners */
+        border-radius: var(--radius-sm, 6px); /* Consistent rounded corners */
     }
 }
 
