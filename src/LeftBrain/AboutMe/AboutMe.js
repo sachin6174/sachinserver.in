@@ -115,7 +115,6 @@ const AboutMe = () => {
     const achievements = [
         "📱 Published NotingDown iOS app with active users on App Store",
         "🏢 Building enterprise solutions used by thousands of businesses",
-        "🔐 Created Chrome extensions with 1000+ downloads and 5-star ratings",
         "🛠️ 2+ years of professional iOS/macOS development experience",
         "☁️ Expert in device management systems and mobile security",
         "🔧 Swift, SwiftUI, and enterprise architecture specialist"
