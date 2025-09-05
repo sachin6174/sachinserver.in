@@ -46,84 +46,75 @@ const ContributionGraph = () => {
 
     // Fetch real LeetCode data for given username
     const fetchLeetCodeData = async (targetUsername = username) => {
-        const apis = [
-            // Try multiple LeetCode API endpoints
-            `https://leetcode-stats-api.herokuapp.com/${targetUsername}`,
-            `https://alfa-leetcode-api.onrender.com/${targetUsername}`,
-            `https://alfa-leetcode-api.onrender.com/${targetUsername}/submission`
-        ];
-
         setLoading(true);
         setError(null);
 
-        // Try each LeetCode API endpoint
-        for (let i = 0; i < apis.length; i++) {
+        const now = new Date();
+        const currentYear = now.getFullYear();
+
+        // Preferred endpoints: calendar by year (returns submissionCalendar)
+        const endpoints = [
+            `https://alfa-leetcode-api.onrender.com/${targetUsername}/calendar?year=${currentYear}`,
+            // Try previous year if needed (fills early-year gaps if API is delayed)
+            `https://alfa-leetcode-api.onrender.com/${targetUsername}/calendar?year=${currentYear - 1}`,
+            // Legacy/stat fallback
+            `https://leetcode-stats-api.herokuapp.com/${targetUsername}`
+        ];
+
+        let mergedCalendar = {};
+        let anySuccess = false;
+
+        for (let i = 0; i < endpoints.length; i++) {
+            const url = endpoints[i];
             try {
-                console.log(`Trying LeetCode API ${i + 1}:`, apis[i]);
-                
-                const response = await fetch(apis[i]);
-                
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
+                const res = await fetch(url);
+                if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                const data = await res.json();
+
+                // Extract submissionCalendar regardless of shape
+                let submissionCalendar = data?.submissionCalendar ?? data?.data?.submissionCalendar ?? {};
+                if (typeof submissionCalendar === 'string') {
+                    try { submissionCalendar = JSON.parse(submissionCalendar); } catch {}
                 }
-                
-                const data = await response.json();
-                console.log('LeetCode API Response:', data);
-                
-                // Transform the data into contribution format
-                const contributionData = generateContributionDataFromLeetCodeAPI(data, i);
-                setContributions(contributionData);
-                setError(null);
-                setLoading(false);
-                return; // Success, exit the loop
-                
-            } catch (err) {
-                console.error(`LeetCode API ${i + 1} failed:`, err);
-                if (i === apis.length - 1) {
-                    // All APIs failed
-                    setError('Unable to fetch LeetCode data from any API');
-                    setContributions(generateFallbackData());
+
+                if (submissionCalendar && typeof submissionCalendar === 'object') {
+                    // Merge calendars (later endpoints won't overwrite existing days)
+                    for (const [k, v] of Object.entries(submissionCalendar)) {
+                        if (!(k in mergedCalendar)) mergedCalendar[k] = v;
+                    }
+                    anySuccess = true;
                 }
+            } catch (e) {
+                // Continue to next endpoint
+                console.warn('LeetCode API failed:', url, e);
             }
         }
-        
+
+        if (anySuccess) {
+            const contributionData = generateContributionDataFromCalendar(mergedCalendar);
+            setContributions(contributionData);
+            setLoading(false);
+            return;
+        }
+
+        // All endpoints failed – use fallback
+        setError('Unable to fetch LeetCode data from any API');
+        setContributions(generateFallbackData());
         setLoading(false);
     };
 
-    // Generate contribution data from LeetCode API response
-    const generateContributionDataFromLeetCodeAPI = (apiData, apiIndex = 0) => {
+    // Generate contribution data from a submissionCalendar map (epochSeconds -> count)
+    const generateContributionDataFromCalendar = (submissionCalendar) => {
         const contributions = [];
-        const startDate = new Date('2025-01-01');
-        const currentDate = new Date();
-        
-        let submissionCalendar = {};
-        
-        // Handle different LeetCode API response formats
-        if (apiIndex === 0) {
-            // leetcode-stats-api.herokuapp.com format
-            submissionCalendar = apiData.submissionCalendar || {};
-        } else if (apiIndex === 1 || apiIndex === 2) {
-            // alfa-leetcode-api.onrender.com format
-            submissionCalendar = apiData.submissionCalendar || apiData.data?.submissionCalendar || {};
-        }
-        
-        // If submissionCalendar is a string, parse it as JSON
-        if (typeof submissionCalendar === 'string') {
-            try {
-                submissionCalendar = JSON.parse(submissionCalendar);
-            } catch (e) {
-                console.error('Failed to parse submission calendar:', e);
-                submissionCalendar = {};
-            }
-        }
-        
-        console.log('Parsed LeetCode submission calendar:', submissionCalendar);
-        
-        for (let d = new Date(startDate); d <= currentDate; d.setDate(d.getDate() + 1)) {
-            const dateKey = Math.floor(d.getTime() / 1000).toString();
-            const count = parseInt(submissionCalendar[dateKey]) || 0;
-            
-            // Calculate level based on submission count
+        const now = new Date();
+        const currentYear = now.getFullYear();
+        // Start at Jan 1 UTC of current year
+        let epoch = Math.floor(Date.UTC(currentYear, 0, 1) / 1000);
+        const endEpoch = Math.floor(now.getTime() / 1000);
+
+        // Iterate one day at a time using UTC epochs to match API keys
+        for (; epoch <= endEpoch; epoch += 86400) {
+            const count = parseInt(submissionCalendar[String(epoch)]) || 0;
             let level = 0;
             if (count > 0) {
                 if (count >= 10) level = 4;
@@ -131,26 +122,27 @@ const ContributionGraph = () => {
                 else if (count >= 3) level = 2;
                 else level = 1;
             }
-            
             contributions.push({
-                date: new Date(d),
-                level: level,
-                count: count
+                date: new Date(epoch * 1000),
+                level,
+                count,
             });
         }
-        
+
         return contributions;
     };
 
     // Fallback data generation if API fails
     const generateFallbackData = () => {
         const contributions = [];
-        const startDate = new Date('2025-01-01');
-        const currentDate = new Date();
-        
+        const now = new Date();
+        const currentYear = now.getFullYear();
+        const startDate = new Date(Date.UTC(currentYear, 0, 1));
+        const currentDate = now;
+
         // Create realistic LeetCode problem-solving patterns
         const weekdays = [1, 2, 3, 4, 5]; // Monday to Friday (work days)
-        const currentMonth = new Date().getMonth();
+        const currentMonth = now.getMonth();
         
         for (let d = new Date(startDate); d <= currentDate; d.setDate(d.getDate() + 1)) {
             let level = 0;
@@ -215,16 +207,17 @@ const ContributionGraph = () => {
         const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 
                           'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
         const currentDate = new Date();
+        const currentYear = currentDate.getFullYear();
         
         // Show only months that have passed or current month
         for (let month = 0; month <= currentDate.getMonth(); month++) {
             const monthContributions = contributions.filter(contribution => {
-                return contribution.date.getMonth() === month && contribution.date.getFullYear() === 2025;
+                return contribution.date.getMonth() === month && contribution.date.getFullYear() === currentYear;
             });
             
             // Get first and last day of the month
-            const firstDay = new Date(2025, month, 1);
-            const lastDay = new Date(2025, month + 1, 0);
+            const firstDay = new Date(currentYear, month, 1);
+            const lastDay = new Date(currentYear, month + 1, 0);
             
             // Find the start of the first week (previous Sunday)
             const startOfWeek = new Date(firstDay);
@@ -292,7 +285,7 @@ const ContributionGraph = () => {
                     </div>
                     <div className="contribution-year">
                         <span className="info-icon">ⓘ</span>
-                        <span>2025</span>
+                        <span>{new Date().getFullYear()}</span>
                     </div>
                 </div>
                 <div className="contribution-graph loading-skeleton">
@@ -354,7 +347,7 @@ const ContributionGraph = () => {
                 </div>
                 <div className="contribution-year">
                     <span className="info-icon">ⓘ</span>
-                    <span>2025</span>
+                    <span>{new Date().getFullYear()}</span>
                     {!error && <span className="live-indicator">●</span>}
                     <a 
                         href={`https://leetcode.com/${username}`} 

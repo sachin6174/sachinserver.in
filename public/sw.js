@@ -1,46 +1,98 @@
-const CACHE_NAME = 'sachinserver-v1.1';
-// Only cache stable, non-hashed assets that exist at known paths
-const STATIC_CACHE = [
+/**
+ * Service Worker for Advanced Caching Strategy
+ * Implements intelligent caching for better performance and offline capability
+ */
+
+const CACHE_NAME = 'sachinserver-v1.2.0';
+const STATIC_CACHE_NAME = 'sachinserver-static-v1.2.0';
+const DYNAMIC_CACHE_NAME = 'sachinserver-dynamic-v1.2.0';
+const IMAGE_CACHE_NAME = 'sachinserver-images-v1.2.0';
+
+// Critical resources that should be cached immediately
+const CRITICAL_RESOURCES = [
   '/',
-  '/index.html',
   '/manifest.json',
-  '/favicon.ico',
-  '/logo192.png',
-  '/logo512.png',
+  '/favicon.ico'
 ];
 
-// Install event - cache static assets
+// Resources to cache on first visit
+const STATIC_ASSETS = [
+  '/logo192.png',
+  '/logo512.png'
+];
+
+// Maximum cache sizes
+const MAX_CACHE_SIZE = {
+  [DYNAMIC_CACHE_NAME]: 50,
+  [IMAGE_CACHE_NAME]: 30,
+  [STATIC_CACHE_NAME]: 100
+};
+
+// Cache duration (in milliseconds)
+const CACHE_DURATION = {
+  static: 30 * 24 * 60 * 60 * 1000, // 30 days
+  dynamic: 7 * 24 * 60 * 60 * 1000,  // 7 days
+  images: 14 * 24 * 60 * 60 * 1000   // 14 days
+};
+
+/**
+ * Install Event - Cache critical resources
+ */
 self.addEventListener('install', (event) => {
-  console.log('Service worker installing...');
+  console.log('SW: Installing service worker');
+  
   event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then(async (cache) => {
-        console.log('Caching static assets');
-        try {
-          await cache.addAll(STATIC_CACHE);
-        } catch (e) {
-          // Ignore failures for optional assets; proceed with install
-          console.warn('Some static assets failed to cache:', e);
-        }
-      })
-      .then(() => self.skipWaiting())
+    Promise.all([
+      caches.open(STATIC_CACHE_NAME)
+        .then(cache => {
+          console.log('SW: Caching critical resources');
+          return cache.addAll(CRITICAL_RESOURCES);
+        }),
+      caches.open(STATIC_CACHE_NAME)
+        .then(cache => {
+          console.log('SW: Caching static assets');
+          return cache.addAll(STATIC_ASSETS);
+        })
+    ]).then(() => {
+      console.log('SW: Installation complete');
+      return self.skipWaiting();
+    }).catch(error => {
+      console.error('SW: Installation failed', error);
+    })
   );
 });
 
-// Activate event - clean up old caches
+/**
+ * Activate Event - Clean up old caches
+ */
 self.addEventListener('activate', (event) => {
-  console.log('Service worker activating...');
+  console.log('SW: Activating service worker');
+  
   event.waitUntil(
-    caches.keys().then((cacheNames) => {
-      return Promise.all(
-        cacheNames.map((cacheName) => {
-          if (cacheName !== CACHE_NAME) {
-            console.log('Deleting old cache:', cacheName);
-            return caches.delete(cacheName);
-          }
-        })
-      );
-    }).then(() => self.clients.claim())
+    Promise.all([
+      // Clean up old caches
+      caches.keys().then(cacheNames => {
+        return Promise.all(
+          cacheNames
+            .filter(cacheName => {
+              return !Object.values({
+                CACHE_NAME,
+                STATIC_CACHE_NAME,
+                DYNAMIC_CACHE_NAME,
+                IMAGE_CACHE_NAME
+              }).includes(cacheName);
+            })
+            .map(cacheName => {
+              console.log('SW: Deleting old cache:', cacheName);
+              return caches.delete(cacheName);
+            })
+        );
+      }),
+      // Take control of all clients
+      self.clients.claim()
+    ]).then(() => {
+      console.log('SW: Activation complete');
+    })
   );
 });
 

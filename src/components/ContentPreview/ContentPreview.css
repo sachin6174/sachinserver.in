@@ -1,0 +1,130 @@
+/* Content Preview Tooltip Styles */
+.content-preview {
+  max-width: 280px;
+  padding: var(--space-md);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  backdrop-filter: blur(12px);
+}
+
+.preview-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-sm);
+}
+
+.preview-icon {
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.preview-title {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--text);
+  margin: 0;
+  line-height: 1.3;
+}
+
+.preview-description {
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+  margin: 0 0 var(--space-sm) 0;
+}
+
+.preview-meta {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.preview-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+}
+
+.preview-tag {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: var(--primary);
+  background: color-mix(in srgb, var(--primary) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--primary) 20%, transparent);
+  padding: 2px 6px;
+  border-radius: var(--radius-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.preview-time {
+  font-size: 0.6875rem;
+  color: var(--text-muted);
+  font-style: italic;
+  align-self: flex-end;
+}
+
+/* Content preview tooltip positioning */
+.content-preview-tooltip {
+  z-index: var(--z-tooltip);
+}
+
+/* Dark mode adjustments */
+body.dark-mode .content-preview {
+  background: var(--surface);
+  border-color: var(--border);
+  box-shadow: var(--shadow-lg);
+}
+
+body.dark-mode .preview-tag {
+  background: color-mix(in srgb, var(--primary) 15%, transparent);
+  border-color: color-mix(in srgb, var(--primary) 30%, transparent);
+}
+
+/* Animation for preview appearance */
+.content-preview {
+  animation: previewFadeIn 0.2s ease-out;
+}
+
+@keyframes previewFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .content-preview {
+    max-width: 240px;
+    padding: var(--space-sm);
+  }
+  
+  .preview-header {
+    margin-bottom: var(--space-xs);
+  }
+  
+  .preview-title {
+    font-size: 0.8125rem;
+  }
+  
+  .preview-description {
+    font-size: 0.75rem;
+  }
+  
+  .preview-tag {
+    font-size: 0.625rem;
+    padding: 1px 4px;
+  }
+  
+  .preview-time {
+    font-size: 0.625rem;
+  }
+}
