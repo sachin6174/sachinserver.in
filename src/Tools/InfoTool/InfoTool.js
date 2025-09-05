@@ -33,7 +33,9 @@ const InfoTool = () => {
             await testNetworkSpeed();
 
         } catch (error) {
-            console.log('Some data refresh failed:', error);
+            if (process.env.NODE_ENV === 'development') {
+                console.log('Some data refresh failed:', error);
+            }
         }
 
         setRefreshing(false);

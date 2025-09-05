@@ -22,10 +22,14 @@ root.render(
 // Register service worker for caching and offline functionality
 serviceWorkerRegistration.register({
   onSuccess: () => {
-    console.log('App is cached and ready for offline use');
+    if (process.env.NODE_ENV === 'development') {
+      console.log('App is cached and ready for offline use');
+    }
   },
   onUpdate: (registration) => {
-    console.log('New content is available; please refresh');
+    if (process.env.NODE_ENV === 'development') {
+      console.log('New content is available; please refresh');
+    }
     // Optional: Show update notification to user
     if (window.confirm('A new version is available. Refresh to update?')) {
       registration.waiting?.postMessage({ type: 'SKIP_WAITING' });

@@ -65,7 +65,7 @@ body.dark-mode {
     line-height: var(--lh-body, 1.6);
     color: var(--text-primary);
     background: var(--background-primary);
-    min-height: 100vh;
+    min-height: 0; /* Allow container to shrink */
     padding: var(--space-4);
     overflow-y: auto;
     overflow-x: hidden;

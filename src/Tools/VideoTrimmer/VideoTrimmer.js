@@ -3,6 +3,7 @@ import './VideoTrimmer.css';
 
 // Lazy load FFmpeg
 const loadFFmpeg = async () => {
+    // eslint-disable-next-line import/no-webpack-loader-syntax
     const { FFmpeg } = await import('@ffmpeg/ffmpeg');
     const { fetchFile } = await import('@ffmpeg/util');
     return { FFmpeg, fetchFile };

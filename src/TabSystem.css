@@ -131,7 +131,7 @@ body {
   min-height: 0;
   position: relative;
   background: var(--bg-primary);
-  overflow: hidden;
+  overflow: hidden; /* Keep overflow hidden only for x-axis */
 }
 
 /* Enhanced Dynamic Background with Better Gradients */
@@ -442,10 +442,10 @@ body.dark-mode .tabs {
   flex: 1;
   background: var(--bg-secondary);
   margin: 0;
-  overflow: hidden;
+  overflow: hidden; /* Keep layout contained */
   position: relative;
   transition: all var(--transition-base);
-  /* Allow children (like left-nav) to become scroll containers */
+  /* Allow children (like left-nav and main) to become scroll containers */
   min-height: 0;
 }
 
@@ -686,6 +686,7 @@ body.dark-mode .left-nav {
   padding: var(--space-lg);
   background: linear-gradient(180deg, rgba(248, 250, 252, 0.85), rgba(241, 245, 249, 0.7));
   overflow-y: auto;
+  overflow-x: hidden;
   position: relative;
   height: 100%;
   backdrop-filter: blur(8px) saturate(110%);
@@ -695,6 +696,15 @@ body.dark-mode .left-nav {
     inset 0 1px 1px rgba(255, 255, 255, 0.9),
     inset 0 -1px 1px rgba(0, 0, 0, 0.01),
     var(--shadow-xs);
+}
+
+/* Main element scrolling support */
+main[role="main"] {
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 100%;
+  min-height: 0;
+  -webkit-overflow-scrolling: touch;
 }
 
 body.dark-mode .tab-content {

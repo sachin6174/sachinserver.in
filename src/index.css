@@ -100,19 +100,6 @@ code {
     box-sizing: border-box;
 }
 
-/* Accessible skip link */
-.skip-link {
-    position: absolute;
-    left: 0;
-    top: -40px;
-    background: var(--primary, #6366f1);
-    color: var(--primary-contrast, #fff);
-    padding: 8px 12px;
-    border-radius: var(--radius-sm, 6px);
-    z-index: var(--z-tooltip, 1500);
-    text-decoration: none;
-}
-.skip-link:focus { top: 8px; }
 
 /* Better mobile form elements */
 @media (max-width: 768px) {
