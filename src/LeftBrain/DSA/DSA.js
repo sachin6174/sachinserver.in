@@ -162,15 +162,30 @@ const DSA = memo(() => {
                                             
                                             {hasSolution && (
                                                 <div className="solution-section">
-                                                    <a
-                                                        href={solutionData.videoUrl}
-                                                        target="_blank"
-                                                        rel="noopener noreferrer"
-                                                        className="solution-link"
-                                                        title="Watch solution video"
-                                                    >
-                                                        <span>📺 Solution</span>
-                                                    </a>
+                                                    {Array.isArray(solutionData.videoUrl) ? (
+                                                        solutionData.videoUrl.map((url, index) => (
+                                                            <a
+                                                                key={index}
+                                                                href={url}
+                                                                target="_blank"
+                                                                rel="noopener noreferrer"
+                                                                className="solution-link"
+                                                                title={`Watch solution video ${index + 1}`}
+                                                            >
+                                                                <span>📺 Solution {index + 1}</span>
+                                                            </a>
+                                                        ))
+                                                    ) : (
+                                                        <a
+                                                            href={solutionData.videoUrl}
+                                                            target="_blank"
+                                                            rel="noopener noreferrer"
+                                                            className="solution-link"
+                                                            title="Watch solution video"
+                                                        >
+                                                            <span>📺 Solution</span>
+                                                        </a>
+                                                    )}
                                                 </div>
                                             )}
                                         </div>
