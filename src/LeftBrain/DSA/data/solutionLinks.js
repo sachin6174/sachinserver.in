@@ -37,6 +37,14 @@ export const solutionLinks = {
         difficulty: 'Easy',
         timeComplexity: 'O(n)',
         spaceComplexity: 'O(1)'
+    },
+    'Best Time to Buy and Sell Stock II': {
+        videoUrl: 'https://www.youtube.com/watch?v=HWJ9kIPpzXs&list=PL-Jc9J83PIiG8fE6rj9F5a6uyQ5WPdqKy&index=31',
+        description: 'A detailed walkthrough of the \'Best Time to Buy and Sell Stock II\' problem, explaining the one-pass approach for an O(n) time and O(1) space solution.',
+        topics: ['Array', 'Dynamic Programming', 'Greedy'],
+        difficulty: 'Medium',
+        timeComplexity: 'O(n)',
+        spaceComplexity: 'O(1)'
     }
     
     // Add more solution links here as needed
