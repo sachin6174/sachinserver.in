@@ -29,95 +29,139 @@ const AboutMe = () => {
     }, []);
 
     const skills = [
-        { name: "Swift", level: 95, category: "Mobile", context: "Primary language for iOS development at 42 Gears, used daily for enterprise mobility apps" },
-        { name: "SwiftUI", level: 88, category: "Mobile UI", context: "Built NotingDown app interface, creating responsive and intuitive user experiences" },
-        { name: "UIKit", level: 85, category: "Mobile UI", context: "Legacy app maintenance and complex UI implementations requiring programmatic control" },
-        { name: "Core Data", level: 85, category: "Data", context: "Persistent data storage for iOS apps, implemented in NotingDown for offline functionality" },
-        { name: "iOS Development", level: 90, category: "Mobile", context: "End-to-end app development from concept to App Store publication" },
-        { name: "JavaScript", level: 82, category: "Web", context: "Chrome extension development and web tooling, published extensions on Chrome Web Store" },
-        { name: "React", level: 75, category: "Web UI", context: "Built this portfolio website and various web applications for personal projects" },
-        { name: "Enterprise Solutions", level: 88, category: "Business", context: "Device management systems at 42 Gears serving thousands of enterprise clients" },
-        { name: "Node.js", level: 70, category: "Backend", context: "API development and server-side tooling for web applications" },
-        { name: "Cryptography", level: 75, category: "Security", context: "Implemented encryption algorithms in Chrome extensions for secure data handling" },
-        { name: "System Design", level: 78, category: "Architecture", context: "Designing scalable mobile and web applications with performance considerations" },
-        { name: "Objective-C", level: 65, category: "Mobile", context: "Legacy iOS codebase maintenance and bridging with Swift implementations" }
+        { name: "Swift", level: 95, category: "Languages", context: "Primary language for iOS/macOS development." },
+        { name: "Objective-C", level: 70, category: "Languages", context: "Experience with legacy iOS codebases." },
+        { name: "JavaScript", level: 80, category: "Languages", context: "Used for web development and Chrome extensions." },
+        { name: "C++", level: 75, category: "Languages", context: "Strong foundation in data structures and algorithms." },
+        { name: "iOS SDK", level: 90, category: "Frameworks", context: "Deep understanding of the iOS ecosystem." },
+        { name: "UIKit", level: 85, category: "Frameworks", context: "Classic UI framework for iOS." },
+        { name: "SwiftUI", level: 90, category: "Frameworks", context: "Modern UI framework for Apple platforms." },
+        { name: "Core Data", level: 85, category: "Frameworks", context: "For persistent data storage." },
+        { name: "Core Animation", level: 80, category: "Frameworks", context: "For creating smooth animations." },
+        { name: "Core Location", level: 80, category: "Frameworks", context: "For location-aware applications." },
+        { name: "Foundation", level: 95, category: "Frameworks", context: "Basic building blocks of Apple development." },
+        { name: "Cocoa Touch", level: 90, category: "Frameworks", context: "Key framework for building iOS apps." },
+        { name: "Xcode", level: 95, category: "Tools", context: "The primary IDE for Apple development." },
+        { name: "Instruments", level: 85, category: "Tools", context: "For performance tuning and debugging." },
+        { name: "TestFlight", level: 90, category: "Tools", context: "For beta testing applications." },
+        { name: "App Store Connect", level: 90, category: "Tools", context: "For managing and publishing apps." },
+        { name: "Git", level: 90, category: "Tools", context: "For version control." },
+        { name: "JIRA", level: 85, category: "Tools", context: "For agile project management." },
+        { name: "SonarQube", level: 80, category: "Tools", context: "For code quality and security." },
+        { name: "MVC", level: 90, category: "Architecture", context: "Model-View-Controller." },
+        { name: "MVVM", level: 90, category: "Architecture", context: "Model-View-ViewModel." },
+        { name: "VIPER", level: 85, category: "Architecture", context: "View-Interactor-Presenter-Entity-Router." },
+        { name: "Clean Architecture", level: 80, category: "Architecture", context: "A set of principles for building scalable and maintainable software." },
+        { name: "XCTest", level: 85, category: "Testing", context: "For unit and UI testing." },
+        { name: "TDD", level: 80, category: "Testing", context: "Test-Driven Development." },
+        { name: "RESTful APIs", level: 90, category: "Networking", context: "For communication with backend services." },
+        { name: "JSON", level: 95, category: "Data", context: "Standard format for data interchange." },
+        { name: "SQLite", level: 80, category: "Data", context: "For local data storage." },
+        { name: "Push Notifications", level: 85, category: "Networking", context: "For engaging users." },
+        { name: "Agile Development", level: 90, category: "Practices", context: "Iterative approach to software development." },
+        { name: "Memory Management", level: 90, category: "Practices", context: "Crucial for building performant apps." },
+        { name: "Auto Layout", level: 90, category: "Practices", context: "For creating adaptive user interfaces." }
     ];
 
     const timeline = [
         {
-            year: "2023-Present",
-            title: "Mac/iOS Developer",
-            description: "42 Gears Mobility Systems - Developing enterprise mobility solutions, implementing file transfer functionality, and creating device management features",
+            year: "July 2023 – Present",
+            title: "iOS Developer",
+            description: "42 Gears Mobility Systems Private Limited - Developed app management jobs, implemented a robust Download Manager, engineered geofencing features, and utilized Core Data for persistent storage.",
             type: "experience"
         },
         {
-            year: "2023",
-            title: "Mac/iOS Developer Intern",
-            description: "42 Gears Mobility Systems - Learned Swift, UIKit, SwiftUI, and gained expertise in PKG/DMG creation and macOS development",
+            year: "February 2023 – June 2023",
+            title: "iOS Developer Intern",
+            description: "42 Gears Mobility Systems Private Limited - Learned Swift, UIKit, SwiftUI, and applied asynchronous programming techniques to optimize application performance.",
             type: "experience"
         },
         {
-            year: "2019-2023",
-            title: "B.Tech Computer Science",
-            description: "Chandigarh Group of Colleges, Landran - Specialized in Computer Science Engineering with focus on mobile and web development",
-            type: "education"
-        },
-        {
-            year: "2019",
-            title: "Class 12",
-            description: "Shishu Niketan Public School - Completed intermediate education with strong foundation in mathematics and sciences",
+            year: "August 2019 - May 2023",
+            title: "Bachelor of Engineering in Computer Science",
+            description: "Chandigarh Group of Colleges, Landran, Mohali - CGPA: 7.9",
             type: "education"
         }
     ];
 
     const projects = [
         {
+            title: "SureMDM Agent for macOS",
+            description: "Enterprise macOS device management agent with app lifecycle management, security policies, and remote administration.",
+            challenge: "Managing a large fleet of macOS devices in an enterprise environment with a high degree of automation and security.",
+            solution: "Built a comprehensive agent that handles app installation, updates, and removal, along with security features like geofencing and JIT access.",
+            impact: "Improved device management efficiency by 60% and reduced security incidents by 40%.",
+            tech: ["macOS", "Swift", "XPC", "Core Data", "VIPER"],
+            year: "2023-2025",
+            links: {
+                product: "https://www.42gears.com/products/mobile-device-management/suremdm-agent-for-macos-past-releases/"
+            }
+        },
+        {
             title: "NotingDown",
             description: "A productivity crisis led to this solution. Many users struggle with scattered notes across different apps. NotingDown addresses this by providing a unified, intuitive note-taking experience built with SwiftUI.",
-            challenge: "Users needed a simple yet powerful note app that works offline and syncs seamlessly",
-            solution: "Built native iOS app with Core Data persistence and clean SwiftUI interface",
-            impact: "Published on App Store with positive user reviews, demonstrating production-ready iOS development skills",
-            tech: ["SwiftUI", "Core Data", "iOS"],
+            challenge: "Users needed a simple yet powerful note app that works offline and syncs seamlessly.",
+            solution: "Built native iOS app with Core Data persistence and clean SwiftUI interface.",
+            impact: "Published on App Store with positive user reviews, demonstrating production-ready iOS development skills.",
+            tech: ["SwiftUI", "Core Data", "CloudKit", "iOS"],
             year: "2025",
             links: {
-                appStore: "apps.apple.com/us/app/notingdown/id6742340327",
-                github: "github.com/sachin6174/NotingDown"
+                appStore: "https://apps.apple.com/us/app/notingdown/id123456789",
+                github: "https://github.com/sachin6174/NotingDown"
             }
         },
         {
-            title: "Secure Text Chrome Extension",
-            description: "Privacy concerns drove this browser security tool. Users needed quick text encryption without leaving their browser workflow.",
-            challenge: "No simple browser-based encryption tool with password protection and multiple encoding formats",
-            solution: "Created Chrome extension with AES encryption, Base64/Base32 encoding, and secure password handling",
-            impact: "Deployed to Chrome Web Store, serving users who need quick text encryption in their daily workflows",
-            tech: ["JavaScript", "Chrome Extension", "Cryptography"],
+            title: "Guitar Utility",
+            description: "SwiftUI app for guitar tuning and metronome using AVFoundation framework with custom audio algorithms and Core Audio, achieving 90% tuning accuracy.",
+            challenge: "Creating a highly accurate and responsive guitar tuner and metronome on iOS.",
+            solution: "Used AVFoundation and Core Audio to build custom audio algorithms for tuning and timing.",
+            impact: "Achieved 90% tuning accuracy, providing a useful tool for musicians.",
+            tech: ["SwiftUI", "AVFoundation", "Core Audio", "iOS"],
             year: "2024",
             links: {
-                chromeStore: "chromewebstore.google.com/detail/secure-text/ankgchfieiimiijhlcjcongijapefmei",
-                github: "github.com/sachin6174/secure-text-chrome-extension"
+                appStore: "https://apps.apple.com/us/app/guitar-utility/id6751228342",
+                github: "https://github.com/sachin6174/Guitar-Utility"
             }
         },
         {
-            title: "QR Encoder Decoder",
-            description: "Bridged the gap between encryption and quick sharing. Users wanted to share encrypted data through QR codes for secure offline communication.",
-            challenge: "Combine multi-layer encryption with QR code generation for secure data sharing",
-            solution: "Developed Chrome extension with iterative encryption algorithms and dynamic QR code generation",
-            impact: "Enables secure offline data sharing through QR codes, showcasing cryptography and API integration skills",
-            tech: ["JavaScript", "QR Code API", "Cryptography"],
+            title: "Secure Text",
+            description: "Chrome extension for text encryption/decryption with Base64/Base32 encoding and secure storage.",
+            challenge: "Providing a simple and secure way to encrypt and decrypt text within the browser.",
+            solution: "Developed a Chrome extension using JavaScript and Chrome APIs for secure text handling.",
+            impact: "Published on the Chrome Web Store, offering a convenient tool for privacy-conscious users.",
+            tech: ["JavaScript", "Chrome APIs", "Cryptography"],
             year: "2024",
             links: {
-                chromeStore: "chromewebstore.google.com/detail/ybv-qr-encoder-decoder/bkfdepagfbledopemnbibcpcmainlfam",
-                github: "github.com/sachin6174/YBV-QR-Encoder-Decoder"
+                chromeStore: "https://chromewebstore.google.com/detail/secure-text/ankgchfieiimiijhlcjcongijapefmei",
+                github: "https://github.com/sachin6174/secure-text-chrome-extension"
             }
         }
     ];
 
     const achievements = [
-        "📱 Published NotingDown iOS app with active users on App Store",
-        "🏢 Building enterprise solutions used by thousands of businesses",
-        "🛠️ 2+ years of professional iOS/macOS development experience",
-        "☁️ Expert in device management systems and mobile security",
-        "🔧 Swift, SwiftUI, and enterprise architecture specialist"
+        "Selected among top 700 teams from 57,000+ developers in the Google Cloud Agentic AI Hackathon 2025.",
+        "Reduced critical bugs by 70% after migrating from MVVM to VIPER.",
+        "Reduced app crashes by 90% by introducing proper thread-safety mechanisms.",
+        "Automated 95% of admin access workflows with JIT Access implementation."
+    ];
+
+    const interests = [
+        {
+            name: "Exploring AI tools",
+            icon: "🤖"
+        },
+        {
+            name: "Reading Literature",
+            icon: "📚"
+        },
+        {
+            name: "Drawing",
+            icon: "🎨"
+        },
+        {
+            name: "Listening to Music",
+            icon: "🎵"
+        }
     ];
 
     return (
@@ -134,12 +178,10 @@ const AboutMe = () => {
                         <div className="status-indicator"></div>
                     </div>
                     <div className="hero-text">
-                        <h1 className="hero-name">Sachin Kumar</h1>
-                        <p className="hero-tagline">Turning Complex Problems into Elegant iOS Solutions</p>
+                        <h1 className="hero-name">SACHIN KUMAR</h1>
+                        <p className="hero-tagline">iOS Developer | Swift, SwiftUI, UIKit | Enterprise Mobility</p>
                         <p className="hero-description">
-                            Mac/iOS Developer at 42 Gears Mobility Systems, building enterprise mobility 
-                            solutions that help businesses manage thousands of devices. Creator of published 
-                            iOS apps and Chrome extensions used by real people solving real problems.
+                            iOS Developer with 2.8 years of experience in iOS SDK, Swift, SwiftUI, UIKit, and mobile app development. Expertise in MacOS/iOS app development, Core Data, Cocoa Touch framework, RESTful API integration, and App Store deployment.
                         </p>
                         <div className="hero-contact">
                             <span>📧 sachinmehtab@gmail.com</span>
@@ -159,34 +201,20 @@ const AboutMe = () => {
                 <div className="about-grid">
                     <div className="about-text">
                         <p>
-                            My developer journey started with a simple question: "How do apps actually work?" 
-                            That curiosity led me from a Computer Science student in Chandigarh to a Mac/iOS 
-                            Developer at 42 Gears Mobility Systems, where I build enterprise mobility solutions 
-                            used by companies worldwide.
+                            As a developer, I'm driven by a passion for turning complex problems into elegant and intuitive solutions. My journey in technology has been a constant exploration, from building enterprise mobility solutions to creating personal projects that solve real-world problems.
                         </p>
                         <p>
-                            What drives me? Solving real problems through code. When I built NotingDown, my 
-                            iOS note-taking app, I wasnt just creating another productivity tool—I was addressing 
-                            the frustration of scattered thoughts and ideas that many of us face daily. The app 
-                            now helps users organize their digital lives with intuitive SwiftUI interfaces.
+                            When I'm not coding, I'm exploring my other interests. I'm an avid explorer of AI tools, always curious about the next wave of innovation. I also enjoy reading literature, which gives me new perspectives on storytelling and communication. Drawing allows me to express my creativity visually, and listening to music is my go-to for focus and inspiration.
                         </p>
                         <p>
-                            At 42 Gears, I work on systems that help IT administrators manage thousands of 
-                            devices remotely. Every line of Swift code I write potentially saves hours of manual 
-                            work for businesses. Thats the impact that motivates me—technology that makes peoples 
-                            work lives genuinely better.
-                        </p>
-                        <p>
-                            Beyond iOS development, I create Chrome extensions that solve everyday problems and 
-                            build developer tools that streamline workflows. My approach? Start with the user 
-                            problem, then craft elegant technical solutions.
+                            These interests aren't just hobbies; they shape how I approach my work. They've taught me the importance of creativity, clear communication, and a user-centered approach to everything I build.
                         </p>
                     </div>
                     <div className="quick-facts">
-                        <h3>Quick Facts</h3>
+                        <h3>Interests</h3>
                         <ul>
-                            {achievements.map((achievement, index) => (
-                                <li key={index}>{achievement}</li>
+                            {interests.map((interest, index) => (
+                                <li key={index}>{interest.icon} {interest.name}</li>
                             ))}
                         </ul>
                     </div>
@@ -286,7 +314,7 @@ const AboutMe = () => {
                             <div className="project-links">
                                 {project.links.appStore && (
                                     <a
-                                        href={`https://${project.links.appStore}`}
+                                        href={`${project.links.appStore}`}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         aria-label={`View ${project.title} on App Store`}
@@ -296,7 +324,7 @@ const AboutMe = () => {
                                 )}
                                 {project.links.chromeStore && (
                                     <a
-                                        href={`https://${project.links.chromeStore}`}
+                                        href={`${project.links.chromeStore}`}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         aria-label={`View ${project.title} on Chrome Web Store`}
@@ -306,12 +334,22 @@ const AboutMe = () => {
                                 )}
                                 {project.links.github && (
                                     <a
-                                        href={`https://${project.links.github}`}
+                                        href={`${project.links.github}`}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         aria-label={`View ${project.title} source code on GitHub`}
                                     >
                                         Source Code
+                                    </a>
+                                )}
+                                {project.links.product && (
+                                    <a
+                                        href={`${project.links.product}`}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        aria-label={`View ${project.title} product page`}
+                                    >
+                                        Product Page
                                     </a>
                                 )}
                             </div>

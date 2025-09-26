@@ -10,6 +10,30 @@ export const solutionLinks = {
         difficulty: 'Medium',
         timeComplexity: 'O(n²)',
         spaceComplexity: 'O(1) optimized, O(n²) basic'
+    },
+    'Rotate Array': {
+        videoUrl: 'https://www.youtube.com/watch?v=8RErc0VXAo8',
+        description: 'In-depth explanation of the Rotate Array problem with multiple approaches, including the optimal O(1) space solution using reversals.',
+        topics: ['Array', 'Two Pointers'],
+        difficulty: 'Medium',
+        timeComplexity: 'O(n)',
+        spaceComplexity: 'O(1)'
+    },
+    'Majority Element': {
+        videoUrl: 'https://www.youtube.com/watch?v=wD7fs5P_MVo',
+        description: 'A clear explanation of the Majority Element problem and the Boyer-Moore Voting Algorithm, the optimal O(n) time and O(1) space solution.',
+        topics: ['Array', 'Hashing', 'Divide and Conquer', 'Sorting', 'Counting'],
+        difficulty: 'Easy',
+        timeComplexity: 'O(n)',
+        spaceComplexity: 'O(1)'
+    },
+    'Best Time to Buy and Sell Stock': {
+        videoUrl: 'https://www.youtube.com/watch?v=E2-heUEnZKU',
+        description: 'A detailed walkthrough of the "Best Time to Buy and Sell Stock" problem, explaining the one-pass approach for an O(n) time and O(1) space solution.',
+        topics: ['Array', 'Dynamic Programming'],
+        difficulty: 'Easy',
+        timeComplexity: 'O(n)',
+        spaceComplexity: 'O(1)'
     }
     
     // Add more solution links here as needed
