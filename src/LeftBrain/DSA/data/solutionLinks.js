@@ -45,6 +45,14 @@ export const solutionLinks = {
         difficulty: 'Medium',
         timeComplexity: 'O(n)',
         spaceComplexity: 'O(1)'
+    },
+    'Jump Game': {
+        videoUrl: 'https://www.youtube.com/watch?v=Gtugy3mRV-A&t=9s',
+        description: 'A detailed walkthrough of the \'Jump Game\' problem, explaining the greedy approach for an O(n) time and O(1) space solution.',
+        topics: ['Array', 'Dynamic Programming', 'Greedy'],
+        difficulty: 'Medium',
+        timeComplexity: 'O(n)',
+        spaceComplexity: 'O(1)'
     }
     
     // Add more solution links here as needed
