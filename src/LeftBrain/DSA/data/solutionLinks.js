@@ -62,6 +62,14 @@ export const solutionLinks = {
         timeComplexity: 'O(n)',
         spaceComplexity: 'O(1)'
     },
+    'Product of Array Except Self': {
+        videoUrl: 'https://www.youtube.com/watch?v=G9zKmhybKBM',
+        description: 'A detailed explanation of the "Product of Array Except Self" problem, demonstrating an efficient approach using prefix and suffix products to achieve O(n) time complexity.',
+        topics: ['Array', 'Prefix Sum'],
+        difficulty: 'Medium',
+        timeComplexity: 'O(n)',
+        spaceComplexity: 'O(1)'
+    },
     
     // Add more solution links here as needed
     // Example format for future additions:
