@@ -42,6 +42,15 @@ export const initializeComponentRegistry = () => {
     errorFallback: makeAlertFallback({ title: 'Failed to load DSA' })
   });
 
+  registerLazyComponent('apple-development-podcasts', 
+    () => import('../LeftBrain/AppleDevelopmentPodcasts/AppleDevelopmentPodcasts'), {
+    label: 'Apple Dev Podcasts',
+    icon: '🎧',
+    category: 'leftbrain',
+    description: 'Curated podcasts for Apple developers',
+    errorFallback: makeAlertFallback({ title: 'Failed to load Apple Dev Podcasts' })
+  });
+
   registerLazyComponent('xcode-shortcuts', 
     () => import('../LeftBrain/XcodeShortcuts/XcodeShortcuts'), {
     label: 'Xcode Shortcuts',

@@ -180,6 +180,7 @@ body.dark-mode {
 /* Theme-specific containers */
 .leftbrain-container.dsa-theme { --current-theme: var(--theme-dsa); --current-theme-light: var(--theme-dsa-light); --current-theme-dark: var(--theme-dsa-dark); }
 .leftbrain-container.apple-theme { --current-theme: var(--theme-apple); --current-theme-light: var(--theme-apple-light); --current-theme-dark: var(--theme-apple-dark); }
+.leftbrain-container.apple-podcasts-theme { --current-theme: var(--theme-apple); --current-theme-light: var(--theme-apple-light); --current-theme-dark: var(--theme-apple-dark); }
 .leftbrain-container.swift-theme { --current-theme: var(--theme-swift); --current-theme-light: var(--theme-swift-light); --current-theme-dark: var(--theme-swift-dark); }
 .leftbrain-container.objc-theme { --current-theme: var(--theme-objc); --current-theme-light: var(--theme-objc-light); --current-theme-dark: var(--theme-objc-dark); }
 .leftbrain-container.gui-theme { --current-theme: var(--theme-gui); --current-theme-light: var(--theme-gui-light); --current-theme-dark: var(--theme-gui-dark); }
