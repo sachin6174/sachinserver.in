@@ -70,6 +70,14 @@ export const solutionLinks = {
         timeComplexity: 'O(n)',
         spaceComplexity: 'O(1)'
     },
+    'Insert Delete GetRandom O(1)': {
+        videoUrl: 'https://www.youtube.com/watch?v=j4KwhBziOpg',
+        description: 'A detailed explanation of the "Insert Delete GetRandom O(1)" problem, demonstrating an efficient approach using a hash map and an array to achieve O(1) time complexity for all operations.',
+        topics: ['Array', 'Hash Table', 'Design'],
+        difficulty: 'Medium',
+        timeComplexity: 'O(1)',
+        spaceComplexity: 'O(n)'
+    },
     
     // Add more solution links here as needed
     // Example format for future additions:
