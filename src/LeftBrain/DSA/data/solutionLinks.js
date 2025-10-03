@@ -78,6 +78,22 @@ export const solutionLinks = {
         timeComplexity: 'O(1)',
         spaceComplexity: 'O(n)'
     },
+    'Candy': {
+        videoUrl: 'https://www.youtube.com/watch?v=1IzCRCcK17A',
+        description: 'A detailed walkthrough of the \'Candy\' problem, explaining the greedy approach.',
+        topics: ['Array', 'Greedy'],
+        difficulty: 'Hard',
+        timeComplexity: 'O(n)',
+        spaceComplexity: 'O(n)'
+    },
+    'Gas Station': {
+        videoUrl: 'https://www.youtube.com/watch?v=fOaUh1_fJPw',
+        description: 'A detailed walkthrough of the \'Gas Station\' problem, explaining the greedy approach.',
+        topics: ['Array', 'Greedy'],
+        difficulty: 'Medium',
+        timeComplexity: 'O(n)',
+        spaceComplexity: 'O(1)'
+    },
     
     // Add more solution links here as needed
     // Example format for future additions:
