@@ -233,6 +233,15 @@ export const initializeComponentRegistry = () => {
     errorFallback: makeAlertFallback({ title: 'Failed to load Music' })
   });
 
+  registerLazyComponent('rightbrain-youtube', 
+    () => import('../RightBrain/YouTube/YouTube'), {
+    label: 'YouTube',
+    icon: '🎥',
+    category: 'rightbrain',
+    description: 'RightBrain YouTube playlists',
+    errorFallback: makeAlertFallback({ title: 'Failed to load YouTube' })
+  });
+
   // Developer Tools
   registerLazyComponent('ai-tools-channels', 
     () => import('../Tools/AIToolsChannels/AIToolsChannels'), {

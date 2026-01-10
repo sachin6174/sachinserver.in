@@ -37,6 +37,7 @@ const LazyLiterature = createLazyComponent(() => import('./RightBrain/Litleratur
 const LazyPhilosophy = createLazyComponent(() => import('./RightBrain/Philosophy/Philosophy'), { componentName: 'Philosophy' });
 const LazyMusic = createLazyComponent(() => import('./RightBrain/Music/Music'), { componentName: 'Music' });
 const LazyPsychology = createLazyComponent(() => import('./RightBrain/Psychology/Psychology'), { componentName: 'Psychology' });
+const LazyRightbrainYouTube = createLazyComponent(() => import('./RightBrain/YouTube/YouTube'), { componentName: 'RightbrainYouTube' });
 
 // Lazy load all tools
 const LazyInfoTool = createLazyComponent(() => import('./Tools/InfoTool/InfoTool'), { 
@@ -230,6 +231,7 @@ const TabSystem = memo(() => {
             { id: "philosophy", label: "Philosophy", icon: "🤔", description: <LazyPhilosophy /> },
             { id: "psychology", label: "Psychology", icon: "🧠", description: <LazyPsychology /> },
             { id: "music", label: "Music", icon: "🎵", description: <LazyMusic /> },
+            { id: "rightbrain-youtube", label: "YouTube", icon: "🎥", description: <LazyRightbrainYouTube /> },
         ],
         "developer-tools": [
             { id: "ai-tools-channels", label: "AI Tools Channels", icon: "🤖", description: <LazyAIToolsChannels /> },
