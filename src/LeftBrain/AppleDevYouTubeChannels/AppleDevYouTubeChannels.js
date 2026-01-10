@@ -20,6 +20,22 @@ const AppleDevYouTubeChannels = () => {
             websiteUrl: ""
         },
         {
+            name: "AppDeveloperPoint",
+            icon: "https://yt3.googleusercontent.com/X77CFn_IS2MtnAqROHiCU78pNgRe0rcbsp9IeqEGfdMdDO0IUBVvmINoYRmU_QMHLonrhm0MwQ=s160-c-k-c0x00ffffff-no-rj",
+            youtubeUrl: "https://www.youtube.com/@AppDeveloperPoint",
+            githubUrl: "",
+            devNotesUrl: "",
+            websiteUrl: ""
+        },
+        {
+            name: "ProgrammingVerseDev",
+            icon: "https://yt3.googleusercontent.com/g8Fdz7PY7BwGZZWgxE-sG8yHRhdOd6kb38dckiy2qtd7AGIipGh3U5EiZd1quQF1B-lL5hUbjw=s160-c-k-c0x00ffffff-no-rj",
+            youtubeUrl: "https://www.youtube.com/@ProgrammingVerseDev",
+            githubUrl: "",
+            devNotesUrl: "",
+            websiteUrl: "https://sachinserver.in/"
+        },
+        {
             name: "Swift and Tips",
             icon: "https://yt3.googleusercontent.com/r9nVFcwyxGF6t_RSNk3P4anFq3Qce6MCIJ7tZNv-ZxI5ZrlMNcxx31qsyUJnLTOgYRKNPP6c=s160-c-k-c0x00ffffff-no-rj",
             youtubeUrl: "https://www.youtube.com/c/SwiftandTips",
