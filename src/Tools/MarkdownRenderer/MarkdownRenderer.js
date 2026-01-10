@@ -1,12 +1,7 @@
 import React, { useState, useCallback, useEffect } from 'react';
+import { marked } from 'marked';
 import './MarkdownRenderer.css';
 import { Button, Textarea } from '../../ui';
-
-// Lazy load marked
-const loadMarked = async () => {
-    const { marked } = await import('marked');
-    return marked;
-};
 
 const MarkdownRenderer = () => {
     const [markdownText, setMarkdownText] = useState(`# Markdown Complete Guide
