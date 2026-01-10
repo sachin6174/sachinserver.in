@@ -1,7 +1,30 @@
 .yt-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: var(--space-sm);
+}
+
+.youtube-hero {
+    align-items: center;
+    justify-content: space-between;
+}
+
+.yt-channel-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-color);
+    text-decoration: none;
+    color: var(--text-primary);
+    background: var(--background-secondary);
+    transition: border-color var(--transition-fast), transform var(--transition-fast);
+}
+
+.yt-channel-link:hover {
+    border-color: var(--accent-color);
+    transform: translateY(-1px);
 }
 
 .yt-card {
@@ -12,12 +35,20 @@
     display: flex;
     flex-direction: column;
     gap: var(--space-sm);
-    transition: border-color var(--transition-fast), transform var(--transition-fast);
+    box-shadow: var(--shadow-sm);
+    transition: border-color var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
 }
 
 .yt-card:hover {
     border-color: var(--accent-color);
-    transform: translateY(-1px);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.yt-card-header {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-sm);
 }
 
 .yt-card-header h3 {
@@ -27,6 +58,33 @@
 .yt-card-header p {
     color: var(--text-secondary);
     font-size: var(--font-sm);
+}
+
+.yt-pill {
+    align-self: flex-start;
+    padding: 4px 10px;
+    border-radius: var(--radius-full);
+    background: var(--background-tertiary);
+    color: var(--text-secondary);
+    font-size: var(--font-xs);
+    border: 1px solid var(--border-color);
+}
+
+.yt-embed {
+    position: relative;
+    padding-top: 56.25%;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    background: black;
+}
+
+.yt-embed iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
 }
 
 .yt-links {
