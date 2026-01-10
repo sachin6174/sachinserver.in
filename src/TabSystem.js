@@ -12,9 +12,6 @@ import { ReactComponent as ToggleIcon } from './assets/svgs/toggle-icon.svg';
 
 // Lazy load all components for better performance
 const LazyAboutMe = createLazyComponent(() => import('./LeftBrain/AboutMe/AboutMe'), { componentName: 'AboutMe' });
-const LazyAppleDevelopment = createLazyComponent(() => import('./LeftBrain/AppleDevelopment/AppleDevelopment'), { componentName: 'AppleDevelopment' });
-const LazyNodeJS = createLazyComponent(() => import('./LeftBrain/NodeJS/NodeJS'), { componentName: 'NodeJS' });
-const LazyReactJS = createLazyComponent(() => import('./LeftBrain/ReactJS/ReactJS'), { componentName: 'ReactJS' });
 const LazyDSA = createLazyComponent(() => import('./LeftBrain/DSA/DSA'), { 
   componentName: 'DSA',
   fallback: <SkeletonLoader type="dsa" />
@@ -30,10 +27,8 @@ const LazySystemDesign = createLazyComponent(() => import('./LeftBrain/SystemDes
 const LazySwiftGUI = createLazyComponent(() => import('./LeftBrain/SwiftGUI/SwiftGUI'), { componentName: 'SwiftGUI' });
 const LazySwiftStorage = createLazyComponent(() => import('./LeftBrain/SwiftStorage/SwiftStorage'), { componentName: 'SwiftStorage' });
 const LazySwiftTesting = createLazyComponent(() => import('./LeftBrain/SwiftTesting/SwiftTesting'), { componentName: 'SwiftTesting' });
-const LazyAppleLanguages = createLazyComponent(() => import('./LeftBrain/AppleLanguages/AppleLanguages'), { componentName: 'AppleLanguages' });
 const LazyPackageDeployment = createLazyComponent(() => import('./LeftBrain/PackageDeployment/PackageDeployment'), { componentName: 'PackageDeployment' });
 const LazyChromeExtensions = createLazyComponent(() => import('./LeftBrain/ChromeExtensions/ChromeExtensions'), { componentName: 'ChromeExtensions' });
-const LazyBlog = createLazyComponent(() => import('./LeftBrain/Blogs/Blog'), { componentName: 'Blog' });
 const LazyAIAndTools = createLazyComponent(() => import('./LeftBrain/AIAndTools/AIAndTools'), { componentName: 'AIAndTools' });
 const LazyDesignPatterns = createLazyComponent(() => import('./LeftBrain/DesignPatterns/DesignPatterns'), { componentName: 'DesignPatterns' });
 const LazySoftwareArchitecture = createLazyComponent(() => import('./LeftBrain/SoftwareArchitecture/SoftwareArchitecture'), { componentName: 'SoftwareArchitecture' });
@@ -216,8 +211,6 @@ const TabSystem = memo(() => {
             { id: "apple-development-podcasts", label: "YouTube", icon: "🎧", description: <LazyAppleDevelopmentPodcasts /> },
             { id: "xcode-shortcuts", label: "Xcode Shortcuts", icon: "⌨️", description: <LazyXcodeShortcuts /> },
             { id: "apple-dev-youtube", label: "Apple Dev YouTube", icon: "📺", description: <LazyAppleDevYouTubeChannels /> },
-            { id: "apple-development", label: "Apple Development", icon: "🍎", description: <LazyAppleDevelopment /> },
-            { id: "apple-languages", label: "Apple Languages", icon: "🍎", description: <LazyAppleLanguages /> },
             { id: "swift-gui", label: "Swift GUI", icon: "🖥️", description: <LazySwiftGUI /> },
             { id: "swift-storage", label: "Swift Storage", icon: "💾", description: <LazySwiftStorage /> },
             { id: "swift-networking", label: "Swift Networking", icon: "🌐", description: <LazySwiftNetworking /> },
@@ -229,10 +222,7 @@ const TabSystem = memo(() => {
             { id: "design-patterns", label: "Design Patterns", icon: "🏗️", description: <LazyDesignPatterns /> },
             { id: "software-architecture", label: "Software Architecture", icon: "🏛️", description: <LazySoftwareArchitecture /> },
             { id: "system-design", label: "System Design", icon: "🏢", description: <LazySystemDesign /> },
-            { id: "nodejs", label: "NodeJS", icon: "🌐", description: <LazyNodeJS /> },
-            { id: "reactjs", label: "ReactJS", icon: "⚛️", description: <LazyReactJS /> },
             { id: "chrome-extensions", label: "Chrome Extensions", icon: "🧩", description: <LazyChromeExtensions /> },
-            { id: "blogs", label: "Blogs", icon: "📝", description: <LazyBlog /> },
         ],
         rightbrain: [
             { id: "drawing", label: "Drawing", icon: "✏️", description: <LazyDrawing /> },

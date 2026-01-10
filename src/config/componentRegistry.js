@@ -78,23 +78,7 @@ export const initializeComponentRegistry = () => {
     errorFallback: makeAlertFallback({ title: 'Failed to load Apple Dev YouTube' })
   });
 
-  registerLazyComponent('apple-development', 
-    () => import('../LeftBrain/AppleDevelopment/AppleDevelopment'), {
-    label: 'Apple Development',
-    icon: '🍎',
-    category: 'leftbrain',
-    description: 'Apple platform development resources',
-    errorFallback: makeAlertFallback({ title: 'Failed to load Apple Development' })
-  });
-
-  registerLazyComponent('apple-languages', 
-    () => import('../LeftBrain/AppleLanguages/AppleLanguages'), {
-    label: 'Apple Languages',
-    icon: '🍎',
-    category: 'leftbrain',
-    description: 'Programming languages for Apple platforms',
-    errorFallback: makeAlertFallback({ title: 'Failed to load Apple Languages' })
-  });
+  // Apple Development and Apple Languages removed
 
   registerLazyComponent('swift-gui', 
     () => import('../LeftBrain/SwiftGUI/SwiftGUI'), {
@@ -191,23 +175,6 @@ export const initializeComponentRegistry = () => {
     description: 'System design concepts'
   });
 
-  registerLazyComponent('nodejs', 
-    () => import('../LeftBrain/NodeJS/NodeJS'), {
-    label: 'NodeJS',
-    icon: '🌐',
-    category: 'leftbrain',
-    description: 'Node.js development',
-    errorFallback: makeAlertFallback({ title: 'Failed to load NodeJS' })
-  });
-
-  registerLazyComponent('reactjs', 
-    () => import('../LeftBrain/ReactJS/ReactJS'), {
-    label: 'ReactJS',
-    icon: '⚛️',
-    category: 'leftbrain',
-    description: 'React.js development',
-    errorFallback: makeAlertFallback({ title: 'Failed to load ReactJS' })
-  });
 
   registerLazyComponent('chrome-extensions', 
     () => import('../LeftBrain/ChromeExtensions/ChromeExtensions'), {
@@ -218,14 +185,7 @@ export const initializeComponentRegistry = () => {
     errorFallback: makeAlertFallback({ title: 'Failed to load Chrome Extensions' })
   });
 
-  registerLazyComponent('blogs', 
-    () => import('../LeftBrain/Blogs/Blog'), {
-    label: 'Blogs',
-    icon: '📝',
-    category: 'leftbrain',
-    description: 'Technical blog posts',
-    errorFallback: makeAlertFallback({ title: 'Failed to load Blogs' })
-  });
+  // Blogs removed
 
   // RightBrain Components - Creative Content
   registerLazyComponent('drawing', 

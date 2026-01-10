@@ -24,12 +24,6 @@ const ContentPreview = ({ item, children }) => {
         tags: ['Open Source', 'Repositories', 'Contributions'],
         estimatedTime: 'Live'
       },
-      'apple-development': {
-        title: 'Apple Development',
-        description: 'iOS, macOS development resources and project showcases',
-        tags: ['iOS', 'macOS', 'Swift'],
-        estimatedTime: '5-10 min'
-      },
       'JSON-Tool': {
         title: 'JSON Tool',
         description: 'Format, validate, and visualize JSON data with tree view',

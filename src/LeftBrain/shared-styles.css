@@ -353,18 +353,6 @@ body.dark-mode {
     background: linear-gradient(90deg, #007AFF, #5856D6);
 }
 
-.tech-card.nodejs::before {
-    background: linear-gradient(90deg, #68A063, #3C873A);
-}
-
-.tech-card.react::before {
-    background: linear-gradient(90deg, #61DAFB, #21AFDC);
-}
-
-.tech-card.blogs::before {
-    background: linear-gradient(90deg, var(--secondary-color), var(--accent-color));
-}
-
 .tech-card::before {
     content: '';
     position: absolute;

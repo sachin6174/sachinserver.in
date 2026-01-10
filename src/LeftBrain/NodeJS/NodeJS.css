@@ -1,9 +1,0 @@
-/* NodeJS Component - Unified Design System Styles */
-
-/* Component inherits all styling from shared-styles.css */
-/* Only component-specific customizations are defined here */
-
-/* NodeJS theme is automatically applied via .nodejs-theme class on container */
-/* This provides: --current-theme: #68A063, --current-theme-light: #8BC34A, --current-theme-dark: #4CAF50 */
-
-/* No additional custom styles needed - unified design system handles everything */
