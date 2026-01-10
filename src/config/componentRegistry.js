@@ -362,6 +362,15 @@ export const initializeComponentRegistry = () => {
     errorFallback: makeAlertFallback({ title: 'Failed to load macOS App Catalog' })
   });
 
+  registerLazyComponent('terminal-scripts', 
+    () => import('../Tools/TerminalScripts/TerminalScripts'), {
+    label: 'Terminal Scripts',
+    icon: '💻',
+    category: 'qa-tools',
+    description: 'Important macOS terminal commands',
+    errorFallback: makeAlertFallback({ title: 'Failed to load Terminal Scripts' })
+  });
+
   registerLazyComponent('regex-tool', 
     () => import('../Tools/RegexTool/RegexTool'), {
     label: 'Regex Tool',

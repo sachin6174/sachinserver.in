@@ -80,6 +80,7 @@ const LazyNumberToUnicode = createLazyComponent(() => import('./Tools/NumberToUn
 const LazyVideoTrimmer = createLazyComponent(() => import('./Tools/VideoTrimmer/VideoTrimmer'), { componentName: 'VideoTrimmer' });
 const LazyYouTubeDownloader = createLazyComponent(() => import('./Tools/YouTubeDownloader/YouTubeDownloader'), { componentName: 'YouTubeDownloader' });
 const LazyAppIconGenerator = createLazyComponent(() => import('./Tools/AppIconGenerator/AppIconGenerator'), { componentName: 'AppIconGenerator' });
+const LazyTerminalScripts = createLazyComponent(() => import('./Tools/TerminalScripts/TerminalScripts'), { componentName: 'TerminalScripts' });
 
 const TabSystem = memo(() => {
     // Performance tracking for development
@@ -249,6 +250,7 @@ const TabSystem = memo(() => {
         ],
         "qa-tools": [
             { id: "macos-app-catalog", label: "macOS App Catalog", icon: "📱", description: <LazyMacOSAppCatalog /> },
+            { id: "terminal-scripts", label: "Terminal Scripts", icon: "💻", description: <LazyTerminalScripts /> },
             { id: "regex-tool", label: "Regex Tool", icon: "🔍", description: <LazyRegexTool /> },
             { id: "diff-checker", label: "Diff Checker", icon: "🔄", description: <LazyDiffChecker /> },
             { id: "password-tool", label: "Password Tool", icon: "🛡️", description: <LazyPasswordTool /> },
