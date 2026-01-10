@@ -19,6 +19,10 @@
     gap: var(--space-xs);
 }
 
+.terminal-line {
+    margin-top: var(--space-xs);
+}
+
 .terminal-card-header {
     display: flex;
     justify-content: space-between;

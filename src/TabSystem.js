@@ -81,6 +81,7 @@ const LazyVideoTrimmer = createLazyComponent(() => import('./Tools/VideoTrimmer/
 const LazyYouTubeDownloader = createLazyComponent(() => import('./Tools/YouTubeDownloader/YouTubeDownloader'), { componentName: 'YouTubeDownloader' });
 const LazyAppIconGenerator = createLazyComponent(() => import('./Tools/AppIconGenerator/AppIconGenerator'), { componentName: 'AppIconGenerator' });
 const LazyTerminalScripts = createLazyComponent(() => import('./Tools/TerminalScripts/TerminalScripts'), { componentName: 'TerminalScripts' });
+const LazyTerminalTutorial = createLazyComponent(() => import('./Tools/TerminalTutorial/TerminalTutorial'), { componentName: 'TerminalTutorial' });
 
 const TabSystem = memo(() => {
     // Performance tracking for development
@@ -247,18 +248,19 @@ const TabSystem = memo(() => {
             { id: "Encryption-Decryption-Tool", label: "Crypto Tool", icon: "🔒", description: <LazyCryptoTool /> },
             { id: "hash-tool", label: "Hash Tool", icon: "🔑", description: <LazyHashTool /> },
             { id: "encoder-tool", label: "Encoder Tool", icon: "🔤", description: <LazyEncoderTool /> },
-        ],
-        "qa-tools": [
-            { id: "macos-app-catalog", label: "macOS App Catalog", icon: "📱", description: <LazyMacOSAppCatalog /> },
-            { id: "terminal-scripts", label: "Terminal Scripts", icon: "💻", description: <LazyTerminalScripts /> },
+            { id: "markdown-renderer", label: "Markdown Renderer", icon: "📄", description: <LazyMarkdownRenderer /> },
             { id: "regex-tool", label: "Regex Tool", icon: "🔍", description: <LazyRegexTool /> },
             { id: "diff-checker", label: "Diff Checker", icon: "🔄", description: <LazyDiffChecker /> },
             { id: "password-tool", label: "Password Tool", icon: "🛡️", description: <LazyPasswordTool /> },
             { id: "uuid-tool", label: "UUID Tool", icon: "🆔", description: <LazyUUIDTool /> },
-            { id: "markdown-renderer", label: "Markdown Renderer", icon: "📄", description: <LazyMarkdownRenderer /> },
-            { id: "latex-renderer", label: "LaTeX Renderer", icon: "📝", description: <LazyLaTeXRenderer /> },
             { id: "writing-board", label: "Writing Board", icon: "✏️", description: <LazyWritingBoardTool /> },
+            { id: "latex-renderer", label: "LaTeX Renderer", icon: "📝", description: <LazyLaTeXRenderer /> },
             { id: "text-generator", label: "Text Util", icon: "🎲", description: <LazyTextGenerator /> },
+        ],
+        "qa-tools": [
+            { id: "macos-app-catalog", label: "macOS App Catalog", icon: "📱", description: <LazyMacOSAppCatalog /> },
+            { id: "terminal-scripts", label: "Terminal Scripts", icon: "💻", description: <LazyTerminalScripts /> },
+            { id: "terminal-tutorial", label: "Terminal Tutorial", icon: "📘", description: <LazyTerminalTutorial /> },
         ],
         "general-tools": [
             { id: "info-tool", label: "Info Tool", icon: "📊", description: <LazyInfoTool /> },

@@ -371,11 +371,20 @@ export const initializeComponentRegistry = () => {
     errorFallback: makeAlertFallback({ title: 'Failed to load Terminal Scripts' })
   });
 
+  registerLazyComponent('terminal-tutorial', 
+    () => import('../Tools/TerminalTutorial/TerminalTutorial'), {
+    label: 'Terminal Tutorial',
+    icon: '📘',
+    category: 'qa-tools',
+    description: 'Quick tips for macOS terminal basics',
+    errorFallback: makeAlertFallback({ title: 'Failed to load Terminal Tutorial' })
+  });
+
   registerLazyComponent('regex-tool', 
     () => import('../Tools/RegexTool/RegexTool'), {
     label: 'Regex Tool',
     icon: '🔍',
-    category: 'qa-tools',
+    category: 'developer-tools',
     description: 'Regular expression testing',
     errorFallback: makeAlertFallback({ title: 'Failed to load Regex Tool' })
   });
@@ -384,7 +393,7 @@ export const initializeComponentRegistry = () => {
     () => import('../Tools/DiffChecker/DiffChecker'), {
     label: 'Diff Checker',
     icon: '🔄',
-    category: 'qa-tools',
+    category: 'developer-tools',
     description: 'Text and file difference checker',
     errorFallback: makeAlertFallback({ title: 'Failed to load Diff Checker' })
   });
@@ -393,7 +402,7 @@ export const initializeComponentRegistry = () => {
     () => import('../Tools/PasswordTool/PasswordTool'), {
     label: 'Password Tool',
     icon: '🛡️',
-    category: 'qa-tools',
+    category: 'developer-tools',
     description: 'Password generation and testing',
     errorFallback: makeAlertFallback({ title: 'Failed to load Password Tool' })
   });
@@ -402,7 +411,7 @@ export const initializeComponentRegistry = () => {
     () => import('../Tools/UUIDTool/UUIDTool'), {
     label: 'UUID Tool',
     icon: '🆔',
-    category: 'qa-tools',
+    category: 'developer-tools',
     description: 'UUID generation and validation',
     errorFallback: makeAlertFallback({ title: 'Failed to load UUID Tool' })
   });
@@ -411,7 +420,7 @@ export const initializeComponentRegistry = () => {
     () => import('../Tools/MarkdownRenderer/MarkdownRenderer'), {
     label: 'Markdown Renderer',
     icon: '📄',
-    category: 'qa-tools',
+    category: 'developer-tools',
     description: 'Markdown preview and conversion',
     errorFallback: makeAlertFallback({ title: 'Failed to load Markdown Renderer' })
   });
@@ -420,7 +429,7 @@ export const initializeComponentRegistry = () => {
     () => import('../Tools/LaTeXRenderer/LaTeXRenderer'), {
     label: 'LaTeX Renderer',
     icon: '📝',
-    category: 'qa-tools',
+    category: 'developer-tools',
     description: 'LaTeX formula rendering',
     errorFallback: makeAlertFallback({ title: 'Failed to load LaTeX Renderer' })
   });
@@ -429,7 +438,7 @@ export const initializeComponentRegistry = () => {
     () => import('../Tools/WritingBoard/WritingBoardTool'), {
     label: 'Writing Board',
     icon: '✏️',
-    category: 'qa-tools',
+    category: 'developer-tools',
     description: 'Digital writing and note-taking',
     errorFallback: makeAlertFallback({ title: 'Failed to load Writing Board' })
   });
@@ -438,7 +447,7 @@ export const initializeComponentRegistry = () => {
     () => import('../Tools/TextUtilities/TextGenerator'), {
     label: 'Text Util',
     icon: '🎲',
-    category: 'qa-tools',
+    category: 'developer-tools',
     description: 'Text generation and utilities',
     errorFallback: makeAlertFallback({ title: 'Failed to load Text Utilities' })
   });
