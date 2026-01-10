@@ -4,6 +4,27 @@
     gap: var(--space-sm);
 }
 
+.yt-hero-card {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: var(--space-sm);
+    padding: var(--space-sm);
+    margin-bottom: var(--space-sm);
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.14), rgba(59, 130, 246, 0.12));
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+}
+
+.yt-hero-text h2 {
+    margin-bottom: var(--space-xs);
+}
+
+.yt-hero-text p {
+    color: var(--text-secondary);
+    margin-bottom: var(--space-sm);
+}
+
 .youtube-hero {
     align-items: center;
     justify-content: space-between;
@@ -85,6 +106,10 @@
     width: 100%;
     height: 100%;
     border: 0;
+}
+
+.hero-embed {
+    min-height: 220px;
 }
 
 .yt-links {

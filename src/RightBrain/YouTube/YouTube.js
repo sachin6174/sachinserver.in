@@ -34,6 +34,13 @@ const playlists = [
 ];
 
 const RightbrainYouTube = () => {
+    const channelPreview = {
+        title: 'RightBrainThings channel preview',
+        description: 'Latest playlists from the channel.',
+        link: 'https://www.youtube.com/@RightBrainThings',
+        embedUrl: playlists[0]?.embedUrl || 'https://www.youtube.com/embed'
+    };
+
     return (
         <div className="rightbrain-container">
             <div className="simple-header youtube-hero">
@@ -49,6 +56,30 @@ const RightbrainYouTube = () => {
                 >
                     Visit channel ↗
                 </a>
+            </div>
+
+            <div className="yt-hero-card">
+                <div className="yt-hero-text">
+                    <h2>{channelPreview.title}</h2>
+                    <p>{channelPreview.description}</p>
+                    <a
+                        href={channelPreview.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="yt-link"
+                    >
+                        Open channel ↗
+                    </a>
+                </div>
+                <div className="yt-embed hero-embed">
+                    <iframe
+                        src={channelPreview.embedUrl}
+                        title={channelPreview.title}
+                        loading="lazy"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                    />
+                </div>
             </div>
 
             <div className="yt-grid">
