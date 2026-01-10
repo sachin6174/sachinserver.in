@@ -244,6 +244,23 @@ export const curatedPlaylists = [
     }
 ];
 
+export const youtubePlaylists = [
+    {
+        id: 'youtube-hindi',
+        title: 'YouTube Playlist (Hindi)',
+        language: 'Hindi',
+        description: 'Apple development walkthroughs and discussions in Hindi.',
+        url: 'https://www.youtube.com/watch?v=AxDuaJdvGcI&list=PLGfbm6h9vm5-HSmUy35e_dRRS_bgUA2q-'
+    },
+    {
+        id: 'youtube-english',
+        title: 'YouTube Playlist (English)',
+        language: 'English',
+        description: 'English-language playlist covering iOS engineering topics.',
+        url: 'https://www.youtube.com/watch?v=VMVh3ZZO-Ok&list=PLGfbm6h9vm59p31qaqYNhlc7QJPlxrOtl'
+    }
+];
+
 export const listeningFramework = [
     {
         id: 'commute',

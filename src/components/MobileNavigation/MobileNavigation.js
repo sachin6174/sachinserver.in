@@ -17,7 +17,7 @@ const MobileNavigation = ({
     if (!items) return {};
     
     // Featured/Popular items
-    const featured = ['about-me', 'dsa', 'JSON-Tool', 'crypto-tool', 'drawing'];
+    const featured = ['about-me', 'dsa', 'github', 'JSON-Tool', 'crypto-tool', 'drawing'];
     const recentlyUsed = JSON.parse(localStorage.getItem('recentlyUsed') || '[]');
     
     return {

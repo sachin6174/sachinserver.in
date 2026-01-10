@@ -19,6 +19,7 @@ const LazyDSA = createLazyComponent(() => import('./LeftBrain/DSA/DSA'), {
   componentName: 'DSA',
   fallback: <SkeletonLoader type="dsa" />
 });
+const LazyGitHub = createLazyComponent(() => import('./LeftBrain/GitHub/GitHub'), { componentName: 'GitHub' });
 const LazyXcodeShortcuts = createLazyComponent(() => import('./LeftBrain/XcodeShortcuts/XcodeShortcuts'), { componentName: 'XcodeShortcuts' });
 const LazyAppleDevYouTubeChannels = createLazyComponent(() => import('./LeftBrain/AppleDevYouTubeChannels/AppleDevYouTubeChannels'), { componentName: 'AppleDevYouTubeChannels' });
 const LazyAppleDevelopmentPodcasts = createLazyComponent(() => import('./LeftBrain/AppleDevelopmentPodcasts/AppleDevelopmentPodcasts'), { componentName: 'AppleDevelopmentPodcasts' });
@@ -211,7 +212,8 @@ const TabSystem = memo(() => {
         leftbrain: [
             { id: "about-me", label: "About Me", icon: "👤", description: <LazyAboutMe /> },
             { id: "dsa", label: "DSA", icon: "🧮", description: <LazyDSA /> },
-            { id: "apple-development-podcasts", label: "Apple Dev Podcasts", icon: "🎧", description: <LazyAppleDevelopmentPodcasts /> },
+            { id: "github", label: "GitHub", icon: "🐙", description: <LazyGitHub /> },
+            { id: "apple-development-podcasts", label: "YouTube", icon: "🎧", description: <LazyAppleDevelopmentPodcasts /> },
             { id: "xcode-shortcuts", label: "Xcode Shortcuts", icon: "⌨️", description: <LazyXcodeShortcuts /> },
             { id: "apple-dev-youtube", label: "Apple Dev YouTube", icon: "📺", description: <LazyAppleDevYouTubeChannels /> },
             { id: "apple-development", label: "Apple Development", icon: "🍎", description: <LazyAppleDevelopment /> },

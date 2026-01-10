@@ -18,6 +18,12 @@ const ContentPreview = ({ item, children }) => {
         tags: ['Coding', 'Interviews', 'Problem Solving'],
         estimatedTime: 'Interactive'
       },
+      'github': {
+        title: 'GitHub',
+        description: 'Open-source activity, repositories, and contribution history',
+        tags: ['Open Source', 'Repositories', 'Contributions'],
+        estimatedTime: 'Live'
+      },
       'apple-development': {
         title: 'Apple Development',
         description: 'iOS, macOS development resources and project showcases',

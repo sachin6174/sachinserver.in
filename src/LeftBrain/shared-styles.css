@@ -10,6 +10,10 @@
     --theme-dsa: #3B82F6;
     --theme-dsa-light: #60A5FA;
     --theme-dsa-dark: #2563EB;
+
+    --theme-github: #2DA44E;
+    --theme-github-light: #5FC57A;
+    --theme-github-dark: #1F6F3C;
     
     --theme-apple: #007AFF;
     --theme-apple-light: #5AC8FA;
@@ -179,6 +183,7 @@ body.dark-mode {
 
 /* Theme-specific containers */
 .leftbrain-container.dsa-theme { --current-theme: var(--theme-dsa); --current-theme-light: var(--theme-dsa-light); --current-theme-dark: var(--theme-dsa-dark); }
+.leftbrain-container.github-theme { --current-theme: var(--theme-github); --current-theme-light: var(--theme-github-light); --current-theme-dark: var(--theme-github-dark); }
 .leftbrain-container.apple-theme { --current-theme: var(--theme-apple); --current-theme-light: var(--theme-apple-light); --current-theme-dark: var(--theme-apple-dark); }
 .leftbrain-container.apple-podcasts-theme { --current-theme: var(--theme-apple); --current-theme-light: var(--theme-apple-light); --current-theme-dark: var(--theme-apple-dark); }
 .leftbrain-container.swift-theme { --current-theme: var(--theme-swift); --current-theme-light: var(--theme-swift-light); --current-theme-dark: var(--theme-swift-dark); }

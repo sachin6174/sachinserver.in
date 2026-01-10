@@ -1,189 +1,86 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import '../DSA/ContributionGraph.css';
 
-const GitHubContributionGraph = () => {
+const GitHubContributionGraph = ({ username = 'sachin6174' }) => {
     const [contributions, setContributions] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [useImageFallback, setUseImageFallback] = useState(false);
 
-    // Fetch real GitHub data for sachin6174
     const fetchGitHubData = async () => {
-        const apis = [
-            // Try GitHub contributions API
-            'https://github-contributions-api.jogruber.de/v4/sachin6174',
-            // Try GitHub API for user events
-            'https://api.github.com/users/sachin6174/events',
-            // Alternative GitHub stats API
-            'https://github-readme-stats.vercel.app/api?username=sachin6174&show_icons=true&count_private=true'
-        ];
-
         setLoading(true);
         setError(null);
+        setUseImageFallback(false);
 
-        // Try each GitHub API endpoint
-        for (let i = 0; i < apis.length; i++) {
-            try {
-                console.log(`Trying GitHub API ${i + 1}:`, apis[i]);
-                
-                const response = await fetch(apis[i]);
-                
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                
-                const data = await response.json();
-                console.log('GitHub API Response:', data);
-                
-                // Transform the data into contribution format
-                const contributionData = generateContributionDataFromGitHubAPI(data, i);
-                setContributions(contributionData);
-                setError(null);
-                setLoading(false);
-                return; // Success, exit the loop
-                
-            } catch (err) {
-                console.error(`GitHub API ${i + 1} failed:`, err);
-                if (i === apis.length - 1) {
-                    // All APIs failed
-                    setError('Unable to fetch GitHub data from any API');
-                    setContributions(generateFallbackData());
-                }
+        try {
+            const response = await fetch(`https://github-contributions-api.jogruber.de/v4/${username}`);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
             }
+
+            const data = await response.json();
+            if (!data?.contributions) {
+                throw new Error('Missing contributions data');
+            }
+
+            const contributionData = generateContributionDataFromGitHubAPI(data.contributions);
+            setContributions(contributionData);
+            setLoading(false);
+        } catch (err) {
+            console.error('GitHub contributions API failed:', err);
+            setError('API unavailable, showing live graph');
+            setUseImageFallback(true);
+            setLoading(false);
         }
-        
-        setLoading(false);
     };
 
-    // Generate contribution data from GitHub API response
-    const generateContributionDataFromGitHubAPI = (apiData, apiIndex = 0) => {
+    const generateContributionDataFromGitHubAPI = (contributionCalendar) => {
         const contributions = [];
-        const startDate = new Date('2025-01-01');
-        const currentDate = new Date();
-        
-        let contributionCalendar = {};
-        
-        // Handle different GitHub API response formats
-        if (apiIndex === 0) {
-            // github-contributions-api.jogruber.de format
-            if (apiData.contributions) {
-                Object.keys(apiData.contributions).forEach(date => {
-                    const dateObj = new Date(date);
-                    const dateKey = dateObj.toISOString().split('T')[0]; // YYYY-MM-DD format
-                    contributionCalendar[dateKey] = apiData.contributions[date];
-                });
-            }
-        } else if (apiIndex === 1) {
-            // GitHub events API format - process events into daily counts
-            if (Array.isArray(apiData)) {
-                apiData.forEach(event => {
-                    const eventDate = new Date(event.created_at);
-                    const dateKey = eventDate.toISOString().split('T')[0]; // YYYY-MM-DD format
-                    contributionCalendar[dateKey] = (contributionCalendar[dateKey] || 0) + 1;
-                });
-            }
-        }
-        
-        console.log('Parsed GitHub contribution calendar:', contributionCalendar);
-        
-        for (let d = new Date(startDate); d <= currentDate; d.setDate(d.getDate() + 1)) {
-            const dateKey = d.toISOString().split('T')[0]; // YYYY-MM-DD format
-            const count = parseInt(contributionCalendar[dateKey]) || 0;
-            
-            // Calculate level based on contribution count
+        const endDate = new Date();
+        const startDate = new Date(endDate);
+        startDate.setDate(endDate.getDate() - 364);
+
+        const startOfWeek = new Date(startDate);
+        startOfWeek.setDate(startDate.getDate() - startDate.getDay());
+
+        const getDateKey = (date) => {
+            const utcDate = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
+            return utcDate.toISOString().split('T')[0];
+        };
+
+        for (let d = new Date(startOfWeek); d <= endDate; d.setDate(d.getDate() + 1)) {
+            const dateKey = getDateKey(d);
+            const count = parseInt(contributionCalendar[dateKey], 10) || 0;
+            const isInRange = d >= startDate;
+
             let level = 0;
-            if (count > 0) {
+            if (isInRange && count > 0) {
                 if (count >= 12) level = 4;
                 else if (count >= 6) level = 3;
                 else if (count >= 3) level = 2;
                 else level = 1;
             }
-            
+
             contributions.push({
                 date: new Date(d),
-                level: level,
-                count: count
+                level,
+                count: isInRange ? count : 0,
+                isInRange
             });
         }
-        
+
         return contributions;
     };
 
-    // Fallback data generation if API fails
-    const generateFallbackData = () => {
-        const contributions = [];
-        const startDate = new Date('2025-01-01');
-        const currentDate = new Date();
-        
-        // Create realistic GitHub contribution patterns
-        const weekdays = [1, 2, 3, 4, 5]; // Monday to Friday (work days)
-        const currentMonth = new Date().getMonth();
-        
-        for (let d = new Date(startDate); d <= currentDate; d.setDate(d.getDate() + 1)) {
-            let level = 0;
-            let count = 0;
-            
-            const dayOfWeek = d.getDay();
-            const month = d.getMonth();
-            
-            // Higher activity on weekdays (typical developer pattern)
-            const isWeekday = weekdays.includes(dayOfWeek);
-            
-            // Higher activity in current month
-            const isCurrentMonth = month === currentMonth;
-            
-            // Generate realistic GitHub activity patterns
-            let activityChance = 0.25; // Base 25% chance for active developer
-            if (isWeekday) activityChance += 0.35; // +35% on weekdays
-            if (isCurrentMonth) activityChance += 0.20; // +20% in current month
-            
-            // Weekend coding sessions (less frequent but happen)
-            if (!isWeekday && Math.random() < 0.4) {
-                activityChance += 0.15;
-            }
-            
-            if (Math.random() < activityChance) {
-                // Determine contribution count (1-15 contributions)
-                // Higher numbers represent commit streaks or major coding days
-                if (Math.random() < 0.1) {
-                    count = Math.floor(Math.random() * 8) + 8; // 8-15 (major work days)
-                } else if (Math.random() < 0.3) {
-                    count = Math.floor(Math.random() * 5) + 3; // 3-7 (productive days)
-                } else {
-                    count = Math.floor(Math.random() * 3) + 1; // 1-3 (regular days)
-                }
-                
-                // Calculate level based on GitHub's typical contribution levels
-                if (count >= 12) level = 4;
-                else if (count >= 6) level = 3;
-                else if (count >= 3) level = 2;
-                else level = 1;
-            }
-            
-            contributions.push({
-                date: new Date(d),
-                level: level,
-                count: count
-            });
-        }
-        
-        return contributions;
-    };
-
-    // Fetch data on component mount
     useEffect(() => {
         fetchGitHubData();
-    }, []);
+    }, [username]);
 
     const totalContributions = contributions.reduce((sum, day) => sum + day.count, 0);
     
     // Calculate weeks for grid layout
     const weeks = [];
     let currentWeek = [];
-    
-    // Start from first Sunday of the year
-    const startDate = new Date('2025-01-01');
-    const firstSunday = new Date(startDate);
-    firstSunday.setDate(startDate.getDate() - startDate.getDay());
     
     contributions.forEach((contribution, index) => {
         currentWeek.push(contribution);
@@ -194,10 +91,29 @@ const GitHubContributionGraph = () => {
         }
     });
 
-    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 
-                   'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-    
     const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    const dayLabelIndexes = [1, 3, 5]; // Mon, Wed, Fri for GitHub-like labels
+
+    const monthMarkers = useMemo(() => {
+        const markers = [];
+        let lastMonth = null;
+
+        weeks.forEach((week, weekIndex) => {
+            const weekStart = week.find(Boolean);
+            if (!weekStart || !weekStart.date) return;
+            const month = weekStart.date.getMonth();
+
+            if (lastMonth !== month) {
+                markers.push({
+                    label: weekStart.date.toLocaleString('en-US', { month: 'short' }),
+                    index: weekIndex + 1 // grid columns are 1-based
+                });
+                lastMonth = month;
+            }
+        });
+
+        return markers;
+    }, [weeks]);
 
     const formatDate = (date) => {
         return date.toLocaleDateString('en-US', { 
@@ -208,7 +124,6 @@ const GitHubContributionGraph = () => {
         });
     };
 
-    // Show loading state
     if (loading) {
         return (
             <div className="contribution-graph-container">
@@ -219,7 +134,7 @@ const GitHubContributionGraph = () => {
                     </div>
                     <div className="contribution-year">
                         <span className="info-icon">ⓘ</span>
-                        <span>2025</span>
+                        <span>Last 12 months</span>
                     </div>
                 </div>
                 <div className="contribution-graph loading-skeleton">
@@ -237,22 +152,59 @@ const GitHubContributionGraph = () => {
         );
     }
 
+    if (useImageFallback) {
+        return (
+            <div className="contribution-graph-container github-graph">
+                <div className="contribution-header">
+                    <div className="contribution-title">
+                        <span className="contribution-icon">🐙</span>
+                        <span className="contribution-count">
+                            GitHub contributions
+                            {error && <span className="api-status"> ({error})</span>}
+                        </span>
+                    </div>
+                    <div className="contribution-year">
+                        <span className="info-icon">ⓘ</span>
+                        <span>Last 12 months</span>
+                        <span className="live-indicator">●</span>
+                        <a 
+                            href={`https://github.com/${username}`} 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="github-profile-link"
+                            title="View GitHub Profile"
+                        >
+                            View Profile ↗
+                        </a>
+                    </div>
+                </div>
+                <div className="github-image-graph">
+                    <img
+                        src={`https://ghchart.rshah.org/${username}`}
+                        alt={`GitHub contribution graph for ${username}`}
+                        loading="lazy"
+                    />
+                </div>
+            </div>
+        );
+    }
+
     return (
-        <div className="contribution-graph-container">
+        <div className="contribution-graph-container github-graph">
             <div className="contribution-header">
                 <div className="contribution-title">
-                    <span className="contribution-icon">🔥</span>
+                    <span className="contribution-icon">🐙</span>
                     <span className="contribution-count">
-                        {totalContributions} total contributions
-                        {error && <span className="api-status"> (simulated data - API unavailable)</span>}
+                        {totalContributions} contributions in the last year
+                        {error && <span className="api-status"> ({error})</span>}
                     </span>
                 </div>
                 <div className="contribution-year">
                     <span className="info-icon">ⓘ</span>
-                    <span>2025</span>
-                    {!error && <span className="live-indicator">●</span>}
+                    <span>Last 12 months</span>
+                    <span className="live-indicator">●</span>
                     <a 
-                        href="https://github.com/sachin6174" 
+                        href={`https://github.com/${username}`} 
                         target="_blank" 
                         rel="noopener noreferrer"
                         className="github-profile-link"
@@ -264,16 +216,28 @@ const GitHubContributionGraph = () => {
             </div>
             
             <div className="contribution-graph">
-                <div className="month-labels">
-                    {months.map((month) => (
-                        <span key={month} className="month-label">{month}</span>
-                    ))}
+                <div className="month-labels github-month-labels">
+                    <span className="month-label-offset" />
+                    <div
+                        className="github-month-labels-row"
+                        style={{ gridTemplateColumns: `repeat(${weeks.length}, 1fr)` }}
+                    >
+                        {monthMarkers.map((marker) => (
+                            <span
+                                key={`${marker.label}-${marker.index}`}
+                                className="month-label"
+                                style={{ gridColumnStart: marker.index }}
+                            >
+                                {marker.label}
+                            </span>
+                        ))}
+                    </div>
                 </div>
-                
+
                 <div className="graph-content">
                     <div className="day-labels">
                         {days.map((day, index) => (
-                            index % 2 === 0 && (
+                            dayLabelIndexes.includes(index) && (
                                 <span key={day} className="day-label">{day}</span>
                             )
                         ))}
