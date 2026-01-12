@@ -478,7 +478,9 @@
 
 /* Update existing grid styles to work with monthly layout */
 .contribution-grid {
-    display: none; /* Hide old layout */
+    display: flex;
+    gap: 3px;
+    flex: 1;
 }
 
 /* Responsive adjustments */
