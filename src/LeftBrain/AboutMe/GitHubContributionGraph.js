@@ -1,119 +1,150 @@
 import { useState, useEffect, useMemo } from 'react';
 import '../DSA/ContributionGraph.css';
 
+// GitHub GraphQL API Configuration
+// To use GitHub's official GraphQL API, you need a Personal Access Token
+// 1. Go to https://github.com/settings/tokens
+// 2. Generate a new token with 'read:user' scope
+// 3. Create a .env file in your project root with: REACT_APP_GITHUB_TOKEN=your_token_here
+// 4. Restart your development server
+
+const GITHUB_GRAPHQL_ENDPOINT = 'https://api.github.com/graphql';
+const GITHUB_TOKEN = process.env.REACT_APP_GITHUB_TOKEN;
+
 const GitHubContributionGraph = ({ username = 'sachin6174' }) => {
-    const [contributions, setContributions] = useState([]);
+    const [contributionData, setContributionData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [useImageFallback, setUseImageFallback] = useState(false);
 
-    const fetchGitHubData = async () => {
+    // GraphQL query as described in the article
+    const CONTRIBUTION_QUERY = `
+        query($userName: String!) { 
+            user(login: $userName) {
+                contributionsCollection {
+                    contributionCalendar {
+                        totalContributions
+                        weeks {
+                            contributionDays {
+                                contributionCount
+                                date
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    `;
+
+    const fetchGitHubContributions = async () => {
         setLoading(true);
         setError(null);
         setUseImageFallback(false);
 
+        // Check if token is configured
+        if (!GITHUB_TOKEN) {
+            console.warn('GitHub token not configured. Using image fallback.');
+            setError('Configure GitHub token for interactive graph');
+            setUseImageFallback(true);
+            setLoading(false);
+            return;
+        }
+
         try {
-            const response = await fetch(`https://github-contributions-api.jogruber.de/v4/${username}`);
+            const response = await fetch(GITHUB_GRAPHQL_ENDPOINT, {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${GITHUB_TOKEN}`,
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    query: CONTRIBUTION_QUERY,
+                    variables: { userName: username }
+                })
+            });
+
             if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
+                throw new Error(`GitHub API error: ${response.status}`);
             }
 
-            const data = await response.json();
-            if (!data?.contributions) {
-                throw new Error('Missing contributions data');
+            const result = await response.json();
+
+            if (result.errors) {
+                throw new Error(result.errors[0].message);
             }
 
-            const contributionData = generateContributionDataFromGitHubAPI(data.contributions);
-            setContributions(contributionData);
+            if (!result.data?.user?.contributionsCollection?.contributionCalendar) {
+                throw new Error('Invalid response structure');
+            }
+
+            setContributionData(result.data.user.contributionsCollection.contributionCalendar);
             setLoading(false);
         } catch (err) {
-            console.error('GitHub contributions API failed:', err);
-            setError('API unavailable, showing live graph');
+            console.error('GitHub GraphQL API failed:', err);
+            setError(err.message || 'API unavailable, showing live graph');
             setUseImageFallback(true);
             setLoading(false);
         }
     };
 
-    const generateContributionDataFromGitHubAPI = (contributionCalendar) => {
-        const contributions = [];
-        const endDate = new Date();
-        const startDate = new Date(endDate);
-        startDate.setDate(endDate.getDate() - 364);
-
-        const startOfWeek = new Date(startDate);
-        startOfWeek.setDate(startDate.getDate() - startDate.getDay());
-
-        const getDateKey = (date) => {
-            const utcDate = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
-            return utcDate.toISOString().split('T')[0];
-        };
-
-        for (let d = new Date(startOfWeek); d <= endDate; d.setDate(d.getDate() + 1)) {
-            const dateKey = getDateKey(d);
-            const count = parseInt(contributionCalendar[dateKey], 10) || 0;
-            const isInRange = d >= startDate;
-
-            let level = 0;
-            if (isInRange && count > 0) {
-                if (count >= 12) level = 4;
-                else if (count >= 6) level = 3;
-                else if (count >= 3) level = 2;
-                else level = 1;
-            }
-
-            contributions.push({
-                date: new Date(d),
-                level,
-                count: isInRange ? count : 0,
-                isInRange
-            });
-        }
-
-        return contributions;
-    };
-
     useEffect(() => {
-        fetchGitHubData();
+        fetchGitHubContributions();
     }, [username]);
 
-    const totalContributions = contributions.reduce((sum, day) => sum + day.count, 0);
-    
-    // Calculate weeks for grid layout
-    const weeks = [];
-    let currentWeek = [];
-    
-    contributions.forEach((contribution, index) => {
-        currentWeek.push(contribution);
-        
-        if (currentWeek.length === 7 || index === contributions.length - 1) {
-            weeks.push([...currentWeek]);
-            currentWeek = [];
-        }
-    });
+    // Process contribution data for visualization
+    const processedData = useMemo(() => {
+        if (!contributionData) return { weeks: [], totalContributions: 0 };
+
+        const { weeks, totalContributions } = contributionData;
+
+        // Calculate contribution levels (0-4) based on count
+        const processedWeeks = weeks.map(week => ({
+            days: week.contributionDays.map(day => {
+                const count = day.contributionCount;
+                let level = 0;
+                
+                if (count > 0) {
+                    if (count >= 12) level = 4;
+                    else if (count >= 6) level = 3;
+                    else if (count >= 3) level = 2;
+                    else level = 1;
+                }
+
+                return {
+                    date: new Date(day.date),
+                    count,
+                    level
+                };
+            })
+        }));
+
+        return { weeks: processedWeeks, totalContributions };
+    }, [contributionData]);
 
     const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-    const dayLabelIndexes = [1, 3, 5]; // Mon, Wed, Fri for GitHub-like labels
+    const dayLabelIndexes = [1, 3, 5]; // Mon, Wed, Fri
 
     const monthMarkers = useMemo(() => {
         const markers = [];
         let lastMonth = null;
 
-        weeks.forEach((week, weekIndex) => {
-            const weekStart = week.find(Boolean);
-            if (!weekStart || !weekStart.date) return;
-            const month = weekStart.date.getMonth();
+        processedData.weeks.forEach((week, weekIndex) => {
+            const firstDay = week.days[0];
+            if (!firstDay) return;
+            
+            const month = firstDay.date.getMonth();
 
             if (lastMonth !== month) {
                 markers.push({
-                    label: weekStart.date.toLocaleString('en-US', { month: 'short' }),
-                    index: weekIndex + 1 // grid columns are 1-based
+                    label: firstDay.date.toLocaleString('en-US', { month: 'short' }),
+                    index: weekIndex + 1
                 });
                 lastMonth = month;
             }
         });
 
         return markers;
-    }, [weeks]);
+    }, [processedData.weeks]);
 
     const formatDate = (date) => {
         return date.toLocaleDateString('en-US', { 
@@ -184,6 +215,14 @@ const GitHubContributionGraph = ({ username = 'sachin6174' }) => {
                         alt={`GitHub contribution graph for ${username}`}
                         loading="lazy"
                     />
+                    <p style={{ 
+                        marginTop: '1rem', 
+                        fontSize: '0.875rem', 
+                        color: 'var(--text-secondary)',
+                        textAlign: 'center'
+                    }}>
+                        💡 To see an interactive graph, configure your GitHub token in <code>.env</code>
+                    </p>
                 </div>
             </div>
         );
@@ -195,8 +234,7 @@ const GitHubContributionGraph = ({ username = 'sachin6174' }) => {
                 <div className="contribution-title">
                     <span className="contribution-icon">🐙</span>
                     <span className="contribution-count">
-                        {totalContributions} contributions in the last year
-                        {error && <span className="api-status"> ({error})</span>}
+                        {processedData.totalContributions} contributions in the last year
                     </span>
                 </div>
                 <div className="contribution-year">
@@ -220,7 +258,7 @@ const GitHubContributionGraph = ({ username = 'sachin6174' }) => {
                     <span className="month-label-offset" />
                     <div
                         className="github-month-labels-row"
-                        style={{ gridTemplateColumns: `repeat(${weeks.length}, 1fr)` }}
+                        style={{ gridTemplateColumns: `repeat(${processedData.weeks.length}, 1fr)` }}
                     >
                         {monthMarkers.map((marker) => (
                             <span
@@ -244,27 +282,15 @@ const GitHubContributionGraph = ({ username = 'sachin6174' }) => {
                     </div>
                     
                     <div className="contribution-grid">
-                        {weeks.map((week, weekIndex) => (
+                        {processedData.weeks.map((week, weekIndex) => (
                             <div key={weekIndex} className="week-column">
-                                {Array.from({length: 7}, (_, dayIndex) => {
-                                    const contribution = week[dayIndex];
-                                    if (!contribution) {
-                                        return (
-                                            <div 
-                                                key={dayIndex} 
-                                                className="contribution-day level-0"
-                                            />
-                                        );
-                                    }
-                                    
-                                    return (
-                                        <div
-                                            key={dayIndex}
-                                            className={`contribution-day level-${contribution.level}`}
-                                            title={`${contribution.count} ${contribution.count === 1 ? 'contribution' : 'contributions'} on ${formatDate(contribution.date)}`}
-                                        />
-                                    );
-                                })}
+                                {week.days.map((day, dayIndex) => (
+                                    <div
+                                        key={dayIndex}
+                                        className={`contribution-day level-${day.level}`}
+                                        title={`${day.count} ${day.count === 1 ? 'contribution' : 'contributions'} on ${formatDate(day.date)}`}
+                                    />
+                                ))}
                             </div>
                         ))}
                     </div>
