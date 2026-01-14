@@ -10,7 +10,7 @@ const MainContent = memo(({ activeTab, selectedNavItem, navigationItems, isLeftN
         if (!selectedNavItem || !navigationItems[activeTab]) {
             return null;
         }
-        return navigationItems[activeTab].find(item => 
+        return navigationItems[activeTab].find(item =>
             item.label === selectedNavItem || item.id === selectedNavItem
         )?.description || null;
     }, [selectedNavItem, navigationItems, activeTab]);
@@ -19,17 +19,17 @@ const MainContent = memo(({ activeTab, selectedNavItem, navigationItems, isLeftN
         // Optimize content change animation
         if (selectedContent !== currentContent) {
             setIsContentVisible(false);
-            
+
             // Use requestAnimationFrame for better performance
             const animationFrame = requestAnimationFrame(() => {
                 const timer = setTimeout(() => {
                     setCurrentContent(selectedContent);
                     setIsContentVisible(true);
                 }, 100); // Reduced delay for snappier UI
-                
+
                 return () => clearTimeout(timer);
             });
-            
+
             return () => cancelAnimationFrame(animationFrame);
         }
     }, [selectedContent, currentContent]);
@@ -44,7 +44,7 @@ const MainContent = memo(({ activeTab, selectedNavItem, navigationItems, isLeftN
         },
         rightbrain: {
             icon: "🎨",
-            shortName: "RightBrain", 
+            shortName: "RightBrain",
             fullName: "RightBrain: Creativity and Art",
             description: "Creative pursuits and artistic expression"
         },
@@ -60,6 +60,12 @@ const MainContent = memo(({ activeTab, selectedNavItem, navigationItems, isLeftN
             fullName: "QA Tools: Testing and Quality Assurance",
             description: "Quality assurance and testing utilities"
         },
+        "games": {
+            icon: "🎮",
+            shortName: "Games",
+            fullName: "Games: Play & Relax",
+            description: "Collection of classic games and tools"
+        },
         "general-tools": {
             icon: "🛠️",
             shortName: "General Tools",
@@ -74,8 +80,8 @@ const MainContent = memo(({ activeTab, selectedNavItem, navigationItems, isLeftN
 
     // Memoize tab info and selected item calculations
     const tabInfo = useMemo(() => getTabInfo(activeTab), [activeTab, tabConfig]);
-    const selectedItem = useMemo(() => 
-        navigationItems[activeTab]?.find(item => item.id === selectedNavItem), 
+    const selectedItem = useMemo(() =>
+        navigationItems[activeTab]?.find(item => item.id === selectedNavItem),
         [navigationItems, activeTab, selectedNavItem]
     );
 
@@ -95,7 +101,7 @@ const MainContent = memo(({ activeTab, selectedNavItem, navigationItems, isLeftN
             <div className="separator-line" role="separator" aria-hidden="true"></div>
 
             {/* Content Display with Animation */}
-            <main 
+            <main
                 id="main"
                 className={`description ${isContentVisible ? 'content-visible' : 'content-hidden'}`}
                 role="main"
