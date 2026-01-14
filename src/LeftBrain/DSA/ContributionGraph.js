@@ -74,7 +74,7 @@ const ContributionGraph = () => {
                 // Extract submissionCalendar regardless of shape
                 let submissionCalendar = data?.submissionCalendar ?? data?.data?.submissionCalendar ?? {};
                 if (typeof submissionCalendar === 'string') {
-                    try { submissionCalendar = JSON.parse(submissionCalendar); } catch {}
+                    try { submissionCalendar = JSON.parse(submissionCalendar); } catch { }
                 }
 
                 if (submissionCalendar && typeof submissionCalendar === 'object') {
@@ -143,30 +143,30 @@ const ContributionGraph = () => {
         // Create realistic LeetCode problem-solving patterns
         const weekdays = [1, 2, 3, 4, 5]; // Monday to Friday (work days)
         const currentMonth = now.getMonth();
-        
+
         for (let d = new Date(startDate); d <= currentDate; d.setDate(d.getDate() + 1)) {
             let level = 0;
             let count = 0;
-            
+
             const dayOfWeek = d.getDay();
             const month = d.getMonth();
-            
+
             // Higher activity on weekdays (typical coding practice pattern)
             const isWeekday = weekdays.includes(dayOfWeek);
-            
+
             // Higher activity in current month
             const isCurrentMonth = month === currentMonth;
-            
+
             // Generate realistic LeetCode solving patterns
             let activityChance = 0.20; // Base 20% chance
             if (isWeekday) activityChance += 0.40; // +40% on weekdays
             if (isCurrentMonth) activityChance += 0.25; // +25% in current month
-            
+
             // Weekend practice sessions (less frequent but happen)
             if (!isWeekday && Math.random() < 0.35) {
                 activityChance += 0.15;
             }
-            
+
             if (Math.random() < activityChance) {
                 // Determine problem count (1-12 problems per day)
                 // Higher numbers represent intensive practice days
@@ -177,21 +177,21 @@ const ContributionGraph = () => {
                 } else {
                     count = Math.floor(Math.random() * 3) + 1; // 1-3 (regular days)
                 }
-                
+
                 // Calculate level based on LeetCode problem-solving levels
                 if (count >= 10) level = 4;
                 else if (count >= 6) level = 3;
                 else if (count >= 3) level = 2;
                 else level = 1;
             }
-            
+
             contributions.push({
                 date: new Date(d),
                 level: level,
                 count: count
             });
         }
-        
+
         return contributions;
     };
 
@@ -200,55 +200,55 @@ const ContributionGraph = () => {
         fetchLeetCodeData();
     }, [username]);
     const totalContributions = contributions.reduce((sum, day) => sum + day.count, 0);
-    
+
     // Organize contributions by months (GitHub-style)
     const organizeContributionsByMonths = () => {
         const monthsData = [];
-        const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 
-                          'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+            'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
         const currentDate = new Date();
         const currentYear = currentDate.getFullYear();
-        
+
         // Show only months that have passed or current month
         for (let month = 0; month <= currentDate.getMonth(); month++) {
             const monthContributions = contributions.filter(contribution => {
                 return contribution.date.getMonth() === month && contribution.date.getFullYear() === currentYear;
             });
-            
+
             // Get first and last day of the month
             const firstDay = new Date(currentYear, month, 1);
             const lastDay = new Date(currentYear, month + 1, 0);
-            
+
             // Find the start of the first week (previous Sunday)
             const startOfWeek = new Date(firstDay);
             startOfWeek.setDate(firstDay.getDate() - firstDay.getDay());
-            
+
             // Find the end of the last week (following Saturday)
             const endOfWeek = new Date(lastDay);
             endOfWeek.setDate(lastDay.getDate() + (6 - lastDay.getDay()));
-            
+
             // Create all days for this month's grid
             const monthWeeks = [];
             let currentWeek = [];
-            
+
             for (let d = new Date(startOfWeek); d <= endOfWeek; d.setDate(d.getDate() + 1)) {
                 // Find contribution for this day
-                const dayContribution = contributions.find(c => 
+                const dayContribution = contributions.find(c =>
                     c.date.toDateString() === d.toDateString()
                 ) || { date: new Date(d), level: 0, count: 0 };
-                
+
                 currentWeek.push(dayContribution);
-                
+
                 if (currentWeek.length === 7) {
                     monthWeeks.push([...currentWeek]);
                     currentWeek = [];
                 }
             }
-            
+
             if (currentWeek.length > 0) {
                 monthWeeks.push([...currentWeek]);
             }
-            
+
             if (monthWeeks.length > 0) {
                 monthsData.push({
                     name: monthNames[month],
@@ -258,19 +258,19 @@ const ContributionGraph = () => {
                 });
             }
         }
-        
+
         return monthsData;
     };
-    
+
     const monthsData = organizeContributionsByMonths();
     const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
     const formatDate = (date) => {
-        return date.toLocaleDateString('en-US', { 
-            weekday: 'long', 
-            year: 'numeric', 
-            month: 'long', 
-            day: 'numeric' 
+        return date.toLocaleDateString('en-US', {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
         });
     };
 
@@ -290,9 +290,9 @@ const ContributionGraph = () => {
                 </div>
                 <div className="contribution-graph loading-skeleton">
                     <div className="skeleton-grid">
-                        {Array.from({length: 53}, (_, i) => (
+                        {Array.from({ length: 53 }, (_, i) => (
                             <div key={i} className="skeleton-week">
-                                {Array.from({length: 7}, (_, j) => (
+                                {Array.from({ length: 7 }, (_, j) => (
                                     <div key={j} className="skeleton-day" />
                                 ))}
                             </div>
@@ -349,9 +349,9 @@ const ContributionGraph = () => {
                     <span className="info-icon">ⓘ</span>
                     <span>{new Date().getFullYear()}</span>
                     {!error && <span className="live-indicator">●</span>}
-                    <a 
-                        href={`https://leetcode.com/${username}`} 
-                        target="_blank" 
+                    <a
+                        href={`https://leetcode.com/${username}`}
+                        target="_blank"
                         rel="noopener noreferrer"
                         className="github-profile-link"
                         title="View LeetCode Profile"
@@ -360,7 +360,7 @@ const ContributionGraph = () => {
                     </a>
                 </div>
             </div>
-            
+
             <div className="contribution-graph">
                 <div className="graph-content">
                     <div className="day-labels">
@@ -370,10 +370,11 @@ const ContributionGraph = () => {
                             )
                         ))}
                     </div>
-                    
+
                     <div className="contribution-grid-monthly">
                         {monthsData.map((monthData, monthIndex) => (
                             <div key={monthData.name} className="month-section">
+                                <div className="month-label">{monthData.name}</div>
                                 <div className="month-grid">
                                     {monthData.weeks.map((week, weekIndex) => (
                                         <div key={weekIndex} className="week-column">
@@ -390,13 +391,12 @@ const ContributionGraph = () => {
                                         </div>
                                     ))}
                                 </div>
-                                <div className="month-label">{monthData.name}</div>
                             </div>
                         ))}
                     </div>
                 </div>
             </div>
-            
+
             <div className="contribution-legend">
                 <span className="legend-text">Less</span>
                 <div className="legend-squares">

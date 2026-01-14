@@ -3,10 +3,10 @@ import '../shared-styles.css';
 import './DSA.css';
 import ContributionGraph from './ContributionGraph';
 import { leetcode150Data } from './data/leetcode150.js';
-import { getSolutionData, hasSolutionVideo } from './data/solutionLinks.js';
+import { oneDDPData } from './data/1ddp.js';
+import { getSolutionData, hasSolutionVideo, getYouTubeThumbnail } from './data/solutionLinks.js';
 
 const DSA = memo(() => {
-    const [selectedTopic, setSelectedTopic] = useState('top150');
     const [username, setUsername] = useState(() => {
         return localStorage.getItem('leetcode-username') || 'sachinkumar6174';
     });
@@ -17,9 +17,9 @@ const DSA = memo(() => {
             const newUsername = localStorage.getItem('leetcode-username') || 'sachinkumar6174';
             setUsername(newUsername);
         };
-        
+
         window.addEventListener('storage', handleStorageChange);
-        
+
         // Also check for updates from the same window
         const interval = setInterval(() => {
             const newUsername = localStorage.getItem('leetcode-username') || 'sachinkumar6174';
@@ -34,24 +34,7 @@ const DSA = memo(() => {
         };
     }, [username]);
 
-    // Memoize topic selection handler
-    const handleTopicChange = useCallback((topicId) => {
-        setSelectedTopic(topicId);
-    }, []);
 
-    // Memoize DSA topics to prevent recreation on every render
-    const dsaTopics = useMemo(() => ({
-        top150: leetcode150Data
-    }), []);
-
-
-    // Memoize topics array - Now only showing LeetCode 150
-    const topics = useMemo(() => [
-        { id: 'top150', name: 'LeetCode Top 150 Interview Questions' }
-    ], []);
-
-    // Memoize current topic calculation
-    const currentTopic = useMemo(() => dsaTopics[selectedTopic], [dsaTopics, selectedTopic]);
 
     return (
         <div className="leftbrain-container dsa-theme">
@@ -70,9 +53,9 @@ const DSA = memo(() => {
                                 <span className="leetcode-icon">🔥</span>
                                 <span className="profile-name">{username}</span>
                             </div>
-                            <a 
-                                href={`https://leetcode.com/${username}`} 
-                                target="_blank" 
+                            <a
+                                href={`https://leetcode.com/${username}`}
+                                target="_blank"
                                 rel="noopener noreferrer"
                                 className="leetcode-compact-link"
                             >
@@ -80,8 +63,8 @@ const DSA = memo(() => {
                             </a>
                         </div>
                         <div className="leetcode-compact-stats">
-                            <img 
-                                src={`https://leetcard.jacoblin.cool/${username}?theme=dark&font=Karma`} 
+                            <img
+                                src={`https://leetcard.jacoblin.cool/${username}?theme=dark&font=Karma`}
                                 alt="LeetCode Stats"
                                 className="leetcode-compact-card"
                                 onError={(e) => {
@@ -89,7 +72,7 @@ const DSA = memo(() => {
                                     e.target.nextSibling.style.display = 'flex';
                                 }}
                             />
-                            <div className="compact-fallback-stats" style={{display: 'none'}}>
+                            <div className="compact-fallback-stats" style={{ display: 'none' }}>
                                 <div className="compact-stat">
                                     <span className="compact-number">30</span>
                                     <span className="compact-label">Total Contributions</span>
@@ -101,40 +84,74 @@ const DSA = memo(() => {
                             </div>
                         </div>
                     </div>
-                    
+
+
                     {/* LeetCode Contribution Graph */}
                     <ContributionGraph />
-                    
-                    <h3>{currentTopic.title}</h3>
-                    <p>{currentTopic.description}</p>
-                    
-                    {currentTopic.questions && (
+
+                    {/* Playlists Section */}
+                    <div className="info-section">
+                        <h4>📺 Recommended Playlists</h4>
+                        <div className="playlists-grid">
+                            {oneDDPData.playlists.map((playlist, index) => {
+                                const thumbnailUrl = getYouTubeThumbnail(playlist.url);
+                                return (
+                                    <a
+                                        key={index}
+                                        href={playlist.url}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="playlist-card"
+                                    >
+                                        <div className="playlist-thumbnail-container">
+                                            <img
+                                                src={thumbnailUrl}
+                                                alt={playlist.title}
+                                                className="playlist-thumbnail"
+                                            />
+                                            <div className="playlist-play-overlay">▶</div>
+                                        </div>
+                                        <div className="playlist-info">
+                                            <h5 className="playlist-title">{playlist.title}</h5>
+                                            <span className="playlist-author">{playlist.author}</span>
+                                        </div>
+                                        <div className="external-icon">↗</div>
+                                    </a>
+                                );
+                            })}
+                        </div>
+                    </div>
+
+                    <h3>LeetCode Top 150 Interview Questions</h3>
+                    <p>{leetcode150Data.description}</p>
+
+                    {leetcode150Data.questions && (
                         <div className="info-section">
                             <h4>🎯 Practice Problems</h4>
                             <div className="questions-grid">
                                 {(() => {
                                     let questionNumber = 0;
-                                    return currentTopic.questions.map((question, index) => {
+                                    return leetcode150Data.questions.map((question, index) => {
                                         if (question.startsWith('---')) {
                                             return <h3 key={index} className="separator">{question.replaceAll('---', '').trim()}</h3>;
                                         }
-                                        
+
                                         // Parse question text, difficulty, and URL
                                         const parts = question.split(' - https://');
                                         const titleAndDifficulty = parts[0];
                                         const leetcodeUrl = parts[1] ? `https://${parts[1]}` : null;
-                                        
+
                                         // Only render LeetCode problems, skip concept questions
                                         if (!leetcodeUrl) return null;
-                                        
+
                                         // Increment question number only for actual questions
                                         questionNumber++;
-                                        
+
                                         // Extract difficulty from title
                                         const difficultyMatch = titleAndDifficulty.match(/\[(Easy|Medium|Hard)\]$/);
                                         const difficulty = difficultyMatch ? difficultyMatch[1] : 'Medium';
                                         const questionTitle = titleAndDifficulty.replace(/\s*\[(Easy|Medium|Hard)\]$/, '');
-                                        
+
                                         const hasSolution = hasSolutionVideo(questionTitle);
                                         const solutionData = hasSolution ? getSolutionData(questionTitle) : null;
 
@@ -142,66 +159,66 @@ const DSA = memo(() => {
                                             <div key={index} className="question-card">
                                                 <div className="question-card-header">
                                                     <span className="question-number">#{questionNumber}</span>
-                                                <span className={`question-difficulty difficulty-${difficulty.toLowerCase()}`}>
-                                                    {difficulty}
-                                                </span>
-                                            </div>
-                                            <h3 className="question-title">{questionTitle}</h3>
-                                            
-                                            <div className="question-actions">
-                                                <a 
-                                                    href={leetcodeUrl} 
-                                                    target="_blank" 
-                                                    rel="noopener noreferrer"
-                                                    className="leetcode-link"
-                                                >
-                                                    <span>{leetcodeUrl.includes('hackerrank') ? 'Solve on HackerRank' : 'Solve on LeetCode'}</span>
-                                                    <span className="external-icon">↗</span>
-                                                </a>
-                                            </div>
-                                            
-                                            {hasSolution && (
-                                                <div className="solution-section">
-                                                    {Array.isArray(solutionData.videoUrl) ? (
-                                                        solutionData.videoUrl.map((url, index) => (
+                                                    <span className={`question-difficulty difficulty-${difficulty.toLowerCase()}`}>
+                                                        {difficulty}
+                                                    </span>
+                                                </div>
+                                                <h3 className="question-title">{questionTitle}</h3>
+
+                                                <div className="question-actions">
+                                                    <a
+                                                        href={leetcodeUrl}
+                                                        target="_blank"
+                                                        rel="noopener noreferrer"
+                                                        className="leetcode-link"
+                                                    >
+                                                        <span>{leetcodeUrl.includes('hackerrank') ? 'Solve on HackerRank' : 'Solve on LeetCode'}</span>
+                                                        <span className="external-icon">↗</span>
+                                                    </a>
+                                                </div>
+
+                                                {hasSolution && (
+                                                    <div className="solution-section">
+                                                        {Array.isArray(solutionData.videoUrl) ? (
+                                                            solutionData.videoUrl.map((url, index) => (
+                                                                <a
+                                                                    key={index}
+                                                                    href={url}
+                                                                    target="_blank"
+                                                                    rel="noopener noreferrer"
+                                                                    className="solution-link"
+                                                                    title={`Watch solution video ${index + 1}`}
+                                                                >
+                                                                    <span>📺 Solution {index + 1}</span>
+                                                                </a>
+                                                            ))
+                                                        ) : (
                                                             <a
-                                                                key={index}
-                                                                href={url}
+                                                                href={solutionData.videoUrl}
                                                                 target="_blank"
                                                                 rel="noopener noreferrer"
                                                                 className="solution-link"
-                                                                title={`Watch solution video ${index + 1}`}
+                                                                title="Watch solution video"
                                                             >
-                                                                <span>📺 Solution {index + 1}</span>
+                                                                <span>📺 Solution</span>
                                                             </a>
-                                                        ))
-                                                    ) : (
-                                                        <a
-                                                            href={solutionData.videoUrl}
-                                                            target="_blank"
-                                                            rel="noopener noreferrer"
-                                                            className="solution-link"
-                                                            title="Watch solution video"
-                                                        >
-                                                            <span>📺 Solution</span>
-                                                        </a>
-                                                    )}
-                                                </div>
-                                            )}
-                                        </div>
+                                                        )}
+                                                    </div>
+                                                )}
+                                            </div>
                                         );
                                     });
                                 })()}
                             </div>
                         </div>
                     )}
-                    
-                    {currentTopic.explanation && (
+
+                    {leetcode150Data.explanation && (
                         <div className="info-section">
                             <h4>📚 Fundamentals & Syntax</h4>
                             <div className="explanation-content">
-                                <div dangerouslySetInnerHTML={{ 
-                                    __html: currentTopic.explanation
+                                <div dangerouslySetInnerHTML={{
+                                    __html: leetcode150Data.explanation
                                         .replace(/\n/g, '<br/>')
                                         .replace(/## (.*)/g, '<h3>$1</h3>')
                                         .replace(/### (.*)/g, '<h4>$1</h4>')
