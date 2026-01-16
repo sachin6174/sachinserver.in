@@ -123,6 +123,17 @@ const copyCommand = (command) => {
     }
 };
 
+const downloadScript = (title, command) => {
+    const element = document.createElement("a");
+    const file = new Blob([command], { type: 'text/plain' });
+    element.href = URL.createObjectURL(file);
+    const filename = title.replace(/[^a-z0-9]/gi, '_').toLowerCase() + ".sh";
+    element.download = filename;
+    document.body.appendChild(element);
+    element.click();
+    document.body.removeChild(element);
+};
+
 const TerminalScripts = () => {
     return (
         <div className="terminal-scripts-container">
@@ -136,13 +147,22 @@ const TerminalScripts = () => {
                     <article key={script.title} className="terminal-card">
                         <div className="terminal-card-header">
                             <h4>{script.title}</h4>
-                            <button
-                                className="copy-btn"
-                                onClick={() => copyCommand(script.command)}
-                                title="Copy command"
-                            >
-                                Copy
-                            </button>
+                            <div className="terminal-actions">
+                                <button
+                                    className="copy-btn"
+                                    onClick={() => copyCommand(script.command)}
+                                    title="Copy command"
+                                >
+                                    Copy
+                                </button>
+                                <button
+                                    className="download-btn"
+                                    onClick={() => downloadScript(script.title, script.command)}
+                                    title="Download as file"
+                                >
+                                    Download
+                                </button>
+                            </div>
                         </div>
                         <pre className="terminal-command">{script.command}</pre>
                         <p className="terminal-description">{script.description}</p>

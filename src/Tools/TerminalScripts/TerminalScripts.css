@@ -30,6 +30,11 @@
     gap: var(--space-xs);
 }
 
+.terminal-actions {
+    display: flex;
+    gap: var(--space-xs);
+}
+
 .terminal-command {
     background: #0f172a;
     color: #e2e8f0;
@@ -50,7 +55,7 @@
     font-size: var(--font-sm);
 }
 
-.copy-btn {
+.copy-btn, .download-btn {
     border: 1px solid var(--border-color);
     background: var(--background-primary);
     border-radius: var(--radius-sm);
@@ -60,7 +65,7 @@
     transition: border-color var(--transition-fast), transform var(--transition-fast);
 }
 
-.copy-btn:hover {
+.copy-btn:hover, .download-btn:hover {
     border-color: var(--accent-color);
     transform: translateY(-1px);
 }
