@@ -63,6 +63,8 @@ awk '/creationTime/{getline; gsub(/<[^>]*>/,""); split($0,a,"."); print a[1]}' |
 xargs -I{} date -u -r {} +"%m/%d/%Y" 2>/dev/null
 )
 
+lastSystemBootTime=$(sysctl -n kern.boottime | awk '{print $4}' | sed 's/,//' | xargs -I{} date -r {} "+%m/%d/%Y")
+
 cat <<EOF
 {
   "isMacOnPower": $isMacOnPower,
@@ -72,10 +74,11 @@ cat <<EOF
   "isFileVaultEnabled": $isFileVaultEnabled,
   "isFilePresent": $isFilePresent,
   "lastDateWhenPasswordChangedForLogedInUser": "$lastDateWhenPasswordChangedForLogedInUser",
-  "loggedinUserCreationTime": "$loggedinUserCreationTime"
+  "loggedinUserCreationTime": "$loggedinUserCreationTime",
+  "lastSystemBootTime": "$lastSystemBootTime"
 }
 EOF`,
-        description: 'Generates a JSON report of system status including power, storage, battery, OS version, FileVault, file presence, password change date, and user creation time.'
+        description: 'Generates a JSON report of system status including power, storage, battery, OS version, FileVault, file presence, password change date, user creation time, and last boot time.'
     },
     {
         title: 'lastDateWhenPasswordChangedForLogedInUser',
@@ -86,6 +89,11 @@ EOF`,
         title: 'loggedinUserCreationTime',
         command: 'dscl . -read /Users/$(whoami) accountPolicyData | awk \'/creationTime/{getline; gsub(/<[^>]*>/,""); split($0,a,"."); print a[1]}\' | xargs -I{} date -u -r {} +"%m/%d/%Y"',
         description: 'Shows the creation time of the logged-in user account.'
+    },
+    {
+        title: 'lastSystemBootTime',
+        command: 'sysctl -n kern.boottime | awk \'{print $4}\' | sed \'s/,//\' | xargs -I{} date -r {} "+%m/%d/%Y"',
+        description: 'Shows the date of the last system boot.'
     }
 ];
 
