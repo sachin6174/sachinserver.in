@@ -65,6 +65,12 @@ xargs -I{} date -u -r {} +"%m/%d/%Y" 2>/dev/null
 
 lastSystemBootTime=$(sysctl -n kern.boottime | awk '{print $4}' | sed 's/,//' | xargs -I{} date -r {} "+%m/%d/%Y")
 
+freeStorageAvaliableInGB=$(df -k / | awk 'NR==2 {printf "%.2f\\n", $4/1024/1024}')
+
+BOOT=$(sysctl -n kern.boottime | awk -F'[ ,}]+' '{print $4}')
+NOW=$(date +%s)
+deviceUptimeInHours=$(awk -v now="$NOW" -v boot="$BOOT" 'BEGIN {printf "%.2f\\n", (now-boot)/3600}')
+
 cat <<EOF
 {
   "isMacOnPower": $isMacOnPower,
@@ -75,10 +81,12 @@ cat <<EOF
   "isFilePresent": $isFilePresent,
   "lastDateWhenPasswordChangedForLogedInUser": "$lastDateWhenPasswordChangedForLogedInUser",
   "loggedinUserCreationTime": "$loggedinUserCreationTime",
-  "lastSystemBootTime": "$lastSystemBootTime"
+  "lastSystemBootTime": "$lastSystemBootTime",
+  "freeStorageAvaliableInGB": $freeStorageAvaliableInGB,
+  "deviceUptimeInHours": $deviceUptimeInHours
 }
 EOF`,
-        description: 'Generates a JSON report of system status including power, storage, battery, OS version, FileVault, file presence, password change date, user creation time, and last boot time.'
+        description: 'Generates a JSON report of system status including power, storage, battery, OS version, FileVault, file presence, password change date, user creation time, last boot time, free storage in GB, and device uptime.'
     },
     {
         title: 'lastDateWhenPasswordChangedForLogedInUser',
@@ -94,6 +102,18 @@ EOF`,
         title: 'lastSystemBootTime',
         command: 'sysctl -n kern.boottime | awk \'{print $4}\' | sed \'s/,//\' | xargs -I{} date -r {} "+%m/%d/%Y"',
         description: 'Shows the date of the last system boot.'
+    },
+    {
+        title: 'freeStorageAvaliableInGB',
+        command: 'df -k / | awk \'NR==2 {printf "%.2f\\n", $4/1024/1024}\'',
+        description: 'Shows total free storage available in GB.'
+    },
+    {
+        title: 'deviceUptimeInHours',
+        command: `BOOT=$(sysctl -n kern.boottime | awk -F'[ ,}]+' '{print $4}')
+NOW=$(date +%s)
+awk -v now="$NOW" -v boot="$BOOT" 'BEGIN {printf "%.2f\\n", (now-boot)/3600}'`,
+        description: 'Shows the device uptime in hours.'
     }
 ];
 
