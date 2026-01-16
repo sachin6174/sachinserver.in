@@ -33,6 +33,33 @@ const scripts = [
         title: 'isFilePresent',
         command: 'test -f "/path/to/file" && echo true || echo false',
         description: 'Replace /path/to/file with the file you want to check.'
+    },
+    {
+        title: 'System Health Check (JSON)',
+        command: `isMacOnPower=$(pmset -g batt | grep -qi "discharging" && echo false || echo true)
+
+freeStoragePercentage=$(df -k / | awk 'NR==2 {printf "%.0f", ($4/$2)*100}')
+
+batteryPercentage=$(pmset -g batt | grep -Eo "[0-9]+%" | tr -d '%')
+
+installedMacOsVersion=$(sw_vers -productVersion)
+
+isFileVaultEnabled=$(fdesetup status | grep -qi "on" && echo true || echo false)
+
+filePath="/path/to/file"
+isFilePresent=$(test -f "$filePath" && echo true || echo false)
+
+cat <<EOF
+{
+  "isMacOnPower": $isMacOnPower,
+  "freeStoragePercentage": $freeStoragePercentage,
+  "batteryPercentage": $batteryPercentage,
+  "installedMacOsVersion": "$installedMacOsVersion",
+  "isFileVaultEnabled": $isFileVaultEnabled,
+  "isFilePresent": $isFilePresent
+}
+EOF`,
+        description: 'Generates a JSON report of system status including power, storage, battery, OS version, FileVault, and file presence.'
     }
 ];
 
