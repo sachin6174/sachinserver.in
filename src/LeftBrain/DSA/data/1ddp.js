@@ -28,6 +28,33 @@ export const oneDDPData = {
         'Best Time to Buy and Sell Stock with Transaction Fee - https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/',
         'Delete and Earn - https://leetcode.com/problems/delete-and-earn/'
     ],
+    playlists: [
+        {
+            title: "Dynamic Programming by Nikhil Lohia",
+            url: "https://www.youtube.com/watch?v=tHqTq-H5utI&list=PLFdAYMIVJQHPXtFM_9mpwwQtIdzP6kxHS",
+            author: "Nikhil Lohia"
+        },
+        {
+            title: "Dynamic Programming Level 1 by Sumit Malik",
+            url: "https://www.youtube.com/watch?v=94dfRrDANRY&list=PL-Jc9J83PIiG8fE6rj9F5a6uyQ5WPdqKy",
+            author: "Pepcoding (Sumit Malik)"
+        },
+        {
+            title: "Dynamic Programming Level 2 by Sumit Malik",
+            url: "https://www.youtube.com/watch?v=UagRoA3C5VQ&list=PL-Jc9J83PIiEZvXCn-c5UIBvfT8dA-8EG",
+            author: "Pepcoding (Sumit Malik)"
+        },
+        {
+            title: "DSA Level 1 by Sumit Malik",
+            url: "https://www.youtube.com/watch?v=F8xQ5joLlD0&list=PL-Jc9J83PIiFj7YSPl2ulcpwy-mwj1SSk",
+            author: "Pepcoding (Sumit Malik)"
+        },
+        {
+            title: "DSA Level 2 by Sumit Malik",
+            url: "https://www.youtube.com/watch?v=LliQjLnbhx8&list=PL-Jc9J83PIiE-181crLG1xSIWhTGKFiMY",
+            author: "Pepcoding (Sumit Malik)"
+        }
+    ],
     explanation: `## 1D Dynamic Programming Fundamentals
 
 ### What is 1D Dynamic Programming?

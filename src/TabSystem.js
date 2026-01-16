@@ -12,9 +12,9 @@ import { ReactComponent as ToggleIcon } from './assets/svgs/toggle-icon.svg';
 
 // Lazy load all components for better performance
 const LazyAboutMe = createLazyComponent(() => import('./LeftBrain/AboutMe/AboutMe'), { componentName: 'AboutMe' });
-const LazyDSA = createLazyComponent(() => import('./LeftBrain/DSA/DSA'), { 
-  componentName: 'DSA',
-  fallback: <SkeletonLoader type="dsa" />
+const LazyDSA = createLazyComponent(() => import('./LeftBrain/DSA/DSA'), {
+    componentName: 'DSA',
+    fallback: <SkeletonLoader type="dsa" />
 });
 const LazyGitHub = createLazyComponent(() => import('./LeftBrain/GitHub/GitHub'), { componentName: 'GitHub' });
 const LazyXcodeShortcuts = createLazyComponent(() => import('./LeftBrain/XcodeShortcuts/XcodeShortcuts'), { componentName: 'XcodeShortcuts' });
@@ -40,17 +40,17 @@ const LazyPsychology = createLazyComponent(() => import('./RightBrain/Psychology
 const LazyRightbrainYouTube = createLazyComponent(() => import('./RightBrain/YouTube/YouTube'), { componentName: 'RightbrainYouTube' });
 
 // Lazy load all tools
-const LazyInfoTool = createLazyComponent(() => import('./Tools/InfoTool/InfoTool'), { 
-  componentName: 'InfoTool',
-  fallback: <SkeletonLoader type="tool" />
+const LazyInfoTool = createLazyComponent(() => import('./Tools/InfoTool/InfoTool'), {
+    componentName: 'InfoTool',
+    fallback: <SkeletonLoader type="tool" />
 });
-const LazyJsonTool = createLazyComponent(() => import('./Tools/JSONTool/JsonTool'), { 
-  componentName: 'JsonTool',
-  fallback: <SkeletonLoader type="tool" />
+const LazyJsonTool = createLazyComponent(() => import('./Tools/JSONTool/JsonTool'), {
+    componentName: 'JsonTool',
+    fallback: <SkeletonLoader type="tool" />
 });
-const LazyXmlTool = createLazyComponent(() => import('./Tools/XMLTool/XmlTool'), { 
-  componentName: 'XmlTool',
-  fallback: <SkeletonLoader type="tool" />
+const LazyXmlTool = createLazyComponent(() => import('./Tools/XMLTool/XmlTool'), {
+    componentName: 'XmlTool',
+    fallback: <SkeletonLoader type="tool" />
 });
 const LazyCryptoTool = createLazyComponent(() => import('./Tools/CryptoTool/CryptoTool'), { componentName: 'CryptoTool' });
 const LazyWritingBoardTool = createLazyComponent(() => import('./Tools/WritingBoard/WritingBoardTool'), { componentName: 'WritingBoardTool' });
@@ -82,16 +82,18 @@ const LazyYouTubeDownloader = createLazyComponent(() => import('./Tools/YouTubeD
 const LazyAppIconGenerator = createLazyComponent(() => import('./Tools/AppIconGenerator/AppIconGenerator'), { componentName: 'AppIconGenerator' });
 const LazyTerminalScripts = createLazyComponent(() => import('./Tools/TerminalScripts/TerminalScripts'), { componentName: 'TerminalScripts' });
 const LazyTerminalTutorial = createLazyComponent(() => import('./Tools/TerminalTutorial/TerminalTutorial'), { componentName: 'TerminalTutorial' });
+const LazyGames = createLazyComponent(() => import('./Games/Games'), { componentName: 'Games' });
 
 const TabSystem = memo(() => {
     // Performance tracking for development
     usePerformanceTracker('TabSystem');
-    
+
     // Helper function to get default item for a tab (memoized)
     const getDefaultItemForTab = useCallback((tab) => {
         switch (tab) {
             case "developer-tools": return "ai-tools-channels";
             case "qa-tools": return "macos-app-catalog";
+            case "games": return "google-games";
             case "general-tools": return "info-tool";
             case "rightbrain": return "drawing";
             default: return "about-me";
@@ -112,6 +114,7 @@ const TabSystem = memo(() => {
             rightbrain: "drawing", // Default when switching to rightbrain
             "developer-tools": "ai-tools-channels", // Default when switching to developer tools
             "qa-tools": "macos-app-catalog",   // Default when switching to qa tools
+            "games": "google-games", // Default when switching to games
             "general-tools": "info-tool"     // Default when switching to general tools
         };
     });
@@ -262,6 +265,9 @@ const TabSystem = memo(() => {
             { id: "terminal-scripts", label: "Terminal Scripts", icon: "💻", description: <LazyTerminalScripts /> },
             { id: "terminal-tutorial", label: "Terminal Tutorial", icon: "📘", description: <LazyTerminalTutorial /> },
         ],
+        "games": [
+            { id: "google-games", label: "All Games", icon: "🎮", description: <LazyGames /> },
+        ],
         "general-tools": [
             { id: "info-tool", label: "Info Tool", icon: "📊", description: <LazyInfoTool /> },
             { id: "passport-photo-maker", label: "Passport Photo Maker", icon: "📷", description: <LazyPassportPhotoMaker /> },
@@ -286,10 +292,10 @@ const TabSystem = memo(() => {
                 ...prevItems,
                 [activeTab]: newItem
             };
-            
+
             // Optimized localStorage update
             optimizedStorage.set('lastSelectedItems', updatedLastSelectedItems);
-            
+
             return updatedLastSelectedItems;
         });
     }, [activeTab]);
@@ -300,6 +306,7 @@ const TabSystem = memo(() => {
         { key: "rightbrain", icon: "🎨", label: "RightBrain" },
         { key: "developer-tools", icon: "💻", label: "Developer Tools" },
         { key: "qa-tools", icon: "🧪", label: "QA Tools" },
+        { key: "games", icon: "🎮", label: "Games" },
         { key: "general-tools", icon: "🛠️", label: "General Tools" }
     ], []);
 
@@ -365,12 +372,12 @@ const TabSystem = memo(() => {
 
                 {/* Main Content Area */}
                 <main id="main" role="main" tabIndex="-1">
-                  <MainContent
-                      activeTab={activeTab}
-                      selectedNavItem={selectedNavItem}
-                      navigationItems={navigationItems}
-                      isLeftNavVisible={isLeftNavVisible}
-                  />
+                    <MainContent
+                        activeTab={activeTab}
+                        selectedNavItem={selectedNavItem}
+                        navigationItems={navigationItems}
+                        isLeftNavVisible={isLeftNavVisible}
+                    />
                 </main>
             </div>
         </div>

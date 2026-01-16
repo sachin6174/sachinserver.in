@@ -361,7 +361,7 @@ const AppleDevYouTubeChannels = () => {
         try {
             const ttl = 7 * 24 * 60 * 60 * 1000; // 7 days
             localStorage.setItem(`yt_thumb_${url}`, JSON.stringify({ url: thumb, exp: Date.now() + ttl }));
-        } catch {}
+        } catch { }
     };
 
     const parseChannelIdentifier = (youtubeUrl) => {
@@ -457,69 +457,70 @@ const AppleDevYouTubeChannels = () => {
                 {channels.map((channel, index) => {
                     const iconUrl = resolvedThumbs[channel.youtubeUrl] || channel.icon;
                     return (
-                    <div key={index} className="channel-card">
-                        <div className="channel-avatar">
-                            <img 
-                                src={iconUrl}
-                                alt={`${channel.name} avatar`}
-                                referrerPolicy="no-referrer"
-                                onError={(e) => {
-                                    e.currentTarget.src = channel.icon || ('https://via.placeholder.com/50x50/667eea/white?text=' + channel.name.charAt(0));
-                                }}
-                            />
-                        </div>
-                        
-                        <div className="channel-info">
-                            <h3 className="channel-name">{channel.name}</h3>
-                            
-                            <div className="channel-links">
-                                <button 
-                                    className="link-btn youtube-btn"
-                                    onClick={() => handleLinkClick(channel.youtubeUrl)}
-                                    title="YouTube Channel"
-                                >
-                                    📺 YouTube
-                                </button>
-                                
-                                {channel.githubUrl && (
-                                    <button 
-                                        className="link-btn github-btn"
-                                        onClick={() => handleLinkClick(channel.githubUrl)}
-                                        title="GitHub Profile"
+                        <div key={index} className="channel-card">
+                            <div className="channel-avatar">
+                                <img
+                                    src={iconUrl}
+                                    alt={`${channel.name} avatar`}
+                                    referrerPolicy="no-referrer"
+                                    onError={(e) => {
+                                        e.currentTarget.src = channel.icon || ('https://via.placeholder.com/50x50/667eea/white?text=' + channel.name.charAt(0));
+                                    }}
+                                />
+                            </div>
+
+                            <div className="channel-info">
+                                <h3 className="channel-name">{channel.name}</h3>
+
+                                <div className="channel-links">
+                                    <button
+                                        className="link-btn youtube-btn"
+                                        onClick={() => handleLinkClick(channel.youtubeUrl)}
+                                        title="YouTube Channel"
                                     >
-                                        🐙 GitHub
+                                        📺 YouTube
                                     </button>
-                                )}
-                                
-                                {channel.devNotesUrl && (
-                                    <button 
-                                        className="link-btn devnotes-btn"
-                                        onClick={() => handleLinkClick(channel.devNotesUrl)}
-                                        title="DevNotes"
-                                    >
-                                        📝 DevNotes
-                                    </button>
-                                )}
-                                
-                                {channel.websiteUrl && (
-                                    <button 
-                                        className="link-btn website-btn"
-                                        onClick={() => handleLinkClick(channel.websiteUrl)}
-                                        title="Website"
-                                    >
-                                        🌐 Website
-                                    </button>
-                                )}
+
+                                    {channel.githubUrl && (
+                                        <button
+                                            className="link-btn github-btn"
+                                            onClick={() => handleLinkClick(channel.githubUrl)}
+                                            title="GitHub Profile"
+                                        >
+                                            🐙 GitHub
+                                        </button>
+                                    )}
+
+                                    {channel.devNotesUrl && (
+                                        <button
+                                            className="link-btn devnotes-btn"
+                                            onClick={() => handleLinkClick(channel.devNotesUrl)}
+                                            title="DevNotes"
+                                        >
+                                            📝 DevNotes
+                                        </button>
+                                    )}
+
+                                    {channel.websiteUrl && (
+                                        <button
+                                            className="link-btn website-btn"
+                                            onClick={() => handleLinkClick(channel.websiteUrl)}
+                                            title="Website"
+                                        >
+                                            🌐 Website
+                                        </button>
+                                    )}
+                                </div>
                             </div>
                         </div>
-                    </div>
                     );
                 })}
             </div>
 
+
             <div className="channels-footer">
                 <p>
-                    <strong>💡 Pro Tip:</strong> Subscribe to these channels to stay updated with the latest Apple development trends, 
+                    <strong>💡 Pro Tip:</strong> Subscribe to these channels to stay updated with the latest Apple development trends,
                     tutorials, and best practices. Each channel offers unique insights and learning approaches.
                 </p>
             </div>

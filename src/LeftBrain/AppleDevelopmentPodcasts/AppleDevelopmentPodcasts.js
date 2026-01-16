@@ -30,6 +30,45 @@ const AppleDevelopmentPodcasts = () => {
                     ))}
                 </div>
             </div>
+
+            <div className="video-section">
+                <h2>🎓 Generics Deep Dive</h2>
+                <div className="videos-grid">
+                    {[
+                        {
+                            title: "Any vs AnyObject in Swift",
+                            url: "https://www.youtube.com/embed/SPhATsEQR74",
+                            desc: "Understanding the difference between Any and AnyObject"
+                        },
+                        {
+                            title: "Opaque Types & Protocols",
+                            url: "https://www.youtube.com/embed/hfGtp-t6lJg",
+                            desc: "Deep dive into Opaque Types, Associated Types, and Protocols"
+                        },
+                        {
+                            title: "Advanced Generics",
+                            url: "https://www.youtube.com/embed/33QD6GtQnbI",
+                            desc: "Mastering Generics in Swift"
+                        }
+                    ].map((video, idx) => (
+                        <div key={idx} className="video-card">
+                            <div className="video-wrapper">
+                                <iframe
+                                    src={video.url}
+                                    title={video.title}
+                                    frameBorder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowFullScreen
+                                ></iframe>
+                            </div>
+                            <div className="video-info">
+                                <h3>{video.title}</h3>
+                                <p>{video.desc}</p>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
         </div>
     );
 };

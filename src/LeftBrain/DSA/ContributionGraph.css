@@ -23,7 +23,8 @@
 
 .contribution-icon {
     font-size: var(--font-lg);
-    flex-shrink: 0; /* Prevent emoji from shrinking */
+    flex-shrink: 0;
+    /* Prevent emoji from shrinking */
 }
 
 .contribution-count {
@@ -58,7 +59,8 @@
 }
 
 .month-labels {
-    display: none; /* Hidden by default; overridden for GitHub graph */
+    display: none;
+    /* Hidden by default; overridden for GitHub graph */
 }
 
 /* Old month label styles */
@@ -318,7 +320,8 @@
     flex-direction: column;
     gap: var(--space-xs);
     align-items: flex-start;
-    margin-left: calc(var(--font-lg) + var(--space-xs)); /* Align with the text after fire emoji */
+    margin-left: calc(var(--font-lg) + var(--space-xs));
+    /* Align with the text after fire emoji */
 }
 
 .username-display {
@@ -381,7 +384,10 @@
     border-color: var(--accent-color);
     box-shadow: 0 0 0 2px rgba(var(--accent-color-rgb), 0.1);
 }
-.username-input:focus:not(:focus-visible) { outline: none; }
+
+.username-input:focus:not(:focus-visible) {
+    outline: none;
+}
 
 .username-save-btn,
 .username-cancel-btn {
@@ -443,6 +449,7 @@
     align-items: center;
     min-width: fit-content;
     position: relative;
+    gap: var(--space-xs);
 }
 
 .month-section:not(:last-child)::after {
@@ -459,7 +466,6 @@
 .month-grid {
     display: flex;
     gap: 2px;
-    margin-bottom: var(--space-xs);
 }
 
 /* Monthly layout month labels */
@@ -490,25 +496,26 @@
         align-items: flex-start;
         gap: var(--space-sm);
     }
-    
+
     .username-section {
         align-self: flex-start;
-        margin-left: calc(var(--font-md) + var(--space-xs)); /* Smaller fire emoji on mobile */
+        margin-left: calc(var(--font-md) + var(--space-xs));
+        /* Smaller fire emoji on mobile */
     }
-    
+
     .username-input {
         min-width: 120px;
     }
-    
+
     .contribution-grid-monthly {
         gap: 4px;
         padding: var(--space-xs) 0;
     }
-    
+
     .month-grid {
         gap: 1px;
     }
-    
+
     .month-section .month-label {
         font-size: 10px;
         min-width: 25px;
@@ -552,8 +559,15 @@
 }
 
 @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.5; }
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
 }
 
 /* Loading Skeleton */
@@ -596,8 +610,13 @@
 }
 
 @keyframes skeleton-loading {
-    0% { opacity: 0.3; }
-    100% { opacity: 0.7; }
+    0% {
+        opacity: 0.3;
+    }
+
+    100% {
+        opacity: 0.7;
+    }
 }
 
 /* GitHub Profile Link */
@@ -628,70 +647,73 @@
     .contribution-graph-container {
         padding: var(--space-md);
     }
-    
+
     .contribution-header {
         flex-direction: column;
         align-items: flex-start;
         gap: var(--space-sm);
     }
-    
+
     .contribution-year {
         display: flex;
         align-items: center;
         flex-wrap: wrap;
         gap: var(--space-xs);
     }
-    
+
     .github-profile-link {
         margin-left: 0;
         margin-top: var(--space-xs);
         font-size: var(--font-xs);
         padding: var(--space-xs);
     }
-    
+
     .month-labels {
         padding-left: 20px;
     }
-    
+
     .month-label:nth-child(2n) {
-        display: none; /* Hide every other month on mobile */
+        display: none;
+        /* Hide every other month on mobile */
     }
-    
+
     .day-labels {
         width: 16px;
     }
-    
+
     .contribution-day,
     .legend-square {
         width: 10px;
         height: 10px;
     }
-    
+
     .contribution-grid {
         gap: 2px;
     }
-    
+
     .week-column {
         gap: 2px;
     }
 }
 
 @media (max-width: 480px) {
+
     .contribution-day,
     .legend-square {
         width: 8px;
         height: 8px;
     }
-    
+
     .contribution-grid {
         gap: 1px;
     }
-    
+
     .week-column {
         gap: 1px;
     }
-    
+
     .month-label:nth-child(3n) {
-        display: none; /* Hide every third month on very small screens */
+        display: none;
+        /* Hide every third month on very small screens */
     }
 }
