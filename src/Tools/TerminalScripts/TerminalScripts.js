@@ -36,7 +36,9 @@ const scripts = [
     },
     {
         title: 'System Health Check (JSON)',
-        command: `isMacOnPower=$(pmset -g batt | grep -qi "discharging" && echo false || echo true)
+        command: `#!/bin/bash
+
+isMacOnPower=$(pmset -g batt | grep -qi "discharging" && echo false || echo true)
 
 freeStoragePercentage=$(df -k / | awk 'NR==2 {printf "%.0f", ($4/$2)*100}')
 
@@ -49,6 +51,18 @@ isFileVaultEnabled=$(fdesetup status | grep -qi "on" && echo true || echo false)
 filePath="/path/to/file"
 isFilePresent=$(test -f "$filePath" && echo true || echo false)
 
+lastDateWhenPasswordChangedForLogedInUser=$(
+dscl . -read /Users/$(whoami) accountPolicyData 2>/dev/null |
+awk '/passwordLastSetTime/{getline; gsub(/<[^>]*>/,""); split($0,a,"."); print a[1]}' |
+xargs -I{} date -r {} +"%m/%d/%Y" 2>/dev/null
+)
+
+loggedinUserCreationTime=$(
+dscl . -read /Users/$(whoami) accountPolicyData 2>/dev/null |
+awk '/creationTime/{getline; gsub(/<[^>]*>/,""); split($0,a,"."); print a[1]}' |
+xargs -I{} date -u -r {} +"%m/%d/%Y" 2>/dev/null
+)
+
 cat <<EOF
 {
   "isMacOnPower": $isMacOnPower,
@@ -56,10 +70,22 @@ cat <<EOF
   "batteryPercentage": $batteryPercentage,
   "installedMacOsVersion": "$installedMacOsVersion",
   "isFileVaultEnabled": $isFileVaultEnabled,
-  "isFilePresent": $isFilePresent
+  "isFilePresent": $isFilePresent,
+  "lastDateWhenPasswordChangedForLogedInUser": "$lastDateWhenPasswordChangedForLogedInUser",
+  "loggedinUserCreationTime": "$loggedinUserCreationTime"
 }
 EOF`,
-        description: 'Generates a JSON report of system status including power, storage, battery, OS version, FileVault, and file presence.'
+        description: 'Generates a JSON report of system status including power, storage, battery, OS version, FileVault, file presence, password change date, and user creation time.'
+    },
+    {
+        title: 'lastDateWhenPasswordChangedForLogedInUser',
+        command: 'dscl . -read /Users/$(whoami) accountPolicyData | awk \'/passwordLastSetTime/{getline; gsub(/<[^>]*>/,""); split($0,a,"."); print a[1]}\' | xargs -I{} date -r {} +"%m/%d/%Y"',
+        description: 'Shows the last date the password was changed for the logged-in user.'
+    },
+    {
+        title: 'loggedinUserCreationTime',
+        command: 'dscl . -read /Users/$(whoami) accountPolicyData | awk \'/creationTime/{getline; gsub(/<[^>]*>/,""); split($0,a,"."); print a[1]}\' | xargs -I{} date -u -r {} +"%m/%d/%Y"',
+        description: 'Shows the creation time of the logged-in user account.'
     }
 ];
 
