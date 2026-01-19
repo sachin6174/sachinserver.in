@@ -226,7 +226,7 @@ const MacTerminalScripts = () => {
                         <div key={index} className="theme-card">
                             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1rem' }}>
                                 <h3>{script.name}</h3>
-                                <button 
+                                <button
                                     className="leftbrain-button"
                                     onClick={() => copyToClipboard(script.command)}
                                     title="Copy to clipboard"
@@ -235,11 +235,11 @@ const MacTerminalScripts = () => {
                                     📋
                                 </button>
                             </div>
-                            
+
                             <div className="code-block" onClick={() => copyToClipboard(script.command)} style={{ cursor: 'pointer', marginBottom: '1rem' }}>
                                 <pre><code>{script.command}</code></pre>
                             </div>
-                            
+
                             <p style={{ marginBottom: '1rem' }}>{script.description}</p>
                             <div style={{ padding: '1rem', background: 'var(--background-secondary)', borderRadius: 'var(--radius-md)', borderLeft: '3px solid var(--current-theme)' }}>
                                 <strong style={{ color: 'var(--current-theme)' }}>Usage:</strong> {script.usage}
