@@ -5,10 +5,6 @@
             "description": "Songs that explore the human condition, mind, and existence.",
             "songs": [
                 {
-                    "title": "Time - Pink Floyd",
-                    "url": "https://www.youtube.com/watch?v=JwYX52BP2Sk"
-                },
-                {
                     "title": "Phir Kahin Koi Phool - Manna Dey",
                     "url": "https://youtu.be/mgBdFGYwcCQ?list=RDmgBdFGYwcCQ"
                 }
@@ -21,8 +17,30 @@
                 {
                     "title": "Can't Help Falling In Love - Elvis Presley",
                     "url": "https://www.youtube.com/watch?v=vGJTaP6anOU"
+                },
+                {
+                    "title": "Your Man - Josh Turner",
+                    "url": "https://www.youtube.com/watch?v=nADTbWQof7Y"
+                },
+                {
+                    "title": "Abhi Na Jaao Chhod Kar - Mohd Rafi | Asha Bhosle",
+                    "url": "https://www.youtube.com/watch?v=mfEQgoVi7P4"
+                },
+                {
+                    "title": "Bade Achhe Lagte Hain - Amit Kumar",
+                    "url": "https://www.youtube.com/watch?v=KGx_FZY9cQw"
                 }
             ]
+        },
+        {
+            "category": "Parting",
+            "description": "Songs about saying goodbye and moving on.",
+            "songs": []
+        },
+        {
+            "category": "Motivation",
+            "description": "Songs to uplift and inspire.",
+            "songs": []
         }
     ],
     "genres": [
