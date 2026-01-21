@@ -24,3 +24,5 @@ yarn-error.log*
 
 # Server Data
 server/clipboard_data.json
+
+updatesachinserver.sh
