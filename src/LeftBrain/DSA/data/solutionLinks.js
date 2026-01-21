@@ -94,7 +94,15 @@ export const solutionLinks = {
         timeComplexity: 'O(n)',
         spaceComplexity: 'O(1)'
     },
-    
+    'Linked List Cycle': {
+        videoUrl: 'https://www.youtube.com/watch?v=OQtvTZxA7-k',
+        description: 'Explanation of how to detect a cycle in a linked list using Floyd\'s Cycle-Finding Algorithm (Tortoise and Hare).',
+        topics: ['Linked List', 'Two Pointers'],
+        difficulty: 'Easy',
+        timeComplexity: 'O(n)',
+        spaceComplexity: 'O(1)'
+    },
+
     // Add more solution links here as needed
     // Example format for future additions:
     /*

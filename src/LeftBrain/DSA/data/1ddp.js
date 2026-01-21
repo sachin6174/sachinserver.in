@@ -53,6 +53,11 @@ export const oneDDPData = {
             title: "DSA Level 2 by Sumit Malik",
             url: "https://www.youtube.com/watch?v=LliQjLnbhx8&list=PL-Jc9J83PIiE-181crLG1xSIWhTGKFiMY",
             author: "Pepcoding (Sumit Malik)"
+        },
+        {
+            title: "Linked List by Nikhil Lohia",
+            url: "https://www.youtube.com/watch?v=lrXpTVEAXCM&list=PLFdAYMIVJQHN6J5-OCh7pbG0o8WHC9so3",
+            author: "Nikhil Lohia"
         }
     ],
     explanation: `## 1D Dynamic Programming Fundamentals
