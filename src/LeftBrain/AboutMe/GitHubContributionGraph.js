@@ -19,9 +19,9 @@ const GitHubContributionGraph = ({ username = 'sachin6174' }) => {
 
     // GraphQL query as described in the article
     const CONTRIBUTION_QUERY = `
-        query($userName: String!) { 
+        query($userName: String!, $from: DateTime!, $to: DateTime!) { 
             user(login: $userName) {
-                contributionsCollection {
+                contributionsCollection(from: $from, to: $to) {
                     contributionCalendar {
                         totalContributions
                         weeks {
@@ -51,6 +51,11 @@ const GitHubContributionGraph = ({ username = 'sachin6174' }) => {
         }
 
         try {
+            const now = new Date();
+            const currentYear = now.getFullYear();
+            const from = `${currentYear}-01-01T00:00:00Z`;
+            const to = now.toISOString();
+
             const response = await fetch(GITHUB_GRAPHQL_ENDPOINT, {
                 method: 'POST',
                 headers: {
@@ -59,7 +64,11 @@ const GitHubContributionGraph = ({ username = 'sachin6174' }) => {
                 },
                 body: JSON.stringify({
                     query: CONTRIBUTION_QUERY,
-                    variables: { userName: username }
+                    variables: {
+                        userName: username,
+                        from,
+                        to
+                    }
                 })
             });
 
@@ -102,7 +111,7 @@ const GitHubContributionGraph = ({ username = 'sachin6174' }) => {
             days: week.contributionDays.map(day => {
                 const count = day.contributionCount;
                 let level = 0;
-                
+
                 if (count > 0) {
                     if (count >= 12) level = 4;
                     else if (count >= 6) level = 3;
@@ -123,6 +132,7 @@ const GitHubContributionGraph = ({ username = 'sachin6174' }) => {
 
     const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
     const dayLabelIndexes = [1, 3, 5]; // Mon, Wed, Fri
+    const currentYear = new Date().getFullYear();
 
     const monthMarkers = useMemo(() => {
         const markers = [];
@@ -131,7 +141,7 @@ const GitHubContributionGraph = ({ username = 'sachin6174' }) => {
         processedData.weeks.forEach((week, weekIndex) => {
             const firstDay = week.days[0];
             if (!firstDay) return;
-            
+
             const month = firstDay.date.getMonth();
 
             if (lastMonth !== month) {
@@ -147,11 +157,11 @@ const GitHubContributionGraph = ({ username = 'sachin6174' }) => {
     }, [processedData.weeks]);
 
     const formatDate = (date) => {
-        return date.toLocaleDateString('en-US', { 
-            weekday: 'long', 
-            year: 'numeric', 
-            month: 'long', 
-            day: 'numeric' 
+        return date.toLocaleDateString('en-US', {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
         });
     };
 
@@ -165,14 +175,14 @@ const GitHubContributionGraph = ({ username = 'sachin6174' }) => {
                     </div>
                     <div className="contribution-year">
                         <span className="info-icon">ⓘ</span>
-                        <span>Last 12 months</span>
+                        <span>{currentYear}</span>
                     </div>
                 </div>
                 <div className="contribution-graph loading-skeleton">
                     <div className="skeleton-grid">
-                        {Array.from({length: 53}, (_, i) => (
+                        {Array.from({ length: 53 }, (_, i) => (
                             <div key={i} className="skeleton-week">
-                                {Array.from({length: 7}, (_, j) => (
+                                {Array.from({ length: 7 }, (_, j) => (
                                     <div key={j} className="skeleton-day" />
                                 ))}
                             </div>
@@ -196,11 +206,11 @@ const GitHubContributionGraph = ({ username = 'sachin6174' }) => {
                     </div>
                     <div className="contribution-year">
                         <span className="info-icon">ⓘ</span>
-                        <span>Last 12 months</span>
+                        <span>{currentYear}</span>
                         <span className="live-indicator">●</span>
-                        <a 
-                            href={`https://github.com/${username}`} 
-                            target="_blank" 
+                        <a
+                            href={`https://github.com/${username}`}
+                            target="_blank"
                             rel="noopener noreferrer"
                             className="github-profile-link"
                             title="View GitHub Profile"
@@ -211,13 +221,13 @@ const GitHubContributionGraph = ({ username = 'sachin6174' }) => {
                 </div>
                 <div className="github-image-graph">
                     <img
-                        src={`https://ghchart.rshah.org/${username}`}
+                        src={`https://ghchart.rshah.org/${currentYear}/${username}`}
                         alt={`GitHub contribution graph for ${username}`}
                         loading="lazy"
                     />
-                    <p style={{ 
-                        marginTop: '1rem', 
-                        fontSize: '0.875rem', 
+                    <p style={{
+                        marginTop: '1rem',
+                        fontSize: '0.875rem',
                         color: 'var(--text-secondary)',
                         textAlign: 'center'
                     }}>
@@ -234,16 +244,16 @@ const GitHubContributionGraph = ({ username = 'sachin6174' }) => {
                 <div className="contribution-title">
                     <span className="contribution-icon">🐙</span>
                     <span className="contribution-count">
-                        {processedData.totalContributions} contributions in the last year
+                        {processedData.totalContributions} contributions in {new Date().getFullYear()}
                     </span>
                 </div>
                 <div className="contribution-year">
                     <span className="info-icon">ⓘ</span>
-                    <span>Last 12 months</span>
+                    <span>{new Date().getFullYear()}</span>
                     <span className="live-indicator">●</span>
-                    <a 
-                        href={`https://github.com/${username}`} 
-                        target="_blank" 
+                    <a
+                        href={`https://github.com/${username}`}
+                        target="_blank"
                         rel="noopener noreferrer"
                         className="github-profile-link"
                         title="View GitHub Profile"
@@ -252,7 +262,7 @@ const GitHubContributionGraph = ({ username = 'sachin6174' }) => {
                     </a>
                 </div>
             </div>
-            
+
             <div className="contribution-graph">
                 <div className="month-labels github-month-labels">
                     <span className="month-label-offset" />
@@ -280,7 +290,7 @@ const GitHubContributionGraph = ({ username = 'sachin6174' }) => {
                             )
                         ))}
                     </div>
-                    
+
                     <div className="contribution-grid">
                         {processedData.weeks.map((week, weekIndex) => (
                             <div key={weekIndex} className="week-column">
@@ -296,7 +306,7 @@ const GitHubContributionGraph = ({ username = 'sachin6174' }) => {
                     </div>
                 </div>
             </div>
-            
+
             <div className="contribution-legend">
                 <span className="legend-text">Less</span>
                 <div className="legend-squares">
