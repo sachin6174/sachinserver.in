@@ -17,10 +17,10 @@
   },
   "proxy": "http://localhost:3001",
   "scripts": {
-    "start": "node dev-runner.js",
+    "start": "node server/server.js",
+    "dev": "node dev-runner.js",
     "react-start": "react-scripts start",
     "start:fast": "FAST_REFRESH=true react-scripts start",
-    "dev": "npm run start:fast",
     "build": "react-scripts build",
     "build:analyze": "npm run build && npx serve -s build",
     "test": "react-scripts test",

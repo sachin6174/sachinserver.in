@@ -3,8 +3,11 @@ const fs = require('fs');
 const path = require('path');
 
 const app = express();
-const port = 3001;
+const port = process.env.PORT || 3001;
 const DATA_FILE = path.join(__dirname, 'clipboard_data.json');
+
+// Serve static files from the React app build directory
+app.use(express.static(path.join(__dirname, '../build')));
 
 // Basic CORS middleware to allow requests from the React app
 app.use((req, res, next) => {
@@ -114,6 +117,12 @@ app.get('/api/clipboard/:code', (req, res) => {
     }
 
     res.json({ data: entry.data });
+});
+
+// The "catchall" handler: for any request that doesn't
+// match one above, send back React's index.html file.
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../build/index.html'));
 });
 
 app.listen(port, () => {
