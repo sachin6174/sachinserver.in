@@ -26,3 +26,4 @@ yarn-error.log*
 server/clipboard_data.json
 
 updatesachinserver.sh
+.env
