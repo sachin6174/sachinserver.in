@@ -276,8 +276,8 @@ const Music = () => {
                     </div>
 
                     {personalPlaylist.map((category, index) => (
-                        <div key={index} className="music-section" style={{ marginBottom: '3rem' }}>
-                            <h3 className="subsection-title" style={{ borderBottom: '1px solid var(--border-color)', paddingBottom: '0.5rem', marginBottom: '1.5rem' }}>
+                        <div key={index} className="music-section" style={{ marginBottom: '2rem' }}>
+                            <h3 className="subsection-title" style={{ borderBottom: '1px solid var(--border-color)', paddingBottom: '0.5rem', marginBottom: '1rem' }}>
                                 {category.category}
                             </h3>
                             <div className="track-list">
@@ -291,7 +291,7 @@ const Music = () => {
                                         style={{ textDecoration: 'none', color: 'inherit', display: 'flex', alignItems: 'center' }}
                                     >
                                         <div className="track-info">
-                                            <span className="play-button" style={{ fontSize: '1.2rem' }}>🔗</span>
+                                            <span className="play-button" style={{ fontSize: '1rem', width: '32px', height: '32px' }}>🔗</span>
                                             <div className="track-details">
                                                 <h4 className="track-title">{song.title}</h4>
                                             </div>

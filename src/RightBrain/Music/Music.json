@@ -15,10 +15,6 @@
             "description": "Melodies that touch the heart and soul.",
             "songs": [
                 {
-                    "title": "Can't Help Falling In Love - Elvis Presley",
-                    "url": "https://www.youtube.com/watch?v=vGJTaP6anOU"
-                },
-                {
                     "title": "Your Man - Josh Turner",
                     "url": "https://www.youtube.com/watch?v=nADTbWQof7Y"
                 },
@@ -35,12 +31,22 @@
         {
             "category": "Parting",
             "description": "Songs about saying goodbye and moving on.",
-            "songs": []
+            "songs": [
+                {
+                    "title": "Hum Tere Pyar Mein sara alam - Lata Mangeshkar",
+                    "url": "https://www.youtube.com/watch?v=FTeO_DycNEI"
+                }
+            ]
         },
         {
             "category": "Motivation",
             "description": "Songs to uplift and inspire.",
-            "songs": []
+            "songs": [
+                {
+                    "title": "Jo Raah Chuni Tune - Kishore Kumar",
+                    "url": "https://www.youtube.com/watch?v=9S5fgbccZ4M"
+                }
+            ]
         }
     ],
     "genres": [
