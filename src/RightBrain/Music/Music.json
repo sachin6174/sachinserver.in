@@ -1,4 +1,30 @@
 {
+    "personalPlaylist": [
+        {
+            "category": "Philosophical and Psychological",
+            "description": "Songs that explore the human condition, mind, and existence.",
+            "songs": [
+                {
+                    "title": "Time - Pink Floyd",
+                    "url": "https://www.youtube.com/watch?v=JwYX52BP2Sk"
+                },
+                {
+                    "title": "Phir Kahin Koi Phool - Manna Dey",
+                    "url": "https://youtu.be/mgBdFGYwcCQ?list=RDmgBdFGYwcCQ"
+                }
+            ]
+        },
+        {
+            "category": "Love and Romance",
+            "description": "Melodies that touch the heart and soul.",
+            "songs": [
+                {
+                    "title": "Can't Help Falling In Love - Elvis Presley",
+                    "url": "https://www.youtube.com/watch?v=vGJTaP6anOU"
+                }
+            ]
+        }
+    ],
     "genres": [
         {
             "id": "classical",
@@ -463,13 +489,48 @@
                     "title": "Basic Swar System",
                     "content": {
                         "swars": [
-                            { "name": "Sa", "symbol": "सा", "note": "Do", "position": 1 },
-                            { "name": "Re", "symbol": "रे", "note": "Re", "position": 2 },
-                            { "name": "Ga", "symbol": "गा", "note": "Mi", "position": 3 },
-                            { "name": "Ma", "symbol": "मा", "note": "Fa", "position": 4 },
-                            { "name": "Pa", "symbol": "पा", "note": "So", "position": 5 },
-                            { "name": "Dha", "symbol": "धा", "note": "La", "position": 6 },
-                            { "name": "Ni", "symbol": "नि", "note": "Ti", "position": 7 }
+                            {
+                                "name": "Sa",
+                                "symbol": "सा",
+                                "note": "Do",
+                                "position": 1
+                            },
+                            {
+                                "name": "Re",
+                                "symbol": "रे",
+                                "note": "Re",
+                                "position": 2
+                            },
+                            {
+                                "name": "Ga",
+                                "symbol": "गा",
+                                "note": "Mi",
+                                "position": 3
+                            },
+                            {
+                                "name": "Ma",
+                                "symbol": "मा",
+                                "note": "Fa",
+                                "position": 4
+                            },
+                            {
+                                "name": "Pa",
+                                "symbol": "पा",
+                                "note": "So",
+                                "position": 5
+                            },
+                            {
+                                "name": "Dha",
+                                "symbol": "धा",
+                                "note": "La",
+                                "position": 6
+                            },
+                            {
+                                "name": "Ni",
+                                "symbol": "नि",
+                                "note": "Ti",
+                                "position": 7
+                            }
                         ],
                         "description": "The seven basic notes (swars) form the foundation of Indian classical music. Each swar has specific characteristics and emotional qualities."
                     }

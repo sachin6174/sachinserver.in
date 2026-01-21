@@ -83,7 +83,6 @@ const LazyAppIconGenerator = createLazyComponent(() => import('./Tools/AppIconGe
 const LazyTerminalScripts = createLazyComponent(() => import('./Tools/TerminalScripts/TerminalScripts'), { componentName: 'TerminalScripts' });
 const LazyTerminalTutorial = createLazyComponent(() => import('./Tools/TerminalTutorial/TerminalTutorial'), { componentName: 'TerminalTutorial' });
 const LazyOnlineClipboard = createLazyComponent(() => import('./Tools/OnlineClipboard/OnlineClipboard'), { componentName: 'OnlineClipboard' });
-const LazyGames = createLazyComponent(() => import('./Games/Games'), { componentName: 'Games' });
 
 const TabSystem = memo(() => {
     // Performance tracking for development
@@ -94,7 +93,6 @@ const TabSystem = memo(() => {
         switch (tab) {
             case "developer-tools": return "ai-tools-channels";
             case "qa-tools": return "macos-app-catalog";
-            case "games": return "google-games";
             case "general-tools": return "info-tool";
             case "rightbrain": return "drawing";
             default: return "about-me";
@@ -104,7 +102,8 @@ const TabSystem = memo(() => {
     // Initialize state with stored values or defaults
     const [activeTab, setActiveTab] = useState(() => {
         const stored = localStorage.getItem('activeTab');
-        return stored || "leftbrain"; // Default to leftbrain on first load
+        const validTabs = ["leftbrain", "rightbrain", "developer-tools", "qa-tools", "general-tools"];
+        return (stored && validTabs.includes(stored)) ? stored : "leftbrain";
     });
 
     // State to track the last selected navigation item for each section
@@ -115,7 +114,6 @@ const TabSystem = memo(() => {
             rightbrain: "drawing", // Default when switching to rightbrain
             "developer-tools": "ai-tools-channels", // Default when switching to developer tools
             "qa-tools": "macos-app-catalog",   // Default when switching to qa tools
-            "games": "google-games", // Default when switching to games
             "general-tools": "info-tool"     // Default when switching to general tools
         };
     });
@@ -267,9 +265,6 @@ const TabSystem = memo(() => {
             { id: "terminal-tutorial", label: "Terminal Tutorial", icon: "📘", description: <LazyTerminalTutorial /> },
             { id: "online-clipboard", label: "Online Clipboard", icon: "📋", description: <LazyOnlineClipboard /> },
         ],
-        "games": [
-            { id: "google-games", label: "All Games", icon: "🎮", description: <LazyGames /> },
-        ],
         "general-tools": [
             { id: "info-tool", label: "Info Tool", icon: "📊", description: <LazyInfoTool /> },
             { id: "passport-photo-maker", label: "Passport Photo Maker", icon: "📷", description: <LazyPassportPhotoMaker /> },
@@ -308,7 +303,6 @@ const TabSystem = memo(() => {
         { key: "rightbrain", icon: "🎨", label: "RightBrain" },
         { key: "developer-tools", icon: "💻", label: "Developer Tools" },
         { key: "qa-tools", icon: "🧪", label: "QA Tools" },
-        { key: "games", icon: "🎮", label: "Games" },
         { key: "general-tools", icon: "🛠️", label: "General Tools" }
     ], []);
 

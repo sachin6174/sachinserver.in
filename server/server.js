@@ -122,7 +122,12 @@ app.get('/api/clipboard/:code', (req, res) => {
 // The "catchall" handler: for any request that doesn't
 // match one above, send back React's index.html file.
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../build/index.html'));
+    const indexPath = path.join(__dirname, '../build/index.html');
+    if (fs.existsSync(indexPath)) {
+        res.sendFile(indexPath);
+    } else {
+        res.status(404).json({ error: 'Frontend build not found', message: 'In development, please access port 3000.' });
+    }
 });
 
 app.listen(port, () => {

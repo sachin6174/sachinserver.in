@@ -60,12 +60,6 @@ const MainContent = memo(({ activeTab, selectedNavItem, navigationItems, isLeftN
             fullName: "QA Tools: Testing and Quality Assurance",
             description: "Quality assurance and testing utilities"
         },
-        "games": {
-            icon: "🎮",
-            shortName: "Games",
-            fullName: "Games: Play & Relax",
-            description: "Collection of classic games and tools"
-        },
         "general-tools": {
             icon: "🛠️",
             shortName: "General Tools",

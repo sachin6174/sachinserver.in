@@ -4,6 +4,7 @@ import "./Music.css";
 
 const Music = () => {
     const [musicGenres, setMusicGenres] = useState([]);
+    const [personalPlaylist, setPersonalPlaylist] = useState([]);
     const [selectedGenre, setSelectedGenre] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
     const [playingTrack, setPlayingTrack] = useState(null);
@@ -12,6 +13,7 @@ const Music = () => {
         // Mimic API call with artificial delay
         setTimeout(() => {
             setMusicGenres(musicData.genres);
+            setPersonalPlaylist(musicData.personalPlaylist || []);
             setIsLoading(false);
         }, 800);
     }, []);
@@ -148,7 +150,7 @@ const Music = () => {
                             {selectedGenre.sections.map((section, index) => (
                                 <div key={index} className="vocals-section">
                                     <h4 className="vocals-section-title">{section.title}</h4>
-                                    
+
                                     {/* Basic Swar System */}
                                     {section.content.swars && (
                                         <div className="swars-grid">
@@ -161,7 +163,7 @@ const Music = () => {
                                             ))}
                                         </div>
                                     )}
-                                    
+
                                     {/* Saptak System */}
                                     {section.content.saptaks && (
                                         <div className="saptaks-container">
@@ -175,7 +177,7 @@ const Music = () => {
                                             ))}
                                         </div>
                                     )}
-                                    
+
                                     {/* Alankaar Patterns */}
                                     {section.content.patterns && (
                                         <div className="patterns-container">
@@ -188,7 +190,7 @@ const Music = () => {
                                             ))}
                                         </div>
                                     )}
-                                    
+
                                     {/* Raga Details */}
                                     {section.content.details && (
                                         <div className="raga-details">
@@ -217,7 +219,7 @@ const Music = () => {
                                             </div>
                                         </div>
                                     )}
-                                    
+
                                     {/* Learning Steps */}
                                     {section.content.steps && (
                                         <div className="learning-steps">
@@ -232,7 +234,7 @@ const Music = () => {
                                             ))}
                                         </div>
                                     )}
-                                    
+
                                     {/* Practice Songs */}
                                     {section.content.songs && (
                                         <div className="practice-songs">
@@ -253,7 +255,7 @@ const Music = () => {
                                             ))}
                                         </div>
                                     )}
-                                    
+
                                     <p className="section-description">{section.content.description}</p>
                                 </div>
                             ))}
@@ -262,6 +264,44 @@ const Music = () => {
                 </div>
             ) : (
                 <div>
+                    {/* Personal Playlist Section */}
+                    <div className="hero-section" style={{ marginBottom: '2rem' }}>
+                        <div className="section-header">
+                            <h1 className="section-title">My Playlist</h1>
+                            <div className="section-divider"></div>
+                            <p style={{ color: 'var(--text-secondary)', fontSize: '1.1rem', marginTop: '1rem' }}>
+                                A curated collection of songs that resonate with me.
+                            </p>
+                        </div>
+                    </div>
+
+                    {personalPlaylist.map((category, index) => (
+                        <div key={index} className="music-section" style={{ marginBottom: '3rem' }}>
+                            <h3 className="subsection-title" style={{ borderBottom: '1px solid var(--border-color)', paddingBottom: '0.5rem', marginBottom: '1.5rem' }}>
+                                {category.category}
+                            </h3>
+                            <div className="track-list">
+                                {category.songs.map((song, songIndex) => (
+                                    <a
+                                        key={songIndex}
+                                        href={song.url}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="track-item hover-effect"
+                                        style={{ textDecoration: 'none', color: 'inherit', display: 'flex', alignItems: 'center' }}
+                                    >
+                                        <div className="track-info">
+                                            <span className="play-button" style={{ fontSize: '1.2rem' }}>🔗</span>
+                                            <div className="track-details">
+                                                <h4 className="track-title">{song.title}</h4>
+                                            </div>
+                                        </div>
+                                    </a>
+                                ))}
+                            </div>
+                        </div>
+                    ))}
+
                     <div className="hero-section">
                         <div className="section-header">
                             <h1 className="section-title">Musical Journey</h1>
