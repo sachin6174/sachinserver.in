@@ -15,8 +15,10 @@
     "react-scripts": "5.0.1",
     "web-vitals": "^4.2.4"
   },
+  "proxy": "http://localhost:3001",
   "scripts": {
-    "start": "react-scripts start",
+    "start": "node dev-runner.js",
+    "react-start": "react-scripts start",
     "start:fast": "FAST_REFRESH=true react-scripts start",
     "dev": "npm run start:fast",
     "build": "react-scripts build",
@@ -30,7 +32,8 @@
     "clear-cache": "rm -rf node_modules/.cache && rm -rf build",
     "fresh-start": "npm run clear-cache && npm start",
     "lint:css": "stylelint \"src/**/*.css\"",
-    "lint:css:fix": "stylelint \"src/**/*.css\" --fix"
+    "lint:css:fix": "stylelint \"src/**/*.css\" --fix",
+    "server": "node server/server.js"
   },
   "browserslist": {
     "production": [

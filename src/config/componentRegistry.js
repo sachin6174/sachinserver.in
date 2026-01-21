@@ -4,8 +4,8 @@
  * Implements lazy loading for better performance
  */
 
-import { 
-  registerComponent, 
+import {
+  registerComponent,
   registerLazyComponent,
   getAllComponents,
   getCategories,
@@ -22,7 +22,7 @@ import AboutMe from '../LeftBrain/AboutMe/AboutMe';
  * Components are organized by category and loading strategy
  */
 export const initializeComponentRegistry = () => {
-  
+
   // LeftBrain Components - Technical Content
   registerComponent('about-me', AboutMe, {
     label: 'About Me',
@@ -32,7 +32,7 @@ export const initializeComponentRegistry = () => {
     errorFallback: makeAlertFallback({ title: 'Failed to render About Me' })
   });
 
-  registerLazyComponent('dsa', 
+  registerLazyComponent('dsa',
     () => import('../LeftBrain/DSA/DSA'), {
     label: 'DSA',
     icon: '🧮',
@@ -42,7 +42,7 @@ export const initializeComponentRegistry = () => {
     errorFallback: makeAlertFallback({ title: 'Failed to load DSA' })
   });
 
-  registerLazyComponent('github', 
+  registerLazyComponent('github',
     () => import('../LeftBrain/GitHub/GitHub'), {
     label: 'GitHub',
     icon: '🐙',
@@ -51,7 +51,7 @@ export const initializeComponentRegistry = () => {
     errorFallback: makeAlertFallback({ title: 'Failed to load GitHub' })
   });
 
-  registerLazyComponent('apple-development-podcasts', 
+  registerLazyComponent('apple-development-podcasts',
     () => import('../LeftBrain/AppleDevelopmentPodcasts/AppleDevelopmentPodcasts'), {
     label: 'YouTube',
     icon: '🎧',
@@ -60,7 +60,7 @@ export const initializeComponentRegistry = () => {
     errorFallback: makeAlertFallback({ title: 'Failed to load YouTube' })
   });
 
-  registerLazyComponent('xcode-shortcuts', 
+  registerLazyComponent('xcode-shortcuts',
     () => import('../LeftBrain/XcodeShortcuts/XcodeShortcuts'), {
     label: 'Xcode Shortcuts',
     icon: '⌨️',
@@ -69,7 +69,7 @@ export const initializeComponentRegistry = () => {
     errorFallback: makeAlertFallback({ title: 'Failed to load Xcode Shortcuts' })
   });
 
-  registerLazyComponent('apple-dev-youtube', 
+  registerLazyComponent('apple-dev-youtube',
     () => import('../LeftBrain/AppleDevYouTubeChannels/AppleDevYouTubeChannels'), {
     label: 'Apple Dev YouTube',
     icon: '📺',
@@ -80,7 +80,7 @@ export const initializeComponentRegistry = () => {
 
   // Apple Development and Apple Languages removed
 
-  registerLazyComponent('swift-gui', 
+  registerLazyComponent('swift-gui',
     () => import('../LeftBrain/SwiftGUI/SwiftGUI'), {
     label: 'Swift GUI',
     icon: '🖥️',
@@ -89,7 +89,7 @@ export const initializeComponentRegistry = () => {
     errorFallback: makeAlertFallback({ title: 'Failed to load Swift GUI' })
   });
 
-  registerLazyComponent('swift-storage', 
+  registerLazyComponent('swift-storage',
     () => import('../LeftBrain/SwiftStorage/SwiftStorage'), {
     label: 'Swift Storage',
     icon: '💾',
@@ -98,7 +98,7 @@ export const initializeComponentRegistry = () => {
     errorFallback: makeAlertFallback({ title: 'Failed to load Swift Storage' })
   });
 
-  registerLazyComponent('swift-networking', 
+  registerLazyComponent('swift-networking',
     () => import('../LeftBrain/SwiftNetworking/SwiftNetworking'), {
     label: 'Swift Networking',
     icon: '🌐',
@@ -107,7 +107,7 @@ export const initializeComponentRegistry = () => {
     errorFallback: makeAlertFallback({ title: 'Failed to load Swift Networking' })
   });
 
-  registerLazyComponent('debugging', 
+  registerLazyComponent('debugging',
     () => import('../LeftBrain/Debugging/Debugging'), {
     label: 'Swift Debugging',
     icon: '🐛',
@@ -116,7 +116,7 @@ export const initializeComponentRegistry = () => {
     errorFallback: makeAlertFallback({ title: 'Failed to load Debugging' })
   });
 
-  registerLazyComponent('swift-testing', 
+  registerLazyComponent('swift-testing',
     () => import('../LeftBrain/SwiftTesting/SwiftTesting'), {
     label: 'Swift Testing',
     icon: '🧪',
@@ -125,7 +125,7 @@ export const initializeComponentRegistry = () => {
     errorFallback: makeAlertFallback({ title: 'Failed to load Swift Testing' })
   });
 
-  registerLazyComponent('package-deployment', 
+  registerLazyComponent('package-deployment',
     () => import('../LeftBrain/PackageDeployment/PackageDeployment'), {
     label: 'Package & Deployment',
     icon: '📦',
@@ -134,7 +134,7 @@ export const initializeComponentRegistry = () => {
     errorFallback: makeAlertFallback({ title: 'Failed to load Package & Deployment' })
   });
 
-  registerLazyComponent('mac-terminal-scripts', 
+  registerLazyComponent('mac-terminal-scripts',
     () => import('../LeftBrain/MacTerminalScripts/MacTerminalScripts'), {
     label: 'Mac Terminal Scripts',
     icon: '💻',
@@ -143,7 +143,7 @@ export const initializeComponentRegistry = () => {
     errorFallback: makeAlertFallback({ title: 'Failed to load Mac Terminal Scripts' })
   });
 
-  registerLazyComponent('ai-and-tools', 
+  registerLazyComponent('ai-and-tools',
     () => import('../LeftBrain/AIAndTools/AIAndTools'), {
     label: 'AI and Tools',
     icon: '🤖',
@@ -151,7 +151,7 @@ export const initializeComponentRegistry = () => {
     description: 'AI tools and resources'
   });
 
-  registerLazyComponent('design-patterns', 
+  registerLazyComponent('design-patterns',
     () => import('../LeftBrain/DesignPatterns/DesignPatterns'), {
     label: 'Design Patterns',
     icon: '🏗️',
@@ -159,7 +159,7 @@ export const initializeComponentRegistry = () => {
     description: 'Software design patterns'
   });
 
-  registerLazyComponent('software-architecture', 
+  registerLazyComponent('software-architecture',
     () => import('../LeftBrain/SoftwareArchitecture/SoftwareArchitecture'), {
     label: 'Software Architecture',
     icon: '🏛️',
@@ -167,7 +167,7 @@ export const initializeComponentRegistry = () => {
     description: 'Software architecture principles'
   });
 
-  registerLazyComponent('system-design', 
+  registerLazyComponent('system-design',
     () => import('../LeftBrain/SystemDesign/SystemDesign'), {
     label: 'System Design',
     icon: '🏢',
@@ -176,7 +176,7 @@ export const initializeComponentRegistry = () => {
   });
 
 
-  registerLazyComponent('chrome-extensions', 
+  registerLazyComponent('chrome-extensions',
     () => import('../LeftBrain/ChromeExtensions/ChromeExtensions'), {
     label: 'Chrome Extensions',
     icon: '🧩',
@@ -188,7 +188,7 @@ export const initializeComponentRegistry = () => {
   // Blogs removed
 
   // RightBrain Components - Creative Content
-  registerLazyComponent('drawing', 
+  registerLazyComponent('drawing',
     () => import('../RightBrain/Drawing/Drawing'), {
     label: 'Drawing',
     icon: '✏️',
@@ -197,7 +197,7 @@ export const initializeComponentRegistry = () => {
     errorFallback: makeAlertFallback({ title: 'Failed to load Drawing' })
   });
 
-  registerLazyComponent('literature', 
+  registerLazyComponent('literature',
     () => import('../RightBrain/Litlerature/Literature'), {
     label: 'Literature',
     icon: '📖',
@@ -206,7 +206,7 @@ export const initializeComponentRegistry = () => {
     errorFallback: makeAlertFallback({ title: 'Failed to load Literature' })
   });
 
-  registerLazyComponent('philosophy', 
+  registerLazyComponent('philosophy',
     () => import('../RightBrain/Philosophy/Philosophy'), {
     label: 'Philosophy',
     icon: '🤔',
@@ -215,7 +215,7 @@ export const initializeComponentRegistry = () => {
     errorFallback: makeAlertFallback({ title: 'Failed to load Philosophy' })
   });
 
-  registerLazyComponent('psychology', 
+  registerLazyComponent('psychology',
     () => import('../RightBrain/Psychology/Psychology'), {
     label: 'Psychology',
     icon: '🧠',
@@ -224,7 +224,7 @@ export const initializeComponentRegistry = () => {
     errorFallback: makeAlertFallback({ title: 'Failed to load Psychology' })
   });
 
-  registerLazyComponent('music', 
+  registerLazyComponent('music',
     () => import('../RightBrain/Music/Music'), {
     label: 'Music',
     icon: '🎵',
@@ -233,7 +233,7 @@ export const initializeComponentRegistry = () => {
     errorFallback: makeAlertFallback({ title: 'Failed to load Music' })
   });
 
-  registerLazyComponent('rightbrain-youtube', 
+  registerLazyComponent('rightbrain-youtube',
     () => import('../RightBrain/YouTube/YouTube'), {
     label: 'YouTube',
     icon: '🎥',
@@ -243,7 +243,7 @@ export const initializeComponentRegistry = () => {
   });
 
   // Developer Tools
-  registerLazyComponent('ai-tools-channels', 
+  registerLazyComponent('ai-tools-channels',
     () => import('../Tools/AIToolsChannels/AIToolsChannels'), {
     label: 'AI Tools Channels',
     icon: '🤖',
@@ -252,7 +252,7 @@ export const initializeComponentRegistry = () => {
     errorFallback: makeAlertFallback({ title: 'Failed to load AI Tools Channels' })
   });
 
-  registerLazyComponent('api-tool', 
+  registerLazyComponent('api-tool',
     () => import('../Tools/APITool/APITool'), {
     label: 'API Tool',
     icon: '🌐',
@@ -261,7 +261,7 @@ export const initializeComponentRegistry = () => {
     errorFallback: makeAlertFallback({ title: 'Failed to load API Tool' })
   });
 
-  registerLazyComponent('storage-tool', 
+  registerLazyComponent('storage-tool',
     () => import('../Tools/StorageTool/StorageTool'), {
     label: 'Storage Tool',
     icon: '💾',
@@ -270,7 +270,7 @@ export const initializeComponentRegistry = () => {
     errorFallback: makeAlertFallback({ title: 'Failed to load Storage Tool' })
   });
 
-  registerLazyComponent('qr-code-tool', 
+  registerLazyComponent('qr-code-tool',
     () => import('../Tools/QRCodeTool/QRCodeTool'), {
     label: 'QR Code Tool',
     icon: '🔲',
@@ -279,7 +279,7 @@ export const initializeComponentRegistry = () => {
     errorFallback: makeAlertFallback({ title: 'Failed to load QR Code Tool' })
   });
 
-  registerLazyComponent('pdf-tool', 
+  registerLazyComponent('pdf-tool',
     () => import('../Tools/PDFTool/PDFTool'), {
     label: 'PDF Tool',
     icon: '📄',
@@ -288,7 +288,7 @@ export const initializeComponentRegistry = () => {
     errorFallback: makeAlertFallback({ title: 'Failed to load PDF Tool' })
   });
 
-  registerLazyComponent('JSON-Tool', 
+  registerLazyComponent('JSON-Tool',
     () => import('../Tools/JSONTool/JsonTool'), {
     label: 'JSON Tool',
     icon: '📝',
@@ -297,7 +297,7 @@ export const initializeComponentRegistry = () => {
     errorFallback: makeAlertFallback({ title: 'Failed to load JSON Tool' })
   });
 
-  registerLazyComponent('XML-Tool', 
+  registerLazyComponent('XML-Tool',
     () => import('../Tools/XMLTool/XmlTool'), {
     label: 'XML Tool',
     icon: '🔧',
@@ -306,7 +306,7 @@ export const initializeComponentRegistry = () => {
     errorFallback: makeAlertFallback({ title: 'Failed to load XML Tool' })
   });
 
-  registerLazyComponent('yaml-tool', 
+  registerLazyComponent('yaml-tool',
     () => import('../Tools/YAMLTool/YAMLTool'), {
     label: 'YAML Tool',
     icon: '📄',
@@ -315,7 +315,7 @@ export const initializeComponentRegistry = () => {
     errorFallback: makeAlertFallback({ title: 'Failed to load YAML Tool' })
   });
 
-  registerLazyComponent('csv-tool', 
+  registerLazyComponent('csv-tool',
     () => import('../Tools/CSVTool/CSVTool'), {
     label: 'CSV Tool',
     icon: '📊',
@@ -324,7 +324,7 @@ export const initializeComponentRegistry = () => {
     errorFallback: makeAlertFallback({ title: 'Failed to load CSV Tool' })
   });
 
-  registerLazyComponent('Encryption-Decryption-Tool', 
+  registerLazyComponent('Encryption-Decryption-Tool',
     () => import('../Tools/CryptoTool/CryptoTool'), {
     label: 'Crypto Tool',
     icon: '🔒',
@@ -333,7 +333,7 @@ export const initializeComponentRegistry = () => {
     errorFallback: makeAlertFallback({ title: 'Failed to load Crypto Tool' })
   });
 
-  registerLazyComponent('hash-tool', 
+  registerLazyComponent('hash-tool',
     () => import('../Tools/HashTool/HashTool'), {
     label: 'Hash Tool',
     icon: '🔑',
@@ -342,7 +342,7 @@ export const initializeComponentRegistry = () => {
     errorFallback: makeAlertFallback({ title: 'Failed to load Hash Tool' })
   });
 
-  registerLazyComponent('encoder-tool', 
+  registerLazyComponent('encoder-tool',
     () => import('../Tools/EncoderTool/EncoderTool'), {
     label: 'Encoder Tool',
     icon: '🔤',
@@ -353,7 +353,7 @@ export const initializeComponentRegistry = () => {
 
   // QA Tools
 
-  registerLazyComponent('macos-app-catalog', 
+  registerLazyComponent('macos-app-catalog',
     () => import('../Tools/MacOSAppCatalog/MacOSAppCatalog'), {
     label: 'macOS App Catalog',
     icon: '📱',
@@ -362,7 +362,7 @@ export const initializeComponentRegistry = () => {
     errorFallback: makeAlertFallback({ title: 'Failed to load macOS App Catalog' })
   });
 
-  registerLazyComponent('terminal-scripts', 
+  registerLazyComponent('terminal-scripts',
     () => import('../Tools/TerminalScripts/TerminalScripts'), {
     label: 'Terminal Scripts',
     icon: '💻',
@@ -371,7 +371,7 @@ export const initializeComponentRegistry = () => {
     errorFallback: makeAlertFallback({ title: 'Failed to load Terminal Scripts' })
   });
 
-  registerLazyComponent('terminal-tutorial', 
+  registerLazyComponent('terminal-tutorial',
     () => import('../Tools/TerminalTutorial/TerminalTutorial'), {
     label: 'Terminal Tutorial',
     icon: '📘',
@@ -380,7 +380,16 @@ export const initializeComponentRegistry = () => {
     errorFallback: makeAlertFallback({ title: 'Failed to load Terminal Tutorial' })
   });
 
-  registerLazyComponent('regex-tool', 
+  registerLazyComponent('online-clipboard',
+    () => import('../Tools/OnlineClipboard/OnlineClipboard'), {
+    label: 'Online Clipboard',
+    icon: '📋',
+    category: 'qa-tools',
+    description: 'Share text across devices temporarily',
+    errorFallback: makeAlertFallback({ title: 'Failed to load Online Clipboard' })
+  });
+
+  registerLazyComponent('regex-tool',
     () => import('../Tools/RegexTool/RegexTool'), {
     label: 'Regex Tool',
     icon: '🔍',
@@ -389,7 +398,7 @@ export const initializeComponentRegistry = () => {
     errorFallback: makeAlertFallback({ title: 'Failed to load Regex Tool' })
   });
 
-  registerLazyComponent('diff-checker', 
+  registerLazyComponent('diff-checker',
     () => import('../Tools/DiffChecker/DiffChecker'), {
     label: 'Diff Checker',
     icon: '🔄',
@@ -398,7 +407,7 @@ export const initializeComponentRegistry = () => {
     errorFallback: makeAlertFallback({ title: 'Failed to load Diff Checker' })
   });
 
-  registerLazyComponent('password-tool', 
+  registerLazyComponent('password-tool',
     () => import('../Tools/PasswordTool/PasswordTool'), {
     label: 'Password Tool',
     icon: '🛡️',
@@ -407,7 +416,7 @@ export const initializeComponentRegistry = () => {
     errorFallback: makeAlertFallback({ title: 'Failed to load Password Tool' })
   });
 
-  registerLazyComponent('uuid-tool', 
+  registerLazyComponent('uuid-tool',
     () => import('../Tools/UUIDTool/UUIDTool'), {
     label: 'UUID Tool',
     icon: '🆔',
@@ -416,7 +425,7 @@ export const initializeComponentRegistry = () => {
     errorFallback: makeAlertFallback({ title: 'Failed to load UUID Tool' })
   });
 
-  registerLazyComponent('markdown-renderer', 
+  registerLazyComponent('markdown-renderer',
     () => import('../Tools/MarkdownRenderer/MarkdownRenderer'), {
     label: 'Markdown Renderer',
     icon: '📄',
@@ -425,7 +434,7 @@ export const initializeComponentRegistry = () => {
     errorFallback: makeAlertFallback({ title: 'Failed to load Markdown Renderer' })
   });
 
-  registerLazyComponent('latex-renderer', 
+  registerLazyComponent('latex-renderer',
     () => import('../Tools/LaTeXRenderer/LaTeXRenderer'), {
     label: 'LaTeX Renderer',
     icon: '📝',
@@ -434,7 +443,7 @@ export const initializeComponentRegistry = () => {
     errorFallback: makeAlertFallback({ title: 'Failed to load LaTeX Renderer' })
   });
 
-  registerLazyComponent('writing-board', 
+  registerLazyComponent('writing-board',
     () => import('../Tools/WritingBoard/WritingBoardTool'), {
     label: 'Writing Board',
     icon: '✏️',
@@ -443,7 +452,7 @@ export const initializeComponentRegistry = () => {
     errorFallback: makeAlertFallback({ title: 'Failed to load Writing Board' })
   });
 
-  registerLazyComponent('text-generator', 
+  registerLazyComponent('text-generator',
     () => import('../Tools/TextUtilities/TextGenerator'), {
     label: 'Text Util',
     icon: '🎲',
@@ -453,7 +462,7 @@ export const initializeComponentRegistry = () => {
   });
 
   // General Tools
-  registerLazyComponent('info-tool', 
+  registerLazyComponent('info-tool',
     () => import('../Tools/InfoTool/InfoTool'), {
     label: 'Info Tool',
     icon: '📊',
@@ -462,7 +471,7 @@ export const initializeComponentRegistry = () => {
     errorFallback: makeAlertFallback({ title: 'Failed to load Info Tool' })
   });
 
-  registerLazyComponent('passport-photo-maker', 
+  registerLazyComponent('passport-photo-maker',
     () => import('../Tools/PassportPhotoMaker/PassportPhotoMaker'), {
     label: 'Passport Photo Maker',
     icon: '📷',
@@ -471,7 +480,7 @@ export const initializeComponentRegistry = () => {
     errorFallback: makeAlertFallback({ title: 'Failed to load Passport Photo Maker' })
   });
 
-  registerLazyComponent('color-picker', 
+  registerLazyComponent('color-picker',
     () => import('../Tools/ColorPicker/ColorPickerTool'), {
     label: 'Color Picker',
     icon: '🎨',
@@ -480,7 +489,7 @@ export const initializeComponentRegistry = () => {
     errorFallback: makeAlertFallback({ title: 'Failed to load Color Picker' })
   });
 
-  registerLazyComponent('screen-recorder', 
+  registerLazyComponent('screen-recorder',
     () => import('../Tools/ScreenRecorder/ScreenRecorderTool'), {
     label: 'Screen Recorder',
     icon: '🎥',
@@ -489,7 +498,7 @@ export const initializeComponentRegistry = () => {
     errorFallback: makeAlertFallback({ title: 'Failed to load Screen Recorder' })
   });
 
-  registerLazyComponent('important-websites', 
+  registerLazyComponent('important-websites',
     () => import('../Tools/ImportantWebsites/ImportantWebsites'), {
     label: 'Important Websites',
     icon: '🌐',
@@ -498,7 +507,7 @@ export const initializeComponentRegistry = () => {
     errorFallback: makeAlertFallback({ title: 'Failed to load Important Websites' })
   });
 
-  registerLazyComponent('emoji-picker', 
+  registerLazyComponent('emoji-picker',
     () => import('../Tools/EmojiPicker/EmojiPicker'), {
     label: 'Emoji Picker',
     icon: '😀',
@@ -507,7 +516,7 @@ export const initializeComponentRegistry = () => {
     errorFallback: makeAlertFallback({ title: 'Failed to load Emoji Picker' })
   });
 
-  registerLazyComponent('number-to-unicode', 
+  registerLazyComponent('number-to-unicode',
     () => import('../Tools/NumberToUnicode/NumberToUnicode'), {
     label: 'Number Base Converter',
     icon: '🔢',
@@ -516,7 +525,7 @@ export const initializeComponentRegistry = () => {
     errorFallback: makeAlertFallback({ title: 'Failed to load Number Converter' })
   });
 
-  registerLazyComponent('app-icon-generator', 
+  registerLazyComponent('app-icon-generator',
     () => import('../Tools/AppIconGenerator/AppIconGenerator'), {
     label: 'App Icon Generator',
     icon: '🍎',
@@ -525,7 +534,7 @@ export const initializeComponentRegistry = () => {
     errorFallback: makeAlertFallback({ title: 'Failed to load App Icon Generator' })
   });
 
-  registerLazyComponent('video-trimmer', 
+  registerLazyComponent('video-trimmer',
     () => import('../Tools/VideoTrimmer/VideoTrimmer'), {
     label: 'Video Trimmer',
     icon: '✂️',
@@ -535,11 +544,11 @@ export const initializeComponentRegistry = () => {
   });
 
   console.log('Component registry initialized with lazy loading');
-  
+
   // Development auto-reload enhancement
   if (process.env.NODE_ENV === 'development') {
     console.log('🔧 Development mode: Component registry auto-reload enabled');
-    
+
     // Add registry info to window for debugging
     window.componentRegistry = {
       getAllComponents: getAllComponents,
@@ -550,7 +559,7 @@ export const initializeComponentRegistry = () => {
         window.location.reload();
       }
     };
-    
+
     console.log('💡 Available debug commands:');
     console.log('  - window.componentRegistry.getAllComponents()');
     console.log('  - window.componentRegistry.getCategories()');
@@ -582,7 +591,7 @@ export const initializeComponentRegistry = () => {
  */
 export const createNavigationConfig = () => {
   const { getComponentsByCategory, getComponentMetadata } = require('../factories/ComponentFactory');
-  
+
   const createNavItems = (category) => {
     const components = getComponentsByCategory(category);
     return components.map(({ metadata }) => ({

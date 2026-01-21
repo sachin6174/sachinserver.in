@@ -82,6 +82,7 @@ const LazyYouTubeDownloader = createLazyComponent(() => import('./Tools/YouTubeD
 const LazyAppIconGenerator = createLazyComponent(() => import('./Tools/AppIconGenerator/AppIconGenerator'), { componentName: 'AppIconGenerator' });
 const LazyTerminalScripts = createLazyComponent(() => import('./Tools/TerminalScripts/TerminalScripts'), { componentName: 'TerminalScripts' });
 const LazyTerminalTutorial = createLazyComponent(() => import('./Tools/TerminalTutorial/TerminalTutorial'), { componentName: 'TerminalTutorial' });
+const LazyOnlineClipboard = createLazyComponent(() => import('./Tools/OnlineClipboard/OnlineClipboard'), { componentName: 'OnlineClipboard' });
 const LazyGames = createLazyComponent(() => import('./Games/Games'), { componentName: 'Games' });
 
 const TabSystem = memo(() => {
@@ -264,6 +265,7 @@ const TabSystem = memo(() => {
             { id: "macos-app-catalog", label: "macOS App Catalog", icon: "📱", description: <LazyMacOSAppCatalog /> },
             { id: "terminal-scripts", label: "Terminal Scripts", icon: "💻", description: <LazyTerminalScripts /> },
             { id: "terminal-tutorial", label: "Terminal Tutorial", icon: "📘", description: <LazyTerminalTutorial /> },
+            { id: "online-clipboard", label: "Online Clipboard", icon: "📋", description: <LazyOnlineClipboard /> },
         ],
         "games": [
             { id: "google-games", label: "All Games", icon: "🎮", description: <LazyGames /> },
