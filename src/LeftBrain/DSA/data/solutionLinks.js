@@ -102,6 +102,14 @@ export const solutionLinks = {
         timeComplexity: 'O(n)',
         spaceComplexity: 'O(1)'
     },
+    'Reverse Linked List': {
+        videoUrl: 'https://www.youtube.com/watch?v=3IN0BP9Ni6E&list=PLFdAYMIVJQHN6J5-OCh7pbG0o8WHC9so3&index=6',
+        description: 'A detailed walkthrough of the "Reverse Linked List" problem, explaining how to reverse a singly linked list iteratively and recursively.',
+        topics: ['Linked List', 'Recursion'],
+        difficulty: 'Easy',
+        timeComplexity: 'O(n)',
+        spaceComplexity: 'O(1)'
+    },
 
     // Add more solution links here as needed
     // Example format for future additions:
