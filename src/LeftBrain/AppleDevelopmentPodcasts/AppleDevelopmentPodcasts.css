@@ -4,41 +4,41 @@
   --current-theme-dark: #d92d23;
 }
 
-.playlist-grid {
+.apple-podcasts-theme .playlist-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: var(--space-3);
 }
 
-.playlist-card {
+.apple-podcasts-theme .playlist-card {
   display: flex;
   flex-direction: column;
   gap: var(--space-3);
 }
 
-.playlist-card header h3 {
+.apple-podcasts-theme .playlist-card header h3 {
   margin: 0 0 var(--space-xs) 0;
 }
 
-.playlist-card header p {
+.apple-podcasts-theme .playlist-card header p {
   margin: 0;
   color: var(--text-secondary);
 }
 
-.playlist-focus,
-.podcast-links {
+.apple-podcasts-theme .playlist-focus,
+.apple-podcasts-theme .podcast-links {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-xs);
 }
 
-.playlist-focus .focus-pill {
+.apple-podcasts-theme .playlist-focus .focus-pill {
   border-color: color-mix(in srgb, var(--current-theme) 30%, var(--border-color));
   background: color-mix(in srgb, var(--current-theme) 10%, var(--background-secondary));
   color: color-mix(in srgb, var(--current-theme-dark) 78%, var(--text-primary));
 }
 
-.podcast-links a {
+.apple-podcasts-theme .podcast-links a {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -53,65 +53,14 @@
   transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
 }
 
-.podcast-links a:hover {
+.apple-podcasts-theme .podcast-links a:hover {
   transform: translateY(-1px);
   box-shadow: var(--shadow-sm);
   border-color: color-mix(in srgb, var(--current-theme) 58%, var(--border-color));
 }
 
-.video-section {
-  margin-top: var(--space-6);
-}
-
-.video-section h2 {
-  margin-bottom: var(--space-4);
-}
-
-.videos-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-  gap: var(--space-3);
-}
-
-.video-card {
-  border: 1px solid color-mix(in srgb, var(--border-color) 84%, transparent);
-  border-radius: var(--radius-lg);
-  background: linear-gradient(180deg, color-mix(in srgb, var(--surface) 96%, transparent), color-mix(in srgb, var(--surface-2) 90%, transparent));
-  overflow: hidden;
-  box-shadow: var(--shadow-sm);
-}
-
-.video-wrapper {
-  position: relative;
-  padding-top: 56.25%;
-  background: #000;
-}
-
-.video-wrapper iframe {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-}
-
-.video-info {
-  padding: var(--space-3);
-}
-
-.video-info h3 {
-  margin: 0 0 var(--space-xs) 0;
-  font-size: var(--font-lg);
-}
-
-.video-info p {
-  margin: 0;
-  color: var(--text-secondary);
-  font-size: var(--font-sm);
-}
-
 @media (max-width: 820px) {
-  .playlist-grid,
-  .videos-grid {
+  .apple-podcasts-theme .playlist-grid {
     grid-template-columns: 1fr;
   }
 }
