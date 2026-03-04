@@ -3,16 +3,16 @@
   color: var(--text);
 }
 
-.terminal-sections {
+.terminal-scripts-container .terminal-sections {
   display: grid;
   gap: var(--space-6);
 }
 
-.section-wrapper {
+.terminal-scripts-container .section-wrapper {
   margin-bottom: 0;
 }
 
-.section-wrapper h2 {
+.terminal-scripts-container .section-wrapper h2 {
   margin: 0 0 var(--space-3) 0;
   padding-bottom: var(--space-2);
   border-bottom: 1px solid var(--border);
@@ -20,13 +20,13 @@
   font-size: var(--font-h4-size);
 }
 
-.terminal-grid {
+.terminal-scripts-container .terminal-grid {
   display: grid;
   grid-template-columns: 1fr;
   gap: var(--space-3);
 }
 
-.terminal-card {
+.terminal-scripts-container .terminal-card {
   border: 1px solid color-mix(in srgb, var(--border) 84%, transparent);
   border-radius: var(--radius-lg);
   padding: var(--space-4);
@@ -37,30 +37,30 @@
   box-shadow: var(--shadow-sm);
 }
 
-.terminal-line {
+.terminal-scripts-container .terminal-line {
   margin-top: var(--space-xs);
 }
 
-.terminal-card-header {
+.terminal-scripts-container .terminal-card-header {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   gap: var(--space-sm);
 }
 
-.terminal-card-header h4 {
+.terminal-scripts-container .terminal-card-header h4 {
   margin: 0;
   color: var(--text);
   font-size: var(--font-lg);
 }
 
-.terminal-actions {
+.terminal-scripts-container .terminal-actions {
   display: flex;
   gap: var(--space-xs);
   flex-wrap: wrap;
 }
 
-.terminal-command {
+.terminal-scripts-container .terminal-command {
   margin: 0;
   width: 100%;
   border-radius: var(--radius-md);
@@ -76,14 +76,14 @@
   overflow: visible;
 }
 
-.terminal-description {
+.terminal-scripts-container .terminal-description {
   margin: 0;
   color: var(--text-secondary);
   font-size: var(--font-sm);
 }
 
-.copy-btn,
-.download-btn {
+.terminal-scripts-container .copy-btn,
+.terminal-scripts-container .download-btn {
   border: 1px solid color-mix(in srgb, var(--border) 82%, transparent);
   background: linear-gradient(180deg, var(--surface), color-mix(in srgb, var(--surface-2) 90%, transparent));
   color: var(--text);
@@ -95,24 +95,24 @@
   transition: transform var(--duration-150) var(--ease-standard), border-color var(--duration-150) var(--ease-standard), box-shadow var(--duration-150) var(--ease-standard);
 }
 
-.copy-btn:hover,
-.download-btn:hover {
+.terminal-scripts-container .copy-btn:hover,
+.terminal-scripts-container .download-btn:hover {
   transform: translateY(-1px);
   border-color: color-mix(in srgb, var(--primary) 44%, var(--border));
   box-shadow: var(--shadow-sm);
 }
 
 @media (max-width: 820px) {
-  .terminal-card {
+  .terminal-scripts-container .terminal-card {
     padding: var(--space-3);
   }
 
-  .terminal-card-header {
+  .terminal-scripts-container .terminal-card-header {
     flex-direction: column;
     align-items: stretch;
   }
 
-  .terminal-actions {
+  .terminal-scripts-container .terminal-actions {
     justify-content: flex-start;
   }
 }
