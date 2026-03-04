@@ -3,7 +3,7 @@
   color: var(--text);
 }
 
-.channels-header {
+.apple-dev-youtube-channels .channels-header {
   margin-bottom: var(--space-6);
   padding: var(--space-5);
   border-radius: var(--radius-xl);
@@ -14,25 +14,25 @@
   box-shadow: var(--shadow-sm);
 }
 
-.channels-header h1 {
+.apple-dev-youtube-channels .channels-header h1 {
   margin: 0;
   color: var(--text);
   font-size: clamp(1.5rem, 2.8vw, 2.15rem);
   letter-spacing: -0.02em;
 }
 
-.channels-header p {
+.apple-dev-youtube-channels .channels-header p {
   margin: var(--space-2) 0 0 0;
   color: var(--text-secondary);
 }
 
-.channels-grid {
+.apple-dev-youtube-channels .channels-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: var(--space-3);
 }
 
-.channel-card {
+.apple-dev-youtube-channels .channel-card {
   display: flex;
   align-items: flex-start;
   gap: var(--space-3);
@@ -44,17 +44,17 @@
   transition: transform var(--duration-150) var(--ease-standard), border-color var(--duration-150) var(--ease-standard), box-shadow var(--duration-150) var(--ease-standard);
 }
 
-.channel-card:hover {
+.apple-dev-youtube-channels .channel-card:hover {
   transform: translateY(-2px);
   border-color: color-mix(in srgb, #ff3b30 34%, var(--border));
   box-shadow: var(--shadow-md);
 }
 
-.channel-avatar {
+.apple-dev-youtube-channels .channel-avatar {
   flex-shrink: 0;
 }
 
-.channel-avatar img {
+.apple-dev-youtube-channels .channel-avatar img {
   width: 56px;
   height: 56px;
   border-radius: 50%;
@@ -62,25 +62,25 @@
   border: 2px solid color-mix(in srgb, var(--border) 75%, #ff3b30 25%);
 }
 
-.channel-info {
+.apple-dev-youtube-channels .channel-info {
   min-width: 0;
   flex: 1;
 }
 
-.channel-name {
+.apple-dev-youtube-channels .channel-name {
   margin: 0 0 var(--space-2) 0;
   color: var(--text);
   font-size: 1rem;
   overflow-wrap: anywhere;
 }
 
-.channel-links {
+.apple-dev-youtube-channels .channel-links {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-xs);
 }
 
-.link-btn {
+.apple-dev-youtube-channels .link-btn {
   border: 1px solid transparent;
   border-radius: var(--radius-sm);
   padding: 0.3rem 0.55rem;
@@ -91,18 +91,18 @@
   transition: transform var(--duration-150) var(--ease-standard), filter var(--duration-150) var(--ease-standard), box-shadow var(--duration-150) var(--ease-standard);
 }
 
-.link-btn:hover {
+.apple-dev-youtube-channels .link-btn:hover {
   transform: translateY(-1px);
   filter: brightness(1.03);
   box-shadow: var(--shadow-sm);
 }
 
-.youtube-btn { background: linear-gradient(180deg, #ff3b30, #d81910); }
-.github-btn { background: linear-gradient(180deg, #30363d, #191c20); }
-.devnotes-btn { background: linear-gradient(180deg, #10b981, #047857); }
-.website-btn { background: linear-gradient(180deg, #2563eb, #1d4ed8); }
+.apple-dev-youtube-channels .youtube-btn { background: linear-gradient(180deg, #ff3b30, #d81910); }
+.apple-dev-youtube-channels .github-btn { background: linear-gradient(180deg, #30363d, #191c20); }
+.apple-dev-youtube-channels .devnotes-btn { background: linear-gradient(180deg, #10b981, #047857); }
+.apple-dev-youtube-channels .website-btn { background: linear-gradient(180deg, #2563eb, #1d4ed8); }
 
-.channels-footer {
+.apple-dev-youtube-channels .channels-footer {
   margin-top: var(--space-6);
   padding: var(--space-4);
   border-radius: var(--radius-lg);
@@ -110,23 +110,23 @@
   background: color-mix(in srgb, var(--surface) 92%, transparent);
 }
 
-.channels-footer p {
+.apple-dev-youtube-channels .channels-footer p {
   margin: 0;
   color: var(--text-secondary);
   line-height: 1.55;
 }
 
 @media (max-width: 640px) {
-  .channel-card {
+  .apple-dev-youtube-channels .channel-card {
     padding: var(--space-3);
   }
 
-  .channel-avatar img {
+  .apple-dev-youtube-channels .channel-avatar img {
     width: 48px;
     height: 48px;
   }
 
-  .link-btn {
+  .apple-dev-youtube-channels .link-btn {
     font-size: 0.68rem;
   }
 }
