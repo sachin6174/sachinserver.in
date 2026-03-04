@@ -163,6 +163,8 @@
   border-radius: 12px;
   padding: 0.75rem;
   margin-bottom: var(--space-2);
+  max-width: 100%;
+  overflow: hidden;
 }
 
 .month-labels {
@@ -192,6 +194,7 @@
 .graph-content {
   display: flex;
   gap: 0.3rem;
+  max-width: 100%;
 }
 
 .day-labels {
@@ -330,6 +333,10 @@
 .skeleton-grid {
   display: flex;
   gap: 3px;
+  max-width: 100%;
+  overflow-x: auto;
+  padding-bottom: 0.15rem;
+  scrollbar-width: thin;
 }
 
 .skeleton-week {

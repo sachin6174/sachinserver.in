@@ -29,55 +29,66 @@ const AboutMe = () => {
     }, []);
 
     const skills = [
-        { name: "Swift", level: 95, category: "Languages", context: "Primary language for iOS/macOS development." },
-        { name: "Objective-C", level: 70, category: "Languages", context: "Experience with legacy iOS codebases." },
-        { name: "JavaScript", level: 80, category: "Languages", context: "Used for web development and Chrome extensions." },
-        { name: "C++", level: 75, category: "Languages", context: "Strong foundation in data structures and algorithms." },
-        { name: "iOS SDK", level: 90, category: "Frameworks", context: "Deep understanding of the iOS ecosystem." },
-        { name: "UIKit", level: 85, category: "Frameworks", context: "Classic UI framework for iOS." },
-        { name: "SwiftUI", level: 90, category: "Frameworks", context: "Modern UI framework for Apple platforms." },
-        { name: "Core Data", level: 85, category: "Frameworks", context: "For persistent data storage." },
-        { name: "Core Animation", level: 80, category: "Frameworks", context: "For creating smooth animations." },
-        { name: "Core Location", level: 80, category: "Frameworks", context: "For location-aware applications." },
-        { name: "Foundation", level: 95, category: "Frameworks", context: "Basic building blocks of Apple development." },
-        { name: "Cocoa Touch", level: 90, category: "Frameworks", context: "Key framework for building iOS apps." },
-        { name: "Xcode", level: 95, category: "Tools", context: "The primary IDE for Apple development." },
-        { name: "Instruments", level: 85, category: "Tools", context: "For performance tuning and debugging." },
-        { name: "TestFlight", level: 90, category: "Tools", context: "For beta testing applications." },
-        { name: "App Store Connect", level: 90, category: "Tools", context: "For managing and publishing apps." },
-        { name: "Git", level: 90, category: "Tools", context: "For version control." },
-        { name: "JIRA", level: 85, category: "Tools", context: "For agile project management." },
-        { name: "SonarQube", level: 80, category: "Tools", context: "For code quality and security." },
-        { name: "MVC", level: 90, category: "Architecture", context: "Model-View-Controller." },
-        { name: "MVVM", level: 90, category: "Architecture", context: "Model-View-ViewModel." },
-        { name: "VIPER", level: 85, category: "Architecture", context: "View-Interactor-Presenter-Entity-Router." },
-        { name: "Clean Architecture", level: 80, category: "Architecture", context: "A set of principles for building scalable and maintainable software." },
-        { name: "XCTest", level: 85, category: "Testing", context: "For unit and UI testing." },
-        { name: "TDD", level: 80, category: "Testing", context: "Test-Driven Development." },
-        { name: "RESTful APIs", level: 90, category: "Networking", context: "For communication with backend services." },
-        { name: "JSON", level: 95, category: "Data", context: "Standard format for data interchange." },
-        { name: "SQLite", level: 80, category: "Data", context: "For local data storage." },
-        { name: "Push Notifications", level: 85, category: "Networking", context: "For engaging users." },
-        { name: "Agile Development", level: 90, category: "Practices", context: "Iterative approach to software development." },
-        { name: "Memory Management", level: 90, category: "Practices", context: "Crucial for building performant apps." },
-        { name: "Auto Layout", level: 90, category: "Practices", context: "For creating adaptive user interfaces." }
+        { name: "Swift", level: 96, category: "Languages", context: "Primary language for iOS/macOS product development." },
+        { name: "Objective-C", level: 72, category: "Languages", context: "Maintaining and modernizing legacy Apple codebases." },
+        { name: "JavaScript", level: 82, category: "Languages", context: "Used in internal tools and browser extensions." },
+        { name: "C++", level: 78, category: "Languages", context: "Solid DSA and systems foundation." },
+        { name: "iOS SDK", level: 95, category: "Frameworks", context: "Core platform APIs for shipping enterprise apps." },
+        { name: "UIKit", level: 92, category: "Frameworks", context: "Production UI development for complex app flows." },
+        { name: "SwiftUI", level: 93, category: "Frameworks", context: "Building modern, declarative Apple interfaces." },
+        { name: "Combine", level: 84, category: "Frameworks", context: "Reactive state/data pipelines for UI and services." },
+        { name: "Swift Concurrency", level: 92, category: "Frameworks", context: "Task groups, async/await, and safe concurrent workflows." },
+        { name: "Core Data", level: 92, category: "Frameworks", context: "Large-scale local persistence with optimized models." },
+        { name: "Core Location", level: 86, category: "Frameworks", context: "Geofencing and policy-aware location workflows." },
+        { name: "Foundation", level: 96, category: "Frameworks", context: "Robust networking, data handling, and system integration." },
+        { name: "URLSession", level: 88, category: "Frameworks", context: "Reliable API and background transfer implementation." },
+        { name: "Xcode", level: 96, category: "Tools", context: "Primary IDE for app engineering, profiling, and release." },
+        { name: "Instruments", level: 88, category: "Tools", context: "Performance tracing and memory diagnostics." },
+        { name: "SPM", level: 86, category: "Tools", context: "Managing modular package dependencies." },
+        { name: "CocoaPods", level: 84, category: "Tools", context: "Supporting existing dependency ecosystems." },
+        { name: "GitLab CI/CD", level: 90, category: "Tools", context: "Automated package/release workflows and validation." },
+        { name: "TestFlight", level: 92, category: "Tools", context: "Beta release and stakeholder feedback loops." },
+        { name: "App Store Connect", level: 90, category: "Tools", context: "Store metadata, release rollout, and compliance." },
+        { name: "Git", level: 92, category: "Tools", context: "Version control and collaborative delivery workflow." },
+        { name: "Jira", level: 88, category: "Tools", context: "Agile planning and execution with cross-functional teams." },
+        { name: "SonarQube", level: 84, category: "Tools", context: "Code quality gates and maintainability tracking." },
+        { name: "MVC", level: 90, category: "Architecture", context: "Reliable baseline architecture for feature modules." },
+        { name: "MVVM", level: 90, category: "Architecture", context: "Structured view-state and testable UI logic." },
+        { name: "VIPER", level: 92, category: "Architecture", context: "Scalable modularization used in production migration." },
+        { name: "Clean Architecture", level: 88, category: "Architecture", context: "Separation of concerns for long-lived codebases." },
+        { name: "Dependency Injection", level: 86, category: "Architecture", context: "Loose coupling and test-friendly module design." },
+        { name: "XCTest", level: 90, category: "Testing", context: "Unit and integration testing for Apple platforms." },
+        { name: "XCUITest", level: 86, category: "Testing", context: "UI automation for critical user journeys." },
+        { name: "Playwright", level: 84, category: "Testing", context: "Regression automation for internal QA tooling." },
+        { name: "Appium", level: 82, category: "Testing", context: "Cross-platform E2E workflow validation." },
+        { name: "TDD", level: 86, category: "Testing", context: "Test-first implementation for high-risk logic." },
+        { name: "RESTful APIs", level: 92, category: "Networking", context: "Robust backend integration for enterprise workflows." },
+        { name: "JSON", level: 95, category: "Data", context: "Parsing/serialization for high-volume payloads." },
+        { name: "SQLite", level: 85, category: "Data", context: "Efficient local querying and structured data handling." },
+        { name: "Firebase", level: 78, category: "Data", context: "Cloud integration for side projects and prototypes." },
+        { name: "Push Notifications", level: 84, category: "Networking", context: "Reliable APNs notification delivery pipelines." },
+        { name: "Agile Development", level: 92, category: "Practices", context: "Sprint-based delivery with measurable outcomes." },
+        { name: "Memory Management", level: 92, category: "Practices", context: "Leak-free, stable app behavior under load." },
+        { name: "Auto Layout", level: 90, category: "Practices", context: "Adaptive layouts across iPhone and iPad classes." },
+        { name: "Performance Optimization", level: 90, category: "Practices", context: "Profiling and tuning for responsiveness and scale." },
+        { name: "Code Review", level: 90, category: "Practices", context: "Maintaining engineering quality and shared ownership." }
     ];
 
     const timeline = [
         {
             year: "July 2023 – Present",
-            title: "iOS Developer",
-            description: "42 Gears Mobility Systems Private Limited - Developed app management jobs, implemented a robust Download Manager, engineered geofencing features, and utilized Core Data for persistent storage.",
+            title: "iOS Software Engineer",
+            description: "42Gears, Bengaluru - Shipped enterprise macOS/iOS management features for 10,000+ devices, improved large file delivery reliability by 2x, and automated 95% of JIT admin access workflows.",
             type: "experience"
         },
         {
             year: "February 2023 – June 2023",
             title: "iOS Developer Intern",
-            description: "42 Gears Mobility Systems Private Limited - Learned Swift, UIKit, SwiftUI, and applied asynchronous programming techniques to optimize application performance.",
+            description: "42Gears, Bengaluru - Built core Swift/UIKit/SwiftUI foundation, worked on PKG/DMG signing and notarization, and improved data/security handling using Core Data, UserDefaults, and Keychain.",
             type: "experience"
         },
         {
-            year: "August 2019 - May 2023",
+            year: "August 2019 – May 2023",
             title: "Bachelor of Engineering in Computer Science",
             description: "Chandigarh Group of Colleges, Landran, Mohali - CGPA: 7.9",
             type: "education"
@@ -88,21 +99,21 @@ const AboutMe = () => {
         {
             title: "SureMDM Agent for macOS",
             description: "Enterprise macOS device management agent with app lifecycle management, security policies, and remote administration.",
-            challenge: "Managing a large fleet of macOS devices in an enterprise environment with a high degree of automation and security.",
-            solution: "Built a comprehensive agent that handles app installation, updates, and removal, along with security features like geofencing and JIT access.",
-            impact: "Improved device management efficiency by 60% and reduced security incidents by 40%.",
+            challenge: "Managing app lifecycle, policy compliance, and secure privilege workflows across large enterprise fleets.",
+            solution: "Built app management jobs (PKG/DMG install-upgrade-uninstall), daemonized process orchestration, geofencing/time-fence policies, and internal QA/debug tooling.",
+            impact: "Supported 10,000+ managed devices, reduced security incidents by 40%, and improved admin workflow automation by 95%.",
             tech: ["macOS", "Swift", "XPC", "Core Data", "VIPER"],
-            year: "2023-2025",
+            year: "2023 – Present",
             links: {
                 product: "https://www.42gears.com/products/mobile-device-management/suremdm-agent-for-macos-past-releases/"
             }
         },
         {
             title: "NotingDown",
-            description: "A productivity crisis led to this solution. Many users struggle with scattered notes across different apps. NotingDown addresses this by providing a unified, intuitive note-taking experience built with SwiftUI.",
-            challenge: "Users needed a simple yet powerful note app that works offline and syncs seamlessly.",
-            solution: "Built native iOS app with Core Data persistence and clean SwiftUI interface.",
-            impact: "Published on App Store with positive user reviews, demonstrating production-ready iOS development skills.",
+            description: "SwiftUI and Core Data note-taking app designed for offline-first capture with clean native UX.",
+            challenge: "Create a lightweight, reliable notes workflow without compromising native performance.",
+            solution: "Built with SwiftUI + Core Data and integrated CloudKit synchronization for continuity.",
+            impact: "Shipped a production-ready personal app with full native Apple platform architecture.",
             tech: ["SwiftUI", "Core Data", "CloudKit", "iOS"],
             year: "2025",
             links: {
@@ -115,7 +126,7 @@ const AboutMe = () => {
             description: "SwiftUI app for guitar tuning and metronome using AVFoundation framework with custom audio algorithms and Core Audio, achieving 90% tuning accuracy.",
             challenge: "Creating a highly accurate and responsive guitar tuner and metronome on iOS.",
             solution: "Used AVFoundation and Core Audio to build custom audio algorithms for tuning and timing.",
-            impact: "Achieved 90% tuning accuracy, providing a useful tool for musicians.",
+            impact: "Reached ~90% tuning accuracy with low-latency audio analysis and stable timing controls.",
             tech: ["SwiftUI", "AVFoundation", "Core Audio", "iOS"],
             year: "2024",
             links: {
@@ -128,7 +139,7 @@ const AboutMe = () => {
             description: "Chrome extension for text encryption/decryption with Base64/Base32 encoding and secure storage.",
             challenge: "Providing a simple and secure way to encrypt and decrypt text within the browser.",
             solution: "Developed a Chrome extension using JavaScript and Chrome APIs for secure text handling.",
-            impact: "Published on the Chrome Web Store, offering a convenient tool for privacy-conscious users.",
+            impact: "Published to the Chrome Web Store with production-ready encryption/decryption flows.",
             tech: ["JavaScript", "Chrome APIs", "Cryptography"],
             year: "2024",
             links: {
@@ -139,10 +150,11 @@ const AboutMe = () => {
     ];
 
     const achievements = [
-        "Selected among top 700 teams from 57,000+ developers in the Google Cloud Agentic AI Hackathon 2025.",
-        "Reduced critical bugs by 70% after migrating from MVVM to VIPER.",
-        "Reduced app crashes by 90% by introducing proper thread-safety mechanisms.",
-        "Automated 95% of admin access workflows with JIT Access implementation."
+        "Google Cloud Agentic AI Hackathon 2025: selected among top 700 teams from 57,000+ developers.",
+        "Reduced critical bugs by 70% after architectural migration from MVVM to VIPER.",
+        "Reduced app crashes by 90% through thread-safe concurrency redesign.",
+        "Automated 95% of admin access workflows using JIT Access implementation.",
+        "Built internal debugger and QA utility adopted by 20+ engineers."
     ];
 
     const interests = [
@@ -179,13 +191,14 @@ const AboutMe = () => {
                     </div>
                     <div className="hero-text">
                         <h1 className="hero-name">SACHIN KUMAR</h1>
-                        <p className="hero-tagline">iOS Developer | Swift, SwiftUI, UIKit | Enterprise Mobility</p>
+                        <p className="hero-tagline">iOS Software Engineer | iOS/macOS | Enterprise Mobility</p>
                         <p className="hero-description">
-                            iOS Developer with 2.8 years of experience in iOS SDK, Swift, SwiftUI, UIKit, and mobile app development. Expertise in MacOS/iOS app development, Core Data, Cocoa Touch framework, RESTful API integration, and App Store deployment.
+                            iOS Software Engineer with 3 years and 2 months of total iOS/macOS experience (as of March 2026), focused on enterprise mobility products, scalable app architecture, and reliable release engineering.
                         </p>
                         <div className="hero-contact">
                             <span>📧 sachinmehtab@gmail.com</span>
                             <span>📱 +91 9501841073</span>
+                            <span>📍 Bengaluru, Karnataka</span>
                             <span>🌐 sachinserver.in</span>
                         </div>
                     </div>
@@ -201,13 +214,13 @@ const AboutMe = () => {
                 <div className="about-grid">
                     <div className="about-text">
                         <p>
-                            As a developer, I'm driven by a passion for turning complex problems into elegant and intuitive solutions. My journey in technology has been a constant exploration, from building enterprise mobility solutions to creating personal projects that solve real-world problems.
+                            I build enterprise-grade iOS/macOS experiences that are stable under scale and easy for teams to maintain. My day-to-day work includes app lifecycle automation, policy-driven device management, secure privilege workflows, and observability tooling.
                         </p>
                         <p>
-                            When I'm not coding, I'm exploring my other interests. I'm an avid explorer of AI tools, always curious about the next wave of innovation. I also enjoy reading literature, which gives me new perspectives on storytelling and communication. Drawing allows me to express my creativity visually, and listening to music is my go-to for focus and inspiration.
+                            At 42Gears, I shipped device-management capabilities for 10,000+ enterprise macOS endpoints, built resilient download and monitoring systems, and improved operational quality through better architecture, concurrency, and QA automation.
                         </p>
                         <p>
-                            These interests aren't just hobbies; they shape how I approach my work. They've taught me the importance of creativity, clear communication, and a user-centered approach to everything I build.
+                            Outside work, I stay sharp through AI exploration, reading, drawing, and music. These habits keep my engineering approach practical: ship fast, measure impact, and keep the user experience simple.
                         </p>
                     </div>
                     <div className="quick-facts">
