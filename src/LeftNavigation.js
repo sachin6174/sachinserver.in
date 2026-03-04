@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback, memo } from 'react';
+import { Link } from 'react-router-dom';
 
-const LeftNavigation = memo(({ items, selectedNavItem, setSelectedNavItem }) => {
+const LeftNavigation = memo(({ items, selectedNavItem, setSelectedNavItem, activeTab }) => {
     const [animatedItems, setAnimatedItems] = useState(new Set());
 
     useEffect(() => {
@@ -20,14 +21,14 @@ const LeftNavigation = memo(({ items, selectedNavItem, setSelectedNavItem }) => 
 
     const handleItemClick = useCallback((itemId) => {
         setSelectedNavItem(itemId);
-        
+
         // Optimized click animation using requestAnimationFrame
         requestAnimationFrame(() => {
             const element = document.querySelector(`[data-item-id="${itemId}"]`);
             if (element) {
                 element.style.transform = 'scale(0.98)';
                 element.style.transition = 'transform 0.1s ease';
-                
+
                 requestAnimationFrame(() => {
                     setTimeout(() => {
                         if (element) {
@@ -42,32 +43,28 @@ const LeftNavigation = memo(({ items, selectedNavItem, setSelectedNavItem }) => 
     return (
         <nav className="nav-items" aria-label="Section Navigation">
             {items?.map((item, index) => (
-                <div
+                <Link
                     key={item.id}
+                    to={`/${activeTab}/${item.id}`}
                     data-item-id={item.id}
-                    className={`nav-item ${selectedNavItem === item.id ? "selected" : ""} ${
-                        animatedItems.has(item.id) ? "fade-in-up" : ""
-                    }`}
+                    className={`nav-item ${selectedNavItem === item.id ? "selected" : ""} ${animatedItems.has(item.id) ? "fade-in-up" : ""
+                        }`}
                     onClick={() => handleItemClick(item.id)}
                     role="button"
                     tabIndex={0}
                     aria-label={`Navigate to ${item.label}`}
-                    onKeyDown={(e) => {
-                        if (e.key === 'Enter' || e.key === ' ') {
-                            e.preventDefault();
-                            handleItemClick(item.id);
-                        }
-                    }}
                     style={{
                         animationDelay: `${index * 0.04}s`,
                         opacity: animatedItems.has(item.id) ? 1 : 0,
                         transform: animatedItems.has(item.id) ? 'translateY(0)' : 'translateY(12px)',
-                        transition: 'opacity 0.3s ease-out, transform 0.3s ease-out'
+                        transition: 'opacity 0.3s ease-out, transform 0.3s ease-out',
+                        textDecoration: 'none',
+                        display: 'flex'
                     }}
                 >
                     <span className="nav-icon" aria-hidden="true">{item.icon}</span>
                     <span className="nav-label">{item.label}</span>
-                </div>
+                </Link>
             ))}
         </nav>
     );

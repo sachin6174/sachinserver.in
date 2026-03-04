@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useMemo, useCallback, memo, Suspense } from "react";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import { createLazyComponent } from './utils/lazyLoading';
 import LoadingSpinner from './components/LoadingSpinner/LoadingSpinner';
 import SkeletonLoader from './components/SkeletonLoader/SkeletonLoader';
@@ -87,6 +88,9 @@ const TabSystem = memo(() => {
     // Performance tracking for development
     usePerformanceTracker('TabSystem');
 
+    const { tab: paramTab, item: paramItem } = useParams();
+    const navigate = useNavigate();
+
     // Helper function to get default item for a tab (memoized)
     const getDefaultItemForTab = useCallback((tab) => {
         switch (tab) {
@@ -98,35 +102,32 @@ const TabSystem = memo(() => {
         }
     }, []);
 
-    // Initialize state with stored values or defaults
-    const [activeTab, setActiveTab] = useState(() => {
-        const stored = localStorage.getItem('activeTab');
-        const validTabs = ["leftbrain", "rightbrain", "developer-tools", "qa-tools", "general-tools"];
-        return (stored && validTabs.includes(stored)) ? stored : "leftbrain";
-    });
+    const validTabs = useMemo(() => ["leftbrain", "rightbrain", "developer-tools", "qa-tools", "general-tools"], []);
+    const activeTab = validTabs.includes(paramTab) ? paramTab : "leftbrain";
 
     // State to track the last selected navigation item for each section
     const [lastSelectedItems, setLastSelectedItems] = useState(() => {
         const stored = localStorage.getItem('lastSelectedItems');
         return stored ? JSON.parse(stored) : {
-            leftbrain: "about-me",           // Default for first load
-            rightbrain: "drawing", // Default when switching to rightbrain
-            "developer-tools": "ai-tools-channels", // Default when switching to developer tools
-            "qa-tools": "macos-app-catalog",   // Default when switching to qa tools
-            "general-tools": "info-tool"     // Default when switching to general tools
+            leftbrain: "about-me",
+            rightbrain: "drawing",
+            "developer-tools": "ai-tools-channels",
+            "qa-tools": "macos-app-catalog",
+            "general-tools": "info-tool"
         };
     });
 
-    const [selectedNavItem, setSelectedNavItem] = useState(() => {
-        const stored = localStorage.getItem('activeTab');
-        const lastItems = localStorage.getItem('lastSelectedItems');
-        if (stored && lastItems) {
-            const parsedItems = JSON.parse(lastItems);
-            return parsedItems[stored] || getDefaultItemForTab(stored);
-        }
-        return getDefaultItemForTab(stored || "leftbrain");
-    });
+    const selectedNavItem = paramItem || getDefaultItemForTab(activeTab);
 
+    // If param is missing or incorrect, redirect to default
+    useEffect(() => {
+        if (!paramTab || !validTabs.includes(paramTab)) {
+            navigate(`/${activeTab}/${selectedNavItem}`, { replace: true });
+        } else if (!paramItem) {
+            const itemToNavigate = lastSelectedItems[activeTab] || getDefaultItemForTab(activeTab);
+            navigate(`/${activeTab}/${itemToNavigate}`, { replace: true });
+        }
+    }, [paramTab, paramItem, activeTab, selectedNavItem, navigate, lastSelectedItems, getDefaultItemForTab, validTabs]);
 
     const [isDarkMode, setIsDarkMode] = useState(() => {
         const stored = localStorage.getItem('isDarkMode');
@@ -147,18 +148,6 @@ const TabSystem = memo(() => {
         const stored = localStorage.getItem('isLeftNavVisible');
         return stored !== null ? JSON.parse(stored) : true; // Default to visible
     });
-
-    // Handle tab changes and update selected nav item (optimized)
-    useEffect(() => {
-        // Optimized localStorage update
-        optimizedStorage.set('activeTab', activeTab);
-
-        // Update selectedNavItem to the last selected item for this tab
-        const lastSelected = lastSelectedItems[activeTab];
-        if (lastSelected && lastSelected !== selectedNavItem) {
-            setSelectedNavItem(lastSelected);
-        }
-    }, [activeTab, lastSelectedItems, selectedNavItem]);
 
     // Save localStorage when theme changes (optimized)
     useEffect(() => {
@@ -282,8 +271,6 @@ const TabSystem = memo(() => {
 
     // Custom setSelectedNavItem that also updates localStorage (memoized and debounced)
     const handleNavItemChange = useCallback((newItem) => {
-        setSelectedNavItem(newItem);
-
         // Update the last selected item for the current tab
         setLastSelectedItems(prevItems => {
             const updatedLastSelectedItems = {
@@ -309,8 +296,9 @@ const TabSystem = memo(() => {
 
     // Memoized tab click handler to prevent recreation
     const handleTabClick = useCallback((tab) => {
-        setActiveTab(tab);
-    }, []);
+        const itemToNavigate = lastSelectedItems[tab] || getDefaultItemForTab(tab);
+        navigate(`/${tab}/${itemToNavigate}`);
+    }, [lastSelectedItems, getDefaultItemForTab, navigate]);
 
     return (
         <div className="main-container">
@@ -325,14 +313,15 @@ const TabSystem = memo(() => {
                         height="32"
                     />
                     {tabConfig.map((tab) => (
-                        <div
+                        <Link
                             key={tab.key}
+                            to={`/${tab.key}/${lastSelectedItems[tab.key] || getDefaultItemForTab(tab.key)}`}
                             className={`tab ${activeTab === tab.key ? "active" : ""}`}
-                            onClick={() => handleTabClick(tab.key)}
+                            style={{ textDecoration: 'none', color: 'inherit' }}
                         >
                             <span className="tab-icon">{tab.icon}</span>
                             {tab.label}
-                        </div>
+                        </Link>
                     ))}
                 </div>
                 <button
@@ -363,6 +352,7 @@ const TabSystem = memo(() => {
                             items={navigationItems[activeTab]}
                             selectedNavItem={selectedNavItem}
                             setSelectedNavItem={handleNavItemChange}
+                            activeTab={activeTab}
                         />
                     )}
                 </div>
