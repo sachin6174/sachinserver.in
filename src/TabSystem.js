@@ -5,6 +5,7 @@ import LoadingSpinner from './components/LoadingSpinner/LoadingSpinner';
 import SkeletonLoader from './components/SkeletonLoader/SkeletonLoader';
 import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
 import { optimizedStorage, usePerformanceTracker } from './utils/performanceOptimizer';
+import CommandPalette from './components/CommandPalette/CommandPalette';
 import logo from './assets/logo512.png';
 import './TabSystem.css';
 import LeftNavigation from './LeftNavigation';
@@ -189,6 +190,23 @@ const TabSystem = memo(() => {
         optimizedStorage.set('isLeftNavVisible', isLeftNavVisible);
     }, [isLeftNavVisible]);
 
+    // Keyboard shortcuts: 1-5 to switch tabs, ⌘/ to toggle nav
+    useEffect(() => {
+        const tabKeys = ["leftbrain", "rightbrain", "developer-tools", "qa-tools", "general-tools"];
+        const handler = (e) => {
+            const tag = e.target.tagName;
+            if (['INPUT', 'TEXTAREA', 'SELECT'].includes(tag)) return;
+            if (e.metaKey || e.ctrlKey || e.altKey) return;
+            const n = parseInt(e.key, 10);
+            if (n >= 1 && n <= 5) {
+                const tab = tabKeys[n - 1];
+                const item = lastSelectedItems[tab] || getDefaultItemForTab(tab);
+                navigate(`/${tab}/${item}`);
+            }
+        };
+        document.addEventListener('keydown', handler);
+        return () => document.removeEventListener('keydown', handler);
+    }, [lastSelectedItems, getDefaultItemForTab, navigate]);
 
     const toggleTheme = useCallback(() => {
         setIsDarkMode((prevMode) => !prevMode);
@@ -324,15 +342,23 @@ const TabSystem = memo(() => {
                         </Link>
                     ))}
                 </div>
-                <button
-                    className={`theme-toggle ${isDarkMode ? 'dark' : 'light'}`}
-                    onClick={toggleTheme}
-                    aria-label={`Switch to ${isDarkMode ? 'light' : 'dark'} mode`}
-                >
-                    <span className="icon sun" aria-hidden="true">☀️</span>
-                    <span className="icon moon" aria-hidden="true">🌙</span>
-                    <span className="toggle-thumb" aria-hidden="true"></span>
-                </button>
+                <div className="tabs-right-controls">
+                    <CommandPalette
+                        navigationItems={navigationItems}
+                        activeTab={activeTab}
+                        toggleTheme={toggleTheme}
+                        isDarkMode={isDarkMode}
+                    />
+                    <button
+                        className={`theme-toggle ${isDarkMode ? 'dark' : 'light'}`}
+                        onClick={toggleTheme}
+                        aria-label={`Switch to ${isDarkMode ? 'light' : 'dark'} mode`}
+                    >
+                        <span className="icon sun" aria-hidden="true">☀️</span>
+                        <span className="icon moon" aria-hidden="true">🌙</span>
+                        <span className="toggle-thumb" aria-hidden="true"></span>
+                    </button>
+                </div>
             </div>
 
             <div className={`tab-content-container ${!isLeftNavVisible ? 'nav-hidden' : ''}`}>

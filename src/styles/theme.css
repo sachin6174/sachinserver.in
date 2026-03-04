@@ -5,28 +5,43 @@
   --white: #ffffff;
   --black: #000000;
 
-  --gray-050: #fbfbfd;
-  --gray-100: #f5f5f7;
-  --gray-200: #ececf0;
-  --gray-300: #d2d2d7;
-  --gray-400: #a1a1a6;
-  --gray-500: #86868b;
-  --gray-600: #6e6e73;
-  --gray-700: #424245;
-  --gray-800: #2c2c2e;
-  --gray-900: #1d1d1f;
+  --gray-050: #fafafa;
+  --gray-100: #f4f4f6;
+  --gray-200: #e9e9ed;
+  --gray-300: #d0d0d7;
+  --gray-400: #9e9eaa;
+  --gray-500: #84848f;
+  --gray-600: #6b6b78;
+  --gray-700: #404048;
+  --gray-800: #28282e;
+  --gray-900: #19191f;
 
+  /* Brand blues */
+  --blue-400: #3b98ff;
   --blue-500: #0071e3;
   --blue-600: #0062c6;
   --blue-700: #004f9c;
+
+  /* Indigo / violet accent */
+  --indigo-400: #818cf8;
+  --indigo-500: #6366f1;
+  --indigo-600: #4f52da;
+
+  --violet-400: #a78bfa;
+  --violet-500: #8b5cf6;
+
+  /* Other semantic colors */
+  --green-400: #34d399;
   --green-500: #2bb24c;
-  --orange-500: #ff9f0a;
-  --red-500: #ff3b30;
+  --orange-500: #f59e0b;
+  --red-500: #ef4444;
+  --cyan-400: #38bdf8;
   --cyan-500: #32ade6;
+  --pink-500: #ec4899;
 
   /* Typography */
-  --font-sans: 'SF Pro Text', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Segoe UI', sans-serif;
-  --font-mono: 'SF Mono', 'Menlo', 'Monaco', 'Cascadia Mono', 'Segoe UI Mono', monospace;
+  --font-sans: 'SF Pro Text', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Inter', 'Helvetica Neue', 'Segoe UI', sans-serif;
+  --font-mono: 'SF Mono', 'Menlo', 'Monaco', 'Cascadia Code', 'Fira Code', 'Cascadia Mono', 'Segoe UI Mono', monospace;
 
   --font-display-size: 3rem;
   --font-h1-size: 2.125rem;
@@ -65,11 +80,12 @@
   --radius-2xl: 1.5rem;
   --radius-round: 999px;
 
-  /* Shadows */
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.06);
-  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.08);
-  --shadow-lg: 0 18px 44px rgba(0, 0, 0, 0.12);
-  --shadow-xl: 0 30px 70px rgba(0, 0, 0, 0.16);
+  /* Shadows - Refined for modern look */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.06), 0 1px 4px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.12), 0 2px 8px rgba(0, 0, 0, 0.06);
+  --shadow-xl: 0 24px 60px rgba(0, 0, 0, 0.18), 0 4px 16px rgba(0, 0, 0, 0.08);
+  --shadow-glow: 0 0 24px color-mix(in srgb, var(--primary) 30%, transparent);
 
   /* Motion */
   --duration-100: 100ms;
@@ -80,6 +96,7 @@
   --ease-standard: cubic-bezier(0.2, 0, 0, 1);
   --ease-decelerate: cubic-bezier(0, 0, 0.2, 1);
   --ease-accelerate: cubic-bezier(0.4, 0, 1, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
 
   /* Layers */
   --z-base: 0;
@@ -105,11 +122,11 @@
   --text-muted: var(--gray-500);
 
   --border: var(--gray-300);
-  --divider: #e4e4e8;
+  --divider: #e2e2e7;
 
   --primary: var(--blue-500);
   --primary-contrast: var(--white);
-  --accent: var(--blue-500);
+  --accent: var(--indigo-500);
   --accent-contrast: var(--white);
 
   --success: var(--green-500);
@@ -117,45 +134,47 @@
   --danger: var(--red-500);
   --info: var(--cyan-500);
 
-  --code-bg: #f1f3f9;
-  --glass-surface: rgba(255, 255, 255, 0.72);
+  --code-bg: #f0f2fa;
+  --glass-surface: rgba(255, 255, 255, 0.76);
 
   --shadow-focus: 0 0 0 3px rgba(0, 113, 227, 0.34);
 }
 
 body.dark-mode {
-  --bg: #000000;
-  --surface: #1c1c1e;
-  --surface-2: #2c2c2e;
-  --surface-3: #3a3a3c;
-  --surface-hover: color-mix(in srgb, var(--primary) 10%, #2c2c2e);
-  --surface-active: color-mix(in srgb, var(--primary) 16%, #2c2c2e);
+  /* Deep dark background progression - richer than pure black */
+  --bg: #0d0d12;
+  --surface: #16161f;
+  --surface-2: #1e1e2a;
+  --surface-3: #262633;
+  --surface-hover: color-mix(in srgb, var(--primary) 12%, #1e1e2a);
+  --surface-active: color-mix(in srgb, var(--primary) 18%, #1e1e2a);
 
-  --text: #f5f5f7;
-  --text-secondary: #d2d2d7;
-  --text-muted: #a1a1a6;
+  --text: #e8e8f0;
+  --text-secondary: #b0b0c4;
+  --text-muted: #7a7a94;
 
-  --border: #3f3f46;
-  --divider: #2f2f33;
+  --border: #2d2d40;
+  --divider: #22222e;
 
-  --primary: #0a84ff;
+  --primary: #4f8eff;
   --primary-contrast: #ffffff;
-  --accent: #0a84ff;
+  --accent: var(--indigo-400);
   --accent-contrast: #ffffff;
 
-  --success: #30d158;
-  --warning: #ffd60a;
-  --danger: #ff453a;
-  --info: #64d2ff;
+  --success: #34d399;
+  --warning: #fbbf24;
+  --danger: #f87171;
+  --info: var(--cyan-400);
 
-  --code-bg: #111113;
-  --glass-surface: rgba(28, 28, 30, 0.72);
+  --code-bg: #0a0a12;
+  --glass-surface: rgba(22, 22, 31, 0.84);
 
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.35);
-  --shadow-md: 0 10px 24px rgba(0, 0, 0, 0.38);
-  --shadow-lg: 0 24px 58px rgba(0, 0, 0, 0.44);
-  --shadow-xl: 0 38px 80px rgba(0, 0, 0, 0.52);
-  --shadow-focus: 0 0 0 3px rgba(10, 132, 255, 0.4);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.45), 0 1px 6px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 6px 20px rgba(0, 0, 0, 0.5), 0 2px 8px rgba(0, 0, 0, 0.35);
+  --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.56), 0 4px 16px rgba(0, 0, 0, 0.4);
+  --shadow-xl: 0 32px 80px rgba(0, 0, 0, 0.64), 0 8px 24px rgba(0, 0, 0, 0.45);
+  --shadow-focus: 0 0 0 3px rgba(79, 142, 255, 0.42);
+  --shadow-glow: 0 0 32px color-mix(in srgb, var(--primary) 24%, transparent);
 }
 
 /* Legacy variable bridge */
