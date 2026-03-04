@@ -28,5 +28,4 @@ export { default as ImportantWebsites } from './ImportantWebsites/ImportantWebsi
 export { default as MacOSAppCatalog } from './MacOSAppCatalog/MacOSAppCatalog';
 export { default as EmojiPicker } from './EmojiPicker/EmojiPicker';
 export { default as NumberToUnicode } from './NumberToUnicode/NumberToUnicode';
-export { default as VideoTrimmer } from './VideoTrimmer/VideoTrimmer';
 export { default as YouTubeDownloader } from './YouTubeDownloader/YouTubeDownloader';
