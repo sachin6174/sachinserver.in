@@ -1,29 +1,100 @@
 import { useState, useEffect, useMemo } from 'react';
 import '../DSA/ContributionGraph.css';
 
-// GitHub GraphQL API Configuration
-// To use GitHub's official GraphQL API, you need a Personal Access Token
-// 1. Go to https://github.com/settings/tokens
-// 2. Generate a new token with 'read:user' scope
-// 3. Create a .env file in your project root with: REACT_APP_GITHUB_TOKEN=your_token_here
-// 4. Restart your development server
-
 const GITHUB_GRAPHQL_ENDPOINT = 'https://api.github.com/graphql';
 const GITHUB_TOKEN = process.env.REACT_APP_GITHUB_TOKEN;
 
-const GitHubContributionGraph = ({ username = 'sachin6174' }) => {
-    const [contributionData, setContributionData] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
-    const [useImageFallback, setUseImageFallback] = useState(false);
+const DAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+const DAY_LABEL_INDEXES = [1, 3, 5];
 
-    // GraphQL query as described in the article
-    const CONTRIBUTION_QUERY = `
-        query($userName: String!, $from: DateTime!, $to: DateTime!) { 
+const toDateKey = (date) => date.toISOString().slice(0, 10);
+
+const levelFromCount = (count) => {
+    if (count <= 0) return 0;
+    if (count >= 12) return 4;
+    if (count >= 6) return 3;
+    if (count >= 3) return 2;
+    return 1;
+};
+
+const groupByWeeks = (days) => {
+    const weeks = [];
+    for (let i = 0; i < days.length; i += 7) {
+        weeks.push(days.slice(i, i + 7));
+    }
+    return weeks;
+};
+
+const buildCalendarFromDailyMap = (dailyMap, year) => {
+    const today = new Date();
+    const jan1 = new Date(Date.UTC(year, 0, 1));
+    const start = new Date(jan1);
+    start.setUTCDate(start.getUTCDate() - start.getUTCDay());
+
+    const end = new Date(Date.UTC(today.getUTCFullYear(), today.getUTCMonth(), today.getUTCDate()));
+    const endPadding = new Date(end);
+    endPadding.setUTCDate(endPadding.getUTCDate() + (6 - endPadding.getUTCDay()));
+
+    const allDays = [];
+    let totalContributions = 0;
+
+    for (let day = new Date(start); day <= endPadding; day.setUTCDate(day.getUTCDate() + 1)) {
+        const date = new Date(day);
+        const dateKey = toDateKey(date);
+        const value = dailyMap.get(dateKey) || { count: 0, level: 0 };
+
+        if (date >= jan1 && date <= end) {
+            totalContributions += value.count;
+        }
+
+        allDays.push({
+            date,
+            count: value.count,
+            level: value.level || levelFromCount(value.count)
+        });
+    }
+
+    return {
+        weeks: groupByWeeks(allDays),
+        totalContributions
+    };
+};
+
+const fetchPublicContributions = async (username, year) => {
+    const response = await fetch(`https://github-contributions-api.jogruber.de/v4/${username}?y=${year}`);
+    if (!response.ok) {
+        throw new Error(`Public API ${response.status}`);
+    }
+
+    const json = await response.json();
+    if (!Array.isArray(json?.contributions)) {
+        throw new Error('Invalid public API response');
+    }
+
+    const dailyMap = new Map();
+    json.contributions.forEach((item) => {
+        const count = Number(item.count) || 0;
+        const level = typeof item.level === 'number' ? item.level : levelFromCount(count);
+        dailyMap.set(item.date, { count, level });
+    });
+
+    return buildCalendarFromDailyMap(dailyMap, year);
+};
+
+const fetchGraphQLContributions = async (username, year) => {
+    if (!GITHUB_TOKEN) {
+        throw new Error('No GraphQL token configured');
+    }
+
+    const now = new Date();
+    const from = `${year}-01-01T00:00:00Z`;
+    const to = now.toISOString();
+
+    const query = `
+        query($userName: String!, $from: DateTime!, $to: DateTime!) {
             user(login: $userName) {
                 contributionsCollection(from: $from, to: $to) {
                     contributionCalendar {
-                        totalContributions
                         weeks {
                             contributionDays {
                                 contributionCount
@@ -36,154 +107,136 @@ const GitHubContributionGraph = ({ username = 'sachin6174' }) => {
         }
     `;
 
-    const fetchGitHubContributions = async () => {
-        setLoading(true);
-        setError(null);
-        setUseImageFallback(false);
+    const response = await fetch(GITHUB_GRAPHQL_ENDPOINT, {
+        method: 'POST',
+        headers: {
+            Authorization: `Bearer ${GITHUB_TOKEN}`,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            query,
+            variables: { userName: username, from, to }
+        })
+    });
 
-        // Check if token is configured
-        if (!GITHUB_TOKEN) {
-            console.warn('GitHub token not configured. Using image fallback.');
-            setError('Configure GitHub token for interactive graph');
-            setUseImageFallback(true);
-            setLoading(false);
-            return;
-        }
+    if (!response.ok) {
+        throw new Error(`GraphQL API ${response.status}`);
+    }
 
-        try {
-            const now = new Date();
-            const currentYear = now.getFullYear();
-            const from = `${currentYear}-01-01T00:00:00Z`;
-            const to = now.toISOString();
+    const json = await response.json();
+    const days = json?.data?.user?.contributionsCollection?.contributionCalendar?.weeks
+        ?.flatMap((week) => week.contributionDays) || [];
 
-            const response = await fetch(GITHUB_GRAPHQL_ENDPOINT, {
-                method: 'POST',
-                headers: {
-                    'Authorization': `Bearer ${GITHUB_TOKEN}`,
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    query: CONTRIBUTION_QUERY,
-                    variables: {
-                        userName: username,
-                        from,
-                        to
-                    }
-                })
-            });
+    if (!days.length) {
+        throw new Error('Empty GraphQL contribution data');
+    }
 
-            if (!response.ok) {
-                throw new Error(`GitHub API error: ${response.status}`);
-            }
+    const dailyMap = new Map();
+    days.forEach((item) => {
+        const count = Number(item.contributionCount) || 0;
+        dailyMap.set(item.date, { count, level: levelFromCount(count) });
+    });
 
-            const result = await response.json();
+    return buildCalendarFromDailyMap(dailyMap, year);
+};
 
-            if (result.errors) {
-                throw new Error(result.errors[0].message);
-            }
-
-            if (!result.data?.user?.contributionsCollection?.contributionCalendar) {
-                throw new Error('Invalid response structure');
-            }
-
-            setContributionData(result.data.user.contributionsCollection.contributionCalendar);
-            setLoading(false);
-        } catch (err) {
-            console.error('GitHub GraphQL API failed:', err);
-            setError(err.message || 'API unavailable, showing live graph');
-            setUseImageFallback(true);
-            setLoading(false);
-        }
-    };
+const GitHubContributionGraph = ({ username = 'sachin6174' }) => {
+    const currentYear = new Date().getFullYear();
+    const [data, setData] = useState({ weeks: [], totalContributions: 0 });
+    const [loading, setLoading] = useState(true);
+    const [source, setSource] = useState('public');
+    const [error, setError] = useState('');
 
     useEffect(() => {
-        fetchGitHubContributions();
-    }, [username]);
+        let cancelled = false;
 
-    // Process contribution data for visualization
-    const processedData = useMemo(() => {
-        if (!contributionData) return { weeks: [], totalContributions: 0 };
+        const fetchData = async () => {
+            setLoading(true);
+            setError('');
 
-        const { weeks, totalContributions } = contributionData;
-
-        // Calculate contribution levels (0-4) based on count
-        const processedWeeks = weeks.map(week => ({
-            days: week.contributionDays.map(day => {
-                const count = day.contributionCount;
-                let level = 0;
-
-                if (count > 0) {
-                    if (count >= 12) level = 4;
-                    else if (count >= 6) level = 3;
-                    else if (count >= 3) level = 2;
-                    else level = 1;
+            try {
+                const publicData = await fetchPublicContributions(username, currentYear);
+                if (!cancelled) {
+                    setData(publicData);
+                    setSource('public');
+                    setLoading(false);
                 }
+                return;
+            } catch (publicErr) {
+                try {
+                    const graphQLData = await fetchGraphQLContributions(username, currentYear);
+                    if (!cancelled) {
+                        setData(graphQLData);
+                        setSource('graphql');
+                        setError('');
+                        setLoading(false);
+                    }
+                    return;
+                } catch (graphQLErr) {
+                    if (!cancelled) {
+                        setSource('image');
+                        setError(publicErr?.message || graphQLErr?.message || 'Failed to load live contributions');
+                        setLoading(false);
+                    }
+                }
+            }
+        };
 
-                return {
-                    date: new Date(day.date),
-                    count,
-                    level
-                };
-            })
-        }));
-
-        return { weeks: processedWeeks, totalContributions };
-    }, [contributionData]);
-
-    const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-    const dayLabelIndexes = [1, 3, 5]; // Mon, Wed, Fri
-    const currentYear = new Date().getFullYear();
+        fetchData();
+        return () => {
+            cancelled = true;
+        };
+    }, [username, currentYear]);
 
     const monthMarkers = useMemo(() => {
+        let previousMonth = -1;
         const markers = [];
-        let lastMonth = null;
+        const today = new Date();
 
-        processedData.weeks.forEach((week, weekIndex) => {
-            const firstDay = week.days[0];
-            if (!firstDay) return;
+        data.weeks.forEach((week, weekIndex) => {
+            const labelDay = week.find((day) => day.date.getUTCFullYear() === currentYear && day.date <= today);
+            if (!labelDay) return;
 
-            const month = firstDay.date.getMonth();
-
-            if (lastMonth !== month) {
+            const month = labelDay.date.getUTCMonth();
+            if (month !== previousMonth) {
                 markers.push({
-                    label: firstDay.date.toLocaleString('en-US', { month: 'short' }),
+                    label: labelDay.date.toLocaleDateString('en-US', { month: 'short', timeZone: 'UTC' }),
                     index: weekIndex + 1
                 });
-                lastMonth = month;
+                previousMonth = month;
             }
         });
 
         return markers;
-    }, [processedData.weeks]);
+    }, [data.weeks, currentYear]);
 
-    const formatDate = (date) => {
-        return date.toLocaleDateString('en-US', {
-            weekday: 'long',
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric'
-        });
-    };
+    const formatDate = (date) => date.toLocaleDateString('en-US', {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        timeZone: 'UTC'
+    });
 
     if (loading) {
         return (
-            <div className="contribution-graph-container">
+            <div className="contribution-graph-container github-graph">
                 <div className="contribution-header">
                     <div className="contribution-title">
-                        <span className="contribution-icon">🔄</span>
-                        <span className="contribution-count">Loading GitHub data...</span>
+                        <span className="contribution-icon">🐙</span>
+                        <span className="contribution-count">Loading GitHub contribution data...</span>
                     </div>
                     <div className="contribution-year">
-                        <span className="info-icon">ⓘ</span>
+                        <span className="info-icon">i</span>
                         <span>{currentYear}</span>
                     </div>
                 </div>
                 <div className="contribution-graph loading-skeleton">
                     <div className="skeleton-grid">
-                        {Array.from({ length: 53 }, (_, i) => (
-                            <div key={i} className="skeleton-week">
-                                {Array.from({ length: 7 }, (_, j) => (
-                                    <div key={j} className="skeleton-day" />
+                        {Array.from({ length: 53 }, (_, week) => (
+                            <div key={week} className="skeleton-week">
+                                {Array.from({ length: 7 }, (_, day) => (
+                                    <div key={day} className="skeleton-day" />
                                 ))}
                             </div>
                         ))}
@@ -193,27 +246,22 @@ const GitHubContributionGraph = ({ username = 'sachin6174' }) => {
         );
     }
 
-    if (useImageFallback) {
+    if (source === 'image') {
         return (
             <div className="contribution-graph-container github-graph">
                 <div className="contribution-header">
                     <div className="contribution-title">
                         <span className="contribution-icon">🐙</span>
-                        <span className="contribution-count">
-                            GitHub contributions
-                            {error && <span className="api-status"> ({error})</span>}
-                        </span>
+                        <span className="contribution-count">GitHub contributions</span>
                     </div>
                     <div className="contribution-year">
-                        <span className="info-icon">ⓘ</span>
+                        <span className="info-icon">i</span>
                         <span>{currentYear}</span>
-                        <span className="live-indicator">●</span>
                         <a
                             href={`https://github.com/${username}`}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="github-profile-link"
-                            title="View GitHub Profile"
                         >
                             View Profile ↗
                         </a>
@@ -225,14 +273,11 @@ const GitHubContributionGraph = ({ username = 'sachin6174' }) => {
                         alt={`GitHub contribution graph for ${username}`}
                         loading="lazy"
                     />
-                    <p style={{
-                        marginTop: '1rem',
-                        fontSize: '0.875rem',
-                        color: 'var(--text-secondary)',
-                        textAlign: 'center'
-                    }}>
-                        💡 To see an interactive graph, configure your GitHub token in <code>.env</code>
-                    </p>
+                    {error && (
+                        <p className="subtle-text" style={{ marginTop: '0.6rem' }}>
+                            Live API unavailable, showing image fallback.
+                        </p>
+                    )}
                 </div>
             </div>
         );
@@ -244,19 +289,19 @@ const GitHubContributionGraph = ({ username = 'sachin6174' }) => {
                 <div className="contribution-title">
                     <span className="contribution-icon">🐙</span>
                     <span className="contribution-count">
-                        {processedData.totalContributions} contributions in {new Date().getFullYear()}
+                        {data.totalContributions} contributions in {currentYear}
+                        {source === 'graphql' && <span className="api-status"> (GraphQL)</span>}
                     </span>
                 </div>
                 <div className="contribution-year">
-                    <span className="info-icon">ⓘ</span>
-                    <span>{new Date().getFullYear()}</span>
+                    <span className="info-icon">i</span>
+                    <span>{currentYear}</span>
                     <span className="live-indicator">●</span>
                     <a
                         href={`https://github.com/${username}`}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="github-profile-link"
-                        title="View GitHub Profile"
                     >
                         View Profile ↗
                     </a>
@@ -268,7 +313,7 @@ const GitHubContributionGraph = ({ username = 'sachin6174' }) => {
                     <span className="month-label-offset" />
                     <div
                         className="github-month-labels-row"
-                        style={{ gridTemplateColumns: `repeat(${processedData.weeks.length}, 1fr)` }}
+                        style={{ gridTemplateColumns: `repeat(${data.weeks.length || 1}, 1fr)` }}
                     >
                         {monthMarkers.map((marker) => (
                             <span
@@ -284,19 +329,17 @@ const GitHubContributionGraph = ({ username = 'sachin6174' }) => {
 
                 <div className="graph-content">
                     <div className="day-labels">
-                        {days.map((day, index) => (
-                            dayLabelIndexes.includes(index) && (
-                                <span key={day} className="day-label">{day}</span>
-                            )
+                        {DAYS.map((day, index) => (
+                            DAY_LABEL_INDEXES.includes(index) ? <span key={day} className="day-label">{day}</span> : null
                         ))}
                     </div>
 
                     <div className="contribution-grid">
-                        {processedData.weeks.map((week, weekIndex) => (
+                        {data.weeks.map((week, weekIndex) => (
                             <div key={weekIndex} className="week-column">
-                                {week.days.map((day, dayIndex) => (
+                                {week.map((day, dayIndex) => (
                                     <div
-                                        key={dayIndex}
+                                        key={`${weekIndex}-${dayIndex}`}
                                         className={`contribution-day level-${day.level}`}
                                         title={`${day.count} ${day.count === 1 ? 'contribution' : 'contributions'} on ${formatDate(day.date)}`}
                                     />
@@ -310,7 +353,7 @@ const GitHubContributionGraph = ({ username = 'sachin6174' }) => {
             <div className="contribution-legend">
                 <span className="legend-text">Less</span>
                 <div className="legend-squares">
-                    {[0, 1, 2, 3, 4].map(level => (
+                    {[0, 1, 2, 3, 4].map((level) => (
                         <div key={level} className={`legend-square level-${level}`} />
                     ))}
                 </div>

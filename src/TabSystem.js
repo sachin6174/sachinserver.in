@@ -167,12 +167,15 @@ const TabSystem = memo(() => {
         // Toggle body theme classes without clobbering other classes
         const dark = 'dark-mode';
         const light = 'light-mode';
+        const root = document.documentElement;
         if (isDarkMode) {
             document.body.classList.remove(light);
             document.body.classList.add(dark);
+            root.setAttribute('data-theme', 'dark');
         } else {
             document.body.classList.remove(dark);
             document.body.classList.add(light);
+            root.setAttribute('data-theme', 'light');
         }
     }, [isDarkMode]);
 
@@ -367,14 +370,14 @@ const TabSystem = memo(() => {
                 </div>
 
                 {/* Main Content Area */}
-                <main id="main" role="main" tabIndex="-1">
+                <section className="main-region" aria-label="Main content">
                     <MainContent
                         activeTab={activeTab}
                         selectedNavItem={selectedNavItem}
                         navigationItems={navigationItems}
                         isLeftNavVisible={isLeftNavVisible}
                     />
-                </main>
+                </section>
             </div>
         </div>
     );

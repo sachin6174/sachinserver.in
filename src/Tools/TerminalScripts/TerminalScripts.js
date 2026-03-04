@@ -157,8 +157,8 @@ const TerminalScripts = () => {
 
             <div className="terminal-sections">
                 {sections.map((section) => (
-                    <div key={section.title} className="section-wrapper" style={{ marginBottom: '2rem' }}>
-                        <h2 style={{ fontSize: '1.2rem', marginBottom: '1rem', color: 'var(--text-primary)', borderBottom: '1px solid var(--border-color)', paddingBottom: '0.5rem' }}>
+                    <div key={section.title} className="section-wrapper">
+                        <h2>
                             {section.title}
                         </h2>
                         <div className="terminal-grid">
