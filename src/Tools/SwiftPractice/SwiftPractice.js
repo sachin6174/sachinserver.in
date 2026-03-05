@@ -1,5 +1,6 @@
 import React, { useState, useCallback, useMemo, useRef, useEffect } from 'react';
 import './SwiftPractice.css';
+import { NEW_PROBLEMS } from './problems';
 
 // ────────────────────────────────────────────────────────────────────────────
 // Problem bank (self-contained, no external runtime needed)
@@ -689,12 +690,15 @@ binarySearch([1, 3, 5, 7, 9], target: 4) // → -1
     },
 ];
 
-const CATEGORIES = ['All', ...Array.from(new Set(PROBLEMS.map((p) => p.category)))];
+const ALL_PROBLEMS = [...PROBLEMS, ...NEW_PROBLEMS];
+
+const CATEGORIES = ['All', ...Array.from(new Set(ALL_PROBLEMS.map((p) => p.category)))];
 const DIFFICULTIES = ['All', 'Easy', 'Medium', 'Hard'];
 
 // ────────────────────────────────────────────────────────────────────────────
 // Simulated Swift "runner" (JavaScript-based conceptual validation)
 // ────────────────────────────────────────────────────────────────────────────
+// eslint-disable-next-line no-unused-vars
 function runSwiftSimulation(problem, userCode) {
     const results = [];
 
@@ -775,6 +779,24 @@ function runSwiftSimulation(problem, userCode) {
                 break;
             case 'Algorithms':
                 passed = hasKeyPatterns(userCode, ['lo', 'hi', 'mid', 'binary', 'while lo <= hi', 'lo + (hi']);
+                break;
+            case 'Swift Fundamentals':
+                passed = hasKeyPatterns(userCode, ['class', 'struct', 'lazy var', 'wrappedValue', '@propertyWrapper', 'demonstrateDifference', 'enum', 'switch', 'case .']);
+                break;
+            case 'Architecture':
+                passed = hasKeyPatterns(userCode, ['ObservableObject', '@Published', 'MVVM', 'protocol', 'init(service', 'private let service', 'weak var delegate']);
+                break;
+            case 'Combine':
+                passed = hasKeyPatterns(userCode, ['PassthroughSubject', 'AnyCancellable', '.filter', '.map', '.sink', 'subject.send']);
+                break;
+            case 'Networking':
+                passed = hasKeyPatterns(userCode, ['Codable', 'CodingKeys', 'JSONDecoder', 'decode(', 'Decodable']);
+                break;
+            case 'UIKit':
+                passed = hasKeyPatterns(userCode, ['viewDidLoad', 'viewWillAppear', 'viewDidAppear', 'loadView', 'events.append']);
+                break;
+            case 'Data Persistence':
+                passed = hasKeyPatterns(userCode, ['NSFetchRequest', 'NSPredicate', 'NSSortDescriptor', 'entityName']);
                 break;
             default:
                 passed = userCode.length > starterNorm.length + 20;
@@ -1259,7 +1281,7 @@ const StatsBar = ({ problems, solvedIds }) => {
 // Main Component
 // ────────────────────────────────────────────────────────────────────────────
 const SwiftPractice = () => {
-    const [selectedProblem, setSelectedProblem] = useState(PROBLEMS[0]);
+    const [selectedProblem, setSelectedProblem] = useState(ALL_PROBLEMS[0]);
     const [solvedIds, setSolvedIds] = useState(() => {
         try {
             const raw = localStorage.getItem('swiftpractice_solved');
@@ -1281,7 +1303,7 @@ const SwiftPractice = () => {
     }, []);
 
     const filteredProblems = useMemo(() => {
-        return PROBLEMS.filter((p) => {
+        return ALL_PROBLEMS.filter((p) => {
             const catOk = filterCategory === 'All' || p.category === filterCategory;
             const diffOk = filterDifficulty === 'All' || p.difficulty === filterDifficulty;
             const searchOk = !searchQuery || p.title.toLowerCase().includes(searchQuery.toLowerCase()) || p.tags.some((t) => t.toLowerCase().includes(searchQuery.toLowerCase()));
@@ -1302,7 +1324,7 @@ const SwiftPractice = () => {
                         </div>
                     </div>
                 </div>
-                <StatsBar problems={PROBLEMS} solvedIds={solvedIds} />
+                <StatsBar problems={ALL_PROBLEMS} solvedIds={solvedIds} />
             </div>
 
             {/* Main Layout */}
@@ -1374,7 +1396,7 @@ const SwiftPractice = () => {
                         <div className="sp-welcome">
                             <div className="sp-welcome-icon">🦅</div>
                             <h2>Select a problem to begin</h2>
-                            <p>Choose from {PROBLEMS.length} curated Swift interview questions</p>
+                            <p>Choose from {ALL_PROBLEMS.length} curated Swift interview questions</p>
                         </div>
                     )}
                 </div>
