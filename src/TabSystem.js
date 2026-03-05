@@ -89,6 +89,7 @@ const LazyTaskManager = createLazyComponent(() => import('./Tools/TaskManager/Ta
 const LazyNotesApp = createLazyComponent(() => import('./Tools/NotesApp/NotesApp'), { componentName: 'NotesApp' });
 const LazyTimeZoneConverter = createLazyComponent(() => import('./Tools/TimeZoneConverter/TimeZoneConverter'), { componentName: 'TimeZoneConverter' });
 const LazyBudgetTracker = createLazyComponent(() => import('./Tools/BudgetTracker/BudgetTracker'), { componentName: 'BudgetTracker' });
+const LazySwiftPractice = createLazyComponent(() => import('./Tools/SwiftPractice/SwiftPractice'), { componentName: 'SwiftPractice' });
 
 const TabSystem = memo(() => {
     // Performance tracking for development
@@ -101,7 +102,7 @@ const TabSystem = memo(() => {
     const getDefaultItemForTab = useCallback((tab) => {
         switch (tab) {
             case "developer-tools": return "ai-tools-channels";
-            case "qa-tools": return "macos-app-catalog";
+            case "qa-tools": return "swift-practice";
             case "general-tools": return "info-tool";
             case "rightbrain": return "drawing";
             default: return "about-me";
@@ -118,7 +119,7 @@ const TabSystem = memo(() => {
             leftbrain: "about-me",
             rightbrain: "drawing",
             "developer-tools": "ai-tools-channels",
-            "qa-tools": "macos-app-catalog",
+            "qa-tools": "swift-practice",
             "general-tools": "info-tool"
         };
     });
@@ -274,6 +275,7 @@ const TabSystem = memo(() => {
             { id: "text-generator", label: "Text Util", icon: "🎲", description: <LazyTextGenerator /> },
         ],
         "qa-tools": [
+            { id: "swift-practice", label: "Swift Practice", icon: "🦅", description: <LazySwiftPractice /> },
             { id: "macos-app-catalog", label: "macOS App Catalog", icon: "📱", description: <LazyMacOSAppCatalog /> },
             { id: "terminal-scripts", label: "Terminal Scripts", icon: "💻", description: <LazyTerminalScripts /> },
             { id: "terminal-tutorial", label: "Terminal Tutorial", icon: "📘", description: <LazyTerminalTutorial /> },
