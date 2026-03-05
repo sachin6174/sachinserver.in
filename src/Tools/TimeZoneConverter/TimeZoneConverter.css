@@ -1,0 +1,348 @@
+.timezone-converter {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.input-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group label {
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+.input-group input,
+.input-group select {
+    padding: 12px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: inherit;
+    background: white;
+    transition: border-color 0.3s ease;
+}
+
+.input-group input:focus,
+.input-group select:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+.result-section {
+    margin-bottom: 30px;
+}
+
+.result-card {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 30px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
+}
+
+.timezone-name {
+    font-size: 1.2rem;
+    opacity: 0.9;
+    margin-bottom: 10px;
+}
+
+.timezone-time {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.timezone-date {
+    font-size: 1.1rem;
+    opacity: 0.9;
+    margin-bottom: 10px;
+}
+
+.timezone-offset {
+    font-size: 1rem;
+    opacity: 0.8;
+}
+
+.add-favorite {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.add-favorite input {
+    flex: 1;
+    padding: 12px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+.add-favorite input:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+.add-fav-btn {
+    padding: 12px 24px;
+    background: #667eea;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.add-fav-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+}
+
+.favorites-section {
+    margin-bottom: 30px;
+}
+
+.favorites-section h3 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.empty-favorites {
+    text-align: center;
+    padding: 40px 20px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    color: #999;
+}
+
+.favorites-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 15px;
+}
+
+.favorite-card {
+    background: white;
+    border: 2px solid #f0f0f0;
+    border-radius: 10px;
+    padding: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.favorite-card:hover {
+    border-color: #667eea;
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.15);
+    transform: translateY(-3px);
+}
+
+.favorite-card.selected {
+    background: #f0f4ff;
+    border-color: #667eea;
+}
+
+.fav-name {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.fav-timezone {
+    font-size: 0.9rem;
+    color: #999;
+    margin-bottom: 10px;
+}
+
+.fav-time {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #667eea;
+    margin-bottom: 5px;
+}
+
+.fav-offset {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.remove-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #ff6b6b;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: all 0.2s ease;
+}
+
+.favorite-card:hover .remove-btn {
+    opacity: 1;
+}
+
+.remove-btn:hover {
+    background: #d32f2f;
+}
+
+.comparison-section {
+    background: #f8f9fa;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.comparison-section h3 {
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.current-time-card {
+    background: white;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+}
+
+.tz-name {
+    font-size: 1rem;
+    color: #999;
+    margin-bottom: 10px;
+}
+
+.current-time {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #667eea;
+    margin-bottom: 10px;
+}
+
+.current-offset {
+    font-size: 0.95rem;
+    color: #666;
+}
+
+@media (max-width: 768px) {
+    .input-section {
+        grid-template-columns: 1fr;
+    }
+
+    .favorites-grid {
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    }
+
+    .add-favorite {
+        flex-direction: column;
+    }
+}
+
+/* Dark mode support */
+[data-theme="dark"] .timezone-converter {
+    color: #e0e0e0;
+}
+
+[data-theme="dark"] .input-group label {
+    color: #e0e0e0;
+}
+
+[data-theme="dark"] .input-group input,
+[data-theme="dark"] .input-group select {
+    background: #3d3d3d;
+    border-color: #555;
+    color: #e0e0e0;
+}
+
+[data-theme="dark"] .input-group input:focus,
+[data-theme="dark"] .input-group select:focus {
+    border-color: #667eea;
+}
+
+[data-theme="dark"] .add-favorite input {
+    background: #3d3d3d;
+    border-color: #555;
+    color: #e0e0e0;
+}
+
+[data-theme="dark"] .add-favorite input:focus {
+    border-color: #667eea;
+}
+
+[data-theme="dark"] .favorites-section h3 {
+    color: #e0e0e0;
+}
+
+[data-theme="dark"] .empty-favorites {
+    background: #2d2d2d;
+}
+
+[data-theme="dark"] .favorite-card {
+    background: #3d3d3d;
+    border-color: #555;
+}
+
+[data-theme="dark"] .favorite-card:hover {
+    border-color: #667eea;
+}
+
+[data-theme="dark"] .favorite-card.selected {
+    background: #1a1a2e;
+    border-color: #667eea;
+}
+
+[data-theme="dark"] .fav-name {
+    color: #e0e0e0;
+}
+
+[data-theme="dark"] .fav-timezone {
+    color: #999;
+}
+
+[data-theme="dark"] .fav-time {
+    color: #81c784;
+}
+
+[data-theme="dark"] .fav-offset {
+    color: #ccc;
+}
+
+[data-theme="dark"] .comparison-section {
+    background: #2d2d2d;
+}
+
+[data-theme="dark"] .comparison-section h3 {
+    color: #e0e0e0;
+}
+
+[data-theme="dark"] .current-time-card {
+    background: #3d3d3d;
+    border-color: #555;
+}
+
+[data-theme="dark"] .tz-name {
+    color: #999;
+}
+
+[data-theme="dark"] .current-offset {
+    color: #ccc;
+}

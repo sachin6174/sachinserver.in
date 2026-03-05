@@ -78,12 +78,17 @@ const LazyAIToolsChannels = createLazyComponent(() => import('./Tools/AIToolsCha
 const LazyImportantWebsites = createLazyComponent(() => import('./Tools/ImportantWebsites/ImportantWebsites'), { componentName: 'ImportantWebsites' });
 const LazyMacOSAppCatalog = createLazyComponent(() => import('./Tools/MacOSAppCatalog/MacOSAppCatalog'), { componentName: 'MacOSAppCatalog' });
 const LazyEmojiPicker = createLazyComponent(() => import('./Tools/EmojiPicker/EmojiPicker'), { componentName: 'EmojiPicker' });
+const LazyPomodoroTimer = createLazyComponent(() => import('./Tools/PomodoroTimer/PomodoroTimer'), { componentName: 'PomodoroTimer' });
 const LazyNumberToUnicode = createLazyComponent(() => import('./Tools/NumberToUnicode/NumberToUnicode'), { componentName: 'NumberToUnicode' });
 const LazyYouTubeDownloader = createLazyComponent(() => import('./Tools/YouTubeDownloader/YouTubeDownloader'), { componentName: 'YouTubeDownloader' });
 const LazyAppIconGenerator = createLazyComponent(() => import('./Tools/AppIconGenerator/AppIconGenerator'), { componentName: 'AppIconGenerator' });
 const LazyTerminalScripts = createLazyComponent(() => import('./Tools/TerminalScripts/TerminalScripts'), { componentName: 'TerminalScripts' });
 const LazyTerminalTutorial = createLazyComponent(() => import('./Tools/TerminalTutorial/TerminalTutorial'), { componentName: 'TerminalTutorial' });
 const LazyOnlineClipboard = createLazyComponent(() => import('./Tools/OnlineClipboard/OnlineClipboard'), { componentName: 'OnlineClipboard' });
+const LazyTaskManager = createLazyComponent(() => import('./Tools/TaskManager/TaskManager'), { componentName: 'TaskManager' });
+const LazyNotesApp = createLazyComponent(() => import('./Tools/NotesApp/NotesApp'), { componentName: 'NotesApp' });
+const LazyTimeZoneConverter = createLazyComponent(() => import('./Tools/TimeZoneConverter/TimeZoneConverter'), { componentName: 'TimeZoneConverter' });
+const LazyBudgetTracker = createLazyComponent(() => import('./Tools/BudgetTracker/BudgetTracker'), { componentName: 'BudgetTracker' });
 
 const TabSystem = memo(() => {
     // Performance tracking for development
@@ -283,6 +288,11 @@ const TabSystem = memo(() => {
             { id: "youtube-downloader", label: "YouTube Downloader", icon: "📹", description: <LazyYouTubeDownloader /> },
             { id: "important-websites", label: "Important Websites", icon: "🌐", description: <LazyImportantWebsites /> },
             { id: "emoji-picker", label: "Emoji Picker", icon: "😀", description: <LazyEmojiPicker /> },
+            { id: "pomodoro-timer", label: "Pomodoro Timer", icon: "⏱️", description: <LazyPomodoroTimer /> },
+            { id: "task-manager", label: "Task Manager", icon: "✓", description: <LazyTaskManager /> },
+            { id: "notes-app", label: "Notes", icon: "📝", description: <LazyNotesApp /> },
+            { id: "time-zone-converter", label: "Time Zone Converter", icon: "🌍", description: <LazyTimeZoneConverter /> },
+            { id: "budget-tracker", label: "Budget Tracker", icon: "💰", description: <LazyBudgetTracker /> },
             { id: "number-to-unicode", label: "Number Base Converter", icon: "🔢", description: <LazyNumberToUnicode /> },
         ],
     }), []);

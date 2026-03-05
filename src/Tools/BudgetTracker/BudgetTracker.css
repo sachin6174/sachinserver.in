@@ -1,0 +1,454 @@
+.budget-tracker {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.tracker-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    border-bottom: 2px solid #e0e0e0;
+    padding-bottom: 20px;
+}
+
+.tracker-header h2 {
+    margin: 0;
+    color: #333;
+}
+
+.month-selector input {
+    padding: 8px 12px;
+    border: 2px solid #e0e0e0;
+    border-radius: 6px;
+    font-size: 1rem;
+}
+
+.month-selector input:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+.summary-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.summary-card {
+    padding: 20px;
+    border-radius: 10px;
+    color: white;
+}
+
+.summary-card.income {
+    background: linear-gradient(135deg, #4ECDC4, #2f9e8e);
+}
+
+.summary-card.expense {
+    background: linear-gradient(135deg, #FF6B6B, #d63031);
+}
+
+.summary-card.balance.positive {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+}
+
+.summary-card.balance.negative {
+    background: linear-gradient(135deg, #FF6B6B, #d63031);
+}
+
+.summary-label {
+    font-size: 0.95rem;
+    opacity: 0.9;
+    margin-bottom: 8px;
+}
+
+.summary-amount {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.tracker-content {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 20px;
+}
+
+.left-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.add-transaction,
+.budget-setter {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    border: 2px solid #f0f0f0;
+}
+
+.add-transaction h3,
+.budget-setter h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.type-toggle {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.toggle-btn {
+    flex: 1;
+    padding: 10px;
+    border: 2px solid #e0e0e0;
+    background: white;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.toggle-btn.active {
+    background: #667eea;
+    color: white;
+    border-color: #667eea;
+}
+
+.add-transaction input,
+.add-transaction select,
+.budget-setter input,
+.budget-setter select {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #e0e0e0;
+    border-radius: 6px;
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+.add-transaction input:focus,
+.add-transaction select:focus,
+.budget-setter input:focus,
+.budget-setter select:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+.add-btn {
+    width: 100%;
+    padding: 12px;
+    background: #667eea;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.add-btn:hover {
+    background: #5568d3;
+    transform: translateY(-2px);
+}
+
+.right-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.category-breakdown,
+.transactions-list {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    border: 2px solid #f0f0f0;
+}
+
+.category-breakdown h3,
+.transactions-list h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.categories-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.category-item {
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+
+.category-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.category-name {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+    color: #333;
+    text-transform: capitalize;
+}
+
+.category-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.category-amount {
+    font-weight: 600;
+    color: #333;
+}
+
+.budget-bar {
+    width: 100%;
+    height: 8px;
+    background: #e0e0e0;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 5px;
+}
+
+.bar-fill {
+    height: 100%;
+    transition: width 0.3s ease;
+}
+
+.bar-fill.over-budget {
+    background: linear-gradient(90deg, #667eea, #ff6b6b);
+}
+
+.budget-info {
+    font-size: 0.85rem;
+    color: #666;
+    display: flex;
+    justify-content: space-between;
+}
+
+.over-text {
+    color: #ff6b6b;
+    font-weight: 600;
+}
+
+.filter-buttons {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.filter-btn {
+    padding: 8px 16px;
+    border: 2px solid #e0e0e0;
+    background: white;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.filter-btn.active {
+    background: #667eea;
+    color: white;
+    border-color: #667eea;
+}
+
+.filter-btn:hover {
+    border-color: #667eea;
+}
+
+.transactions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.empty-transactions {
+    text-align: center;
+    padding: 40px 20px;
+    color: #999;
+}
+
+.transaction-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    background: #f8f9fa;
+    border-radius: 6px;
+    border-left: 4px solid #667eea;
+}
+
+.transaction-item.expenses {
+    border-left-color: #ff6b6b;
+}
+
+.trans-info {
+    flex: 1;
+}
+
+.trans-description {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: #333;
+}
+
+.trans-category {
+    font-size: 0.75rem;
+    padding: 3px 8px;
+    border-radius: 12px;
+    color: white;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+.trans-date {
+    font-size: 0.85rem;
+    color: #999;
+}
+
+.trans-amount {
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: #667eea;
+    margin: 0 15px;
+}
+
+.trans-amount.expense {
+    color: #ff6b6b;
+}
+
+.trans-amount.income {
+    color: #4ECDC4;
+}
+
+.delete-btn {
+    background: white;
+    border: 2px solid #e0e0e0;
+    padding: 6px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.delete-btn:hover {
+    border-color: #ff6b6b;
+    background: #ffebee;
+}
+
+@media (max-width: 1024px) {
+    .tracker-content {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .tracker-header {
+        flex-direction: column;
+        gap: 15px;
+        align-items: flex-start;
+    }
+
+    .summary-cards {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Dark mode support */
+[data-theme="dark"] .budget-tracker {
+    color: #e0e0e0;
+}
+
+[data-theme="dark"] .tracker-header {
+    border-bottom-color: #444;
+}
+
+[data-theme="dark"] .tracker-header h2 {
+    color: #e0e0e0;
+}
+
+[data-theme="dark"] .month-selector input {
+    background: #3d3d3d;
+    border-color: #555;
+    color: #e0e0e0;
+}
+
+[data-theme="dark"] .add-transaction,
+[data-theme="dark"] .budget-setter,
+[data-theme="dark"] .category-breakdown,
+[data-theme="dark"] .transactions-list {
+    background: #3d3d3d;
+    border-color: #555;
+}
+
+[data-theme="dark"] .add-transaction h3,
+[data-theme="dark"] .budget-setter h3,
+[data-theme="dark"] .category-breakdown h3,
+[data-theme="dark"] .transactions-list h3 {
+    color: #e0e0e0;
+}
+
+[data-theme="dark"] .add-transaction input,
+[data-theme="dark"] .add-transaction select,
+[data-theme="dark"] .budget-setter input,
+[data-theme="dark"] .budget-setter select {
+    background: #2d2d2d;
+    border-color: #555;
+    color: #e0e0e0;
+}
+
+[data-theme="dark"] .toggle-btn {
+    background: #2d2d2d;
+    border-color: #555;
+    color: #ccc;
+}
+
+[data-theme="dark"] .toggle-btn.active {
+    background: #667eea;
+    border-color: #667eea;
+    color: white;
+}
+
+[data-theme="dark"] .category-item {
+    background: #2d2d2d;
+}
+
+[data-theme="dark"] .category-header,
+[data-theme="dark"] .category-name,
+[data-theme="dark"] .category-amount {
+    color: #e0e0e0;
+}
+
+[data-theme="dark"] .budget-bar {
+    background: #555;
+}
+
+[data-theme="dark"] .transaction-item {
+    background: #2d2d2d;
+}
+
+[data-theme="dark"] .trans-description {
+    color: #e0e0e0;
+}

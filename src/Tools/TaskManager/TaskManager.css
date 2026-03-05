@@ -1,0 +1,352 @@
+.task-manager {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.task-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    border-bottom: 2px solid #e0e0e0;
+    padding-bottom: 20px;
+}
+
+.task-header h2 {
+    margin: 0;
+    color: #333;
+}
+
+.stats {
+    display: flex;
+    gap: 30px;
+}
+
+.stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    color: #999;
+    margin-bottom: 5px;
+}
+
+.stat-value {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #667eea;
+}
+
+.task-input-section {
+    background: #f8f9fa;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 25px;
+}
+
+.input-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.input-row input {
+    flex: 1;
+    padding: 12px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.input-row input:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+.add-btn {
+    padding: 12px 24px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.add-btn:hover {
+    transform: translateY(-2px);
+}
+
+.options-row {
+    display: flex;
+    gap: 10px;
+}
+
+.options-row select,
+.options-row input {
+    flex: 1;
+    padding: 10px;
+    border: 2px solid #e0e0e0;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    background: white;
+}
+
+.options-row select:focus,
+.options-row input:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+.filter-section {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.filter-btn {
+    padding: 10px 20px;
+    border: 2px solid #e0e0e0;
+    background: white;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    color: #666;
+}
+
+.filter-btn.active {
+    background: #667eea;
+    color: white;
+    border-color: #667eea;
+}
+
+.filter-btn:hover {
+    border-color: #667eea;
+}
+
+.tasks-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    color: #999;
+}
+
+.empty-state p {
+    font-size: 1.1rem;
+}
+
+.task-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+    background: white;
+    border: 2px solid #f0f0f0;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.task-item:hover {
+    border-color: #667eea;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.1);
+}
+
+.task-item.completed {
+    opacity: 0.6;
+    background: #f8f9fa;
+}
+
+.task-checkbox {
+    flex-shrink: 0;
+}
+
+.task-checkbox input {
+    width: 22px;
+    height: 22px;
+    cursor: pointer;
+    accent-color: #667eea;
+}
+
+.task-content {
+    flex: 1;
+}
+
+.task-text {
+    display: block;
+    font-size: 1rem;
+    color: #333;
+    word-break: break-word;
+    cursor: text;
+    padding: 5px;
+    border-radius: 4px;
+    transition: background 0.2s ease;
+}
+
+.task-text:hover {
+    background: #f0f0f0;
+}
+
+.task-item.completed .task-text {
+    text-decoration: line-through;
+    color: #999;
+}
+
+.task-edit-input {
+    width: 100%;
+    padding: 8px;
+    border: 2px solid #667eea;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-family: inherit;
+}
+
+.task-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.task-category,
+.task-priority,
+.task-due-date {
+    display: inline-block;
+    font-size: 0.8rem;
+    padding: 4px 10px;
+    border-radius: 12px;
+    color: white;
+    font-weight: 600;
+}
+
+.task-category {
+    background: #667eea;
+}
+
+.task-due-date {
+    background: #ff6b6b;
+}
+
+.delete-btn {
+    padding: 8px 12px;
+    background: white;
+    border: 2px solid #f0f0f0;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+}
+
+.delete-btn:hover {
+    background: #ffebee;
+    border-color: #ff6b6b;
+}
+
+/* Dark mode support */
+[data-theme="dark"] .task-manager {
+    color: #e0e0e0;
+}
+
+[data-theme="dark"] .task-header {
+    border-bottom-color: #444;
+}
+
+[data-theme="dark"] .task-header h2 {
+    color: #e0e0e0;
+}
+
+[data-theme="dark"] .task-input-section {
+    background: #2d2d2d;
+}
+
+[data-theme="dark"] .input-row input,
+[data-theme="dark"] .options-row select,
+[data-theme="dark"] .options-row input {
+    background: #3d3d3d;
+    border-color: #555;
+    color: #e0e0e0;
+}
+
+[data-theme="dark"] .input-row input:focus,
+[data-theme="dark"] .options-row select:focus,
+[data-theme="dark"] .options-row input:focus {
+    border-color: #667eea;
+}
+
+[data-theme="dark"] .filter-btn {
+    background: #3d3d3d;
+    border-color: #555;
+    color: #ccc;
+}
+
+[data-theme="dark"] .filter-btn.active {
+    background: #667eea;
+    border-color: #667eea;
+    color: white;
+}
+
+[data-theme="dark"] .task-item {
+    background: #3d3d3d;
+    border-color: #555;
+}
+
+[data-theme="dark"] .task-item:hover {
+    border-color: #667eea;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+}
+
+[data-theme="dark"] .task-item.completed {
+    background: #2d2d2d;
+}
+
+[data-theme="dark"] .task-text {
+    color: #e0e0e0;
+}
+
+[data-theme="dark"] .task-text:hover {
+    background: #555;
+}
+
+[data-theme="dark"] .task-item.completed .task-text {
+    color: #888;
+}
+
+[data-theme="dark"] .task-edit-input {
+    background: #3d3d3d;
+    border-color: #667eea;
+    color: #e0e0e0;
+}
+
+[data-theme="dark"] .delete-btn {
+    background: #3d3d3d;
+    border-color: #555;
+}
+
+[data-theme="dark"] .delete-btn:hover {
+    background: #8b3a3a;
+    border-color: #ff6b6b;
+}
