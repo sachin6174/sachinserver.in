@@ -81,7 +81,7 @@ const MainContent = memo(({ activeTab, selectedNavItem, navigationItems, isLeftN
 
     return (
         <div className="tab-content" style={{ position: "relative", height: "100%" }}>
-            {/* Enhanced Breadcrumb Path using design-system Breadcrumb */}
+            {/* Compact breadcrumb strip */}
             <div className="breadcrumb-path">
                 <Breadcrumb
                     items={[
@@ -91,10 +91,7 @@ const MainContent = memo(({ activeTab, selectedNavItem, navigationItems, isLeftN
                 />
             </div>
 
-            {/* Enhanced Separator Line */}
-            <div className="separator-line" role="separator" aria-hidden="true"></div>
-
-            {/* Content Display with Animation */}
+            {/* Content fills remaining space */}
             <main
                 id="main"
                 className={`description ${isContentVisible ? 'content-visible' : 'content-hidden'}`}
@@ -103,6 +100,7 @@ const MainContent = memo(({ activeTab, selectedNavItem, navigationItems, isLeftN
                 aria-busy={!isContentVisible}
                 tabIndex="-1"
                 aria-label="Main content area"
+                style={{ flex: 1, minHeight: 0, overflowY: 'auto', overflowX: 'hidden' }}
             >
                 <div className={`content-wrapper ${isContentVisible ? 'fade-in-up' : ''}`}>
                     {currentContent || (

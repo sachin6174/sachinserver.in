@@ -49,23 +49,46 @@ h3,
 h4,
 h5,
 h6 {
-  margin: 0 0 var(--space-3) 0;
+  margin: 0 0 var(--space-2) 0;
   color: var(--text);
   letter-spacing: -0.01em;
   line-height: var(--lh-tight);
 }
 
-h1 { font-size: var(--font-h1-size); font-weight: 700; }
-h2 { font-size: var(--font-h2-size); font-weight: 700; }
-h3 { font-size: var(--font-h3-size); font-weight: 650; }
-h4 { font-size: var(--font-h4-size); font-weight: 650; }
-h5 { font-size: var(--font-h5-size); font-weight: 600; }
-h6 { font-size: var(--font-h6-size); font-weight: 600; }
+h1 {
+  font-size: var(--font-h2-size);
+  font-weight: 700;
+}
+
+h2 {
+  font-size: var(--font-h3-size);
+  font-weight: 700;
+}
+
+h3 {
+  font-size: var(--font-h4-size);
+  font-weight: 650;
+}
+
+h4 {
+  font-size: var(--font-h5-size);
+  font-weight: 650;
+}
+
+h5 {
+  font-size: var(--font-h6-size);
+  font-weight: 600;
+}
+
+h6 {
+  font-size: var(--font-body-sm);
+  font-weight: 600;
+}
 
 p,
 li,
 dd {
-  margin: 0 0 var(--space-3) 0;
+  margin: 0 0 var(--space-2) 0;
   color: var(--text-secondary);
 }
 
@@ -122,6 +145,7 @@ button {
 }
 
 @media (max-width: 768px) {
+
   input,
   textarea,
   select,
