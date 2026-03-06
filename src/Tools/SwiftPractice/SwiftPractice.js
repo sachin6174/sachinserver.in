@@ -1,6 +1,10 @@
 import React, { useState, useCallback, useMemo, useRef, useEffect } from 'react';
 import './SwiftPractice.css';
-import { NEW_PROBLEMS } from './problems';
+import { NEW_PROBLEMS, MORE_PROBLEMS } from './problems';
+import Editor from 'react-simple-code-editor';
+import Prism from 'prismjs';
+import 'prismjs/components/prism-swift';
+import 'prismjs/themes/prism-tomorrow.css';
 
 // ────────────────────────────────────────────────────────────────────────────
 // Problem bank (self-contained, no external runtime needed)
@@ -690,7 +694,7 @@ binarySearch([1, 3, 5, 7, 9], target: 4) // → -1
     },
 ];
 
-const ALL_PROBLEMS = [...PROBLEMS, ...NEW_PROBLEMS];
+const ALL_PROBLEMS = [...PROBLEMS, ...NEW_PROBLEMS, ...MORE_PROBLEMS];
 
 const CATEGORIES = ['All', ...Array.from(new Set(ALL_PROBLEMS.map((p) => p.category)))];
 const DIFFICULTIES = ['All', 'Easy', 'Medium', 'Hard'];
@@ -895,33 +899,73 @@ const ProblemList = ({ problems, selectedId, solvedIds, onSelect }) => (
 );
 
 // ────────────────────────────────────────────────────────────────────────────
-// Code Editor (textarea-based with line numbers)
+// Code Editor — react-simple-code-editor + Prism Swift syntax highlighting
 // ────────────────────────────────────────────────────────────────────────────
 const CodeEditor = ({ value, onChange }) => {
-    const textareaRef = useRef(null);
-    const lineNumbersRef = useRef(null);
+    const [fontSize, setFontSize] = useState(14);
 
-    const lines = value.split('\n').length;
-
-    const syncScroll = useCallback(() => {
-        if (textareaRef.current && lineNumbersRef.current) {
-            lineNumbersRef.current.scrollTop = textareaRef.current.scrollTop;
-        }
-    }, []);
+    const highlight = useCallback((code) =>
+        Prism.highlight(code, Prism.languages.swift, 'swift'),
+        []);
 
     const handleKeyDown = useCallback((e) => {
-        if (e.key === 'Tab') {
+        const textarea = e.target;
+        const start = textarea.selectionStart;
+        const end = textarea.selectionEnd;
+
+        // Auto-closing brackets / quotes
+        const pairs = { '(': ')', '[': ']', '{': '}', '"': '"', "'": "'" };
+        if (pairs[e.key] && start === end) {
             e.preventDefault();
-            const start = e.target.selectionStart;
-            const end = e.target.selectionEnd;
-            const newValue = value.substring(0, start) + '    ' + value.substring(end);
-            onChange(newValue);
+            const open = e.key;
+            const close = pairs[e.key];
+            const newVal = value.substring(0, start) + open + close + value.substring(end);
+            onChange(newVal);
             requestAnimationFrame(() => {
-                if (textareaRef.current) {
-                    textareaRef.current.selectionStart = start + 4;
-                    textareaRef.current.selectionEnd = start + 4;
+                if (textarea) {
+                    textarea.selectionStart = start + 1;
+                    textarea.selectionEnd = start + 1;
                 }
             });
+            return;
+        }
+
+        // Enter — auto-indent to match current line
+        if (e.key === 'Enter') {
+            const lineStart = value.lastIndexOf('\n', start - 1) + 1;
+            const currentLine = value.substring(lineStart, start);
+            const indent = currentLine.match(/^(\s*)/)[1];
+            const prevChar = value[start - 1];
+            // Extra indent after opening brace
+            const extraIndent = prevChar === '{' || prevChar === '(' || prevChar === '[' ? '    ' : '';
+            e.preventDefault();
+            const newVal = value.substring(0, start) + '\n' + indent + extraIndent + value.substring(end);
+            onChange(newVal);
+            const newCursor = start + 1 + indent.length + extraIndent.length;
+            requestAnimationFrame(() => {
+                if (textarea) {
+                    textarea.selectionStart = newCursor;
+                    textarea.selectionEnd = newCursor;
+                }
+            });
+            return;
+        }
+
+        // Backspace — remove matched closing bracket if cursor is between pair
+        if (e.key === 'Backspace' && start === end && start > 0) {
+            const pairs2 = ['()', '[]', '{}', '""', "''"];
+            const around = value.substring(start - 1, start + 1);
+            if (pairs2.includes(around)) {
+                e.preventDefault();
+                const newVal = value.substring(0, start - 1) + value.substring(start + 1);
+                onChange(newVal);
+                requestAnimationFrame(() => {
+                    if (textarea) {
+                        textarea.selectionStart = start - 1;
+                        textarea.selectionEnd = start - 1;
+                    }
+                });
+            }
         }
     }, [value, onChange]);
 
@@ -934,28 +978,38 @@ const CodeEditor = ({ value, onChange }) => {
                     <span className="dot green" />
                 </div>
                 <span className="sp-editor-lang">Swift</span>
+                <div className="sp-editor-toolbar">
+                    <button className="sp-font-btn" onClick={() => setFontSize(f => Math.max(10, f - 1))} title="Decrease font">A-</button>
+                    <span className="sp-font-size">{fontSize}px</span>
+                    <button className="sp-font-btn" onClick={() => setFontSize(f => Math.min(22, f + 1))} title="Increase font">A+</button>
+                </div>
                 <span className="sp-editor-badge">Interactive Editor</span>
             </div>
-            <div className="sp-editor-body" onScroll={syncScroll}>
-                <div className="sp-line-numbers" ref={lineNumbersRef} aria-hidden="true">
-                    {Array.from({ length: lines }, (_, i) => (
-                        <div key={i} className="sp-line-num">{i + 1}</div>
-                    ))}
-                </div>
-                <textarea
-                    ref={textareaRef}
-                    className="sp-code-area"
+            <div className="sp-editor-body">
+                <Editor
                     value={value}
-                    onChange={(e) => onChange(e.target.value)}
+                    onValueChange={onChange}
+                    highlight={highlight}
                     onKeyDown={handleKeyDown}
-                    onScroll={syncScroll}
-                    spellCheck={false}
-                    autoComplete="off"
-                    autoCorrect="off"
-                    autoCapitalize="off"
-                    aria-label="Swift code editor"
-                />
-            </div>
+                    padding={16}
+                    style={{
+                        fontFamily: '"JetBrains Mono", "Fira Code", "Cascadia Code", monospace',
+                        fontSize,
+                        backgroundColor: '#1e1e2e',
+                        color: '#cdd6f4',
+                        minHeight: '100%',
+                        lineHeight: 1.7,
+                        caretColor: '#cba6f7',
+                    }}
+                    textareaProps={{
+                        spellCheck: false,
+                        autoComplete: 'off',
+                        autoCorrect: 'off',
+                        autoCapitalize: 'off',
+                        'aria-label': 'Swift code editor',
+                        className: 'sp-code-area-hidden',
+                    }}
+                /></div>
         </div>
     );
 };
