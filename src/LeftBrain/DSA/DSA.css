@@ -3,18 +3,18 @@
 /* Questions grid using site's card system */
 .questions-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: var(--space-md);
-    margin-top: var(--space-md);
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: var(--space-2);
+    margin-top: var(--space-2);
 }
 
 /* Question cards using site's leftbrain-card style */
 .question-card {
     background: var(--background-primary);
-    border-radius: var(--radius-lg);
-    padding: var(--space-lg);
-    margin-bottom: var(--space-md);
-    box-shadow: var(--shadow-md);
+    border-radius: var(--radius-md);
+    padding: 0.5rem;
+    margin-bottom: 0.4rem;
+    box-shadow: var(--shadow-sm);
     border: 1px solid var(--border-color);
     transition: transform var(--transition-normal), box-shadow var(--transition-normal);
     position: relative;
@@ -82,8 +82,8 @@
 .question-title {
     font-size: var(--font-lg);
     font-weight: 600;
-    line-height: 1.4;
-    margin: var(--space-sm) 0;
+    line-height: 1.3;
+    margin: 0.25rem 0;
     color: var(--text-primary);
 }
 
@@ -172,11 +172,11 @@
 /* Explanation Content Styling */
 .explanation-content {
     background: var(--background-secondary);
-    border-radius: var(--radius-lg);
-    padding: var(--space-lg);
-    margin-top: var(--space-md);
+    border-radius: var(--radius-md);
+    padding: 0.8rem;
+    margin-top: 0.5rem;
     border: 1px solid var(--border-color);
-    line-height: 1.6;
+    line-height: 1.5;
 }
 
 .explanation-content h3 {
@@ -420,9 +420,9 @@
 .question-item {
     display: flex;
     align-items: flex-start;
-    gap: var(--space-sm);
-    padding: var(--space-sm);
-    margin: var(--space-xs) 0;
+    gap: 0.4rem;
+    padding: 0.4rem;
+    margin: 0.2rem 0;
     background: var(--background-accent);
     border-radius: var(--radius-md);
     border-left: 3px solid var(--current-theme);
@@ -737,19 +737,19 @@
 /* Playlists Section */
 .playlists-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: var(--space-md);
-    margin-top: var(--space-md);
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 0.6rem;
+    margin-top: 0.6rem;
 }
 
 .playlist-card {
     display: flex;
     flex-direction: column;
     /* Changed to column for bigger preview */
-    gap: var(--space-sm);
-    padding: var(--space-sm);
+    gap: 0.25rem;
+    padding: 0.35rem;
     background: var(--background-secondary);
-    border-radius: var(--radius-lg);
+    border-radius: var(--radius-md);
     border: 1px solid var(--border-color);
     text-decoration: none;
     transition: all var(--transition-normal);

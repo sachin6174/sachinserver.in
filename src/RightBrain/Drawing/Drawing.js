@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import famousArtsData from "./FamousArts.json";
 import famousArtistsData from "./FamousArtists.json";
 import artFormsData from "./ArtForms.json";
@@ -19,25 +19,30 @@ const Drawing = () => {
     });
 
     useEffect(() => {
-        // Load all data with artificial delay
-        setTimeout(() => {
-            setData({
-                famousArts: famousArtsData.famous_arts,
-                famousArtists: famousArtistsData.famous_artists,
-                artForms: artFormsData.art_forms,
-                myPortraits: myPortraitsData.my_portraits
-            });
+        // Load data instantly but with a fast fadeIn for premium feel
+        setData({
+            famousArts: famousArtsData.famous_arts,
+            famousArtists: famousArtistsData.famous_artists,
+            artForms: artFormsData.art_forms,
+            myPortraits: myPortraitsData.my_portraits
+        });
+
+        const timer = setTimeout(() => {
             setIsLoading(false);
-        }, 800);
+        }, 300); // 300ms for a quick "reveal" rather than an 800ms artificial delay
+
+        return () => clearTimeout(timer);
     }, []);
 
     const handleSectionClick = (section) => {
         setCurrentSection(section);
         setSelectedItem(null);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     };
 
     const handleItemClick = (item) => {
         setSelectedItem(item);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     };
 
     const handleBackToSection = () => {
@@ -66,353 +71,214 @@ const Drawing = () => {
     };
 
     if (isLoading) {
-        return <div className="loading-spinner"></div>;
+        return (
+            <div className="drawing-container">
+                <div className="loading-skeleton">
+                    <div className="skeleton-card"></div>
+                    <div className="skeleton-card"></div>
+                    <div className="skeleton-card"></div>
+                </div>
+            </div>
+        );
     }
 
     // Main sections view
     const renderMainSections = () => (
-        <div>
+        <div className="reveal">
             <div className="hero-section">
                 <div className="section-header">
-                    <h1 className="section-title">Art Gallery & Collection</h1>
-                    <div className="section-divider"></div>
-                    <p style={{ color: 'var(--text-secondary)', fontSize: '1.1rem', marginTop: '1rem' }}>
-                        Explore the world of art through different perspectives and forms
-                    </p>
+                    <h1 className="section-title">Creative Brain</h1>
+                    <div className="section-subtitle">
+                        An artistic exploration of masterpieces, legendary creators, and the diverse forms of human expression.
+                    </div>
                 </div>
             </div>
+
             <div className="cards-container">
-                <div className="card hover-effect" onClick={() => handleSectionClick('famous-arts')}>
-                    <h3>🎨 Famous Arts</h3>
-                    <p>Discover iconic masterpieces that have shaped art history. Each artwork comes with detailed descriptions, historical context, and links to learn more.</p>
-                    <p><strong>Includes:</strong> Mona Lisa, Starry Night, Guernica, and more...</p>
+                <div className="card" onClick={() => handleSectionClick('famous-arts')}>
+                    <div>
+                        <span className="card-icon">🎨</span>
+                        <h3>Famous Arts</h3>
+                        <p>Iconic masterpieces that defined eras. Explore detailed histories, contexts, and visual studies of the world's most renowned works.</p>
+                        <p><strong>Masterpieces:</strong> Starry Night, Mona Lisa, Guernica...</p>
+                    </div>
                 </div>
-                <div className="card hover-effect" onClick={() => handleSectionClick('famous-artists')}>
-                    <h3>👨‍🎨 Famous Artists</h3>
-                    <p>Meet the legendary artists who created timeless works. Learn about their lives, techniques, and contributions to art history.</p>
-                    <p><strong>Features:</strong> Leonardo da Vinci, Van Gogh, Picasso, and more...</p>
+
+                <div className="card" onClick={() => handleSectionClick('famous-artists')}>
+                    <div>
+                        <span className="card-icon">👨‍🎨</span>
+                        <h3>Famous Artists</h3>
+                        <p>Meet the visionaries behind the canvas. Learn about the lives, movements, and revolutionary techniques of legendary artists.</p>
+                        <p><strong>Icons:</strong> Da Vinci, Picasso, Van Gogh...</p>
+                    </div>
                 </div>
-                <div className="card hover-effect" onClick={() => handleSectionClick('art-forms')}>
-                    <h3>🖼️ Different Art Forms</h3>
-                    <p>Explore various artistic mediums and techniques. From traditional painting to modern digital art, discover the diversity of artistic expression.</p>
-                    <p><strong>Covers:</strong> Painting, Sculpture, Drawing, Digital Art, and more...</p>
+
+                <div className="card" onClick={() => handleSectionClick('art-forms')}>
+                    <div>
+                        <span className="card-icon">🖼️</span>
+                        <h3>Art Forms</h3>
+                        <p>Discover the vast spectrum of artistic expression. From classical sculpture and painting to cutting-edge digital creations.</p>
+                        <p><strong>Forms:</strong> Digital Art, Cubism, Impressionism...</p>
+                    </div>
                 </div>
-                <div className="card hover-effect" onClick={() => handleSectionClick('drawing-tutorials')}>
-                    <h3>🎨 Drawing Tutorials</h3>
-                    <p>Master drawing with 294+ expert YouTube tutorials. Features include progress tracking, category filtering, and detailed step-by-step guidance.</p>
-                    <p><strong>Features:</strong> Video tutorials, progress tracking, categories, and more...</p>
+
+                <div className="card" onClick={() => handleSectionClick('drawing-tutorials')}>
+                    <div>
+                        <span className="card-icon">📽️</span>
+                        <h3>Drawing Lab</h3>
+                        <p>Master the art of drawing with 294+ curated professional tutorials. Step-by-step guidance for every skill level.</p>
+                        <p><strong>Resources:</strong> Video tutorials, Progress tracking...</p>
+                    </div>
                 </div>
-                <div className="card hover-effect" onClick={() => handleSectionClick('my-portraits')}>
-                    <h3>🎭 My Portraits</h3>
-                    <p>Personal portrait collection and artwork. This section will showcase original portrait work and artistic experiments.</p>
-                    <p><strong>Status:</strong> Coming soon - More content will be added...</p>
+
+                <div className="card" onClick={() => handleSectionClick('my-portraits')}>
+                    <div>
+                        <span className="card-icon">🎭</span>
+                        <h3>Gallery Vault</h3>
+                        <p>A personal collection of original sketches and portraits. Explore the journey of lines and shadows through personal studies.</p>
+                        <p><strong>Status:</strong> Collection updating soon...</p>
+                    </div>
                 </div>
             </div>
         </div>
     );
 
-    // Famous Arts section
-    const renderFamousArts = () => (
-        <div>
+    // List view for sub-sections
+    const renderListView = (items, title, subtitle, type) => (
+        <div className="reveal">
             <div className="section-header">
-                <h2 className="section-title">Famous Arts</h2>
-                <div className="section-divider"></div>
-                <p style={{ color: 'var(--text-secondary)', fontSize: '1.1rem', marginTop: '1rem' }}>
-                    Iconic masterpieces that have defined art history
-                </p>
+                <h2 className="section-title">{title}</h2>
+                <div className="section-subtitle">{subtitle}</div>
             </div>
+
             <button className="back-button" onClick={handleBackToMain}>
-                ← Back to Sections
+                ← Back to Explorations
             </button>
+
             <div className="cards-container">
-                {data.famousArts.map((art) => (
-                    <div key={art.id} className="card hover-effect" onClick={() => handleItemClick(art)}>
-                        <h3>{art.name}</h3>
-                        {art.image && (
+                {items.map((item, idx) => (
+                    <div key={item.id} className="card reveal" style={{ animationDelay: `${idx * 0.05}s` }} onClick={() => handleItemClick(item)}>
+                        <div className="card-image-wrapper" style={{ borderRadius: '1rem', overflow: 'hidden', marginBottom: '1.5rem', height: '220px' }}>
                             <img
-                                src={art.image}
-                                alt={art.name}
+                                src={item.image}
+                                alt={item.name}
+                                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                                 onError={handleImageError}
                                 onClick={(e) => {
                                     e.stopPropagation();
-                                    handleImageClick(art.image);
+                                    handleImageClick(item.image);
                                 }}
                             />
-                        )}
-                        <p><strong>Artist:</strong> {art.artist}</p>
-                        <p><strong>Year:</strong> {art.year}</p>
-                        <p>{art.description.substring(0, 150)}...</p>
-                        <button 
-                            className="wikipedia-button"
-                            onClick={(e) => {
-                                e.stopPropagation();
-                                openWikipedia(art.wikipedia);
-                            }}
-                        >
-                            📖 Learn More
-                        </button>
+                        </div>
+                        <h3>{item.name}</h3>
+                        <p>{item.description.substring(0, 100)}...</p>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                            <span style={{ fontSize: '0.85rem', fontWeight: '600', color: 'var(--rb-primary)' }}>
+                                {type === 'art' ? item.artist : type === 'artist' ? item.country : 'Technique Hub'}
+                            </span>
+                            <button className="wikipedia-button">Details</button>
+                        </div>
                     </div>
                 ))}
-            </div>
-        </div>
-    );
-
-    // Famous Artists section
-    const renderFamousArtists = () => (
-        <div>
-            <div className="section-header">
-                <h2 className="section-title">Famous Artists</h2>
-                <div className="section-divider"></div>
-                <p style={{ color: 'var(--text-secondary)', fontSize: '1.1rem', marginTop: '1rem' }}>
-                    Legendary artists who shaped the world of visual arts
-                </p>
-            </div>
-            <button className="back-button" onClick={handleBackToMain}>
-                ← Back to Sections
-            </button>
-            <div className="cards-container">
-                {data.famousArtists.map((artist) => (
-                    <div key={artist.id} className="card hover-effect" onClick={() => handleItemClick(artist)}>
-                        <h3>{artist.name}</h3>
-                        {artist.image && (
-                            <img
-                                src={artist.image}
-                                alt={artist.name}
-                                onError={handleImageError}
-                                onClick={(e) => {
-                                    e.stopPropagation();
-                                    handleImageClick(artist.image);
-                                }}
-                            />
-                        )}
-                        <p><strong>Period:</strong> {artist.years}</p>
-                        <p><strong>Origin:</strong> {artist.country}</p>
-                        <p><strong>Movement:</strong> {artist.movement}</p>
-                        <p>{artist.description.substring(0, 150)}...</p>
-                        <button 
-                            className="wikipedia-button"
-                            onClick={(e) => {
-                                e.stopPropagation();
-                                openWikipedia(artist.wikipedia);
-                            }}
-                        >
-                            📖 Learn More
-                        </button>
-                    </div>
-                ))}
-            </div>
-        </div>
-    );
-
-    // Art Forms section
-    const renderArtForms = () => (
-        <div>
-            <div className="section-header">
-                <h2 className="section-title">Different Art Forms</h2>
-                <div className="section-divider"></div>
-                <p style={{ color: 'var(--text-secondary)', fontSize: '1.1rem', marginTop: '1rem' }}>
-                    Explore various artistic mediums and techniques
-                </p>
-            </div>
-            <button className="back-button" onClick={handleBackToMain}>
-                ← Back to Sections
-            </button>
-            <div className="cards-container">
-                {data.artForms.map((form) => (
-                    <div key={form.id} className="card hover-effect" onClick={() => handleItemClick(form)}>
-                        <h3>{form.name}</h3>
-                        {form.image && (
-                            <img
-                                src={form.image}
-                                alt={form.name}
-                                onError={handleImageError}
-                                onClick={(e) => {
-                                    e.stopPropagation();
-                                    handleImageClick(form.image);
-                                }}
-                            />
-                        )}
-                        <p>{form.description.substring(0, 200)}...</p>
-                        <p><strong>Techniques:</strong> {form.techniques.length} different methods</p>
-                        <button 
-                            className="wikipedia-button"
-                            onClick={(e) => {
-                                e.stopPropagation();
-                                openWikipedia(form.wikipedia);
-                            }}
-                        >
-                            📖 Learn More
-                        </button>
-                    </div>
-                ))}
-            </div>
-        </div>
-    );
-
-    // My Portraits section
-    const renderMyPortraits = () => (
-        <div>
-            <div className="section-header">
-                <h2 className="section-title">My Portraits</h2>
-                <div className="section-divider"></div>
-                <p style={{ color: 'var(--text-secondary)', fontSize: '1.1rem', marginTop: '1rem' }}>
-                    Personal portrait collection - Coming Soon
-                </p>
-            </div>
-            <button className="back-button" onClick={handleBackToMain}>
-                ← Back to Sections
-            </button>
-            <div className="cards-container">
-                <div className="card">
-                    <h3>🎨 Portrait Collection</h3>
-                    <p>This section will showcase personal portrait artwork and creative experiments.</p>
-                    <p><strong>Coming Soon:</strong> Original portraits, sketches, and artistic studies will be added here.</p>
-                    <p style={{ fontStyle: 'italic', color: 'var(--text-light)' }}>
-                        Check back later for updates!
-                    </p>
-                </div>
             </div>
         </div>
     );
 
     // Detailed view for selected items
     const renderDetailedView = () => {
-        if (currentSection === 'famous-arts') {
-            return (
-                <div>
-                    <div className="section-header">
-                        <h2 className="section-title">{selectedItem.name}</h2>
-                        <div className="section-divider"></div>
+        if (!selectedItem) return null;
+
+        const isArt = currentSection === 'famous-arts';
+        const isArtist = currentSection === 'famous-artists';
+        const isForm = currentSection === 'art-forms';
+
+        return (
+            <div className="detailed-view">
+                <button className="back-button" onClick={handleBackToSection}>
+                    ← Back to List
+                </button>
+
+                <div className="detailed-card">
+                    <div className="detailed-image-container">
+                        <img
+                            src={selectedItem.image}
+                            alt={selectedItem.name}
+                            className="detailed-image"
+                            onClick={() => handleImageClick(selectedItem.image)}
+                        />
                     </div>
-                    <button className="back-button" onClick={handleBackToSection}>
-                        ← Back to Famous Arts
-                    </button>
-                    <div className="detailed-view">
-                        <div className="detailed-card">
-                            {selectedItem.image && (
-                                <img
-                                    src={selectedItem.image}
-                                    alt={selectedItem.name}
-                                    onClick={() => handleImageClick(selectedItem.image)}
-                                    className="detailed-image"
-                                />
+
+                    <div className="detailed-info">
+                        <h3>{selectedItem.name}</h3>
+
+                        <div className="info-grid">
+                            {isArt && (
+                                <>
+                                    <div className="info-item"><span className="info-label">Artist</span><span className="info-value">{selectedItem.artist}</span></div>
+                                    <div className="info-item"><span className="info-label">Year</span><span className="info-value">{selectedItem.year}</span></div>
+                                    <div className="info-item"><span className="info-label">Medium</span><span className="info-value">{selectedItem.medium}</span></div>
+                                    <div className="info-item"><span className="info-label">Location</span><span className="info-value">{selectedItem.location}</span></div>
+                                </>
                             )}
-                            <div className="detailed-info">
-                                <h3>{selectedItem.name}</h3>
-                                <p><strong>Artist:</strong> {selectedItem.artist}</p>
-                                <p><strong>Year:</strong> {selectedItem.year}</p>
-                                <p><strong>Medium:</strong> {selectedItem.medium}</p>
-                                <p><strong>Dimensions:</strong> {selectedItem.dimensions}</p>
-                                <p><strong>Location:</strong> {selectedItem.location}</p>
-                                <p><strong>Description:</strong> {selectedItem.description}</p>
-                                <p><strong>Significance:</strong> {selectedItem.significance}</p>
-                                <button 
-                                    className="wikipedia-button"
-                                    onClick={() => openWikipedia(selectedItem.wikipedia)}
-                                >
-                                    📖 Read More on Wikipedia
-                                </button>
-                            </div>
+                            {isArtist && (
+                                <>
+                                    <div className="info-item"><span className="info-label">Period</span><span className="info-value">{selectedItem.years}</span></div>
+                                    <div className="info-item"><span className="info-label">Country</span><span className="info-value">{selectedItem.country}</span></div>
+                                    <div className="info-item"><span className="info-label">Movement</span><span className="info-value">{selectedItem.movement}</span></div>
+                                </>
+                            )}
+                            {isForm && (
+                                <>
+                                    <div className="info-item"><span className="info-label">Famous For</span><span className="info-value">{selectedItem.famous_examples[0]}</span></div>
+                                    <div className="info-item"><span className="info-label">Techniques</span><span className="info-value">{selectedItem.techniques.length} Methods</span></div>
+                                </>
+                            )}
                         </div>
-                    </div>
-                </div>
-            );
-        } else if (currentSection === 'famous-artists') {
-            return (
-                <div>
-                    <div className="section-header">
-                        <h2 className="section-title">{selectedItem.name}</h2>
-                        <div className="section-divider"></div>
-                    </div>
-                    <button className="back-button" onClick={handleBackToSection}>
-                        ← Back to Famous Artists
-                    </button>
-                    <div className="detailed-view">
-                        <div className="detailed-card">
-                            {selectedItem.image && (
-                                <img
-                                    src={selectedItem.image}
-                                    alt={selectedItem.name}
-                                    onClick={() => handleImageClick(selectedItem.image)}
-                                    className="detailed-image"
-                                />
-                            )}
-                            <div className="detailed-info">
-                                <h3>{selectedItem.name}</h3>
-                                <p><strong>Period:</strong> {selectedItem.years}</p>
-                                <p><strong>Country:</strong> {selectedItem.country}</p>
-                                <p><strong>Movement:</strong> {selectedItem.movement}</p>
-                                <p><strong>Description:</strong> {selectedItem.description}</p>
+
+                        <p><strong>Context & Story:</strong> {selectedItem.description}</p>
+
+                        {isArt && <p><strong>Significance:</strong> {selectedItem.significance}</p>}
+                        {isArtist && (
+                            <>
                                 <p><strong>Notable Works:</strong> {selectedItem.notable_works.join(", ")}</p>
                                 <p><strong>Techniques:</strong> {selectedItem.techniques.join(", ")}</p>
-                                <p><strong>Contributions:</strong> {selectedItem.contributions}</p>
-                                <button 
-                                    className="wikipedia-button"
-                                    onClick={() => openWikipedia(selectedItem.wikipedia)}
-                                >
-                                    📖 Read More on Wikipedia
-                                </button>
+                                <p><strong>Contribution:</strong> {selectedItem.contributions}</p>
+                            </>
+                        )}
+
+                        {isForm && (
+                            <div className="techniques-section">
+                                <h4>Techniques Involved</h4>
+                                <div style={{ display: 'grid', gap: '1rem', marginTop: '1rem' }}>
+                                    {selectedItem.techniques.map((t, i) => (
+                                        <div key={i} style={{ padding: '1rem', background: 'var(--surface-2)', borderRadius: '1rem', borderLeft: '4px solid var(--rb-primary)' }}>
+                                            <h5 style={{ color: 'var(--rb-primary)', marginBottom: '0.25rem' }}>{t.name}</h5>
+                                            <p style={{ fontSize: '0.9rem', margin: 0 }}>{t.description}</p>
+                                        </div>
+                                    ))}
+                                </div>
                             </div>
-                        </div>
+                        )}
+
+                        <button
+                            className="wikipedia-button"
+                            style={{ marginTop: '2rem' }}
+                            onClick={() => openWikipedia(selectedItem.wikipedia)}
+                        >
+                            🔗 Full Repository on Wikipedia
+                        </button>
                     </div>
                 </div>
-            );
-        } else if (currentSection === 'art-forms') {
-            return (
-                <div>
-                    <div className="section-header">
-                        <h2 className="section-title">{selectedItem.name}</h2>
-                        <div className="section-divider"></div>
-                    </div>
-                    <button className="back-button" onClick={handleBackToSection}>
-                        ← Back to Art Forms
-                    </button>
-                    <div className="detailed-view">
-                        <div className="detailed-card">
-                            {selectedItem.image && (
-                                <img
-                                    src={selectedItem.image}
-                                    alt={selectedItem.name}
-                                    onClick={() => handleImageClick(selectedItem.image)}
-                                    className="detailed-image"
-                                />
-                            )}
-                            <div className="detailed-info">
-                                <h3>{selectedItem.name}</h3>
-                                <p><strong>Description:</strong> {selectedItem.description}</p>
-                                <p><strong>Famous Examples:</strong> {selectedItem.famous_examples.join(", ")}</p>
-                                
-                                <h4>Techniques:</h4>
-                                {selectedItem.techniques.map((technique, index) => (
-                                    <div key={index} className="technique-card">
-                                        <h5>{technique.name}</h5>
-                                        <p>{technique.description}</p>
-                                        <p><em>Example: {technique.example}</em></p>
-                                    </div>
-                                ))}
-                                
-                                <button 
-                                    className="wikipedia-button"
-                                    onClick={() => openWikipedia(selectedItem.wikipedia)}
-                                >
-                                    📖 Read More on Wikipedia
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            );
-        }
+            </div>
+        );
     };
 
     return (
         <div className="drawing-container">
             {previewImage && (
                 <div className="image-preview-overlay" onClick={closePreview}>
-                    <div className="image-preview-container">
-                        <img src={previewImage} alt="Preview" className="preview-image" />
-                        <button className="close-preview" onClick={closePreview}>×</button>
-                    </div>
+                    <img src={previewImage} alt="Preview" className="preview-image" />
+                    <button className="close-preview" onClick={closePreview}>×</button>
                 </div>
             )}
 
@@ -423,13 +289,25 @@ const Drawing = () => {
             ) : currentSection === 'drawing-tutorials' ? (
                 <DrawingTutorials onBack={handleBackToMain} />
             ) : currentSection === 'famous-arts' ? (
-                renderFamousArts()
+                renderListView(data.famousArts, 'Artistic Masterpieces', 'Iconic works that have defined human history and visual culture.', 'art')
             ) : currentSection === 'famous-artists' ? (
-                renderFamousArtists()
+                renderListView(data.famousArtists, 'Legendary Masters', 'The visionaries whose imagination and skill transformed the world.', 'artist')
             ) : currentSection === 'art-forms' ? (
-                renderArtForms()
+                renderListView(data.artForms, 'Expression Variations', 'Exploring the diverse mediums and methods of creative communication.', 'form')
             ) : currentSection === 'my-portraits' ? (
-                renderMyPortraits()
+                <div className="reveal">
+                    <div className="section-header">
+                        <h2 className="section-title">Gallery Vault</h2>
+                        <div className="section-subtitle">Original works and creative studies.</div>
+                    </div>
+                    <button className="back-button" onClick={handleBackToMain}>← Back</button>
+                    <div className="card" style={{ maxWidth: '600px', margin: '2rem auto', textAlign: 'center' }}>
+                        <span className="card-icon">🏗️</span>
+                        <h3>Collection Under Curation</h3>
+                        <p>I am currently organizing my personal portrait collection. New digital and traditional works will be released soon.</p>
+                        <p style={{ fontStyle: 'italic' }}>Check back for the next iteration.</p>
+                    </div>
+                </div>
             ) : (
                 renderMainSections()
             )}

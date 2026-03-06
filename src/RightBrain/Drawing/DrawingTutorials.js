@@ -14,7 +14,7 @@ const DrawingTutorials = ({ onBack }) => {
             setIsLoading(false);
             try {
                 const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-                
+
                 // Inject additional styles to better integrate with the parent theme
                 const style = iframeDoc.createElement('style');
                 style.textContent = `
@@ -22,6 +22,7 @@ const DrawingTutorials = ({ onBack }) => {
                         margin: 0;
                         padding: 0;
                         overflow-x: hidden;
+                        background: transparent;
                     }
                     
                     /* Responsive adjustments */
@@ -47,7 +48,7 @@ const DrawingTutorials = ({ onBack }) => {
 
         const handleError = () => {
             setIsLoading(false);
-            setError('Failed to load drawing tutorials');
+            setError('The tutorial portal is currently undergoing maintenance. Please try again shortly.');
         };
 
         iframe.addEventListener('load', handleLoad);
@@ -61,35 +62,24 @@ const DrawingTutorials = ({ onBack }) => {
 
     if (error) {
         return (
-            <div className="drawing-container">
+            <div className="drawing-container reveal">
                 <div className="section-header">
-                    <h2 className="section-title">Drawing Tutorials</h2>
-                    <div className="section-divider"></div>
+                    <h2 className="section-title">Drawing Lab</h2>
+                    <div className="section-subtitle">Something went wrong while initializing the lab.</div>
                 </div>
                 <button className="back-button" onClick={onBack}>
-                    ← Back to Drawing Gallery
+                    ← Back to Exploration Center
                 </button>
-                <div className="error-container" style={{
-                    textAlign: 'center',
-                    padding: '3rem',
-                    color: 'var(--text-secondary)'
-                }}>
-                    <h3>⚠️ Unable to Load Tutorials</h3>
+                <div className="card" style={{ maxWidth: '600px', margin: '3rem auto', textAlign: 'center' }}>
+                    <span className="card-icon">🏗️</span>
+                    <h3>Initialization Interrupted</h3>
                     <p>{error}</p>
-                    <button 
-                        className="btn-primary"
+                    <button
+                        className="wikipedia-button"
+                        style={{ margin: '1rem auto' }}
                         onClick={() => window.location.reload()}
-                        style={{
-                            marginTop: '1rem',
-                            padding: '0.75rem 1.5rem',
-                            backgroundColor: 'var(--accent-color)',
-                            color: 'white',
-                            border: 'none',
-                            borderRadius: '6px',
-                            cursor: 'pointer'
-                        }}
                     >
-                        Try Again
+                        🔄 Re-Initialize Lab
                     </button>
                 </div>
             </div>
@@ -97,58 +87,43 @@ const DrawingTutorials = ({ onBack }) => {
     }
 
     return (
-        <div className="drawing-container">
+        <div className="drawing-container reveal">
             <div className="tutorials-header" style={{
                 display: 'flex',
                 justifyContent: 'space-between',
                 alignItems: 'center',
-                marginBottom: '1rem',
-                padding: '1rem',
-                backgroundColor: 'var(--background-secondary)',
-                borderRadius: '8px',
-                border: '1px solid var(--border-color)'
+                marginBottom: '2rem',
+                padding: '1.5rem 2rem',
+                backgroundColor: 'color-mix(in srgb, var(--surface) 60%, transparent)',
+                backdropFilter: 'blur(20px)',
+                borderRadius: '2rem',
+                border: '1px solid color-mix(in srgb, var(--border-color) 40%, transparent)',
+                boxShadow: '0 4px 6px rgba(0,0,0,0.02)'
             }}>
                 <div>
-                    <h2 style={{ 
-                        margin: 0, 
+                    <h2 style={{
+                        margin: 0,
                         color: 'var(--text-primary)',
-                        fontSize: '1.5rem',
-                        fontWeight: '600'
+                        fontSize: '1.75rem',
+                        fontWeight: '800',
+                        letterSpacing: '-0.02em'
                     }}>
-                        🎨 Drawing Tutorials - ArtVault
+                        Tutorial Lab
                     </h2>
                     <p style={{
-                        margin: '0.5rem 0 0 0',
+                        margin: '0.25rem 0 0 0',
                         color: 'var(--text-secondary)',
-                        fontSize: '0.9rem'
+                        fontSize: '0.95rem'
                     }}>
-                        Master drawing with 294+ expert YouTube tutorials
+                        294+ curated мастер-классы for creative minds
                     </p>
                 </div>
-                <button 
+                <button
                     className="back-button"
                     onClick={onBack}
-                    style={{
-                        padding: '0.5rem 1rem',
-                        backgroundColor: 'transparent',
-                        color: 'var(--accent-color)',
-                        border: '1px solid var(--accent-color)',
-                        borderRadius: '6px',
-                        cursor: 'pointer',
-                        fontSize: '0.9rem',
-                        fontWeight: '500',
-                        transition: 'all 0.2s ease'
-                    }}
-                    onMouseEnter={(e) => {
-                        e.target.style.backgroundColor = 'var(--accent-color)';
-                        e.target.style.color = 'white';
-                    }}
-                    onMouseLeave={(e) => {
-                        e.target.style.backgroundColor = 'transparent';
-                        e.target.style.color = 'var(--accent-color)';
-                    }}
+                    style={{ margin: 0 }}
                 >
-                    ← Back to Gallery
+                    ← Exit Lab
                 </button>
             </div>
 
@@ -159,41 +134,41 @@ const DrawingTutorials = ({ onBack }) => {
                     alignItems: 'center',
                     justifyContent: 'center',
                     height: '400px',
-                    color: 'var(--text-secondary)'
+                    color: 'var(--text-secondary)',
+                    animation: 'fadeIn 0.6s ease-out'
                 }}>
                     <div className="loading-spinner" style={{
-                        width: '40px',
-                        height: '40px',
+                        width: '60px',
+                        height: '60px',
                         border: '4px solid var(--border-color)',
-                        borderTop: '4px solid var(--accent-color)',
+                        borderTop: '4px solid var(--rb-primary)',
                         borderRadius: '50%',
-                        animation: 'spin 1s linear infinite',
-                        marginBottom: '1rem'
+                        animation: 'rightBrainSpin 1s cubic-bezier(0.4, 0, 0.2, 1) infinite',
+                        marginBottom: '1.5rem'
                     }}></div>
-                    <p>Loading Drawing Tutorials...</p>
+                    <p style={{ fontWeight: '500', letterSpacing: '0.05em' }}>PREPARING WORKSPACE...</p>
                 </div>
             )}
 
-            <div className="iframe-container" style={{
+            <div className={`iframe-container ${isLoading ? 'hidden' : 'reveal'}`} style={{
                 position: 'relative',
                 width: '100%',
                 height: isLoading ? '0' : '100vh',
-                border: '1px solid var(--border-color)',
-                borderRadius: '8px',
+                border: '1px solid color-mix(in srgb, var(--border-color) 40%, transparent)',
+                borderRadius: '2rem',
                 overflow: 'hidden',
-                backgroundColor: 'white',
-                boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)'
+                backgroundColor: '#f8fafc',
+                boxShadow: '0 40px 100px rgba(0,0,0,0.1)'
             }}>
                 <iframe
                     ref={iframeRef}
                     src={`${process.env.PUBLIC_URL || ''}/drawing-tutorials/index.html`}
-                    title="Drawing Tutorials - ArtVault"
+                    title="Drawing Tutorials Hub"
                     width="100%"
                     height="100%"
                     frameBorder="0"
                     style={{
                         border: 'none',
-                        borderRadius: '8px',
                         display: isLoading ? 'none' : 'block'
                     }}
                     sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-modals"
@@ -201,44 +176,52 @@ const DrawingTutorials = ({ onBack }) => {
             </div>
 
             {/* Tutorial Info Panel */}
-            <div className="tutorial-info" style={{
-                marginTop: '1rem',
-                padding: '1rem',
-                backgroundColor: 'var(--background-secondary)',
-                borderRadius: '8px',
-                border: '1px solid var(--border-color)'
+            <div className="tutorial-info reveal" style={{
+                marginTop: '2rem',
+                padding: '2rem',
+                backgroundColor: 'color-mix(in srgb, var(--surface) 60%, transparent)',
+                backdropFilter: 'blur(10px)',
+                borderRadius: '2rem',
+                border: '1px solid color-mix(in srgb, var(--border-color) 40%, transparent)',
+                animationDelay: '0.4s'
             }}>
                 <div style={{
                     display: 'grid',
                     gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-                    gap: '1rem',
+                    gap: '2rem',
                     textAlign: 'center'
                 }}>
-                    <div>
-                        <strong style={{ color: 'var(--accent-color)', fontSize: '1.5rem' }}>294+</strong>
-                        <p style={{ margin: '0.25rem 0 0 0', color: 'var(--text-secondary)', fontSize: '0.9rem' }}>
-                            Expert Tutorials
-                        </p>
+                    <div className="info-item" style={{ background: 'transparent', border: 'none' }}>
+                        <span className="info-label" style={{ fontSize: '0.9rem' }}>Curated Lessons</span>
+                        <strong style={{ color: 'var(--rb-primary)', fontSize: '2.5rem', display: 'block' }}>294</strong>
                     </div>
-                    <div>
-                        <strong style={{ color: 'var(--accent-color)', fontSize: '1.5rem' }}>12+</strong>
-                        <p style={{ margin: '0.25rem 0 0 0', color: 'var(--text-secondary)', fontSize: '0.9rem' }}>
-                            Categories
-                        </p>
+                    <div className="info-item" style={{ background: 'transparent', border: 'none' }}>
+                        <span className="info-label" style={{ fontSize: '0.9rem' }}>Artistic Disciplines</span>
+                        <strong style={{ color: 'var(--rb-secondary)', fontSize: '2.5rem', display: 'block' }}>12</strong>
                     </div>
-                    <div>
-                        <strong style={{ color: 'var(--accent-color)', fontSize: '1.5rem' }}>∞</strong>
-                        <p style={{ margin: '0.25rem 0 0 0', color: 'var(--text-secondary)', fontSize: '0.9rem' }}>
-                            Creative Possibilities
-                        </p>
+                    <div className="info-item" style={{ background: 'transparent', border: 'none' }}>
+                        <span className="info-label" style={{ fontSize: '0.9rem' }}>Expert Knowledge</span>
+                        <strong style={{ color: 'var(--rb-accent)', fontSize: '2.5rem', display: 'block' }}>∞</strong>
                     </div>
                 </div>
             </div>
 
             <style jsx>{`
-                @keyframes spin {
-                    0% { transform: rotate(0deg); }
-                    100% { transform: rotate(360deg); }
+                .hidden { opacity: 0; pointer-events: none; }
+                .reveal { animation: fadeIn 0.8s cubic-bezier(0.165, 0.84, 0.44, 1) forwards; }
+                
+                @keyframes rightBrainSpin {
+                    0% { transform: rotate(0deg); border-top-width: 4px; }
+                    50% { transform: rotate(180deg); border-top-width: 1px; }
+                    100% { transform: rotate(360deg); border-top-width: 4px; }
+                }
+                
+                @media (max-width: 480px) {
+                    .tutorials-header {
+                        flex-direction: column;
+                        gap: 1rem;
+                        text-align: center;
+                    }
                 }
             `}</style>
         </div>

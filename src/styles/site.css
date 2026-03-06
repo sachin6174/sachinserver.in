@@ -139,3 +139,109 @@
     margin-bottom: var(--space-4);
   }
 }
+
+/* ⚡ ULTRA COMPACT SITE-WIDE OVERRIDES ⚡ */
+/* Forcefully reduce padding/margin in legacy components and tools to remove wasted space */
+
+[class*="-tool"],
+[class*="tool-container"],
+.api-tool,
+.crypto-tool,
+.json-tool,
+.csv-tool,
+.xml-tool,
+.yaml-tool,
+.regex-tool,
+.encoder-tool,
+.uuid-tool,
+.hash-tool,
+.password-tool,
+.diff-checker,
+.storage-tool,
+.color-picker-tool,
+.screen-recorder-tool,
+.notes-app,
+.task-manager,
+.budget-tracker,
+.writing-board-tool,
+.pomodoro-tool,
+.emoji-picker-tool {
+  padding: 0.5rem !important;
+}
+
+.request-controls,
+.response-section,
+.history-section,
+.tool-section,
+.input-section,
+.output-section,
+.result-section,
+.settings-section,
+.text-section,
+.file-section,
+.card,
+.info-card,
+.stat-card,
+.tip-card,
+.preview-section,
+.history-container,
+.tool-card {
+  padding: 0.6rem !important;
+  margin-bottom: 0.6rem !important;
+  border-radius: var(--radius-md) !important;
+  box-shadow: var(--shadow-sm) !important;
+}
+
+.request-section,
+.section,
+.preview-section {
+  margin-bottom: 0.5rem !important;
+}
+
+.request-section h3,
+.section-title,
+.tool-section-title,
+[class*="tool"] h2,
+[class*="tool"] h3,
+[class*="tool"] h4 {
+  margin-bottom: 0.35rem !important;
+  font-size: 1.05rem !important;
+  font-weight: 700 !important;
+}
+
+.method-url-container,
+.header-row,
+.control-buttons,
+.actions {
+  gap: 0.5rem !important;
+  margin-bottom: 0.5rem !important;
+}
+
+.method-select,
+.url-input,
+.header-input,
+.btn,
+button,
+.action-btn,
+.btn-tool {
+  min-height: 28px !important;
+  padding: 0.2rem 0.5rem !important;
+  font-size: 0.82rem !important;
+}
+
+textarea {
+  padding: 0.4rem !important;
+  min-height: 80px !important;
+  font-size: 0.85rem !important;
+}
+
+.stats-grid,
+.cards-container,
+.questions-grid,
+.playlists-grid {
+  gap: 0.5rem !important;
+}
+
+.content-wrapper {
+  padding: 0.4rem !important;
+}

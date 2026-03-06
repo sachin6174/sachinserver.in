@@ -41,19 +41,19 @@
 .rightbrain-container,
 .leftbrain-container.psychology-section {
   min-height: 100%;
-  padding: clamp(0.9rem, 1.8vw, 1.4rem);
+  padding: 0.5rem;
   color: var(--text-primary);
 }
 
 .nav-hidden .rightbrain-container,
 .nav-hidden .leftbrain-container.psychology-section {
-  padding: clamp(0.7rem, 1.6vw, 1rem);
+  padding: 0.4rem;
 }
 
 .simple-header,
 .hero-section {
-  margin-bottom: var(--space-6);
-  border-radius: var(--radius-xl);
+  margin-bottom: var(--space-4);
+  border-radius: var(--radius-lg);
   border: 1px solid color-mix(in srgb, var(--border-color) 78%, var(--rb-primary) 22%);
   background: linear-gradient(180deg,
       color-mix(in srgb, var(--surface) 96%, var(--rb-primary) 4%),
@@ -62,11 +62,11 @@
 }
 
 .simple-header {
-  padding: var(--space-5);
+  padding: var(--space-2) var(--space-3);
 }
 
 .hero-section {
-  padding: var(--space-6);
+  padding: var(--space-3);
   text-align: center;
 }
 
@@ -85,11 +85,11 @@
 }
 
 .section {
-  margin-bottom: var(--space-8);
+  margin-bottom: var(--space-5);
 }
 
 .section h2 {
-  margin-bottom: var(--space-4);
+  margin-bottom: var(--space-2);
   color: var(--text-primary);
 }
 
@@ -107,8 +107,8 @@
 .tip-card,
 .info-card,
 .stat-card {
-  padding: var(--space-4);
-  border-radius: var(--radius-lg);
+  padding: var(--space-3);
+  border-radius: var(--radius-md);
   border: 1px solid color-mix(in srgb, var(--border-color) 84%, transparent);
   background: linear-gradient(180deg, color-mix(in srgb, var(--surface) 96%, transparent), color-mix(in srgb, var(--surface-2) 90%, transparent));
   box-shadow: var(--shadow-sm);
@@ -132,8 +132,7 @@
   background:
     linear-gradient(165deg,
       color-mix(in srgb, var(--rb-primary) 13%, var(--surface)) 0%,
-      color-mix(in srgb, var(--rb-secondary) 10%, var(--surface-2)) 100%
-    );
+      color-mix(in srgb, var(--rb-secondary) 10%, var(--surface-2)) 100%);
 }
 
 .tech-icon {
@@ -281,7 +280,9 @@
 }
 
 @keyframes rightBrainSpin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 @media (max-width: 1024px) {
@@ -291,6 +292,7 @@
 }
 
 @media (max-width: 820px) {
+
   .rightbrain-container,
   .leftbrain-container.psychology-section,
   .nav-hidden .rightbrain-container,

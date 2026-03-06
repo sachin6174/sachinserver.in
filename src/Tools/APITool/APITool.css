@@ -1,10 +1,10 @@
 .api-tool {
-    padding: 20px;
-    max-width: 1200px;
-    margin: 0 auto;
+    padding: 8px;
+    max-width: 1400px;
+    margin: 0;
     background: var(--content-bg);
     color: var(--text-color);
-    border-radius: 8px;
+    border-radius: 4px;
     height: 100%;
     overflow-y: auto;
 }
@@ -30,24 +30,24 @@
 .request-controls {
     background: var(--card-bg);
     border: 1px solid var(--border-color);
-    border-radius: 12px;
-    padding: 25px;
-    margin-bottom: 25px;
-    box-shadow: 0 4px 12px var(--shadow-color);
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 12px;
+    box-shadow: var(--shadow-sm);
 }
 
 .request-section {
-    margin-bottom: 25px;
+    margin-bottom: 12px;
 }
 
 .request-section h3 {
     color: var(--accent-color);
-    margin-bottom: 20px;
-    font-size: 18px;
+    margin-bottom: 10px;
+    font-size: 1rem;
     font-weight: 600;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
 }
 
 .request-section h3::before {
@@ -60,22 +60,22 @@
 
 .method-url-container {
     display: flex;
-    gap: 10px;
-    margin-bottom: 15px;
+    gap: 8px;
+    margin-bottom: 10px;
     align-items: center;
 }
 
 .method-select {
-    padding: 10px 12px;
+    padding: 6px 10px;
     border: 1px solid var(--border-color);
-    border-radius: 6px;
+    border-radius: 4px;
     background: var(--content-bg);
     color: var(--text-color);
-    font-size: 14px;
+    font-size: 13px;
     cursor: pointer;
     transition: all 0.2s ease;
-    min-height: 44px;
-    min-width: 100px;
+    min-height: 32px;
+    min-width: 80px;
     box-sizing: border-box;
 }
 
@@ -83,18 +83,22 @@
     border-color: var(--accent-color);
 }
 
-.method-select:focus-visible { outline: none; border-color: var(--accent-color); box-shadow: var(--shadow-focus); }
+.method-select:focus-visible {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: var(--shadow-focus);
+}
 
 .url-input {
     flex: 1;
-    padding: 10px 12px;
+    padding: 6px 10px;
     border: 1px solid var(--border-color);
-    border-radius: 6px;
+    border-radius: 4px;
     background: var(--content-bg);
     color: var(--text-color);
-    font-size: 14px;
+    font-size: 13px;
     transition: all 0.2s ease;
-    min-height: 44px;
+    min-height: 32px;
     box-sizing: border-box;
 }
 
@@ -102,7 +106,11 @@
     border-color: var(--accent-color);
 }
 
-.url-input:focus-visible { outline: none; border-color: var(--accent-color); box-shadow: var(--shadow-focus); }
+.url-input:focus-visible {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: var(--shadow-focus);
+}
 
 .headers-section {
     margin-bottom: 20px;
@@ -230,11 +238,15 @@
     border-color: var(--accent-color);
 }
 
-.body-textarea:focus-visible { outline: none; border-color: var(--accent-color); box-shadow: var(--shadow-focus); }
+.body-textarea:focus-visible {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: var(--shadow-focus);
+}
 
 .action-section {
     border-top: 1px solid var(--border-color);
-    padding-top: 25px;
+    padding-top: 12px;
     text-align: center;
 }
 
@@ -246,22 +258,22 @@
 }
 
 .send-button {
-    padding: 12px 24px;
+    padding: 8px 16px;
     border: none;
-    border-radius: 8px;
-    font-size: 16px;
+    border-radius: 6px;
+    font-size: 14px;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.2s ease;
-    min-height: 48px;
-    min-width: 160px;
+    min-height: 36px;
+    min-width: 120px;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
+    gap: 6px;
     background: #007bff;
     color: white;
-    box-shadow: 0 2px 8px rgba(0, 123, 255, 0.3);
+    box-shadow: 0 2px 4px rgba(0, 123, 255, 0.2);
 }
 
 .send-button:hover:not(:disabled) {
@@ -295,10 +307,10 @@
 .response-section {
     background: var(--card-bg);
     border: 1px solid var(--border-color);
-    border-radius: 12px;
-    padding: 25px;
-    margin-bottom: 25px;
-    box-shadow: 0 4px 12px var(--shadow-color);
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 12px;
+    box-shadow: var(--shadow-sm);
 }
 
 .response-section h3 {
@@ -405,7 +417,7 @@
 .history-list {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 4px;
 }
 
 .history-item {
